@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		794864D122A7E48400F84A72 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794864D022A7E48400F84A72 /* GameView.swift */; };
 		795746B322A7C59A00E04BEC /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795746B222A7C59A00E04BEC /* Level.swift */; };
 		795746B422A7CA9800E04BEC /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795746B222A7C59A00E04BEC /* Level.swift */; };
 		795746B522A7CA9800E04BEC /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795746B222A7C59A00E04BEC /* Level.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		794864D022A7E48400F84A72 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		795746B222A7C59A00E04BEC /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		79C61A6F22A7C413008D3609 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		79C61A7022A7C415008D3609 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				79C61A9922A7C415008D3609 /* GameViewController.swift */,
 				79C61A9B22A7C415008D3609 /* Main.storyboard */,
 				79C61A9E22A7C415008D3609 /* Info.plist */,
+				794864D022A7E48400F84A72 /* GameView.swift */,
 			);
 			path = "Quest macOS";
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				79C61A9A22A7C415008D3609 /* GameViewController.swift in Sources */,
 				795746B522A7CA9800E04BEC /* Level.swift in Sources */,
 				79C61A9822A7C415008D3609 /* AppDelegate.swift in Sources */,
+				794864D122A7E48400F84A72 /* GameView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

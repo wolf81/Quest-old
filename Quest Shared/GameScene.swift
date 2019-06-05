@@ -85,7 +85,7 @@ extension GameScene {
     }
     
     override func mouseUp(with event: NSEvent) {
-    }
+    }    
 }
 #endif
 
