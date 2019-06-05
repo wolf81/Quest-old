@@ -21,8 +21,6 @@ class GameViewController: UIViewController {
         let skView = self.view as! SKView
         skView.presentScene(scene)
         
-        let level = Level()
-        
         skView.ignoresSiblingOrder = true
         skView.showsFPS = true
         skView.showsNodeCount = true

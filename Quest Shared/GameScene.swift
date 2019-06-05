@@ -9,6 +9,14 @@
 import SpriteKit
 
 class GameScene: SKScene {
+    var level: Level! {
+        didSet {
+            guard let level = self.level else {
+                fatalError()
+            }
+            print(level)
+        }
+    }
 
     class func newGameScene(size: CGSize) -> GameScene {
         // Load 'GameScene.sks' as an SKScene.
@@ -16,13 +24,23 @@ class GameScene: SKScene {
         // Set the scale mode to scale to fit the window
         scene.scaleMode = .aspectFill
 
-        let level = Level()
-        print(level)
+        scene.level = Level()
         
         return scene
     }
     
     func setUpScene() {
+        let level = Level()
+        
+        for y in (0 ..< level.height) {
+            for x in (0 ..< level.width) {
+                let tile = level.getTileAt(x: x, y: y)
+                let color : SKColor = tile == .empty ? .blue : .red
+                let sprite = SKSpriteNode(texture: nil, color: color, size: CGSize(width: 64, height: 64))
+                sprite.position = CGPoint(x: x * 64, y: y * 64)
+                self.addChild(sprite)
+            }
+        }
     }
     
     #if os(watchOS)

@@ -72,6 +72,11 @@ struct Level {
         
         self.tiles = tiles
     }
+    
+    func getTileAt(x: Int, y: Int) -> Tile {
+        let idx = Int(y * width + x)
+        return self.tiles[idx]
+    }
 }
 
 extension Level : CustomStringConvertible {
