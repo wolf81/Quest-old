@@ -1,0 +1,620 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		795746B322A7C59A00E04BEC /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795746B222A7C59A00E04BEC /* Level.swift */; };
+		795746B422A7CA9800E04BEC /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795746B222A7C59A00E04BEC /* Level.swift */; };
+		795746B522A7CA9800E04BEC /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795746B222A7C59A00E04BEC /* Level.swift */; };
+		79C61A7922A7C415008D3609 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C61A7822A7C415008D3609 /* AppDelegate.swift */; };
+		79C61A7B22A7C415008D3609 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C61A7A22A7C415008D3609 /* GameViewController.swift */; };
+		79C61A7E22A7C415008D3609 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79C61A7C22A7C415008D3609 /* Main.storyboard */; };
+		79C61A8122A7C415008D3609 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79C61A7F22A7C415008D3609 /* LaunchScreen.storyboard */; };
+		79C61A8A22A7C415008D3609 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C61A8922A7C415008D3609 /* AppDelegate.swift */; };
+		79C61A8C22A7C415008D3609 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C61A8B22A7C415008D3609 /* GameViewController.swift */; };
+		79C61A8F22A7C415008D3609 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79C61A8D22A7C415008D3609 /* Main.storyboard */; };
+		79C61A9822A7C415008D3609 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C61A9722A7C415008D3609 /* AppDelegate.swift */; };
+		79C61A9A22A7C415008D3609 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C61A9922A7C415008D3609 /* GameViewController.swift */; };
+		79C61A9D22A7C415008D3609 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79C61A9B22A7C415008D3609 /* Main.storyboard */; };
+		79C61AA522A7C415008D3609 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C61A6F22A7C413008D3609 /* GameScene.swift */; };
+		79C61AA622A7C415008D3609 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C61A6F22A7C413008D3609 /* GameScene.swift */; };
+		79C61AA722A7C415008D3609 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C61A6F22A7C413008D3609 /* GameScene.swift */; };
+		79C61AA822A7C415008D3609 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C61A7022A7C415008D3609 /* Assets.xcassets */; };
+		79C61AA922A7C415008D3609 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C61A7022A7C415008D3609 /* Assets.xcassets */; };
+		79C61AAA22A7C415008D3609 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C61A7022A7C415008D3609 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		795746B222A7C59A00E04BEC /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
+		79C61A6F22A7C413008D3609 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		79C61A7022A7C415008D3609 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		79C61A7522A7C415008D3609 /* Quest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		79C61A7822A7C415008D3609 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		79C61A7A22A7C415008D3609 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		79C61A7D22A7C415008D3609 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		79C61A8022A7C415008D3609 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		79C61A8222A7C415008D3609 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79C61A8722A7C415008D3609 /* Quest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		79C61A8922A7C415008D3609 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		79C61A8B22A7C415008D3609 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		79C61A8E22A7C415008D3609 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		79C61A9022A7C415008D3609 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79C61A9522A7C415008D3609 /* Quest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		79C61A9722A7C415008D3609 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		79C61A9922A7C415008D3609 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		79C61A9C22A7C415008D3609 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		79C61A9E22A7C415008D3609 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		79C61A7222A7C415008D3609 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79C61A8422A7C415008D3609 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79C61A9222A7C415008D3609 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		79C61A6722A7C413008D3609 = {
+			isa = PBXGroup;
+			children = (
+				79C61A6C22A7C413008D3609 /* Quest Shared */,
+				79C61A7722A7C415008D3609 /* Quest iOS */,
+				79C61A8822A7C415008D3609 /* Quest tvOS */,
+				79C61A9622A7C415008D3609 /* Quest macOS */,
+				79C61A7622A7C415008D3609 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		79C61A6C22A7C413008D3609 /* Quest Shared */ = {
+			isa = PBXGroup;
+			children = (
+				79C61A6F22A7C413008D3609 /* GameScene.swift */,
+				79C61A7022A7C415008D3609 /* Assets.xcassets */,
+				795746B222A7C59A00E04BEC /* Level.swift */,
+			);
+			path = "Quest Shared";
+			sourceTree = "<group>";
+		};
+		79C61A7622A7C415008D3609 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				79C61A7522A7C415008D3609 /* Quest.app */,
+				79C61A8722A7C415008D3609 /* Quest.app */,
+				79C61A9522A7C415008D3609 /* Quest.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		79C61A7722A7C415008D3609 /* Quest iOS */ = {
+			isa = PBXGroup;
+			children = (
+				79C61A7822A7C415008D3609 /* AppDelegate.swift */,
+				79C61A7A22A7C415008D3609 /* GameViewController.swift */,
+				79C61A7C22A7C415008D3609 /* Main.storyboard */,
+				79C61A7F22A7C415008D3609 /* LaunchScreen.storyboard */,
+				79C61A8222A7C415008D3609 /* Info.plist */,
+			);
+			path = "Quest iOS";
+			sourceTree = "<group>";
+		};
+		79C61A8822A7C415008D3609 /* Quest tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				79C61A8922A7C415008D3609 /* AppDelegate.swift */,
+				79C61A8B22A7C415008D3609 /* GameViewController.swift */,
+				79C61A8D22A7C415008D3609 /* Main.storyboard */,
+				79C61A9022A7C415008D3609 /* Info.plist */,
+			);
+			path = "Quest tvOS";
+			sourceTree = "<group>";
+		};
+		79C61A9622A7C415008D3609 /* Quest macOS */ = {
+			isa = PBXGroup;
+			children = (
+				79C61A9722A7C415008D3609 /* AppDelegate.swift */,
+				79C61A9922A7C415008D3609 /* GameViewController.swift */,
+				79C61A9B22A7C415008D3609 /* Main.storyboard */,
+				79C61A9E22A7C415008D3609 /* Info.plist */,
+			);
+			path = "Quest macOS";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		79C61A7422A7C415008D3609 /* Quest iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 79C61AAD22A7C415008D3609 /* Build configuration list for PBXNativeTarget "Quest iOS" */;
+			buildPhases = (
+				79C61A7122A7C415008D3609 /* Sources */,
+				79C61A7222A7C415008D3609 /* Frameworks */,
+				79C61A7322A7C415008D3609 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Quest iOS";
+			productName = "Quest iOS";
+			productReference = 79C61A7522A7C415008D3609 /* Quest.app */;
+			productType = "com.apple.product-type.application";
+		};
+		79C61A8622A7C415008D3609 /* Quest tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 79C61AB022A7C415008D3609 /* Build configuration list for PBXNativeTarget "Quest tvOS" */;
+			buildPhases = (
+				79C61A8322A7C415008D3609 /* Sources */,
+				79C61A8422A7C415008D3609 /* Frameworks */,
+				79C61A8522A7C415008D3609 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Quest tvOS";
+			productName = "Quest tvOS";
+			productReference = 79C61A8722A7C415008D3609 /* Quest.app */;
+			productType = "com.apple.product-type.application";
+		};
+		79C61A9422A7C415008D3609 /* Quest macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 79C61AB322A7C415008D3609 /* Build configuration list for PBXNativeTarget "Quest macOS" */;
+			buildPhases = (
+				79C61A9122A7C415008D3609 /* Sources */,
+				79C61A9222A7C415008D3609 /* Frameworks */,
+				79C61A9322A7C415008D3609 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Quest macOS";
+			productName = "Quest macOS";
+			productReference = 79C61A9522A7C415008D3609 /* Quest.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		79C61A6822A7C413008D3609 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = Wolftrail;
+				TargetAttributes = {
+					79C61A7422A7C415008D3609 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+					79C61A8622A7C415008D3609 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+					79C61A9422A7C415008D3609 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 79C61A6B22A7C413008D3609 /* Build configuration list for PBXProject "Quest" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 79C61A6722A7C413008D3609;
+			productRefGroup = 79C61A7622A7C415008D3609 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				79C61A7422A7C415008D3609 /* Quest iOS */,
+				79C61A8622A7C415008D3609 /* Quest tvOS */,
+				79C61A9422A7C415008D3609 /* Quest macOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		79C61A7322A7C415008D3609 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79C61A7E22A7C415008D3609 /* Main.storyboard in Resources */,
+				79C61A8122A7C415008D3609 /* LaunchScreen.storyboard in Resources */,
+				79C61AA822A7C415008D3609 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79C61A8522A7C415008D3609 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79C61A8F22A7C415008D3609 /* Main.storyboard in Resources */,
+				79C61AA922A7C415008D3609 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79C61A9322A7C415008D3609 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79C61A9D22A7C415008D3609 /* Main.storyboard in Resources */,
+				79C61AAA22A7C415008D3609 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		79C61A7122A7C415008D3609 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79C61AA522A7C415008D3609 /* GameScene.swift in Sources */,
+				79C61A7B22A7C415008D3609 /* GameViewController.swift in Sources */,
+				795746B322A7C59A00E04BEC /* Level.swift in Sources */,
+				79C61A7922A7C415008D3609 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79C61A8322A7C415008D3609 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79C61AA622A7C415008D3609 /* GameScene.swift in Sources */,
+				79C61A8C22A7C415008D3609 /* GameViewController.swift in Sources */,
+				795746B422A7CA9800E04BEC /* Level.swift in Sources */,
+				79C61A8A22A7C415008D3609 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79C61A9122A7C415008D3609 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79C61AA722A7C415008D3609 /* GameScene.swift in Sources */,
+				79C61A9A22A7C415008D3609 /* GameViewController.swift in Sources */,
+				795746B522A7CA9800E04BEC /* Level.swift in Sources */,
+				79C61A9822A7C415008D3609 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		79C61A7C22A7C415008D3609 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				79C61A7D22A7C415008D3609 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		79C61A7F22A7C415008D3609 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				79C61A8022A7C415008D3609 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		79C61A8D22A7C415008D3609 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				79C61A8E22A7C415008D3609 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		79C61A9B22A7C415008D3609 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				79C61A9C22A7C415008D3609 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		79C61AAB22A7C415008D3609 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		79C61AAC22A7C415008D3609 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		79C61AAE22A7C415008D3609 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J6E64C67VU;
+				INFOPLIST_FILE = "Quest iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.wolftrail.Quest;
+				PRODUCT_NAME = Quest;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		79C61AAF22A7C415008D3609 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J6E64C67VU;
+				INFOPLIST_FILE = "Quest iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.wolftrail.Quest;
+				PRODUCT_NAME = Quest;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		79C61AB122A7C415008D3609 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "tvOS App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "tvOS LaunchImage";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J6E64C67VU;
+				INFOPLIST_FILE = "Quest tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.wolftrail.Quest;
+				PRODUCT_NAME = Quest;
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 12.2;
+			};
+			name = Debug;
+		};
+		79C61AB222A7C415008D3609 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "tvOS App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "tvOS LaunchImage";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J6E64C67VU;
+				INFOPLIST_FILE = "Quest tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.wolftrail.Quest;
+				PRODUCT_NAME = Quest;
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 12.2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		79C61AB422A7C415008D3609 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = J6E64C67VU;
+				INFOPLIST_FILE = "Quest macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = net.wolftrail.Quest;
+				PRODUCT_NAME = Quest;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		79C61AB522A7C415008D3609 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = J6E64C67VU;
+				INFOPLIST_FILE = "Quest macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = net.wolftrail.Quest;
+				PRODUCT_NAME = Quest;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		79C61A6B22A7C413008D3609 /* Build configuration list for PBXProject "Quest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79C61AAB22A7C415008D3609 /* Debug */,
+				79C61AAC22A7C415008D3609 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		79C61AAD22A7C415008D3609 /* Build configuration list for PBXNativeTarget "Quest iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79C61AAE22A7C415008D3609 /* Debug */,
+				79C61AAF22A7C415008D3609 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		79C61AB022A7C415008D3609 /* Build configuration list for PBXNativeTarget "Quest tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79C61AB122A7C415008D3609 /* Debug */,
+				79C61AB222A7C415008D3609 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		79C61AB322A7C415008D3609 /* Build configuration list for PBXNativeTarget "Quest macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79C61AB422A7C415008D3609 /* Debug */,
+				79C61AB522A7C415008D3609 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 79C61A6822A7C413008D3609 /* Project object */;
+}
