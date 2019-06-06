@@ -19,10 +19,16 @@ class Game {
         }
     }
     
-//    var playerPosition: vector_int2 {
-//        get { return self.level. }
-//    }
-//    private let player: SKSpriteNode!
+    func getTileAt(coord: int2) -> Tile? {
+        return self.level.getTileAt(coord: coord)
+    }
+    
+    func canMoveEntity(entity: Entity, toCoord coord: int2) -> Bool {
+        guard let tile = self.getTileAt(coord: coord) else {
+            return false
+        }
+        return tile.contains(.wall) == false
+    }
     
     func start(scene: GameScene, levelIdx: Int = 0, tileSize: CGSize) {
         self.level = Level()
@@ -33,10 +39,10 @@ class Game {
             for x in (0 ..< level.width) {
                 var entity: Entity!
                 
-                let tile = level.getTileAt(x: x, y: y)
+                let coord = int2(Int32(x), Int32(y))
+                let tile = level.getTileAt(coord: coord)
                 let color : SKColor = tile.contains(.player) ? .blue : tile.contains(.wall) ? .darkGray : .gray
                 let sprite = SKSpriteNode(texture: nil, color: color, size: tileSize)
-                let coord = int2(Int32(x), Int32(y))
                 
                 if tile.contains(.player) {
                     entity = Player(sprite: sprite, coord: coord)
