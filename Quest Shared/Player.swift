@@ -9,4 +9,9 @@
 import SpriteKit
 
 class Player : Entity {
+    override init(sprite: SKSpriteNode, coord: int2) {
+        super.init(sprite: sprite, coord: coord)
+        
+        sprite.zPosition = 100
+    }
 }

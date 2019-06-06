@@ -11,7 +11,7 @@ import SpriteKit
 class GameScene: SKScene {
     private var lastUpdateTime: TimeInterval = 0
     
-    private static let tileSize = CGSize(width: 64, height: 64)
+    fileprivate static let tileSize = CGSize(width: 64, height: 64)
     
     private let game = Game()
     
@@ -29,16 +29,15 @@ class GameScene: SKScene {
         self.game.start(scene: self, tileSize: GameScene.tileSize)
         
         for entity in self.game.entities {
-            let position = CGPoint(x: CGFloat(entity.coord.x) * GameScene.tileSize.width,
-                                   y: CGFloat(entity.coord.y) * GameScene.tileSize.height)
+            let position = pointForCoord(entity.coord)
             entity.sprite.position = position
             
             self.addChild(entity.sprite)
         }
         
         self.playerCamera = SKCameraNode()
-        self.playerCamera.position = CGPoint(x: CGFloat(game.player.coord.x) * GameScene.tileSize.width,
-                                             y: CGFloat(game.player.coord.y) * GameScene.tileSize.height)
+        self.playerCamera.position = pointForCoord(self.game.player.coord)
+        addChild(self.playerCamera)
         scene?.camera = self.playerCamera
     }
     
@@ -61,6 +60,29 @@ class GameScene: SKScene {
         
         self.lastUpdateTime = currentTime
     }
+    
+    func movePlayer(direction: Direction) {
+        let coord = self.game.player.coord &+ direction.coord
+
+        let moveDuration: TimeInterval = 0.2
+        let position = pointForCoord(coord)
+        
+        self.game.player.move(to: position, duration: moveDuration) {
+            self.game.player.coord = coord
+        }
+        
+        moveCamera(toPosition: position, duration: moveDuration)
+    }
+    
+    func moveCamera(toPosition: CGPoint, duration: TimeInterval) {
+        self.playerCamera.run(SKAction.move(to: toPosition, duration: duration))
+    }
+}
+
+func pointForCoord(_ coord: int2) -> CGPoint {
+    let x = CGFloat(coord.x) * GameScene.tileSize.width
+    let y = CGFloat(coord.y) * GameScene.tileSize.height
+    return CGPoint(x: x, y: y)
 }
 
 #if os(iOS) || os(tvOS)
