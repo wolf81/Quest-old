@@ -26,7 +26,7 @@ class GameScene: SKScene {
     }
     
     func setUpScene() {
-        self.game.start(scene: self)
+        self.game.start(scene: self, tileSize: GameScene.tileSize)
         
         for entity in self.game.entities {
             let position = CGPoint(x: CGFloat(entity.coord.x) * GameScene.tileSize.width,

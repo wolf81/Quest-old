@@ -24,7 +24,7 @@ class Game {
 //    }
 //    private let player: SKSpriteNode!
     
-    func start(scene: GameScene, levelIdx: Int = 0) {
+    func start(scene: GameScene, levelIdx: Int = 0, tileSize: CGSize) {
         self.level = Level()
         
         var entities: [Entity] = []
@@ -35,7 +35,7 @@ class Game {
                 
                 let tile = level.getTileAt(x: x, y: y)
                 let color : SKColor = tile.contains(.player) ? .blue : tile.contains(.wall) ? .darkGray : .gray
-                let sprite = SKSpriteNode(texture: nil, color: color, size: CGSize(width: 64, height: 64))
+                let sprite = SKSpriteNode(texture: nil, color: color, size: tileSize)
                 let coord = int2(Int32(x), Int32(y))
                 
                 if tile.contains(.player) {
