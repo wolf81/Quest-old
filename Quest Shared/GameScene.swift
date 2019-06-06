@@ -9,38 +9,37 @@
 import SpriteKit
 
 class GameScene: SKScene {
-    var level: Level! {
-        didSet {
-            guard let level = self.level else {
-                fatalError()
-            }
-            print(level)
-        }
-    }
-
+    private var lastUpdateTime: TimeInterval = 0
+    
+    private static let tileSize = CGSize(width: 64, height: 64)
+    
+    private let game = Game()
+    
+    private var playerCamera: SKCameraNode!
+    
     class func newGameScene(size: CGSize) -> GameScene {
-        // Load 'GameScene.sks' as an SKScene.
         let scene = GameScene(size: size)
         // Set the scale mode to scale to fit the window
         scene.scaleMode = .aspectFill
-
-        scene.level = Level()
-        
+            
         return scene
     }
     
     func setUpScene() {
-        let level = Level()
+        self.game.start(scene: self)
         
-        for y in (0 ..< level.height) {
-            for x in (0 ..< level.width) {
-                let tile = level.getTileAt(x: x, y: y)
-                let color : SKColor = tile == .empty ? .blue : .red
-                let sprite = SKSpriteNode(texture: nil, color: color, size: CGSize(width: 64, height: 64))
-                sprite.position = CGPoint(x: x * 64, y: y * 64)
-                self.addChild(sprite)
-            }
+        for entity in self.game.entities {
+            let position = CGPoint(x: CGFloat(entity.coord.x) * GameScene.tileSize.width,
+                                   y: CGFloat(entity.coord.y) * GameScene.tileSize.height)
+            entity.sprite.position = position
+            
+            self.addChild(entity.sprite)
         }
+        
+        self.playerCamera = SKCameraNode()
+        self.playerCamera.position = CGPoint(x: CGFloat(game.player.coord.x) * GameScene.tileSize.width,
+                                             y: CGFloat(game.player.coord.y) * GameScene.tileSize.height)
+        scene?.camera = self.playerCamera
     }
     
     #if os(watchOS)
@@ -55,6 +54,12 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        let deltaTime = currentTime - lastUpdateTime
+        
+        // Update game state
+        self.game.update(deltaTime)
+        
+        self.lastUpdateTime = currentTime
     }
 }
 

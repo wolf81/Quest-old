@@ -12,11 +12,11 @@ import SpriteKit
 struct Tile: OptionSet {
     let rawValue: Int32
     
-    static let empty = Tile(rawValue: 1 << 0)
+    static let floor = Tile(rawValue: 1 << 0)
     static let wall = Tile(rawValue: 1 << 1)
     static let player = Tile(rawValue: 1 << 2)
     
-    static let all: Tile = [.empty, .wall, .player]
+    static let all: Tile = [.floor, .wall, .player]
 }
 
 extension Tile: CustomStringConvertible {
@@ -27,7 +27,7 @@ extension Tile: CustomStringConvertible {
             output = "P"
         } else if self.contains(.wall) {
             output = "1"
-        } else if self.contains(.empty) {
+        } else if self.contains(.floor) {
             output = "0"
         } 
         
@@ -37,12 +37,14 @@ extension Tile: CustomStringConvertible {
 
 struct Level {
     let width = 12
-    let height = 8
+    let height = 8        
+
+    let playerPosition = int2(2, 2)
     
     fileprivate let tiles: [Tile]
     
     init() {
-        var tiles = Array(repeatElement(Tile.empty, count: width * height))
+        var tiles = Array(repeatElement(Tile.floor, count: width * height))
         
         for y in (0 ..< height) {
             for x in (0 ..< width) {
@@ -65,8 +67,7 @@ struct Level {
                 }
             }
         }
-        
-        let playerPosition = CGPoint(x: 2, y: 2)
+            
         let idx = Int(Int(playerPosition.y) * width + Int(playerPosition.x))
         tiles[idx] = .player
         

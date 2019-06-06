@@ -8,6 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		794864D122A7E48400F84A72 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794864D022A7E48400F84A72 /* GameView.swift */; };
+		794864D322A7E60300F84A72 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794864D222A7E60300F84A72 /* Game.swift */; };
+		794864D422A7E60300F84A72 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794864D222A7E60300F84A72 /* Game.swift */; };
+		794864D522A7E60300F84A72 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794864D222A7E60300F84A72 /* Game.swift */; };
+		794864D722A8092500F84A72 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794864D622A8092500F84A72 /* Player.swift */; };
+		794864D822A8092500F84A72 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794864D622A8092500F84A72 /* Player.swift */; };
+		794864D922A8092500F84A72 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794864D622A8092500F84A72 /* Player.swift */; };
+		794864DB22A826A200F84A72 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794864DA22A826A200F84A72 /* GameState.swift */; };
+		794864DC22A826A200F84A72 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794864DA22A826A200F84A72 /* GameState.swift */; };
+		794864DD22A826A200F84A72 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794864DA22A826A200F84A72 /* GameState.swift */; };
+		794864DF22A8C3A400F84A72 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794864DE22A8C3A400F84A72 /* Entity.swift */; };
+		794864E022A8C3A400F84A72 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794864DE22A8C3A400F84A72 /* Entity.swift */; };
+		794864E122A8C3A400F84A72 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794864DE22A8C3A400F84A72 /* Entity.swift */; };
 		795746B322A7C59A00E04BEC /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795746B222A7C59A00E04BEC /* Level.swift */; };
 		795746B422A7CA9800E04BEC /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795746B222A7C59A00E04BEC /* Level.swift */; };
 		795746B522A7CA9800E04BEC /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795746B222A7C59A00E04BEC /* Level.swift */; };
@@ -31,6 +43,10 @@
 
 /* Begin PBXFileReference section */
 		794864D022A7E48400F84A72 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		794864D222A7E60300F84A72 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		794864D622A8092500F84A72 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		794864DA22A826A200F84A72 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		794864DE22A8C3A400F84A72 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		795746B222A7C59A00E04BEC /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		79C61A6F22A7C413008D3609 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		79C61A7022A7C415008D3609 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -94,6 +110,10 @@
 				79C61A6F22A7C413008D3609 /* GameScene.swift */,
 				79C61A7022A7C415008D3609 /* Assets.xcassets */,
 				795746B222A7C59A00E04BEC /* Level.swift */,
+				794864D222A7E60300F84A72 /* Game.swift */,
+				794864D622A8092500F84A72 /* Player.swift */,
+				794864DA22A826A200F84A72 /* GameState.swift */,
+				794864DE22A8C3A400F84A72 /* Entity.swift */,
 			);
 			path = "Quest Shared";
 			sourceTree = "<group>";
@@ -274,9 +294,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				794864DB22A826A200F84A72 /* GameState.swift in Sources */,
 				79C61AA522A7C415008D3609 /* GameScene.swift in Sources */,
+				794864D322A7E60300F84A72 /* Game.swift in Sources */,
 				79C61A7B22A7C415008D3609 /* GameViewController.swift in Sources */,
+				794864DF22A8C3A400F84A72 /* Entity.swift in Sources */,
 				795746B322A7C59A00E04BEC /* Level.swift in Sources */,
+				794864D722A8092500F84A72 /* Player.swift in Sources */,
 				79C61A7922A7C415008D3609 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,9 +309,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				794864DC22A826A200F84A72 /* GameState.swift in Sources */,
 				79C61AA622A7C415008D3609 /* GameScene.swift in Sources */,
+				794864D422A7E60300F84A72 /* Game.swift in Sources */,
 				79C61A8C22A7C415008D3609 /* GameViewController.swift in Sources */,
+				794864E022A8C3A400F84A72 /* Entity.swift in Sources */,
 				795746B422A7CA9800E04BEC /* Level.swift in Sources */,
+				794864D822A8092500F84A72 /* Player.swift in Sources */,
 				79C61A8A22A7C415008D3609 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,8 +325,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				79C61AA722A7C415008D3609 /* GameScene.swift in Sources */,
+				794864D522A7E60300F84A72 /* Game.swift in Sources */,
 				79C61A9A22A7C415008D3609 /* GameViewController.swift in Sources */,
 				795746B522A7CA9800E04BEC /* Level.swift in Sources */,
+				794864D922A8092500F84A72 /* Player.swift in Sources */,
+				794864E122A8C3A400F84A72 /* Entity.swift in Sources */,
+				794864DD22A826A200F84A72 /* GameState.swift in Sources */,
 				79C61A9822A7C415008D3609 /* AppDelegate.swift in Sources */,
 				794864D122A7E48400F84A72 /* GameView.swift in Sources */,
 			);
