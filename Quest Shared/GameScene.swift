@@ -62,7 +62,7 @@ class GameScene: SKScene {
     }
     
     // TODO:
-    // game scene shouldn't contain any logic at all - the logic should all be contained by the
+    // game scene shouldn't contain any game logic at all - the logic should all be contained by the
     // Game class - perhaps the game should have some delegate that notifies the scene and the
     // scene can then show the proper animation. E.g. after player moved to a position, show
     // movement animation for the sprite. Or perhaps just do all animation in the Game class, but
