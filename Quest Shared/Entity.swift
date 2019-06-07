@@ -42,15 +42,7 @@ class Entity : JSONConstructable {
         self.json = [:]
         self.coord = coord
     }
-    
-    func move(to position: CGPoint, duration: TimeInterval, completion: @escaping () -> Void) {
-        let move = SKAction.sequence([
-            SKAction.move(to: position, duration: duration),
-            SKAction.run(completion)
-        ])
-        self.sprite.run(move)
-    }
-    
+        
     func copy() -> Self {
         return copyInternal()
     }

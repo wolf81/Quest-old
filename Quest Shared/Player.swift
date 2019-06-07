@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class Player: Entity {
+class Player: Creature {
     required init(json: [String : Any]) {
         super.init(json: json)
         
