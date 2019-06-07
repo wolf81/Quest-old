@@ -72,6 +72,8 @@ class Game {
                     let monster = entityFactory.newEntity(name: "Skeleton")!
                     monster.coord = coord
                     entities.append(monster)
+                    
+                    print(monster)
                 }
             }
         }

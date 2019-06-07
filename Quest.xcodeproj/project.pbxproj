@@ -44,6 +44,12 @@
 		79ACC80E22AAA75900AC3BF0 /* Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC80D22AAA75800AC3BF0 /* Creature.swift */; };
 		79ACC80F22AAA75900AC3BF0 /* Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC80D22AAA75800AC3BF0 /* Creature.swift */; };
 		79ACC81022AAA75900AC3BF0 /* Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC80D22AAA75800AC3BF0 /* Creature.swift */; };
+		79ACC81622AAB5D700AC3BF0 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC81522AAB5D600AC3BF0 /* Weapon.swift */; };
+		79ACC81722AAB5D700AC3BF0 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC81522AAB5D600AC3BF0 /* Weapon.swift */; };
+		79ACC81822AAB5D700AC3BF0 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC81522AAB5D600AC3BF0 /* Weapon.swift */; };
+		79ACC81A22AAB6F100AC3BF0 /* HitDice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC81922AAB6F100AC3BF0 /* HitDice.swift */; };
+		79ACC81B22AAB6F100AC3BF0 /* HitDice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC81922AAB6F100AC3BF0 /* HitDice.swift */; };
+		79ACC81C22AAB6F100AC3BF0 /* HitDice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC81922AAB6F100AC3BF0 /* HitDice.swift */; };
 		79C61A7922A7C415008D3609 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C61A7822A7C415008D3609 /* AppDelegate.swift */; };
 		79C61A7B22A7C415008D3609 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C61A7A22A7C415008D3609 /* GameViewController.swift */; };
 		79C61A7E22A7C415008D3609 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79C61A7C22A7C415008D3609 /* Main.storyboard */; };
@@ -76,6 +82,8 @@
 		79ACC7FA22AAA4B800AC3BF0 /* Monster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Monster.swift; path = "Quest Shared/Monster.swift"; sourceTree = SOURCE_ROOT; };
 		79ACC7FB22AAA4B800AC3BF0 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = "Quest Shared/Player.swift"; sourceTree = SOURCE_ROOT; };
 		79ACC80D22AAA75800AC3BF0 /* Creature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Creature.swift; path = "Quest Shared/Creature.swift"; sourceTree = SOURCE_ROOT; };
+		79ACC81522AAB5D600AC3BF0 /* Weapon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Weapon.swift; path = "Quest Shared/Weapon.swift"; sourceTree = SOURCE_ROOT; };
+		79ACC81922AAB6F100AC3BF0 /* HitDice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitDice.swift; sourceTree = "<group>"; };
 		79C61A6F22A7C413008D3609 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		79C61A7022A7C415008D3609 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79C61A7522A7C415008D3609 /* Quest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				79ACC7F922AAA4B800AC3BF0 /* Entity.swift */,
+				79ACC81522AAB5D600AC3BF0 /* Weapon.swift */,
 				79ACC7FA22AAA4B800AC3BF0 /* Monster.swift */,
 				79ACC7FB22AAA4B800AC3BF0 /* Player.swift */,
 				79ACC7E822AA5D5900AC3BF0 /* Tile.swift */,
@@ -157,6 +166,7 @@
 				797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */,
 				79ACC7EC22AA5D8700AC3BF0 /* EntityLoader.swift */,
 				79ACC7F022AA60E300AC3BF0 /* EntityFactory.swift */,
+				79ACC81922AAB6F100AC3BF0 /* HitDice.swift */,
 			);
 			path = "Quest Shared";
 			sourceTree = "<group>";
@@ -346,8 +356,10 @@
 				79ACC80E22AAA75900AC3BF0 /* Creature.swift in Sources */,
 				79C61AA522A7C415008D3609 /* GameScene.swift in Sources */,
 				794864D322A7E60300F84A72 /* Game.swift in Sources */,
+				79ACC81622AAB5D700AC3BF0 /* Weapon.swift in Sources */,
 				79C61A7B22A7C415008D3609 /* GameViewController.swift in Sources */,
 				79ACC7F122AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
+				79ACC81A22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
 				79ACC80222AAA4B800AC3BF0 /* Player.swift in Sources */,
 				795746B322A7C59A00E04BEC /* Level.swift in Sources */,
 				79C61A7922A7C415008D3609 /* AppDelegate.swift in Sources */,
@@ -366,8 +378,10 @@
 				79ACC80F22AAA75900AC3BF0 /* Creature.swift in Sources */,
 				79C61AA622A7C415008D3609 /* GameScene.swift in Sources */,
 				794864D422A7E60300F84A72 /* Game.swift in Sources */,
+				79ACC81722AAB5D700AC3BF0 /* Weapon.swift in Sources */,
 				79C61A8C22A7C415008D3609 /* GameViewController.swift in Sources */,
 				79ACC7F222AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
+				79ACC81B22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
 				79ACC80322AAA4B800AC3BF0 /* Player.swift in Sources */,
 				795746B422A7CA9800E04BEC /* Level.swift in Sources */,
 				79C61A8A22A7C415008D3609 /* AppDelegate.swift in Sources */,
@@ -385,9 +399,11 @@
 			files = (
 				79C61AA722A7C415008D3609 /* GameScene.swift in Sources */,
 				794864D522A7E60300F84A72 /* Game.swift in Sources */,
+				79ACC81C22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
 				79C61A9A22A7C415008D3609 /* GameViewController.swift in Sources */,
 				79ACC7EB22AA5D5900AC3BF0 /* Tile.swift in Sources */,
 				79ACC80122AAA4B800AC3BF0 /* Monster.swift in Sources */,
+				79ACC81822AAB5D700AC3BF0 /* Weapon.swift in Sources */,
 				79ACC80422AAA4B800AC3BF0 /* Player.swift in Sources */,
 				795746BD22A9029D00E04BEC /* Direction.swift in Sources */,
 				79ACC7F322AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
