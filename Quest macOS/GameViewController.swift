@@ -15,17 +15,27 @@ class GameViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let scene = GameScene.newGameScene(size: self.view.bounds.size)
-        
         // Present the scene
         let skView = self.view as! SKView
-        skView.presentScene(scene)
-        
         skView.ignoresSiblingOrder = true
-        
         skView.showsFPS = true
         skView.showsNodeCount = true
-    }
 
+        do {
+            let entityLoader = EntityLoader()
+            let tiles = try entityLoader.loadEntities()
+            
+            let entityFactory = EntityFactory()
+            for tile in tiles {
+                entityFactory.register(entity: tile)
+            }
+            
+            let game = Game(entityFactory: entityFactory)
+            let scene = GameScene.newGameScene(game: game, size: self.view.bounds.size)
+            skView.presentScene(scene)
+        } catch let error {
+            print("error: \(error)")
+        }
+    }
 }
 

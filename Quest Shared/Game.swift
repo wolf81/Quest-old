@@ -10,16 +10,22 @@ import SpriteKit
 
 class Game {
     private var level: Level!
+    
+    private let entityFactory: EntityFactory
+    
+    init(entityFactory: EntityFactory) {
+        self.entityFactory = entityFactory
+    }
 
     private(set) var entities: [Entity] = []
 
-    var player: Player {
+    var player: Monster {
         get {
-            return entities.filter({ $0 is Player }).first! as! Player
+            return entities.filter({ $0 is Monster }).first! as! Monster
         }
     }
     
-    func getTileAt(coord: int2) -> Tile? {
+    func getTileAt(coord: int2) -> Int? {
         return self.level.getTileAt(coord: coord)
     }
     
@@ -27,30 +33,40 @@ class Game {
         guard let tile = self.getTileAt(coord: coord) else {
             return false
         }
-        return tile.contains(.wall) == false
+        return tile != 1
     }
     
     func start(scene: GameScene, levelIdx: Int = 0, tileSize: CGSize) {
         self.level = Level()
         
         var entities: [Entity] = []
-        
+                
         for y in (0 ..< level.height) {
             for x in (0 ..< level.width) {
-                var entity: Entity!
-                
                 let coord = int2(Int32(x), Int32(y))
                 let tile = level.getTileAt(coord: coord)
-                let color : SKColor = tile.contains(.player) ? .blue : tile.contains(.wall) ? .darkGray : .gray
-                let sprite = SKSpriteNode(texture: nil, color: color, size: tileSize)
-                
-                if tile.contains(.player) {
-                    entity = Player(sprite: sprite, coord: coord)
+                var entity: Entity?
+
+                switch tile {
+                case 0: entity = entityFactory.newEntity(name: "floor")
+                case 1: entity = entityFactory.newEntity(name: "wall")
+                case 2: entity = entityFactory.newEntity(name: "stairs_up")
+                case 3: entity = entityFactory.newEntity(name: "stairs_down")
+                default: break
+                }
+
+                if let entity = entity {
+                    entity.coord = coord
+                    entities.append(entity)
                 } else {
-                    entity = Entity(sprite: sprite, coord: coord)
+                    // TODO: Add dummy entity to indicate missing content?
                 }
                 
-                entities.append(entity)
+                if tile == 3 {
+                    let monster = entityFactory.newEntity(name: "Gnoll")!
+                    monster.coord = coord
+                    entities.append(monster)
+                }
             }
         }
         

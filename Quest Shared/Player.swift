@@ -8,9 +8,9 @@
 
 import SpriteKit
 
-class Player : Entity {
-    override init(sprite: SKSpriteNode, coord: int2) {
-        super.init(sprite: sprite, coord: coord)
+class Player: Entity {
+    required init(json: [String : Any]) {
+        super.init(json: json)
         
         sprite.zPosition = 100
     }

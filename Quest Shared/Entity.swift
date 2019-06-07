@@ -8,15 +8,35 @@
 
 import SpriteKit
 
-class Entity {
+protocol JSONConstructable {
+    init(json: [String: Any])
+}
+
+class Entity : JSONConstructable {
     var coord: int2
-    let sprite: SKSpriteNode
+    
+    private let json: [String: Any]
+    
+    lazy var name: String = {
+        return self.json["name"] as! String;
+    }()
+    
+    lazy var sprite: SKSpriteNode = {
+        guard let spriteName = self.json["sprite"] as? String else {
+            return SKSpriteNode(color: SKColor.lightGray, size: CGSize(width: 64, height: 64))
+        }
+        let texture = SKTexture(imageNamed: spriteName)        
+        return SKSpriteNode(texture: texture, size: CGSize(width: 64, height: 64))
+    }()
+    
+    required init(json: [String: Any]) {
+        self.json = json
+        self.coord = int2(0, 0)
+    }
     
     init(sprite: SKSpriteNode, coord: int2) {
-        self.sprite = sprite
+        self.json = [:]
         self.coord = coord
-        
-        sprite.zPosition = 0
     }
     
     func move(to position: CGPoint, duration: TimeInterval, completion: @escaping () -> Void) {
@@ -25,5 +45,13 @@ class Entity {
             SKAction.run(completion)
         ])
         self.sprite.run(move)
+    }
+    
+    func copy() -> Self {
+        return copyInternal()
+    }
+    
+    private func copyInternal<T: Entity>() -> T {
+        return T(json: self.json)
     }
 }

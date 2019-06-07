@@ -13,15 +13,24 @@ class GameScene: SKScene {
     
     fileprivate static let tileSize = CGSize(width: 64, height: 64)
     
-    private let game = Game()
+    private var game: Game!
     
     private var playerCamera: SKCameraNode!
     
-    class func newGameScene(size: CGSize) -> GameScene {
-        let scene = GameScene(size: size)
+    init(game: Game, size: CGSize) {
+        self.game = game
+        
+        super.init(size: size)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError()
+    }
+    
+    class func newGameScene(game: Game, size: CGSize) -> GameScene {
+        let scene = GameScene(game: game, size: size)
         // Set the scale mode to scale to fit the window
         scene.scaleMode = .aspectFill
-            
         return scene
     }
     

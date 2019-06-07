@@ -8,6 +8,10 @@
 
 import Foundation
 
-class Monster : Entity {
-    
+class Monster: Entity {
+    required init(json: [String : Any]) {
+        super.init(json: json)
+        
+        self.sprite.zPosition = 100
+    }
 }

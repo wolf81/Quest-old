@@ -1,0 +1,9 @@
+{
+	"name": "Gnoll",
+	"sprite": "gnoll_old",
+	"HD": "2d8+2",
+	"AC": 15,
+	"EQ": [
+		"Battleaxe +3",
+	]
+}

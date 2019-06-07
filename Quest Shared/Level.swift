@@ -9,72 +9,48 @@
 import Foundation
 import SpriteKit
 
-struct Tile: OptionSet {
-    let rawValue: Int32
-    
-    static let floor = Tile(rawValue: 1 << 0)
-    static let wall = Tile(rawValue: 1 << 1)
-    static let player = Tile(rawValue: 1 << 2)
-    
-    static let all: Tile = [.floor, .wall, .player]
-}
-
-extension Tile: CustomStringConvertible {
-    var description: String {
-        var output = " "
-        
-        if self.contains(.player) {
-            output = "P"
-        } else if self.contains(.wall) {
-            output = "1"
-        } else if self.contains(.floor) {
-            output = "0"
-        } 
-        
-        return output
-    }
-}
-
 struct Level {
     let width = 12
     let height = 8        
 
     let playerPosition = int2(2, 2)
     
-    fileprivate let tiles: [Tile]
+    fileprivate let tiles: [Int]
     
     init() {
-        var tiles = Array(repeatElement(Tile.floor, count: width * height))
+        var tiles = Array(repeatElement(0, count: width * height))
         
         for y in (0 ..< height) {
             for x in (0 ..< width) {
                 let idx = Int(y * width + x)
                 
+                if x == 2 && y == 2 {
+                    tiles[idx] = 3
+                    continue
+                 }
+                
                 if y == 0 {
-                    tiles[idx] = Tile.wall
+                    tiles[idx] = 1
                 }
                 
                 if x == 0 {
-                    tiles[idx] = Tile.wall
+                    tiles[idx] = 1
                 }
                 
                 if y == (height - 1) {
-                    tiles[idx] = Tile.wall
+                    tiles[idx] = 1
                 }
                 
                 if x == (width - 1) {
-                    tiles[idx] = Tile.wall
+                    tiles[idx] = 1
                 }
             }
         }
             
-        let idx = Int(Int(playerPosition.y) * width + Int(playerPosition.x))
-        tiles[idx] = .player
-        
         self.tiles = tiles
     }
     
-    func getTileAt(coord: int2) -> Tile {
+    func getTileAt(coord: int2) -> Int {
         let idx = Int(Int(coord.y) * width + Int(coord.x))
         return self.tiles[idx]
     }
