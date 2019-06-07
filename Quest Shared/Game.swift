@@ -19,9 +19,9 @@ class Game {
 
     private(set) var entities: [Entity] = []
 
-    var player: Monster {
+    var player: Player {
         get {
-            return entities.filter({ $0 is Monster }).first! as! Monster
+            return entities.filter({ $0 is Player }).first! as! Player
         }
     }
     
@@ -63,7 +63,7 @@ class Game {
                 }
                 
                 if tile == 3 {
-                    let monster = entityFactory.newEntity(name: "Gnoll")!
+                    let monster = entityFactory.newEntity(name: "Human")!
                     monster.coord = coord
                     entities.append(monster)
                 }

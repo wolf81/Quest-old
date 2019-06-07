@@ -12,6 +12,6 @@ class Player: Entity {
     required init(json: [String : Any]) {
         super.init(json: json)
         
-        sprite.zPosition = 100
+        sprite.zPosition = 1000
     }
 }

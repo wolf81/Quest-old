@@ -22,6 +22,10 @@ class Entity : JSONConstructable {
     }()
     
     lazy var sprite: SKSpriteNode = {
+        // TODO:
+        // ideally we don't know the sprite size here or perhaps the textures should be of
+        // appropriate size already - the game scene controls the tile size
+        
         guard let spriteName = self.json["sprite"] as? String else {
             return SKSpriteNode(color: SKColor.lightGray, size: CGSize(width: 64, height: 64))
         }

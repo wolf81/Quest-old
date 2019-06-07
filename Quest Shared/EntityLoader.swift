@@ -12,6 +12,9 @@ class EntityLoader {
     func loadEntities() throws -> [Entity] {
         var entities: [Entity] = []
         
+        let players = try loadEntities(type: Player.self, in: "Data/Player")
+        entities.append(contentsOf: players)
+        
         let tiles = try loadEntities(type: Tile.self, in: "Data/Tile")
         entities.append(contentsOf: tiles)
         
