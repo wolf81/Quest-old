@@ -13,6 +13,8 @@ class Game {
     
     private let entityFactory: EntityFactory
     
+    private(set) var turn: Int = 0
+    
     init(entityFactory: EntityFactory) {
         self.entityFactory = entityFactory
     }

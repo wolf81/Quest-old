@@ -9,15 +9,48 @@
 import Foundation
 
 enum HitDice : RawRepresentable, CustomStringConvertible {
-    var rawValue: String {
-        return ""
-    }
-    
     case d4(Int, Int)
     case d6(Int, Int)
     case d8(Int, Int)
     case d10(Int, Int)
     case d12(Int, Int)
+    
+    var minValue: Int {
+        switch self {
+        case .d4(let diceCount, let bonus): return diceCount + bonus
+        case .d6(let diceCount, let bonus): return diceCount + bonus
+        case .d8(let diceCount, let bonus): return diceCount + bonus
+        case .d10(let diceCount, let bonus): return diceCount + bonus
+        case .d12(let diceCount, let bonus): return diceCount + bonus
+        }
+    }
+
+    var maxValue: Int {
+        switch self {
+        case .d4(let diceCount, let bonus): return 4 * diceCount + bonus
+        case .d6(let diceCount, let bonus): return 6 * diceCount + bonus
+        case .d8(let diceCount, let bonus): return 8 * diceCount + bonus
+        case .d10(let diceCount, let bonus): return 10 * diceCount + bonus
+        case .d12(let diceCount, let bonus): return 12 * diceCount + bonus
+        }
+    }
+
+    var rawValue: String {
+        var description = ""
+        switch self {
+        case .d4(let diceCount, let bonus): description = "\(diceCount)d4+\(bonus)"
+        case .d6(let diceCount, let bonus): description = "\(diceCount)d6+\(bonus)"
+        case .d8(let diceCount, let bonus): description = "\(diceCount)d8+\(bonus)"
+        case .d10(let diceCount, let bonus): description = "\(diceCount)d10+\(bonus)"
+        case .d12(let diceCount, let bonus): description = "\(diceCount)d12+\(bonus)"
+        }
+        
+        if description.hasSuffix("+0") {
+            description.removeLast(2)
+        }
+        
+        return description
+    }
     
     init?(rawValue: String) {
         var bonus = 0
@@ -45,19 +78,6 @@ enum HitDice : RawRepresentable, CustomStringConvertible {
     }
     
     var description: String {
-        var description = ""
-        switch self {
-        case .d4(let diceCount, let bonus): description = "\(diceCount)d4+\(bonus)"
-        case .d6(let diceCount, let bonus): description = "\(diceCount)d6+\(bonus)"
-        case .d8(let diceCount, let bonus): description = "\(diceCount)d8+\(bonus)"
-        case .d10(let diceCount, let bonus): description = "\(diceCount)d10+\(bonus)"
-        case .d12(let diceCount, let bonus): description = "\(diceCount)d12+\(bonus)"
-        }
-        
-        if description.hasSuffix("+0") {
-            description.removeLast(2)
-        }
-        
-        return description
+        return self.rawValue
     }
 }

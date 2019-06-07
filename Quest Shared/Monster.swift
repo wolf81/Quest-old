@@ -10,21 +10,23 @@ import Foundation
 
 class Monster: Creature, CustomStringConvertible {
     let hitDice: HitDice
-    let armorClass: Int
-    
+    let armorClass: Int        
+        
     required init(json: [String : Any]) {
         let hitDice = json["HD"] as! String
         self.hitDice = HitDice(rawValue: hitDice)!
         
+        let hitPoints = (self.hitDice.minValue + self.hitDice.maxValue) / 2
+        
         self.armorClass = json["AC"] as! Int
         
-        super.init(json: json)
+        super.init(json: json, hitPoints: hitPoints)
 
         self.sprite.zPosition = 100
     }
     
     var description: String {
-        return "\(self.name) [ HD: \(self.hitDice) / AC: \(armorClass) ]"
+        return "\(self.name) [ HD: \(self.hitDice) / HP: \(self.hitPoints) / AC: \(self.armorClass) ]"
     }
 }
 

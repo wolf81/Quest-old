@@ -9,11 +9,21 @@
 import SpriteKit
 
 class Creature: Entity {
+    let hitPoints: Int
+    
     private struct AnimationKey {
         static let move = "move"
     }
 
+    init(json: [String : Any], hitPoints: Int) {
+        self.hitPoints = hitPoints
+        
+        super.init(json: json)
+    }
+    
     required init(json: [String : Any]) {
+        self.hitPoints = 1
+        
         super.init(json: json)
         
         self.sprite.zPosition = 100
