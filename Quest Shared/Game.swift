@@ -67,6 +67,12 @@ class Game {
                     monster.coord = coord
                     entities.append(monster)
                 }
+                
+                if x == 8 && y == 5 {
+                    let monster = entityFactory.newEntity(name: "Skeleton")!
+                    monster.coord = coord
+                    entities.append(monster)
+                }
             }
         }
         

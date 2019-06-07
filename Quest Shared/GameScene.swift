@@ -31,6 +31,7 @@ class GameScene: SKScene {
         let scene = GameScene(game: game, size: size)
         // Set the scale mode to scale to fit the window
         scene.scaleMode = .aspectFill
+        scene.backgroundColor = .black
         return scene
     }
     
