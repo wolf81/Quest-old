@@ -8,11 +8,7 @@
 
 import SpriteKit
 
-protocol JSONConstructable {
-    init(json: [String: Any])
-}
-
-class Entity : JSONConstructable {
+class Entity: JSONConstructable {
     var coord: int2
     
     private let json: [String: Any]

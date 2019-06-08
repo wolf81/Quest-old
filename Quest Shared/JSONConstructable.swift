@@ -1,5 +1,5 @@
 //
-//  Actionable.swift
+//  JSONConstructable.swift
 //  Quest
 //
 //  Created by Wolfgang Schreurs on 08/06/2019.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol Actionable where Self: Creature {
-    func perform(action: Action, delegate: ActionDelegate)
+protocol JSONConstructable {
+    init(json: [String: Any])
 }

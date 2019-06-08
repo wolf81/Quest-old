@@ -69,9 +69,14 @@ class Game {
                 }
                 
                 if tile == 3 {
-                    let monster = entityFactory.newEntity(name: "Human")!
-                    monster.coord = coord
-                    entities.append(monster)
+                    let player = entityFactory.newEntity(name: "Human")! as! Player
+                    player.attributes = [
+                        .strength(12),
+                        .dexterity(12),
+                        .mind(12)
+                    ]
+                    player.coord = coord
+                    entities.append(player)
                 }
                 
                 if x == 8 && y == 5 {
@@ -94,15 +99,23 @@ class Game {
     func movePlayer(direction: Direction) -> int2 {
         let coord = self.player.coord &+ direction.coord
         
+        if let creature = self.creatures.filter({ $0.coord == coord }).first {
+            self.player.perform(action: .attack(creature), delegate: self)
+            return self.player.coord
+        }
+        
         guard self.canMoveEntity(entity: self.player, toCoord: coord) else {
             return self.player.coord
         }
         
-        self.player.perform(action: .move(coord)) {
-            print("finished")
-        }
+        self.player.perform(action: .move(coord), delegate: self)
         
         return coord
     }
+}
 
+extension Game: ActionDelegate {
+    func entity(_ entity: Entity, didPerformAction action: Action) {
+        print("[\(entity.name)] \(action)")
+    }
 }

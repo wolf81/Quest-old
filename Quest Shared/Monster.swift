@@ -10,8 +10,18 @@ import Foundation
 
 class Monster: Creature, CustomStringConvertible {
     let hitDice: HitDice
-    let armorClass: Int        
+    let armorClass: Int
+    
+    override func defend(hit: Int, damage: Int) {
+        self.damage += damage
         
+        print(self)
+        
+        if (self.hitPoints - self.damage) <= 0 {
+            print("dead")
+        }
+    }
+    
     required init(json: [String : Any]) {
         let hitDice = json["HD"] as! String
         self.hitDice = HitDice(rawValue: hitDice)!
@@ -26,7 +36,7 @@ class Monster: Creature, CustomStringConvertible {
     }
     
     var description: String {
-        return "\(self.name) [ HD: \(self.hitDice) / HP: \(self.hitPoints) / AC: \(self.armorClass) ]"
+        return "\(self.name) [ HD: \(self.hitDice) / HP: \(self.hitPoints - self.damage) / AC: \(self.armorClass) ]"
     }
 }
 
