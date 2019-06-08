@@ -10,6 +10,12 @@ import SpriteKit
 
 class Creature: Entity {
     let hitPoints: Int
+
+    var damage: Int = 0
+    
+    var isAlive: Bool {
+        return (self.hitPoints - damage) > 0
+    }
     
     private struct AnimationKey {
         static let move = "move"
@@ -29,7 +35,7 @@ class Creature: Entity {
         self.sprite.zPosition = 100
     }
     
-    func move(to position: CGPoint, duration: TimeInterval, completion: @escaping () -> Void) {
+    private func move(to position: CGPoint, duration: TimeInterval, completion: @escaping () -> Void) {
         guard self.sprite.action(forKey: AnimationKey.move) == nil else {
             return
         }
@@ -40,8 +46,20 @@ class Creature: Entity {
         ])
         self.sprite.run(move, withKey: AnimationKey.move)
     }
-    
-    func attack(creature: Creature) {
-        
+}
+
+extension Creature : Actionable {
+    func perform(action: Action, completion: @escaping () -> Void) {
+        switch action {
+        case .attack(let creature):
+            print("attack \(creature)")
+            completion()
+        case .move(let coord):
+            print("move to \(coord)")
+            move(to: pointForCoord(coord), duration: 0.2) {
+                self.coord = coord
+                completion()
+            }
+        }
     }
 }

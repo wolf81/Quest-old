@@ -78,20 +78,11 @@ class GameScene: SKScene {
     // movement animation for the sprite. Or perhaps just do all animation in the Game class, but
     // then the game class needs to know the size of the tiles
     func movePlayer(direction: Direction) {
-        let coord = self.game.player.coord &+ direction.coord        
+        let coord = self.game.movePlayer(direction: direction)
         
-        let moveDuration: TimeInterval = 0.2
-        let position = pointForCoord(coord)
-        
-        guard self.game.canMoveEntity(entity: self.game.player, toCoord: coord) else {
-            return
-        }
-        
-        self.game.player.move(to: position, duration: moveDuration) {
-            self.game.player.coord = coord
-        }
-        
-        moveCamera(toPosition: position, duration: moveDuration)
+        // TODO:
+        // Duration should not hardcoded, we should use the same duration as move animation
+        moveCamera(toPosition: pointForCoord(coord), duration: 0.2)
     }
     
     func moveCamera(toPosition: CGPoint, duration: TimeInterval) {
