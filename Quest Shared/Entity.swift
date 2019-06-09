@@ -8,7 +8,16 @@
 
 import SpriteKit
 
-class Entity: JSONConstructable {
+class Entity: JSONConstructable & Hashable {
+    static func == (lhs: Entity, rhs: Entity) -> Bool {
+        return lhs.name == rhs.name && lhs.coord == rhs.coord
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.name)
+        hasher.combine(self.coord)        
+    }
+    
     var coord: int2
     
     private let json: [String: Any]

@@ -46,7 +46,7 @@ class GameScene: SKScene {
         }
         
         self.playerCamera = SKCameraNode()
-        self.playerCamera.position = pointForCoord(self.game.player.coord)
+        self.playerCamera.position = pointForCoord(self.game.hero.coord)
         addChild(self.playerCamera)
         scene?.camera = self.playerCamera
     }

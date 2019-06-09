@@ -38,12 +38,6 @@
 		79ACC7FF22AAA4B800AC3BF0 /* Monster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC7FA22AAA4B800AC3BF0 /* Monster.swift */; };
 		79ACC80022AAA4B800AC3BF0 /* Monster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC7FA22AAA4B800AC3BF0 /* Monster.swift */; };
 		79ACC80122AAA4B800AC3BF0 /* Monster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC7FA22AAA4B800AC3BF0 /* Monster.swift */; };
-		79ACC80222AAA4B800AC3BF0 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC7FB22AAA4B800AC3BF0 /* Player.swift */; };
-		79ACC80322AAA4B800AC3BF0 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC7FB22AAA4B800AC3BF0 /* Player.swift */; };
-		79ACC80422AAA4B800AC3BF0 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC7FB22AAA4B800AC3BF0 /* Player.swift */; };
-		79ACC80E22AAA75900AC3BF0 /* Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC80D22AAA75800AC3BF0 /* Creature.swift */; };
-		79ACC80F22AAA75900AC3BF0 /* Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC80D22AAA75800AC3BF0 /* Creature.swift */; };
-		79ACC81022AAA75900AC3BF0 /* Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC80D22AAA75800AC3BF0 /* Creature.swift */; };
 		79ACC81622AAB5D700AC3BF0 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC81522AAB5D600AC3BF0 /* Weapon.swift */; };
 		79ACC81722AAB5D700AC3BF0 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC81522AAB5D600AC3BF0 /* Weapon.swift */; };
 		79ACC81822AAB5D700AC3BF0 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC81522AAB5D600AC3BF0 /* Weapon.swift */; };
@@ -53,15 +47,15 @@
 		79ACC81E22AB473200AC3BF0 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC81D22AB473200AC3BF0 /* Action.swift */; };
 		79ACC81F22AB473200AC3BF0 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC81D22AB473200AC3BF0 /* Action.swift */; };
 		79ACC82022AB473200AC3BF0 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC81D22AB473200AC3BF0 /* Action.swift */; };
-		79ACC82222AB47ED00AC3BF0 /* Turn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC82122AB47ED00AC3BF0 /* Turn.swift */; };
-		79ACC82322AB47ED00AC3BF0 /* Turn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC82122AB47ED00AC3BF0 /* Turn.swift */; };
-		79ACC82422AB47ED00AC3BF0 /* Turn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC82122AB47ED00AC3BF0 /* Turn.swift */; };
-		79ACC82622AB513E00AC3BF0 /* Actionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC82522AB513E00AC3BF0 /* Actionable.swift */; };
-		79ACC82722AB513E00AC3BF0 /* Actionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC82522AB513E00AC3BF0 /* Actionable.swift */; };
-		79ACC82822AB513E00AC3BF0 /* Actionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC82522AB513E00AC3BF0 /* Actionable.swift */; };
 		79ACC82A22AB81F000AC3BF0 /* JSONConstructable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC82922AB81F000AC3BF0 /* JSONConstructable.swift */; };
 		79ACC82B22AB81F000AC3BF0 /* JSONConstructable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC82922AB81F000AC3BF0 /* JSONConstructable.swift */; };
 		79ACC82C22AB81F000AC3BF0 /* JSONConstructable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC82922AB81F000AC3BF0 /* JSONConstructable.swift */; };
+		79ACC82E22ACB01100AC3BF0 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC82D22ACB01100AC3BF0 /* Actor.swift */; };
+		79ACC82F22ACB01100AC3BF0 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC82D22ACB01100AC3BF0 /* Actor.swift */; };
+		79ACC83022ACB01100AC3BF0 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC82D22ACB01100AC3BF0 /* Actor.swift */; };
+		79ACC83222ACB03200AC3BF0 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC83122ACB03200AC3BF0 /* Hero.swift */; };
+		79ACC83322ACB03200AC3BF0 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC83122ACB03200AC3BF0 /* Hero.swift */; };
+		79ACC83422ACB03200AC3BF0 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC83122ACB03200AC3BF0 /* Hero.swift */; };
 		79C61A7922A7C415008D3609 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C61A7822A7C415008D3609 /* AppDelegate.swift */; };
 		79C61A7B22A7C415008D3609 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C61A7A22A7C415008D3609 /* GameViewController.swift */; };
 		79C61A7E22A7C415008D3609 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79C61A7C22A7C415008D3609 /* Main.storyboard */; };
@@ -92,14 +86,12 @@
 		79ACC7F022AA60E300AC3BF0 /* EntityFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityFactory.swift; sourceTree = "<group>"; };
 		79ACC7F922AAA4B800AC3BF0 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Entity.swift; path = "Quest Shared/Entity.swift"; sourceTree = SOURCE_ROOT; };
 		79ACC7FA22AAA4B800AC3BF0 /* Monster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Monster.swift; path = "Quest Shared/Monster.swift"; sourceTree = SOURCE_ROOT; };
-		79ACC7FB22AAA4B800AC3BF0 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = "Quest Shared/Player.swift"; sourceTree = SOURCE_ROOT; };
-		79ACC80D22AAA75800AC3BF0 /* Creature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Creature.swift; path = "Quest Shared/Creature.swift"; sourceTree = SOURCE_ROOT; };
 		79ACC81522AAB5D600AC3BF0 /* Weapon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Weapon.swift; path = "Quest Shared/Weapon.swift"; sourceTree = SOURCE_ROOT; };
 		79ACC81922AAB6F100AC3BF0 /* HitDice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitDice.swift; sourceTree = "<group>"; };
 		79ACC81D22AB473200AC3BF0 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
-		79ACC82122AB47ED00AC3BF0 /* Turn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Turn.swift; sourceTree = "<group>"; };
-		79ACC82522AB513E00AC3BF0 /* Actionable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actionable.swift; sourceTree = "<group>"; };
 		79ACC82922AB81F000AC3BF0 /* JSONConstructable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONConstructable.swift; sourceTree = "<group>"; };
+		79ACC82D22ACB01100AC3BF0 /* Actor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Actor.swift; path = "Quest Shared/Actor.swift"; sourceTree = SOURCE_ROOT; };
+		79ACC83122ACB03200AC3BF0 /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hero.swift; path = "Quest Shared/Hero.swift"; sourceTree = SOURCE_ROOT; };
 		79C61A6F22A7C413008D3609 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		79C61A7022A7C415008D3609 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79C61A7522A7C415008D3609 /* Quest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,11 +141,11 @@
 			isa = PBXGroup;
 			children = (
 				79ACC7F922AAA4B800AC3BF0 /* Entity.swift */,
+				79ACC83122ACB03200AC3BF0 /* Hero.swift */,
 				79ACC81522AAB5D600AC3BF0 /* Weapon.swift */,
 				79ACC7FA22AAA4B800AC3BF0 /* Monster.swift */,
-				79ACC7FB22AAA4B800AC3BF0 /* Player.swift */,
 				79ACC7E822AA5D5900AC3BF0 /* Tile.swift */,
-				79ACC80D22AAA75800AC3BF0 /* Creature.swift */,
+				79ACC82D22ACB01100AC3BF0 /* Actor.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -184,8 +176,6 @@
 				79ACC7F022AA60E300AC3BF0 /* EntityFactory.swift */,
 				79ACC81922AAB6F100AC3BF0 /* HitDice.swift */,
 				79ACC81D22AB473200AC3BF0 /* Action.swift */,
-				79ACC82122AB47ED00AC3BF0 /* Turn.swift */,
-				79ACC82522AB513E00AC3BF0 /* Actionable.swift */,
 				79ACC82922AB81F000AC3BF0 /* JSONConstructable.swift */,
 			);
 			path = "Quest Shared";
@@ -373,8 +363,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79ACC80E22AAA75900AC3BF0 /* Creature.swift in Sources */,
-				79ACC82222AB47ED00AC3BF0 /* Turn.swift in Sources */,
 				79ACC82A22AB81F000AC3BF0 /* JSONConstructable.swift in Sources */,
 				79C61AA522A7C415008D3609 /* GameScene.swift in Sources */,
 				794864D322A7E60300F84A72 /* Game.swift in Sources */,
@@ -383,13 +371,13 @@
 				79ACC81E22AB473200AC3BF0 /* Action.swift in Sources */,
 				79ACC7F122AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
 				79ACC81A22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
-				79ACC80222AAA4B800AC3BF0 /* Player.swift in Sources */,
 				795746B322A7C59A00E04BEC /* Level.swift in Sources */,
 				79C61A7922A7C415008D3609 /* AppDelegate.swift in Sources */,
 				79ACC7FC22AAA4B800AC3BF0 /* Entity.swift in Sources */,
+				79ACC83222ACB03200AC3BF0 /* Hero.swift in Sources */,
 				79ACC7FF22AAA4B800AC3BF0 /* Monster.swift in Sources */,
 				79ACC7ED22AA5D8700AC3BF0 /* EntityLoader.swift in Sources */,
-				79ACC82622AB513E00AC3BF0 /* Actionable.swift in Sources */,
+				79ACC82E22ACB01100AC3BF0 /* Actor.swift in Sources */,
 				79ACC7E922AA5D5900AC3BF0 /* Tile.swift in Sources */,
 				795746BB22A9029D00E04BEC /* Direction.swift in Sources */,
 			);
@@ -399,8 +387,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79ACC80F22AAA75900AC3BF0 /* Creature.swift in Sources */,
-				79ACC82322AB47ED00AC3BF0 /* Turn.swift in Sources */,
 				79ACC82B22AB81F000AC3BF0 /* JSONConstructable.swift in Sources */,
 				79C61AA622A7C415008D3609 /* GameScene.swift in Sources */,
 				794864D422A7E60300F84A72 /* Game.swift in Sources */,
@@ -409,13 +395,13 @@
 				79ACC81F22AB473200AC3BF0 /* Action.swift in Sources */,
 				79ACC7F222AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
 				79ACC81B22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
-				79ACC80322AAA4B800AC3BF0 /* Player.swift in Sources */,
 				795746B422A7CA9800E04BEC /* Level.swift in Sources */,
 				79C61A8A22A7C415008D3609 /* AppDelegate.swift in Sources */,
 				79ACC7FD22AAA4B800AC3BF0 /* Entity.swift in Sources */,
+				79ACC83322ACB03200AC3BF0 /* Hero.swift in Sources */,
 				79ACC80022AAA4B800AC3BF0 /* Monster.swift in Sources */,
 				79ACC7EE22AA5D8700AC3BF0 /* EntityLoader.swift in Sources */,
-				79ACC82722AB513E00AC3BF0 /* Actionable.swift in Sources */,
+				79ACC82F22ACB01100AC3BF0 /* Actor.swift in Sources */,
 				79ACC7EA22AA5D5900AC3BF0 /* Tile.swift in Sources */,
 				795746BC22A9029D00E04BEC /* Direction.swift in Sources */,
 			);
@@ -429,19 +415,17 @@
 				794864D522A7E60300F84A72 /* Game.swift in Sources */,
 				79ACC81C22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
 				79C61A9A22A7C415008D3609 /* GameViewController.swift in Sources */,
-				79ACC82822AB513E00AC3BF0 /* Actionable.swift in Sources */,
 				79ACC82C22AB81F000AC3BF0 /* JSONConstructable.swift in Sources */,
-				79ACC82422AB47ED00AC3BF0 /* Turn.swift in Sources */,
+				79ACC83422ACB03200AC3BF0 /* Hero.swift in Sources */,
+				79ACC83022ACB01100AC3BF0 /* Actor.swift in Sources */,
 				79ACC7EB22AA5D5900AC3BF0 /* Tile.swift in Sources */,
 				79ACC80122AAA4B800AC3BF0 /* Monster.swift in Sources */,
 				79ACC81822AAB5D700AC3BF0 /* Weapon.swift in Sources */,
-				79ACC80422AAA4B800AC3BF0 /* Player.swift in Sources */,
 				795746BD22A9029D00E04BEC /* Direction.swift in Sources */,
 				79ACC82022AB473200AC3BF0 /* Action.swift in Sources */,
 				79ACC7F322AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
 				795746B522A7CA9800E04BEC /* Level.swift in Sources */,
 				79ACC7FE22AAA4B800AC3BF0 /* Entity.swift in Sources */,
-				79ACC81022AAA75900AC3BF0 /* Creature.swift in Sources */,
 				79C61A9822A7C415008D3609 /* AppDelegate.swift in Sources */,
 				794864D122A7E48400F84A72 /* GameView.swift in Sources */,
 				79ACC7EF22AA5D8700AC3BF0 /* EntityLoader.swift in Sources */,

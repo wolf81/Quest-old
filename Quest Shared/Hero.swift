@@ -22,7 +22,7 @@ enum Attribute {
     }
 }
 
-class Player: Creature {
+class Hero: Actor {
     var attributes: [Attribute]
 
     init(json: [String : Any], attributes: [Attribute]) {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Monster: Creature, CustomStringConvertible {
+class Monster: Actor, CustomStringConvertible {
     let hitDice: HitDice
     let armorClass: Int
     
@@ -37,6 +37,10 @@ class Monster: Creature, CustomStringConvertible {
     
     var description: String {
         return "\(self.name) [ HD: \(self.hitDice) / HP: \(self.hitPoints - self.damage) / AC: \(self.armorClass) ]"
+    }
+    
+    override func getAction() -> Action? {
+        return IdleAction(actor: self)
     }
 }
 

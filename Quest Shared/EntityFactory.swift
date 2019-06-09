@@ -8,6 +8,13 @@
 
 import Foundation
 
+// TODO:
+// Could consider to make a generic factory, but it'd mean we'd have to create factories for:
+// - monsters
+// - equipment
+// - tiles
+// - ...?
+// Not yet sure what is better - it'd be typesafe but perhaps a bit unwieldly ...
 class EntityFactory {
     private var registry: [String: Entity] = [:]
     

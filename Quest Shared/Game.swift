@@ -12,23 +12,21 @@ class Game {
     private var level: Level!
     
     private let entityFactory: EntityFactory
-    
-    private(set) var turns: [Turn] = []
-    
+        
     init(entityFactory: EntityFactory) {
         self.entityFactory = entityFactory
     }
 
     private(set) var entities: [Entity] = []
     
-    private var creatures: [Actionable] {
-        return entities.filter({ $0 is Actionable }) as! [Actionable]
+    private var activeActorIdx: Int = 0
+    
+    private var actors: [Actor] {
+        return entities.filter({ $0 is Actor }) as! [Actor]
     }
 
-    var player: Player {
-        get {
-            return entities.filter({ $0 is Player }).first! as! Player
-        }
+    var hero: Hero {
+        return entities.filter({ $0 is Hero }).first! as! Hero
     }
     
     func getTileAt(coord: int2) -> Int? {
@@ -69,7 +67,7 @@ class Game {
                 }
                 
                 if tile == 3 {
-                    let player = entityFactory.newEntity(name: "Human")! as! Player
+                    let player = entityFactory.newEntity(name: "Human")! as! Hero
                     player.attributes = [
                         .strength(12),
                         .dexterity(12),
@@ -78,7 +76,7 @@ class Game {
                     player.coord = coord
                     entities.append(player)
                 }
-                
+
                 if x == 8 && y == 5 {
                     let monster = entityFactory.newEntity(name: "Skeleton")!
                     monster.coord = coord
@@ -86,6 +84,23 @@ class Game {
                     
                     print(monster)
                 }
+                
+                if x == 7 && y == 3 {
+                    let monster = entityFactory.newEntity(name: "Skeleton")!
+                    monster.coord = coord
+                    entities.append(monster)
+                    
+                    print(monster)
+                }
+                
+                if x == 8 && y == 1 {
+                    let monster = entityFactory.newEntity(name: "Skeleton")!
+                    monster.coord = coord
+                    entities.append(monster)
+                    
+                    print(monster)
+                }
+
             }
         }
         
@@ -93,29 +108,33 @@ class Game {
     }
     
     func update(_ deltaTime: TimeInterval) {
-        // accept no input from player, until it's the turn of the player        
+        // accept no input from player, until it's the turn of the player
+        
+        let activeActor = self.actors[self.activeActorIdx]
+        
+        guard let action = activeActor.getAction() else {
+            return
+        }
+        
+        action.perform()
+        
+        self.activeActorIdx = (self.activeActorIdx + 1) % self.actors.count
     }
     
     func movePlayer(direction: Direction) -> int2 {
-        let coord = self.player.coord &+ direction.coord
+        let coord = self.hero.coord &+ direction.coord
         
-        if let creature = self.creatures.filter({ $0.coord == coord }).first {
-            self.player.perform(action: .attack(creature), delegate: self)
-            return self.player.coord
+//        if let creature = self.actors.filter({ $0.coord == coord }).first {
+//            // do attack ...?
+//            return self.hero.coord
+//        }
+
+        guard self.canMoveEntity(entity: self.hero, toCoord: coord) else {
+            return self.hero.coord
         }
         
-        guard self.canMoveEntity(entity: self.player, toCoord: coord) else {
-            return self.player.coord
-        }
-        
-        self.player.perform(action: .move(coord), delegate: self)
+        self.hero.setAction(MoveAction(actor: self.hero, coord: coord))
         
         return coord
-    }
-}
-
-extension Game: ActionDelegate {
-    func entity(_ entity: Entity, didPerformAction action: Action) {
-        print("[\(entity.name)] \(action)")
     }
 }
