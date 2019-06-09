@@ -116,7 +116,9 @@ class Game {
             return
         }
         
-        action.perform()
+        guard action.perform() == true else {
+            return
+        }
         
         self.activeActorIdx = (self.activeActorIdx + 1) % self.actors.count
     }

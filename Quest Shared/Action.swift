@@ -19,7 +19,7 @@ class Action {
         self.actor = actor
     }
     
-    func perform() {
+    func perform() -> Bool {
         fatalError()
     }
 }
@@ -32,30 +32,30 @@ class MoveAction: Action {
         super.init(actor: actor)
     }
     
-    override func perform() {
-        let position = pointForCoord(self.coord)
-        self.move(to: position, duration: 0.2) {
-            self.actor.coord = self.coord
-            print("finished move")
-        }
-    }
-    
-    private func move(to position: CGPoint, duration: TimeInterval, completion: @escaping () -> Void) {
+    override func perform() -> Bool {
         guard self.actor.sprite.action(forKey: AnimationKey.move) == nil else {
-            return
+            return false
         }
         
+        print("move")
+        
+        let position = pointForCoord(self.coord)
         let move = SKAction.sequence([
-            SKAction.move(to: position, duration: duration),
-            SKAction.run(completion)
+            SKAction.move(to: position, duration: 0.2),
+            SKAction.run {
+                self.actor.coord = self.coord
+            }
         ])
         self.actor.sprite.run(move, withKey: AnimationKey.move)
+        
+        return true
     }
 }
 
 class IdleAction: Action {
-    override func perform() {
+    override func perform() -> Bool {
         print("Idling ...")
+        return true
     }
 }
 

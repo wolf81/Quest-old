@@ -32,17 +32,7 @@ class Actor: Entity {
         
         self.sprite.zPosition = 100
     }
-    
-    func defend(hit: Int, damage: Int) {
-        fatalError()
-    }
-    
-    private func attack(creature: Actor, completion: @escaping () -> Void) {
-        creature.defend(hit: 5, damage: 2)
-        
-        completion()
-    }
-        
+     
     func getAction() -> Action? {
         defer { self.action = nil }
         return self.action

@@ -11,17 +11,7 @@ import Foundation
 class Monster: Actor, CustomStringConvertible {
     let hitDice: HitDice
     let armorClass: Int
-    
-    override func defend(hit: Int, damage: Int) {
-        self.damage += damage
         
-        print(self)
-        
-        if (self.hitPoints - self.damage) <= 0 {
-            print("dead")
-        }
-    }
-    
     required init(json: [String : Any]) {
         let hitDice = json["HD"] as! String
         self.hitDice = HitDice(rawValue: hitDice)!
