@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7929FBFA22AFBADE003C1964 /* DungeonBuilder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FBF922AFBADE003C1964 /* DungeonBuilder.framework */; };
+		7929FBFC22AFBAE7003C1964 /* DungeonBuilder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FBFB22AFBAE7003C1964 /* DungeonBuilder.framework */; };
+		7929FBFE22AFBAED003C1964 /* DungeonBuilder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FBFD22AFBAED003C1964 /* DungeonBuilder.framework */; };
 		794864D122A7E48400F84A72 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794864D022A7E48400F84A72 /* GameView.swift */; };
 		794864D322A7E60300F84A72 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794864D222A7E60300F84A72 /* Game.swift */; };
 		794864D422A7E60300F84A72 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794864D222A7E60300F84A72 /* Game.swift */; };
@@ -129,6 +132,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7929FBF922AFBADE003C1964 /* DungeonBuilder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DungeonBuilder.framework; path = Carthage/Build/iOS/DungeonBuilder.framework; sourceTree = SOURCE_ROOT; };
+		7929FBFB22AFBAE7003C1964 /* DungeonBuilder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DungeonBuilder.framework; path = Carthage/Build/Mac/DungeonBuilder.framework; sourceTree = SOURCE_ROOT; };
+		7929FBFD22AFBAED003C1964 /* DungeonBuilder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DungeonBuilder.framework; path = Carthage/Build/tvOS/DungeonBuilder.framework; sourceTree = SOURCE_ROOT; };
 		794864D022A7E48400F84A72 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		794864D222A7E60300F84A72 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		795746B222A7C59A00E04BEC /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
@@ -175,6 +181,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7929FBFA22AFBADE003C1964 /* DungeonBuilder.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,6 +189,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7929FBFE22AFBAED003C1964 /* DungeonBuilder.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,6 +197,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7929FBFC22AFBAE7003C1964 /* DungeonBuilder.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +275,7 @@
 		79C61A7722A7C415008D3609 /* Quest iOS */ = {
 			isa = PBXGroup;
 			children = (
+				7929FBF922AFBADE003C1964 /* DungeonBuilder.framework */,
 				79C61A7822A7C415008D3609 /* AppDelegate.swift */,
 				79C61A7A22A7C415008D3609 /* GameViewController.swift */,
 				79C61A7C22A7C415008D3609 /* Main.storyboard */,
@@ -278,6 +288,7 @@
 		79C61A8822A7C415008D3609 /* Quest tvOS */ = {
 			isa = PBXGroup;
 			children = (
+				7929FBFD22AFBAED003C1964 /* DungeonBuilder.framework */,
 				79C61A8922A7C415008D3609 /* AppDelegate.swift */,
 				79C61A8B22A7C415008D3609 /* GameViewController.swift */,
 				79C61A8D22A7C415008D3609 /* Main.storyboard */,
@@ -289,6 +300,7 @@
 		79C61A9622A7C415008D3609 /* Quest macOS */ = {
 			isa = PBXGroup;
 			children = (
+				7929FBFB22AFBAE7003C1964 /* DungeonBuilder.framework */,
 				79C61A9722A7C415008D3609 /* AppDelegate.swift */,
 				79C61A9922A7C415008D3609 /* GameViewController.swift */,
 				79C61A9B22A7C415008D3609 /* Main.storyboard */,
@@ -308,6 +320,7 @@
 				79C61A7122A7C415008D3609 /* Sources */,
 				79C61A7222A7C415008D3609 /* Frameworks */,
 				79C61A7322A7C415008D3609 /* Resources */,
+				7929FBFF22AFBB08003C1964 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -326,6 +339,7 @@
 				79C61A8322A7C415008D3609 /* Sources */,
 				79C61A8422A7C415008D3609 /* Frameworks */,
 				79C61A8522A7C415008D3609 /* Resources */,
+				7929FC0022AFBB48003C1964 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -344,6 +358,7 @@
 				79C61A9122A7C415008D3609 /* Sources */,
 				79C61A9222A7C415008D3609 /* Frameworks */,
 				79C61A9322A7C415008D3609 /* Resources */,
+				7929FC0122AFBB4E003C1964 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -462,6 +477,65 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7929FBFF22AFBB08003C1964 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/DungeonBuilder.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/DungeonBuilder.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+		7929FC0022AFBB48003C1964 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/tvOS/DungeonBuilder.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+		7929FC0122AFBB4E003C1964 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/Mac/DungeonBuilder.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/DungeonBuilder.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		79C61A7122A7C415008D3609 /* Sources */ = {
@@ -718,6 +792,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J6E64C67VU;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Quest iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -739,6 +817,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J6E64C67VU;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Quest iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -761,6 +843,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "tvOS LaunchImage";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J6E64C67VU;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
 				INFOPLIST_FILE = "Quest tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -782,6 +868,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "tvOS LaunchImage";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J6E64C67VU;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
 				INFOPLIST_FILE = "Quest tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -805,6 +895,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = J6E64C67VU;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = "Quest macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -826,6 +920,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = J6E64C67VU;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = "Quest macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

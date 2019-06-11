@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import DungeonBuilder
 
 class Game {
     private var level: Level!
@@ -42,7 +43,7 @@ class Game {
     
     func start(scene: GameScene, levelIdx: Int = 0, tileSize: CGSize) {
         self.level = Level()
-        
+                
         var entities: [Entity] = []
                 
         for y in (0 ..< level.height) {
