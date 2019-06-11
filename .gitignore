@@ -9,6 +9,9 @@
 build/
 DerivedData/
 
+## Carhage
+Carthage/
+
 ## Various settings
 *.pbxuser
 !default.pbxuser
