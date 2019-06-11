@@ -20,6 +20,21 @@
 		797DBF7B22A91FA300D0F8E7 /* Sprites.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */; };
 		797DBF7C22A91FA300D0F8E7 /* Sprites.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */; };
 		797DBF7D22A91FA300D0F8E7 /* Sprites.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */; };
+		797DBF9522AC9A6B00D0F8E7 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBF9422AC9A6B00D0F8E7 /* GameState.swift */; };
+		797DBF9622AC9A6B00D0F8E7 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBF9422AC9A6B00D0F8E7 /* GameState.swift */; };
+		797DBF9722AC9A6B00D0F8E7 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBF9422AC9A6B00D0F8E7 /* GameState.swift */; };
+		797DBFB722AF6EBE00D0F8E7 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFB622AF6EBE00D0F8E7 /* MainMenuScene.swift */; };
+		797DBFB822AF6EBE00D0F8E7 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFB622AF6EBE00D0F8E7 /* MainMenuScene.swift */; };
+		797DBFB922AF6EBE00D0F8E7 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFB622AF6EBE00D0F8E7 /* MainMenuScene.swift */; };
+		797DBFBB22AF6F4000D0F8E7 /* SettingsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFBA22AF6F4000D0F8E7 /* SettingsScene.swift */; };
+		797DBFBC22AF6F4000D0F8E7 /* SettingsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFBA22AF6F4000D0F8E7 /* SettingsScene.swift */; };
+		797DBFBD22AF6F4000D0F8E7 /* SettingsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFBA22AF6F4000D0F8E7 /* SettingsScene.swift */; };
+		797DBFBF22AF752D00D0F8E7 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFBE22AF752D00D0F8E7 /* Actor.swift */; };
+		797DBFC022AF752D00D0F8E7 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFBE22AF752D00D0F8E7 /* Actor.swift */; };
+		797DBFC122AF752D00D0F8E7 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFBE22AF752D00D0F8E7 /* Actor.swift */; };
+		797DBFC322AF753B00D0F8E7 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFC222AF753B00D0F8E7 /* Hero.swift */; };
+		797DBFC422AF753B00D0F8E7 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFC222AF753B00D0F8E7 /* Hero.swift */; };
+		797DBFC522AF753B00D0F8E7 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFC222AF753B00D0F8E7 /* Hero.swift */; };
 		79ACC7DE22AA5BE900AC3BF0 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 79ACC7DD22AA5BE900AC3BF0 /* Data */; };
 		79ACC7DF22AA5BE900AC3BF0 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 79ACC7DD22AA5BE900AC3BF0 /* Data */; };
 		79ACC7E022AA5BE900AC3BF0 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 79ACC7DD22AA5BE900AC3BF0 /* Data */; };
@@ -50,12 +65,6 @@
 		79ACC82A22AB81F000AC3BF0 /* JSONConstructable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC82922AB81F000AC3BF0 /* JSONConstructable.swift */; };
 		79ACC82B22AB81F000AC3BF0 /* JSONConstructable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC82922AB81F000AC3BF0 /* JSONConstructable.swift */; };
 		79ACC82C22AB81F000AC3BF0 /* JSONConstructable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC82922AB81F000AC3BF0 /* JSONConstructable.swift */; };
-		79ACC82E22ACB01100AC3BF0 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC82D22ACB01100AC3BF0 /* Actor.swift */; };
-		79ACC82F22ACB01100AC3BF0 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC82D22ACB01100AC3BF0 /* Actor.swift */; };
-		79ACC83022ACB01100AC3BF0 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC82D22ACB01100AC3BF0 /* Actor.swift */; };
-		79ACC83222ACB03200AC3BF0 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC83122ACB03200AC3BF0 /* Hero.swift */; };
-		79ACC83322ACB03200AC3BF0 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC83122ACB03200AC3BF0 /* Hero.swift */; };
-		79ACC83422ACB03200AC3BF0 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC83122ACB03200AC3BF0 /* Hero.swift */; };
 		79C61A7922A7C415008D3609 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C61A7822A7C415008D3609 /* AppDelegate.swift */; };
 		79C61A7B22A7C415008D3609 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C61A7A22A7C415008D3609 /* GameViewController.swift */; };
 		79C61A7E22A7C415008D3609 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79C61A7C22A7C415008D3609 /* Main.storyboard */; };
@@ -74,12 +83,63 @@
 		79C61AAA22A7C415008D3609 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C61A7022A7C415008D3609 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		797DBFAA22AF6D4000D0F8E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 797DBFA422AF6D4000D0F8E7 /* Fenris.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 79C681FA21117860006E20D0;
+			remoteInfo = "Fenris iOS";
+		};
+		797DBFAC22AF6D4000D0F8E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 797DBFA422AF6D4000D0F8E7 /* Fenris.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 792D427A21E20A0E00D438F1;
+			remoteInfo = "Fenris tvOS";
+		};
+		797DBFAE22AF6D4000D0F8E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 797DBFA422AF6D4000D0F8E7 /* Fenris.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 792D42BE21E2115100D438F1;
+			remoteInfo = "Fenris macOS";
+		};
+		797DBFB022AF6D6C00D0F8E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 797DBFA422AF6D4000D0F8E7 /* Fenris.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 79C681F921117860006E20D0;
+			remoteInfo = "Fenris iOS";
+		};
+		797DBFB222AF6D7300D0F8E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 797DBFA422AF6D4000D0F8E7 /* Fenris.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 792D427921E20A0E00D438F1;
+			remoteInfo = "Fenris tvOS";
+		};
+		797DBFB422AF6D7800D0F8E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 797DBFA422AF6D4000D0F8E7 /* Fenris.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 792D42BD21E2115100D438F1;
+			remoteInfo = "Fenris macOS";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		794864D022A7E48400F84A72 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		794864D222A7E60300F84A72 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		795746B222A7C59A00E04BEC /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		795746BA22A9029D00E04BEC /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Sprites.xcassets; sourceTree = "<group>"; };
+		797DBF9422AC9A6B00D0F8E7 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		797DBFA422AF6D4000D0F8E7 /* Fenris.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Fenris.xcodeproj; path = ../Fenris/Fenris.xcodeproj; sourceTree = "<group>"; };
+		797DBFB622AF6EBE00D0F8E7 /* MainMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
+		797DBFBA22AF6F4000D0F8E7 /* SettingsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScene.swift; sourceTree = "<group>"; };
+		797DBFBE22AF752D00D0F8E7 /* Actor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Actor.swift; path = "Quest Shared/Actor.swift"; sourceTree = SOURCE_ROOT; };
+		797DBFC222AF753B00D0F8E7 /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hero.swift; path = "Quest Shared/Hero.swift"; sourceTree = SOURCE_ROOT; };
 		79ACC7DD22AA5BE900AC3BF0 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
 		79ACC7E822AA5D5900AC3BF0 /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Tile.swift; path = "Quest Shared/Tile.swift"; sourceTree = SOURCE_ROOT; };
 		79ACC7EC22AA5D8700AC3BF0 /* EntityLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityLoader.swift; sourceTree = "<group>"; };
@@ -90,8 +150,6 @@
 		79ACC81922AAB6F100AC3BF0 /* HitDice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitDice.swift; sourceTree = "<group>"; };
 		79ACC81D22AB473200AC3BF0 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		79ACC82922AB81F000AC3BF0 /* JSONConstructable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONConstructable.swift; sourceTree = "<group>"; };
-		79ACC82D22ACB01100AC3BF0 /* Actor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Actor.swift; path = "Quest Shared/Actor.swift"; sourceTree = SOURCE_ROOT; };
-		79ACC83122ACB03200AC3BF0 /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hero.swift; path = "Quest Shared/Hero.swift"; sourceTree = SOURCE_ROOT; };
 		79C61A6F22A7C413008D3609 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		79C61A7022A7C415008D3609 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79C61A7522A7C415008D3609 /* Quest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,15 +195,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		797DBFA522AF6D4000D0F8E7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				797DBFAB22AF6D4000D0F8E7 /* Fenris.framework */,
+				797DBFAD22AF6D4000D0F8E7 /* Fenris.framework */,
+				797DBFAF22AF6D4000D0F8E7 /* Fenris.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		79ACC7E322AA5D1400AC3BF0 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				797DBFC222AF753B00D0F8E7 /* Hero.swift */,
+				797DBFBE22AF752D00D0F8E7 /* Actor.swift */,
 				79ACC7F922AAA4B800AC3BF0 /* Entity.swift */,
-				79ACC83122ACB03200AC3BF0 /* Hero.swift */,
 				79ACC81522AAB5D600AC3BF0 /* Weapon.swift */,
 				79ACC7FA22AAA4B800AC3BF0 /* Monster.swift */,
 				79ACC7E822AA5D5900AC3BF0 /* Tile.swift */,
-				79ACC82D22ACB01100AC3BF0 /* Actor.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -153,6 +221,7 @@
 		79C61A6722A7C413008D3609 = {
 			isa = PBXGroup;
 			children = (
+				797DBFA422AF6D4000D0F8E7 /* Fenris.xcodeproj */,
 				79ACC7DD22AA5BE900AC3BF0 /* Data */,
 				79C61A6C22A7C413008D3609 /* Quest Shared */,
 				79C61A7722A7C415008D3609 /* Quest iOS */,
@@ -177,6 +246,9 @@
 				79ACC81922AAB6F100AC3BF0 /* HitDice.swift */,
 				79ACC81D22AB473200AC3BF0 /* Action.swift */,
 				79ACC82922AB81F000AC3BF0 /* JSONConstructable.swift */,
+				797DBF9422AC9A6B00D0F8E7 /* GameState.swift */,
+				797DBFB622AF6EBE00D0F8E7 /* MainMenuScene.swift */,
+				797DBFBA22AF6F4000D0F8E7 /* SettingsScene.swift */,
 			);
 			path = "Quest Shared";
 			sourceTree = "<group>";
@@ -240,6 +312,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				797DBFB122AF6D6C00D0F8E7 /* PBXTargetDependency */,
 			);
 			name = "Quest iOS";
 			productName = "Quest iOS";
@@ -257,6 +330,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				797DBFB322AF6D7300D0F8E7 /* PBXTargetDependency */,
 			);
 			name = "Quest tvOS";
 			productName = "Quest tvOS";
@@ -274,6 +348,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				797DBFB522AF6D7800D0F8E7 /* PBXTargetDependency */,
 			);
 			name = "Quest macOS";
 			productName = "Quest macOS";
@@ -312,6 +387,12 @@
 			mainGroup = 79C61A6722A7C413008D3609;
 			productRefGroup = 79C61A7622A7C415008D3609 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 797DBFA522AF6D4000D0F8E7 /* Products */;
+					ProjectRef = 797DBFA422AF6D4000D0F8E7 /* Fenris.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				79C61A7422A7C415008D3609 /* Quest iOS */,
@@ -320,6 +401,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		797DBFAB22AF6D4000D0F8E7 /* Fenris.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Fenris.framework;
+			remoteRef = 797DBFAA22AF6D4000D0F8E7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		797DBFAD22AF6D4000D0F8E7 /* Fenris.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Fenris.framework;
+			remoteRef = 797DBFAC22AF6D4000D0F8E7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		797DBFAF22AF6D4000D0F8E7 /* Fenris.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Fenris.framework;
+			remoteRef = 797DBFAE22AF6D4000D0F8E7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		79C61A7322A7C415008D3609 /* Resources */ = {
@@ -368,16 +473,19 @@
 				794864D322A7E60300F84A72 /* Game.swift in Sources */,
 				79ACC81622AAB5D700AC3BF0 /* Weapon.swift in Sources */,
 				79C61A7B22A7C415008D3609 /* GameViewController.swift in Sources */,
+				797DBFBB22AF6F4000D0F8E7 /* SettingsScene.swift in Sources */,
+				797DBFBF22AF752D00D0F8E7 /* Actor.swift in Sources */,
 				79ACC81E22AB473200AC3BF0 /* Action.swift in Sources */,
 				79ACC7F122AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
 				79ACC81A22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
 				795746B322A7C59A00E04BEC /* Level.swift in Sources */,
+				797DBFB722AF6EBE00D0F8E7 /* MainMenuScene.swift in Sources */,
 				79C61A7922A7C415008D3609 /* AppDelegate.swift in Sources */,
 				79ACC7FC22AAA4B800AC3BF0 /* Entity.swift in Sources */,
-				79ACC83222ACB03200AC3BF0 /* Hero.swift in Sources */,
 				79ACC7FF22AAA4B800AC3BF0 /* Monster.swift in Sources */,
+				797DBFC322AF753B00D0F8E7 /* Hero.swift in Sources */,
 				79ACC7ED22AA5D8700AC3BF0 /* EntityLoader.swift in Sources */,
-				79ACC82E22ACB01100AC3BF0 /* Actor.swift in Sources */,
+				797DBF9522AC9A6B00D0F8E7 /* GameState.swift in Sources */,
 				79ACC7E922AA5D5900AC3BF0 /* Tile.swift in Sources */,
 				795746BB22A9029D00E04BEC /* Direction.swift in Sources */,
 			);
@@ -392,16 +500,19 @@
 				794864D422A7E60300F84A72 /* Game.swift in Sources */,
 				79ACC81722AAB5D700AC3BF0 /* Weapon.swift in Sources */,
 				79C61A8C22A7C415008D3609 /* GameViewController.swift in Sources */,
+				797DBFBC22AF6F4000D0F8E7 /* SettingsScene.swift in Sources */,
+				797DBFC022AF752D00D0F8E7 /* Actor.swift in Sources */,
 				79ACC81F22AB473200AC3BF0 /* Action.swift in Sources */,
 				79ACC7F222AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
 				79ACC81B22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
 				795746B422A7CA9800E04BEC /* Level.swift in Sources */,
+				797DBFB822AF6EBE00D0F8E7 /* MainMenuScene.swift in Sources */,
 				79C61A8A22A7C415008D3609 /* AppDelegate.swift in Sources */,
 				79ACC7FD22AAA4B800AC3BF0 /* Entity.swift in Sources */,
-				79ACC83322ACB03200AC3BF0 /* Hero.swift in Sources */,
 				79ACC80022AAA4B800AC3BF0 /* Monster.swift in Sources */,
+				797DBFC422AF753B00D0F8E7 /* Hero.swift in Sources */,
 				79ACC7EE22AA5D8700AC3BF0 /* EntityLoader.swift in Sources */,
-				79ACC82F22ACB01100AC3BF0 /* Actor.swift in Sources */,
+				797DBF9622AC9A6B00D0F8E7 /* GameState.swift in Sources */,
 				79ACC7EA22AA5D5900AC3BF0 /* Tile.swift in Sources */,
 				795746BC22A9029D00E04BEC /* Direction.swift in Sources */,
 			);
@@ -411,17 +522,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				797DBFB922AF6EBE00D0F8E7 /* MainMenuScene.swift in Sources */,
+				797DBF9722AC9A6B00D0F8E7 /* GameState.swift in Sources */,
 				79C61AA722A7C415008D3609 /* GameScene.swift in Sources */,
 				794864D522A7E60300F84A72 /* Game.swift in Sources */,
 				79ACC81C22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
 				79C61A9A22A7C415008D3609 /* GameViewController.swift in Sources */,
 				79ACC82C22AB81F000AC3BF0 /* JSONConstructable.swift in Sources */,
-				79ACC83422ACB03200AC3BF0 /* Hero.swift in Sources */,
-				79ACC83022ACB01100AC3BF0 /* Actor.swift in Sources */,
 				79ACC7EB22AA5D5900AC3BF0 /* Tile.swift in Sources */,
 				79ACC80122AAA4B800AC3BF0 /* Monster.swift in Sources */,
 				79ACC81822AAB5D700AC3BF0 /* Weapon.swift in Sources */,
 				795746BD22A9029D00E04BEC /* Direction.swift in Sources */,
+				797DBFC522AF753B00D0F8E7 /* Hero.swift in Sources */,
+				797DBFBD22AF6F4000D0F8E7 /* SettingsScene.swift in Sources */,
 				79ACC82022AB473200AC3BF0 /* Action.swift in Sources */,
 				79ACC7F322AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
 				795746B522A7CA9800E04BEC /* Level.swift in Sources */,
@@ -429,10 +542,29 @@
 				79C61A9822A7C415008D3609 /* AppDelegate.swift in Sources */,
 				794864D122A7E48400F84A72 /* GameView.swift in Sources */,
 				79ACC7EF22AA5D8700AC3BF0 /* EntityLoader.swift in Sources */,
+				797DBFC122AF752D00D0F8E7 /* Actor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		797DBFB122AF6D6C00D0F8E7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Fenris iOS";
+			targetProxy = 797DBFB022AF6D6C00D0F8E7 /* PBXContainerItemProxy */;
+		};
+		797DBFB322AF6D7300D0F8E7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Fenris tvOS";
+			targetProxy = 797DBFB222AF6D7300D0F8E7 /* PBXContainerItemProxy */;
+		};
+		797DBFB522AF6D7800D0F8E7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Fenris macOS";
+			targetProxy = 797DBFB422AF6D7800D0F8E7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		79C61A7C22A7C415008D3609 /* Main.storyboard */ = {

@@ -9,9 +9,26 @@
 import Cocoa
 import SpriteKit
 import GameplayKit
+import Fenris
 
-class GameViewController: NSViewController {
+class GameViewController: NSViewController, ScenePresentable {
+    override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 
+        commonInit()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+
+        commonInit()
+    }
+    
+    private func commonInit() {
+        let sceneManager = SceneManager(viewController: self)
+        ServiceLocator.shared.provide(sceneManager: sceneManager)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,20 +39,10 @@ class GameViewController: NSViewController {
         skView.showsNodeCount = true
 
         do {
-            let entityLoader = EntityLoader()
-            let tiles = try entityLoader.loadEntities()
-            
-            let entityFactory = EntityFactory()
-            for tile in tiles {
-                entityFactory.register(entity: tile)
-            }
-            
-            let game = Game(entityFactory: entityFactory)
-            let scene = GameScene.newGameScene(game: game, size: self.view.bounds.size)
-            skView.presentScene(scene)
+            let scene = MainMenuScene(size: self.view.bounds.size)
+            ServiceLocator.shared.sceneManager.transitionTo(scene: scene, animation: .fade)
         } catch let error {
             print("error: \(error)")
         }
     }
 }
-
