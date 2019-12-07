@@ -9,12 +9,19 @@
 import SpriteKit
 import DungeonBuilder
 
+protocol GameDelegate: class {
+    func gameDidMove(player: Hero, toCoord: SIMD2<Int32>, duration: TimeInterval)
+}
+
 class Game {
     private var level: Level!
     
+    public weak var delegate: GameDelegate?
+    
     private let entityFactory: EntityFactory
         
-    init(entityFactory: EntityFactory) {
+    init(entityFactory: EntityFactory, delegate: GameDelegate?) {
+        self.delegate = delegate
         self.entityFactory = entityFactory
     }
 
@@ -30,11 +37,11 @@ class Game {
         return entities.filter({ $0 is Hero }).first! as! Hero
     }
     
-    func getTileAt(coord: int2) -> Int? {
+    func getTileAt(coord: SIMD2<Int32>) -> Int? {
         return self.level.getTileAt(coord: coord)
     }
     
-    private func canMoveEntity(entity: Entity, toCoord coord: int2) -> Bool {
+    private func canMoveEntity(entity: Entity, toCoord coord: SIMD2<Int32>) -> Bool {
         guard let tile = self.getTileAt(coord: coord) else {
             return false
         }
@@ -48,7 +55,7 @@ class Game {
                 
         for y in (0 ..< level.height) {
             for x in (0 ..< level.width) {
-                let coord = int2(Int32(x), Int32(y))
+                let coord = SIMD2<Int32>(Int32(x), Int32(y))
                 let tile = level.getTileAt(coord: coord)
                 var entity: Entity?
 
@@ -113,7 +120,7 @@ class Game {
         
         let activeActor = self.actors[self.activeActorIdx]
         
-        guard let action = activeActor.getAction() else {
+        guard let action = activeActor.getAction(state: self.level) else {
             return
         }
         
@@ -121,23 +128,14 @@ class Game {
             return
         }
         
+        if let moveAction = action as? MoveAction, moveAction.actor == self.hero {
+            self.delegate?.gameDidMove(player: self.hero, toCoord: moveAction.coord, duration: moveAction.duration)
+        }
+                
         self.activeActorIdx = (self.activeActorIdx + 1) % self.actors.count
     }
     
-    func movePlayer(direction: Direction) -> int2 {
-        let coord = self.hero.coord &+ direction.coord
-        
-//        if let creature = self.actors.filter({ $0.coord == coord }).first {
-//            // do attack ...?
-//            return self.hero.coord
-//        }
-
-        guard self.canMoveEntity(entity: self.hero, toCoord: coord) else {
-            return self.hero.coord
-        }
-        
-        self.hero.setAction(MoveAction(actor: self.hero, coord: coord))
-        
-        return coord
+    func movePlayer(direction: Direction) {
+        self.hero.move(direction: direction)
     }
 }

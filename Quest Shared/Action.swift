@@ -25,9 +25,11 @@ class Action {
 }
 
 class MoveAction: Action {
-    let coord: int2
+    public let coord: SIMD2<Int32>
     
-    init(actor: Actor, coord: int2) {
+    public let duration: TimeInterval = 0.2
+    
+    init(actor: Actor, coord: SIMD2<Int32>) {
         self.coord = coord
         super.init(actor: actor)
     }
@@ -41,7 +43,7 @@ class MoveAction: Action {
         
         let position = pointForCoord(self.coord)
         let move = SKAction.sequence([
-            SKAction.move(to: position, duration: 0.2),
+            SKAction.move(to: position, duration: self.duration),
             SKAction.run {
                 self.actor.coord = self.coord
             }

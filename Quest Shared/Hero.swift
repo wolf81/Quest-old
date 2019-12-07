@@ -25,6 +25,8 @@ enum Attribute {
 class Hero: Actor {
     var attributes: [Attribute]
 
+    private var direction: Direction?
+
     init(json: [String : Any], attributes: [Attribute]) {
         self.attributes = attributes
         
@@ -40,4 +42,24 @@ class Hero: Actor {
     
         sprite.zPosition = 1000
     }
+    
+    func move(direction: Direction) {
+        self.direction = direction
+    }
+    
+    override func getAction(state: Level) -> Action? {
+        guard let direction = self.direction else { return nil }
+        
+        defer {
+            self.direction = nil
+        }
+        
+        let toCoord = self.coord &+ direction.coord
+
+        if canMoveTo(coord: toCoord, for: state) {
+            return MoveAction(actor: self, coord: toCoord)
+        }
+                
+        return nil
+    }    
 }

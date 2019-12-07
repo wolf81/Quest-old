@@ -18,7 +18,7 @@ class Entity: JSONConstructable & Hashable {
         hasher.combine(self.coord)        
     }
     
-    var coord: int2
+    var coord: SIMD2<Int32>
     
     private let json: [String: Any]
     
@@ -40,10 +40,10 @@ class Entity: JSONConstructable & Hashable {
     
     required init(json: [String: Any]) {
         self.json = json
-        self.coord = int2(0, 0)
+        self.coord = SIMD2<Int32>(0, 0)
     }
     
-    init(sprite: SKSpriteNode, coord: int2) {
+    init(sprite: SKSpriteNode, coord: SIMD2<Int32>) {
         self.json = [:]
         self.coord = coord
     }

@@ -14,12 +14,12 @@ enum Direction {
     case left
     case right
     
-    var coord: int2 {
+    var coord: SIMD2<Int32> {
         switch self {
-        case .up: return int2(0, 1)
-        case .down: return int2(0, -1)
-        case .left: return int2(-1, 0)
-        case .right: return int2(1, 0)
+        case .up: return SIMD2<Int32>(0, 1)
+        case .down: return SIMD2<Int32>(0, -1)
+        case .left: return SIMD2<Int32>(-1, 0)
+        case .right: return SIMD2<Int32>(1, 0)
         }
     }
 }

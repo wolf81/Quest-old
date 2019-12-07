@@ -19,8 +19,8 @@ class GameScene: SKScene {
     
     init(game: Game, size: CGSize) {
         self.game = game
-        
-        super.init(size: size)
+            
+        super.init(size: size)        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -71,26 +71,16 @@ class GameScene: SKScene {
         self.lastUpdateTime = currentTime
     }
     
-    // TODO:
-    // game scene shouldn't contain any game logic at all - the logic should all be contained by the
-    // Game class - perhaps the game should have some delegate that notifies the scene and the
-    // scene can then show the proper animation. E.g. after player moved to a position, show
-    // movement animation for the sprite. Or perhaps just do all animation in the Game class, but
-    // then the game class needs to know the size of the tiles
     func movePlayer(direction: Direction) {
-        let coord = self.game.movePlayer(direction: direction)
-        
-        // TODO:
-        // Duration should not hardcoded, we should use the same duration as move animation
-        moveCamera(toPosition: pointForCoord(coord), duration: 0.2)
+        self.game.movePlayer(direction: direction)
     }
-    
-    func moveCamera(toPosition: CGPoint, duration: TimeInterval) {
+        
+    public func moveCamera(toPosition: CGPoint, duration: TimeInterval) {
         self.playerCamera.run(SKAction.move(to: toPosition, duration: duration))
     }
 }
 
-func pointForCoord(_ coord: int2) -> CGPoint {
+func pointForCoord(_ coord: SIMD2<Int32>) -> CGPoint {
     let x = CGFloat(coord.x) * GameScene.tileSize.width
     let y = CGFloat(coord.y) * GameScene.tileSize.height
     return CGPoint(x: x, y: y)
@@ -114,7 +104,7 @@ extension GameScene {
 #endif
 
 #if os(OSX)
-// Mouse-based event handling
+// Mouse- & keyboard-based event handling
 extension GameScene {
     override func mouseDown(with event: NSEvent) {
     }
@@ -123,7 +113,17 @@ extension GameScene {
     }
     
     override func mouseUp(with event: NSEvent) {
-    }    
+    }
+    
+    override func keyUp(with event: NSEvent) {
+        switch event.keyCode {
+        case 123: self.game.movePlayer(direction: .left)
+        case 124: self.game.movePlayer(direction: .right)
+        case 125: self.game.movePlayer(direction: .down)
+        case 126: self.game.movePlayer(direction: .up)
+        default: print("\(event.keyCode)")
+        }
+    }
 }
 #endif
 

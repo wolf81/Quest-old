@@ -48,7 +48,7 @@ struct Level {
         self.tiles = tiles
     }
     
-    func getTileAt(coord: int2) -> Int {
+    func getTileAt(coord: SIMD2<Int32>) -> Int {
         let idx = Int(Int(coord.y) * width + Int(coord.x))
         return self.tiles[idx]
     }

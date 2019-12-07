@@ -12,6 +12,10 @@ import GameplayKit
 import Fenris
 
 class GameViewController: NSViewController, ScenePresentable {
+    let serviceLocator = ServiceLocator()
+    
+    unowned var gameScene: GameScene?
+    
     override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 
@@ -26,7 +30,7 @@ class GameViewController: NSViewController, ScenePresentable {
     
     private func commonInit() {
         let sceneManager = SceneManager(viewController: self)
-        ServiceLocator.shared.provide(sceneManager: sceneManager)
+        serviceLocator.provide(sceneManager: sceneManager)
     }
     
     override func viewDidLoad() {
@@ -37,12 +41,54 @@ class GameViewController: NSViewController, ScenePresentable {
         skView.ignoresSiblingOrder = true
         skView.showsFPS = true
         skView.showsNodeCount = true
+        
+        let menuScene = SceneBuilder.mainMenu(size: self.view.bounds.size, delegate: self)
+        self.serviceLocator.sceneManager.transitionTo(scene: menuScene, animation: .fade)
+    }
+}
 
+extension GameViewController: MainMenuSceneDelegate {
+    func mainMenuDidSelectNewGame() {
         do {
-            let scene = MainMenuScene(size: self.view.bounds.size)
-            ServiceLocator.shared.sceneManager.transitionTo(scene: scene, animation: .fade)
+            let entityLoader = EntityLoader()
+            let tiles = try entityLoader.loadEntities()
+            let entityFactory = EntityFactory()
+            for tile in tiles {
+                entityFactory.register(entity: tile)
+            }
+            let game = Game(entityFactory: entityFactory, delegate: self)
+            let gameScene = GameScene(game: game, size: self.view.bounds.size)
+            self.serviceLocator.sceneManager.transitionTo(scene: gameScene, animation: .fade)
+            
+            self.gameScene = gameScene
         } catch let error {
             print("error: \(error)")
         }
+    }
+    
+    func mainMenuDidSelectContinueGame() {
+        
+    }
+    
+    func mainMenuDidSelectSettings() {
+        let settingsScene = SceneBuilder.settingsMenu(size: self.view.bounds.size, delegate: self)
+        self.serviceLocator.sceneManager.transitionTo(scene: settingsScene, animation: .push)
+    }
+    
+    func mainMenuDidSelectQuit() {
+        
+    }
+}
+
+extension GameViewController: SettingsMenuDelegate {
+    func settingsMenuDidSelectBack() {
+        let menuScene = SceneBuilder.mainMenu(size: self.view.bounds.size, delegate: self)
+        self.serviceLocator.sceneManager.transitionTo(scene: menuScene, animation: .pop)
+    }
+}
+
+extension GameViewController: GameDelegate {
+    func gameDidMove(player: Hero, toCoord: SIMD2<Int32>, duration: TimeInterval) {
+        self.gameScene?.moveCamera(toPosition: pointForCoord(toCoord), duration: duration)
     }
 }

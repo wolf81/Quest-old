@@ -13,6 +13,9 @@
 		7929FC0422B0002E003C1964 /* Fenris.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FC0322B0002D003C1964 /* Fenris.framework */; };
 		7929FC0622B00036003C1964 /* Fenris.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FC0522B00036003C1964 /* Fenris.framework */; };
 		7929FC0822B0003E003C1964 /* Fenris.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FC0722B0003D003C1964 /* Fenris.framework */; };
+		7939187D22B9447C00CE069C /* SceneBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7939187C22B9447C00CE069C /* SceneBuilder.swift */; };
+		7939187E22B9447C00CE069C /* SceneBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7939187C22B9447C00CE069C /* SceneBuilder.swift */; };
+		7939187F22B9447C00CE069C /* SceneBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7939187C22B9447C00CE069C /* SceneBuilder.swift */; };
 		794864D122A7E48400F84A72 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794864D022A7E48400F84A72 /* GameView.swift */; };
 		794864D322A7E60300F84A72 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794864D222A7E60300F84A72 /* Game.swift */; };
 		794864D422A7E60300F84A72 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794864D222A7E60300F84A72 /* Game.swift */; };
@@ -29,12 +32,6 @@
 		797DBF9522AC9A6B00D0F8E7 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBF9422AC9A6B00D0F8E7 /* GameState.swift */; };
 		797DBF9622AC9A6B00D0F8E7 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBF9422AC9A6B00D0F8E7 /* GameState.swift */; };
 		797DBF9722AC9A6B00D0F8E7 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBF9422AC9A6B00D0F8E7 /* GameState.swift */; };
-		797DBFB722AF6EBE00D0F8E7 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFB622AF6EBE00D0F8E7 /* MainMenuScene.swift */; };
-		797DBFB822AF6EBE00D0F8E7 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFB622AF6EBE00D0F8E7 /* MainMenuScene.swift */; };
-		797DBFB922AF6EBE00D0F8E7 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFB622AF6EBE00D0F8E7 /* MainMenuScene.swift */; };
-		797DBFBB22AF6F4000D0F8E7 /* SettingsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFBA22AF6F4000D0F8E7 /* SettingsScene.swift */; };
-		797DBFBC22AF6F4000D0F8E7 /* SettingsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFBA22AF6F4000D0F8E7 /* SettingsScene.swift */; };
-		797DBFBD22AF6F4000D0F8E7 /* SettingsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFBA22AF6F4000D0F8E7 /* SettingsScene.swift */; };
 		797DBFBF22AF752D00D0F8E7 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFBE22AF752D00D0F8E7 /* Actor.swift */; };
 		797DBFC022AF752D00D0F8E7 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFBE22AF752D00D0F8E7 /* Actor.swift */; };
 		797DBFC122AF752D00D0F8E7 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFBE22AF752D00D0F8E7 /* Actor.swift */; };
@@ -96,14 +93,13 @@
 		7929FC0322B0002D003C1964 /* Fenris.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fenris.framework; path = Carthage/Build/Mac/Fenris.framework; sourceTree = SOURCE_ROOT; };
 		7929FC0522B00036003C1964 /* Fenris.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fenris.framework; path = Carthage/Build/tvOS/Fenris.framework; sourceTree = SOURCE_ROOT; };
 		7929FC0722B0003D003C1964 /* Fenris.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fenris.framework; path = Carthage/Build/iOS/Fenris.framework; sourceTree = SOURCE_ROOT; };
+		7939187C22B9447C00CE069C /* SceneBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneBuilder.swift; sourceTree = "<group>"; };
 		794864D022A7E48400F84A72 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		794864D222A7E60300F84A72 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		795746B222A7C59A00E04BEC /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		795746BA22A9029D00E04BEC /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Sprites.xcassets; sourceTree = "<group>"; };
 		797DBF9422AC9A6B00D0F8E7 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
-		797DBFB622AF6EBE00D0F8E7 /* MainMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
-		797DBFBA22AF6F4000D0F8E7 /* SettingsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScene.swift; sourceTree = "<group>"; };
 		797DBFBE22AF752D00D0F8E7 /* Actor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Actor.swift; path = "Quest Shared/Actor.swift"; sourceTree = SOURCE_ROOT; };
 		797DBFC222AF753B00D0F8E7 /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hero.swift; path = "Quest Shared/Hero.swift"; sourceTree = SOURCE_ROOT; };
 		79ACC7DD22AA5BE900AC3BF0 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
@@ -208,8 +204,7 @@
 				79ACC81D22AB473200AC3BF0 /* Action.swift */,
 				79ACC82922AB81F000AC3BF0 /* JSONConstructable.swift */,
 				797DBF9422AC9A6B00D0F8E7 /* GameState.swift */,
-				797DBFB622AF6EBE00D0F8E7 /* MainMenuScene.swift */,
-				797DBFBA22AF6F4000D0F8E7 /* SettingsScene.swift */,
+				7939187C22B9447C00CE069C /* SceneBuilder.swift */,
 			);
 			path = "Quest Shared";
 			sourceTree = "<group>";
@@ -473,13 +468,12 @@
 				794864D322A7E60300F84A72 /* Game.swift in Sources */,
 				79ACC81622AAB5D700AC3BF0 /* Weapon.swift in Sources */,
 				79C61A7B22A7C415008D3609 /* GameViewController.swift in Sources */,
-				797DBFBB22AF6F4000D0F8E7 /* SettingsScene.swift in Sources */,
 				797DBFBF22AF752D00D0F8E7 /* Actor.swift in Sources */,
 				79ACC81E22AB473200AC3BF0 /* Action.swift in Sources */,
 				79ACC7F122AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
 				79ACC81A22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
 				795746B322A7C59A00E04BEC /* Level.swift in Sources */,
-				797DBFB722AF6EBE00D0F8E7 /* MainMenuScene.swift in Sources */,
+				7939187D22B9447C00CE069C /* SceneBuilder.swift in Sources */,
 				79C61A7922A7C415008D3609 /* AppDelegate.swift in Sources */,
 				79ACC7FC22AAA4B800AC3BF0 /* Entity.swift in Sources */,
 				79ACC7FF22AAA4B800AC3BF0 /* Monster.swift in Sources */,
@@ -500,13 +494,12 @@
 				794864D422A7E60300F84A72 /* Game.swift in Sources */,
 				79ACC81722AAB5D700AC3BF0 /* Weapon.swift in Sources */,
 				79C61A8C22A7C415008D3609 /* GameViewController.swift in Sources */,
-				797DBFBC22AF6F4000D0F8E7 /* SettingsScene.swift in Sources */,
 				797DBFC022AF752D00D0F8E7 /* Actor.swift in Sources */,
 				79ACC81F22AB473200AC3BF0 /* Action.swift in Sources */,
 				79ACC7F222AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
 				79ACC81B22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
 				795746B422A7CA9800E04BEC /* Level.swift in Sources */,
-				797DBFB822AF6EBE00D0F8E7 /* MainMenuScene.swift in Sources */,
+				7939187E22B9447C00CE069C /* SceneBuilder.swift in Sources */,
 				79C61A8A22A7C415008D3609 /* AppDelegate.swift in Sources */,
 				79ACC7FD22AAA4B800AC3BF0 /* Entity.swift in Sources */,
 				79ACC80022AAA4B800AC3BF0 /* Monster.swift in Sources */,
@@ -522,7 +515,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				797DBFB922AF6EBE00D0F8E7 /* MainMenuScene.swift in Sources */,
 				797DBF9722AC9A6B00D0F8E7 /* GameState.swift in Sources */,
 				79C61AA722A7C415008D3609 /* GameScene.swift in Sources */,
 				794864D522A7E60300F84A72 /* Game.swift in Sources */,
@@ -532,9 +524,9 @@
 				79ACC7EB22AA5D5900AC3BF0 /* Tile.swift in Sources */,
 				79ACC80122AAA4B800AC3BF0 /* Monster.swift in Sources */,
 				79ACC81822AAB5D700AC3BF0 /* Weapon.swift in Sources */,
+				7939187F22B9447C00CE069C /* SceneBuilder.swift in Sources */,
 				795746BD22A9029D00E04BEC /* Direction.swift in Sources */,
 				797DBFC522AF753B00D0F8E7 /* Hero.swift in Sources */,
-				797DBFBD22AF6F4000D0F8E7 /* SettingsScene.swift in Sources */,
 				79ACC82022AB473200AC3BF0 /* Action.swift in Sources */,
 				79ACC7F322AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
 				795746B522A7CA9800E04BEC /* Level.swift in Sources */,
