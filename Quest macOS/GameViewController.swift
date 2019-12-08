@@ -47,6 +47,16 @@ class GameViewController: NSViewController {
     }
 }
 
+// MARK: - GameDelegate
+
+extension GameViewController: GameDelegate {
+    func gameDidMove(player: Hero, toCoord: SIMD2<Int32>, duration: TimeInterval) {
+        self.gameScene?.moveCamera(toPosition: pointForCoord(toCoord), duration: duration)
+    }
+}
+
+// MARK: - MainMenuSceneDelegate
+
 extension GameViewController: MainMenuSceneDelegate {
     func mainMenuDidSelectNewGame() {
         let chooseRaceScene = SceneBuilder.chooseRaceMenu(size: self.view.bounds.size, delegate: self)
@@ -54,7 +64,6 @@ extension GameViewController: MainMenuSceneDelegate {
     }
     
     func mainMenuDidSelectContinueGame() {
-        
     }
     
     func mainMenuDidSelectSettings() {
@@ -63,9 +72,10 @@ extension GameViewController: MainMenuSceneDelegate {
     }
     
     func mainMenuDidSelectQuit() {
-        
     }
 }
+
+// MARK: - ChooseRaceMenuDelegate
 
 extension GameViewController: ChooseRaceMenuDelegate {
     func chooseRaceMenuDidSelectRace(race: String) {
@@ -73,10 +83,10 @@ extension GameViewController: ChooseRaceMenuDelegate {
         
         do {
             let entityLoader = EntityLoader()
-            let tiles = try entityLoader.loadEntities()
+            let entities = try entityLoader.loadEntities()
             let entityFactory = EntityFactory()
-            for tile in tiles {
-                entityFactory.register(entity: tile)
+            for entity in entities {
+                entityFactory.register(entity: entity)
             }
             let game = Game(entityFactory: entityFactory, delegate: self)
             let gameScene = GameScene(game: game, size: self.view.bounds.size)
@@ -94,15 +104,11 @@ extension GameViewController: ChooseRaceMenuDelegate {
     }
 }
 
+// MARK: - SettingsMenuDelegate
+
 extension GameViewController: SettingsMenuDelegate {
     func settingsMenuDidSelectBack() {
         let menuScene = SceneBuilder.mainMenu(size: self.view.bounds.size, delegate: self)
         self.skView.presentScene(menuScene, transition: SKTransition.push(with: .right, duration: 0.5))
-    }
-}
-
-extension GameViewController: GameDelegate {
-    func gameDidMove(player: Hero, toCoord: SIMD2<Int32>, duration: TimeInterval) {
-        self.gameScene?.moveCamera(toPosition: pointForCoord(toCoord), duration: duration)
     }
 }
