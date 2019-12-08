@@ -19,7 +19,7 @@ class Action {
         self.actor = actor
     }
     
-    func perform() -> Bool {
+    func perform(completion: @escaping () -> Void) -> Bool {
         fatalError()
     }
 }
@@ -27,14 +27,14 @@ class Action {
 class MoveAction: Action {
     public let coord: SIMD2<Int32>
     
-    public let duration: TimeInterval = 0.2
+    public let duration: TimeInterval = 0.15
     
     init(actor: Actor, coord: SIMD2<Int32>) {
         self.coord = coord
         super.init(actor: actor)
     }
     
-    override func perform() -> Bool {
+    override func perform(completion: @escaping () -> Void) -> Bool {
         guard self.actor.sprite.action(forKey: AnimationKey.move) == nil else {
             return false
         }
@@ -46,6 +46,9 @@ class MoveAction: Action {
             SKAction.move(to: position, duration: self.duration),
             SKAction.run {
                 self.actor.coord = self.coord
+            },
+            SKAction.run {
+                completion()
             }
         ])
         self.actor.sprite.run(move, withKey: AnimationKey.move)
@@ -55,8 +58,11 @@ class MoveAction: Action {
 }
 
 class IdleAction: Action {
-    override func perform() -> Bool {
+    override func perform(completion: @escaping () -> Void) -> Bool {
         print("Idling ...")
+        
+        completion()
+        
         return true
     }
 }

@@ -19,6 +19,8 @@ class Game {
     public weak var delegate: GameDelegate?
     
     private let entityFactory: EntityFactory
+    
+    private var isBusy: Bool = false
         
     init(entityFactory: EntityFactory, delegate: GameDelegate?) {
         self.delegate = delegate
@@ -116,18 +118,21 @@ class Game {
     }
     
     func update(_ deltaTime: TimeInterval) {
-        // accept no input from player, until it's the turn of the player
-        
+        guard self.isBusy == false else { return }
+
         let activeActor = self.actors[self.activeActorIdx]
         
         guard let action = activeActor.getAction(state: self.level) else {
             return
         }
         
-        guard action.perform() == true else {
+        // Start the action for the current actor ... make sure only 1 action is performed at any time
+        self.isBusy = true
+        guard action.perform(completion: { self.isBusy = false }) else {
             return
         }
         
+        // If the hero moved, update camera position, so camera is always centered on the hero
         if let moveAction = action as? MoveAction, moveAction.actor == self.hero {
             self.delegate?.gameDidMove(player: self.hero, toCoord: moveAction.coord, duration: moveAction.duration)
         }
