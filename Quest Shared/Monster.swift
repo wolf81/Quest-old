@@ -29,14 +29,14 @@ class Monster: Actor, CustomStringConvertible {
         return "\(self.name) [ HD: \(self.hitDice) / HP: \(self.hitPoints - self.damage) / AC: \(self.armorClass) ]"
     }
     
-    override func getAction(state: Level) -> Action? {
+    override func getAction(state: Game) -> Action? {
         let directions: [Direction] = [.up, .down, .left, .right]
         let randomDirection = directions.randomElement()
         
         let toCoord = self.coord &+ randomDirection!.coord
         
-        if canMoveTo(coord: toCoord, for: state) {
-            return MoveAction(actor: self, coord: toCoord)
+        if state.canMoveEntity(entity: self, toCoord: toCoord) {
+            return MoveAction(actor: self, toCoord: toCoord)
         }
 
         return IdleAction(actor: self)

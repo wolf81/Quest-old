@@ -33,14 +33,9 @@ class Actor: Entity {
         self.sprite.zPosition = 100
     }
      
-    func getAction(state: Level) -> Action? {
+    func getAction(state: Game) -> Action? {
         defer { self.action = nil }
             
         return self.action
-    }
-    
-    func canMoveTo(coord: SIMD2<Int32>, for state: Level) -> Bool {
-        let tile = state.getTileAt(coord: coord)
-        return tile != 1
-    }
+    }    
 }

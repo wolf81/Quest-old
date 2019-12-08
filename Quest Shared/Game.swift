@@ -43,10 +43,15 @@ class Game {
         return self.level.getTileAt(coord: coord)
     }
     
-    private func canMoveEntity(entity: Entity, toCoord coord: SIMD2<Int32>) -> Bool {
+    func canMoveEntity(entity: Entity, toCoord coord: SIMD2<Int32>) -> Bool {
+        guard actors.filter({ $0.coord == coord}).first == nil else {
+            return false
+        }
+
         guard let tile = self.getTileAt(coord: coord) else {
             return false
         }
+        
         return tile != 1
     }
     
@@ -122,7 +127,7 @@ class Game {
 
         let activeActor = self.actors[self.activeActorIdx]
         
-        guard let action = activeActor.getAction(state: self.level) else {
+        guard let action = activeActor.getAction(state: self) else {
             return
         }
         
@@ -134,7 +139,7 @@ class Game {
         
         // If the hero moved, update camera position, so camera is always centered on the hero
         if let moveAction = action as? MoveAction, moveAction.actor == self.hero {
-            self.delegate?.gameDidMove(player: self.hero, toCoord: moveAction.coord, duration: moveAction.duration)
+            self.delegate?.gameDidMove(player: self.hero, toCoord: moveAction.toCoord, duration: moveAction.duration)
         }
                 
         self.activeActorIdx = (self.activeActorIdx + 1) % self.actors.count
@@ -142,5 +147,9 @@ class Game {
     
     func movePlayer(direction: Direction) {
         self.hero.move(direction: direction)
+    }
+    
+    func attackActor(actor: Actor) {
+        
     }
 }

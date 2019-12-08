@@ -25,12 +25,12 @@ class Action {
 }
 
 class MoveAction: Action {
-    public let coord: SIMD2<Int32>
+    public let toCoord: SIMD2<Int32>
     
     public let duration: TimeInterval = 0.15
     
-    init(actor: Actor, coord: SIMD2<Int32>) {
-        self.coord = coord
+    init(actor: Actor, toCoord: SIMD2<Int32>) {
+        self.toCoord = toCoord
         super.init(actor: actor)
     }
     
@@ -41,17 +41,40 @@ class MoveAction: Action {
         
         print("move")
         
-        let position = pointForCoord(self.coord)
+        let position = pointForCoord(self.toCoord)
         let move = SKAction.sequence([
             SKAction.move(to: position, duration: self.duration),
             SKAction.run {
-                self.actor.coord = self.coord
+                self.actor.coord = self.toCoord
             },
             SKAction.run {
                 completion()
             }
         ])
         self.actor.sprite.run(move, withKey: AnimationKey.move)
+        
+        return true
+    }
+}
+
+class AttackAction: Action {
+    public let targetActor: Actor
+    
+    init(actor: Actor, targetActor: Actor) {
+        self.targetActor = targetActor
+        super.init(actor: actor)
+    }
+    
+    override func perform(completion: @escaping () -> Void) -> Bool {
+        print("Attacking ...")
+                
+        let diff = self.targetActor.coord &- self.actor.coord
+        let validRange: Range<Int32> = 0 ..< 1
+        if (validRange.contains(diff.x) && validRange.contains(diff.y)) {
+            print("can attack")
+        }
+        
+        completion()
         
         return true
     }

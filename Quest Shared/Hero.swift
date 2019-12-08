@@ -47,7 +47,7 @@ class Hero: Actor {
         self.direction = direction
     }
     
-    override func getAction(state: Level) -> Action? {
+    override func getAction(state: Game) -> Action? {
         guard let direction = self.direction else { return nil }
         
         defer {
@@ -56,8 +56,8 @@ class Hero: Actor {
         
         let toCoord = self.coord &+ direction.coord
 
-        if canMoveTo(coord: toCoord, for: state) {
-            return MoveAction(actor: self, coord: toCoord)
+        if state.canMoveEntity(entity: self, toCoord: toCoord) {
+            return MoveAction(actor: self, toCoord: toCoord)
         }
                 
         return nil
