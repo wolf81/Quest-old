@@ -33,6 +33,12 @@ class Monster: Actor, CustomStringConvertible {
         
         let toCoord = self.coord &+ randomDirection!.coord
         
+        if let targetActor = state.getActorAt(coord: toCoord) {
+            if targetActor is Hero {
+                return AttackAction(actor: self, targetActor: targetActor)
+            }
+        }
+        
         if state.canMoveEntity(entity: self, toCoord: toCoord) {
             return MoveAction(actor: self, toCoord: toCoord)
         }
