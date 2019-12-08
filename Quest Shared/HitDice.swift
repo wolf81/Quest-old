@@ -14,6 +14,7 @@ enum HitDice : RawRepresentable, CustomStringConvertible {
     case d8(Int, Int)
     case d10(Int, Int)
     case d12(Int, Int)
+    case d20(Int, Int)
     
     var minValue: Int {
         switch self {
@@ -22,6 +23,7 @@ enum HitDice : RawRepresentable, CustomStringConvertible {
         case .d8(let diceCount, let bonus): return diceCount + bonus
         case .d10(let diceCount, let bonus): return diceCount + bonus
         case .d12(let diceCount, let bonus): return diceCount + bonus
+        case .d20(let diceCount, let bonus): return diceCount + bonus
         }
     }
 
@@ -32,7 +34,12 @@ enum HitDice : RawRepresentable, CustomStringConvertible {
         case .d8(let diceCount, let bonus): return 8 * diceCount + bonus
         case .d10(let diceCount, let bonus): return 10 * diceCount + bonus
         case .d12(let diceCount, let bonus): return 12 * diceCount + bonus
+        case .d20(let diceCount, let bonus): return 20 * diceCount + bonus
         }
+    }
+    
+    var randomValue: Int {
+        return Int(arc4random_uniform(UInt32(self.maxValue)) + UInt32(minValue))
     }
 
     var rawValue: String {
@@ -43,6 +50,7 @@ enum HitDice : RawRepresentable, CustomStringConvertible {
         case .d8(let diceCount, let bonus): description = "\(diceCount)d8+\(bonus)"
         case .d10(let diceCount, let bonus): description = "\(diceCount)d10+\(bonus)"
         case .d12(let diceCount, let bonus): description = "\(diceCount)d12+\(bonus)"
+        case .d20(let diceCount, let bonus): description = "\(diceCount)d20+\(bonus)"
         }
         
         if description.hasSuffix("+0") {
@@ -72,6 +80,7 @@ enum HitDice : RawRepresentable, CustomStringConvertible {
         case 8: self = HitDice.d8(diceCount, bonus)
         case 10: self = HitDice.d10(diceCount, bonus)
         case 12: self = HitDice.d12(diceCount, bonus)
+        case 20: self = HitDice.d20(diceCount, bonus)
         default:
             fatalError("unknown dice value \(diceValue)")
         }

@@ -10,17 +10,15 @@ import Foundation
 
 class Monster: Actor, CustomStringConvertible {
     let hitDice: HitDice
-    let armorClass: Int
-        
+                    
     required init(json: [String : Any]) {
         let hitDice = json["HD"] as! String
         self.hitDice = HitDice(rawValue: hitDice)!
         
         let hitPoints = (self.hitDice.minValue + self.hitDice.maxValue) / 2
+        let armorClass = json["AC"] as! Int
         
-        self.armorClass = json["AC"] as! Int
-        
-        super.init(json: json, hitPoints: hitPoints)
+        super.init(json: json, hitPoints: hitPoints, armorClass: armorClass)
 
         self.sprite.zPosition = 100
     }

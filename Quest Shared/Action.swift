@@ -68,6 +68,14 @@ class AttackAction: Action {
     override func perform(completion: @escaping () -> Void) -> Bool {
         print("\(self.actor) attacks \(targetActor)")
 
+        let attackRoll = HitDice.d20(1, self.actor.attackBonus).randomValue
+        let armorClass = targetActor.armorClass
+        print("attack roll: \(attackRoll) vs \(armorClass)")
+        if attackRoll - armorClass > 0 {
+            print("attack success")
+            targetActor.damage += 1            
+        }
+        
         completion()
         
         return true

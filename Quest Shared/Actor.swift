@@ -13,14 +13,19 @@ class Actor: Entity {
     
     var damage: Int = 0
     
+    private(set) var attackBonus: Int = 0
+    
+    private(set) var armorClass: Int = 0
+    
     private var action: Action?
         
     var isAlive: Bool {
         return (self.hitPoints - damage) > 0
     }
     
-    init(json: [String : Any], hitPoints: Int) {
+    init(json: [String : Any], hitPoints: Int, armorClass: Int = 0) {
         self.hitPoints = hitPoints
+        self.armorClass = armorClass
         
         super.init(json: json)
     }

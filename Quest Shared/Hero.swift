@@ -8,35 +8,47 @@
 
 import SpriteKit
 
-enum Attribute {
-    case strength(Int)
-    case dexterity(Int)
-    case mind(Int)
+struct Attributes {
+    let strength: Attribute
+    let dexterity: Attribute
+    let mind: Attribute
     
-    var bonus: Int {
-        switch self {
-        case .dexterity(let value): return (value - 10) / 2
-        case .mind(let value): return (value - 10) / 2
-        case .strength(let value): return (value - 10) / 2
-        }
+    public init() {
+        self.strength = .average
+        self.dexterity = .average
+        self.mind = .average
+    }
+    
+    public init(strength: Attribute, dexterity: Attribute, mind: Attribute) {
+        self.strength = strength
+        self.dexterity = dexterity
+        self.mind = mind
     }
 }
 
 class Hero: Actor, CustomStringConvertible {
-    var attributes: [Attribute]
-
+    let attributes: Attributes
+    let race: Race
+    let role: Role
+    
     private var direction: Direction?
 
-    init(json: [String : Any], attributes: [Attribute]) {
+    override var attackBonus: Int {
+        return self.attributes.strength.bonus
+    }
+    
+    public init(name: String, race: Race, role: Role, attributes: Attributes) {
+        self.race = race
+        self.role = role
         self.attributes = attributes
         
-        super.init(json: json)
-
-        sprite.zPosition = 1000
+        super.init(json: ["name": name, "sprite": "human_male"])
     }
-
+    
     required init(json: [String : Any]) {
-        self.attributes = []
+        self.attributes = Attributes()
+        self.race = .human
+        self.role = .fighter
         
         super.init(json: json)
     
@@ -48,7 +60,7 @@ class Hero: Actor, CustomStringConvertible {
     }
     
     var description: String {
-        return "Hero [ HP: \(self.hitPoints - self.damage) ]"
+        return "\(self.race) \(self.role) [ HP: \(self.hitPoints - self.damage) / STR: \(self.attributes.strength) / DEX: \(self.attributes.dexterity) / MIND: \(self.attributes.mind) ]"
     }
     
     override func getAction(state: Game) -> Action? {
