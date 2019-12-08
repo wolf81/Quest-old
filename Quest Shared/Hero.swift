@@ -26,21 +26,52 @@ struct Attributes {
     }
 }
 
+struct Skills {
+    let physical: Skill
+    let subterfuge: Skill
+    let knowledge: Skill
+    let communication: Skill
+    
+    public init() {
+        self.physical = 0
+        self.subterfuge = 0
+        self.knowledge = 0
+        self.communication = 0
+    }
+    
+    public init(physical: Skill, subterfuge: Skill, knowledge: Skill, communication: Skill) {
+        self.physical = physical
+        self.subterfuge = subterfuge
+        self.knowledge = knowledge
+        self.communication = communication
+    }
+}
+
 class Hero: Actor, CustomStringConvertible {
     let attributes: Attributes
+    let skills: Skills
     let race: Race
     let role: Role
+    let level: Int = 1
     
     private var direction: Direction?
 
     override var attackBonus: Int {
-        return self.attributes.strength.bonus
+        var attackBonus = self.attributes.strength.bonus
+        if self.role == .fighter {
+            attackBonus += 1
+            attackBonus += self.level % 5
+        }
+        return attackBonus
     }
     
-    public init(name: String, race: Race, role: Role, attributes: Attributes) {
+    override var armorClass: Int { return 10 + attributes.dexterity.bonus /* + armor bonus */ }
+    
+    public init(name: String, race: Race, role: Role, attributes: Attributes, skills: Skills) {
         self.race = race
         self.role = role
         self.attributes = attributes
+        self.skills = skills
         
         super.init(json: ["name": name, "sprite": "human_male"])
     }
@@ -49,6 +80,7 @@ class Hero: Actor, CustomStringConvertible {
         self.attributes = Attributes()
         self.race = .human
         self.role = .fighter
+        self.skills = Skills()
         
         super.init(json: json)
     
