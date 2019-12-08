@@ -8,48 +8,9 @@
 
 import SpriteKit
 
-struct Attributes {
-    let strength: Attribute
-    let dexterity: Attribute
-    let mind: Attribute
-    
-    public init() {
-        self.strength = .average
-        self.dexterity = .average
-        self.mind = .average
-    }
-    
-    public init(strength: Attribute, dexterity: Attribute, mind: Attribute) {
-        self.strength = strength
-        self.dexterity = dexterity
-        self.mind = mind
-    }
-}
-
-struct Skills {
-    let physical: Skill
-    let subterfuge: Skill
-    let knowledge: Skill
-    let communication: Skill
-    
-    public init() {
-        self.physical = 0
-        self.subterfuge = 0
-        self.knowledge = 0
-        self.communication = 0
-    }
-    
-    public init(physical: Skill, subterfuge: Skill, knowledge: Skill, communication: Skill) {
-        self.physical = physical
-        self.subterfuge = subterfuge
-        self.knowledge = knowledge
-        self.communication = communication
-    }
-}
-
 class Hero: Actor, CustomStringConvertible {
     let attributes: Attributes
-    let skills: Skills
+    let equipment: Equipment
     let race: Race
     let role: Role
     let level: Int = 1
@@ -65,22 +26,22 @@ class Hero: Actor, CustomStringConvertible {
         return attackBonus
     }
     
-    override var armorClass: Int { return 10 + attributes.dexterity.bonus /* + armor bonus */ }
+    override var armorClass: Int { return 10 + attributes.dexterity.bonus + self.equipment.armor.armorClass /* + armor bonus */ }
     
-    public init(name: String, race: Race, role: Role, attributes: Attributes, skills: Skills) {
+    public init(name: String, race: Race, role: Role, attributes: Attributes, skills: Skills, equipment: Equipment) {
         self.race = race
         self.role = role
         self.attributes = attributes
-        self.skills = skills
+        self.equipment = equipment
         
-        super.init(json: ["name": name, "sprite": "human_male"])
+        super.init(name: name, sprite: "human_male", skills: skills)
     }
     
     required init(json: [String : Any]) {
         self.attributes = Attributes()
         self.race = .human
         self.role = .fighter
-        self.skills = Skills()
+        self.equipment = Equipment()
         
         super.init(json: json)
     

@@ -16,6 +16,19 @@ enum HitDice : RawRepresentable, CustomStringConvertible {
     case d12(Int, Int)
     case d20(Int, Int)
     
+    var diceCount: Int {
+        get {
+            switch self {
+            case .d4(let diceCount, _): return diceCount
+            case .d6(let diceCount, _): return diceCount
+            case .d8(let diceCount, _): return diceCount
+            case .d10(let diceCount, _): return diceCount
+            case .d12(let diceCount, _): return diceCount
+            case .d20(let diceCount, _): return diceCount
+            }
+        }
+    }
+    
     var minValue: Int {
         switch self {
         case .d4(let diceCount, let bonus): return diceCount + bonus

@@ -88,7 +88,9 @@ class Game {
                 if tile == 3 {
                     let attributes = Attributes(strength: 16, dexterity: 12, mind: 8)
                     let skills = Skills(physical: 3, subterfuge: 0, knowledge: 0, communication: 0)
-                    let player = Hero(name: "Kendrick", race: .human, role: .fighter, attributes: attributes, skills: skills)
+                    let armor = entityFactory.newEntity(name: "Studded Leather") as! Armor
+                    let equipment = Equipment(armor: armor, weapon: .none)
+                    let player = Hero(name: "Kendrick", race: .human, role: .fighter, attributes: attributes, skills: skills, equipment: equipment)
 //                    let player = entityFactory.newEntity(name: "Human")! as! Hero
                     player.coord = coord
                     entities.append(player)

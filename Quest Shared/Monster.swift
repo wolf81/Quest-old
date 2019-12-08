@@ -12,13 +12,17 @@ class Monster: Actor, CustomStringConvertible {
     let hitDice: HitDice
                     
     required init(json: [String : Any]) {
-        let hitDice = json["HD"] as! String
-        self.hitDice = HitDice(rawValue: hitDice)!
+        let hitDiceString = json["HD"] as! String
+        let hitDice = HitDice(rawValue: hitDiceString)!
+        self.hitDice = hitDice
         
         let hitPoints = (self.hitDice.minValue + self.hitDice.maxValue) / 2
         let armorClass = json["AC"] as! Int
         
-        super.init(json: json, hitPoints: hitPoints, armorClass: armorClass)
+        let skillInfo = json["skills"] as? [String: Int] ?? [:]
+        let skills = Skills(json: skillInfo, defaultValue: hitDice.diceCount)
+        
+        super.init(json: json, hitPoints: hitPoints, armorClass: armorClass, skills: skills)
 
         self.sprite.zPosition = 100
     }

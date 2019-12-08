@@ -19,3 +19,21 @@ extension Attribute {
         return (self - 10) / 2
     }
 }
+
+struct Attributes {
+    let strength: Attribute
+    let dexterity: Attribute
+    let mind: Attribute
+    
+    public init() {
+        self.strength = .average
+        self.dexterity = .average
+        self.mind = .average
+    }
+    
+    public init(strength: Attribute, dexterity: Attribute, mind: Attribute) {
+        self.strength = strength
+        self.dexterity = dexterity
+        self.mind = mind
+    }
+}

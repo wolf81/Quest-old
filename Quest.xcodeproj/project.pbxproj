@@ -41,6 +41,12 @@
 		7963DE42239CEC6A00183DF2 /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE41239CEC6A00183DF2 /* Skill.swift */; };
 		7963DE43239CEC6A00183DF2 /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE41239CEC6A00183DF2 /* Skill.swift */; };
 		7963DE44239CEC6A00183DF2 /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE41239CEC6A00183DF2 /* Skill.swift */; };
+		7963DE46239D079300183DF2 /* Armor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE45239D079300183DF2 /* Armor.swift */; };
+		7963DE47239D079300183DF2 /* Armor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE45239D079300183DF2 /* Armor.swift */; };
+		7963DE48239D079300183DF2 /* Armor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE45239D079300183DF2 /* Armor.swift */; };
+		7963DE4A239D092300183DF2 /* Equipment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE49239D092300183DF2 /* Equipment.swift */; };
+		7963DE4B239D092300183DF2 /* Equipment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE49239D092300183DF2 /* Equipment.swift */; };
+		7963DE4C239D092300183DF2 /* Equipment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE49239D092300183DF2 /* Equipment.swift */; };
 		797DBF7B22A91FA300D0F8E7 /* Sprites.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */; };
 		797DBF7C22A91FA300D0F8E7 /* Sprites.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */; };
 		797DBF7D22A91FA300D0F8E7 /* Sprites.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */; };
@@ -115,6 +121,8 @@
 		7963DE39239CE12A00183DF2 /* Race.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Race.swift; sourceTree = "<group>"; };
 		7963DE3D239CE15700183DF2 /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
 		7963DE41239CEC6A00183DF2 /* Skill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skill.swift; sourceTree = "<group>"; };
+		7963DE45239D079300183DF2 /* Armor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Armor.swift; path = "Quest Shared/Armor.swift"; sourceTree = SOURCE_ROOT; };
+		7963DE49239D092300183DF2 /* Equipment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equipment.swift; sourceTree = "<group>"; };
 		797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Sprites.xcassets; sourceTree = "<group>"; };
 		797DBFBE22AF752D00D0F8E7 /* Actor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Actor.swift; path = "Quest Shared/Actor.swift"; sourceTree = SOURCE_ROOT; };
 		797DBFC222AF753B00D0F8E7 /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hero.swift; path = "Quest Shared/Hero.swift"; sourceTree = SOURCE_ROOT; };
@@ -188,6 +196,7 @@
 				79ACC81522AAB5D600AC3BF0 /* Weapon.swift */,
 				79ACC7FA22AAA4B800AC3BF0 /* Monster.swift */,
 				79ACC7E822AA5D5900AC3BF0 /* Tile.swift */,
+				7963DE45239D079300183DF2 /* Armor.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -225,6 +234,7 @@
 				7963DE39239CE12A00183DF2 /* Race.swift */,
 				7963DE3D239CE15700183DF2 /* Role.swift */,
 				7963DE41239CEC6A00183DF2 /* Skill.swift */,
+				7963DE49239D092300183DF2 /* Equipment.swift */,
 			);
 			path = "Quest Shared";
 			sourceTree = "<group>";
@@ -492,12 +502,14 @@
 				797DBFBF22AF752D00D0F8E7 /* Actor.swift in Sources */,
 				79ACC81E22AB473200AC3BF0 /* Action.swift in Sources */,
 				79ACC7F122AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
+				7963DE4A239D092300183DF2 /* Equipment.swift in Sources */,
 				79ACC81A22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
 				795746B322A7C59A00E04BEC /* Level.swift in Sources */,
 				7939187D22B9447C00CE069C /* SceneBuilder.swift in Sources */,
 				7963DE3E239CE15700183DF2 /* Role.swift in Sources */,
 				79C61A7922A7C415008D3609 /* AppDelegate.swift in Sources */,
 				79ACC7FC22AAA4B800AC3BF0 /* Entity.swift in Sources */,
+				7963DE46239D079300183DF2 /* Armor.swift in Sources */,
 				79ACC7FF22AAA4B800AC3BF0 /* Monster.swift in Sources */,
 				797DBFC322AF753B00D0F8E7 /* Hero.swift in Sources */,
 				7963DE2E239CC35F00183DF2 /* DefaultMenuConfiguration.swift in Sources */,
@@ -522,12 +534,14 @@
 				797DBFC022AF752D00D0F8E7 /* Actor.swift in Sources */,
 				79ACC81F22AB473200AC3BF0 /* Action.swift in Sources */,
 				79ACC7F222AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
+				7963DE4B239D092300183DF2 /* Equipment.swift in Sources */,
 				79ACC81B22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
 				795746B422A7CA9800E04BEC /* Level.swift in Sources */,
 				7939187E22B9447C00CE069C /* SceneBuilder.swift in Sources */,
 				7963DE3F239CE15700183DF2 /* Role.swift in Sources */,
 				79C61A8A22A7C415008D3609 /* AppDelegate.swift in Sources */,
 				79ACC7FD22AAA4B800AC3BF0 /* Entity.swift in Sources */,
+				7963DE47239D079300183DF2 /* Armor.swift in Sources */,
 				79ACC80022AAA4B800AC3BF0 /* Monster.swift in Sources */,
 				797DBFC422AF753B00D0F8E7 /* Hero.swift in Sources */,
 				7963DE2F239CC35F00183DF2 /* DefaultMenuConfiguration.swift in Sources */,
@@ -549,6 +563,7 @@
 				79ACC81C22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
 				79C61A9A22A7C415008D3609 /* GameViewController.swift in Sources */,
 				79ACC82C22AB81F000AC3BF0 /* JSONConstructable.swift in Sources */,
+				7963DE4C239D092300183DF2 /* Equipment.swift in Sources */,
 				79ACC7EB22AA5D5900AC3BF0 /* Tile.swift in Sources */,
 				79ACC80122AAA4B800AC3BF0 /* Monster.swift in Sources */,
 				79ACC81822AAB5D700AC3BF0 /* Weapon.swift in Sources */,
@@ -564,6 +579,7 @@
 				79C61A9822A7C415008D3609 /* AppDelegate.swift in Sources */,
 				7963DE34239CDE2600183DF2 /* Attribute.swift in Sources */,
 				794864D122A7E48400F84A72 /* GameView.swift in Sources */,
+				7963DE48239D079300183DF2 /* Armor.swift in Sources */,
 				7963DE44239CEC6A00183DF2 /* Skill.swift in Sources */,
 				79ACC7EF22AA5D8700AC3BF0 /* EntityLoader.swift in Sources */,
 				797DBFC122AF752D00D0F8E7 /* Actor.swift in Sources */,

@@ -6,5 +6,9 @@
 	"AC": 15,
 	"EQ": [
 		"Claw +1",
-	]
+	],
+    
+    "skills": {
+        "physical": 4
+    }
 }

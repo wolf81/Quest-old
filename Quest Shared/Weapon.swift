@@ -17,4 +17,10 @@ class Weapon: Entity {
         
         super.init(json: json)
     }
+    
+    static var none: Weapon {
+        get {
+            return self.init(json: ["AT": "0d4"])
+        }
+    }
 }

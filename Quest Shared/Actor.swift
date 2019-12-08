@@ -11,6 +11,8 @@ import SpriteKit
 class Actor: Entity {
     let hitPoints: Int
     
+    let skills: Skills
+
     var damage: Int = 0
     
     private(set) var attackBonus: Int = 0
@@ -23,15 +25,26 @@ class Actor: Entity {
         return (self.hitPoints - damage) > 0
     }
     
-    init(json: [String : Any], hitPoints: Int, armorClass: Int = 0) {
+    init(json: [String : Any], hitPoints: Int, armorClass: Int, skills: Skills) {
         self.hitPoints = hitPoints
         self.armorClass = armorClass
+        self.skills = skills
         
         super.init(json: json)
+    }    
+    
+    init(name: String, sprite: String, skills: Skills) {
+        self.hitPoints = 1
+        self.skills = skills
+        
+        super.init(json: ["name": name, "sprite": "human_male"])
+        
+        self.sprite.zPosition = 100
     }
     
     required init(json: [String : Any]) {
         self.hitPoints = 1
+        self.skills = Skills(physical: 0, subterfuge: 0, knowledge: 0, communication: 0)
         
         super.init(json: json)
         
