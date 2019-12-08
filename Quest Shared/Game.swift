@@ -43,6 +43,10 @@ class Game {
         return self.level.getTileAt(coord: coord)
     }
     
+    func getActorAt(coord: SIMD2<Int32>) -> Actor? {
+        return self.actors.filter({ $0.coord == coord }).first
+    }
+    
     func canMoveEntity(entity: Entity, toCoord coord: SIMD2<Int32>) -> Bool {
         guard actors.filter({ $0.coord == coord}).first == nil else {
             return false
@@ -147,9 +151,5 @@ class Game {
     
     func movePlayer(direction: Direction) {
         self.hero.move(direction: direction)
-    }
-    
-    func attackActor(actor: Actor) {
-        
     }
 }

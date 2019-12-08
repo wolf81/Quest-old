@@ -22,7 +22,7 @@ enum Attribute {
     }
 }
 
-class Hero: Actor {
+class Hero: Actor, CustomStringConvertible {
     var attributes: [Attribute]
 
     private var direction: Direction?
@@ -47,6 +47,10 @@ class Hero: Actor {
         self.direction = direction
     }
     
+    var description: String {
+        return "Hero [ HP: \(self.hitPoints - self.damage) ]"
+    }
+    
     override func getAction(state: Game) -> Action? {
         guard let direction = self.direction else { return nil }
         
@@ -54,8 +58,12 @@ class Hero: Actor {
             self.direction = nil
         }
         
-        let toCoord = self.coord &+ direction.coord
-
+        let toCoord = self.coord &+ direction.coord            
+        
+        if let targetActor = state.getActorAt(coord: toCoord) {
+            return AttackAction(actor: self, targetActor: targetActor)
+        }
+        
         if state.canMoveEntity(entity: self, toCoord: toCoord) {
             return MoveAction(actor: self, toCoord: toCoord)
         }

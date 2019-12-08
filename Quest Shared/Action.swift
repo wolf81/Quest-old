@@ -39,7 +39,7 @@ class MoveAction: Action {
             return false
         }
         
-        print("move")
+        print("\(self.actor) moves to \(self.toCoord.x).\(self.toCoord.y)")
         
         let position = pointForCoord(self.toCoord)
         let move = SKAction.sequence([
@@ -66,14 +66,8 @@ class AttackAction: Action {
     }
     
     override func perform(completion: @escaping () -> Void) -> Bool {
-        print("Attacking ...")
-                
-        let diff = self.targetActor.coord &- self.actor.coord
-        let validRange: Range<Int32> = 0 ..< 1
-        if (validRange.contains(diff.x) && validRange.contains(diff.y)) {
-            print("can attack")
-        }
-        
+        print("\(self.actor) attacks \(targetActor)")
+
         completion()
         
         return true
@@ -82,8 +76,8 @@ class AttackAction: Action {
 
 class IdleAction: Action {
     override func perform(completion: @escaping () -> Void) -> Bool {
-        print("Idling ...")
-        
+        print("\(self.actor) is idle")
+
         completion()
         
         return true
