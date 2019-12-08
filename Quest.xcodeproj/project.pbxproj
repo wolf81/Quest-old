@@ -26,6 +26,9 @@
 		795746BB22A9029D00E04BEC /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795746BA22A9029D00E04BEC /* Direction.swift */; };
 		795746BC22A9029D00E04BEC /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795746BA22A9029D00E04BEC /* Direction.swift */; };
 		795746BD22A9029D00E04BEC /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795746BA22A9029D00E04BEC /* Direction.swift */; };
+		7963DE2E239CC35F00183DF2 /* DefaultMenuConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE2D239CC35F00183DF2 /* DefaultMenuConfiguration.swift */; };
+		7963DE2F239CC35F00183DF2 /* DefaultMenuConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE2D239CC35F00183DF2 /* DefaultMenuConfiguration.swift */; };
+		7963DE30239CC35F00183DF2 /* DefaultMenuConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE2D239CC35F00183DF2 /* DefaultMenuConfiguration.swift */; };
 		797DBF7B22A91FA300D0F8E7 /* Sprites.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */; };
 		797DBF7C22A91FA300D0F8E7 /* Sprites.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */; };
 		797DBF7D22A91FA300D0F8E7 /* Sprites.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */; };
@@ -98,6 +101,7 @@
 		794864D222A7E60300F84A72 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		795746B222A7C59A00E04BEC /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		795746BA22A9029D00E04BEC /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
+		7963DE2D239CC35F00183DF2 /* DefaultMenuConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMenuConfiguration.swift; sourceTree = "<group>"; };
 		797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Sprites.xcassets; sourceTree = "<group>"; };
 		797DBF9422AC9A6B00D0F8E7 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		797DBFBE22AF752D00D0F8E7 /* Actor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Actor.swift; path = "Quest Shared/Actor.swift"; sourceTree = SOURCE_ROOT; };
@@ -205,6 +209,7 @@
 				79ACC82922AB81F000AC3BF0 /* JSONConstructable.swift */,
 				797DBF9422AC9A6B00D0F8E7 /* GameState.swift */,
 				7939187C22B9447C00CE069C /* SceneBuilder.swift */,
+				7963DE2D239CC35F00183DF2 /* DefaultMenuConfiguration.swift */,
 			);
 			path = "Quest Shared";
 			sourceTree = "<group>";
@@ -478,6 +483,7 @@
 				79ACC7FC22AAA4B800AC3BF0 /* Entity.swift in Sources */,
 				79ACC7FF22AAA4B800AC3BF0 /* Monster.swift in Sources */,
 				797DBFC322AF753B00D0F8E7 /* Hero.swift in Sources */,
+				7963DE2E239CC35F00183DF2 /* DefaultMenuConfiguration.swift in Sources */,
 				79ACC7ED22AA5D8700AC3BF0 /* EntityLoader.swift in Sources */,
 				797DBF9522AC9A6B00D0F8E7 /* GameState.swift in Sources */,
 				79ACC7E922AA5D5900AC3BF0 /* Tile.swift in Sources */,
@@ -504,6 +510,7 @@
 				79ACC7FD22AAA4B800AC3BF0 /* Entity.swift in Sources */,
 				79ACC80022AAA4B800AC3BF0 /* Monster.swift in Sources */,
 				797DBFC422AF753B00D0F8E7 /* Hero.swift in Sources */,
+				7963DE2F239CC35F00183DF2 /* DefaultMenuConfiguration.swift in Sources */,
 				79ACC7EE22AA5D8700AC3BF0 /* EntityLoader.swift in Sources */,
 				797DBF9622AC9A6B00D0F8E7 /* GameState.swift in Sources */,
 				79ACC7EA22AA5D5900AC3BF0 /* Tile.swift in Sources */,
@@ -529,6 +536,7 @@
 				797DBFC522AF753B00D0F8E7 /* Hero.swift in Sources */,
 				79ACC82022AB473200AC3BF0 /* Action.swift in Sources */,
 				79ACC7F322AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
+				7963DE30239CC35F00183DF2 /* DefaultMenuConfiguration.swift in Sources */,
 				795746B522A7CA9800E04BEC /* Level.swift in Sources */,
 				79ACC7FE22AAA4B800AC3BF0 /* Entity.swift in Sources */,
 				79C61A9822A7C415008D3609 /* AppDelegate.swift in Sources */,

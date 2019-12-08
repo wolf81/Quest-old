@@ -11,8 +11,10 @@ import SpriteKit
 import GameplayKit
 import Fenris
 
-class GameViewController: NSViewController, ScenePresentable {
-    let serviceLocator = ServiceLocator()
+class GameViewController: NSViewController {
+    let serviceLocator = ServiceLocator.shared
+    
+    var skView: SKView { return self.view as! SKView }
     
     unowned var gameScene: GameScene?
     
@@ -29,8 +31,6 @@ class GameViewController: NSViewController, ScenePresentable {
     }
     
     private func commonInit() {
-        let sceneManager = SceneManager(viewController: self)
-        serviceLocator.provide(sceneManager: sceneManager)
     }
     
     override func viewDidLoad() {
@@ -43,12 +43,34 @@ class GameViewController: NSViewController, ScenePresentable {
         skView.showsNodeCount = true
         
         let menuScene = SceneBuilder.mainMenu(size: self.view.bounds.size, delegate: self)
-        self.serviceLocator.sceneManager.transitionTo(scene: menuScene, animation: .fade)
+        self.skView.presentScene(menuScene, transition: SKTransition.fade(withDuration: 0.5))
     }
 }
 
 extension GameViewController: MainMenuSceneDelegate {
     func mainMenuDidSelectNewGame() {
+        let chooseRaceScene = SceneBuilder.chooseRaceMenu(size: self.view.bounds.size, delegate: self)
+        self.skView.presentScene(chooseRaceScene, transition: SKTransition.push(with: .left, duration: 0.5))
+    }
+    
+    func mainMenuDidSelectContinueGame() {
+        
+    }
+    
+    func mainMenuDidSelectSettings() {
+        let settingsScene = SceneBuilder.settingsMenu(size: self.view.bounds.size, delegate: self)
+        self.skView.presentScene(settingsScene, transition: SKTransition.push(with: .left, duration: 0.5))
+    }
+    
+    func mainMenuDidSelectQuit() {
+        
+    }
+}
+
+extension GameViewController: ChooseRaceMenuDelegate {
+    func chooseRaceMenuDidSelectRace(race: String) {
+        print("selected race: \(race)")
+        
         do {
             let entityLoader = EntityLoader()
             let tiles = try entityLoader.loadEntities()
@@ -58,7 +80,7 @@ extension GameViewController: MainMenuSceneDelegate {
             }
             let game = Game(entityFactory: entityFactory, delegate: self)
             let gameScene = GameScene(game: game, size: self.view.bounds.size)
-            self.serviceLocator.sceneManager.transitionTo(scene: gameScene, animation: .fade)
+            self.skView.presentScene(gameScene, transition: SKTransition.fade(withDuration: 0.5))
             
             self.gameScene = gameScene
         } catch let error {
@@ -66,24 +88,16 @@ extension GameViewController: MainMenuSceneDelegate {
         }
     }
     
-    func mainMenuDidSelectContinueGame() {
-        
-    }
-    
-    func mainMenuDidSelectSettings() {
-        let settingsScene = SceneBuilder.settingsMenu(size: self.view.bounds.size, delegate: self)
-        self.serviceLocator.sceneManager.transitionTo(scene: settingsScene, animation: .push)
-    }
-    
-    func mainMenuDidSelectQuit() {
-        
+    func chooseRaceMenuDidSelectBack() {
+        let menuScene = SceneBuilder.mainMenu(size: self.view.bounds.size, delegate: self)
+        self.skView.presentScene(menuScene, transition: SKTransition.push(with: .right, duration: 0.5))
     }
 }
 
 extension GameViewController: SettingsMenuDelegate {
     func settingsMenuDidSelectBack() {
         let menuScene = SceneBuilder.mainMenu(size: self.view.bounds.size, delegate: self)
-        self.serviceLocator.sceneManager.transitionTo(scene: menuScene, animation: .pop)
+        self.skView.presentScene(menuScene, transition: SKTransition.push(with: .right, duration: 0.5))
     }
 }
 
