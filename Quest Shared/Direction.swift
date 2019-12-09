@@ -14,6 +14,7 @@ enum Direction {
     case left
     case right
     
+    /// A direction is based on an x-value and y-value, e.g. up has an x-value of 0 and y-value of 1, down has an x-value of 0 and y-value of -1, etc...
     var coord: SIMD2<Int32> {
         switch self {
         case .up: return SIMD2<Int32>(0, 1)

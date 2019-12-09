@@ -49,7 +49,7 @@ class Monster: Actor, CustomStringConvertible {
             }
         }
         
-        if state.canMoveEntity(entity: self, toCoord: toCoord) {
+        if state.canMove(entity: self, toCoord: toCoord) {
             return MoveAction(actor: self, toCoord: toCoord)
         }
 

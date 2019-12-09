@@ -47,7 +47,7 @@ class Game {
         return self.actors.filter({ $0.coord == coord }).first
     }
     
-    func canMoveEntity(entity: Entity, toCoord coord: SIMD2<Int32>) -> Bool {
+    func canMove(entity: Entity, toCoord coord: SIMD2<Int32>) -> Bool {
         guard actors.filter({ $0.coord == coord}).first == nil else {
             return false
         }
@@ -71,10 +71,10 @@ class Game {
                 var entity: Entity?
 
                 switch tile {
-                case 0: entity = entityFactory.newEntity(name: "floor")
-                case 1: entity = entityFactory.newEntity(name: "wall")
-                case 2: entity = entityFactory.newEntity(name: "stairs_up")
-                case 3: entity = entityFactory.newEntity(name: "stairs_down")
+                case 0: entity = try! entityFactory.newEntity(name: "floor")
+                case 1: entity = try! entityFactory.newEntity(name: "wall")
+                case 2: entity = try! entityFactory.newEntity(name: "stairs_up")
+                case 3: entity = try! entityFactory.newEntity(name: "stairs_down")
                 default: break
                 }
 
@@ -88,8 +88,8 @@ class Game {
                 if tile == 3 {
                     let attributes = Attributes(strength: 16, dexterity: 12, mind: 8)
                     let skills = Skills(physical: 3, subterfuge: 0, knowledge: 0, communication: 0)
-                    let armor = entityFactory.newEntity(name: "Studded Leather") as! Armor
-                    let weapon = entityFactory.newEntity(name: "Longsword") as! Weapon
+                    let armor = try! entityFactory.newEntity(name: "Studded Leather") as! Armor
+                    let weapon = try! entityFactory.newEntity(name: "Longsword") as! Weapon
                     let equipment = Equipment(armor: armor, weapon: weapon)
                     let player = Hero(name: "Kendrick", race: .human, role: .fighter, attributes: attributes, skills: skills, equipment: equipment)
 //                    let player = entityFactory.newEntity(name: "Human")! as! Hero
@@ -98,7 +98,7 @@ class Game {
                 }
 
                 if x == 8 && y == 5 {
-                    let monster = entityFactory.newEntity(name: "Skeleton")!
+                    let monster = try! entityFactory.newEntity(name: "Skeleton")
                     monster.coord = coord
                     entities.append(monster)
                     
@@ -106,7 +106,7 @@ class Game {
                 }
                 
                 if x == 7 && y == 3 {
-                    let monster = entityFactory.newEntity(name: "Skeleton")!
+                    let monster = try! entityFactory.newEntity(name: "Skeleton")
                     monster.coord = coord
                     entities.append(monster)
                     
@@ -114,7 +114,7 @@ class Game {
                 }
                 
                 if x == 8 && y == 1 {
-                    let monster = entityFactory.newEntity(name: "Skeleton")!
+                    let monster = try! entityFactory.newEntity(name: "Skeleton")
                     monster.coord = coord
                     entities.append(monster)
                     

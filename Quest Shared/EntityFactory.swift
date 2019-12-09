@@ -8,6 +8,10 @@
 
 import Foundation
 
+enum EntityFactoryError: LocalizedError {
+    case notRegistered(String)
+}
+
 // TODO:
 // Could consider to make a generic factory, but it'd mean we'd have to create factories for:
 // - monsters
@@ -22,11 +26,11 @@ class EntityFactory {
         self.registry[entity.name] = entity
     }
 
-    func newEntity(name: String) -> Entity? {
-        if let entity = self.registry[name] {
-            return entity.copy()
+    func newEntity(name: String) throws -> Entity {
+        guard let entity = self.registry[name] else {
+            throw EntityFactoryError.notRegistered(name)
         }
         
-        return nil
+        return entity.copy()
     }
 }

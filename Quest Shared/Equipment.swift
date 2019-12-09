@@ -8,6 +8,10 @@
 
 import Foundation
 
+enum EquipmentError: LocalizedError {
+    case unknownEntity(String)
+}
+
 struct Equipment {
     var armor: Armor
     var weapon: Weapon
@@ -24,11 +28,19 @@ struct Equipment {
         self.armor = .none
         
         if let weaponName = json["weapon"] as String? {
-            self.weapon = entityFactory.newEntity(name: weaponName) as? Weapon ?? Weapon.none
+            do {
+                self.weapon = try entityFactory.newEntity(name: weaponName) as! Weapon
+            } catch let error {
+                print(error)
+            }
         }
         
         if let armorName = json["armor"] as String? {
-            self.armor = entityFactory.newEntity(name: armorName) as? Armor ?? Armor.none
+            do {
+                self.armor = try entityFactory.newEntity(name: armorName) as! Armor
+            } catch let error {
+                print(error)
+            }
         }
     }
 }
