@@ -89,6 +89,8 @@ extension GameViewController: ChooseAttributesMenuDelegate {
             let game = Game(entityFactory: entityFactory, delegate: self, hero: hero)
             let gameScene = GameScene(game: game, size: self.view.bounds.size)
             self.skView.presentScene(gameScene, transition: SKTransition.fade(withDuration: 0.5))
+            
+            self.gameScene = gameScene
         } catch let error {
             print("error: \(error)")
         }
