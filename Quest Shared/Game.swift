@@ -59,7 +59,7 @@ class Game {
         return tile != 1
     }
     
-    func start(scene: GameScene, levelIdx: Int = 0, tileSize: CGSize) {
+    func start(levelIdx: Int = 0, tileSize: CGSize) {
         self.level = Level()
                 
         var entities: [Entity] = []

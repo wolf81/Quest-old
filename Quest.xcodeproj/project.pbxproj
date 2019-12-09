@@ -50,6 +50,9 @@
 		7963DE4E239DD2D600183DF2 /* HitPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE4D239DD2D600183DF2 /* HitPoints.swift */; };
 		7963DE4F239DD2D600183DF2 /* HitPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE4D239DD2D600183DF2 /* HitPoints.swift */; };
 		7963DE50239DD2D600183DF2 /* HitPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE4D239DD2D600183DF2 /* HitPoints.swift */; };
+		7963DE52239E3D2A00183DF2 /* ActionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE51239E3D2A00183DF2 /* ActionBar.swift */; };
+		7963DE53239E3D2A00183DF2 /* ActionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE51239E3D2A00183DF2 /* ActionBar.swift */; };
+		7963DE54239E3D2A00183DF2 /* ActionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE51239E3D2A00183DF2 /* ActionBar.swift */; };
 		797DBF7B22A91FA300D0F8E7 /* Sprites.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */; };
 		797DBF7C22A91FA300D0F8E7 /* Sprites.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */; };
 		797DBF7D22A91FA300D0F8E7 /* Sprites.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */; };
@@ -127,6 +130,7 @@
 		7963DE45239D079300183DF2 /* Armor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Armor.swift; path = "Quest Shared/Armor.swift"; sourceTree = SOURCE_ROOT; };
 		7963DE49239D092300183DF2 /* Equipment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equipment.swift; sourceTree = "<group>"; };
 		7963DE4D239DD2D600183DF2 /* HitPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitPoints.swift; sourceTree = "<group>"; };
+		7963DE51239E3D2A00183DF2 /* ActionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionBar.swift; sourceTree = "<group>"; };
 		797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Sprites.xcassets; sourceTree = "<group>"; };
 		797DBFBE22AF752D00D0F8E7 /* Actor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Actor.swift; path = "Quest Shared/Actor.swift"; sourceTree = SOURCE_ROOT; };
 		797DBFC222AF753B00D0F8E7 /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hero.swift; path = "Quest Shared/Hero.swift"; sourceTree = SOURCE_ROOT; };
@@ -240,6 +244,7 @@
 				7963DE41239CEC6A00183DF2 /* Skill.swift */,
 				7963DE49239D092300183DF2 /* Equipment.swift */,
 				7963DE4D239DD2D600183DF2 /* HitPoints.swift */,
+				7963DE51239E3D2A00183DF2 /* ActionBar.swift */,
 			);
 			path = "Quest Shared";
 			sourceTree = "<group>";
@@ -500,6 +505,7 @@
 			files = (
 				79ACC82A22AB81F000AC3BF0 /* JSONConstructable.swift in Sources */,
 				7963DE3A239CE12A00183DF2 /* Race.swift in Sources */,
+				7963DE52239E3D2A00183DF2 /* ActionBar.swift in Sources */,
 				79C61AA522A7C415008D3609 /* GameScene.swift in Sources */,
 				794864D322A7E60300F84A72 /* Game.swift in Sources */,
 				79ACC81622AAB5D700AC3BF0 /* Weapon.swift in Sources */,
@@ -533,6 +539,7 @@
 			files = (
 				79ACC82B22AB81F000AC3BF0 /* JSONConstructable.swift in Sources */,
 				7963DE3B239CE12A00183DF2 /* Race.swift in Sources */,
+				7963DE53239E3D2A00183DF2 /* ActionBar.swift in Sources */,
 				79C61AA622A7C415008D3609 /* GameScene.swift in Sources */,
 				794864D422A7E60300F84A72 /* Game.swift in Sources */,
 				79ACC81722AAB5D700AC3BF0 /* Weapon.swift in Sources */,
@@ -589,6 +596,7 @@
 				7963DE48239D079300183DF2 /* Armor.swift in Sources */,
 				7963DE44239CEC6A00183DF2 /* Skill.swift in Sources */,
 				79ACC7EF22AA5D8700AC3BF0 /* EntityLoader.swift in Sources */,
+				7963DE54239E3D2A00183DF2 /* ActionBar.swift in Sources */,
 				7963DE50239DD2D600183DF2 /* HitPoints.swift in Sources */,
 				797DBFC122AF752D00D0F8E7 /* Actor.swift in Sources */,
 			);

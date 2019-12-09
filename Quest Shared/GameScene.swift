@@ -11,55 +11,52 @@ import SpriteKit
 class GameScene: SKScene {
     private var lastUpdateTime: TimeInterval = 0
     
-    fileprivate static let tileSize = CGSize(width: 64, height: 64)
+    fileprivate static let tileSize = CGSize(width: 64, height: 64)    
     
     private var game: Game!
+    
+    private var actionBar: ActionBar!
+    
+    private var world: SKNode = SKNode()
     
     private var playerCamera: SKCameraNode!
     
     init(game: Game, size: CGSize) {
         self.game = game
-            
-        super.init(size: size)        
+                
+        super.init(size: size)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError()
     }
-    
-    class func newGameScene(game: Game, size: CGSize) -> GameScene {
-        let scene = GameScene(game: game, size: size)
-        // Set the scale mode to scale to fit the window
-        scene.scaleMode = .aspectFill
-        scene.backgroundColor = .black
-        return scene
-    }
-    
+        
     func setUpScene() {
-        self.game.start(scene: self, tileSize: GameScene.tileSize)
+        self.game.start(tileSize: GameScene.tileSize)
         
         for entity in self.game.entities {
             let position = pointForCoord(entity.coord)
             entity.sprite.position = position
             
-            self.addChild(entity.sprite)
+            self.world.addChild(entity.sprite)
         }
         
         self.playerCamera = SKCameraNode()
         self.playerCamera.position = pointForCoord(self.game.hero.coord)
-        addChild(self.playerCamera)
+
+        self.actionBar = ActionBar(size: CGSize(width: self.size.width, height: 40))
+        self.actionBar.position = CGPoint(x: 0, y: -(size.height / 2))
+        self.playerCamera.addChild(self.actionBar)
+
+        self.world.addChild(self.playerCamera)
         scene?.camera = self.playerCamera
+        
+        addChild(self.world)
     }
     
-    #if os(watchOS)
-    override func sceneDidLoad() {
+    override func didMove(to view: SKView) {
         self.setUpScene()
     }
-    #else
-    override func didMove(to view: SKView) {
-        self.setUpScene()        
-    }
-    #endif
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
