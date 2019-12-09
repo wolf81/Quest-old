@@ -131,7 +131,7 @@ class Game {
         guard self.isBusy == false else { return }
 
         let activeActor = self.actors[self.activeActorIdx]
-        if activeActor.hitPoints.current <= 0 {
+        if activeActor.isAlive == false {
             print("\(activeActor.name) dies")
                         
             remove(actor: activeActor)
