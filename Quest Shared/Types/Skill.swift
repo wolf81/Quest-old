@@ -41,6 +41,6 @@ struct Skills: CustomStringConvertible {
     }
     
     var description: String {
-        return "PHY: \(self.physical), SUB: \(self.subterfuge), KNO: \(self.knowledge), COMM: \(self.communication)"
+        return "PHY: \(self.physical), SUB: \(self.subterfuge), KNO: \(self.knowledge), COM: \(self.communication)"
     }
 }
