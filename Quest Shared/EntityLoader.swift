@@ -23,9 +23,6 @@ class EntityLoader {
 
         let monsters =  try loadEntities(type: Monster.self, in: "Data/Monster")
         monsters.forEach({ entityFactory.register(entity: $0 )})
-
-        let players = try loadEntities(type: Hero.self, in: "Data/Player")
-        players.forEach({ entityFactory.register(entity: $0 )})
     }
 
     private static func loadEntities<T: Entity>(type: T.Type, in directory: String) throws -> [T] {
