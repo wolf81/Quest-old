@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct HitPoints {
+struct HitPoints: CustomStringConvertible {
     private(set) var base: Int
     private var lost: Int
     
@@ -21,5 +21,9 @@ struct HitPoints {
     
     mutating func remove(hitPoints: Int) {
         self.lost += hitPoints
+    }
+    
+    var description: String {
+        return "HP: \(self.current) / \(self.base)"
     }
 }

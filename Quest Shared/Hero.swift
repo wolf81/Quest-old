@@ -34,7 +34,7 @@ class Hero: Actor, CustomStringConvertible {
         self.role = role
         self.attributes = attributes
         
-        let hitPoints = HitDice.d6(1, 0).maxValue + attributes.strength.bonus // 1d6 + STR bonus per level, for first level use max health
+        let hitPoints = HitDie.d6(1, 0).maxValue + attributes.strength.bonus // 1d6 + STR bonus per level, for first level use max health
         super.init(name: name, hitPoints: hitPoints, race: race, gender: gender, skills: skills, equipment: equipment)
     }
     
@@ -53,7 +53,12 @@ class Hero: Actor, CustomStringConvertible {
     }
     
     var description: String {
-        return "\(self.race) \(self.role) [ HP: \(self.hitPoints.current) / STR: \(self.attributes.strength) / DEX: \(self.attributes.dexterity) / MIND: \(self.attributes.mind) ]"
+        return """
+        \(self.name)
+        \t\(self.race) \(self.role) (\(self.hitPoints))
+        \t\(self.attributes)
+        \t\(self.skills)
+        """
     }
     
     override func getAction(state: Game) -> Action? {

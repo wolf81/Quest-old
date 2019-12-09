@@ -39,7 +39,7 @@ class MoveAction: Action {
             return false
         }
         
-        print("\(self.actor) moves to \(self.toCoord.x).\(self.toCoord.y)")
+        print("\(self.actor.name) moves to \(self.toCoord.x).\(self.toCoord.y)")
         
         let position = pointForCoord(self.toCoord)
         let move = SKAction.sequence([
@@ -68,7 +68,7 @@ class AttackAction: Action {
     override func perform(completion: @escaping () -> Void) -> Bool {
         print("\(self.actor.name) (HP \(self.actor.hitPoints.current) / \(self.actor.hitPoints.base)) attacks \(self.targetActor.name) (HP \(self.targetActor.hitPoints.current) / \(self.targetActor.hitPoints.base))")
 
-        let attackRoll = HitDice.d20(1, 0).randomValue + self.actor.attackBonus
+        let attackRoll = HitDie.d20(1, 0).randomValue + self.actor.attackBonus
         let armorClass = targetActor.armorClass
         print("attack roll: \(attackRoll) vs \(armorClass)")
         if attackRoll - armorClass > 0 {

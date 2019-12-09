@@ -10,7 +10,7 @@ import Foundation
 
 typealias Skill = Int
 
-struct Skills {
+struct Skills: CustomStringConvertible {
     let physical: Skill
     let subterfuge: Skill
     let knowledge: Skill
@@ -38,5 +38,9 @@ struct Skills {
         self.physical = json["physical"] ?? defaultValue
         self.subterfuge = json["subterfuge"] ?? defaultValue
         self.communication = json["communication"] ?? defaultValue
-    }    
+    }
+    
+    var description: String {
+        return "PHY: \(self.physical), SUB: \(self.subterfuge), KNO: \(self.knowledge), COMM: \(self.communication)"
+    }
 }

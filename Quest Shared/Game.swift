@@ -10,7 +10,7 @@ import SpriteKit
 import DungeonBuilder
 
 protocol GameDelegate: class {
-    func gameDidMove(player: Hero, to coord: SIMD2<Int32>, duration: TimeInterval)
+    func gameDidMove(hero: Hero, to coord: SIMD2<Int32>, duration: TimeInterval)
 }
 
 class Game {
@@ -20,11 +20,14 @@ class Game {
     
     private let entityFactory: EntityFactory
     
+    private(set) var hero: Hero
+    
     private var isBusy: Bool = false
         
-    init(entityFactory: EntityFactory, delegate: GameDelegate?) {
+    init(entityFactory: EntityFactory, delegate: GameDelegate?, hero: Hero) {
         self.delegate = delegate
         self.entityFactory = entityFactory
+        self.hero = hero
     }
 
     private(set) var entities: [Entity] = []
@@ -33,10 +36,6 @@ class Game {
     
     private var actors: [Actor] {
         return entities.filter({ $0 is Actor }) as! [Actor]
-    }
-
-    var hero: Hero {
-        return entities.filter({ $0 is Hero }).first! as! Hero
     }
     
     func getTileAt(coord: SIMD2<Int32>) -> Int? {
@@ -86,16 +85,10 @@ class Game {
                 }
                 
                 if tile == 3 {
-                    let attributes = Attributes(strength: 16, dexterity: 12, mind: 8)
-                    let skills = Skills(physical: 3, subterfuge: 0, knowledge: 0, communication: 0)
-                    let armor = try! entityFactory.newEntity(name: "Studded Leather") as! Armor
-                    let weapon = try! entityFactory.newEntity(name: "Longsword") as! Weapon
-                    let shield = try! entityFactory.newEntity(name: "Buckler") as! Shield
-                    let equipment = Equipment(armor: armor, weapon: weapon, shield: shield)
-//                    let player = Hero(name: "Kendrick", race: .human, gender: .male, role: .fighter, attributes: attributes, skills: skills, equipment: equipment)
-                    let player = Hero(name: "Lisa", race: .elf, gender: .female, role: .cleric, attributes: attributes, skills: skills, equipment: equipment)
-                    player.coord = coord
-                    entities.append(player)
+                    self.hero.coord = coord
+                    entities.append(self.hero)
+                    
+                    print(self.hero)
                 }
 
                 if x == 8 && y == 5 {
@@ -154,7 +147,7 @@ class Game {
         
         // If the hero moved, update camera position, so camera is always centered on the hero
         if let moveAction = action as? MoveAction, moveAction.actor == self.hero {
-            self.delegate?.gameDidMove(player: self.hero, to: moveAction.toCoord, duration: moveAction.duration)
+            self.delegate?.gameDidMove(hero: self.hero, to: moveAction.toCoord, duration: moveAction.duration)
         }
                 
         // Activate next actor

@@ -9,22 +9,22 @@
 import Foundation
 
 class Monster: Actor, CustomStringConvertible {
-    let hitDice: HitDice
+    let hitDie: HitDie
                     
     override var attackBonus: Int { return self.equipment.weapon.attack }
     
     override func attackDamage() -> Int { return self.equipment.weapon.damage.randomValue }
 
     required init(json: [String : Any]) {
-        let hitDiceString = json["HD"] as! String
-        let hitDice = HitDice(rawValue: hitDiceString)!
-        self.hitDice = hitDice
+        let hitDieString = json["HD"] as! String
+        let hitDie = HitDie(rawValue: hitDieString)!
+        self.hitDie = hitDie
         
-        let hitPoints = (self.hitDice.minValue + self.hitDice.maxValue) / 2
+        let hitPoints = (self.hitDie.minValue + self.hitDie.maxValue) / 2
         let armorClass = json["AC"] as! Int
         
         let skillInfo = json["skills"] as? [String: Int] ?? [:]
-        let skills = Skills(json: skillInfo, defaultValue: hitDice.diceCount)
+        let skills = Skills(json: skillInfo, defaultValue: hitDie.dieCount)
         
         let equipmentInfo = json["EQ"] as? [String: String] ?? [:]
         let equipment = Equipment(json: equipmentInfo, entityFactory: Entity.entityFactory)
@@ -34,7 +34,7 @@ class Monster: Actor, CustomStringConvertible {
     }
         
     var description: String {
-        return "\(self.name) [ HD: \(self.hitDice) / HP: \(self.hitPoints.current) / AC: \(self.armorClass) ]"
+        return "\(self.name) [ HD: \(self.hitDie) / HP: \(self.hitPoints.current) / AC: \(self.armorClass) ]"
     }
     
     override func getAction(state: Game) -> Action? {

@@ -12,5 +12,5 @@ enum Role: String {
     case fighter
     case rogue
     case mage
-    case cleric
+    case cleric    
 }

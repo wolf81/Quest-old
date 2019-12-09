@@ -12,27 +12,14 @@ import GameplayKit
 import Fenris
 
 class GameViewController: NSViewController {
-    let serviceLocator = ServiceLocator.shared
-    
-    var skView: SKView { return self.view as! SKView }
-    
-    unowned var gameScene: GameScene?
-    
-    override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    private var skView: SKView { return self.view as! SKView }
 
-        commonInit()
-    }
+    fileprivate let serviceLocator = ServiceLocator.shared
+        
+    fileprivate var heroBuilder = HeroBuilder()
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-
-        commonInit()
-    }
-    
-    private func commonInit() {
-    }
-    
+    private unowned var gameScene: GameScene?
+            
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,7 +37,7 @@ class GameViewController: NSViewController {
 // MARK: - GameDelegate
 
 extension GameViewController: GameDelegate {
-    func gameDidMove(player: Hero, to coord: SIMD2<Int32>, duration: TimeInterval) {
+    func gameDidMove(hero: Hero, to coord: SIMD2<Int32>, duration: TimeInterval) {
         self.gameScene?.moveCamera(to: coord, duration: duration)
     }
 }
@@ -59,8 +46,8 @@ extension GameViewController: GameDelegate {
 
 extension GameViewController: MainMenuSceneDelegate {
     func mainMenuDidSelectNewGame() {
-        let chooseRaceScene = SceneBuilder.chooseRaceMenu(size: self.view.bounds.size, delegate: self)
-        self.skView.presentScene(chooseRaceScene, transition: SKTransition.push(with: .left, duration: 0.5))
+        let createCharacterScene = SceneBuilder.createCharacterMenu(size: self.view.bounds.size, delegate: self)
+        self.skView.presentScene(createCharacterScene, transition: SKTransition.push(with: .left, duration: 0.5))
     }
     
     func mainMenuDidSelectContinueGame() {
@@ -75,26 +62,53 @@ extension GameViewController: MainMenuSceneDelegate {
     }
 }
 
-// MARK: - ChooseRaceMenuDelegate
+// MARK: - ChooseAttributesMenuDelegate
 
-extension GameViewController: ChooseRaceMenuDelegate {
-    func chooseRaceMenuDidSelectRace(race: String) {
-        print("selected race: \(race)")
-        
+extension GameViewController: ChooseAttributesMenuDelegate {
+    func chooseAttributesMenuDidSelectBack() {
+        let menuScene = SceneBuilder.createCharacterMenu(size: self.view.bounds.size, delegate: self)
+        self.skView.presentScene(menuScene, transition: SKTransition.push(with: .right, duration: 0.5))
+    }
+    
+    func chooseAttributesMenuDidSelect(attributes: Attributes) {
         do {
             let entityFactory = EntityFactory()
             try EntityLoader.loadEntities(for: entityFactory)
-            let game = Game(entityFactory: entityFactory, delegate: self)
+
+            let armor = try! entityFactory.newEntity(name: "Studded Leather") as! Armor
+            let weapon = try! entityFactory.newEntity(name: "Longsword") as! Weapon
+            let shield = try! entityFactory.newEntity(name: "Buckler") as! Shield
+            let equipment = Equipment(armor: armor, weapon: weapon, shield: shield)
+
+            self.heroBuilder = self.heroBuilder
+                .with(attributes: attributes)
+                .with(name: "Kendrick")
+                .with(equipment: equipment)
+            
+            let hero = try self.heroBuilder.build()
+            let game = Game(entityFactory: entityFactory, delegate: self, hero: hero)
             let gameScene = GameScene(game: game, size: self.view.bounds.size)
             self.skView.presentScene(gameScene, transition: SKTransition.fade(withDuration: 0.5))
-            
-            self.gameScene = gameScene
         } catch let error {
             print("error: \(error)")
         }
     }
+}
+
+// MARK: - CreateCharacterMenuDelegate
+
+extension GameViewController: CreateCharacterMenuDelegate {
+    func createCharacterMenuDidSelect(race: Race, role: Role, gender: Gender) {
+        self.heroBuilder = self.heroBuilder
+            .with(race: race)
+            .with(role: role)
+            .with(gender: gender)
+        
+        let menuScene = SceneBuilder.chooseAttributesMenu(size: self.view.bounds.size, race: race, delegate: self)
+        self.skView.presentScene(menuScene, transition: SKTransition.push(with: .left, duration: 0.5))
+    }
     
-    func chooseRaceMenuDidSelectBack() {
+    func createCharacterMenuDidSelectBack() {
         let menuScene = SceneBuilder.mainMenu(size: self.view.bounds.size, delegate: self)
         self.skView.presentScene(menuScene, transition: SKTransition.push(with: .right, duration: 0.5))
     }

@@ -20,9 +20,14 @@ protocol SettingsMenuDelegate {
     func settingsMenuDidSelectBack()
 }
 
-protocol ChooseRaceMenuDelegate {
-    func chooseRaceMenuDidSelectRace(race: String)
-    func chooseRaceMenuDidSelectBack()
+protocol CreateCharacterMenuDelegate {
+    func createCharacterMenuDidSelect(race: Race, role: Role, gender: Gender)
+    func createCharacterMenuDidSelectBack()
+}
+
+protocol ChooseAttributesMenuDelegate {
+    func chooseAttributesMenuDidSelectBack()
+    func chooseAttributesMenuDidSelect(attributes: Attributes)
 }
 
 struct SceneBuilder {
@@ -41,19 +46,57 @@ struct SceneBuilder {
         return MenuScene(size: size, configuration: menuConfig, menu: menu)
     }
 
-    static func chooseRaceMenu(size: CGSize, delegate: ChooseRaceMenuDelegate) -> MenuScene {
+    static func createCharacterMenu(size: CGSize, delegate: CreateCharacterMenuDelegate) -> MenuScene {
         let raceChooser = TextChooserItem(values: ["Human", "Dwarf", "Elf", "Halfling"], selectedValueIdx: 0)
-        
+        let roleChooser = TextChooserItem(values: ["Fighter", "Rogue", "Cleric", "Mage"], selectedValueIdx: 0)
+        let genderChooser = TextChooserItem(values: ["Male", "Female"], selectedValueIdx: 0)
+
         let menu = LabeledMenuBuilder()
-            .withHeader(title: "Choose Race")
+            .withHeader(title: "Create New Character")
             .withEmptyRow()
             .withRow(title: "Race", item: raceChooser)
+            .withRow(title: "Class", item: roleChooser)
+            .withRow(title: "Gender", item: genderChooser)
             .withEmptyRow()
             .withFooter(items: [
-                ButtonItem(title: "Back", onClick: { delegate.chooseRaceMenuDidSelectBack() }),
-                ButtonItem(title: "Next", onClick: { delegate.chooseRaceMenuDidSelectRace(race: raceChooser.value) })
+                ButtonItem(title: "Back", onClick: { delegate.createCharacterMenuDidSelectBack() }),
+                ButtonItem(title: "Next", onClick: {
+                    let race = Race(rawValue: raceChooser.value.lowercased())!
+                    let role = Role(rawValue: roleChooser.value.lowercased())!
+                    let gender = Gender(rawValue: genderChooser.value.lowercased())!
+                    delegate.createCharacterMenuDidSelect(race: race, role: role, gender: gender)
+                })
             ])
             .build();
+        return MenuScene(size: size, configuration: menuConfig, menu: menu)
+    }
+    
+    static func chooseAttributesMenu(size: CGSize, race: Race, delegate: ChooseAttributesMenuDelegate) -> MenuScene {
+        let attributes = Attributes.roll(race: race)
+        let strengthLabel = LabelItem(title: String(attributes.strength))
+        let dexterityLabel = LabelItem(title: String(attributes.dexterity))
+        let mindLabel = LabelItem(title: String(attributes.mind))
+        
+        let menu = LabeledMenuBuilder()
+            .withHeader(title: "Choose Attributes")
+            .withEmptyRow()
+            .withRow(title: "Strength", item: strengthLabel)
+            .withRow(title: "Dexterity", item: dexterityLabel)
+            .withRow(title: "Mind", item: mindLabel)
+            .withEmptyRow()
+            .withFooter(items: [
+                ButtonItem(title: "Back", onClick: { delegate.chooseAttributesMenuDidSelectBack() }),
+                ButtonItem(title: "Reroll", onClick: {
+                    let attributes = Attributes.roll(race: race)
+                    strengthLabel.title = String(attributes.strength)
+                    dexterityLabel.title = String(attributes.dexterity)
+                    mindLabel.title = String(attributes.mind)
+                }),
+                ButtonItem(title: "Next", onClick: {
+                    delegate.chooseAttributesMenuDidSelect(attributes: Attributes(strength: Attribute(12), dexterity: Attribute(12), mind: Attribute(12)))
+                })
+            ])
+            .build()
         return MenuScene(size: size, configuration: menuConfig, menu: menu)
     }
     

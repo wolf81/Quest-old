@@ -10,14 +10,14 @@ import SpriteKit
 
 class Weapon: Entity, CustomStringConvertible {
     let attack: Int
-    let damage: HitDice
+    let damage: HitDie
     
     required init(json: [String : Any]) {
         let attack = json["AT"] as? Int ?? 0
         self.attack = attack
         
         let damage = json["damage"] as! String
-        self.damage = HitDice(rawValue: damage)!
+        self.damage = HitDie(rawValue: damage)!
         
         super.init(json: json)
     }
