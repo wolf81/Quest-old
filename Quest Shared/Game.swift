@@ -10,7 +10,7 @@ import SpriteKit
 import DungeonBuilder
 
 protocol GameDelegate: class {
-    func gameDidMove(player: Hero, toCoord: SIMD2<Int32>, duration: TimeInterval)
+    func gameDidMove(player: Hero, to coord: SIMD2<Int32>, duration: TimeInterval)
 }
 
 class Game {
@@ -153,7 +153,7 @@ class Game {
         
         // If the hero moved, update camera position, so camera is always centered on the hero
         if let moveAction = action as? MoveAction, moveAction.actor == self.hero {
-            self.delegate?.gameDidMove(player: self.hero, toCoord: moveAction.toCoord, duration: moveAction.duration)
+            self.delegate?.gameDidMove(player: self.hero, to: moveAction.toCoord, duration: moveAction.duration)
         }
                 
         // Activate next actor

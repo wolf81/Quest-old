@@ -50,8 +50,8 @@ class GameViewController: NSViewController {
 // MARK: - GameDelegate
 
 extension GameViewController: GameDelegate {
-    func gameDidMove(player: Hero, toCoord: SIMD2<Int32>, duration: TimeInterval) {
-        self.gameScene?.moveCamera(toPosition: pointForCoord(toCoord), duration: duration)
+    func gameDidMove(player: Hero, to coord: SIMD2<Int32>, duration: TimeInterval) {
+        self.gameScene?.moveCamera(to: coord, duration: duration)
     }
 }
 

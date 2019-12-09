@@ -1,5 +1,5 @@
 //
-//  ActionBar.swift
+//  ActionBarButton.swift
 //  Quest
 //
 //  Created by Wolfgang Schreurs on 09/12/2019.
@@ -8,13 +8,13 @@
 
 import SpriteKit
 
-class ActionBar: SKShapeNode {
-    init(size: CGSize) {
+class ActionBarButton: SKShapeNode {
+    init(size: CGSize, color: SKColor) {
         super.init()
-
+        
         self.path = CGPath(rect: CGRect(origin: CGPoint(x: -size.width / 2, y: size.height / 2), size: size), transform: nil)
         self.strokeColor = SKColor.white
-        self.fillColor = SKColor.lightGray
+        self.fillColor = color
         
         self.lineWidth = 2
     }

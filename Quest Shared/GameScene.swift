@@ -40,12 +40,12 @@ class GameScene: SKScene {
             
             self.world.addChild(entity.sprite)
         }
-        
-        self.playerCamera = SKCameraNode()
-        self.playerCamera.position = pointForCoord(self.game.hero.coord)
 
-        self.actionBar = ActionBar(size: CGSize(width: self.size.width, height: 40))
+        self.actionBar = ActionBar(size: CGSize(width: self.size.width, height: 50), delegate: self)
         self.actionBar.position = CGPoint(x: 0, y: -(size.height / 2))
+
+        self.playerCamera = SKCameraNode()
+        self.playerCamera.position = cameraPositionForCoord(self.game.hero.coord)
         self.playerCamera.addChild(self.actionBar)
 
         self.world.addChild(self.playerCamera)
@@ -72,8 +72,15 @@ class GameScene: SKScene {
         self.game.movePlayer(direction: direction)
     }
         
-    public func moveCamera(toPosition: CGPoint, duration: TimeInterval) {
-        self.playerCamera.run(SKAction.move(to: toPosition, duration: duration))
+    public func moveCamera(to coord: SIMD2<Int32> , duration: TimeInterval) {
+        let position = cameraPositionForCoord(coord)
+        self.playerCamera.run(SKAction.move(to: position, duration: duration))
+    }
+    
+    private func cameraPositionForCoord(_ coord: SIMD2<Int32>) -> CGPoint {
+        var position = pointForCoord(coord)
+        position.y -= self.actionBar.size.height
+        return position
     }
 }
 
@@ -81,6 +88,28 @@ func pointForCoord(_ coord: SIMD2<Int32>) -> CGPoint {
     let x = CGFloat(coord.x) * GameScene.tileSize.width
     let y = CGFloat(coord.y) * GameScene.tileSize.height
     return CGPoint(x: x, y: y)
+}
+
+extension GameScene: ActionBarDelegate {
+    func actionBarDidSelectDefend() {
+        print("defend")
+    }
+    
+    func actionBarDidSelectMove() {
+        print("move")
+    }
+    
+    func actionBarDidSelectAttackMelee() {
+        print("attack melee")
+    }
+    
+    func actionBarDidSelectAttackRanged() {
+        print("attack ranged")
+    }
+    
+    func actionBarDidSelectCastSpell() {
+        print("cast spell")
+    }
 }
 
 #if os(iOS) || os(tvOS)
@@ -110,6 +139,10 @@ extension GameScene {
     }
     
     override func mouseUp(with event: NSEvent) {
+        let location = event.location(in: self)
+        if nodes(at: location).contains(self.actionBar) {
+            self.actionBar.mouseUp(with: event)
+        }
     }
     
     override func keyUp(with event: NSEvent) {
