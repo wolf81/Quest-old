@@ -66,7 +66,7 @@ class AttackAction: Action {
     }
     
     override func perform(completion: @escaping () -> Void) -> Bool {
-        print("\(self.actor) attacks \(targetActor)")
+        print("\(self.actor.name) (HP \(self.actor.hitPoints.current) / \(self.actor.hitPoints.base)) attacks \(self.targetActor.name) (HP \(self.targetActor.hitPoints.current) / \(self.targetActor.hitPoints.base))")
 
         let attackRoll = HitDice.d20(1, 0).randomValue + self.actor.attackBonus
         let armorClass = targetActor.armorClass
@@ -74,7 +74,7 @@ class AttackAction: Action {
         if attackRoll - armorClass > 0 {
             let damage = self.actor.attackDamage()
             print("hit for \(damage) damage")
-            targetActor.hitPoints.remove(hitPoints: damage)
+            self.targetActor.hitPoints.remove(hitPoints: damage)            
         }
         else {
             print("miss")

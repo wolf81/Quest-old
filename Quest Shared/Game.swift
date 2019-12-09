@@ -24,7 +24,7 @@ class Game {
         
     init(entityFactory: EntityFactory, delegate: GameDelegate?) {
         self.delegate = delegate
-        self.entityFactory = entityFactory        
+        self.entityFactory = entityFactory
     }
 
     private(set) var entities: [Entity] = []
@@ -131,6 +131,13 @@ class Game {
         guard self.isBusy == false else { return }
 
         let activeActor = self.actors[self.activeActorIdx]
+        if activeActor.hitPoints.current <= 0 {
+            print("\(activeActor.name) dies")
+                        
+            remove(actor: activeActor)
+
+            return
+        }
         
         guard let action = activeActor.getAction(state: self) else {
             return
@@ -152,5 +159,14 @@ class Game {
     
     func movePlayer(direction: Direction) {
         self.hero.move(direction: direction)
+    }
+    
+    private func remove(actor: Actor) {
+        actor.sprite.removeFromParent()
+        
+        self.entities.removeAll(where: { $0 == actor })
+
+        // After we remove an actor, update the index to prevent an index out of range error
+        self.activeActorIdx = self.activeActorIdx % self.actors.count
     }
 }
