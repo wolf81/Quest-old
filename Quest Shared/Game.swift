@@ -128,17 +128,19 @@ class Game {
     }
     
     func update(_ deltaTime: TimeInterval) {
+        // If the game is busy for any reason (e.g. show animation), wait until ready
         guard self.isBusy == false else { return }
 
         let activeActor = self.actors[self.activeActorIdx]
+        
+        // If the current actor died, remove from play and continue with next actor
         if activeActor.isAlive == false {
             print("\(activeActor.name) dies")
-                        
             remove(actor: activeActor)
-
             return
         }
         
+        // Wait until the current active actor performs an action
         guard let action = activeActor.getAction(state: self) else {
             return
         }
@@ -154,6 +156,7 @@ class Game {
             self.delegate?.gameDidMove(player: self.hero, toCoord: moveAction.toCoord, duration: moveAction.duration)
         }
                 
+        // Activate next actor
         self.activeActorIdx = (self.activeActorIdx + 1) % self.actors.count
     }
     
