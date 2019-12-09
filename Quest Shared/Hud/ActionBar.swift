@@ -25,9 +25,7 @@ class ActionBar: SKShapeNode {
         super.init()
 
         self.path = CGPath(rect: CGRect(origin: CGPoint(x: -size.width / 2, y: size.height / 2), size: size), transform: nil)
-        self.strokeColor = SKColor.white
-        self.fillColor = SKColor.lightGray
-        self.lineWidth = 2
+        self.lineWidth = 0
 
         addButtons()
     }
