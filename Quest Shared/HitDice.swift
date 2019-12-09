@@ -9,6 +9,7 @@
 import Foundation
 
 enum HitDice : RawRepresentable, CustomStringConvertible {
+    case d3(Int, Int)
     case d4(Int, Int)
     case d6(Int, Int)
     case d8(Int, Int)
@@ -19,6 +20,7 @@ enum HitDice : RawRepresentable, CustomStringConvertible {
     var diceCount: Int {
         get {
             switch self {
+            case .d3(let diceCount, _): return diceCount
             case .d4(let diceCount, _): return diceCount
             case .d6(let diceCount, _): return diceCount
             case .d8(let diceCount, _): return diceCount
@@ -31,6 +33,7 @@ enum HitDice : RawRepresentable, CustomStringConvertible {
     
     var minValue: Int {
         switch self {
+        case .d3(let diceCount, let bonus): return diceCount + bonus
         case .d4(let diceCount, let bonus): return diceCount + bonus
         case .d6(let diceCount, let bonus): return diceCount + bonus
         case .d8(let diceCount, let bonus): return diceCount + bonus
@@ -42,6 +45,7 @@ enum HitDice : RawRepresentable, CustomStringConvertible {
 
     var maxValue: Int {
         switch self {
+        case .d3(let diceCount, let bonus): return 4 * diceCount + bonus
         case .d4(let diceCount, let bonus): return 4 * diceCount + bonus
         case .d6(let diceCount, let bonus): return 6 * diceCount + bonus
         case .d8(let diceCount, let bonus): return 8 * diceCount + bonus
@@ -62,6 +66,7 @@ enum HitDice : RawRepresentable, CustomStringConvertible {
     var rawValue: String {
         var description = ""
         switch self {
+        case .d3(let diceCount, let bonus): description = "\(diceCount)d4+\(bonus)"
         case .d4(let diceCount, let bonus): description = "\(diceCount)d4+\(bonus)"
         case .d6(let diceCount, let bonus): description = "\(diceCount)d6+\(bonus)"
         case .d8(let diceCount, let bonus): description = "\(diceCount)d8+\(bonus)"
@@ -92,6 +97,7 @@ enum HitDice : RawRepresentable, CustomStringConvertible {
         guard let diceCount = Int(strings.first!), let diceValue = Int(strings.last!) else { return nil }
         
         switch diceValue {
+        case 3: self = HitDice.d3(diceCount, bonus)
         case 4: self = HitDice.d4(diceCount, bonus)
         case 6: self = HitDice.d6(diceCount, bonus)
         case 8: self = HitDice.d8(diceCount, bonus)
