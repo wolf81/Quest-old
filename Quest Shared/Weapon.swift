@@ -22,11 +22,7 @@ class Weapon: Entity, CustomStringConvertible {
         super.init(json: json)
     }
     
-    static var none: Weapon {
-        get {
-            return self.init(json: ["damage": "0d4"])
-        }
-    }
+    static var none: Weapon { return self.init(json: ["damage": "1d3"]) }
     
     var description: String {
         return "{ attack: \(attack), damage: \(damage) }"

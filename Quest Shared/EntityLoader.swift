@@ -13,16 +13,19 @@ class EntityLoader {
         Entity.entityFactory = entityFactory
         
         let weapons = try loadEntities(type: Weapon.self, in: "Data/Weapons")
-        weapons.forEach({ entityFactory.register(entity: $0 )})
+        weapons.forEach({ entityFactory.register(entity: $0) })
+        
+        let shields = try loadEntities(type: Shield.self, in: "Data/Shields")
+        shields.forEach({ entityFactory.register(entity: $0) })
         
         let armor = try loadEntities(type: Armor.self, in: "Data/Armor")
-        armor.forEach({ entityFactory.register(entity: $0 )})
-
+        armor.forEach({ entityFactory.register(entity: $0) })
+        
         let tiles = try loadEntities(type: Tile.self, in: "Data/Tile")
-        tiles.forEach({ entityFactory.register(entity: $0 )})
+        tiles.forEach({ entityFactory.register(entity: $0) })
 
         let monsters =  try loadEntities(type: Monster.self, in: "Data/Monster")
-        monsters.forEach({ entityFactory.register(entity: $0 )})
+        monsters.forEach({ entityFactory.register(entity: $0) })
     }
 
     private static func loadEntities<T: Entity>(type: T.Type, in directory: String) throws -> [T] {

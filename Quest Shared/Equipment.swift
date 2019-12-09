@@ -15,17 +15,20 @@ enum EquipmentError: LocalizedError {
 struct Equipment {
     var armor: Armor
     var weapon: Weapon
+    var shield: Shield
     
     static var none: Equipment { return Equipment(armor: Armor.none, weapon: Weapon.none) }
     
-    init(armor: Armor, weapon: Weapon) {
+    init(armor: Armor, weapon: Weapon, shield: Shield = .none) {
         self.armor = armor
         self.weapon = weapon
+        self.shield = shield
     }
     
     init(json: [String: String], entityFactory: EntityFactory) {
         self.weapon = .none
         self.armor = .none
+        self.shield = .none
         
         if let weaponName = json["weapon"] as String? {
             do {

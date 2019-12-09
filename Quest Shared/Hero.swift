@@ -27,7 +27,7 @@ class Hero: Actor, CustomStringConvertible {
     
     override func attackDamage() -> Int { self.attributes.strength.bonus + self.equipment.weapon.damage.randomValue }
     
-    override var armorClass: Int { return 10 + attributes.dexterity.bonus + self.equipment.armor.armorClass /* + armor bonus */ }
+    override var armorClass: Int { return 10 + attributes.dexterity.bonus + self.equipment.armor.armorClass + self.equipment.shield.armorClass }
     
     public init(name: String, race: Race, role: Role, attributes: Attributes, skills: Skills, equipment: Equipment) {
         self.race = race

@@ -90,7 +90,8 @@ class Game {
                     let skills = Skills(physical: 3, subterfuge: 0, knowledge: 0, communication: 0)
                     let armor = try! entityFactory.newEntity(name: "Studded Leather") as! Armor
                     let weapon = try! entityFactory.newEntity(name: "Longsword") as! Weapon
-                    let equipment = Equipment(armor: armor, weapon: weapon)
+                    let shield = try! entityFactory.newEntity(name: "Buckler") as! Shield
+                    let equipment = Equipment(armor: armor, weapon: weapon, shield: shield)
                     let player = Hero(name: "Kendrick", race: .human, role: .fighter, attributes: attributes, skills: skills, equipment: equipment)
 //                    let player = entityFactory.newEntity(name: "Human")! as! Hero
                     player.coord = coord
