@@ -13,7 +13,7 @@ class Monster: Actor, CustomStringConvertible {
                     
     override var attackBonus: Int { return self.equipment.weapon.attack }
     
-    override func damage() -> Int { return self.equipment.weapon.damage.randomValue }
+    override func attackDamage() -> Int { return self.equipment.weapon.damage.randomValue }
 
     required init(json: [String : Any]) {
         let hitDiceString = json["HD"] as! String

@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class Weapon: Entity {
+class Weapon: Entity, CustomStringConvertible {
     let attack: Int
     let damage: HitDice
     
@@ -26,5 +26,9 @@ class Weapon: Entity {
         get {
             return self.init(json: ["damage": "0d4"])
         }
+    }
+    
+    var description: String {
+        return "{ attack: \(attack), damage: \(damage) }"
     }
 }

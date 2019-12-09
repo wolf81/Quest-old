@@ -51,8 +51,12 @@ enum HitDice : RawRepresentable, CustomStringConvertible {
         }
     }
     
+    var valueRange: ClosedRange<Int> {
+        return self.minValue ... self.maxValue
+    }
+    
     var randomValue: Int {
-        return Int(arc4random_uniform(UInt32(self.maxValue)) + UInt32(minValue))
+        return Int(arc4random_uniform(UInt32(self.valueRange.count)) + UInt32(self.minValue))
     }
 
     var rawValue: String {

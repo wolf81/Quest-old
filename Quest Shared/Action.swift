@@ -72,7 +72,7 @@ class AttackAction: Action {
         let armorClass = targetActor.armorClass
         print("attack roll: \(attackRoll) vs \(armorClass)")
         if attackRoll - armorClass > 0 {
-            let damage = self.actor.damage()
+            let damage = self.actor.attackDamage()
             print("hit for \(damage) damage")
             targetActor.hitPoints.remove(hitPoints: damage)
         }

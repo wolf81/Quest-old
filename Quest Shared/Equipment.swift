@@ -9,8 +9,8 @@
 import Foundation
 
 struct Equipment {
-    var armor: Armor = Armor.none
-    var weapon: Weapon = Weapon.none
+    var armor: Armor
+    var weapon: Weapon
     
     static var none: Equipment { return Equipment(armor: Armor.none, weapon: Weapon.none) }
     
@@ -20,6 +20,9 @@ struct Equipment {
     }
     
     init(json: [String: String], entityFactory: EntityFactory) {
+        self.weapon = .none
+        self.armor = .none
+        
         if let weaponName = json["weapon"] as String? {
             self.weapon = entityFactory.newEntity(name: weaponName) as? Weapon ?? Weapon.none
         }

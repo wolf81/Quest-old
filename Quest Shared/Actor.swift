@@ -52,7 +52,7 @@ class Actor: Entity {
         self.sprite.zPosition = 100
     }
     
-    func damage() -> Int {
+    func attackDamage() -> Int {
         return 1
     }
      
