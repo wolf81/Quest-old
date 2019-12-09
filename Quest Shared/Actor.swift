@@ -9,33 +9,33 @@
 import SpriteKit
 
 class Actor: Entity {
-    let hitPoints: Int
-    
-    let skills: Skills
+    var hitPoints: HitPoints
 
-    var damage: Int = 0
+    var isAlive: Bool { return self.hitPoints.current > 0 }
+
+    private(set) var skills: Skills
+    
+    private(set) var equipment: Equipment
     
     private(set) var attackBonus: Int = 0
     
     private(set) var armorClass: Int = 0
     
     private var action: Action?
-        
-    var isAlive: Bool {
-        return (self.hitPoints - damage) > 0
-    }
-    
-    init(json: [String : Any], hitPoints: Int, armorClass: Int, skills: Skills) {
-        self.hitPoints = hitPoints
+            
+    init(json: [String : Any], hitPoints: Int, armorClass: Int, skills: Skills, equipment: Equipment) {
+        self.hitPoints = HitPoints(base: hitPoints)
         self.armorClass = armorClass
         self.skills = skills
+        self.equipment = equipment
         
         super.init(json: json)
     }    
     
-    init(name: String, sprite: String, skills: Skills) {
-        self.hitPoints = 1
+    init(name: String, hitPoints: Int, sprite: String, skills: Skills, equipment: Equipment) {
+        self.hitPoints = HitPoints(base: hitPoints)
         self.skills = skills
+        self.equipment = equipment
         
         super.init(json: ["name": name, "sprite": "human_male"])
         
@@ -43,12 +43,17 @@ class Actor: Entity {
     }
     
     required init(json: [String : Any]) {
-        self.hitPoints = 1
+        self.hitPoints = HitPoints(base: 1)
         self.skills = Skills(physical: 0, subterfuge: 0, knowledge: 0, communication: 0)
-        
+        self.equipment = Equipment.none
+    
         super.init(json: json)
         
         self.sprite.zPosition = 100
+    }
+    
+    func damage() -> Int {
+        return 1
     }
      
     func getAction(state: Game) -> Action? {

@@ -9,28 +9,27 @@
 import Foundation
 
 class EntityLoader {
-    func loadEntities() throws -> [Entity] {
-        var entities: [Entity] = []
+    static func loadEntities(for entityFactory: EntityFactory) throws {
+        Entity.entityFactory = entityFactory
         
         let weapons = try loadEntities(type: Weapon.self, in: "Data/Weapons")
-        entities.append(contentsOf: weapons)
+        weapons.forEach({ entityFactory.register(entity: $0 )})
         
         let armor = try loadEntities(type: Armor.self, in: "Data/Armor")
-        entities.append(contentsOf: armor)
-        
-        let players = try loadEntities(type: Hero.self, in: "Data/Player")
-        entities.append(contentsOf: players)
-        
+        armor.forEach({ entityFactory.register(entity: $0 )})
+
         let tiles = try loadEntities(type: Tile.self, in: "Data/Tile")
-        entities.append(contentsOf: tiles)
-        
+        tiles.forEach({ entityFactory.register(entity: $0 )})
+
         let monsters =  try loadEntities(type: Monster.self, in: "Data/Monster")
-        entities.append(contentsOf: monsters)
-        
-        return entities
+        monsters.forEach({ entityFactory.register(entity: $0 )})
+
+        let players = try loadEntities(type: Hero.self, in: "Data/Player")
+        players.forEach({ entityFactory.register(entity: $0 )})
     }
 
-    private func loadEntities<T: Entity>(type: T.Type, in directory: String) throws -> [T] {
+    private static func loadEntities<T: Entity>(type: T.Type, in directory: String) throws -> [T] {
+        print("load entities from: \(directory)")
         let paths = Bundle.main.paths(forResourcesOfType: "json", inDirectory: directory)
         
         var entities: [T] = []

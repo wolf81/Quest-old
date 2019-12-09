@@ -11,6 +11,10 @@ import Foundation
 class Monster: Actor, CustomStringConvertible {
     let hitDice: HitDice
                     
+    override var attackBonus: Int { return self.equipment.weapon.attack }
+    
+    override func damage() -> Int { return self.equipment.weapon.damage.randomValue }
+
     required init(json: [String : Any]) {
         let hitDiceString = json["HD"] as! String
         let hitDice = HitDice(rawValue: hitDiceString)!
@@ -22,13 +26,15 @@ class Monster: Actor, CustomStringConvertible {
         let skillInfo = json["skills"] as? [String: Int] ?? [:]
         let skills = Skills(json: skillInfo, defaultValue: hitDice.diceCount)
         
-        super.init(json: json, hitPoints: hitPoints, armorClass: armorClass, skills: skills)
+        let equipmentInfo = json["EQ"] as? [String: String] ?? [:]
+        let equipment = Equipment(json: equipmentInfo, entityFactory: Entity.entityFactory)
+        super.init(json: json, hitPoints: hitPoints, armorClass: armorClass, skills: skills, equipment: equipment)
 
         self.sprite.zPosition = 100
     }
-    
+        
     var description: String {
-        return "\(self.name) [ HD: \(self.hitDice) / HP: \(self.hitPoints - self.damage) / AC: \(self.armorClass) ]"
+        return "\(self.name) [ HD: \(self.hitDice) / HP: \(self.hitPoints.current) / AC: \(self.armorClass) ]"
     }
     
     override func getAction(state: Game) -> Action? {

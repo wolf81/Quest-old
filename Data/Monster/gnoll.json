@@ -4,7 +4,7 @@
 	
 	"HD": "2d8+2",
 	"AC": 15,
-	"EQ": [
-		"Battleaxe +3",
-	]
+    "EQ": {
+        "weapon": "Battleaxe +3",
+    }
 }

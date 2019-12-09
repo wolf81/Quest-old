@@ -24,7 +24,7 @@ class Game {
         
     init(entityFactory: EntityFactory, delegate: GameDelegate?) {
         self.delegate = delegate
-        self.entityFactory = entityFactory
+        self.entityFactory = entityFactory        
     }
 
     private(set) var entities: [Entity] = []
@@ -89,7 +89,8 @@ class Game {
                     let attributes = Attributes(strength: 16, dexterity: 12, mind: 8)
                     let skills = Skills(physical: 3, subterfuge: 0, knowledge: 0, communication: 0)
                     let armor = entityFactory.newEntity(name: "Studded Leather") as! Armor
-                    let equipment = Equipment(armor: armor, weapon: .none)
+                    let weapon = entityFactory.newEntity(name: "Longsword") as! Weapon
+                    let equipment = Equipment(armor: armor, weapon: weapon)
                     let player = Hero(name: "Kendrick", race: .human, role: .fighter, attributes: attributes, skills: skills, equipment: equipment)
 //                    let player = entityFactory.newEntity(name: "Human")! as! Hero
                     player.coord = coord

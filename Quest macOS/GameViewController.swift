@@ -82,12 +82,8 @@ extension GameViewController: ChooseRaceMenuDelegate {
         print("selected race: \(race)")
         
         do {
-            let entityLoader = EntityLoader()
-            let entities = try entityLoader.loadEntities()
             let entityFactory = EntityFactory()
-            for entity in entities {
-                entityFactory.register(entity: entity)
-            }
+            try EntityLoader.loadEntities(for: entityFactory)
             let game = Game(entityFactory: entityFactory, delegate: self)
             let gameScene = GameScene(game: game, size: self.view.bounds.size)
             self.skView.presentScene(gameScene, transition: SKTransition.fade(withDuration: 0.5))

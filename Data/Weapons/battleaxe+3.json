@@ -1,5 +1,6 @@
 {
 	"name": "Battleaxe +3",
 	
-	"AT": "1d8+2"	
+    "AT": 3,
+	"damage": "1d8+2"	
 }

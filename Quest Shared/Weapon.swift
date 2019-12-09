@@ -9,18 +9,22 @@
 import SpriteKit
 
 class Weapon: Entity {
-    let attack: HitDice
+    let attack: Int
+    let damage: HitDice
     
     required init(json: [String : Any]) {
-        let attack = json["AT"] as! String
-        self.attack = HitDice(rawValue: attack)!
+        let attack = json["AT"] as? Int ?? 0
+        self.attack = attack
+        
+        let damage = json["damage"] as! String
+        self.damage = HitDice(rawValue: damage)!
         
         super.init(json: json)
     }
     
     static var none: Weapon {
         get {
-            return self.init(json: ["AT": "0d4"])
+            return self.init(json: ["damage": "0d4"])
         }
     }
 }

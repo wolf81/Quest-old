@@ -9,6 +9,8 @@
 import SpriteKit
 
 class Entity: JSONConstructable & Hashable {
+    static unowned var entityFactory: EntityFactory!
+    
     static func == (lhs: Entity, rhs: Entity) -> Bool {
         return lhs.name == rhs.name && lhs.coord == rhs.coord
     }

@@ -4,9 +4,9 @@
 	
 	"HD": "1d12",
 	"AC": 15,
-	"EQ": [
-		"Claw +1",
-	],
+    "EQ": {
+        "weapon": "Claw +1",
+    },
     
     "skills": {
         "physical": 4

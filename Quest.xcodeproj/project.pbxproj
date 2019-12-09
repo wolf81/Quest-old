@@ -47,6 +47,9 @@
 		7963DE4A239D092300183DF2 /* Equipment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE49239D092300183DF2 /* Equipment.swift */; };
 		7963DE4B239D092300183DF2 /* Equipment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE49239D092300183DF2 /* Equipment.swift */; };
 		7963DE4C239D092300183DF2 /* Equipment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE49239D092300183DF2 /* Equipment.swift */; };
+		7963DE4E239DD2D600183DF2 /* HitPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE4D239DD2D600183DF2 /* HitPoints.swift */; };
+		7963DE4F239DD2D600183DF2 /* HitPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE4D239DD2D600183DF2 /* HitPoints.swift */; };
+		7963DE50239DD2D600183DF2 /* HitPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE4D239DD2D600183DF2 /* HitPoints.swift */; };
 		797DBF7B22A91FA300D0F8E7 /* Sprites.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */; };
 		797DBF7C22A91FA300D0F8E7 /* Sprites.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */; };
 		797DBF7D22A91FA300D0F8E7 /* Sprites.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */; };
@@ -123,6 +126,7 @@
 		7963DE41239CEC6A00183DF2 /* Skill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skill.swift; sourceTree = "<group>"; };
 		7963DE45239D079300183DF2 /* Armor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Armor.swift; path = "Quest Shared/Armor.swift"; sourceTree = SOURCE_ROOT; };
 		7963DE49239D092300183DF2 /* Equipment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equipment.swift; sourceTree = "<group>"; };
+		7963DE4D239DD2D600183DF2 /* HitPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitPoints.swift; sourceTree = "<group>"; };
 		797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Sprites.xcassets; sourceTree = "<group>"; };
 		797DBFBE22AF752D00D0F8E7 /* Actor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Actor.swift; path = "Quest Shared/Actor.swift"; sourceTree = SOURCE_ROOT; };
 		797DBFC222AF753B00D0F8E7 /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hero.swift; path = "Quest Shared/Hero.swift"; sourceTree = SOURCE_ROOT; };
@@ -235,6 +239,7 @@
 				7963DE3D239CE15700183DF2 /* Role.swift */,
 				7963DE41239CEC6A00183DF2 /* Skill.swift */,
 				7963DE49239D092300183DF2 /* Equipment.swift */,
+				7963DE4D239DD2D600183DF2 /* HitPoints.swift */,
 			);
 			path = "Quest Shared";
 			sourceTree = "<group>";
@@ -505,6 +510,7 @@
 				7963DE4A239D092300183DF2 /* Equipment.swift in Sources */,
 				79ACC81A22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
 				795746B322A7C59A00E04BEC /* Level.swift in Sources */,
+				7963DE4E239DD2D600183DF2 /* HitPoints.swift in Sources */,
 				7939187D22B9447C00CE069C /* SceneBuilder.swift in Sources */,
 				7963DE3E239CE15700183DF2 /* Role.swift in Sources */,
 				79C61A7922A7C415008D3609 /* AppDelegate.swift in Sources */,
@@ -537,6 +543,7 @@
 				7963DE4B239D092300183DF2 /* Equipment.swift in Sources */,
 				79ACC81B22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
 				795746B422A7CA9800E04BEC /* Level.swift in Sources */,
+				7963DE4F239DD2D600183DF2 /* HitPoints.swift in Sources */,
 				7939187E22B9447C00CE069C /* SceneBuilder.swift in Sources */,
 				7963DE3F239CE15700183DF2 /* Role.swift in Sources */,
 				79C61A8A22A7C415008D3609 /* AppDelegate.swift in Sources */,
@@ -582,6 +589,7 @@
 				7963DE48239D079300183DF2 /* Armor.swift in Sources */,
 				7963DE44239CEC6A00183DF2 /* Skill.swift in Sources */,
 				79ACC7EF22AA5D8700AC3BF0 /* EntityLoader.swift in Sources */,
+				7963DE50239DD2D600183DF2 /* HitPoints.swift in Sources */,
 				797DBFC122AF752D00D0F8E7 /* Actor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
