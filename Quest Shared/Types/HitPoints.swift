@@ -12,11 +12,7 @@ struct HitPoints {
     private(set) var base: Int
     private var lost: Int
     
-    var current: Int {
-        get {
-            self.base - self.lost
-        }
-    }
+    var current: Int { self.base - self.lost }
         
     init(base: Int) {
         self.base = base

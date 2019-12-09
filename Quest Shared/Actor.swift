@@ -32,12 +32,12 @@ class Actor: Entity {
         super.init(json: json)
     }    
     
-    init(name: String, hitPoints: Int, sprite: String, skills: Skills, equipment: Equipment) {
+    init(name: String, hitPoints: Int, race: Race, gender: Gender, skills: Skills, equipment: Equipment) {
         self.hitPoints = HitPoints(base: hitPoints)
         self.skills = skills
         self.equipment = equipment
         
-        super.init(json: ["name": name, "sprite": "human_male"])
+        super.init(json: ["name": name, "sprite": "\(race)_\(gender)"])
         
         self.sprite.zPosition = 100
     }
@@ -52,13 +52,11 @@ class Actor: Entity {
         self.sprite.zPosition = 100
     }
     
-    func attackDamage() -> Int {
-        return 1
-    }
+    func attackDamage() -> Int { return self.equipment.weapon.damage.randomValue }
      
     func getAction(state: Game) -> Action? {
         defer { self.action = nil }
-            
+        
         return self.action
     }    
 }

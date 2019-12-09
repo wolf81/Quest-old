@@ -11,13 +11,9 @@ import Foundation
 typealias Attribute = Int
 
 extension Attribute {
-    static var average: Attribute {
-        return Attribute(12)
-    }
+    static var average: Attribute { return Attribute(12) }
     
-    var bonus: Int {
-        return (self - 10) / 2
-    }
+    var bonus: Int { return (self - 10) / 2 }
 }
 
 struct Attributes {

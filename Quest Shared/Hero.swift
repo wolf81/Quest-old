@@ -29,13 +29,13 @@ class Hero: Actor, CustomStringConvertible {
     
     override var armorClass: Int { return 10 + attributes.dexterity.bonus + self.equipment.armor.armorClass + self.equipment.shield.armorClass }
     
-    public init(name: String, race: Race, role: Role, attributes: Attributes, skills: Skills, equipment: Equipment) {
+    public init(name: String, race: Race, gender: Gender, role: Role, attributes: Attributes, skills: Skills, equipment: Equipment) {
         self.race = race
         self.role = role
         self.attributes = attributes
         
         let hitPoints = HitDice.d6(1, 0).maxValue + attributes.strength.bonus // 1d6 + STR bonus per level, for first level use max health
-        super.init(name: name, hitPoints: hitPoints, sprite: "human_male", skills: skills, equipment: equipment)
+        super.init(name: name, hitPoints: hitPoints, race: race, gender: gender, skills: skills, equipment: equipment)
     }
     
     required init(json: [String : Any]) {

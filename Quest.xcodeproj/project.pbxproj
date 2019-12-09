@@ -59,6 +59,9 @@
 		79742A66239E5AF6008504E8 /* Shield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79742A65239E5AF6008504E8 /* Shield.swift */; };
 		79742A67239E5AF6008504E8 /* Shield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79742A65239E5AF6008504E8 /* Shield.swift */; };
 		79742A68239E5AF6008504E8 /* Shield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79742A65239E5AF6008504E8 /* Shield.swift */; };
+		79742A6A239E60A7008504E8 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79742A69239E60A7008504E8 /* Gender.swift */; };
+		79742A6B239E60A7008504E8 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79742A69239E60A7008504E8 /* Gender.swift */; };
+		79742A6C239E60A7008504E8 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79742A69239E60A7008504E8 /* Gender.swift */; };
 		797DBF7B22A91FA300D0F8E7 /* Sprites.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */; };
 		797DBF7C22A91FA300D0F8E7 /* Sprites.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */; };
 		797DBF7D22A91FA300D0F8E7 /* Sprites.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */; };
@@ -139,6 +142,7 @@
 		7963DE51239E3D2A00183DF2 /* ActionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionBar.swift; sourceTree = "<group>"; };
 		7963DE56239E456900183DF2 /* ActionBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionBarButton.swift; sourceTree = "<group>"; };
 		79742A65239E5AF6008504E8 /* Shield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Shield.swift; path = "Quest Shared/Hud/Shield.swift"; sourceTree = SOURCE_ROOT; };
+		79742A69239E60A7008504E8 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Sprites.xcassets; sourceTree = "<group>"; };
 		797DBFBE22AF752D00D0F8E7 /* Actor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Actor.swift; path = "Quest Shared/Actor.swift"; sourceTree = SOURCE_ROOT; };
 		797DBFC222AF753B00D0F8E7 /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hero.swift; path = "Quest Shared/Hero.swift"; sourceTree = SOURCE_ROOT; };
@@ -215,6 +219,15 @@
 		79742A64239E58C7008504E8 /* Types */ = {
 			isa = PBXGroup;
 			children = (
+				7963DE31239CDE2600183DF2 /* Attribute.swift */,
+				7963DE39239CE12A00183DF2 /* Race.swift */,
+				7963DE3D239CE15700183DF2 /* Role.swift */,
+				7963DE41239CEC6A00183DF2 /* Skill.swift */,
+				7963DE49239D092300183DF2 /* Equipment.swift */,
+				7963DE4D239DD2D600183DF2 /* HitPoints.swift */,
+				79742A69239E60A7008504E8 /* Gender.swift */,
+				79ACC81922AAB6F100AC3BF0 /* HitDice.swift */,
+				795746BA22A9029D00E04BEC /* Direction.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -256,21 +269,13 @@
 				79C61A7022A7C415008D3609 /* Assets.xcassets */,
 				795746B222A7C59A00E04BEC /* Level.swift */,
 				794864D222A7E60300F84A72 /* Game.swift */,
-				795746BA22A9029D00E04BEC /* Direction.swift */,
 				797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */,
 				79ACC7EC22AA5D8700AC3BF0 /* EntityLoader.swift */,
 				79ACC7F022AA60E300AC3BF0 /* EntityFactory.swift */,
-				79ACC81922AAB6F100AC3BF0 /* HitDice.swift */,
 				79ACC81D22AB473200AC3BF0 /* Action.swift */,
 				79ACC82922AB81F000AC3BF0 /* JSONConstructable.swift */,
 				7939187C22B9447C00CE069C /* SceneBuilder.swift */,
 				7963DE2D239CC35F00183DF2 /* DefaultMenuConfiguration.swift */,
-				7963DE31239CDE2600183DF2 /* Attribute.swift */,
-				7963DE39239CE12A00183DF2 /* Race.swift */,
-				7963DE3D239CE15700183DF2 /* Role.swift */,
-				7963DE41239CEC6A00183DF2 /* Skill.swift */,
-				7963DE49239D092300183DF2 /* Equipment.swift */,
-				7963DE4D239DD2D600183DF2 /* HitPoints.swift */,
 			);
 			path = "Quest Shared";
 			sourceTree = "<group>";
@@ -535,6 +540,7 @@
 				79C61AA522A7C415008D3609 /* GameScene.swift in Sources */,
 				794864D322A7E60300F84A72 /* Game.swift in Sources */,
 				79742A66239E5AF6008504E8 /* Shield.swift in Sources */,
+				79742A6A239E60A7008504E8 /* Gender.swift in Sources */,
 				79ACC81622AAB5D700AC3BF0 /* Weapon.swift in Sources */,
 				79C61A7B22A7C415008D3609 /* GameViewController.swift in Sources */,
 				797DBFBF22AF752D00D0F8E7 /* Actor.swift in Sources */,
@@ -571,6 +577,7 @@
 				79C61AA622A7C415008D3609 /* GameScene.swift in Sources */,
 				794864D422A7E60300F84A72 /* Game.swift in Sources */,
 				79742A67239E5AF6008504E8 /* Shield.swift in Sources */,
+				79742A6B239E60A7008504E8 /* Gender.swift in Sources */,
 				79ACC81722AAB5D700AC3BF0 /* Weapon.swift in Sources */,
 				79C61A8C22A7C415008D3609 /* GameViewController.swift in Sources */,
 				797DBFC022AF752D00D0F8E7 /* Actor.swift in Sources */,
@@ -631,6 +638,7 @@
 				7963DE54239E3D2A00183DF2 /* ActionBar.swift in Sources */,
 				7963DE50239DD2D600183DF2 /* HitPoints.swift in Sources */,
 				797DBFC122AF752D00D0F8E7 /* Actor.swift in Sources */,
+				79742A6C239E60A7008504E8 /* Gender.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
