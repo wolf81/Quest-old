@@ -11,7 +11,7 @@ import SpriteKit
 class GameScene: SKScene {
     private var lastUpdateTime: TimeInterval = 0
     
-    fileprivate static let tileSize = CGSize(width: 64, height: 64)    
+    private static let tileSize = CGSize(width: 64, height: 64)    
     
     private var game: Game!
     
@@ -21,8 +21,10 @@ class GameScene: SKScene {
     
     private var playerCamera: SKCameraNode!
 
+    // Sprites should be removed on the main thread, to make this easy, we remove sprites in the update loop and then clear this array
     private var spritesToRemove: [SKSpriteNode] = []
     
+    // Sprites should be added on the main thread, to make this easy, we add sprites in the update loop and then clear this array
     private var spritesToAdd: [SKSpriteNode] = []
         
     init(game: Game, size: CGSize) {
@@ -56,6 +58,8 @@ class GameScene: SKScene {
         
         self.lastUpdateTime = currentTime
     }
+    
+    // MARK: - Public
     
     static func pointForCoord(_ coord: SIMD2<Int32>) -> CGPoint {
         let x = CGFloat(coord.x) * GameScene.tileSize.width
