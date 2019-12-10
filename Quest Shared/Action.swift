@@ -41,7 +41,7 @@ class MoveAction: Action {
         
         print("\(self.actor.name) moves to \(self.toCoord.x).\(self.toCoord.y)")
         
-        let position = pointForCoord(self.toCoord)
+        let position = GameScene.pointForCoord(self.toCoord)
         let move = SKAction.sequence([
             SKAction.move(to: position, duration: self.duration),
             SKAction.run {

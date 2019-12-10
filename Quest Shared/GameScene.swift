@@ -23,6 +23,8 @@ class GameScene: SKScene {
 
     private var spritesToRemove: [SKSpriteNode] = []
     
+    private var spritesToAdd: [SKSpriteNode] = []
+        
     init(game: Game, size: CGSize) {
         self.game = game
         
@@ -34,12 +36,40 @@ class GameScene: SKScene {
     required init?(coder aDecoder: NSCoder) {
         fatalError()
     }
+            
+    override func didMove(to view: SKView) {
+        self.setUpScene()
+    }
+    
+    override func update(_ currentTime: TimeInterval) {
+        self.spritesToRemove.forEach({ $0.removeFromParent() })
+        self.spritesToRemove = []
         
+        self.spritesToAdd.forEach({ self.world.addChild($0) })
+        self.spritesToAdd = []
+        
+        // Called before each frame is rendered
+        let deltaTime = currentTime - self.lastUpdateTime
+        
+        // Update game state
+        self.game.update(deltaTime)
+        
+        self.lastUpdateTime = currentTime
+    }
+    
+    static func pointForCoord(_ coord: SIMD2<Int32>) -> CGPoint {
+        let x = CGFloat(coord.x) * GameScene.tileSize.width
+        let y = CGFloat(coord.y) * GameScene.tileSize.height
+        return CGPoint(x: x, y: y)
+    }
+
+    // MARK: - Private
+    
     private func setUpScene() {
         self.game.start(tileSize: GameScene.tileSize)
         
         for entity in self.game.entities {
-            let position = pointForCoord(entity.coord)
+            let position = GameScene.pointForCoord(entity.coord)
             entity.sprite.position = position
             
             self.world.addChild(entity.sprite)
@@ -57,51 +87,21 @@ class GameScene: SKScene {
         
         addChild(self.world)
     }
-    
-    override func didMove(to view: SKView) {
-        self.setUpScene()
-    }
-    
-    override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
-        let deltaTime = currentTime - lastUpdateTime
-        
-        // Update game state
-        self.game.update(deltaTime)
-        
-        self.lastUpdateTime = currentTime
-    }
-    
-    func movePlayer(direction: Direction) {
+
+    private func movePlayer(direction: Direction) {
         self.game.movePlayer(direction: direction)
     }
-        
-    func add(entity: Entity) {
-        let position = pointForCoord(entity.coord)
-        entity.sprite.position = position
-        self.world.addChild(entity.sprite)
-    }
     
-    func remove(entity: Entity) {
-        entity.sprite.removeFromParent()
-    }
-    
-    public func moveCamera(to coord: SIMD2<Int32> , duration: TimeInterval) {
+    private func moveCamera(to coord: SIMD2<Int32> , duration: TimeInterval) {
         let position = cameraPositionForCoord(coord)
         self.playerCamera.run(SKAction.move(to: position, duration: duration))
     }
     
     private func cameraPositionForCoord(_ coord: SIMD2<Int32>) -> CGPoint {
-        var position = pointForCoord(coord)
+        var position = GameScene.pointForCoord(coord)
         position.y -= self.actionBar.size.height
         return position
     }
-}
-
-func pointForCoord(_ coord: SIMD2<Int32>) -> CGPoint {
-    let x = CGFloat(coord.x) * GameScene.tileSize.width
-    let y = CGFloat(coord.y) * GameScene.tileSize.height
-    return CGPoint(x: x, y: y)
 }
 
 // MARK: - GameDelegate
@@ -112,11 +112,12 @@ extension GameScene: GameDelegate {
     }
     
     func gameDidAdd(entity: Entity) {
-        
+        entity.sprite.position = GameScene.pointForCoord(entity.coord)
+        self.spritesToAdd.append(entity.sprite)
     }
     
     func gameDidRemove(entity: Entity) {
-        
+        self.spritesToRemove.append(entity.sprite)
     }
 }
 
@@ -173,7 +174,7 @@ extension GameScene {
     
     override func mouseUp(with event: NSEvent) {
         let location = event.location(in: self)
-        if nodes(at: location).contains(self.actionBar) {
+        if self.nodes(at: location).contains(self.actionBar) {
             self.actionBar.convert(location, from: self)
             self.actionBar.mouseUp(with: event)
         }

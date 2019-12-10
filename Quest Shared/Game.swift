@@ -83,7 +83,7 @@ class Game {
                     let tile = SKShapeNode(rectOf: tileSize)
                     
                     tile.fillColor = SKColor.yellow.withAlphaComponent(0.5)
-                    tile.position = pointForCoord(coord)
+                    tile.position = GameScene.pointForCoord(coord)
                 }
             }
         }
@@ -193,11 +193,11 @@ class Game {
     }
     
     private func remove(actor: Actor) {
-        actor.sprite.removeFromParent()
-        
         self.entities.removeAll(where: { $0 == actor })
 
         // After we remove an actor, update the index to prevent an index out of range error
         self.activeActorIdx = self.activeActorIdx % self.actors.count
+        
+        self.delegate?.gameDidRemove(entity: actor)
     }
 }
