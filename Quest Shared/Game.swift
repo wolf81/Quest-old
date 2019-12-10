@@ -11,6 +11,8 @@ import DungeonBuilder
 
 protocol GameDelegate: class {
     func gameDidMove(hero: Hero, to coord: SIMD2<Int32>, duration: TimeInterval)
+    func gameDidAdd(entity: Entity)
+    func gameDidRemove(entity: Entity)
 }
 
 class Game {
@@ -23,9 +25,12 @@ class Game {
     private(set) var hero: Hero
     
     private var isBusy: Bool = false
+    
+    private var actionTiles: [SKShapeNode] = []
+    
+    private var tileSize: CGSize = .zero
         
-    init(entityFactory: EntityFactory, delegate: GameDelegate?, hero: Hero) {
-        self.delegate = delegate
+    init(entityFactory: EntityFactory, hero: Hero) {
         self.entityFactory = entityFactory
         self.hero = hero
     }
@@ -58,9 +63,38 @@ class Game {
         return tile != 1
     }
     
+    func showMovementTilesForHero() {
+        let xMin = max(self.hero.coord.x - Int32(self.hero.speed), 0)
+        let xMax = min(self.hero.coord.x + Int32(self.hero.speed), Int32(self.level.width))
+        let yMin = max(self.hero.coord.y - Int32(self.hero.speed), 0)
+        let yMax = min(self.hero.coord.y + Int32(self.hero.speed), Int32(self.level.height))
+                
+        var coords = Set<SIMD2<Int32>>()
+        for x in xMin ... xMax {
+            for y in yMin ... yMax {
+                let coord = SIMD2<Int32>(x, y)
+                guard getTileAt(coord: coord) != Int.min else {
+                    continue
+                }
+
+                for actor in self.actors where actor.coord != coord {
+                    coords.insert(coord)
+                    
+                    let tile = SKShapeNode(rectOf: tileSize)
+                    
+                    tile.fillColor = SKColor.yellow.withAlphaComponent(0.5)
+                    tile.position = pointForCoord(coord)
+                }
+            }
+        }
+        
+        print(coords)
+    }
+    
     func start(levelIdx: Int = 0, tileSize: CGSize) {
         self.level = Level()
-                
+        self.tileSize = tileSize
+        
         var entities: [Entity] = []
                 
         for y in (0 ..< level.height) {

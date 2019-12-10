@@ -211,6 +211,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		79423B7D239F4A850042B9BD /* EntityLoading */ = {
+			isa = PBXGroup;
+			children = (
+				79ACC7EC22AA5D8700AC3BF0 /* EntityLoader.swift */,
+				79ACC7F022AA60E300AC3BF0 /* EntityFactory.swift */,
+			);
+			path = EntityLoading;
+			sourceTree = "<group>";
+		};
 		7963DE55239E455400183DF2 /* Hud */ = {
 			isa = PBXGroup;
 			children = (
@@ -266,6 +275,7 @@
 		79C61A6C22A7C413008D3609 /* Quest Shared */ = {
 			isa = PBXGroup;
 			children = (
+				79423B7D239F4A850042B9BD /* EntityLoading */,
 				79742A64239E58C7008504E8 /* Types */,
 				7963DE55239E455400183DF2 /* Hud */,
 				79ACC7E322AA5D1400AC3BF0 /* Entities */,
@@ -274,8 +284,6 @@
 				795746B222A7C59A00E04BEC /* Level.swift */,
 				794864D222A7E60300F84A72 /* Game.swift */,
 				797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */,
-				79ACC7EC22AA5D8700AC3BF0 /* EntityLoader.swift */,
-				79ACC7F022AA60E300AC3BF0 /* EntityFactory.swift */,
 				79ACC81D22AB473200AC3BF0 /* Action.swift */,
 				79ACC82922AB81F000AC3BF0 /* JSONConstructable.swift */,
 				7939187C22B9447C00CE069C /* SceneBuilder.swift */,

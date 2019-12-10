@@ -20,18 +20,22 @@ class GameScene: SKScene {
     private var world: SKNode = SKNode()
     
     private var playerCamera: SKCameraNode!
+
+    private var spritesToRemove: [SKSpriteNode] = []
     
     init(game: Game, size: CGSize) {
         self.game = game
-                
+        
         super.init(size: size)
+        
+        self.game.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError()
     }
         
-    func setUpScene() {
+    private func setUpScene() {
         self.game.start(tileSize: GameScene.tileSize)
         
         for entity in self.game.entities {
@@ -72,6 +76,16 @@ class GameScene: SKScene {
         self.game.movePlayer(direction: direction)
     }
         
+    func add(entity: Entity) {
+        let position = pointForCoord(entity.coord)
+        entity.sprite.position = position
+        self.world.addChild(entity.sprite)
+    }
+    
+    func remove(entity: Entity) {
+        entity.sprite.removeFromParent()
+    }
+    
     public func moveCamera(to coord: SIMD2<Int32> , duration: TimeInterval) {
         let position = cameraPositionForCoord(coord)
         self.playerCamera.run(SKAction.move(to: position, duration: duration))
@@ -90,6 +104,24 @@ func pointForCoord(_ coord: SIMD2<Int32>) -> CGPoint {
     return CGPoint(x: x, y: y)
 }
 
+// MARK: - GameDelegate
+
+extension GameScene: GameDelegate {
+    func gameDidMove(hero: Hero, to coord: SIMD2<Int32>, duration: TimeInterval) {
+        moveCamera(to: coord, duration: duration)
+    }
+    
+    func gameDidAdd(entity: Entity) {
+        
+    }
+    
+    func gameDidRemove(entity: Entity) {
+        
+    }
+}
+
+// MARK: - ActionBarDelegate
+
 extension GameScene: ActionBarDelegate {
     func actionBarDidSelectDefend() {
         print("defend")
@@ -97,6 +129,7 @@ extension GameScene: ActionBarDelegate {
     
     func actionBarDidSelectMove() {
         print("move")
+        self.game.showMovementTilesForHero()
     }
     
     func actionBarDidSelectAttackMelee() {
@@ -141,6 +174,7 @@ extension GameScene {
     override func mouseUp(with event: NSEvent) {
         let location = event.location(in: self)
         if nodes(at: location).contains(self.actionBar) {
+            self.actionBar.convert(location, from: self)
             self.actionBar.mouseUp(with: event)
         }
     }

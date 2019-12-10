@@ -21,6 +21,8 @@ class Actor: Entity {
     
     private(set) var armorClass: Int = 0
     
+    private(set) var speed: Int = 1
+    
     private var action: Action?
             
     init(json: [String : Any], hitPoints: Int, armorClass: Int, skills: Skills, equipment: Equipment) {

@@ -14,6 +14,8 @@ class Hero: Actor, CustomStringConvertible {
     let role: Role
     let level: Int = 1
     
+    override var speed: Int { return 6 }
+    
     private var direction: Direction?
 
     override var attackBonus: Int {
@@ -24,7 +26,7 @@ class Hero: Actor, CustomStringConvertible {
         }
         return attackBonus
     }
-    
+        
     override func attackDamage() -> Int { self.attributes.strength.bonus + self.equipment.weapon.damage.randomValue }
     
     override var armorClass: Int { return 10 + attributes.dexterity.bonus + self.equipment.armor.armorClass + self.equipment.shield.armorClass }

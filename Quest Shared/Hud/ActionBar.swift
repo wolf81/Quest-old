@@ -19,10 +19,14 @@ protocol ActionBarDelegate: class {
 class ActionBar: SKShapeNode {
     var size: CGSize { return self.path!.boundingBox.size }
     
+    private var moveButton: ActionBarButton!
+    
     weak var delegate: ActionBarDelegate?
     
     init(size: CGSize, delegate: ActionBarDelegate) {
         super.init()
+
+        self.delegate = delegate
 
         self.path = CGPath(rect: CGRect(origin: CGPoint(x: -size.width / 2, y: size.height / 2), size: size), transform: nil)
         self.lineWidth = 0
@@ -38,13 +42,13 @@ class ActionBar: SKShapeNode {
     
     private func addButtons() {
         let buttonSize = CGSize(width: size.height, height: size.height)
-        let moveButton = ActionBarButton(size: buttonSize, color: SKColor.green)
+        self.moveButton = ActionBarButton(size: buttonSize, color: SKColor.green)
         let attackMeleeButton = ActionBarButton(size: buttonSize, color: SKColor.red)
         let attackRangedButton = ActionBarButton(size: buttonSize, color: SKColor.orange)
         let castSpellButton = ActionBarButton(size: buttonSize, color: SKColor.blue)
         let defendButton = ActionBarButton(size: buttonSize, color: SKColor.darkGray)
 
-        let buttons: [ActionBarButton] = [moveButton, attackMeleeButton, attackRangedButton, castSpellButton, defendButton]
+        let buttons: [ActionBarButton] = [self.moveButton, attackMeleeButton, attackRangedButton, castSpellButton, defendButton]
         var buttonX = -(CGFloat(buttons.count - 1) * buttonSize.width / 2)
         for button in buttons {
             button.position = CGPoint(x: buttonX, y: 0)
@@ -61,6 +65,11 @@ class ActionBar: SKShapeNode {
 extension ActionBar {
     override func mouseUp(with event: NSEvent) {
         print("handle mouse up in action bar")
+        
+        let location = event.location(in: self)
+        if self.moveButton.contains(location) {
+            self.delegate?.actionBarDidSelectMove()
+        }
     }
 }
 

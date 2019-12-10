@@ -50,6 +50,10 @@ struct Level {
     
     func getTileAt(coord: SIMD2<Int32>) -> Int {
         let idx = Int(Int(coord.y) * width + Int(coord.x))
+        
+        let validRange = 0 ..< self.tiles.count
+        guard validRange.contains(idx) else { return Int.min }
+        
         return self.tiles[idx]
     }
 }

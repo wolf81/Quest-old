@@ -34,14 +34,6 @@ class GameViewController: NSViewController {
     }
 }
 
-// MARK: - GameDelegate
-
-extension GameViewController: GameDelegate {
-    func gameDidMove(hero: Hero, to coord: SIMD2<Int32>, duration: TimeInterval) {
-        self.gameScene?.moveCamera(to: coord, duration: duration)
-    }
-}
-
 // MARK: - MainMenuSceneDelegate
 
 extension GameViewController: MainMenuSceneDelegate {
@@ -86,7 +78,7 @@ extension GameViewController: ChooseAttributesMenuDelegate {
                 .with(equipment: equipment)
             
             let hero = try self.heroBuilder.build()
-            let game = Game(entityFactory: entityFactory, delegate: self, hero: hero)
+            let game = Game(entityFactory: entityFactory, hero: hero)
             let gameScene = GameScene(game: game, size: self.view.bounds.size)
             self.skView.presentScene(gameScene, transition: SKTransition.fade(withDuration: 0.5))
             
