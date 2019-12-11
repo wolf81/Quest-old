@@ -11,7 +11,7 @@ import DungeonBuilder
 import GameplayKit
 
 protocol GameDelegate: class {
-    func gameDidMove(hero: Hero, to coord: SIMD2<Int32>, duration: TimeInterval)
+    func gameDidMove(hero: Hero, to coord: vector_int2, duration: TimeInterval)
     func gameDidAdd(entity: Entity)
     func gameDidRemove(entity: Entity)
 }
@@ -49,15 +49,15 @@ class Game {
         return self.entities.filter({ $0 is Actor }) as! [Actor]
     }
     
-    func getTileAt(coord: SIMD2<Int32>) -> Int? {
+    func getTileAt(coord: vector_int2) -> Int? {
         return self.level.getTileAt(coord: coord)
     }
     
-    func getActorAt(coord: SIMD2<Int32>) -> Actor? {
+    func getActorAt(coord: vector_int2) -> Actor? {
         return self.actors.filter({ $0.coord == coord }).first
     }
     
-    func canMove(entity: Entity, toCoord coord: SIMD2<Int32>) -> Bool {
+    func canMove(entity: Entity, toCoord coord: vector_int2) -> Bool {
         guard self.actors.filter({ $0.coord == coord}).first == nil else {
             return false
         }
@@ -82,15 +82,14 @@ class Game {
         let height = yMax - yMin + 1
         
         // Create a graph for the visible area
-        var nodesToRemove: [GKGraphNode] = []
-
         let visibleAreaGraph = GKGridGraph(fromGridStartingAt: vector_int2(xMin, yMin), width: width, height: height, diagonalsAllowed: false)
         let movementGraph = GKGridGraph(fromGridStartingAt: vector_int2(xMin, yMin), width: width, height: height, diagonalsAllowed: false)
+        let actorCoords = self.actors.filter({ $0.coord != self.hero.coord }).compactMap({ $0.coord })
         for x in visibleAreaGraph.gridOrigin.x ..< (visibleAreaGraph.gridOrigin.x + Int32(visibleAreaGraph.gridWidth)) {
             for y in visibleAreaGraph.gridOrigin.y ..< (visibleAreaGraph.gridOrigin.y + Int32(visibleAreaGraph.gridHeight)) {
-                let coord = SIMD2<Int32>(x, y)
+                let coord = vector_int2(x, y)
 
-                if isInCircle(origin: self.hero.coord, radius: self.hero.speed, coord: coord) == false {
+                if isInRange(origin: self.hero.coord, radius: self.hero.speed, coord: coord) == false || getTileAt(coord: coord) == 1 {
                     if let node = visibleAreaGraph.node(atGridPosition: coord) {
                         visibleAreaGraph.remove([node])
                         if let movementGraphNode = movementGraph.node(atGridPosition: coord) {
@@ -99,27 +98,14 @@ class Game {
                     }
                 }
                 
-                if getTileAt(coord: coord) == 1 {
-                    if let node = visibleAreaGraph.node(atGridPosition: coord) {
-                        visibleAreaGraph.remove([node])
-
-                        if let movementGraphNode = movementGraph.node(atGridPosition: coord) {
-                            movementGraph.remove([movementGraphNode])
-                        }
+                if actorCoords.contains(coord) {
+                    if let movementGraphNode = movementGraph.node(atGridPosition: coord) {
+                        movementGraph.remove([movementGraphNode])
                     }
                 }
             }
         }
         
-        let actorCoords = self.actors.filter({ $0.coord != hero.coord }).compactMap({ $0.coord })
-        for node in movementGraph.nodes ?? [] {
-            let nodeCoord = (node as! GKGridGraphNode).gridPosition
-            if actorCoords.contains(nodeCoord) {
-                nodesToRemove.append(node)
-            }
-        }
-        movementGraph.remove(nodesToRemove)
-
         let heroNode = movementGraph.node(atGridPosition: self.hero.coord)!
         for node in movementGraph.nodes ?? [] {
             let pathNodes = heroNode.findPath(to: node)
@@ -127,30 +113,23 @@ class Game {
                 let nodeCoord = (node as! GKGridGraphNode).gridPosition
                 print("could not find path to: \(nodeCoord.x).\(nodeCoord.y)")
                 movementGraph.remove([node])
-//            } else {
-//                var path = "\(self.hero.coord.x).\(self.hero.coord.y)"
-//                for pathNode in pathNodes {
-//                    let pathNodeCoord = (pathNode as! GKGridGraphNode).gridPosition
-//                    path += " -> \(pathNodeCoord.x).\(pathNodeCoord.y)"
-//                }
-//                print(path)
             }
         }
         
         // Compare visible area graph and movement graph and show appropriate tile colors depending if a tile is reachable or not
         for x in visibleAreaGraph.gridOrigin.x ... visibleAreaGraph.gridOrigin.x + Int32(visibleAreaGraph.gridWidth) {
             for y in visibleAreaGraph.gridOrigin.y ... visibleAreaGraph.gridOrigin.y + Int32(visibleAreaGraph.gridHeight) {
-                let coord = SIMD2<Int32>(x,y)
+                let coord = vector_int2(x,y)
                 guard coord != self.hero.coord else { continue }
                 
                 if let _ = visibleAreaGraph.node(atGridPosition: coord) {
                     if let _ = movementGraph.node(atGridPosition: coord) {
-                        let movementTile = OverlayTile(color: SKColor.green.withAlphaComponent(0.5), coord: coord)
+                        let movementTile = OverlayTile(color: SKColor.green.withAlphaComponent(0.5), coord: coord, isBlocked: false)
                         self.entities.append(movementTile)
                         self.delegate?.gameDidAdd(entity: movementTile)
                     }
                     else {
-                        let movementTile = OverlayTile(color: SKColor.red.withAlphaComponent(0.5), coord: coord)
+                        let movementTile = OverlayTile(color: SKColor.red.withAlphaComponent(0.5), coord: coord, isBlocked: true)
                         self.entities.append(movementTile)
                         self.delegate?.gameDidAdd(entity: movementTile)
                     }
@@ -160,11 +139,7 @@ class Game {
         
         self.mode = .selectTile
     }
-    
-    func isInCircle(origin: SIMD2<Int32>, radius: Int, coord: SIMD2<Int32>) -> Bool {
-        return ((coord.x - origin.x) * (coord.x - origin.x) + (coord.y - origin.y) * (coord.y - origin.y)) <= (radius * radius)
-    }
-    
+        
     func hideMovementTiles() {
         guard self.mode == .selectTile else { return }
         
@@ -219,13 +194,13 @@ class Game {
                     print(monster)
                 }
 
-                if x == 4 && y == 2 {
-                    let monster = try! entityFactory.newEntity(name: "Skeleton")
-                    monster.coord = coord
-                    entities.append(monster)
-                    
-                    print(monster)
-                }
+//                if x == 4 && y == 2 {
+//                    let monster = try! entityFactory.newEntity(name: "Skeleton")
+//                    monster.coord = coord
+//                    entities.append(monster)
+//
+//                    print(monster)
+//                }
 
                 if x == 5 && y == 3 {
                     let monster = try! entityFactory.newEntity(name: "Skeleton")
@@ -243,13 +218,13 @@ class Game {
                     print(monster)
                 }
                 
-                if x == 8 && y == 1 {
-                    let monster = try! entityFactory.newEntity(name: "Skeleton")
-                    monster.coord = coord
-                    entities.append(monster)
-                    
-                    print(monster)
-                }
+//                if x == 8 && y == 1 {
+//                    let monster = try! entityFactory.newEntity(name: "Skeleton")
+//                    monster.coord = coord
+//                    entities.append(monster)
+//                    
+//                    print(monster)
+//                }
             }
         }
         
@@ -302,5 +277,18 @@ class Game {
         self.activeActorIdx = self.activeActorIdx % self.actors.count
         
         self.delegate?.gameDidRemove(entity: actor)
+    }
+    
+    public func handleInteraction(at coord: vector_int2) {
+        guard self.mode == .selectTile else { return }
+        
+        let overlayTiles = self.entities.filter({ $0 is OverlayTile }) as! [OverlayTile]
+        for overlayTile in overlayTiles {
+            if overlayTile.coord == coord && overlayTile.isBlocked == false {
+                
+            }
+        }
+        
+        print("touch up")
     }
 }

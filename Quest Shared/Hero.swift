@@ -17,6 +17,8 @@ class Hero: Actor, CustomStringConvertible {
     override var speed: Int { return 4 }
     
     private var direction: Direction?
+    
+    private var toCoord: vector_int2?
 
     override var attackBonus: Int {
         var attackBonus = self.attributes.strength.bonus + self.equipment.weapon.attack
@@ -48,6 +50,10 @@ class Hero: Actor, CustomStringConvertible {
         super.init(json: json)
     
         sprite.zPosition = 1000
+    }
+    
+    func move(coord: vector_int2) {
+        
     }
     
     func move(direction: Direction) {

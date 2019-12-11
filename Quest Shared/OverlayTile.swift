@@ -9,7 +9,11 @@
 import SpriteKit
 
 class OverlayTile: Entity {
-    init(color: SKColor, coord: SIMD2<Int32>) {
+    let isBlocked: Bool
+    
+    init(color: SKColor, coord: SIMD2<Int32>, isBlocked: Bool) {
+        self.isBlocked = isBlocked
+        
         let sprite = SKSpriteNode(
             color: color,
             size: CGSize(width: 64, height: 64)

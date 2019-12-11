@@ -25,11 +25,11 @@ class Action {
 }
 
 class MoveAction: Action {
-    public let toCoord: SIMD2<Int32>
+    public let toCoord: vector_int2
     
     public let duration: TimeInterval = 0.15
     
-    init(actor: Actor, toCoord: SIMD2<Int32>) {
+    init(actor: Actor, toCoord: vector_int2) {
         self.toCoord = toCoord
         super.init(actor: actor)
     }

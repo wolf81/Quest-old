@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import GameplayKit
 
 class GameScene: SKScene {
     private var lastUpdateTime: TimeInterval = 0
@@ -66,6 +67,12 @@ class GameScene: SKScene {
         let y = CGFloat(coord.y) * GameScene.tileSize.height
         return CGPoint(x: x, y: y)
     }
+    
+    static func coordForPoint(_ point: CGPoint) -> vector_int2 {
+        let x = Int32((point.x + (GameScene.tileSize.width / 2)) / GameScene.tileSize.width)
+        let y = Int32((point.y + (GameScene.tileSize.height / 2)) / GameScene.tileSize.height)
+        return vector_int2(x, y)
+    }
 
     // MARK: - Private
     
@@ -107,6 +114,10 @@ class GameScene: SKScene {
         position.y -= self.actionBar.size.height
         return position
     }
+}
+
+func isInRange(origin: vector_int2, radius: Int, coord: vector_int2) -> Bool {
+    return ((coord.x - origin.x) * (coord.x - origin.x) + (coord.y - origin.y) * (coord.y - origin.y)) <= (radius * radius)
 }
 
 // MARK: - GameDelegate
@@ -182,6 +193,13 @@ extension GameScene {
         if self.nodes(at: location).contains(self.actionBar) {
             self.actionBar.convert(location, from: self)
             self.actionBar.mouseUp(with: event)
+        }
+        else if self.nodes(at: location).contains(self.world) {
+//            let position = self.world.convert(location, from: self)
+            let coord = GameScene.coordForPoint(location)
+            print("\(coord.x).\(coord.y)")
+            self.game.handleInteraction(at: coord)
+//            self.world.mouseUp(with: event)
         }
     }
     
