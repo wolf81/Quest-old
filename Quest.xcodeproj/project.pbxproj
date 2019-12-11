@@ -74,6 +74,9 @@
 		797DBFC322AF753B00D0F8E7 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFC222AF753B00D0F8E7 /* Hero.swift */; };
 		797DBFC422AF753B00D0F8E7 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFC222AF753B00D0F8E7 /* Hero.swift */; };
 		797DBFC522AF753B00D0F8E7 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFC222AF753B00D0F8E7 /* Hero.swift */; };
+		798C9969239FFEA800C6EC1C /* OverlayTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C9968239FFEA800C6EC1C /* OverlayTile.swift */; };
+		798C996A239FFEA800C6EC1C /* OverlayTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C9968239FFEA800C6EC1C /* OverlayTile.swift */; };
+		798C996B239FFEA800C6EC1C /* OverlayTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C9968239FFEA800C6EC1C /* OverlayTile.swift */; };
 		79ACC7DE22AA5BE900AC3BF0 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 79ACC7DD22AA5BE900AC3BF0 /* Data */; };
 		79ACC7DF22AA5BE900AC3BF0 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 79ACC7DD22AA5BE900AC3BF0 /* Data */; };
 		79ACC7E022AA5BE900AC3BF0 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 79ACC7DD22AA5BE900AC3BF0 /* Data */; };
@@ -150,6 +153,7 @@
 		797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Sprites.xcassets; sourceTree = "<group>"; };
 		797DBFBE22AF752D00D0F8E7 /* Actor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Actor.swift; path = "Quest Shared/Actor.swift"; sourceTree = SOURCE_ROOT; };
 		797DBFC222AF753B00D0F8E7 /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hero.swift; path = "Quest Shared/Hero.swift"; sourceTree = SOURCE_ROOT; };
+		798C9968239FFEA800C6EC1C /* OverlayTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OverlayTile.swift; path = "Quest Shared/OverlayTile.swift"; sourceTree = SOURCE_ROOT; };
 		79ACC7DD22AA5BE900AC3BF0 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
 		79ACC7E822AA5D5900AC3BF0 /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Tile.swift; path = "Quest Shared/Tile.swift"; sourceTree = SOURCE_ROOT; };
 		79ACC7EC22AA5D8700AC3BF0 /* EntityLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityLoader.swift; sourceTree = "<group>"; };
@@ -256,6 +260,7 @@
 				79ACC7E822AA5D5900AC3BF0 /* Tile.swift */,
 				7963DE45239D079300183DF2 /* Armor.swift */,
 				79742A65239E5AF6008504E8 /* Shield.swift */,
+				798C9968239FFEA800C6EC1C /* OverlayTile.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -575,6 +580,7 @@
 				7963DE2E239CC35F00183DF2 /* DefaultMenuConfiguration.swift in Sources */,
 				79ACC7ED22AA5D8700AC3BF0 /* EntityLoader.swift in Sources */,
 				7963DE42239CEC6A00183DF2 /* Skill.swift in Sources */,
+				798C9969239FFEA800C6EC1C /* OverlayTile.swift in Sources */,
 				7963DE32239CDE2600183DF2 /* Attribute.swift in Sources */,
 				79ACC7E922AA5D5900AC3BF0 /* Tile.swift in Sources */,
 				795746BB22A9029D00E04BEC /* Direction.swift in Sources */,
@@ -613,6 +619,7 @@
 				7963DE2F239CC35F00183DF2 /* DefaultMenuConfiguration.swift in Sources */,
 				79ACC7EE22AA5D8700AC3BF0 /* EntityLoader.swift in Sources */,
 				7963DE43239CEC6A00183DF2 /* Skill.swift in Sources */,
+				798C996A239FFEA800C6EC1C /* OverlayTile.swift in Sources */,
 				7963DE33239CDE2600183DF2 /* Attribute.swift in Sources */,
 				79ACC7EA22AA5D5900AC3BF0 /* Tile.swift in Sources */,
 				795746BC22A9029D00E04BEC /* Direction.swift in Sources */,
@@ -654,6 +661,7 @@
 				7963DE54239E3D2A00183DF2 /* ActionBar.swift in Sources */,
 				7963DE50239DD2D600183DF2 /* HitPoints.swift in Sources */,
 				797DBFC122AF752D00D0F8E7 /* Actor.swift in Sources */,
+				798C996B239FFEA800C6EC1C /* OverlayTile.swift in Sources */,
 				79742A6C239E60A7008504E8 /* Gender.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,7 +11,7 @@ import SpriteKit
 class GameScene: SKScene {
     private var lastUpdateTime: TimeInterval = 0
     
-    private static let tileSize = CGSize(width: 64, height: 64)    
+    private static let tileSize = CGSize(width: 64, height: 64)
     
     private var game: Game!
     
@@ -81,6 +81,7 @@ class GameScene: SKScene {
 
         self.actionBar = ActionBar(size: CGSize(width: self.size.width, height: 50), delegate: self)
         self.actionBar.position = CGPoint(x: 0, y: -(size.height / 2))
+        self.actionBar.zPosition = 1_000_000_000
 
         self.playerCamera = SKCameraNode()
         self.playerCamera.position = cameraPositionForCoord(self.game.hero.coord)

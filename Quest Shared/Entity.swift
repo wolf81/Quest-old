@@ -48,6 +48,7 @@ class Entity: JSONConstructable & Hashable {
     init(sprite: SKSpriteNode, coord: SIMD2<Int32>) {
         self.json = [:]
         self.coord = coord
+        self.sprite = sprite
     }
         
     func copy() -> Self {

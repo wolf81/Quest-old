@@ -15,6 +15,11 @@ protocol GameDelegate: class {
     func gameDidRemove(entity: Entity)
 }
 
+enum Mode {
+    case `default`
+    case selectTile
+}
+
 class Game {
     private var level: Level!
     
@@ -25,10 +30,10 @@ class Game {
     private(set) var hero: Hero
     
     private var isBusy: Bool = false
-    
-    private var actionTiles: [SKShapeNode] = []
-    
+        
     private var tileSize: CGSize = .zero
+    
+    private var mode: Mode = .default
         
     init(entityFactory: EntityFactory, hero: Hero) {
         self.entityFactory = entityFactory
@@ -40,7 +45,7 @@ class Game {
     private var activeActorIdx: Int = 0
     
     private var actors: [Actor] {
-        return entities.filter({ $0 is Actor }) as! [Actor]
+        return self.entities.filter({ $0 is Actor }) as! [Actor]
     }
     
     func getTileAt(coord: SIMD2<Int32>) -> Int? {
@@ -52,7 +57,7 @@ class Game {
     }
     
     func canMove(entity: Entity, toCoord coord: SIMD2<Int32>) -> Bool {
-        guard actors.filter({ $0.coord == coord}).first == nil else {
+        guard self.actors.filter({ $0.coord == coord}).first == nil else {
             return false
         }
 
@@ -64,31 +69,59 @@ class Game {
     }
     
     func showMovementTilesForHero() {
+        guard self.actors[self.activeActorIdx] == self.hero && self.isBusy == false else { return }
+
+        guard self.mode == .default else { return hideMovementTiles() }
+                
         let xMin = max(self.hero.coord.x - Int32(self.hero.speed), 0)
         let xMax = min(self.hero.coord.x + Int32(self.hero.speed), Int32(self.level.width))
         let yMin = max(self.hero.coord.y - Int32(self.hero.speed), 0)
         let yMax = min(self.hero.coord.y + Int32(self.hero.speed), Int32(self.level.height))
-                
-        var coords = Set<SIMD2<Int32>>()
+        
         for x in xMin ... xMax {
             for y in yMin ... yMax {
                 let coord = SIMD2<Int32>(x, y)
-                guard getTileAt(coord: coord) != Int.min else {
+
+                guard isInCircle(circle_x: Int(self.hero.coord.x), circle_y: Int(self.hero.coord.y), radius: self.hero.speed, x: Int(x), y: Int(y)) else {
+                    continue
+                }
+                
+                guard getTileAt(coord: coord) == 0 else {
                     continue
                 }
 
-                for actor in self.actors where actor.coord != coord {
-                    coords.insert(coord)
-                    
-                    let tile = SKShapeNode(rectOf: tileSize)
-                    
-                    tile.fillColor = SKColor.yellow.withAlphaComponent(0.5)
-                    tile.position = GameScene.pointForCoord(coord)
+                var tileColor: SKColor = .clear
+                
+                let actorCoords = self.actors.compactMap({ $0.coord })
+                switch coord {
+                case _ where self.hero.coord == coord: tileColor = .clear
+                case _ where actorCoords.contains(coord): tileColor = SKColor.red.withAlphaComponent(0.5)
+                default: tileColor = SKColor.green.withAlphaComponent(0.5)
                 }
+
+                let movementTile = OverlayTile(color: tileColor, coord: coord)
+                self.entities.append(movementTile)
+                self.delegate?.gameDidAdd(entity: movementTile)
             }
         }
         
-        print(coords)
+        self.mode = .selectTile
+    }
+    
+    func isInCircle(circle_x: Int, circle_y: Int, radius: Int, x: Int, y: Int) -> Bool {
+        return ((x - circle_x) * (x - circle_x) + (y - circle_y) * (y - circle_y)) <= (radius * radius)
+    }
+    
+    func hideMovementTiles() {
+        guard self.mode == .selectTile else { return }
+        
+        let tiles = self.entities.filter({ $0 is OverlayTile })
+
+        self.entities.removeAll(where: { tiles.contains($0 )})
+
+        tiles.forEach({ self.delegate?.gameDidRemove(entity: $0) })
+        
+        self.mode = .default
     }
     
     func start(levelIdx: Int = 0, tileSize: CGSize) {
@@ -97,10 +130,10 @@ class Game {
         
         var entities: [Entity] = []
                 
-        for y in (0 ..< level.height) {
-            for x in (0 ..< level.width) {
+        for y in (0 ..< self.level.height) {
+            for x in (0 ..< self.level.width) {
                 let coord = SIMD2<Int32>(Int32(x), Int32(y))
-                let tile = level.getTileAt(coord: coord)
+                let tile = self.level.getTileAt(coord: coord)
                 var entity: Entity?
 
                 switch tile {
@@ -148,7 +181,6 @@ class Game {
                     
                     print(monster)
                 }
-
             }
         }
         
@@ -189,6 +221,8 @@ class Game {
     }
     
     func movePlayer(direction: Direction) {
+        hideMovementTiles()
+                
         self.hero.move(direction: direction)
     }
     

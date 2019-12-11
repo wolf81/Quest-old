@@ -11,7 +11,7 @@ import SpriteKit
 
 struct Level {
     let width = 12
-    let height = 8        
+    let height = 12
     
     fileprivate let tiles: [Int]
     
