@@ -82,55 +82,79 @@ class Game {
         let height = yMax - yMin + 1
         
         // Create a graph for the visible area
+        var nodesToRemove: [GKGraphNode] = []
+
         let visibleAreaGraph = GKGridGraph(fromGridStartingAt: vector_int2(xMin, yMin), width: width, height: height, diagonalsAllowed: false)
-        for x in visibleAreaGraph.gridOrigin.x ... (visibleAreaGraph.gridOrigin.x + Int32(visibleAreaGraph.gridWidth)) {
-            for y in visibleAreaGraph.gridOrigin.y ... (visibleAreaGraph.gridOrigin.y + Int32(visibleAreaGraph.gridHeight)) {
+        let movementGraph = GKGridGraph(fromGridStartingAt: vector_int2(xMin, yMin), width: width, height: height, diagonalsAllowed: false)
+        for x in visibleAreaGraph.gridOrigin.x ..< (visibleAreaGraph.gridOrigin.x + Int32(visibleAreaGraph.gridWidth)) {
+            for y in visibleAreaGraph.gridOrigin.y ..< (visibleAreaGraph.gridOrigin.y + Int32(visibleAreaGraph.gridHeight)) {
                 let coord = SIMD2<Int32>(x, y)
 
                 if isInCircle(origin: self.hero.coord, radius: self.hero.speed, coord: coord) == false {
                     if let node = visibleAreaGraph.node(atGridPosition: coord) {
                         visibleAreaGraph.remove([node])
+                        if let movementGraphNode = movementGraph.node(atGridPosition: coord) {
+                            movementGraph.remove([movementGraphNode])
+                        }
                     }
                 }
-            }
-        }
-
-        // Create a copy of the visible area graph that we'll use for movement - this graph will remove all walls, enemies
-        let movementGraph = visibleAreaGraph.copy() as! GKGridGraph
-        
-        let actorCoords = self.actors.compactMap({ $0.coord })
-        for x in visibleAreaGraph.gridOrigin.x ..< (visibleAreaGraph.gridOrigin.x + Int32(visibleAreaGraph.gridWidth)) {
-            for y in visibleAreaGraph.gridOrigin.y ... (visibleAreaGraph.gridOrigin.y + Int32(visibleAreaGraph.gridHeight)) {
-                let coord = SIMD2<Int32>(x,y)
                 
-                if let node = visibleAreaGraph.node(atGridPosition: coord) {
-                    if actorCoords.contains(coord) || getTileAt(coord: coord) == 1 {
+                if getTileAt(coord: coord) == 1 {
+                    if let node = visibleAreaGraph.node(atGridPosition: coord) {
                         visibleAreaGraph.remove([node])
+
+                        if let movementGraphNode = movementGraph.node(atGridPosition: coord) {
+                            movementGraph.remove([movementGraphNode])
+                        }
                     }
                 }
             }
         }
-
-        // Remove unconnected nodes from the movement graph, we can't walk here
-        for node in visibleAreaGraph.nodes ?? [] {
-            if node.connectedNodes.count == 0 {
-                visibleAreaGraph.remove([node])
+        
+        let actorCoords = self.actors.filter({ $0.coord != hero.coord }).compactMap({ $0.coord })
+        for node in movementGraph.nodes ?? [] {
+            let nodeCoord = (node as! GKGridGraphNode).gridPosition
+            if actorCoords.contains(nodeCoord) {
+                nodesToRemove.append(node)
             }
         }
+        movementGraph.remove(nodesToRemove)
 
-        // Compare visible area graph and movement graph and show appropriate tile colors depending if a tile is reachable or not
-        for x in visibleAreaGraph.gridOrigin.x ..< visibleAreaGraph.gridOrigin.x + Int32(visibleAreaGraph.gridWidth) {
-            for y in visibleAreaGraph.gridOrigin.y ..< visibleAreaGraph.gridOrigin.y + Int32(visibleAreaGraph.gridHeight) {
-                let coord = SIMD2<Int32>(x,y)
-                if let _ = visibleAreaGraph.node(atGridPosition: coord) {
-                    let movementTile = OverlayTile(color: SKColor.green.withAlphaComponent(0.5), coord: coord)
-                    self.entities.append(movementTile)
-                    self.delegate?.gameDidAdd(entity: movementTile)
-                }
-
-//                if movementGraph.node(atGridPosition: vector_int2(x, y)) == nil {
-//
+        let heroNode = movementGraph.node(atGridPosition: self.hero.coord)!
+        for node in movementGraph.nodes ?? [] {
+            let pathNodes = heroNode.findPath(to: node)
+            if pathNodes.count == 0 {
+                let nodeCoord = (node as! GKGridGraphNode).gridPosition
+                print("could not find path to: \(nodeCoord.x).\(nodeCoord.y)")
+                movementGraph.remove([node])
+//            } else {
+//                var path = "\(self.hero.coord.x).\(self.hero.coord.y)"
+//                for pathNode in pathNodes {
+//                    let pathNodeCoord = (pathNode as! GKGridGraphNode).gridPosition
+//                    path += " -> \(pathNodeCoord.x).\(pathNodeCoord.y)"
 //                }
+//                print(path)
+            }
+        }
+        
+        // Compare visible area graph and movement graph and show appropriate tile colors depending if a tile is reachable or not
+        for x in visibleAreaGraph.gridOrigin.x ... visibleAreaGraph.gridOrigin.x + Int32(visibleAreaGraph.gridWidth) {
+            for y in visibleAreaGraph.gridOrigin.y ... visibleAreaGraph.gridOrigin.y + Int32(visibleAreaGraph.gridHeight) {
+                let coord = SIMD2<Int32>(x,y)
+                guard coord != self.hero.coord else { continue }
+                
+                if let _ = visibleAreaGraph.node(atGridPosition: coord) {
+                    if let _ = movementGraph.node(atGridPosition: coord) {
+                        let movementTile = OverlayTile(color: SKColor.green.withAlphaComponent(0.5), coord: coord)
+                        self.entities.append(movementTile)
+                        self.delegate?.gameDidAdd(entity: movementTile)
+                    }
+                    else {
+                        let movementTile = OverlayTile(color: SKColor.red.withAlphaComponent(0.5), coord: coord)
+                        self.entities.append(movementTile)
+                        self.delegate?.gameDidAdd(entity: movementTile)
+                    }
+                }
             }
         }
         
@@ -187,14 +211,30 @@ class Game {
                     print(self.hero)
                 }
 
-                if x == 8 && y == 5 {
+                if x == 4 && y == 1 {
                     let monster = try! entityFactory.newEntity(name: "Skeleton")
                     monster.coord = coord
                     entities.append(monster)
                     
                     print(monster)
                 }
-                
+
+                if x == 4 && y == 2 {
+                    let monster = try! entityFactory.newEntity(name: "Skeleton")
+                    monster.coord = coord
+                    entities.append(monster)
+                    
+                    print(monster)
+                }
+
+                if x == 5 && y == 3 {
+                    let monster = try! entityFactory.newEntity(name: "Skeleton")
+                    monster.coord = coord
+                    entities.append(monster)
+                    
+                    print(monster)
+                }
+
                 if x == 7 && y == 3 {
                     let monster = try! entityFactory.newEntity(name: "Skeleton")
                     monster.coord = coord
