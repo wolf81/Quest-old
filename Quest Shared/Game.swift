@@ -71,11 +71,11 @@ class Game {
     
     func movementGraph() -> GKGridGraph<GKGridGraphNode> {
         let xMin = max(self.hero.coord.x - Int32(self.hero.speed), 0)
-        let xMax = min(self.hero.coord.x + Int32(self.hero.speed), Int32(self.level.width))
-        let width = xMax - xMin + 1
+        let xMax = min(self.hero.coord.x + Int32(self.hero.speed + 1), Int32(self.level.width))
+        let width = xMax - xMin
         let yMin = max(self.hero.coord.y - Int32(self.hero.speed), 0)
-        let yMax = min(self.hero.coord.y + Int32(self.hero.speed), Int32(self.level.height))
-        let height = yMax - yMin + 1
+        let yMax = min(self.hero.coord.y + Int32(self.hero.speed + 1), Int32(self.level.height))
+        let height = yMax - yMin
         
         // Create a graph for the visible area
         let movementGraph = GKGridGraph(fromGridStartingAt: vector_int2(xMin, yMin), width: width, height: height, diagonalsAllowed: false)
@@ -121,11 +121,11 @@ class Game {
         guard self.mode == .default else { return hideMovementTiles() }
                 
         let xMin = max(self.hero.coord.x - Int32(self.hero.speed), 0)
-        let xMax = min(self.hero.coord.x + Int32(self.hero.speed), Int32(self.level.width))
-        let width = xMax - xMin + 1
+        let xMax = min(self.hero.coord.x + Int32(self.hero.speed + 1), Int32(self.level.width))
+        let width = xMax - xMin
         let yMin = max(self.hero.coord.y - Int32(self.hero.speed), 0)
-        let yMax = min(self.hero.coord.y + Int32(self.hero.speed), Int32(self.level.height))
-        let height = yMax - yMin + 1
+        let yMax = min(self.hero.coord.y + Int32(self.hero.speed + 1), Int32(self.level.height))
+        let height = yMax - yMin
         
         // Create a graph for the visible area
         let visibleAreaGraph = GKGridGraph(fromGridStartingAt: vector_int2(xMin, yMin), width: width, height: height, diagonalsAllowed: false)
@@ -143,7 +143,7 @@ class Game {
                         }
                     }
                 }
-                
+
                 if actorCoords.contains(coord) {
                     if let movementGraphNode = movementGraph.node(atGridPosition: coord) {
                         movementGraph.remove([movementGraphNode])
@@ -163,8 +163,8 @@ class Game {
         }
         
         // Compare visible area graph and movement graph and show appropriate tile colors depending if a tile is reachable or not
-        for x in visibleAreaGraph.gridOrigin.x ... visibleAreaGraph.gridOrigin.x + Int32(visibleAreaGraph.gridWidth) {
-            for y in visibleAreaGraph.gridOrigin.y ... visibleAreaGraph.gridOrigin.y + Int32(visibleAreaGraph.gridHeight) {
+        for x in visibleAreaGraph.gridOrigin.x ..< visibleAreaGraph.gridOrigin.x + Int32(visibleAreaGraph.gridWidth) {
+            for y in visibleAreaGraph.gridOrigin.y ..< visibleAreaGraph.gridOrigin.y + Int32(visibleAreaGraph.gridHeight) {
                 let coord = vector_int2(x,y)
                 guard coord != self.hero.coord else { continue }
                 
