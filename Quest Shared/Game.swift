@@ -69,6 +69,52 @@ class Game {
         return tile != 1
     }
     
+    func movementGraph() -> GKGridGraph<GKGridGraphNode> {
+        let xMin = max(self.hero.coord.x - Int32(self.hero.speed), 0)
+        let xMax = min(self.hero.coord.x + Int32(self.hero.speed), Int32(self.level.width))
+        let width = xMax - xMin + 1
+        let yMin = max(self.hero.coord.y - Int32(self.hero.speed), 0)
+        let yMax = min(self.hero.coord.y + Int32(self.hero.speed), Int32(self.level.height))
+        let height = yMax - yMin + 1
+        
+        // Create a graph for the visible area
+        let movementGraph = GKGridGraph(fromGridStartingAt: vector_int2(xMin, yMin), width: width, height: height, diagonalsAllowed: false)
+        let actorCoords = self.actors.filter({ $0.coord != self.hero.coord }).compactMap({ $0.coord })
+        for x in movementGraph.gridOrigin.x ..< (movementGraph.gridOrigin.x + Int32(movementGraph.gridWidth)) {
+            for y in movementGraph.gridOrigin.y ..< (movementGraph.gridOrigin.y + Int32(movementGraph.gridHeight)) {
+                let coord = vector_int2(x, y)
+
+                if isInRange(origin: self.hero.coord, radius: self.hero.speed, coord: coord) == false || getTileAt(coord: coord) == 1 {
+                    if let node = movementGraph.node(atGridPosition: coord) {
+                        movementGraph.remove([node])
+                    }
+                }
+                
+                if actorCoords.contains(coord) {
+                    if let movementGraphNode = movementGraph.node(atGridPosition: coord) {
+                        movementGraph.remove([movementGraphNode])
+                    }
+                }
+            }
+        }
+        
+        let heroNode = movementGraph.node(atGridPosition: self.hero.coord)!
+        for node in movementGraph.nodes ?? [] {
+            let pathNodes = heroNode.findPath(to: node)
+            if pathNodes.count == 0 {
+                let nodeCoord = (node as! GKGridGraphNode).gridPosition
+                print("could not find path to: \(nodeCoord.x).\(nodeCoord.y)")
+                movementGraph.remove([node])
+            }
+        }
+        
+        return movementGraph
+    }
+    
+    // TODO:
+    // - add function for making visibility graph
+    // - add function for making movement graph
+    
     func showMovementTilesForHero() {
         guard self.actors[self.activeActorIdx] == self.hero && self.isBusy == false else { return }
 
@@ -127,8 +173,7 @@ class Game {
                         let movementTile = OverlayTile(color: SKColor.green.withAlphaComponent(0.5), coord: coord, isBlocked: false)
                         self.entities.append(movementTile)
                         self.delegate?.gameDidAdd(entity: movementTile)
-                    }
-                    else {
+                    } else {
                         let movementTile = OverlayTile(color: SKColor.red.withAlphaComponent(0.5), coord: coord, isBlocked: true)
                         self.entities.append(movementTile)
                         self.delegate?.gameDidAdd(entity: movementTile)
@@ -285,7 +330,14 @@ class Game {
         let overlayTiles = self.entities.filter({ $0 is OverlayTile }) as! [OverlayTile]
         for overlayTile in overlayTiles {
             if overlayTile.coord == coord && overlayTile.isBlocked == false {
-                
+                let graph = movementGraph()
+                                
+                if let startNode = graph.node(atGridPosition: self.hero.coord), let endNode = graph.node(atGridPosition: overlayTile.coord) {
+                    let path = graph.findPath(from: startNode, to: endNode)
+                    print("path: \(path)")
+                    self.hero.move(to: coord)
+                    hideMovementTiles()
+                }
             }
         }
         

@@ -16,7 +16,7 @@ class OverlayTile: Entity {
         
         let sprite = SKSpriteNode(
             color: color,
-            size: CGSize(width: 64, height: 64)
+            size: CGSize(width: 48, height: 48)
         )
         sprite.zPosition = 1_000_000
                 

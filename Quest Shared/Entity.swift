@@ -34,10 +34,10 @@ class Entity: JSONConstructable & Hashable {
         // appropriate size already - the game scene controls the tile size
         
         guard let spriteName = self.json["sprite"] as? String else {
-            return SKSpriteNode(color: SKColor.lightGray, size: CGSize(width: 64, height: 64))
+            return SKSpriteNode(color: SKColor.lightGray, size: CGSize(width: 48, height: 48))
         }
         let texture = SKTexture(imageNamed: spriteName)        
-        return SKSpriteNode(texture: texture, size: CGSize(width: 64, height: 64))
+        return SKSpriteNode(texture: texture, size: CGSize(width: 48, height: 48))
     }()
     
     required init(json: [String: Any]) {

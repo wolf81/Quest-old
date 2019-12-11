@@ -34,6 +34,11 @@ class MoveAction: Action {
         super.init(actor: actor)
     }
     
+    init(actor: Actor, coords: [vector_int2]) {
+        self.toCoord = coords.last!
+        super.init(actor: actor)
+    }
+    
     override func perform(completion: @escaping () -> Void) -> Bool {
         guard self.actor.sprite.action(forKey: AnimationKey.move) == nil else {
             return false

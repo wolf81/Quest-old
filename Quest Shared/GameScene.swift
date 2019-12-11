@@ -12,7 +12,7 @@ import GameplayKit
 class GameScene: SKScene {
     private var lastUpdateTime: TimeInterval = 0
     
-    private static let tileSize = CGSize(width: 64, height: 64)
+    private static let tileSize = CGSize(width: 48, height: 48)
     
     private var game: Game!
     
