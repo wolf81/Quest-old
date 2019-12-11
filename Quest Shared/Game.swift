@@ -8,6 +8,7 @@
 
 import SpriteKit
 import DungeonBuilder
+import GameplayKit
 
 protocol GameDelegate: class {
     func gameDidMove(hero: Hero, to coord: SIMD2<Int32>, duration: TimeInterval)
@@ -75,41 +76,69 @@ class Game {
                 
         let xMin = max(self.hero.coord.x - Int32(self.hero.speed), 0)
         let xMax = min(self.hero.coord.x + Int32(self.hero.speed), Int32(self.level.width))
+        let width = xMax - xMin + 1
         let yMin = max(self.hero.coord.y - Int32(self.hero.speed), 0)
         let yMax = min(self.hero.coord.y + Int32(self.hero.speed), Int32(self.level.height))
+        let height = yMax - yMin + 1
         
-        for x in xMin ... xMax {
-            for y in yMin ... yMax {
+        // Create a graph for the visible area
+        let visibleAreaGraph = GKGridGraph(fromGridStartingAt: vector_int2(xMin, yMin), width: width, height: height, diagonalsAllowed: false)
+        for x in visibleAreaGraph.gridOrigin.x ... (visibleAreaGraph.gridOrigin.x + Int32(visibleAreaGraph.gridWidth)) {
+            for y in visibleAreaGraph.gridOrigin.y ... (visibleAreaGraph.gridOrigin.y + Int32(visibleAreaGraph.gridHeight)) {
                 let coord = SIMD2<Int32>(x, y)
 
-                guard isInCircle(circle_x: Int(self.hero.coord.x), circle_y: Int(self.hero.coord.y), radius: self.hero.speed, x: Int(x), y: Int(y)) else {
-                    continue
+                if isInCircle(origin: self.hero.coord, radius: self.hero.speed, coord: coord) == false {
+                    if let node = visibleAreaGraph.node(atGridPosition: coord) {
+                        visibleAreaGraph.remove([node])
+                    }
                 }
+            }
+        }
+
+        // Create a copy of the visible area graph that we'll use for movement - this graph will remove all walls, enemies
+        let movementGraph = visibleAreaGraph.copy() as! GKGridGraph
+        
+        let actorCoords = self.actors.compactMap({ $0.coord })
+        for x in visibleAreaGraph.gridOrigin.x ..< (visibleAreaGraph.gridOrigin.x + Int32(visibleAreaGraph.gridWidth)) {
+            for y in visibleAreaGraph.gridOrigin.y ... (visibleAreaGraph.gridOrigin.y + Int32(visibleAreaGraph.gridHeight)) {
+                let coord = SIMD2<Int32>(x,y)
                 
-                guard getTileAt(coord: coord) == 0 else {
-                    continue
+                if let node = visibleAreaGraph.node(atGridPosition: coord) {
+                    if actorCoords.contains(coord) || getTileAt(coord: coord) == 1 {
+                        visibleAreaGraph.remove([node])
+                    }
+                }
+            }
+        }
+
+        // Remove unconnected nodes from the movement graph, we can't walk here
+        for node in visibleAreaGraph.nodes ?? [] {
+            if node.connectedNodes.count == 0 {
+                visibleAreaGraph.remove([node])
+            }
+        }
+
+        // Compare visible area graph and movement graph and show appropriate tile colors depending if a tile is reachable or not
+        for x in visibleAreaGraph.gridOrigin.x ..< visibleAreaGraph.gridOrigin.x + Int32(visibleAreaGraph.gridWidth) {
+            for y in visibleAreaGraph.gridOrigin.y ..< visibleAreaGraph.gridOrigin.y + Int32(visibleAreaGraph.gridHeight) {
+                let coord = SIMD2<Int32>(x,y)
+                if let _ = visibleAreaGraph.node(atGridPosition: coord) {
+                    let movementTile = OverlayTile(color: SKColor.green.withAlphaComponent(0.5), coord: coord)
+                    self.entities.append(movementTile)
+                    self.delegate?.gameDidAdd(entity: movementTile)
                 }
 
-                var tileColor: SKColor = .clear
-                
-                let actorCoords = self.actors.compactMap({ $0.coord })
-                switch coord {
-                case _ where self.hero.coord == coord: tileColor = .clear
-                case _ where actorCoords.contains(coord): tileColor = SKColor.red.withAlphaComponent(0.5)
-                default: tileColor = SKColor.green.withAlphaComponent(0.5)
-                }
-
-                let movementTile = OverlayTile(color: tileColor, coord: coord)
-                self.entities.append(movementTile)
-                self.delegate?.gameDidAdd(entity: movementTile)
+//                if movementGraph.node(atGridPosition: vector_int2(x, y)) == nil {
+//
+//                }
             }
         }
         
         self.mode = .selectTile
     }
     
-    func isInCircle(circle_x: Int, circle_y: Int, radius: Int, x: Int, y: Int) -> Bool {
-        return ((x - circle_x) * (x - circle_x) + (y - circle_y) * (y - circle_y)) <= (radius * radius)
+    func isInCircle(origin: SIMD2<Int32>, radius: Int, coord: SIMD2<Int32>) -> Bool {
+        return ((coord.x - origin.x) * (coord.x - origin.x) + (coord.y - origin.y) * (coord.y - origin.y)) <= (radius * radius)
     }
     
     func hideMovementTiles() {

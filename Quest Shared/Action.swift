@@ -46,8 +46,6 @@ class MoveAction: Action {
             SKAction.move(to: position, duration: self.duration),
             SKAction.run {
                 self.actor.coord = self.toCoord
-            },
-            SKAction.run {
                 completion()
             }
         ])

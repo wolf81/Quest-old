@@ -14,7 +14,7 @@ class Hero: Actor, CustomStringConvertible {
     let role: Role
     let level: Int = 1
     
-    override var speed: Int { return 6 }
+    override var speed: Int { return 4 }
     
     private var direction: Direction?
 
