@@ -1,0 +1,7 @@
+{
+    "name": "Shortbow",
+    
+    "AT": 0,
+    "damage": "1d6",
+    "range": 12
+}

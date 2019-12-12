@@ -8,7 +8,7 @@
 	"HD": "1d12",
 	"AC": 15,
     "EQ": {
-        "weapon": "Battleaxe +3",
+        "melee_weapon": "Battleaxe +3",
     },
     
     "skills": {

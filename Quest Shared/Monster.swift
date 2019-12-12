@@ -7,13 +7,14 @@
 //
 
 import Foundation
+import GameplayKit
 
 class Monster: Actor, CustomStringConvertible {
     let hitDie: HitDie
                     
-    override var attackBonus: Int { return self.equipment.weapon.attack }
+    override var meleeAttackBonus: Int { return self.equipment.meleeWeapon.attack }
     
-    override func attackDamage() -> Int { return self.equipment.weapon.damage.randomValue }
+    override func getMeleeAttackDamage() -> Int { return self.equipment.meleeWeapon.damage.randomValue }
 
     required init(json: [String : Any]) {
         let hitDieString = json["HD"] as! String
@@ -42,8 +43,8 @@ class Monster: Actor, CustomStringConvertible {
             return DieAction(actor: self)
         }
         
-        let directions: [Direction] = [.up, .down, .left, .right]
-        let randomDirection = directions.randomElement()
+//        let directions: [Direction] = [.up, .down, .left, .right]
+//        let randomDirection = directions.randomElement()
         
         // If hero is in melee range, perform melee attack
         let xRange = self.coord.x - 1 ... self.coord.x + 1
@@ -52,11 +53,29 @@ class Monster: Actor, CustomStringConvertible {
             return MeleeAttackAction(actor: self, targetActor: state.hero)
         }
                 
-        // Move in random direction
-        let toCoord = self.coord &+ randomDirection!.coord
-        if state.canMove(entity: self, toCoord: toCoord) {
-            return MoveAction(actor: self, toCoord: toCoord)
+        if state.isHeroVisible(for: self) {
+            let actorCoords = state.actors.filter({ $0.coord != self.coord && $0.coord != state.hero.coord }).compactMap({ $0.coord })
+            let movementGraph = state.getMovementGraph(for: self, range: self.sight, excludedCoords: actorCoords)
+            if let actorNode = movementGraph.node(atGridPosition: self.coord), let heroNode = movementGraph.node(atGridPosition: state.hero.coord)  {
+                var pathNodes = movementGraph.findPath(from: actorNode, to: heroNode) as! [GKGridGraphNode]
+                if pathNodes.count > 0 {
+                    pathNodes.removeLast()
+
+                    if pathNodes.count > self.speed {
+                        pathNodes.removeLast(pathNodes.count - self.speed)
+                    }
+                    
+                    let path = pathNodes.compactMap({ $0.gridPosition })
+                    return MoveAction(actor: self, coords: path)
+                }
+            }
         }
+        
+//        // Move in random direction
+//        let toCoord = self.coord &+ randomDirection!.coord
+//        if state.canMove(entity: self, toCoord: toCoord) {
+//            return MoveAction(actor: self, toCoord: toCoord)
+//        }
 
         return IdleAction(actor: self)
     }

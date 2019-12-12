@@ -11,18 +11,21 @@ import SpriteKit
 class Weapon: Entity, CustomStringConvertible {
     let attack: Int
     let damage: HitDie
+    let range: Int
     
     required init(json: [String : Any]) {
-        let attack = json["AT"] as? Int ?? 0
-        self.attack = attack
-        
+        self.attack = json["AT"] as? Int ?? 0
+        self.range = json["range"] as? Int ?? 1
+
         let damage = json["damage"] as! String
         self.damage = HitDie(rawValue: damage)!
-        
+                
         super.init(json: json)
     }
     
-    static var none: Weapon { return self.init(json: ["damage": "1d3"]) }
+    static var none: Weapon { return self.init(json: ["damage": "0d0"]) }
+    
+    static var fists: Weapon { return self.init(json: ["damage": "1d3"]) }
     
     var description: String {
         return "{ attack: \(attack), damage: \(damage) }"

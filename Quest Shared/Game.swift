@@ -18,7 +18,9 @@ protocol GameDelegate: class {
 
 enum Mode {
     case `default`
-    case selectTile
+    case selectDestinationTile
+    case selectMeleeTarget
+    case selectRangedTarget
 }
 
 class Game {
@@ -45,7 +47,7 @@ class Game {
     
     private var activeActorIdx: Int = 0
     
-    private var actors: [Actor] {
+    var actors: [Actor] {
         return self.entities.filter({ $0 is Actor }) as! [Actor]
     }
     
@@ -69,28 +71,27 @@ class Game {
         return tile != 1
     }
     
-    func getMovementGraph(for actor: Actor) -> GKGridGraph<GKGridGraphNode> {
-        let xMin = max(actor.coord.x - Int32(actor.speed), 0)
-        let xMax = min(actor.coord.x + Int32(actor.speed + 1), Int32(self.level.width))
+    func getMovementGraph(for actor: Actor, range: Int, excludedCoords: [vector_int2]) -> GKGridGraph<GKGridGraphNode> {
+        let xMin = max(actor.coord.x - Int32(range), 0)
+        let xMax = min(actor.coord.x + Int32(range + 1), Int32(self.level.width))
         let width = xMax - xMin
-        let yMin = max(actor.coord.y - Int32(actor.speed), 0)
-        let yMax = min(actor.coord.y + Int32(actor.speed + 1), Int32(self.level.height))
+        let yMin = max(actor.coord.y - Int32(range), 0)
+        let yMax = min(actor.coord.y + Int32(range + 1), Int32(self.level.height))
         let height = yMax - yMin
         
         // Create a graph for the visible area
         let movementGraph = GKGridGraph(fromGridStartingAt: vector_int2(xMin, yMin), width: width, height: height, diagonalsAllowed: false)
-        let actorCoords = self.actors.filter({ $0.coord != actor.coord }).compactMap({ $0.coord })
         for x in movementGraph.gridOrigin.x ..< (movementGraph.gridOrigin.x + Int32(movementGraph.gridWidth)) {
             for y in movementGraph.gridOrigin.y ..< (movementGraph.gridOrigin.y + Int32(movementGraph.gridHeight)) {
                 let coord = vector_int2(x, y)
 
-                if isInRange(origin: actor.coord, radius: actor.speed, coord: coord) == false || getTileAt(coord: coord) == 1 {
+                if isInRange(origin: actor.coord, radius: range, coord: coord) == false || getTileAt(coord: coord) == 1 {
                     if let node = movementGraph.node(atGridPosition: coord) {
                         movementGraph.remove([node])
                     }
                 }
                 
-                if actorCoords.contains(coord) {
+                if excludedCoords.contains(coord) {
                     if let movementGraphNode = movementGraph.node(atGridPosition: coord) {
                         movementGraph.remove([movementGraphNode])
                     }
@@ -98,9 +99,9 @@ class Game {
             }
         }
         
-        let heroNode = movementGraph.node(atGridPosition: actor.coord)!
+        let actorNode = movementGraph.node(atGridPosition: actor.coord)!
         for node in movementGraph.nodes ?? [] {
-            let pathNodes = heroNode.findPath(to: node)
+            let pathNodes = actorNode.findPath(to: node)
             if pathNodes.count == 0 {
                 let nodeCoord = (node as! GKGridGraphNode).gridPosition
                 print("could not find path to: \(nodeCoord.x).\(nodeCoord.y)")
@@ -111,12 +112,21 @@ class Game {
         return movementGraph
     }
     
+    func isHeroVisible(for actor: Actor) -> Bool {
+        guard self.hero.isAlive else { return false }
+        
+        let sightRange = Int32(actor.sight)
+        let xRange = actor.coord.x - sightRange ... actor.coord.x + sightRange
+        let yRange = actor.coord.y - sightRange ... actor.coord.y + sightRange
+        return xRange.contains(self.hero.coord.x) && yRange.contains(self.hero.coord.y)
+    }
+    
     func getVisiblityGraph(for actor: Actor) -> GKGridGraph<GKGridGraphNode> {
-        let xMin = max(self.hero.coord.x - Int32(self.hero.speed), 0)
-        let xMax = min(self.hero.coord.x + Int32(self.hero.speed + 1), Int32(self.level.width))
+        let xMin = max(actor.coord.x - Int32(actor.speed), 0)
+        let xMax = min(actor.coord.x + Int32(actor.speed + 1), Int32(self.level.width))
         let width = xMax - xMin
-        let yMin = max(self.hero.coord.y - Int32(self.hero.speed), 0)
-        let yMax = min(self.hero.coord.y + Int32(self.hero.speed + 1), Int32(self.level.height))
+        let yMin = max(actor.coord.y - Int32(actor.speed), 0)
+        let yMax = min(actor.coord.y + Int32(actor.speed + 1), Int32(self.level.height))
         let height = yMax - yMin
         
         // Create a graph for the visible area
@@ -139,9 +149,10 @@ class Game {
     func showMovementTilesForHero() {
         guard self.actors[self.activeActorIdx] == self.hero && self.isBusy == false else { return }
 
-        if mode == .selectTile { hideSelectionTiles() }
+        if mode != .default { hideSelectionTiles() }
         
-        let movementGraph = getMovementGraph(for: self.hero)
+        let actorCoords = self.actors.filter({ $0.coord != self.hero.coord }).compactMap({ $0.coord })
+        let movementGraph = getMovementGraph(for: self.hero, range: self.hero.speed, excludedCoords: actorCoords)
         let visibleAreaGraph = getVisiblityGraph(for: self.hero)
         
         // Compare visible area graph and movement graph and show appropriate tile colors depending if a tile is reachable or not
@@ -164,13 +175,34 @@ class Game {
             }
         }
         
-        self.mode = .selectTile
+        self.mode = .selectDestinationTile
     }
     
-    func showAttackTilesForHero() {
+    func showRangedAttackTilesForHero() {
         guard self.actors[self.activeActorIdx] == self.hero && self.isBusy == false else { return }
 
-        if mode == .selectTile { hideSelectionTiles() }
+        if mode != .default { hideSelectionTiles() }
+
+        let attackRange = Int32(self.hero.equipment.rangedWeapon.range)
+        let xRange = self.hero.coord.x - attackRange ... self.hero.coord.x + attackRange
+        let yRange = self.hero.coord.y - attackRange ... self.hero.coord.y + attackRange
+        
+        let actorCoords = self.actors.filter({ $0 != self.hero }).compactMap({ $0.coord })
+        for actorCoord in actorCoords {
+            if xRange.contains(actorCoord.x) && yRange.contains(actorCoord.y) {
+                let movementTile = OverlayTile(color: SKColor.orange.withAlphaComponent(0.4), coord: actorCoord, isBlocked: true)
+                self.entities.append(movementTile)
+                self.delegate?.gameDidAdd(entity: movementTile)
+            }
+        }
+        
+        self.mode = .selectRangedTarget
+    }
+    
+    func showMeleeAttackTilesForHero() {
+        guard self.actors[self.activeActorIdx] == self.hero && self.isBusy == false else { return }
+
+        if mode != .default { hideSelectionTiles() }
 
         let xRange = self.hero.coord.x - 1 ... self.hero.coord.x + 1
         let yRange = self.hero.coord.y - 1 ... self.hero.coord.y + 1
@@ -184,11 +216,11 @@ class Game {
             }
         }
         
-        self.mode = .selectTile
+        self.mode = .selectMeleeTarget
     }
         
     func hideSelectionTiles() {
-        guard self.mode == .selectTile else { return }
+        guard self.mode != .default else { return }
         
         let tiles = self.entities.filter({ $0 is OverlayTile })
 
@@ -294,27 +326,33 @@ class Game {
     }
     
     public func handleInteraction(at coord: vector_int2) {
-        guard self.mode == .selectTile else { return }
-        
+        guard self.mode != .default else { return }
+
         let overlayTiles = self.entities.filter({ $0 is OverlayTile }) as! [OverlayTile]
-        for overlayTile in overlayTiles {
-            if overlayTile.coord == coord {
-                if overlayTile.isBlocked == false {
-                    let graph = getMovementGraph(for: self.hero)
-                                    
-                    if let startNode = graph.node(atGridPosition: self.hero.coord), let endNode = graph.node(atGridPosition: overlayTile.coord) {
-                        let nodes = graph.findPath(from: startNode, to: endNode) as! [GKGridGraphNode]
-                        let path = nodes.compactMap({ $0.gridPosition })
-                        self.hero.move(path: path)
-                    }
-                } else {
-                    if let actor = getActorAt(coord: coord) {
-                        self.hero.attackMelee(actor: actor)
-                    }
+
+        switch self.mode {
+        case .selectDestinationTile:
+            if let destinationTile = overlayTiles.filter({ $0.coord == coord }).first, destinationTile.isBlocked == false {
+                let actorCoords = self.actors.filter({ $0.coord != self.hero.coord }).compactMap({ $0.coord })
+                let graph = getMovementGraph(for: self.hero, range: self.hero.speed, excludedCoords: actorCoords)
+                                
+                if let startNode = graph.node(atGridPosition: self.hero.coord), let endNode = graph.node(atGridPosition: destinationTile.coord) {
+                    let nodes = graph.findPath(from: startNode, to: endNode) as! [GKGridGraphNode]
+                    let path = nodes.compactMap({ $0.gridPosition })
+                    self.hero.move(path: path)
                 }
-                
-                hideSelectionTiles()
             }
+        case .selectMeleeTarget:
+            if let targetActor = self.actors.filter({ $0.coord == coord }).first {
+                self.hero.attackMelee(actor: targetActor)
+            }
+        case .selectRangedTarget:
+            if let targetActor = self.actors.filter({ $0.coord == coord }).first {
+                self.hero.attackRanged(actor: targetActor)
+            }
+        case .default: break
         }
+
+        hideSelectionTiles()
     }
 }

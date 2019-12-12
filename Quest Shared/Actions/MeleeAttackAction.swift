@@ -21,13 +21,13 @@ class MeleeAttackAction: Action {
     }
     
     override func perform(completion: @escaping () -> Void) -> Bool {
-        let attackRoll = HitDie.d20(1, 0).randomValue + self.actor.attackBonus
+        let attackRoll = HitDie.d20(1, 0).randomValue + self.actor.meleeAttackBonus
         let armorClass = targetActor.armorClass
 
         var status = "\tAT \(attackRoll) vs AC \(armorClass): "
 
         if attackRoll - armorClass > 0 {
-            let damage = self.actor.attackDamage()
+            let damage = self.actor.getMeleeAttackDamage()
             status += "hit for \(damage) damage"
             self.targetActor.hitPoints.remove(hitPoints: damage)
         }

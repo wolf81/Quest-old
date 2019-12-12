@@ -11,8 +11,8 @@ import SpriteKit
 protocol ActionBarDelegate: class {
     func actionBarDidSelectMove()
     func actionBarDidSelectDefend()
-    func actionBarDidSelectAttackMelee()
-    func actionBarDidSelectAttackRanged()
+    func actionBarDidSelectMeleeAttack()
+    func actionBarDidSelectRangeAttack()
     func actionBarDidSelectCastSpell()
 }
 
@@ -21,6 +21,7 @@ class ActionBar: SKShapeNode {
     
     private var moveButton: ActionBarButton!
     private var meleeAttackButton: ActionBarButton!
+    private var rangeAttackButton: ActionBarButton!
     
     weak var delegate: ActionBarDelegate?
     
@@ -45,11 +46,11 @@ class ActionBar: SKShapeNode {
         let buttonSize = CGSize(width: size.height, height: size.height)
         self.moveButton = ActionBarButton(size: buttonSize, color: SKColor.green)
         self.meleeAttackButton = ActionBarButton(size: buttonSize, color: SKColor.red)
-        let attackRangedButton = ActionBarButton(size: buttonSize, color: SKColor.orange)
+        self.rangeAttackButton = ActionBarButton(size: buttonSize, color: SKColor.orange)
         let castSpellButton = ActionBarButton(size: buttonSize, color: SKColor.blue)
         let defendButton = ActionBarButton(size: buttonSize, color: SKColor.darkGray)
 
-        let buttons: [ActionBarButton] = [self.moveButton, self.meleeAttackButton, attackRangedButton, castSpellButton, defendButton]
+        let buttons: [ActionBarButton] = [self.moveButton, self.meleeAttackButton, self.rangeAttackButton, castSpellButton, defendButton]
         var buttonX = -(CGFloat(buttons.count - 1) * buttonSize.width / 2)
         for button in buttons {
             button.position = CGPoint(x: buttonX, y: 0)
@@ -68,12 +69,15 @@ extension ActionBar {
         print("handle mouse up in action bar")
         
         let location = event.location(in: self)
-        if self.moveButton.contains(location) {
+        switch location {
+        case _ where self.moveButton.contains(location):
             self.delegate?.actionBarDidSelectMove()
-        } else if self.meleeAttackButton.contains(location) {
-            self.delegate?.actionBarDidSelectAttackMelee()
+        case _ where self.meleeAttackButton.contains(location):
+            self.delegate?.actionBarDidSelectMeleeAttack()
+        case _ where self.rangeAttackButton.contains(location):
+            self.delegate?.actionBarDidSelectRangeAttack()
+        default: break
         }
-        
     }
 }
 

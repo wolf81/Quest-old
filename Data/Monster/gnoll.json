@@ -5,6 +5,6 @@
 	"HD": "2d8+2",
 	"AC": 15,
     "EQ": {
-        "weapon": "Battleaxe +3",
+        "weaponMelee": "Battleaxe +3",
     }
 }

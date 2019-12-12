@@ -145,17 +145,15 @@ extension GameScene: ActionBarDelegate {
     }
     
     func actionBarDidSelectMove() {
-        print("move")
         self.game.showMovementTilesForHero()
     }
     
-    func actionBarDidSelectAttackMelee() {
-        print("attack melee")
-        self.game.showAttackTilesForHero()
+    func actionBarDidSelectMeleeAttack() {
+        self.game.showMeleeAttackTilesForHero()
     }
-    
-    func actionBarDidSelectAttackRanged() {
-        print("attack ranged")
+
+    func actionBarDidSelectRangeAttack() {
+        self.game.showRangedAttackTilesForHero()
     }
     
     func actionBarDidSelectCastSpell() {

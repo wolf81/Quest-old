@@ -9,6 +9,7 @@
 import Foundation
 
 enum HitDie : RawRepresentable, CustomStringConvertible {
+    case d0
     case d3(Int, Int)
     case d4(Int, Int)
     case d6(Int, Int)
@@ -20,6 +21,7 @@ enum HitDie : RawRepresentable, CustomStringConvertible {
     var dieCount: Int {
         get {
             switch self {
+            case .d0: return 0
             case .d3(let dieCount, _): return dieCount
             case .d4(let dieCount, _): return dieCount
             case .d6(let dieCount, _): return dieCount
@@ -33,6 +35,7 @@ enum HitDie : RawRepresentable, CustomStringConvertible {
     
     var minValue: Int {
         switch self {
+        case .d0: return 0
         case .d3(let dieCount, let bonus): return dieCount + bonus
         case .d4(let dieCount, let bonus): return dieCount + bonus
         case .d6(let dieCount, let bonus): return dieCount + bonus
@@ -45,6 +48,7 @@ enum HitDie : RawRepresentable, CustomStringConvertible {
 
     var maxValue: Int {
         switch self {
+        case .d0: return 0
         case .d3(let dieCount, let bonus): return 4 * dieCount + bonus
         case .d4(let dieCount, let bonus): return 4 * dieCount + bonus
         case .d6(let dieCount, let bonus): return 6 * dieCount + bonus
@@ -66,6 +70,7 @@ enum HitDie : RawRepresentable, CustomStringConvertible {
     var rawValue: String {
         var description = ""
         switch self {
+        case .d0: return "d0"
         case .d3(let dieCount, let bonus): description = "\(dieCount)d4+\(bonus)"
         case .d4(let dieCount, let bonus): description = "\(dieCount)d4+\(bonus)"
         case .d6(let dieCount, let bonus): description = "\(dieCount)d6+\(bonus)"
@@ -97,6 +102,7 @@ enum HitDie : RawRepresentable, CustomStringConvertible {
         guard let dieCount = Int(strings.first!), let dieValue = Int(strings.last!) else { return nil }
         
         switch dieValue {
+        case 0: self = HitDie.d0
         case 3: self = HitDie.d3(dieCount, bonus)
         case 4: self = HitDie.d4(dieCount, bonus)
         case 6: self = HitDie.d6(dieCount, bonus)

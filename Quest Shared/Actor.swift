@@ -17,8 +17,10 @@ class Actor: Entity {
     
     private(set) var equipment: Equipment
     
-    private(set) var attackBonus: Int = 0
-    
+    private(set) var meleeAttackBonus: Int = 0
+
+    private(set) var rangedAttackBonus: Int = 0
+
     private(set) var armorClass: Int = 0
     
     private(set) var speed: Int = 1
@@ -59,8 +61,10 @@ class Actor: Entity {
         self.sprite.zPosition = 100
     }
     
-    func attackDamage() -> Int { return self.equipment.weapon.damage.randomValue }
-     
+    func getMeleeAttackDamage() -> Int { return self.equipment.meleeWeapon.damage.randomValue }
+
+    func getRangedAttackDamage() -> Int { return self.equipment.rangedWeapon.damage.randomValue }
+
     func getAction(state: Game) -> Action? {
         defer { self.action = nil }
         

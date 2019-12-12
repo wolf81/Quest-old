@@ -21,9 +21,20 @@ class Hero: Actor, CustomStringConvertible {
     private var path: [vector_int2]?
     
     private var meleeTarget: Actor?
+    
+    private var rangedTarget: Actor?
 
-    override var attackBonus: Int {
-        var attackBonus = self.attributes.strength.bonus + self.equipment.weapon.attack
+    override var meleeAttackBonus: Int {
+        var attackBonus = self.attributes.strength.bonus + self.equipment.meleeWeapon.attack
+        if self.role == .fighter {
+            attackBonus += 1
+            attackBonus += self.level % 5
+        }
+        return attackBonus
+    }
+    
+    override var rangedAttackBonus: Int {
+        var attackBonus = self.attributes.dexterity.bonus + self.equipment.rangedWeapon.attack
         if self.role == .fighter {
             attackBonus += 1
             attackBonus += self.level % 5
@@ -31,7 +42,9 @@ class Hero: Actor, CustomStringConvertible {
         return attackBonus
     }
         
-    override func attackDamage() -> Int { self.attributes.strength.bonus + self.equipment.weapon.damage.randomValue }
+    override func getMeleeAttackDamage() -> Int { self.attributes.strength.bonus + self.equipment.meleeWeapon.damage.randomValue }
+    
+    override func getRangedAttackDamage() -> Int { self.equipment.rangedWeapon.damage.randomValue }
     
     override var armorClass: Int { return 10 + attributes.dexterity.bonus + self.equipment.armor.armorClass + self.equipment.shield.armorClass }
     
@@ -66,6 +79,10 @@ class Hero: Actor, CustomStringConvertible {
         self.meleeTarget = actor
     }
     
+    func attackRanged(actor: Actor) {
+        self.rangedTarget = actor
+    }
+    
     var description: String {
         return """
         \(self.name)
@@ -77,9 +94,10 @@ class Hero: Actor, CustomStringConvertible {
     
     override func getAction(state: Game) -> Action? {
         defer {
-            self.direction = nil
             self.path = nil
+            self.direction = nil
             self.meleeTarget = nil
+            self.rangedTarget = nil
         }
 
         if self.isAlive == false {
@@ -100,8 +118,10 @@ class Hero: Actor, CustomStringConvertible {
             return MoveAction(actor: self, coords: path)
         } else if let meleeTarget = self.meleeTarget {
             return MeleeAttackAction(actor: self, targetActor: meleeTarget)
+        } else if let rangedTarget = self.rangedTarget {
+            return RangedAttackAction(actor: self, targetActor: rangedTarget)
         }
-                            
+                             
         return nil
     }    
 }

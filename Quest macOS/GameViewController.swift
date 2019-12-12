@@ -68,9 +68,10 @@ extension GameViewController: ChooseAttributesMenuDelegate {
             try EntityLoader.loadEntities(for: entityFactory)
 
             let armor = try! entityFactory.newEntity(name: "Studded Leather") as! Armor
-            let weapon = try! entityFactory.newEntity(name: "Longsword") as! Weapon
+            let meleeWeapon = try! entityFactory.newEntity(name: "Longsword") as! Weapon
+            let rangedWeapon = try! entityFactory.newEntity(name: "Shortbow") as! Weapon
             let shield = try! entityFactory.newEntity(name: "Buckler") as! Shield
-            let equipment = Equipment(armor: armor, weapon: weapon, shield: shield)
+            let equipment = Equipment(armor: armor, meleeWeapon: meleeWeapon, rangedWeapon: rangedWeapon, shield: shield)
 
             self.heroBuilder = self.heroBuilder
                 .with(attributes: attributes)
