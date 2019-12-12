@@ -20,6 +20,7 @@ class ActionBar: SKShapeNode {
     var size: CGSize { return self.path!.boundingBox.size }
     
     private var moveButton: ActionBarButton!
+    private var meleeAttackButton: ActionBarButton!
     
     weak var delegate: ActionBarDelegate?
     
@@ -43,12 +44,12 @@ class ActionBar: SKShapeNode {
     private func addButtons() {
         let buttonSize = CGSize(width: size.height, height: size.height)
         self.moveButton = ActionBarButton(size: buttonSize, color: SKColor.green)
-        let attackMeleeButton = ActionBarButton(size: buttonSize, color: SKColor.red)
+        self.meleeAttackButton = ActionBarButton(size: buttonSize, color: SKColor.red)
         let attackRangedButton = ActionBarButton(size: buttonSize, color: SKColor.orange)
         let castSpellButton = ActionBarButton(size: buttonSize, color: SKColor.blue)
         let defendButton = ActionBarButton(size: buttonSize, color: SKColor.darkGray)
 
-        let buttons: [ActionBarButton] = [self.moveButton, attackMeleeButton, attackRangedButton, castSpellButton, defendButton]
+        let buttons: [ActionBarButton] = [self.moveButton, self.meleeAttackButton, attackRangedButton, castSpellButton, defendButton]
         var buttonX = -(CGFloat(buttons.count - 1) * buttonSize.width / 2)
         for button in buttons {
             button.position = CGPoint(x: buttonX, y: 0)
@@ -69,7 +70,10 @@ extension ActionBar {
         let location = event.location(in: self)
         if self.moveButton.contains(location) {
             self.delegate?.actionBarDidSelectMove()
+        } else if self.meleeAttackButton.contains(location) {
+            self.delegate?.actionBarDidSelectAttackMelee()
         }
+        
     }
 }
 

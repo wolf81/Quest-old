@@ -139,7 +139,7 @@ class Game {
     func showMovementTilesForHero() {
         guard self.actors[self.activeActorIdx] == self.hero && self.isBusy == false else { return }
 
-        guard self.mode == .default else { return hideMovementTiles() }
+        guard self.mode == .default else { return hideSelectionTiles() }
         
         let movementGraph = getMovementGraph(for: self.hero)
         let visibleAreaGraph = getVisiblityGraph(for: self.hero)
@@ -152,11 +152,11 @@ class Game {
                 
                 if let _ = visibleAreaGraph.node(atGridPosition: coord) {
                     if let _ = movementGraph.node(atGridPosition: coord) {
-                        let movementTile = OverlayTile(color: SKColor.green.withAlphaComponent(0.5), coord: coord, isBlocked: false)
+                        let movementTile = OverlayTile(color: SKColor.green.withAlphaComponent(0.4), coord: coord, isBlocked: false)
                         self.entities.append(movementTile)
                         self.delegate?.gameDidAdd(entity: movementTile)
                     } else {
-                        let movementTile = OverlayTile(color: SKColor.red.withAlphaComponent(0.5), coord: coord, isBlocked: true)
+                        let movementTile = OverlayTile(color: SKColor.green.withAlphaComponent(0.1), coord: coord, isBlocked: true)
                         self.entities.append(movementTile)
                         self.delegate?.gameDidAdd(entity: movementTile)
                     }
@@ -166,8 +166,28 @@ class Game {
         
         self.mode = .selectTile
     }
+    
+    func showAttackTilesForHero() {
+        guard self.actors[self.activeActorIdx] == self.hero && self.isBusy == false else { return }
+
+        guard self.mode == .default else { return hideSelectionTiles() }
+
+        let xRange = self.hero.coord.x - 1 ... self.hero.coord.x + 1
+        let yRange = self.hero.coord.y - 1 ... self.hero.coord.y + 1
         
-    func hideMovementTiles() {
+        let actorCoords = self.actors.filter({ $0 != self.hero }).compactMap({ $0.coord })
+        for actorCoord in actorCoords {
+            if xRange.contains(actorCoord.x) && yRange.contains(actorCoord.y) {
+                let movementTile = OverlayTile(color: SKColor.red.withAlphaComponent(0.4), coord: actorCoord, isBlocked: true)
+                self.entities.append(movementTile)
+                self.delegate?.gameDidAdd(entity: movementTile)
+            }
+        }
+        
+        self.mode = .selectTile
+    }
+        
+    func hideSelectionTiles() {
         guard self.mode == .selectTile else { return }
         
         let tiles = self.entities.filter({ $0 is OverlayTile })
@@ -187,7 +207,7 @@ class Game {
                 
         for y in (0 ..< self.level.height) {
             for x in (0 ..< self.level.width) {
-                let coord = SIMD2<Int32>(Int32(x), Int32(y))
+                let coord = vector_int2(Int32(x), Int32(y))
                 let tile = self.level.getTileAt(coord: coord)
                 var entity: Entity?
 
@@ -246,8 +266,10 @@ class Game {
         // Start the action for the current actor ... make sure only 1 action is performed at any time
         self.isBusy = true
         guard action.perform(completion: { self.isBusy = false }) else {
-            return
+            return self.isBusy = false
         }
+        
+        print(action.message)
         
         // If the hero moved, update camera position, so camera is always centered on the hero
         if let moveAction = action as? MoveAction, moveAction.actor == self.hero {
@@ -259,7 +281,7 @@ class Game {
     }
     
     func movePlayer(direction: Direction) {
-        hideMovementTiles()
+        hideSelectionTiles()
                 
         self.hero.move(direction: direction)
     }
@@ -278,15 +300,22 @@ class Game {
         
         let overlayTiles = self.entities.filter({ $0 is OverlayTile }) as! [OverlayTile]
         for overlayTile in overlayTiles {
-            if overlayTile.coord == coord && overlayTile.isBlocked == false {
-                let graph = getMovementGraph(for: self.hero)
-                                
-                if let startNode = graph.node(atGridPosition: self.hero.coord), let endNode = graph.node(atGridPosition: overlayTile.coord) {
-                    let nodes = graph.findPath(from: startNode, to: endNode) as! [GKGridGraphNode]
-                    let path = nodes.compactMap({ $0.gridPosition })
-                    self.hero.move(path: path)
-                    hideMovementTiles()
+            if overlayTile.coord == coord {
+                if overlayTile.isBlocked == false {
+                    let graph = getMovementGraph(for: self.hero)
+                                    
+                    if let startNode = graph.node(atGridPosition: self.hero.coord), let endNode = graph.node(atGridPosition: overlayTile.coord) {
+                        let nodes = graph.findPath(from: startNode, to: endNode) as! [GKGridGraphNode]
+                        let path = nodes.compactMap({ $0.gridPosition })
+                        self.hero.move(path: path)
+                    }
+                } else {
+                    if let actor = getActorAt(coord: coord) {
+                        self.hero.attackMelee(actor: actor)
+                    }
                 }
+                
+                hideSelectionTiles()
             }
         }
     }

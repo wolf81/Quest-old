@@ -19,6 +19,8 @@ class Hero: Actor, CustomStringConvertible {
     private var direction: Direction?
         
     private var path: [vector_int2]?
+    
+    private var meleeTarget: Actor?
 
     override var attackBonus: Int {
         var attackBonus = self.attributes.strength.bonus + self.equipment.weapon.attack
@@ -60,6 +62,10 @@ class Hero: Actor, CustomStringConvertible {
         self.direction = direction
     }
     
+    func attackMelee(actor: Actor) {
+        self.meleeTarget = actor
+    }
+    
     var description: String {
         return """
         \(self.name)
@@ -73,6 +79,7 @@ class Hero: Actor, CustomStringConvertible {
         defer {
             self.direction = nil
             self.path = nil
+            self.meleeTarget = nil
         }
 
         if let direction = self.direction {
@@ -87,9 +94,8 @@ class Hero: Actor, CustomStringConvertible {
             }
         } else if let path = self.path {
             return MoveAction(actor: self, coords: path)
-//            if state.canMove(entity: self, toCoord: toCoord) {
-//                return MoveAction(actor: self, toCoord: toCoord)
-//            }
+        } else if let meleeTarget = self.meleeTarget {
+            return AttackAction(actor: self, targetActor: meleeTarget)
         }
                             
         return nil
