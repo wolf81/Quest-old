@@ -93,7 +93,7 @@ struct SceneBuilder {
                     mindLabel.title = String(attributes.mind)
                 }),
                 ButtonItem(title: "Next", onClick: {
-                    delegate.chooseAttributesMenuDidSelect(attributes: Attributes(strength: Attribute(12), dexterity: Attribute(12), mind: Attribute(12)))
+                    delegate.chooseAttributesMenuDidSelect(attributes: attributes)
                 })
             ])
             .build()

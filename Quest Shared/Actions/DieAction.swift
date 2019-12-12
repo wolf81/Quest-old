@@ -9,7 +9,7 @@
 import Foundation
 
 class DieAction: Action {
-    override var message: String { return "\(self.actor.name) (HP: \(self.actor.hitPoints.current) / \(self.actor.hitPoints.base)): Dies"}
+    override var message: String { return "[\(self.actor.name)] †"}
     
     override func perform(completion: @escaping () -> Void) -> Bool {
         completion()

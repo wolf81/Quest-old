@@ -17,21 +17,25 @@ class AttackAction: Action {
     }
     
     override var message: String {
-        return "\(self.actor.name) (HP: \(self.actor.hitPoints.current) / \(self.actor.hitPoints.base)): ✕ \(self.targetActor.name) (HP \(self.targetActor.hitPoints.current) / \(self.targetActor.hitPoints.base))"
+        return "[\(self.actor.name)] ✕ \(self.targetActor.name) (\(self.targetActor.hitPoints.current)/\(self.targetActor.hitPoints.base))"
     }
     
     override func perform(completion: @escaping () -> Void) -> Bool {
         let attackRoll = HitDie.d20(1, 0).randomValue + self.actor.attackBonus
         let armorClass = targetActor.armorClass
-        print("attack roll: \(attackRoll) vs \(armorClass)")
+
+        var status = "\tAT \(attackRoll) vs AC \(armorClass): "
+
         if attackRoll - armorClass > 0 {
             let damage = self.actor.attackDamage()
-            print("hit for \(damage) damage")
+            status += "hit for \(damage) damage"
             self.targetActor.hitPoints.remove(hitPoints: damage)
         }
         else {
-            print("miss")
+            status += "miss"
         }
+        
+        print(status)
         
         completion()
         

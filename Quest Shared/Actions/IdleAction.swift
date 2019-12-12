@@ -10,7 +10,7 @@ import Foundation
 
 class IdleAction: Action {
     override var message: String {
-        return "\(self.actor.name) (HP: \(self.actor.hitPoints.current) / \(self.actor.hitPoints.base)): Idling"
+        return "[\(self.actor.name)] ⦰"
     }
     
     override func perform(completion: @escaping () -> Void) -> Bool {

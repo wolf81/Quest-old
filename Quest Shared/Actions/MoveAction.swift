@@ -19,7 +19,7 @@ class MoveAction: Action {
     private(set) var duration: TimeInterval = MoveAction.stepDuration
     
     override var message: String {
-        return "\(self.actor.name) (HP: \(self.actor.hitPoints.current) / \(self.actor.hitPoints.base)): \(self.actor.coord.x).\(self.actor.coord.y) → \(self.toCoord.x).\(self.toCoord.y)"
+        return "[\(self.actor.name)] → \(self.toCoord.x).\(self.toCoord.y)"
     }
     
     private static let stepDuration = 0.15
