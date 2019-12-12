@@ -17,8 +17,8 @@ class Hero: Actor, CustomStringConvertible {
     override var speed: Int { return 4 }
     
     private var direction: Direction?
-    
-    private var toCoord: vector_int2?
+        
+    private var path: [vector_int2]?
 
     override var attackBonus: Int {
         var attackBonus = self.attributes.strength.bonus + self.equipment.weapon.attack
@@ -52,8 +52,8 @@ class Hero: Actor, CustomStringConvertible {
         sprite.zPosition = 1000
     }
     
-    func move(to coord: vector_int2) {
-        self.toCoord = coord
+    func move(path: [vector_int2]) {
+        self.path = path
     }
     
     func move(direction: Direction) {
@@ -72,7 +72,7 @@ class Hero: Actor, CustomStringConvertible {
     override func getAction(state: Game) -> Action? {
         defer {
             self.direction = nil
-            self.toCoord = nil
+            self.path = nil
         }
 
         if let direction = self.direction {
@@ -85,10 +85,11 @@ class Hero: Actor, CustomStringConvertible {
             if state.canMove(entity: self, toCoord: toCoord) {
                 return MoveAction(actor: self, toCoord: toCoord)
             }
-        } else if let toCoord = self.toCoord {
-            if state.canMove(entity: self, toCoord: toCoord) {
-                return MoveAction(actor: self, toCoord: toCoord)
-            }
+        } else if let path = self.path {
+            return MoveAction(actor: self, coords: path)
+//            if state.canMove(entity: self, toCoord: toCoord) {
+//                return MoveAction(actor: self, toCoord: toCoord)
+//            }
         }
                             
         return nil

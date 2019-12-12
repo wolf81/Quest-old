@@ -25,17 +25,23 @@ class Action {
 }
 
 class MoveAction: Action {
-    public let toCoord: vector_int2
+    public let path: [vector_int2]
     
-    public let duration: TimeInterval = 0.15
+    public var toCoord: vector_int2 {
+        return self.path.last!
+    }
+    
+    private(set) var duration: TimeInterval = MoveAction.stepDuration
+    
+    private static let stepDuration = 0.15
     
     init(actor: Actor, toCoord: vector_int2) {
-        self.toCoord = toCoord
+        self.path = [toCoord]
         super.init(actor: actor)
     }
     
     init(actor: Actor, coords: [vector_int2]) {
-        self.toCoord = coords.last!
+        self.path = coords
         super.init(actor: actor)
     }
     
@@ -46,9 +52,16 @@ class MoveAction: Action {
         
         print("\(self.actor.name) moves to \(self.toCoord.x).\(self.toCoord.y)")
         
-        let position = GameScene.pointForCoord(self.toCoord)
+        self.duration = 0
+        var moves: [SKAction] = []
+        for coord in self.path {
+            let position = GameScene.pointForCoord(coord)
+            moves.append(SKAction.move(to: position, duration: MoveAction.stepDuration))
+            self.duration += MoveAction.stepDuration
+        }
+        
         let move = SKAction.sequence([
-            SKAction.move(to: position, duration: self.duration),
+            SKAction.sequence(moves),
             SKAction.run {
                 self.actor.coord = self.toCoord
                 completion()

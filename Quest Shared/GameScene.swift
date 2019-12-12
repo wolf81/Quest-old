@@ -104,12 +104,12 @@ class GameScene: SKScene {
         self.game.movePlayer(direction: direction)
     }
     
-    private func moveCamera(to coord: SIMD2<Int32> , duration: TimeInterval) {
+    private func moveCamera(to coord: vector_int2 , duration: TimeInterval) {
         let position = cameraPositionForCoord(coord)
-        self.playerCamera.run(SKAction.move(to: position, duration: duration))
+        self.playerCamera.run(SKAction.move(to: position, duration: 0.5))
     }
     
-    private func cameraPositionForCoord(_ coord: SIMD2<Int32>) -> CGPoint {
+    private func cameraPositionForCoord(_ coord: vector_int2) -> CGPoint {
         var position = GameScene.pointForCoord(coord)
         position.y -= self.actionBar.size.height
         return position
@@ -193,13 +193,9 @@ extension GameScene {
         if self.nodes(at: location).contains(self.actionBar) {
             self.actionBar.convert(location, from: self)
             self.actionBar.mouseUp(with: event)
-        }
-        else if self.nodes(at: location).contains(self.world) {
-//            let position = self.world.convert(location, from: self)
+        } else if self.nodes(at: location).contains(self.world) {
             let coord = GameScene.coordForPoint(location)
-            print("\(coord.x).\(coord.y)")
             self.game.handleInteraction(at: coord)
-//            self.world.mouseUp(with: event)
         }
     }
     
