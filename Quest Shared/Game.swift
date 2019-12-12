@@ -232,7 +232,7 @@ class Game {
                     print(self.hero)
                 }
 
-                let monsterCoords = [vector_int2(4, 1), vector_int2(5, 3), vector_int2(7, 3)]
+                let monsterCoords = [vector_int2(8, 6), vector_int2(18, 3), vector_int2(22, 8)]
                 for monsterCoord in monsterCoords where monsterCoord == coord {
                     let monster = try! entityFactory.newEntity(name: "Skeleton")
                     monster.coord = coord

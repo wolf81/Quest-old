@@ -74,6 +74,9 @@
 		797DBFC322AF753B00D0F8E7 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFC222AF753B00D0F8E7 /* Hero.swift */; };
 		797DBFC422AF753B00D0F8E7 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFC222AF753B00D0F8E7 /* Hero.swift */; };
 		797DBFC522AF753B00D0F8E7 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFC222AF753B00D0F8E7 /* Hero.swift */; };
+		798537C623A2924E00721CE7 /* RangedAttackAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798537C523A2924E00721CE7 /* RangedAttackAction.swift */; };
+		798537C723A2924E00721CE7 /* RangedAttackAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798537C523A2924E00721CE7 /* RangedAttackAction.swift */; };
+		798537C823A2924E00721CE7 /* RangedAttackAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798537C523A2924E00721CE7 /* RangedAttackAction.swift */; };
 		7985AF9423A20DDC0067F884 /* DieAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985AF9323A20DDC0067F884 /* DieAction.swift */; };
 		7985AF9523A20DDC0067F884 /* DieAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985AF9323A20DDC0067F884 /* DieAction.swift */; };
 		7985AF9623A20DDC0067F884 /* DieAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985AF9323A20DDC0067F884 /* DieAction.swift */; };
@@ -83,9 +86,9 @@
 		798C997223A205EF00C6EC1C /* MoveAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C997123A205EF00C6EC1C /* MoveAction.swift */; };
 		798C997323A205EF00C6EC1C /* MoveAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C997123A205EF00C6EC1C /* MoveAction.swift */; };
 		798C997423A205EF00C6EC1C /* MoveAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C997123A205EF00C6EC1C /* MoveAction.swift */; };
-		798C997623A2060000C6EC1C /* AttackAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C997523A2060000C6EC1C /* AttackAction.swift */; };
-		798C997723A2060000C6EC1C /* AttackAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C997523A2060000C6EC1C /* AttackAction.swift */; };
-		798C997823A2060000C6EC1C /* AttackAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C997523A2060000C6EC1C /* AttackAction.swift */; };
+		798C997623A2060000C6EC1C /* MeleeAttackAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C997523A2060000C6EC1C /* MeleeAttackAction.swift */; };
+		798C997723A2060000C6EC1C /* MeleeAttackAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C997523A2060000C6EC1C /* MeleeAttackAction.swift */; };
+		798C997823A2060000C6EC1C /* MeleeAttackAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C997523A2060000C6EC1C /* MeleeAttackAction.swift */; };
 		798C997A23A2061700C6EC1C /* IdleAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C997923A2061700C6EC1C /* IdleAction.swift */; };
 		798C997B23A2061700C6EC1C /* IdleAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C997923A2061700C6EC1C /* IdleAction.swift */; };
 		798C997C23A2061700C6EC1C /* IdleAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C997923A2061700C6EC1C /* IdleAction.swift */; };
@@ -168,10 +171,11 @@
 		797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Sprites.xcassets; sourceTree = "<group>"; };
 		797DBFBE22AF752D00D0F8E7 /* Actor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Actor.swift; path = "Quest Shared/Actor.swift"; sourceTree = SOURCE_ROOT; };
 		797DBFC222AF753B00D0F8E7 /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hero.swift; path = "Quest Shared/Hero.swift"; sourceTree = SOURCE_ROOT; };
+		798537C523A2924E00721CE7 /* RangedAttackAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangedAttackAction.swift; sourceTree = "<group>"; };
 		7985AF9323A20DDC0067F884 /* DieAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DieAction.swift; sourceTree = "<group>"; };
 		798C9968239FFEA800C6EC1C /* OverlayTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OverlayTile.swift; path = "Quest Shared/OverlayTile.swift"; sourceTree = SOURCE_ROOT; };
 		798C997123A205EF00C6EC1C /* MoveAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveAction.swift; sourceTree = "<group>"; };
-		798C997523A2060000C6EC1C /* AttackAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttackAction.swift; sourceTree = "<group>"; };
+		798C997523A2060000C6EC1C /* MeleeAttackAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeleeAttackAction.swift; sourceTree = "<group>"; };
 		798C997923A2061700C6EC1C /* IdleAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdleAction.swift; sourceTree = "<group>"; };
 		798C997D23A2068C00C6EC1C /* AnimationKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationKey.swift; sourceTree = "<group>"; };
 		79ACC7DD22AA5BE900AC3BF0 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
@@ -274,9 +278,10 @@
 			children = (
 				798C997123A205EF00C6EC1C /* MoveAction.swift */,
 				79ACC81D22AB473200AC3BF0 /* Action.swift */,
-				798C997523A2060000C6EC1C /* AttackAction.swift */,
+				798C997523A2060000C6EC1C /* MeleeAttackAction.swift */,
 				798C997923A2061700C6EC1C /* IdleAction.swift */,
 				7985AF9323A20DDC0067F884 /* DieAction.swift */,
+				798537C523A2924E00721CE7 /* RangedAttackAction.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -597,7 +602,7 @@
 				79C61A7B22A7C415008D3609 /* GameViewController.swift in Sources */,
 				797DBFBF22AF752D00D0F8E7 /* Actor.swift in Sources */,
 				79ACC81E22AB473200AC3BF0 /* Action.swift in Sources */,
-				798C997623A2060000C6EC1C /* AttackAction.swift in Sources */,
+				798C997623A2060000C6EC1C /* MeleeAttackAction.swift in Sources */,
 				79ACC7F122AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
 				7963DE4A239D092300183DF2 /* Equipment.swift in Sources */,
 				79ACC81A22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
@@ -615,6 +620,7 @@
 				79ACC7FF22AAA4B800AC3BF0 /* Monster.swift in Sources */,
 				797DBFC322AF753B00D0F8E7 /* Hero.swift in Sources */,
 				7963DE2E239CC35F00183DF2 /* DefaultMenuConfiguration.swift in Sources */,
+				798537C623A2924E00721CE7 /* RangedAttackAction.swift in Sources */,
 				79ACC7ED22AA5D8700AC3BF0 /* EntityLoader.swift in Sources */,
 				798C997E23A2068C00C6EC1C /* AnimationKey.swift in Sources */,
 				7963DE42239CEC6A00183DF2 /* Skill.swift in Sources */,
@@ -641,7 +647,7 @@
 				79C61A8C22A7C415008D3609 /* GameViewController.swift in Sources */,
 				797DBFC022AF752D00D0F8E7 /* Actor.swift in Sources */,
 				79ACC81F22AB473200AC3BF0 /* Action.swift in Sources */,
-				798C997723A2060000C6EC1C /* AttackAction.swift in Sources */,
+				798C997723A2060000C6EC1C /* MeleeAttackAction.swift in Sources */,
 				79ACC7F222AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
 				7963DE4B239D092300183DF2 /* Equipment.swift in Sources */,
 				79ACC81B22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
@@ -659,6 +665,7 @@
 				79ACC80022AAA4B800AC3BF0 /* Monster.swift in Sources */,
 				797DBFC422AF753B00D0F8E7 /* Hero.swift in Sources */,
 				7963DE2F239CC35F00183DF2 /* DefaultMenuConfiguration.swift in Sources */,
+				798537C723A2924E00721CE7 /* RangedAttackAction.swift in Sources */,
 				79ACC7EE22AA5D8700AC3BF0 /* EntityLoader.swift in Sources */,
 				798C997F23A2068C00C6EC1C /* AnimationKey.swift in Sources */,
 				7963DE43239CEC6A00183DF2 /* Skill.swift in Sources */,
@@ -692,6 +699,7 @@
 				7985AF9623A20DDC0067F884 /* DieAction.swift in Sources */,
 				79ACC7F322AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
 				7963DE30239CC35F00183DF2 /* DefaultMenuConfiguration.swift in Sources */,
+				798537C823A2924E00721CE7 /* RangedAttackAction.swift in Sources */,
 				79742A68239E5AF6008504E8 /* Shield.swift in Sources */,
 				795746B522A7CA9800E04BEC /* Level.swift in Sources */,
 				7963DE40239CE15700183DF2 /* Role.swift in Sources */,
@@ -710,7 +718,7 @@
 				797DBFC122AF752D00D0F8E7 /* Actor.swift in Sources */,
 				798C996B239FFEA800C6EC1C /* OverlayTile.swift in Sources */,
 				79742A6C239E60A7008504E8 /* Gender.swift in Sources */,
-				798C997823A2060000C6EC1C /* AttackAction.swift in Sources */,
+				798C997823A2060000C6EC1C /* MeleeAttackAction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

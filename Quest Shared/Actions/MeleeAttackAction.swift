@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AttackAction: Action {
+class MeleeAttackAction: Action {
     public let targetActor: Actor
     
     init(actor: Actor, targetActor: Actor) {

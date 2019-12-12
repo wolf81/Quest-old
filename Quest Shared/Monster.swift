@@ -49,7 +49,7 @@ class Monster: Actor, CustomStringConvertible {
         let xRange = self.coord.x - 1 ... self.coord.x + 1
         let yRange = self.coord.y - 1 ... self.coord.y + 1
         if state.hero.isAlive && xRange.contains(state.hero.coord.x) && yRange.contains(state.hero.coord.y) {
-            return AttackAction(actor: self, targetActor: state.hero)
+            return MeleeAttackAction(actor: self, targetActor: state.hero)
         }
                 
         // Move in random direction

@@ -2,6 +2,9 @@
 	"name": "Skeleton",
 	"sprite": "skeletal_warrior_old",
 	
+    "speed": 6,
+    "sight": 12,
+    
 	"HD": "1d12",
 	"AC": 15,
     "EQ": {

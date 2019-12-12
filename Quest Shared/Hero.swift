@@ -89,8 +89,8 @@ class Hero: Actor, CustomStringConvertible {
         if let direction = self.direction {
             let toCoord = self.coord &+ direction.coord
             
-            if let targetActor = state.getActorAt(coord: toCoord) {
-                return AttackAction(actor: self, targetActor: targetActor)
+            if let targetActor = state.getActorAt(coord: toCoord) {                
+                return MeleeAttackAction(actor: self, targetActor: targetActor)
             }
             
             if state.canMove(entity: self, toCoord: toCoord) {
@@ -99,7 +99,7 @@ class Hero: Actor, CustomStringConvertible {
         } else if let path = self.path {
             return MoveAction(actor: self, coords: path)
         } else if let meleeTarget = self.meleeTarget {
-            return AttackAction(actor: self, targetActor: meleeTarget)
+            return MeleeAttackAction(actor: self, targetActor: meleeTarget)
         }
                             
         return nil

@@ -23,6 +23,8 @@ class Actor: Entity {
     
     private(set) var speed: Int = 1
     
+    private(set) var sight: Int = 12
+    
     private var action: Action?
             
     init(json: [String : Any], hitPoints: Int, armorClass: Int, skills: Skills, equipment: Equipment) {
@@ -30,6 +32,9 @@ class Actor: Entity {
         self.armorClass = armorClass
         self.skills = skills
         self.equipment = equipment
+        
+        self.speed = json["speed"] as? Int ?? 1
+        self.sight = json["sight"] as? Int ?? 12
         
         super.init(json: json)
     }    
