@@ -139,7 +139,7 @@ class Game {
     func showMovementTilesForHero() {
         guard self.actors[self.activeActorIdx] == self.hero && self.isBusy == false else { return }
 
-        guard self.mode == .default else { return hideSelectionTiles() }
+        if mode == .selectTile { hideSelectionTiles() }
         
         let movementGraph = getMovementGraph(for: self.hero)
         let visibleAreaGraph = getVisiblityGraph(for: self.hero)
@@ -170,7 +170,7 @@ class Game {
     func showAttackTilesForHero() {
         guard self.actors[self.activeActorIdx] == self.hero && self.isBusy == false else { return }
 
-        guard self.mode == .default else { return hideSelectionTiles() }
+        if mode == .selectTile { hideSelectionTiles() }
 
         let xRange = self.hero.coord.x - 1 ... self.hero.coord.x + 1
         let yRange = self.hero.coord.y - 1 ... self.hero.coord.y + 1
@@ -250,30 +250,28 @@ class Game {
         guard self.isBusy == false else { return }
 
         let activeActor = self.actors[self.activeActorIdx]
-        
-        // If the current actor died, remove from play and continue with next actor
-        if activeActor.isAlive == false {
-            print("\(activeActor.name) dies")
-            remove(actor: activeActor)
-            return
-        }
-        
+                
         // Wait until the current active actor performs an action
         guard let action = activeActor.getAction(state: self) else {
             return
         }
-        
+
+        print(action.message)
+
         // Start the action for the current actor ... make sure only 1 action is performed at any time
         self.isBusy = true
         guard action.perform(completion: { self.isBusy = false }) else {
             return self.isBusy = false
         }
-        
-        print(action.message)
-        
-        // If the hero moved, update camera position, so camera is always centered on the hero
-        if let moveAction = action as? MoveAction, moveAction.actor == self.hero {
-            self.delegate?.gameDidMove(hero: self.hero, to: moveAction.toCoord, duration: moveAction.duration)
+                
+        switch action {
+        case let moveAction as MoveAction:
+            if let hero = activeActor as? Hero {
+                self.delegate?.gameDidMove(hero: hero, to: moveAction.toCoord, duration: moveAction.duration)
+            }
+        case _ as DieAction:
+            remove(actor: activeActor)
+        default: break
         }
                 
         // Activate next actor
@@ -287,7 +285,7 @@ class Game {
     }
     
     private func remove(actor: Actor) {
-        self.entities.removeAll(where: { $0 == actor })
+        self.entities.removeAll(where: { $0 == actor })                
 
         // After we remove an actor, update the index to prevent an index out of range error
         self.activeActorIdx = self.activeActorIdx % self.actors.count

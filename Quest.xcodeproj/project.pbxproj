@@ -74,6 +74,9 @@
 		797DBFC322AF753B00D0F8E7 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFC222AF753B00D0F8E7 /* Hero.swift */; };
 		797DBFC422AF753B00D0F8E7 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFC222AF753B00D0F8E7 /* Hero.swift */; };
 		797DBFC522AF753B00D0F8E7 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DBFC222AF753B00D0F8E7 /* Hero.swift */; };
+		7985AF9423A20DDC0067F884 /* DieAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985AF9323A20DDC0067F884 /* DieAction.swift */; };
+		7985AF9523A20DDC0067F884 /* DieAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985AF9323A20DDC0067F884 /* DieAction.swift */; };
+		7985AF9623A20DDC0067F884 /* DieAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985AF9323A20DDC0067F884 /* DieAction.swift */; };
 		798C9969239FFEA800C6EC1C /* OverlayTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C9968239FFEA800C6EC1C /* OverlayTile.swift */; };
 		798C996A239FFEA800C6EC1C /* OverlayTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C9968239FFEA800C6EC1C /* OverlayTile.swift */; };
 		798C996B239FFEA800C6EC1C /* OverlayTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C9968239FFEA800C6EC1C /* OverlayTile.swift */; };
@@ -165,6 +168,7 @@
 		797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Sprites.xcassets; sourceTree = "<group>"; };
 		797DBFBE22AF752D00D0F8E7 /* Actor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Actor.swift; path = "Quest Shared/Actor.swift"; sourceTree = SOURCE_ROOT; };
 		797DBFC222AF753B00D0F8E7 /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hero.swift; path = "Quest Shared/Hero.swift"; sourceTree = SOURCE_ROOT; };
+		7985AF9323A20DDC0067F884 /* DieAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DieAction.swift; sourceTree = "<group>"; };
 		798C9968239FFEA800C6EC1C /* OverlayTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OverlayTile.swift; path = "Quest Shared/OverlayTile.swift"; sourceTree = SOURCE_ROOT; };
 		798C997123A205EF00C6EC1C /* MoveAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveAction.swift; sourceTree = "<group>"; };
 		798C997523A2060000C6EC1C /* AttackAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttackAction.swift; sourceTree = "<group>"; };
@@ -272,6 +276,7 @@
 				79ACC81D22AB473200AC3BF0 /* Action.swift */,
 				798C997523A2060000C6EC1C /* AttackAction.swift */,
 				798C997923A2061700C6EC1C /* IdleAction.swift */,
+				7985AF9323A20DDC0067F884 /* DieAction.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -585,6 +590,7 @@
 				7963DE52239E3D2A00183DF2 /* ActionBar.swift in Sources */,
 				79C61AA522A7C415008D3609 /* GameScene.swift in Sources */,
 				794864D322A7E60300F84A72 /* Game.swift in Sources */,
+				7985AF9423A20DDC0067F884 /* DieAction.swift in Sources */,
 				79742A66239E5AF6008504E8 /* Shield.swift in Sources */,
 				79742A6A239E60A7008504E8 /* Gender.swift in Sources */,
 				79ACC81622AAB5D700AC3BF0 /* Weapon.swift in Sources */,
@@ -628,6 +634,7 @@
 				7963DE53239E3D2A00183DF2 /* ActionBar.swift in Sources */,
 				79C61AA622A7C415008D3609 /* GameScene.swift in Sources */,
 				794864D422A7E60300F84A72 /* Game.swift in Sources */,
+				7985AF9523A20DDC0067F884 /* DieAction.swift in Sources */,
 				79742A67239E5AF6008504E8 /* Shield.swift in Sources */,
 				79742A6B239E60A7008504E8 /* Gender.swift in Sources */,
 				79ACC81722AAB5D700AC3BF0 /* Weapon.swift in Sources */,
@@ -682,6 +689,7 @@
 				797DBFC522AF753B00D0F8E7 /* Hero.swift in Sources */,
 				79ACC82022AB473200AC3BF0 /* Action.swift in Sources */,
 				798C997C23A2061700C6EC1C /* IdleAction.swift in Sources */,
+				7985AF9623A20DDC0067F884 /* DieAction.swift in Sources */,
 				79ACC7F322AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
 				7963DE30239CC35F00183DF2 /* DefaultMenuConfiguration.swift in Sources */,
 				79742A68239E5AF6008504E8 /* Shield.swift in Sources */,

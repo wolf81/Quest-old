@@ -38,17 +38,22 @@ class Monster: Actor, CustomStringConvertible {
     }
     
     override func getAction(state: Game) -> Action? {
+        if self.isAlive == false {
+            return DieAction(actor: self)
+        }
+        
         let directions: [Direction] = [.up, .down, .left, .right]
         let randomDirection = directions.randomElement()
         
-        let toCoord = self.coord &+ randomDirection!.coord
-        
-        if let targetActor = state.getActorAt(coord: toCoord) {
-            if targetActor is Hero {
-                return AttackAction(actor: self, targetActor: targetActor)
-            }
+        // If hero is in melee range, perform melee attack
+        let xRange = self.coord.x - 1 ... self.coord.x + 1
+        let yRange = self.coord.y - 1 ... self.coord.y + 1
+        if state.hero.isAlive && xRange.contains(state.hero.coord.x) && yRange.contains(state.hero.coord.y) {
+            return AttackAction(actor: self, targetActor: state.hero)
         }
-        
+                
+        // Move in random direction
+        let toCoord = self.coord &+ randomDirection!.coord
         if state.canMove(entity: self, toCoord: toCoord) {
             return MoveAction(actor: self, toCoord: toCoord)
         }

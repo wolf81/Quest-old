@@ -82,6 +82,10 @@ class Hero: Actor, CustomStringConvertible {
             self.meleeTarget = nil
         }
 
+        if self.isAlive == false {
+            return DieAction(actor: self)
+        }
+        
         if let direction = self.direction {
             let toCoord = self.coord &+ direction.coord
             

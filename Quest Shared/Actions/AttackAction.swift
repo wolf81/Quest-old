@@ -17,7 +17,7 @@ class AttackAction: Action {
     }
     
     override var message: String {
-        return "\(self.actor.name) (HP: \(self.actor.hitPoints.current) / \(self.actor.hitPoints.base)): ⚔ \(self.targetActor.name) (HP \(self.targetActor.hitPoints.current) / \(self.targetActor.hitPoints.base))"
+        return "\(self.actor.name) (HP: \(self.actor.hitPoints.current) / \(self.actor.hitPoints.base)): ✕ \(self.targetActor.name) (HP \(self.targetActor.hitPoints.current) / \(self.targetActor.hitPoints.base))"
     }
     
     override func perform(completion: @escaping () -> Void) -> Bool {
