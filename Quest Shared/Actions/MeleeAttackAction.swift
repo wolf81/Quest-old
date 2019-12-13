@@ -21,14 +21,15 @@ class MeleeAttackAction: Action {
     }
     
     override func perform(completion: @escaping () -> Void) -> Bool {
-        let baseAttackRoll = HitDie.d20(1, 0).randomValue
+        let attackDie = HitDie.d20(1, 0)
+        let baseAttackRoll = attackDie.randomValue
         let armorClass = targetActor.armorClass
 
         var status = "miss"
         
         switch baseAttackRoll {
-        case 0: status = "critical miss"
-        case 20:
+        case attackDie.minValue: status = "critical miss"
+        case attackDie.maxValue:
             let damage = self.actor.getMeleeAttackDamage(.maximum)
             status = "critical hit for \(damage) damage"
             self.targetActor.hitPoints.remove(hitPoints: damage)
