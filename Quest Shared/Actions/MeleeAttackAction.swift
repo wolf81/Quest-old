@@ -27,6 +27,7 @@ class MeleeAttackAction: Action {
         var status = "miss"
         
         switch baseAttackRoll {
+        case 0: status = "critical miss"
         case 20:
             let damage = self.actor.getMeleeAttackDamage(.maximum)
             status = "critical hit for \(damage) damage"

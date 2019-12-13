@@ -27,6 +27,7 @@ class RangedAttackAction: Action {
         var status = "miss"
         
         switch baseAttackRoll {
+        case 0: status = "critical miss"
         case 20:
             let damage = self.actor.getRangedAttackDamage(.maximum)
             status = "critical hit for \(damage) damage"
