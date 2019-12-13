@@ -10,7 +10,7 @@ import Foundation
 
 class IdleAction: Action {
     override var message: String {
-        return "[\(self.actor.name)] ⦰"
+        return "[\(self.actor.name)] ⦰ \(self.actor.coord.x).\(self.actor.coord.y)"
     }
     
     override func perform(completion: @escaping () -> Void) -> Bool {
