@@ -8,6 +8,11 @@
 
 import SpriteKit
 
+enum DieRoll {
+    case random
+    case maximum
+}
+
 class Actor: Entity {
     var hitPoints: HitPoints
 
@@ -61,9 +66,13 @@ class Actor: Entity {
         self.sprite.zPosition = 100
     }
     
-    func getMeleeAttackDamage() -> Int { return self.equipment.meleeWeapon.damage.randomValue }
+    func getMeleeAttackDamage(_ dieRoll: DieRoll) -> Int {
+        return dieRoll == .maximum ? self.equipment.meleeWeapon.damage.maxValue : self.equipment.meleeWeapon.damage.randomValue
+    }
 
-    func getRangedAttackDamage() -> Int { return self.equipment.rangedWeapon.damage.randomValue }
+    func getRangedAttackDamage(_ dieRoll: DieRoll) -> Int {
+        return dieRoll == .maximum ? self.equipment.rangedWeapon.damage.maxValue : self.equipment.rangedWeapon.damage.randomValue
+    }
 
     func getAction(state: Game) -> Action? {
         defer { self.action = nil }

@@ -65,9 +65,7 @@ class ActionBar: SKShapeNode {
 #if os(macOS)
 
 extension ActionBar {
-    override func mouseUp(with event: NSEvent) {
-        print("handle mouse up in action bar")
-        
+    override func mouseUp(with event: NSEvent) {        
         let location = event.location(in: self)
         switch location {
         case _ where self.moveButton.contains(location):

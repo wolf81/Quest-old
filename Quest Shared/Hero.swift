@@ -42,10 +42,14 @@ class Hero: Actor, CustomStringConvertible {
         return attackBonus
     }
         
-    override func getMeleeAttackDamage() -> Int { self.attributes.strength.bonus + self.equipment.meleeWeapon.damage.randomValue }
+    override func getMeleeAttackDamage(_ dieRoll: DieRoll) -> Int {
+        return self.attributes.strength.bonus + (dieRoll == .maximum ? self.equipment.meleeWeapon.damage.maxValue : self.equipment.meleeWeapon.damage.randomValue)
+    }
     
-    override func getRangedAttackDamage() -> Int { self.equipment.rangedWeapon.damage.randomValue }
-    
+    override func getRangedAttackDamage(_ dieRoll: DieRoll) -> Int {
+        return dieRoll == .maximum ? self.equipment.rangedWeapon.damage.maxValue : self.equipment.rangedWeapon.damage.randomValue
+    }
+
     override var armorClass: Int { return 10 + attributes.dexterity.bonus + self.equipment.armor.armorClass + self.equipment.shield.armorClass }
     
     public init(name: String, race: Race, gender: Gender, role: Role, attributes: Attributes, skills: Skills, equipment: Equipment) {
