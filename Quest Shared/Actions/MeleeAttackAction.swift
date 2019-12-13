@@ -34,11 +34,13 @@ class MeleeAttackAction: Action {
             self.targetActor.hitPoints.remove(hitPoints: damage)
         default:
             let attackRoll = baseAttackRoll + self.actor.meleeAttackBonus
+            status = "\tAT \(attackRoll) vs AC \(armorClass): "
             if attackRoll > armorClass {
-                var status = "\tAT \(attackRoll) vs AC \(armorClass): "
                 let damage = self.actor.getMeleeAttackDamage(.random)
                 status += "hit for \(damage) damage"
                 self.targetActor.hitPoints.remove(hitPoints: damage)
+            } else {
+                status += "miss"
             }
         }
                         
