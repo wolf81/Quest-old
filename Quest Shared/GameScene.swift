@@ -97,6 +97,8 @@ class GameScene: SKScene {
         self.world.addChild(self.playerCamera)
         scene?.camera = self.playerCamera
         
+        self.speed = 5
+        
         addChild(self.world)
     }
 
@@ -104,9 +106,19 @@ class GameScene: SKScene {
         self.game.movePlayer(direction: direction)
     }
     
+    private func moveCamera(path: [vector_int2], duration: TimeInterval) {
+        var actions: [SKAction] = []
+        
+        for coord in path {
+            let position = cameraPositionForCoord(coord)
+            actions.append(SKAction.move(to: position, duration: duration / Double(path.count)))
+        }
+        self.playerCamera.run(SKAction.sequence(actions))
+    }
+    
     private func moveCamera(to coord: vector_int2 , duration: TimeInterval) {
         let position = cameraPositionForCoord(coord)
-        self.playerCamera.run(SKAction.move(to: position, duration: 0.5))
+        self.playerCamera.run(SKAction.move(to: position, duration: duration))
     }
     
     private func cameraPositionForCoord(_ coord: vector_int2) -> CGPoint {
@@ -123,8 +135,9 @@ func isInRange(origin: vector_int2, radius: Int, coord: vector_int2) -> Bool {
 // MARK: - GameDelegate
 
 extension GameScene: GameDelegate {
-    func gameDidMove(hero: Hero, to coord: SIMD2<Int32>, duration: TimeInterval) {
-        moveCamera(to: coord, duration: duration)
+    func gameDidMove(hero: Hero, path: [vector_int2], duration: TimeInterval) {
+//        moveCamera(to: coord, duration: duration)
+        moveCamera(path: path, duration: duration)
     }
     
     func gameDidAdd(entity: Entity) {
@@ -157,7 +170,7 @@ extension GameScene: ActionBarDelegate {
     }
     
     func actionBarDidSelectCastSpell() {
-        print("cast spell")
+        self.game.showTargetTilesForSpellType(spellType: MagicMissile.self)
     }
 }
 

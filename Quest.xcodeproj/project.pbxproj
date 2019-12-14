@@ -13,6 +13,12 @@
 		7929FC0422B0002E003C1964 /* Fenris.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FC0322B0002D003C1964 /* Fenris.framework */; };
 		7929FC0622B00036003C1964 /* Fenris.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FC0522B00036003C1964 /* Fenris.framework */; };
 		7929FC0822B0003E003C1964 /* Fenris.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FC0722B0003D003C1964 /* Fenris.framework */; };
+		792C698C23A40D4700A729C3 /* Spell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792C698B23A40D4700A729C3 /* Spell.swift */; };
+		792C698D23A40D4700A729C3 /* Spell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792C698B23A40D4700A729C3 /* Spell.swift */; };
+		792C698E23A40D4700A729C3 /* Spell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792C698B23A40D4700A729C3 /* Spell.swift */; };
+		792C699023A5495500A729C3 /* CastSpellAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792C698F23A5495500A729C3 /* CastSpellAction.swift */; };
+		792C699123A5495500A729C3 /* CastSpellAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792C698F23A5495500A729C3 /* CastSpellAction.swift */; };
+		792C699223A5495500A729C3 /* CastSpellAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792C698F23A5495500A729C3 /* CastSpellAction.swift */; };
 		7939187D22B9447C00CE069C /* SceneBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7939187C22B9447C00CE069C /* SceneBuilder.swift */; };
 		7939187E22B9447C00CE069C /* SceneBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7939187C22B9447C00CE069C /* SceneBuilder.swift */; };
 		7939187F22B9447C00CE069C /* SceneBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7939187C22B9447C00CE069C /* SceneBuilder.swift */; };
@@ -150,6 +156,8 @@
 		7929FC0322B0002D003C1964 /* Fenris.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fenris.framework; path = Carthage/Build/Mac/Fenris.framework; sourceTree = SOURCE_ROOT; };
 		7929FC0522B00036003C1964 /* Fenris.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fenris.framework; path = Carthage/Build/tvOS/Fenris.framework; sourceTree = SOURCE_ROOT; };
 		7929FC0722B0003D003C1964 /* Fenris.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fenris.framework; path = Carthage/Build/iOS/Fenris.framework; sourceTree = SOURCE_ROOT; };
+		792C698B23A40D4700A729C3 /* Spell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spell.swift; sourceTree = "<group>"; };
+		792C698F23A5495500A729C3 /* CastSpellAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastSpellAction.swift; sourceTree = "<group>"; };
 		7939187C22B9447C00CE069C /* SceneBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneBuilder.swift; sourceTree = "<group>"; };
 		79423B79239E99CC0042B9BD /* HeroBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroBuilder.swift; sourceTree = "<group>"; };
 		794864D022A7E48400F84A72 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
@@ -269,6 +277,7 @@
 				79742A69239E60A7008504E8 /* Gender.swift */,
 				79ACC81922AAB6F100AC3BF0 /* HitDice.swift */,
 				795746BA22A9029D00E04BEC /* Direction.swift */,
+				792C698B23A40D4700A729C3 /* Spell.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -282,6 +291,7 @@
 				798C997923A2061700C6EC1C /* IdleAction.swift */,
 				7985AF9323A20DDC0067F884 /* DieAction.swift */,
 				798537C523A2924E00721CE7 /* RangedAttackAction.swift */,
+				792C698F23A5495500A729C3 /* CastSpellAction.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -599,8 +609,10 @@
 				79742A66239E5AF6008504E8 /* Shield.swift in Sources */,
 				79742A6A239E60A7008504E8 /* Gender.swift in Sources */,
 				79ACC81622AAB5D700AC3BF0 /* Weapon.swift in Sources */,
+				792C699023A5495500A729C3 /* CastSpellAction.swift in Sources */,
 				79C61A7B22A7C415008D3609 /* GameViewController.swift in Sources */,
 				797DBFBF22AF752D00D0F8E7 /* Actor.swift in Sources */,
+				792C698C23A40D4700A729C3 /* Spell.swift in Sources */,
 				79ACC81E22AB473200AC3BF0 /* Action.swift in Sources */,
 				798C997623A2060000C6EC1C /* MeleeAttackAction.swift in Sources */,
 				79ACC7F122AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
@@ -644,8 +656,10 @@
 				79742A67239E5AF6008504E8 /* Shield.swift in Sources */,
 				79742A6B239E60A7008504E8 /* Gender.swift in Sources */,
 				79ACC81722AAB5D700AC3BF0 /* Weapon.swift in Sources */,
+				792C699123A5495500A729C3 /* CastSpellAction.swift in Sources */,
 				79C61A8C22A7C415008D3609 /* GameViewController.swift in Sources */,
 				797DBFC022AF752D00D0F8E7 /* Actor.swift in Sources */,
+				792C698D23A40D4700A729C3 /* Spell.swift in Sources */,
 				79ACC81F22AB473200AC3BF0 /* Action.swift in Sources */,
 				798C997723A2060000C6EC1C /* MeleeAttackAction.swift in Sources */,
 				79ACC7F222AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
@@ -710,10 +724,12 @@
 				7963DE59239E456900183DF2 /* ActionBarButton.swift in Sources */,
 				7963DE48239D079300183DF2 /* Armor.swift in Sources */,
 				7963DE44239CEC6A00183DF2 /* Skill.swift in Sources */,
+				792C698E23A40D4700A729C3 /* Spell.swift in Sources */,
 				79ACC7EF22AA5D8700AC3BF0 /* EntityLoader.swift in Sources */,
 				798C997423A205EF00C6EC1C /* MoveAction.swift in Sources */,
 				7963DE54239E3D2A00183DF2 /* ActionBar.swift in Sources */,
 				798C998023A2068C00C6EC1C /* AnimationKey.swift in Sources */,
+				792C699223A5495500A729C3 /* CastSpellAction.swift in Sources */,
 				7963DE50239DD2D600183DF2 /* HitPoints.swift in Sources */,
 				797DBFC122AF752D00D0F8E7 /* Actor.swift in Sources */,
 				798C996B239FFEA800C6EC1C /* OverlayTile.swift in Sources */,

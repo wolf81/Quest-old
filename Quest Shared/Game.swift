@@ -11,7 +11,7 @@ import DungeonBuilder
 import GameplayKit
 
 protocol GameDelegate: class {
-    func gameDidMove(hero: Hero, to coord: vector_int2, duration: TimeInterval)
+    func gameDidMove(hero: Hero, path path: [vector_int2], duration: TimeInterval)
     func gameDidAdd(entity: Entity)
     func gameDidRemove(entity: Entity)
 }
@@ -20,7 +20,18 @@ enum Mode {
     case `default`
     case selectDestinationTile
     case selectMeleeTarget
+    case selectSpellTarget(Spell.Type)
     case selectRangedTarget
+    
+    var isSelection: Bool {
+        switch self {
+        case .selectDestinationTile: fallthrough
+        case .selectMeleeTarget: fallthrough
+        case .selectRangedTarget: fallthrough
+        case .selectSpellTarget(_): return true
+        case .default: return false
+        }
+    }
 }
 
 class Game {
@@ -149,7 +160,7 @@ class Game {
     func showMovementTilesForHero() {
         guard self.actors[self.activeActorIdx] == self.hero && self.isBusy == false else { return }
 
-        if mode != .default { hideSelectionTiles() }
+        if mode.isSelection { hideSelectionTiles() }
         
         let actorCoords = self.actors.filter({ $0.coord != self.hero.coord }).compactMap({ $0.coord })
         let movementGraph = getMovementGraph(for: self.hero, range: self.hero.speed, excludedCoords: actorCoords)
@@ -178,10 +189,18 @@ class Game {
         self.mode = .selectDestinationTile
     }
     
+    func showTargetTilesForSpellType<T: Spell>(spellType: T.Type) {
+        if spellType is SingleTargetDamageSpell.Type {
+            showRangedAttackTilesForHero()
+            
+            self.mode = .selectSpellTarget(spellType)
+        }
+    }
+    
     func showRangedAttackTilesForHero() {
         guard self.actors[self.activeActorIdx] == self.hero && self.isBusy == false else { return }
 
-        if mode != .default { hideSelectionTiles() }
+        if mode.isSelection { hideSelectionTiles() }
 
         let attackRange = Int32(self.hero.equipment.rangedWeapon.range)
         let xRange = self.hero.coord.x - attackRange ... self.hero.coord.x + attackRange
@@ -202,7 +221,7 @@ class Game {
     func showMeleeAttackTilesForHero() {
         guard self.actors[self.activeActorIdx] == self.hero && self.isBusy == false else { return }
 
-        if mode != .default { hideSelectionTiles() }
+        if mode.isSelection { hideSelectionTiles() }
 
         let xRange = self.hero.coord.x - 1 ... self.hero.coord.x + 1
         let yRange = self.hero.coord.y - 1 ... self.hero.coord.y + 1
@@ -220,7 +239,7 @@ class Game {
     }
         
     func hideSelectionTiles() {
-        guard self.mode != .default else { return }
+        guard self.mode.isSelection else { return }
         
         let tiles = self.entities.filter({ $0 is OverlayTile })
 
@@ -299,7 +318,10 @@ class Game {
         switch action {
         case let moveAction as MoveAction:
             if let hero = activeActor as? Hero {
-                self.delegate?.gameDidMove(hero: hero, to: moveAction.toCoord, duration: moveAction.duration)
+                print("move hero")
+                
+//                self.delegate?.gameDidMove(hero: hero, to: moveAction.toCoord, duration: moveAction.duration)
+                self.delegate?.gameDidMove(hero: hero, path: moveAction.path, duration: moveAction.duration)
             }
         case _ as DieAction:
             remove(actor: activeActor)
@@ -326,7 +348,7 @@ class Game {
     }
     
     public func handleInteraction(at coord: vector_int2) {
-        guard self.mode != .default else { return }
+        guard self.mode.isSelection else { return }
 
         let overlayTiles = self.entities.filter({ $0 is OverlayTile }) as! [OverlayTile]
 
@@ -351,6 +373,13 @@ class Game {
                 self.hero.attackRanged(actor: targetActor)
             }
         case .default: break
+        case .selectSpellTarget(let spellType):
+            if let singleTargetDamageSpellType = spellType as? SingleTargetDamageSpell.Type,
+                let targetActor = self.actors.filter({ $0.coord == coord }).first {
+                let spell = singleTargetDamageSpellType.init(actor: self.hero, targetActor: targetActor)
+                self.hero.cast(spell: spell)
+            }
+            break
         }
 
         hideSelectionTiles()

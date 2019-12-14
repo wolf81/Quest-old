@@ -22,6 +22,8 @@ class Actor: Entity {
     
     private(set) var equipment: Equipment
     
+    private(set) var attributes: Attributes = Attributes(strength: 12, dexterity: 12, mind: 12)
+
     private(set) var meleeAttackBonus: Int = 0
 
     private(set) var rangedAttackBonus: Int = 0
@@ -31,6 +33,8 @@ class Actor: Entity {
     private(set) var speed: Int = 1
     
     private(set) var sight: Int = 12
+    
+    private(set) var level: Int = 1
     
     private var action: Action?
             
@@ -46,10 +50,11 @@ class Actor: Entity {
         super.init(json: json)
     }    
     
-    init(name: String, hitPoints: Int, race: Race, gender: Gender, skills: Skills, equipment: Equipment) {
+    init(name: String, hitPoints: Int, race: Race, gender: Gender, attributes: Attributes, skills: Skills, equipment: Equipment) {
         self.hitPoints = HitPoints(base: hitPoints)
         self.skills = skills
         self.equipment = equipment
+        self.attributes = attributes
         
         super.init(json: ["name": name, "sprite": "\(race)_\(gender)"])
         

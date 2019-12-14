@@ -22,6 +22,7 @@ class ActionBar: SKShapeNode {
     private var moveButton: ActionBarButton!
     private var meleeAttackButton: ActionBarButton!
     private var rangeAttackButton: ActionBarButton!
+    private var castSpellButton: ActionBarButton!
     
     weak var delegate: ActionBarDelegate?
     
@@ -47,10 +48,10 @@ class ActionBar: SKShapeNode {
         self.moveButton = ActionBarButton(size: buttonSize, color: SKColor.green)
         self.meleeAttackButton = ActionBarButton(size: buttonSize, color: SKColor.red)
         self.rangeAttackButton = ActionBarButton(size: buttonSize, color: SKColor.orange)
-        let castSpellButton = ActionBarButton(size: buttonSize, color: SKColor.blue)
+        self.castSpellButton = ActionBarButton(size: buttonSize, color: SKColor.blue)
         let defendButton = ActionBarButton(size: buttonSize, color: SKColor.darkGray)
 
-        let buttons: [ActionBarButton] = [self.moveButton, self.meleeAttackButton, self.rangeAttackButton, castSpellButton, defendButton]
+        let buttons: [ActionBarButton] = [self.moveButton, self.meleeAttackButton, self.rangeAttackButton, self.castSpellButton, defendButton]
         var buttonX = -(CGFloat(buttons.count - 1) * buttonSize.width / 2)
         for button in buttons {
             button.position = CGPoint(x: buttonX, y: 0)
@@ -74,6 +75,8 @@ extension ActionBar {
             self.delegate?.actionBarDidSelectMeleeAttack()
         case _ where self.rangeAttackButton.contains(location):
             self.delegate?.actionBarDidSelectRangeAttack()
+        case _ where self.castSpellButton.contains(location):
+            self.delegate?.actionBarDidSelectCastSpell()
         default: break
         }
     }

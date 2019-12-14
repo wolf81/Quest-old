@@ -9,10 +9,10 @@
 import SpriteKit
 
 class Hero: Actor, CustomStringConvertible {
-    let attributes: Attributes
     let race: Race
     let role: Role
-    let level: Int = 1
+    
+    override var level: Int { return 1 }
     
     override var speed: Int { return 4 }
     
@@ -23,6 +23,8 @@ class Hero: Actor, CustomStringConvertible {
     private var meleeTarget: Actor?
     
     private var rangedTarget: Actor?
+    
+    private var spell: Spell?
 
     override var meleeAttackBonus: Int {
         var attackBonus = self.attributes.strength.bonus + self.equipment.meleeWeapon.attack
@@ -55,14 +57,12 @@ class Hero: Actor, CustomStringConvertible {
     public init(name: String, race: Race, gender: Gender, role: Role, attributes: Attributes, skills: Skills, equipment: Equipment) {
         self.race = race
         self.role = role
-        self.attributes = attributes
         
         let hitPoints = HitDie.d6(1, 0).maxValue + attributes.strength.bonus // 1d6 + STR bonus per level, for first level use max health
-        super.init(name: name, hitPoints: hitPoints, race: race, gender: gender, skills: skills, equipment: equipment)
+        super.init(name: name, hitPoints: hitPoints, race: race, gender: gender, attributes: attributes, skills: skills, equipment: equipment)
     }
     
     required init(json: [String : Any]) {
-        self.attributes = Attributes()
         self.race = .human
         self.role = .fighter
         
@@ -77,6 +77,10 @@ class Hero: Actor, CustomStringConvertible {
     
     func move(direction: Direction) {
         self.direction = direction
+    }
+    
+    func cast(spell: Spell) {
+        self.spell = spell
     }
     
     func attackMelee(actor: Actor) {
@@ -102,6 +106,7 @@ class Hero: Actor, CustomStringConvertible {
             self.direction = nil
             self.meleeTarget = nil
             self.rangedTarget = nil
+            self.spell = nil
         }
 
         if self.isAlive == false {
@@ -124,6 +129,8 @@ class Hero: Actor, CustomStringConvertible {
             return MeleeAttackAction(actor: self, targetActor: meleeTarget)
         } else if let rangedTarget = self.rangedTarget {
             return RangedAttackAction(actor: self, targetActor: rangedTarget)
+        } else if let spell = self.spell {
+            return CastSpellAction(actor: self, spell: spell)
         }
                              
         return nil

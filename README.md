@@ -1,6 +1,8 @@
 # QUEST
 
-Quest is a basic turn-based RPG. The ruleset is inspired by Microlite20, with some changes.
+Quest is a 2-dimensional top-down RPG. The ruleset is inspired by Microlite20, with some changes.
+
+The game is turn-based, though this is only visible in combat.
 
 
 ## STATS
@@ -112,7 +114,6 @@ Additional classes could be ...
 	- ...
 
 
-
 ## COMBAT
 
 Combat is made in turns. Every character in combat can do 1 action per turn. Actions can be:
@@ -127,10 +128,20 @@ Combat is made in turns. Every character in combat can do 1 action per turn. Act
 
 * Consume item (e.g. drink potion, use scroll, etc...)
 
+For physical attack a d20 roll is made, based on the result the following happens
 
-## MAP
+* 0: a critical miss
 
-For the map we will use a square based system. 1 square is equal to 5 feet. Base speed is 30 feet per combat round, but this is reduced to 20 feet for medium or heavy armoured characters. Outside of combat the speed will be 30 feet.
+* 20: a critical hit, the actor deals maximum damage
+
+* 1-19: perform a damage roll to determine damage done, the damage roll is based on weapon damage, possibly modified by other stats (e.g. a 1-handed melee weapon adds STR, a 2-handed melee weapon adds 2x STR, etc ...)
+
+
+## EXPLORATION
+
+For the map we will use a square based system. 1 square is equal to 5 feet or about 1.5 meters. Base movement speed is 30 feet per combat round, but this is reduced to 20 feet for medium or heavy armoured characters. 
+
+A character can see 60 feet away in daylight conditions. In a dungeon with a light source a human character can see 30 yards away. 
 
 In combat, adjacent units can perform an attack of opportunity if a character is moving away. 
 

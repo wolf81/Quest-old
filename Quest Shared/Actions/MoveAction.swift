@@ -22,7 +22,7 @@ class MoveAction: Action {
         return "[\(self.actor.name)] → \(self.toCoord.x).\(self.toCoord.y)"
     }
     
-    private static let stepDuration = 0.15
+    private static let stepDuration = 1.5
     
     init(actor: Actor, toCoord: vector_int2) {
         self.path = [toCoord]
