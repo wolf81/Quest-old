@@ -69,6 +69,8 @@ class Game {
 
     private(set) var entities: [Entity] = []
     
+    private(set) var tiles: [Tile] = []
+    
     private var activeActorIdx: Int = 0
     
     var actors: [Actor] {
@@ -270,24 +272,24 @@ class Game {
         self.tileSize = tileSize
         
         var entities: [Entity] = []
+        var tiles: [Tile] = []
                 
         for y in (0 ..< self.level.height) {
             for x in (0 ..< self.level.width) {
                 let coord = vector_int2(Int32(x), Int32(y))
                 let tile = self.level.getTileAt(coord: coord)
-                var entity: Entity?
+                var entity: EntityProtocol?
 
                 switch tile {
-                case 0: entity = try! entityFactory.newEntity(name: "floor")
-                case 1: entity = try! entityFactory.newEntity(name: "wall")
-                case 2: entity = try! entityFactory.newEntity(name: "stairs_up")
-                case 3: entity = try! entityFactory.newEntity(name: "stairs_down")
+                case 0: entity = try! entityFactory.newEntity(name: "floor", coord: coord)
+                case 1: entity = try! entityFactory.newEntity(name: "wall", coord: coord)
+                case 2: entity = try! entityFactory.newEntity(name: "stairs_up", coord: coord)
+                case 3: entity = try! entityFactory.newEntity(name: "stairs_down", coord: coord)
                 default: break
                 }
 
                 if let entity = entity {
-                    entity.coord = coord
-                    entities.append(entity)
+                    tiles.append(entity as! Tile)
                 } else {
                     // TODO: Add dummy entity to indicate missing content?
                 }
@@ -300,14 +302,14 @@ class Game {
 
                 let monsterCoords = [vector_int2(8, 6), vector_int2(18, 3), vector_int2(22, 8)]
                 for monsterCoord in monsterCoords where monsterCoord == coord {
-                    let monster = try! entityFactory.newEntity(name: "Skeleton")
-                    monster.coord = coord
-                    entities.append(monster)
+                    let monster = try! entityFactory.newEntity(name: "Skeleton", coord: monsterCoord)
+                    entities.append(monster as! Entity)
                     print(monster)
                 }
             }
         }
         
+        self.tiles = tiles
         self.entities = entities
     }
     

@@ -6,7 +6,7 @@
 //  Copyright © 2019 Wolftrail. All rights reserved.
 //
 
-import Foundation
+import SpriteKit
 
 protocol JSONConstructable {
     init(json: [String: Any])

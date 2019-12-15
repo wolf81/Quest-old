@@ -81,13 +81,18 @@ class GameScene: SKScene {
     private func setUpScene() {
         self.game.start(tileSize: GameScene.tileSize)
         
-        for entity in self.game.entities {
-            let position = GameScene.pointForCoord(entity.coord)
-            entity.sprite.position = position
-            
-            self.world.addChild(entity.sprite)
+        for tile in self.game.tiles {
+            let position = GameScene.pointForCoord(tile.coord)
+            tile.sprite.position = position
+            self.world.addChild(tile.sprite)
         }
 
+        for entity in self.game.entities {
+            let position = GameScene.pointForCoord(entity.coord)
+            entity.sprite.position = position            
+            self.world.addChild(entity.sprite)
+        }
+        
         self.actionBar = ActionBar(size: CGSize(width: self.size.width, height: 50), delegate: self)
         self.actionBar.position = CGPoint(x: 0, y: -(size.height / 2))
         self.actionBar.zPosition = 1_000_000_000

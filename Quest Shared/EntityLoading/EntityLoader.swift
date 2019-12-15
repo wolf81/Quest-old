@@ -28,7 +28,7 @@ class EntityLoader {
         monsters.forEach({ entityFactory.register(entity: $0) })
     }
 
-    private static func loadEntities<T: Entity>(type: T.Type, in directory: String) throws -> [T] {
+    private static func loadEntities<T: EntityProtocol>(type: T.Type, in directory: String) throws -> [T] {
         print("load entities from: \(directory)")
         let paths = Bundle.main.paths(forResourcesOfType: "json", inDirectory: directory)
         

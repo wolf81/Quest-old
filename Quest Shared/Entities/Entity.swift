@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class Entity: JSONConstructable & Hashable {
+class Entity: EntityProtocol & Hashable {
     static unowned var entityFactory: EntityFactory!
     
     static func == (lhs: Entity, rhs: Entity) -> Bool {
@@ -51,11 +51,13 @@ class Entity: JSONConstructable & Hashable {
         self.sprite = sprite
     }
         
-    func copy() -> Self {
-        return copyInternal()
+    func copy(coord: vector_int2) -> Self {
+        return copyInternal(coord: coord)
     }
     
-    private func copyInternal<T: Entity>() -> T {
-        return T(json: self.json)
+    private func copyInternal<T: Entity>(coord: vector_int2) -> T {
+        let entity = T(json: self.json)
+        entity.coord = coord
+        return entity
     }
 }
