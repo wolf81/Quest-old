@@ -21,7 +21,7 @@ protocol Spell {
 }
 
 extension Spell {
-    var manaCost: Int { self.level * 2 + 1 }
+    var manaCost: Int { return self.level * 2 + 1 }
     
     var difficultyClass: Int { return 10 + self.actor.level + self.actor.attributes.mind.bonus }
 }

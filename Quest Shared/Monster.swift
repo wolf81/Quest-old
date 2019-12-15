@@ -15,7 +15,7 @@ class Monster: Actor, CustomStringConvertible {
     override var meleeAttackBonus: Int { return self.equipment.meleeWeapon.attack }
     
     override func getMeleeAttackDamage(_ dieRoll: DieRoll) -> Int {
-        dieRoll == .maximum ? self.equipment.meleeWeapon.damage.maxValue : self.equipment.meleeWeapon.damage.randomValue
+        return dieRoll == .maximum ? self.equipment.meleeWeapon.damage.maxValue : self.equipment.meleeWeapon.damage.randomValue
     }
 
     required init(json: [String : Any]) {

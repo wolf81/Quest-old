@@ -12,7 +12,7 @@ struct HitPoints: CustomStringConvertible {
     private(set) var base: Int
     private var lost: Int
     
-    var current: Int { self.base - self.lost }
+    var current: Int { return self.base - self.lost }
         
     init(base: Int) {
         self.base = base
