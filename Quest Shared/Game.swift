@@ -11,13 +11,18 @@ import DungeonBuilder
 import GameplayKit
 
 protocol GameDelegate: class {
-    func gameDidMove(hero: Hero, path path: [vector_int2], duration: TimeInterval)
+    func gameDidMove(hero: Hero, path: [vector_int2], duration: TimeInterval)
     func gameDidAdd(entity: Entity)
     func gameDidRemove(entity: Entity)
 }
 
-enum Mode {
-    case `default`
+enum PlayMode {
+    case turnBased
+    case realTime
+}
+
+enum SelectionMode {
+    case none
     case selectDestinationTile
     case selectMeleeTarget
     case selectSpellTarget(Spell.Type)
@@ -29,7 +34,7 @@ enum Mode {
         case .selectMeleeTarget: fallthrough
         case .selectRangedTarget: fallthrough
         case .selectSpellTarget(_): return true
-        case .default: return false
+        case .none: return false
         }
     }
 }
@@ -47,7 +52,15 @@ class Game {
         
     private var tileSize: CGSize = .zero
     
-    private var mode: Mode = .default
+    private var selectionMode: SelectionMode = .none
+    
+    private var playMode: PlayMode = .realTime
+    
+    private var timeInterval: TimeInterval = 0
+    
+    public var turnDuration: TimeInterval = 6
+    
+    private var turn: Int = 1
         
     init(entityFactory: EntityFactory, hero: Hero) {
         self.entityFactory = entityFactory
@@ -132,7 +145,7 @@ class Game {
         return xRange.contains(self.hero.coord.x) && yRange.contains(self.hero.coord.y)
     }
     
-    func getVisiblityGraph(for actor: Actor) -> GKGridGraph<GKGridGraphNode> {
+    private func getVisiblityGraph(for actor: Actor) -> GKGridGraph<GKGridGraphNode> {
         let xMin = max(actor.coord.x - Int32(actor.speed), 0)
         let xMax = min(actor.coord.x + Int32(actor.speed + 1), Int32(self.level.width))
         let width = xMax - xMin
@@ -157,10 +170,12 @@ class Game {
         return visibleAreaGraph
     }
     
+    // MARK: - Public
+    
     func showMovementTilesForHero() {
         guard self.actors[self.activeActorIdx] == self.hero && self.isBusy == false else { return }
 
-        if mode.isSelection { hideSelectionTiles() }
+        if selectionMode.isSelection { hideSelectionTiles() }
         
         let actorCoords = self.actors.filter({ $0.coord != self.hero.coord }).compactMap({ $0.coord })
         let movementGraph = getMovementGraph(for: self.hero, range: self.hero.speed, excludedCoords: actorCoords)
@@ -186,21 +201,21 @@ class Game {
             }
         }
         
-        self.mode = .selectDestinationTile
+        self.selectionMode = .selectDestinationTile
     }
     
     func showTargetTilesForSpellType<T: Spell>(spellType: T.Type) {
         if spellType is SingleTargetDamageSpell.Type {
             showRangedAttackTilesForHero()
             
-            self.mode = .selectSpellTarget(spellType)
+            self.selectionMode = .selectSpellTarget(spellType)
         }
     }
     
     func showRangedAttackTilesForHero() {
         guard self.actors[self.activeActorIdx] == self.hero && self.isBusy == false else { return }
 
-        if mode.isSelection { hideSelectionTiles() }
+        if selectionMode.isSelection { hideSelectionTiles() }
 
         let attackRange = Int32(self.hero.equipment.rangedWeapon.range)
         let xRange = self.hero.coord.x - attackRange ... self.hero.coord.x + attackRange
@@ -215,13 +230,13 @@ class Game {
             }
         }
         
-        self.mode = .selectRangedTarget
+        self.selectionMode = .selectRangedTarget
     }
     
     func showMeleeAttackTilesForHero() {
         guard self.actors[self.activeActorIdx] == self.hero && self.isBusy == false else { return }
 
-        if mode.isSelection { hideSelectionTiles() }
+        if selectionMode.isSelection { hideSelectionTiles() }
 
         let xRange = self.hero.coord.x - 1 ... self.hero.coord.x + 1
         let yRange = self.hero.coord.y - 1 ... self.hero.coord.y + 1
@@ -235,11 +250,11 @@ class Game {
             }
         }
         
-        self.mode = .selectMeleeTarget
+        self.selectionMode = .selectMeleeTarget
     }
         
-    func hideSelectionTiles() {
-        guard self.mode.isSelection else { return }
+    private func hideSelectionTiles() {
+        guard self.selectionMode.isSelection else { return }
         
         let tiles = self.entities.filter({ $0 is OverlayTile })
 
@@ -247,7 +262,7 @@ class Game {
 
         tiles.forEach({ self.delegate?.gameDidRemove(entity: $0) })
         
-        self.mode = .default
+        self.selectionMode = .none
     }
     
     func start(levelIdx: Int = 0, tileSize: CGSize) {
@@ -297,39 +312,54 @@ class Game {
     }
     
     func update(_ deltaTime: TimeInterval) {
-        // If the game is busy for any reason (e.g. show animation), wait until ready
-        guard self.isBusy == false else { return }
+        switch self.playMode {
+        case .turnBased:
+            // If the game is busy for any reason (e.g. show animation), wait until ready
+            guard self.isBusy == false else { return }
 
-        let activeActor = self.actors[self.activeActorIdx]
-                
-        // Wait until the current active actor performs an action
-        guard let action = activeActor.getAction(state: self) else {
-            return
-        }
-
-        print(action.message)
-
-        // Start the action for the current actor ... make sure only 1 action is performed at any time
-        self.isBusy = true
-        guard action.perform(completion: { self.isBusy = false }) else {
-            return self.isBusy = false
-        }
-                
-        switch action {
-        case let moveAction as MoveAction:
-            if let hero = activeActor as? Hero {
-                print("move hero")
-                
-//                self.delegate?.gameDidMove(hero: hero, to: moveAction.toCoord, duration: moveAction.duration)
-                self.delegate?.gameDidMove(hero: hero, path: moveAction.path, duration: moveAction.duration)
+            let activeActor = self.actors[self.activeActorIdx]
+                    
+            // Wait until the current active actor performs an action
+            guard let action = activeActor.getAction(state: self) else {
+                return
             }
-        case _ as DieAction:
-            remove(actor: activeActor)
-        default: break
-        }
+
+            print(action.message)
+
+            // Start the action for the current actor ... make sure only 1 action is performed at any time
+            self.isBusy = true
+            guard action.perform(completion: { self.isBusy = false }) else {
+                return self.isBusy = false
+            }
+                    
+            switch action {
+            case let moveAction as MoveAction:
+                if let hero = activeActor as? Hero {
+                    print("move hero")
+                    
+                    self.delegate?.gameDidMove(hero: hero, path: moveAction.path, duration: moveAction.duration)
+                }
+            case _ as DieAction:
+                remove(actor: activeActor)
+            default: break
+            }
+                    
+            // Activate next actor
+            self.activeActorIdx = (self.activeActorIdx + 1) % self.actors.count
+        case .realTime:            
+            self.timeInterval += deltaTime
+            
+//            self.timeInterval += deltaTime
+            let timeDiff = self.timeInterval - self.turnDuration
+            if timeDiff > 0 {
+                self.timeInterval = abs(timeDiff)
+                self.turn += 1
                 
-        // Activate next actor
-        self.activeActorIdx = (self.activeActorIdx + 1) % self.actors.count
+                print("turn: \(self.turn)")
+            }
+            
+            break
+        }
     }
     
     func movePlayer(direction: Direction) {
@@ -346,13 +376,13 @@ class Game {
         
         self.delegate?.gameDidRemove(entity: actor)
     }
-    
-    public func handleInteraction(at coord: vector_int2) {
-        guard self.mode.isSelection else { return }
+
+    func handleInteraction(at coord: vector_int2) {
+        guard self.selectionMode.isSelection else { return }
 
         let overlayTiles = self.entities.filter({ $0 is OverlayTile }) as! [OverlayTile]
 
-        switch self.mode {
+        switch self.selectionMode {
         case .selectDestinationTile:
             if let destinationTile = overlayTiles.filter({ $0.coord == coord }).first, destinationTile.isBlocked == false {
                 let actorCoords = self.actors.filter({ $0.coord != self.hero.coord }).compactMap({ $0.coord })
@@ -372,14 +402,13 @@ class Game {
             if let targetActor = self.actors.filter({ $0.coord == coord }).first {
                 self.hero.attackRanged(actor: targetActor)
             }
-        case .default: break
         case .selectSpellTarget(let spellType):
             if let singleTargetDamageSpellType = spellType as? SingleTargetDamageSpell.Type,
                 let targetActor = self.actors.filter({ $0.coord == coord }).first {
                 let spell = singleTargetDamageSpellType.init(actor: self.hero, targetActor: targetActor)
                 self.hero.cast(spell: spell)
             }
-            break
+        case .none: break
         }
 
         hideSelectionTiles()

@@ -50,12 +50,14 @@ class GameScene: SKScene {
         
         self.spritesToAdd.forEach({ self.world.addChild($0) })
         self.spritesToAdd = []
-        
+                
         // Called before each frame is rendered
         let deltaTime = currentTime - self.lastUpdateTime
         
         // Update game state
-        self.game.update(deltaTime)
+        if self.lastUpdateTime != 0 {
+            self.game.update(deltaTime)
+        }
         
         self.lastUpdateTime = currentTime
     }
@@ -97,7 +99,8 @@ class GameScene: SKScene {
         self.world.addChild(self.playerCamera)
         scene?.camera = self.playerCamera
         
-        self.speed = 5
+        self.speed = 6
+        self.game.turnDuration = Double(6.0 / self.speed)
         
         addChild(self.world)
     }
@@ -113,14 +116,10 @@ class GameScene: SKScene {
             let position = cameraPositionForCoord(coord)
             actions.append(SKAction.move(to: position, duration: duration / Double(path.count)))
         }
+        
         self.playerCamera.run(SKAction.sequence(actions))
     }
-    
-    private func moveCamera(to coord: vector_int2 , duration: TimeInterval) {
-        let position = cameraPositionForCoord(coord)
-        self.playerCamera.run(SKAction.move(to: position, duration: duration))
-    }
-    
+        
     private func cameraPositionForCoord(_ coord: vector_int2) -> CGPoint {
         var position = GameScene.pointForCoord(coord)
         position.y -= self.actionBar.size.height
@@ -136,7 +135,6 @@ func isInRange(origin: vector_int2, radius: Int, coord: vector_int2) -> Bool {
 
 extension GameScene: GameDelegate {
     func gameDidMove(hero: Hero, path: [vector_int2], duration: TimeInterval) {
-//        moveCamera(to: coord, duration: duration)
         moveCamera(path: path, duration: duration)
     }
     
