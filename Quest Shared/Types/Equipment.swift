@@ -35,7 +35,7 @@ struct Equipment {
         
         if let meleeWeaponName = json["melee_weapon"] as String? {
             do {
-                self.meleeWeapon = try entityFactory.newEntity(name: meleeWeaponName) as! Weapon
+                self.meleeWeapon = try entityFactory.newEntity(type: Weapon.self, name: meleeWeaponName)
             } catch let error {
                 print(error)
             }
@@ -43,7 +43,7 @@ struct Equipment {
 
         if let rangedWeaponName = json["ranged_weapon"] as String? {
             do {
-                self.meleeWeapon = try entityFactory.newEntity(name: rangedWeaponName) as! Weapon
+                self.rangedWeapon = try entityFactory.newEntity(type: Weapon.self, name: rangedWeaponName)
             } catch let error {
                 print(error)
             }
@@ -51,7 +51,7 @@ struct Equipment {
 
         if let armorName = json["armor"] as String? {
             do {
-                self.armor = try entityFactory.newEntity(name: armorName) as! Armor
+                self.armor = try entityFactory.newEntity(type: Armor.self, name: armorName) 
             } catch let error {
                 print(error)
             }

@@ -281,10 +281,10 @@ class Game {
                 var entity: EntityProtocol?
 
                 switch tile {
-                case 0: entity = try! entityFactory.newEntity(name: "floor", coord: coord)
-                case 1: entity = try! entityFactory.newEntity(name: "wall", coord: coord)
-                case 2: entity = try! entityFactory.newEntity(name: "stairs_up", coord: coord)
-                case 3: entity = try! entityFactory.newEntity(name: "stairs_down", coord: coord)
+                case 0: entity = try! entityFactory.newEntity(type: Tile.self, name: "floor", coord: coord)
+                case 1: entity = try! entityFactory.newEntity(type: Tile.self, name: "wall", coord: coord)
+                case 2: entity = try! entityFactory.newEntity(type: Tile.self, name: "stairs_up", coord: coord)
+                case 3: entity = try! entityFactory.newEntity(type: Tile.self, name: "stairs_down", coord: coord)
                 default: break
                 }
 
@@ -302,8 +302,8 @@ class Game {
 
                 let monsterCoords = [vector_int2(8, 6), vector_int2(18, 3), vector_int2(22, 8)]
                 for monsterCoord in monsterCoords where monsterCoord == coord {
-                    let monster = try! entityFactory.newEntity(name: "Skeleton", coord: monsterCoord)
-                    entities.append(monster as! Entity)
+                    let monster = try! entityFactory.newEntity(type: Monster.self, name: "Skeleton", coord: monsterCoord)
+                    entities.append(monster)
                     print(monster)
                 }
             }

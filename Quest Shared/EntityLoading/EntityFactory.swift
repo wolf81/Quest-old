@@ -20,17 +20,28 @@ enum EntityFactoryError: LocalizedError {
 // - ...?
 // Not yet sure what is better - it'd be typesafe but perhaps a bit unwieldly ...
 class EntityFactory {
-    private var registry: [String: EntityProtocol] = [:]
+    private var registry: [String: [String: EntityProtocol]] = [:]
     
-    func register(entity: EntityProtocol) {
-        self.registry[entity.name] = entity
+    func register<T: EntityProtocol>(entity: T) {
+        let typeName = String(describing: T.self)
+        if self.registry[typeName] == nil {
+            self.registry[typeName] = [:]
+        }
+        
+        self.registry[typeName]![entity.name] = entity
     }
 
-    func newEntity(name: String, coord: vector_int2 = vector_int2(0, 0)) throws -> EntityProtocol {
-        guard let entity = self.registry[name] else {
+    func newEntity<T: EntityProtocol>(type: T.Type, name: String, coord: vector_int2 = vector_int2(0, 0)) throws -> T {
+        let typeName = String(describing: T.self)
+        
+        guard let entities = self.registry[typeName] else {
+            throw EntityFactoryError.notRegistered(typeName)
+        }
+        
+        guard let entity = entities[name] else {
             throw EntityFactoryError.notRegistered(name)
         }
         
-        return entity.copy(coord: coord)
+        return entity.copy(coord: coord) as! T
     }
 }
