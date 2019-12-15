@@ -45,12 +45,6 @@ class Entity: EntityProtocol & Hashable {
         self.coord = SIMD2<Int32>(0, 0)
     }
     
-    init(sprite: SKSpriteNode, coord: SIMD2<Int32>) {
-        self.json = [:]
-        self.coord = coord
-        self.sprite = sprite
-    }
-        
     func copy(coord: vector_int2) -> Self {
         return copyInternal(coord: coord)
     }

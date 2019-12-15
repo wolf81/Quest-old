@@ -8,9 +8,9 @@
 
 import SpriteKit
 
-class OverlayTile: Entity {
+class OverlayTile: Tile {
     let isBlocked: Bool
-    
+        
     init(color: SKColor, coord: SIMD2<Int32>, isBlocked: Bool) {
         self.isBlocked = isBlocked
         
@@ -27,5 +27,13 @@ class OverlayTile: Entity {
     
     required init(json: [String : Any]) {
         fatalError()
+    }
+    
+    required init(json: [String : Any], coord: vector_int2) {
+        fatalError("init(json:coord:) has not been implemented")
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

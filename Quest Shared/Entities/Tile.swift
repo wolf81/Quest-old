@@ -44,6 +44,12 @@ class Tile: GKGridGraphNode, TileProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
+    init(sprite: SKSpriteNode, coord: vector_int2) {
+        self.json = [:]
+        super.init(gridPosition: coord)
+        self.sprite = sprite
+    }
+    
     func copy(coord: vector_int2) -> Self {
         return copyInternal(coord: coord)
     }

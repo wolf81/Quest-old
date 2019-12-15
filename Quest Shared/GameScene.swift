@@ -143,12 +143,12 @@ extension GameScene: GameDelegate {
         moveCamera(path: path, duration: duration)
     }
     
-    func gameDidAdd(entity: Entity) {
+    func gameDidAdd(entity: EntityProtocol) {
         entity.sprite.position = GameScene.pointForCoord(entity.coord)
         self.spritesToAdd.append(entity.sprite)
     }
     
-    func gameDidRemove(entity: Entity) {
+    func gameDidRemove(entity: EntityProtocol) {
         self.spritesToRemove.append(entity.sprite)
     }
 }

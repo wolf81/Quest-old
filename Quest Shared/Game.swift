@@ -12,8 +12,8 @@ import GameplayKit
 
 protocol GameDelegate: class {
     func gameDidMove(hero: Hero, path: [vector_int2], duration: TimeInterval)
-    func gameDidAdd(entity: Entity)
-    func gameDidRemove(entity: Entity)
+    func gameDidAdd(entity: EntityProtocol)
+    func gameDidRemove(entity: EntityProtocol)
 }
 
 enum PlayMode {
@@ -193,11 +193,11 @@ class Game {
                 if let _ = visibleAreaGraph.node(atGridPosition: coord) {
                     if let _ = movementGraph.node(atGridPosition: coord) {
                         let movementTile = OverlayTile(color: SKColor.green.withAlphaComponent(0.4), coord: coord, isBlocked: false)
-                        self.entities.append(movementTile)
+                        self.tiles.append(movementTile)
                         self.delegate?.gameDidAdd(entity: movementTile)
                     } else {
                         let movementTile = OverlayTile(color: SKColor.green.withAlphaComponent(0.1), coord: coord, isBlocked: true)
-                        self.entities.append(movementTile)
+                        self.tiles.append(movementTile)
                         self.delegate?.gameDidAdd(entity: movementTile)
                     }
                 }
@@ -228,7 +228,7 @@ class Game {
         for actorCoord in actorCoords {
             if xRange.contains(actorCoord.x) && yRange.contains(actorCoord.y) {
                 let movementTile = OverlayTile(color: SKColor.orange.withAlphaComponent(0.4), coord: actorCoord, isBlocked: true)
-                self.entities.append(movementTile)
+                self.tiles.append(movementTile)
                 self.delegate?.gameDidAdd(entity: movementTile)
             }
         }
@@ -248,7 +248,7 @@ class Game {
         for actorCoord in actorCoords {
             if xRange.contains(actorCoord.x) && yRange.contains(actorCoord.y) {
                 let movementTile = OverlayTile(color: SKColor.red.withAlphaComponent(0.4), coord: actorCoord, isBlocked: true)
-                self.entities.append(movementTile)
+                self.tiles.append(movementTile)
                 self.delegate?.gameDidAdd(entity: movementTile)
             }
         }
@@ -259,9 +259,9 @@ class Game {
     private func hideSelectionTiles() {
         guard self.selectionMode.isSelection else { return }
         
-        let tiles = self.entities.filter({ $0 is OverlayTile })
+        let tiles = self.tiles.filter({ $0 is OverlayTile })
 
-        self.entities.removeAll(where: { tiles.contains($0 )})
+        self.tiles.removeAll(where: { tiles.contains($0 )})
 
         tiles.forEach({ self.delegate?.gameDidRemove(entity: $0) })
         
@@ -383,7 +383,7 @@ class Game {
     func handleInteraction(at coord: vector_int2) {
         guard self.selectionMode.isSelection else { return }
 
-        let overlayTiles = self.entities.filter({ $0 is OverlayTile }) as! [OverlayTile]
+        let overlayTiles = self.tiles.filter({ $0 is OverlayTile }) as! [OverlayTile]
 
         switch self.selectionMode {
         case .selectDestinationTile:
