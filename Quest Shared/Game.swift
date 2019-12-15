@@ -54,7 +54,7 @@ class Game {
     
     private var selectionMode: SelectionMode = .none
     
-    private var playMode: PlayMode = .realTime
+    private var playMode: PlayMode = .turnBased
     
     private var timeInterval: TimeInterval = 0
     
@@ -97,16 +97,20 @@ class Game {
         return tile != 1
     }
     
+    func getRange(position: Int, radius: Int, constrainedTo range: Range<Int>) -> Range<Int32> {
+        let minValue = max(position - radius, range.lowerBound)
+        let maxValue = min(position + radius + 1, range.upperBound)
+        return Int32(minValue) ..< Int32(maxValue)
+    }
+    
     func getMovementGraph(for actor: Actor, range: Int, excludedCoords: [vector_int2]) -> GKGridGraph<GKGridGraphNode> {
-        let xMin = max(actor.coord.x - Int32(range), 0)
-        let xMax = min(actor.coord.x + Int32(range + 1), Int32(self.level.width))
-        let width = xMax - xMin
-        let yMin = max(actor.coord.y - Int32(range), 0)
-        let yMax = min(actor.coord.y + Int32(range + 1), Int32(self.level.height))
-        let height = yMax - yMin
+        let xRange = getRange(position: Int(actor.coord.x), radius: range, constrainedTo: 0 ..< self.level.width)
+        let width = xRange.upperBound - xRange.lowerBound
+        let yRange = getRange(position: Int(actor.coord.y), radius: range, constrainedTo: 0 ..< self.level.height)
+        let height = yRange.upperBound - yRange.lowerBound
         
         // Create a graph for the visible area
-        let movementGraph = GKGridGraph(fromGridStartingAt: vector_int2(xMin, yMin), width: width, height: height, diagonalsAllowed: false)
+        let movementGraph = GKGridGraph(fromGridStartingAt: vector_int2(xRange.lowerBound, yRange.lowerBound), width: width, height: height, diagonalsAllowed: false)
         for x in movementGraph.gridOrigin.x ..< (movementGraph.gridOrigin.x + Int32(movementGraph.gridWidth)) {
             for y in movementGraph.gridOrigin.y ..< (movementGraph.gridOrigin.y + Int32(movementGraph.gridHeight)) {
                 let coord = vector_int2(x, y)
@@ -141,22 +145,19 @@ class Game {
     func isHeroVisible(for actor: Actor) -> Bool {
         guard self.hero.isAlive else { return false }
         
-        let sightRange = Int32(actor.sight)
-        let xRange = actor.coord.x - sightRange ... actor.coord.x + sightRange
-        let yRange = actor.coord.y - sightRange ... actor.coord.y + sightRange
+        let xRange = getRange(position: Int(actor.coord.x), radius: actor.sight, constrainedTo: 0 ..< self.level.width)
+        let yRange = getRange(position: Int(actor.coord.y), radius: actor.sight, constrainedTo: 0 ..< self.level.height)
         return xRange.contains(self.hero.coord.x) && yRange.contains(self.hero.coord.y)
     }
     
     private func getVisiblityGraph(for actor: Actor) -> GKGridGraph<GKGridGraphNode> {
-        let xMin = max(actor.coord.x - Int32(actor.speed), 0)
-        let xMax = min(actor.coord.x + Int32(actor.speed + 1), Int32(self.level.width))
-        let width = xMax - xMin
-        let yMin = max(actor.coord.y - Int32(actor.speed), 0)
-        let yMax = min(actor.coord.y + Int32(actor.speed + 1), Int32(self.level.height))
-        let height = yMax - yMin
-        
+        let xRange = getRange(position: Int(actor.coord.x), radius: actor.speed, constrainedTo: 0 ..< self.level.width)
+        let width = xRange.upperBound - xRange.lowerBound
+        let yRange = getRange(position: Int(actor.coord.y), radius: actor.speed, constrainedTo: 0 ..< self.level.height)
+        let height = yRange.upperBound - yRange.lowerBound
+
         // Create a graph for the visible area
-        let visibleAreaGraph = GKGridGraph(fromGridStartingAt: vector_int2(xMin, yMin), width: width, height: height, diagonalsAllowed: false)
+        let visibleAreaGraph = GKGridGraph(fromGridStartingAt: vector_int2(xRange.lowerBound, yRange.lowerBound), width: width, height: height, diagonalsAllowed: false)
         for x in visibleAreaGraph.gridOrigin.x ..< (visibleAreaGraph.gridOrigin.x + Int32(visibleAreaGraph.gridWidth)) {
             for y in visibleAreaGraph.gridOrigin.y ..< (visibleAreaGraph.gridOrigin.y + Int32(visibleAreaGraph.gridHeight)) {
                 let coord = vector_int2(x, y)
@@ -240,8 +241,8 @@ class Game {
 
         if selectionMode.isSelection { hideSelectionTiles() }
 
-        let xRange = self.hero.coord.x - 1 ... self.hero.coord.x + 1
-        let yRange = self.hero.coord.y - 1 ... self.hero.coord.y + 1
+        let xRange = getRange(position: Int(self.hero.coord.x), radius: 1, constrainedTo: 0 ..< self.level.width)
+        let yRange = getRange(position: Int(self.hero.coord.y), radius: 1, constrainedTo: 0 ..< self.level.width)
         
         let actorCoords = self.actors.filter({ $0 != self.hero }).compactMap({ $0.coord })
         for actorCoord in actorCoords {
