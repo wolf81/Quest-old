@@ -1,3 +1,5 @@
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
 #  DungeonBuilder
 
 A 2D dungeon maze builder written in Swift.
@@ -16,6 +18,14 @@ The code is based on the Perl and JavaScript versions written by [Donjon](https:
 - Dungeons can be created using various layouts, e.g. keep or hexagon
 - Different types of doors are placed, e.g.: normal, trapped, locked, etc...
 - Optionally use your own (random) number generator
+
+## Installation
+
+DungeonBuilder can be installed using Carthage. Simply add the following line to your Cartfile:
+
+    github "wolf81/DungeonBuilder"
+
+Then follow [the remaining steps from the Carthage guide](https://github.com/Carthage/Carthage).
 
 ## Usage
 

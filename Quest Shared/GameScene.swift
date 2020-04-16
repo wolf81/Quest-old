@@ -104,7 +104,7 @@ class GameScene: SKScene {
         self.world.addChild(self.playerCamera)
         scene?.camera = self.playerCamera
         
-        self.speed = 6
+        self.speed = 8
         self.game.turnDuration = Double(6.0 / self.speed)
         
         addChild(self.world)

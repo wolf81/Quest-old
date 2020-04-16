@@ -15,12 +15,16 @@ class RangedAttackAction: Action {
         return "[\(self.actor.name)] ↣ \(self.targetActor.name) (\(self.targetActor.hitPoints.current)/\(self.targetActor.hitPoints.base))"
     }
 
-    init(actor: Actor, targetActor: Actor) {
+    init(actor: Actor, targetActor: Actor, timeUnitCost: Int) {
         self.targetActor = targetActor
-        super.init(actor: actor)
+        super.init(actor: actor, timeUnitCost: timeUnitCost)
     }
     
     override func perform(completion: @escaping () -> Void) -> Bool {
+        defer {
+            self.actor.subtractTimeUnits(self.timeUnitCost)
+        }
+
         let attackDie = HitDie.d20(1, 0)
         let baseAttackRoll = attackDie.randomValue
         let armorClass = targetActor.armorClass

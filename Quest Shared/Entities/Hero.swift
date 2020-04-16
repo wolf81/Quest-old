@@ -13,9 +13,7 @@ class Hero: Actor, CustomStringConvertible {
     let role: Role
     
     override var level: Int { return 1 }
-    
-    override var speed: Int { return 4 }
-    
+        
     private var direction: Direction?
         
     private var path: [vector_int2]?
@@ -110,27 +108,27 @@ class Hero: Actor, CustomStringConvertible {
         }
 
         if self.isAlive == false {
-            return DieAction(actor: self)
+            return DieAction(actor: self, timeUnitCost: Constants.timeUnitsPerTurn)
         }
         
         if let direction = self.direction {
             let toCoord = self.coord &+ direction.coord
             
             if let targetActor = state.getActorAt(coord: toCoord) {                
-                return MeleeAttackAction(actor: self, targetActor: targetActor)
+                return MeleeAttackAction(actor: self, targetActor: targetActor, timeUnitCost: self.actionCost.meleeAttack)
             }
             
             if state.canMove(entity: self, toCoord: toCoord) {
-                return MoveAction(actor: self, toCoord: toCoord)
+                return MoveAction(actor: self, toCoord: toCoord, timeUnitCost: self.actionCost.move)
             }
         } else if let path = self.path {
-            return MoveAction(actor: self, coords: path)
+            return MoveAction(actor: self, coords: path, timeUnitCost: self.actionCost.move)
         } else if let meleeTarget = self.meleeTarget {
-            return MeleeAttackAction(actor: self, targetActor: meleeTarget)
+            return MeleeAttackAction(actor: self, targetActor: meleeTarget, timeUnitCost: self.actionCost.meleeAttack)
         } else if let rangedTarget = self.rangedTarget {
-            return RangedAttackAction(actor: self, targetActor: rangedTarget)
+            return RangedAttackAction(actor: self, targetActor: rangedTarget, timeUnitCost: self.actionCost.rangedAttack)
         } else if let spell = self.spell {
-            return CastSpellAction(actor: self, spell: spell)
+            return CastSpellAction(actor: self, spell: spell, timeUnitCost: Constants.timeUnitsPerTurn)
         }
                              
         return nil

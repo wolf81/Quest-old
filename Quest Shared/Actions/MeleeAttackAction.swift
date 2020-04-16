@@ -11,9 +11,9 @@ import Foundation
 class MeleeAttackAction: Action {
     public let targetActor: Actor
     
-    init(actor: Actor, targetActor: Actor) {
+    init(actor: Actor, targetActor: Actor, timeUnitCost: Int) {
         self.targetActor = targetActor
-        super.init(actor: actor)
+        super.init(actor: actor, timeUnitCost: timeUnitCost)
     }
     
     override var message: String {
@@ -21,6 +21,10 @@ class MeleeAttackAction: Action {
     }
     
     override func perform(completion: @escaping () -> Void) -> Bool {
+        defer {
+            self.actor.subtractTimeUnits(self.timeUnitCost)
+        }
+        
         let attackDie = HitDie.d20(1, 0)
         let baseAttackRoll = attackDie.randomValue
         let armorClass = targetActor.armorClass

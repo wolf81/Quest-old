@@ -10,11 +10,14 @@ import SpriteKit
 
 class Action {
     unowned var actor: Actor
+    
+    private(set) var timeUnitCost: Int = Constants.timeUnitsPerTurn
 
     var message: String { get { fatalError() } }
 
-    init(actor: Actor) {
+    init(actor: Actor, timeUnitCost: Int) {
         self.actor = actor
+        self.timeUnitCost = timeUnitCost
     }
     
     func perform(completion: @escaping () -> Void) -> Bool {

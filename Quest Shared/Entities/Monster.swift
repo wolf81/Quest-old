@@ -42,17 +42,16 @@ class Monster: Actor, CustomStringConvertible {
     
     override func getAction(state: Game) -> Action? {
         if self.isAlive == false {
-            return DieAction(actor: self)
+            return DieAction(actor: self, timeUnitCost: Constants.timeUnitsPerTurn)
         }
-        
-//        let directions: [Direction] = [.up, .down, .left, .right]
-//        let randomDirection = directions.randomElement()
-        
+                
         // If hero is in melee range, perform melee attack
         let xRange = self.coord.x - 1 ... self.coord.x + 1
         let yRange = self.coord.y - 1 ... self.coord.y + 1
         if state.hero.isAlive && xRange.contains(state.hero.coord.x) && yRange.contains(state.hero.coord.y) {
-            return MeleeAttackAction(actor: self, targetActor: state.hero)
+            if (self.actionCost.meleeAttack <= self.timeUnits) {
+                return MeleeAttackAction(actor: self, targetActor: state.hero, timeUnitCost: self.actionCost.meleeAttack)
+            }
         }
                 
         if state.isHeroVisible(for: self) {
@@ -60,26 +59,27 @@ class Monster: Actor, CustomStringConvertible {
             let movementGraph = state.getMovementGraph(for: self, range: self.sight, excludedCoords: actorCoords)
             if let actorNode = movementGraph.node(atGridPosition: self.coord), let heroNode = movementGraph.node(atGridPosition: state.hero.coord)  {
                 var pathNodes = movementGraph.findPath(from: actorNode, to: heroNode) as! [GKGridGraphNode]
-                if pathNodes.count > 0 {
-                    pathNodes.removeLast()
+                pathNodes.removeLast() // we don't want to move on top of the hero
 
-                    if pathNodes.count > self.speed {
-                        pathNodes.removeLast(pathNodes.count - self.speed)
-                    }
+                let moveCount = self.timeUnits / self.actionCost.move
+                print("timeUnits: \(self.timeUnits)")
+                
+                if pathNodes.count > 0 && moveCount > 0 {
+                    let nodeCount = pathNodes.count
+                    print("nodeCount: \(nodeCount), moveCount: \(moveCount)")
                     
+                    let removeNodeCount = max(nodeCount - moveCount - 1, 0)
+                    pathNodes.removeLast(removeNodeCount)
+                                        
                     let path = pathNodes.compactMap({ $0.gridPosition })
-                    return MoveAction(actor: self, coords: path)
+                    if (self.actionCost.move <= self.timeUnits) {
+                        return MoveAction(actor: self, coords: path, timeUnitCost: self.actionCost.move * moveCount)
+                    }
                 }
             }
         }
         
-//        // Move in random direction
-//        let toCoord = self.coord &+ randomDirection!.coord
-//        if state.canMove(entity: self, toCoord: toCoord) {
-//            return MoveAction(actor: self, toCoord: toCoord)
-//        }
-
-        return IdleAction(actor: self)
+        return IdleAction(actor: self, timeUnitCost: 0)
     }
 }
 

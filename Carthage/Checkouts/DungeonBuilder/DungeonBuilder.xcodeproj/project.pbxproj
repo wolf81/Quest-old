@@ -351,15 +351,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1000;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = Wolftrail;
 				TargetAttributes = {
 					790A2AEE213EB05600BBE94D = {
 						CreatedOnToolsVersion = 10.0;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1130;
 					};
 					790A2AF7213EB05700BBE94D = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1130;
 					};
 					7929FBCD22AFAD5A003C1964 = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -375,6 +376,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 790A2AE5213EB05600BBE94D;
 			productRefGroup = 790A2AF0213EB05600BBE94D /* Products */;
@@ -630,7 +632,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.wolftrail.DungeonBuilder;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -657,7 +659,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = net.wolftrail.DungeonBuilder;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -676,7 +678,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.wolftrail.DungeonBuilderTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -695,14 +697,14 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.wolftrail.DungeonBuilderTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
 		7929FBD322AFAD5A003C1964 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = J6E64C67VU;
@@ -728,7 +730,7 @@
 		7929FBD422AFAD5A003C1964 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = J6E64C67VU;

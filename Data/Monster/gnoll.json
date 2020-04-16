@@ -5,6 +5,10 @@
 	"HD": "2d8+2",
 	"AC": 15,
     "EQ": {
-        "weaponMelee": "Battleaxe +3",
+        "melee_weapon": "Battleaxe +3",
+    },
+    
+    "actionCost": {
+        "move": 130
     }
 }

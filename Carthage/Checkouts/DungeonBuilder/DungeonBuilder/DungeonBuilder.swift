@@ -418,8 +418,8 @@ open class DungeonBuilder {
     }
     
     private func delveTunnel(in dungeon: Dungeon, origin: Position, destination: Position) -> Bool {
-        var b = [origin.i, destination.i].sorted()
-        var c = [origin.j, destination.j].sorted()
+        let b = [origin.i, destination.i].sorted()
+        let c = [origin.j, destination.j].sorted()
         
         for e in b[0] ... b[1] {
             for d in c[0] ... c[1] {
@@ -435,8 +435,8 @@ open class DungeonBuilder {
         guard (0 ..< dungeon.n_rows).contains(destination.i) else { return false }
         guard (0 ..< dungeon.n_cols).contains(destination.j) else { return false }
         
-        var rowIdxs = [origin.i, destination.i].sorted()
-        var colIdxs = [origin.j, destination.j].sorted()
+        let rowIdxs = [origin.i, destination.i].sorted()
+        let colIdxs = [origin.j, destination.j].sorted()
         
         for r in rowIdxs[0] ... rowIdxs[1] {
             for c in colIdxs[0] ... colIdxs[1] {

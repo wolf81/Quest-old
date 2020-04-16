@@ -16,11 +16,6 @@ protocol GameDelegate: class {
     func gameDidRemove(entity: EntityProtocol)
 }
 
-enum PlayMode {
-    case turnBased
-    case realTime
-}
-
 enum SelectionMode {
     case none
     case selectDestinationTile
@@ -53,9 +48,7 @@ class Game {
     private var tileSize: CGSize = .zero
     
     private var selectionMode: SelectionMode = .none
-    
-    private var playMode: PlayMode = .turnBased
-    
+        
     private var timeInterval: TimeInterval = 0
     
     public var turnDuration: TimeInterval = 6
@@ -151,9 +144,10 @@ class Game {
     }
     
     private func getVisiblityGraph(for actor: Actor) -> GKGridGraph<GKGridGraphNode> {
-        let xRange = getRange(position: Int(actor.coord.x), radius: actor.speed, constrainedTo: 0 ..< self.level.width)
+        let radius = 1
+        let xRange = getRange(position: Int(actor.coord.x), radius: radius, constrainedTo: 0 ..< self.level.width)
         let width = xRange.upperBound - xRange.lowerBound
-        let yRange = getRange(position: Int(actor.coord.y), radius: actor.speed, constrainedTo: 0 ..< self.level.height)
+        let yRange = getRange(position: Int(actor.coord.y), radius: radius, constrainedTo: 0 ..< self.level.height)
         let height = yRange.upperBound - yRange.lowerBound
 
         // Create a graph for the visible area
@@ -162,7 +156,7 @@ class Game {
             for y in visibleAreaGraph.gridOrigin.y ..< (visibleAreaGraph.gridOrigin.y + Int32(visibleAreaGraph.gridHeight)) {
                 let coord = vector_int2(x, y)
 
-                if isInRange(origin: actor.coord, radius: actor.speed, coord: coord) == false || getTileAt(coord: coord) == 1 {
+                if isInRange(origin: actor.coord, radius: radius, coord: coord) == false || getTileAt(coord: coord) == 1 {
                     if let node = visibleAreaGraph.node(atGridPosition: coord) {
                         visibleAreaGraph.remove([node])
                     }
@@ -181,7 +175,7 @@ class Game {
         if selectionMode.isSelection { hideSelectionTiles() }
         
         let actorCoords = self.actors.filter({ $0.coord != self.hero.coord }).compactMap({ $0.coord })
-        let movementGraph = getMovementGraph(for: self.hero, range: self.hero.speed, excludedCoords: actorCoords)
+        let movementGraph = getMovementGraph(for: self.hero, range: 1, excludedCoords: actorCoords)
         let visibleAreaGraph = getVisiblityGraph(for: self.hero)
         
         // Compare visible area graph and movement graph and show appropriate tile colors depending if a tile is reachable or not
@@ -303,7 +297,9 @@ class Game {
 
                 let monsterCoords = [vector_int2(8, 6), vector_int2(18, 3), vector_int2(22, 8)]
                 for monsterCoord in monsterCoords where monsterCoord == coord {
-                    let monster = try! entityFactory.newEntity(type: Monster.self, name: "Skeleton", coord: monsterCoord)
+                    let idx = monsterCoords.firstIndex(where: { $0 == coord })!
+                    let isEven = idx.remainderReportingOverflow(dividingBy: 2).partialValue == 0
+                    let monster = try! entityFactory.newEntity(type: Monster.self, name: isEven ? "Gnoll" : "Skeleton", coord: monsterCoord)
                     entities.append(monster)
                     print(monster)
                 }
@@ -315,54 +311,39 @@ class Game {
     }
     
     func update(_ deltaTime: TimeInterval) {
-        switch self.playMode {
-        case .turnBased:
-            // If the game is busy for any reason (e.g. show animation), wait until ready
-            guard self.isBusy == false else { return }
+        // If the game is busy for any reason (e.g. show animation), wait until ready
+        guard self.isBusy == false else { return }
 
-            let activeActor = self.actors[self.activeActorIdx]
-                    
-            // Wait until the current active actor performs an action
-            guard let action = activeActor.getAction(state: self) else {
-                return
-            }
-
-            print(action.message)
-
-            // Start the action for the current actor ... make sure only 1 action is performed at any time
-            self.isBusy = true
-            guard action.perform(completion: { self.isBusy = false }) else {
-                return self.isBusy = false
-            }
-                    
-            switch action {
-            case let moveAction as MoveAction:
-                if let hero = activeActor as? Hero {
-                    print("move hero")
-                    
-                    self.delegate?.gameDidMove(hero: hero, path: moveAction.path, duration: moveAction.duration)
-                }
-            case _ as DieAction:
-                remove(actor: activeActor)
-            default: break
-            }
-                    
-            // Activate next actor
-            self.activeActorIdx = (self.activeActorIdx + 1) % self.actors.count
-        case .realTime:            
-            self.timeInterval += deltaTime
-            
-//            self.timeInterval += deltaTime
-            let timeDiff = self.timeInterval - self.turnDuration
-            if timeDiff > 0 {
-                self.timeInterval = abs(timeDiff)
-                self.turn += 1
-                
-                print("turn: \(self.turn)")
-            }
-            
-            break
+        let activeActor = self.actors[self.activeActorIdx]
+        activeActor.addTimeUnits(Constants.timeUnitsPerTurn)
+        
+        // Wait until the current active actor performs an action
+        guard let action = activeActor.getAction(state: self) else {
+            return
         }
+
+        print(action.message)
+
+        // Start the action for the current actor ... make sure only 1 action is performed at any time
+        self.isBusy = true
+        guard action.perform(completion: { self.isBusy = false }) else {
+            return self.isBusy = false
+        }
+                
+        switch action {
+        case let moveAction as MoveAction:
+            if let hero = activeActor as? Hero {
+                print("move hero")
+                
+                self.delegate?.gameDidMove(hero: hero, path: moveAction.path, duration: moveAction.duration)
+            }
+        case _ as DieAction:
+            remove(actor: activeActor)
+        default: break
+        }
+                
+        // Activate next actor
+        self.activeActorIdx = (self.activeActorIdx + 1) % self.actors.count
     }
     
     func movePlayer(direction: Direction) {
@@ -389,7 +370,7 @@ class Game {
         case .selectDestinationTile:
             if let destinationTile = overlayTiles.filter({ $0.coord == coord }).first, destinationTile.isBlocked == false {
                 let actorCoords = self.actors.filter({ $0.coord != self.hero.coord }).compactMap({ $0.coord })
-                let graph = getMovementGraph(for: self.hero, range: self.hero.speed, excludedCoords: actorCoords)
+                let graph = getMovementGraph(for: self.hero, range: 1, excludedCoords: actorCoords)
                                 
                 if let startNode = graph.node(atGridPosition: self.hero.coord), let endNode = graph.node(atGridPosition: destinationTile.coord) {
                     let nodes = graph.findPath(from: startNode, to: endNode) as! [GKGridGraphNode]

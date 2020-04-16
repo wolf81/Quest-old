@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7929FBFA22AFBADE003C1964 /* DungeonBuilder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FBF922AFBADE003C1964 /* DungeonBuilder.framework */; };
-		7929FBFC22AFBAE7003C1964 /* DungeonBuilder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FBFB22AFBAE7003C1964 /* DungeonBuilder.framework */; };
 		7929FBFE22AFBAED003C1964 /* DungeonBuilder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FBFD22AFBAED003C1964 /* DungeonBuilder.framework */; };
 		7929FC0422B0002E003C1964 /* Fenris.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FC0322B0002D003C1964 /* Fenris.framework */; };
 		7929FC0622B00036003C1964 /* Fenris.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FC0522B00036003C1964 /* Fenris.framework */; };
@@ -22,6 +21,12 @@
 		7939187D22B9447C00CE069C /* SceneBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7939187C22B9447C00CE069C /* SceneBuilder.swift */; };
 		7939187E22B9447C00CE069C /* SceneBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7939187C22B9447C00CE069C /* SceneBuilder.swift */; };
 		7939187F22B9447C00CE069C /* SceneBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7939187C22B9447C00CE069C /* SceneBuilder.swift */; };
+		793A575824459A070089E693 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A575724459A070089E693 /* Constants.swift */; };
+		793A575924459A070089E693 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A575724459A070089E693 /* Constants.swift */; };
+		793A575A24459A070089E693 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A575724459A070089E693 /* Constants.swift */; };
+		793A575C2445A12F0089E693 /* ActionCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A575B2445A12E0089E693 /* ActionCost.swift */; };
+		793A575D2445A12F0089E693 /* ActionCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A575B2445A12E0089E693 /* ActionCost.swift */; };
+		793A575E2445A12F0089E693 /* ActionCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A575B2445A12E0089E693 /* ActionCost.swift */; };
 		79423B7A239E99CC0042B9BD /* HeroBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79423B79239E99CC0042B9BD /* HeroBuilder.swift */; };
 		79423B7B239E99CC0042B9BD /* HeroBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79423B79239E99CC0042B9BD /* HeroBuilder.swift */; };
 		79423B7C239E99CC0042B9BD /* HeroBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79423B79239E99CC0042B9BD /* HeroBuilder.swift */; };
@@ -38,6 +43,7 @@
 		795746BB22A9029D00E04BEC /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795746BA22A9029D00E04BEC /* Direction.swift */; };
 		795746BC22A9029D00E04BEC /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795746BA22A9029D00E04BEC /* Direction.swift */; };
 		795746BD22A9029D00E04BEC /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795746BA22A9029D00E04BEC /* Direction.swift */; };
+		795EA80F24388B79008914E4 /* DungeonBuilder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FBFB22AFBAE7003C1964 /* DungeonBuilder.framework */; };
 		7960DEBB23A6082B00B4CDF8 /* Monster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7960DEB223A6082B00B4CDF8 /* Monster.swift */; };
 		7960DEBC23A6082B00B4CDF8 /* Monster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7960DEB223A6082B00B4CDF8 /* Monster.swift */; };
 		7960DEBD23A6082B00B4CDF8 /* Monster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7960DEB223A6082B00B4CDF8 /* Monster.swift */; };
@@ -165,6 +171,8 @@
 		792C698B23A40D4700A729C3 /* Spell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spell.swift; sourceTree = "<group>"; };
 		792C698F23A5495500A729C3 /* CastSpellAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastSpellAction.swift; sourceTree = "<group>"; };
 		7939187C22B9447C00CE069C /* SceneBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneBuilder.swift; sourceTree = "<group>"; };
+		793A575724459A070089E693 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		793A575B2445A12E0089E693 /* ActionCost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCost.swift; sourceTree = "<group>"; };
 		79423B79239E99CC0042B9BD /* HeroBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroBuilder.swift; sourceTree = "<group>"; };
 		794864D022A7E48400F84A72 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		794864D222A7E60300F84A72 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -247,8 +255,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7929FBFC22AFBAE7003C1964 /* DungeonBuilder.framework in Frameworks */,
 				7929FC0422B0002E003C1964 /* Fenris.framework in Frameworks */,
+				795EA80F24388B79008914E4 /* DungeonBuilder.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +312,7 @@
 				79ACC81922AAB6F100AC3BF0 /* HitDice.swift */,
 				795746BA22A9029D00E04BEC /* Direction.swift */,
 				792C698B23A40D4700A729C3 /* Spell.swift */,
+				793A575B2445A12E0089E693 /* ActionCost.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -352,6 +361,7 @@
 				7963DE2D239CC35F00183DF2 /* DefaultMenuConfiguration.swift */,
 				79423B79239E99CC0042B9BD /* HeroBuilder.swift */,
 				798C997D23A2068C00C6EC1C /* AnimationKey.swift */,
+				793A575724459A070089E693 /* Constants.swift */,
 			);
 			path = "Quest Shared";
 			sourceTree = "<group>";
@@ -616,8 +626,10 @@
 				7963DE52239E3D2A00183DF2 /* ActionBar.swift in Sources */,
 				7960DED323A6082B00B4CDF8 /* OverlayTile.swift in Sources */,
 				7960DED723A6083400B4CDF8 /* EntityProtocol.swift in Sources */,
+				793A575C2445A12F0089E693 /* ActionCost.swift in Sources */,
 				79C61AA522A7C415008D3609 /* GameScene.swift in Sources */,
 				7960DEC723A6082B00B4CDF8 /* Shield.swift in Sources */,
+				793A575824459A070089E693 /* Constants.swift in Sources */,
 				794864D322A7E60300F84A72 /* Game.swift in Sources */,
 				7985AF9423A20DDC0067F884 /* DieAction.swift in Sources */,
 				79742A6A239E60A7008504E8 /* Gender.swift in Sources */,
@@ -665,8 +677,10 @@
 				7963DE53239E3D2A00183DF2 /* ActionBar.swift in Sources */,
 				7960DED423A6082B00B4CDF8 /* OverlayTile.swift in Sources */,
 				7960DED823A6083400B4CDF8 /* EntityProtocol.swift in Sources */,
+				793A575D2445A12F0089E693 /* ActionCost.swift in Sources */,
 				79C61AA622A7C415008D3609 /* GameScene.swift in Sources */,
 				7960DEC823A6082B00B4CDF8 /* Shield.swift in Sources */,
+				793A575924459A070089E693 /* Constants.swift in Sources */,
 				794864D422A7E60300F84A72 /* Game.swift in Sources */,
 				7985AF9523A20DDC0067F884 /* DieAction.swift in Sources */,
 				79742A6B239E60A7008504E8 /* Gender.swift in Sources */,
@@ -731,8 +745,10 @@
 				7960DECF23A6082B00B4CDF8 /* Tile.swift in Sources */,
 				798537C823A2924E00721CE7 /* RangedAttackAction.swift in Sources */,
 				795746B522A7CA9800E04BEC /* Level.swift in Sources */,
+				793A575A24459A070089E693 /* Constants.swift in Sources */,
 				7963DE40239CE15700183DF2 /* Role.swift in Sources */,
 				79C61A9822A7C415008D3609 /* AppDelegate.swift in Sources */,
+				793A575E2445A12F0089E693 /* ActionCost.swift in Sources */,
 				7963DE34239CDE2600183DF2 /* Attribute.swift in Sources */,
 				794864D122A7E48400F84A72 /* GameView.swift in Sources */,
 				7963DE59239E456900183DF2 /* ActionBarButton.swift in Sources */,

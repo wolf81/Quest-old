@@ -24,19 +24,25 @@ class MoveAction: Action {
     
     private static let stepDuration = 1.5
     
-    init(actor: Actor, toCoord: vector_int2) {
+    init(actor: Actor, toCoord: vector_int2, timeUnitCost: Int) {
         self.path = [toCoord]
-        super.init(actor: actor)
+        super.init(actor: actor, timeUnitCost: timeUnitCost)
     }
     
-    init(actor: Actor, coords: [vector_int2]) {
+    init(actor: Actor, coords: [vector_int2], timeUnitCost: Int) {
         self.path = coords
-        super.init(actor: actor)
+        super.init(actor: actor, timeUnitCost: timeUnitCost)
     }
     
     override func perform(completion: @escaping () -> Void) -> Bool {
         guard self.actor.sprite.action(forKey: AnimationKey.move) == nil else {
             return false
+        }
+        
+        defer {
+            print("subtract tu: \(self.timeUnitCost)")
+            self.actor.subtractTimeUnits(self.timeUnitCost)
+            print("tu: \(self.actor.timeUnits)")
         }
                 
         self.duration = 0

@@ -24,30 +24,34 @@ class Actor: Entity {
     
     private(set) var attributes: Attributes = Attributes(strength: 12, dexterity: 12, mind: 12)
 
+    private(set) var actionCost: ActionCost = ActionCost()
+    
     private(set) var meleeAttackBonus: Int = 0
 
     private(set) var rangedAttackBonus: Int = 0
 
     private(set) var armorClass: Int = 0
-    
-    private(set) var speed: Int = 1
-    
+        
     private(set) var sight: Int = 12
     
     private(set) var level: Int = 1
     
-    private var action: Action?
-            
+    private(set) var timeUnits: Int = 0
+                
     init(json: [String : Any], hitPoints: Int, armorClass: Int, skills: Skills, equipment: Equipment) {
         self.hitPoints = HitPoints(base: hitPoints)
         self.armorClass = armorClass
         self.skills = skills
         self.equipment = equipment
         
-        self.speed = json["speed"] as? Int ?? 1
         self.sight = json["sight"] as? Int ?? 12
-        
+
+        let actionCostJson = json["actionCost"] as? [String: Int] ?? [:]
+        self.actionCost = ActionCost(json: actionCostJson)
+
         super.init(json: json)
+        
+        self.sprite.addChild(equipment.meleeWeapon.sprite)
     }    
     
     init(name: String, hitPoints: Int, race: Race, gender: Gender, attributes: Attributes, skills: Skills, equipment: Equipment) {
@@ -58,6 +62,10 @@ class Actor: Entity {
         
         super.init(json: ["name": name, "sprite": "\(race)_\(gender)"])
         
+        self.sprite.addChild(equipment.armor.sprite)
+        self.sprite.addChild(equipment.meleeWeapon.sprite)
+        self.sprite.addChild(equipment.shield.sprite)
+        
         self.sprite.zPosition = 100
     }
     
@@ -67,7 +75,7 @@ class Actor: Entity {
         self.equipment = Equipment.none
     
         super.init(json: json)
-        
+    
         self.sprite.zPosition = 100
     }
     
@@ -78,10 +86,16 @@ class Actor: Entity {
     func getRangedAttackDamage(_ dieRoll: DieRoll) -> Int {
         return dieRoll == .maximum ? self.equipment.rangedWeapon.damage.maxValue : self.equipment.rangedWeapon.damage.randomValue
     }
+    
+    func addTimeUnits(_ timeUnits: Int) {
+        self.timeUnits = min(self.timeUnits + timeUnits, Constants.timeUnitsPerTurn * 2)
+    }
+    
+    func subtractTimeUnits(_ timeUnits: Int) {
+        self.timeUnits = max(self.timeUnits - timeUnits, 0)
+    }
 
     func getAction(state: Game) -> Action? {
-        defer { self.action = nil }
-        
-        return self.action
-    }    
+        return nil
+    }
 }
