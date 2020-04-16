@@ -19,10 +19,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
 
+    func applicationDidBecomeActive(_ notification: Notification) {
+        NSApp.mainWindow?.acceptsMouseMovedEvents = true
+    }
+    
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         return true
     }
-
-
 }
 

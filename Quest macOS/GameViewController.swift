@@ -51,6 +51,7 @@ extension GameViewController: MainMenuSceneDelegate {
     }
     
     func mainMenuDidSelectQuit() {
+        NSApp.terminate(self)
     }
 }
 
