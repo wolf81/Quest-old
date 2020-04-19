@@ -23,6 +23,8 @@ class GameScene: SKScene, SceneManagerConstructable {
     
     private var actionBar: ActionBar!
     
+    private var statusBar: StatusBar!
+    
     private var world: SKNode = SKNode()
     
     private var playerCamera: SKCameraNode!
@@ -113,6 +115,16 @@ class GameScene: SKScene, SceneManagerConstructable {
         self.game.turnDuration = Double(6.0 / self.speed)
         
         addChild(self.world)
+        
+        var statusBarSize = self.size
+        statusBarSize.height = 40
+        statusBarSize.width -= 40
+        self.statusBar = StatusBar(size: statusBarSize, font: DefaultMenuConfiguration.shared.labelFont)
+        let statusBarY = self.actionBar.frame.maxY + 20
+        self.statusBar.position = CGPoint(x: -size.width / 2 + 20, y: statusBarY)
+        self.playerCamera.addChild(self.statusBar)
+        
+        self.statusBar.update(text: "Welcome to Quest")
     }
 
     private func movePlayer(direction: Direction) {
@@ -146,6 +158,8 @@ func isInRange(origin: vector_int2, radius: Int, coord: vector_int2) -> Bool {
 extension GameScene: GameDelegate {
     func gameDidMove(hero: Hero, path: [vector_int2], duration: TimeInterval) {
         moveCamera(path: path, duration: duration)
+        
+        self.statusBar.update(text: "hero moved to: \(path[0].x).\(path[0].y)")
     }
     
     func gameDidAdd(entity: EntityProtocol) {

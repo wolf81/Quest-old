@@ -28,6 +28,6 @@ class MainMenuScene: MenuSceneBase {
             }))
             .build()
     }
-    
+        
     override var configuration: MenuConfiguration { DefaultMenuConfiguration.shared }
 }
