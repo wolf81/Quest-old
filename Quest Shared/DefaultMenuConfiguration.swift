@@ -17,4 +17,8 @@ class DefaultMenuConfiguration: MenuConfiguration {
     var titleFont: Font = Font(name: "Papyrus", size: 22)!
     
     var labelFont: Font = Font(name: "Papyrus", size: 18)!
+    
+    private init() {}
+    
+    public static let shared = DefaultMenuConfiguration()
 }

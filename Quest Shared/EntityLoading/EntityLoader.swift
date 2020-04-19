@@ -8,7 +8,21 @@
 
 import Foundation
 
-class EntityLoader {
+class EntityLoader {    
+    static var entityCount: Int = {
+        var entityCount = 0
+        
+        let url = Bundle.main.resourceURL!.appendingPathComponent("Data")
+        var files = [URL]()
+        if let enumerator = FileManager.default.enumerator(at: url, includingPropertiesForKeys: [.isRegularFileKey], options: [.skipsHiddenFiles, .skipsPackageDescendants]) {
+            for case let fileURL as URL in enumerator where fileURL.pathExtension == "json" {
+                entityCount += 1
+            }
+        }
+        
+        return entityCount
+    }()
+    
     static func loadEntities(for entityFactory: EntityFactory) throws {
         Entity.entityFactory = entityFactory
         

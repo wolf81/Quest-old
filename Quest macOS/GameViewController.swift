@@ -17,9 +17,7 @@ class GameViewController: NSViewController {
     fileprivate let serviceLocator = ServiceLocator.shared
         
     fileprivate var heroBuilder = HeroBuilder()
-    
-    private unowned var gameScene: GameScene?
-            
+                
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,11 +27,12 @@ class GameViewController: NSViewController {
         skView.showsFPS = true
         skView.showsNodeCount = true
         
-        let menuScene = SceneBuilder.mainMenu(size: self.view.bounds.size, delegate: self)
-        self.skView.presentScene(menuScene, transition: SKTransition.fade(withDuration: 0.5))
+        try! ServiceLocator.shared.add(service: SceneManager(view: skView))
+        try! ServiceLocator.shared.get(service: SceneManager.self).fade(to: MainMenuScene.self)
     }
 }
 
+/*
 // MARK: - MainMenuSceneDelegate
 
 extension GameViewController: MainMenuSceneDelegate {
@@ -81,32 +80,11 @@ extension GameViewController: ChooseAttributesMenuDelegate {
             
             let hero = try self.heroBuilder.build()
             let game = Game(entityFactory: entityFactory, hero: hero)
-            let gameScene = GameScene(game: game, size: self.view.bounds.size)
-            self.skView.presentScene(gameScene, transition: SKTransition.fade(withDuration: 0.5))
             
-            self.gameScene = gameScene
+            try! ServiceLocator.shared.get(service: SceneManager.self).fade(to: GameScene.self)
         } catch let error {
             print("error: \(error)")
         }
-    }
-}
-
-// MARK: - CreateCharacterMenuDelegate
-
-extension GameViewController: CreateCharacterMenuDelegate {
-    func createCharacterMenuDidSelect(race: Race, role: Role, gender: Gender) {
-        self.heroBuilder = self.heroBuilder
-            .with(race: race)
-            .with(role: role)
-            .with(gender: gender)
-        
-        let menuScene = SceneBuilder.chooseAttributesMenu(size: self.view.bounds.size, race: race, delegate: self)
-        self.skView.presentScene(menuScene, transition: SKTransition.push(with: .left, duration: 0.5))
-    }
-    
-    func createCharacterMenuDidSelectBack() {
-        let menuScene = SceneBuilder.mainMenu(size: self.view.bounds.size, delegate: self)
-        self.skView.presentScene(menuScene, transition: SKTransition.push(with: .right, duration: 0.5))
     }
 }
 
@@ -118,3 +96,5 @@ extension GameViewController: SettingsMenuDelegate {
         self.skView.presentScene(menuScene, transition: SKTransition.push(with: .right, duration: 0.5))
     }
 }
+
+ */

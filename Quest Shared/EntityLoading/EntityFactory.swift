@@ -12,6 +12,10 @@ enum EntityFactoryError: LocalizedError {
     case notRegistered(String)
 }
 
+protocol EntityFactoryDelegate: class {
+    func entityFactory(entityFactory: EntityFactory, didRegister entity: EntityProtocol)
+}
+
 // TODO:
 // Could consider to make a generic factory, but it'd mean we'd have to create factories for:
 // - monsters
@@ -22,6 +26,14 @@ enum EntityFactoryError: LocalizedError {
 class EntityFactory {
     private var registry: [String: [String: EntityProtocol]] = [:]
     
+    public var entityCount: Int { self.registry.compactMap({ $1 }).reduce([], { $0 + $1 }).count }
+    
+    weak var delegate: EntityFactoryDelegate?
+    
+    init(delegate: EntityFactoryDelegate? = nil) {
+        self.delegate = delegate
+    }
+    
     func register<T: EntityProtocol>(entity: T) {
         let typeName = String(describing: T.self)
         if self.registry[typeName] == nil {
@@ -29,6 +41,8 @@ class EntityFactory {
         }
         
         self.registry[typeName]![entity.name] = entity
+
+        self.delegate?.entityFactory(entityFactory: self, didRegister: entity)
     }
 
     func newEntity<T: EntityProtocol>(type: T.Type, name: String, coord: vector_int2 = vector_int2(0, 0)) throws -> T {

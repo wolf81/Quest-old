@@ -13,12 +13,12 @@ enum HeroBuilderError: LocalizedError {
 }
 
 class HeroBuilder {
-    private var name: String!
-    private var gender: Gender!
-    private var race: Race!
-    private var role: Role!
-    private var attributes: Attributes!
-    private var equipment: Equipment!
+    private(set) var name: String!
+    private(set) var gender: Gender!
+    private(set) var race: Race!
+    private(set) var role: Role!
+    private(set) var attributes: Attributes!
+    private(set) var equipment: Equipment!
     
     func with(gender: Gender) -> Self {
         self.gender = gender

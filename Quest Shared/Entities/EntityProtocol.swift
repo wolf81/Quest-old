@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-protocol EntityProtocol: JSONConstructable {
+protocol EntityProtocol: class, JSONConstructable {
     var name: String { get }
     
     var sprite: SKSpriteNode { get }

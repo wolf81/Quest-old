@@ -18,9 +18,6 @@
 		792C699023A5495500A729C3 /* CastSpellAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792C698F23A5495500A729C3 /* CastSpellAction.swift */; };
 		792C699123A5495500A729C3 /* CastSpellAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792C698F23A5495500A729C3 /* CastSpellAction.swift */; };
 		792C699223A5495500A729C3 /* CastSpellAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792C698F23A5495500A729C3 /* CastSpellAction.swift */; };
-		7939187D22B9447C00CE069C /* SceneBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7939187C22B9447C00CE069C /* SceneBuilder.swift */; };
-		7939187E22B9447C00CE069C /* SceneBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7939187C22B9447C00CE069C /* SceneBuilder.swift */; };
-		7939187F22B9447C00CE069C /* SceneBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7939187C22B9447C00CE069C /* SceneBuilder.swift */; };
 		793A575824459A070089E693 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A575724459A070089E693 /* Constants.swift */; };
 		793A575924459A070089E693 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A575724459A070089E693 /* Constants.swift */; };
 		793A575A24459A070089E693 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A575724459A070089E693 /* Constants.swift */; };
@@ -159,6 +156,21 @@
 		79C61AA822A7C415008D3609 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C61A7022A7C415008D3609 /* Assets.xcassets */; };
 		79C61AA922A7C415008D3609 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C61A7022A7C415008D3609 /* Assets.xcassets */; };
 		79C61AAA22A7C415008D3609 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C61A7022A7C415008D3609 /* Assets.xcassets */; };
+		79FC68ED244C4A0300E6D63C /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC68EC244C4A0300E6D63C /* MainMenuScene.swift */; };
+		79FC68EF244C4A8C00E6D63C /* CreateCharacterScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC68EE244C4A8C00E6D63C /* CreateCharacterScene.swift */; };
+		79FC68F0244C4A8C00E6D63C /* CreateCharacterScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC68EE244C4A8C00E6D63C /* CreateCharacterScene.swift */; };
+		79FC68F1244C4A8C00E6D63C /* CreateCharacterScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC68EE244C4A8C00E6D63C /* CreateCharacterScene.swift */; };
+		79FC68F2244C4A8F00E6D63C /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC68EC244C4A0300E6D63C /* MainMenuScene.swift */; };
+		79FC68F3244C4A9000E6D63C /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC68EC244C4A0300E6D63C /* MainMenuScene.swift */; };
+		79FC68F5244C4C4700E6D63C /* SettingsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC68F4244C4C4700E6D63C /* SettingsScene.swift */; };
+		79FC68F6244C4C4700E6D63C /* SettingsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC68F4244C4C4700E6D63C /* SettingsScene.swift */; };
+		79FC68F7244C4C4700E6D63C /* SettingsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC68F4244C4C4700E6D63C /* SettingsScene.swift */; };
+		79FC68F9244C4C9E00E6D63C /* ChooseAttributesScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC68F8244C4C9E00E6D63C /* ChooseAttributesScene.swift */; };
+		79FC68FA244C4C9E00E6D63C /* ChooseAttributesScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC68F8244C4C9E00E6D63C /* ChooseAttributesScene.swift */; };
+		79FC68FB244C4C9E00E6D63C /* ChooseAttributesScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC68F8244C4C9E00E6D63C /* ChooseAttributesScene.swift */; };
+		79FC68FD244C552B00E6D63C /* LoadingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC68FC244C552B00E6D63C /* LoadingScene.swift */; };
+		79FC68FE244C552B00E6D63C /* LoadingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC68FC244C552B00E6D63C /* LoadingScene.swift */; };
+		79FC68FF244C552B00E6D63C /* LoadingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC68FC244C552B00E6D63C /* LoadingScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -170,7 +182,6 @@
 		7929FC0722B0003D003C1964 /* Fenris.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fenris.framework; path = Carthage/Build/iOS/Fenris.framework; sourceTree = SOURCE_ROOT; };
 		792C698B23A40D4700A729C3 /* Spell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spell.swift; sourceTree = "<group>"; };
 		792C698F23A5495500A729C3 /* CastSpellAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastSpellAction.swift; sourceTree = "<group>"; };
-		7939187C22B9447C00CE069C /* SceneBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneBuilder.swift; sourceTree = "<group>"; };
 		793A575724459A070089E693 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		793A575B2445A12E0089E693 /* ActionCost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCost.swift; sourceTree = "<group>"; };
 		79423B79239E99CC0042B9BD /* HeroBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroBuilder.swift; sourceTree = "<group>"; };
@@ -230,6 +241,11 @@
 		79C61A9922A7C415008D3609 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		79C61A9C22A7C415008D3609 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		79C61A9E22A7C415008D3609 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79FC68EC244C4A0300E6D63C /* MainMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
+		79FC68EE244C4A8C00E6D63C /* CreateCharacterScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCharacterScene.swift; sourceTree = "<group>"; };
+		79FC68F4244C4C4700E6D63C /* SettingsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScene.swift; sourceTree = "<group>"; };
+		79FC68F8244C4C9E00E6D63C /* ChooseAttributesScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseAttributesScene.swift; sourceTree = "<group>"; };
+		79FC68FC244C552B00E6D63C /* LoadingScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -346,6 +362,7 @@
 		79C61A6C22A7C413008D3609 /* Quest Shared */ = {
 			isa = PBXGroup;
 			children = (
+				79FC68EB244C49ED00E6D63C /* Scenes */,
 				7960DEB123A6082B00B4CDF8 /* Entities */,
 				798C996C23A205C500C6EC1C /* Actions */,
 				79423B7D239F4A850042B9BD /* EntityLoading */,
@@ -357,7 +374,6 @@
 				794864D222A7E60300F84A72 /* Game.swift */,
 				797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */,
 				79ACC82922AB81F000AC3BF0 /* JSONConstructable.swift */,
-				7939187C22B9447C00CE069C /* SceneBuilder.swift */,
 				7963DE2D239CC35F00183DF2 /* DefaultMenuConfiguration.swift */,
 				79423B79239E99CC0042B9BD /* HeroBuilder.swift */,
 				798C997D23A2068C00C6EC1C /* AnimationKey.swift */,
@@ -415,6 +431,18 @@
 				794864D022A7E48400F84A72 /* GameView.swift */,
 			);
 			path = "Quest macOS";
+			sourceTree = "<group>";
+		};
+		79FC68EB244C49ED00E6D63C /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				79FC68EC244C4A0300E6D63C /* MainMenuScene.swift */,
+				79FC68EE244C4A8C00E6D63C /* CreateCharacterScene.swift */,
+				79FC68F4244C4C4700E6D63C /* SettingsScene.swift */,
+				79FC68F8244C4C9E00E6D63C /* ChooseAttributesScene.swift */,
+				79FC68FC244C552B00E6D63C /* LoadingScene.swift */,
+			);
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -644,12 +672,15 @@
 				795746B322A7C59A00E04BEC /* Level.swift in Sources */,
 				7960DEC423A6082B00B4CDF8 /* Entity.swift in Sources */,
 				7960DEBB23A6082B00B4CDF8 /* Monster.swift in Sources */,
+				79FC68EF244C4A8C00E6D63C /* CreateCharacterScene.swift in Sources */,
+				79FC68FD244C552B00E6D63C /* LoadingScene.swift in Sources */,
 				7960DEC123A6082B00B4CDF8 /* Hero.swift in Sources */,
 				7960DEBE23A6082B00B4CDF8 /* Weapon.swift in Sources */,
 				7963DE4E239DD2D600183DF2 /* HitPoints.swift in Sources */,
-				7939187D22B9447C00CE069C /* SceneBuilder.swift in Sources */,
+				79FC68F9244C4C9E00E6D63C /* ChooseAttributesScene.swift in Sources */,
 				7960DED023A6082B00B4CDF8 /* Armor.swift in Sources */,
 				7963DE3E239CE15700183DF2 /* Role.swift in Sources */,
+				79FC68ED244C4A0300E6D63C /* MainMenuScene.swift in Sources */,
 				79423B7A239E99CC0042B9BD /* HeroBuilder.swift in Sources */,
 				79C61A7922A7C415008D3609 /* AppDelegate.swift in Sources */,
 				798C997223A205EF00C6EC1C /* MoveAction.swift in Sources */,
@@ -663,6 +694,7 @@
 				798C997E23A2068C00C6EC1C /* AnimationKey.swift in Sources */,
 				7963DE42239CEC6A00183DF2 /* Skill.swift in Sources */,
 				7963DE32239CDE2600183DF2 /* Attribute.swift in Sources */,
+				79FC68F5244C4C4700E6D63C /* SettingsScene.swift in Sources */,
 				795746BB22A9029D00E04BEC /* Direction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -673,6 +705,7 @@
 			files = (
 				79ACC82B22AB81F000AC3BF0 /* JSONConstructable.swift in Sources */,
 				7960DECE23A6082B00B4CDF8 /* Tile.swift in Sources */,
+				79FC68F2244C4A8F00E6D63C /* MainMenuScene.swift in Sources */,
 				7963DE3B239CE12A00183DF2 /* Race.swift in Sources */,
 				7963DE53239E3D2A00183DF2 /* ActionBar.swift in Sources */,
 				7960DED423A6082B00B4CDF8 /* OverlayTile.swift in Sources */,
@@ -689,16 +722,18 @@
 				792C698D23A40D4700A729C3 /* Spell.swift in Sources */,
 				79ACC81F22AB473200AC3BF0 /* Action.swift in Sources */,
 				798C997723A2060000C6EC1C /* MeleeAttackAction.swift in Sources */,
+				79FC68F0244C4A8C00E6D63C /* CreateCharacterScene.swift in Sources */,
 				79ACC7F222AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
 				7963DE4B239D092300183DF2 /* Equipment.swift in Sources */,
 				79ACC81B22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
 				795746B422A7CA9800E04BEC /* Level.swift in Sources */,
 				7960DEC523A6082B00B4CDF8 /* Entity.swift in Sources */,
+				79FC68FE244C552B00E6D63C /* LoadingScene.swift in Sources */,
 				7960DEBC23A6082B00B4CDF8 /* Monster.swift in Sources */,
 				7960DEC223A6082B00B4CDF8 /* Hero.swift in Sources */,
 				7960DEBF23A6082B00B4CDF8 /* Weapon.swift in Sources */,
+				79FC68FA244C4C9E00E6D63C /* ChooseAttributesScene.swift in Sources */,
 				7963DE4F239DD2D600183DF2 /* HitPoints.swift in Sources */,
-				7939187E22B9447C00CE069C /* SceneBuilder.swift in Sources */,
 				7960DED123A6082B00B4CDF8 /* Armor.swift in Sources */,
 				7963DE3F239CE15700183DF2 /* Role.swift in Sources */,
 				79423B7B239E99CC0042B9BD /* HeroBuilder.swift in Sources */,
@@ -714,6 +749,7 @@
 				798C997F23A2068C00C6EC1C /* AnimationKey.swift in Sources */,
 				7963DE43239CEC6A00183DF2 /* Skill.swift in Sources */,
 				7963DE33239CDE2600183DF2 /* Attribute.swift in Sources */,
+				79FC68F6244C4C4700E6D63C /* SettingsScene.swift in Sources */,
 				795746BC22A9029D00E04BEC /* Direction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -725,6 +761,7 @@
 				7963DE3C239CE12A00183DF2 /* Race.swift in Sources */,
 				79423B7C239E99CC0042B9BD /* HeroBuilder.swift in Sources */,
 				7960DED923A6083400B4CDF8 /* EntityProtocol.swift in Sources */,
+				79FC68F3244C4A9000E6D63C /* MainMenuScene.swift in Sources */,
 				79C61AA722A7C415008D3609 /* GameScene.swift in Sources */,
 				794864D522A7E60300F84A72 /* Game.swift in Sources */,
 				79ACC81C22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
@@ -734,7 +771,6 @@
 				7960DEC923A6082B00B4CDF8 /* Shield.swift in Sources */,
 				7960DEBD23A6082B00B4CDF8 /* Monster.swift in Sources */,
 				7963DE4C239D092300183DF2 /* Equipment.swift in Sources */,
-				7939187F22B9447C00CE069C /* SceneBuilder.swift in Sources */,
 				795746BD22A9029D00E04BEC /* Direction.swift in Sources */,
 				79ACC82022AB473200AC3BF0 /* Action.swift in Sources */,
 				798C997C23A2061700C6EC1C /* IdleAction.swift in Sources */,
@@ -742,10 +778,12 @@
 				79ACC7F322AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
 				7960DEC023A6082B00B4CDF8 /* Weapon.swift in Sources */,
 				7963DE30239CC35F00183DF2 /* DefaultMenuConfiguration.swift in Sources */,
+				79FC68FB244C4C9E00E6D63C /* ChooseAttributesScene.swift in Sources */,
 				7960DECF23A6082B00B4CDF8 /* Tile.swift in Sources */,
 				798537C823A2924E00721CE7 /* RangedAttackAction.swift in Sources */,
 				795746B522A7CA9800E04BEC /* Level.swift in Sources */,
 				793A575A24459A070089E693 /* Constants.swift in Sources */,
+				79FC68F1244C4A8C00E6D63C /* CreateCharacterScene.swift in Sources */,
 				7963DE40239CE15700183DF2 /* Role.swift in Sources */,
 				79C61A9822A7C415008D3609 /* AppDelegate.swift in Sources */,
 				793A575E2445A12F0089E693 /* ActionCost.swift in Sources */,
@@ -765,6 +803,8 @@
 				7960DED523A6082B00B4CDF8 /* OverlayTile.swift in Sources */,
 				7960DEC623A6082B00B4CDF8 /* Entity.swift in Sources */,
 				7963DE50239DD2D600183DF2 /* HitPoints.swift in Sources */,
+				79FC68F7244C4C4700E6D63C /* SettingsScene.swift in Sources */,
+				79FC68FF244C552B00E6D63C /* LoadingScene.swift in Sources */,
 				79742A6C239E60A7008504E8 /* Gender.swift in Sources */,
 				798C997823A2060000C6EC1C /* MeleeAttackAction.swift in Sources */,
 			);

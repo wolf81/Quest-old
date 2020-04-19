@@ -6,10 +6,15 @@
 //  Copyright © 2019 Wolftrail. All rights reserved.
 //
 
+import Fenris
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SceneManagerConstructable {
+    public struct UserInfoKey {
+        public static let game = "game"
+    }
+    
     private var lastUpdateTime: TimeInterval = 0
     
     private static let tileSize = CGSize(width: 48, height: 48)
@@ -27,12 +32,12 @@ class GameScene: SKScene {
     
     // Sprites should be added on the main thread, to make this easy, we add sprites in the update loop and then clear this array
     private var spritesToAdd: [SKSpriteNode] = []
-        
-    init(game: Game, size: CGSize) {
-        self.game = game
+            
+    required init(size: CGSize, userInfo: [String : Any]) {
+        self.game = (userInfo[UserInfoKey.game] as! Game)
         
         super.init(size: size)
-        
+
         self.game.delegate = self
     }
     
