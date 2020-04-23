@@ -32,7 +32,7 @@ class Actor: Entity {
 
     private(set) var armorClass: Int = 0
         
-    private(set) var sight: Int = 12
+    private(set) var sight: Int32 = 4
     
     private(set) var level: Int = 1
     
@@ -44,7 +44,7 @@ class Actor: Entity {
         self.skills = skills
         self.equipment = equipment
         
-        self.sight = json["sight"] as? Int ?? 12
+        self.sight = json["sight"] as? Int32 ?? 6
 
         let actionCostJson = json["actionCost"] as? [String: Int] ?? [:]
         self.actionCost = ActionCost(json: actionCostJson)

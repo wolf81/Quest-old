@@ -29,7 +29,7 @@ class Tile: GKGridGraphNode, TileProtocol {
         let texture = SKTexture(imageNamed: spriteName)
         return SKSpriteNode(texture: texture, size: CGSize(width: 48, height: 48))
     }()
-
+    
     required init(json: [String : Any]) {
         self.json = json
         super.init(gridPosition: vector_int2(0, 0))

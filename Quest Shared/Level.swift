@@ -10,13 +10,13 @@ import Foundation
 import SpriteKit
 
 struct Level {
-    let width = 24
-    let height = 12
+    let width: Int32 = 24
+    let height: Int32 = 12
     
     fileprivate let tiles: [Int]
     
     init() {
-        var tiles = Array(repeatElement(0, count: width * height))
+        var tiles = Array(repeatElement(0, count: Int(width) * Int(height)))
         
         for y in (0 ..< height) {
             for x in (0 ..< width) {
@@ -42,6 +42,14 @@ struct Level {
                 if x == (width - 1) {
                     tiles[idx] = 1
                 }
+                
+                if x == 7 && y < 7 {
+                    tiles[idx] = 1
+                }
+                
+                if x == 12 && y > 3 {
+                    tiles[idx] = 1
+                }
             }
         }
             
@@ -49,7 +57,7 @@ struct Level {
     }
     
     func getTileAt(coord: SIMD2<Int32>) -> Int {
-        let idx = Int(Int(coord.y) * width + Int(coord.x))
+        let idx = Int(coord.y * width + coord.x)
         
         let validRange = 0 ..< self.tiles.count
         guard validRange.contains(idx) else { return Int.min }

@@ -53,6 +53,8 @@ class Game {
     
     public var turnDuration: TimeInterval = 6
     
+    private var visibility: Visibility!
+    
     private var turn: Int = 1
         
     init(entityFactory: EntityFactory, hero: Hero) {
@@ -63,6 +65,8 @@ class Game {
     private(set) var entities: [Entity] = []
     
     private(set) var tiles: [Tile] = []
+    
+    private(set) var fogTiles: [FogTile] = []
     
     private var activeActorIdx: Int = 0
     
@@ -90,16 +94,16 @@ class Game {
         return tile != 1
     }
     
-    func getRange(position: Int, radius: Int, constrainedTo range: Range<Int>) -> Range<Int32> {
+    func getRange(position: Int32, radius: Int32, constrainedTo range: Range<Int32>) -> Range<Int32> {
         let minValue = max(position - radius, range.lowerBound)
         let maxValue = min(position + radius + 1, range.upperBound)
         return Int32(minValue) ..< Int32(maxValue)
     }
     
-    func getMovementGraph(for actor: Actor, range: Int, excludedCoords: [vector_int2]) -> GKGridGraph<GKGridGraphNode> {
-        let xRange = getRange(position: Int(actor.coord.x), radius: range, constrainedTo: 0 ..< self.level.width)
+    func getMovementGraph(for actor: Actor, range: Int32, excludedCoords: [vector_int2]) -> GKGridGraph<GKGridGraphNode> {
+        let xRange = getRange(position: actor.coord.x, radius: range, constrainedTo: 0 ..< self.level.width)
         let width = xRange.upperBound - xRange.lowerBound
-        let yRange = getRange(position: Int(actor.coord.y), radius: range, constrainedTo: 0 ..< self.level.height)
+        let yRange = getRange(position: actor.coord.y, radius: range, constrainedTo: 0 ..< self.level.height)
         let height = yRange.upperBound - yRange.lowerBound
         
         // Create a graph for the visible area
@@ -138,16 +142,16 @@ class Game {
     func isHeroVisible(for actor: Actor) -> Bool {
         guard self.hero.isAlive else { return false }
         
-        let xRange = getRange(position: Int(actor.coord.x), radius: actor.sight, constrainedTo: 0 ..< self.level.width)
-        let yRange = getRange(position: Int(actor.coord.y), radius: actor.sight, constrainedTo: 0 ..< self.level.height)
+        let xRange = getRange(position: actor.coord.x, radius: actor.sight, constrainedTo: 0 ..< self.level.width)
+        let yRange = getRange(position: actor.coord.y, radius: actor.sight, constrainedTo: 0 ..< self.level.height)
         return xRange.contains(self.hero.coord.x) && yRange.contains(self.hero.coord.y)
     }
     
     private func getVisiblityGraph(for actor: Actor) -> GKGridGraph<GKGridGraphNode> {
-        let radius = 1
-        let xRange = getRange(position: Int(actor.coord.x), radius: radius, constrainedTo: 0 ..< self.level.width)
+        let radius: Int32 = 1
+        let xRange = getRange(position: actor.coord.x, radius: radius, constrainedTo: 0 ..< self.level.width)
         let width = xRange.upperBound - xRange.lowerBound
-        let yRange = getRange(position: Int(actor.coord.y), radius: radius, constrainedTo: 0 ..< self.level.height)
+        let yRange = getRange(position: actor.coord.y, radius: radius, constrainedTo: 0 ..< self.level.height)
         let height = yRange.upperBound - yRange.lowerBound
 
         // Create a graph for the visible area
@@ -235,8 +239,8 @@ class Game {
 
         if selectionMode.isSelection { hideSelectionTiles() }
 
-        let xRange = getRange(position: Int(self.hero.coord.x), radius: 1, constrainedTo: 0 ..< self.level.width)
-        let yRange = getRange(position: Int(self.hero.coord.y), radius: 1, constrainedTo: 0 ..< self.level.width)
+        let xRange = getRange(position: self.hero.coord.x, radius: 1, constrainedTo: 0 ..< self.level.width)
+        let yRange = getRange(position: self.hero.coord.y, radius: 1, constrainedTo: 0 ..< self.level.width)
         
         let actorCoords = self.actors.filter({ $0 != self.hero }).compactMap({ $0.coord })
         for actorCoord in actorCoords {
@@ -265,10 +269,22 @@ class Game {
     func start(levelIdx: Int = 0, tileSize: CGSize) {
         self.level = Level()
         self.tileSize = tileSize
+                
+        self.visibility = RaycastVisibility(mapSize: CGSize(width: Int(self.level.width), height: Int(self.level.height)), blocksLight: { (x, y) -> (Bool) in
+            self.level.getTileAt(coord: vector2(x, y)) == 1
+        }, setVisible: { (x, y) in
+            let tile = self.fogTiles[Int(y * self.level.width + x)]
+            tile.sprite.alpha = 0.0
+        }, getDistance: { (x1, y1, x2, y2) -> Int in
+            let x = pow(Float(x2 - x1), 2)
+            let y = pow(Float(y2 - y1), 2)
+            return Int(sqrt(x + y))
+        })
         
         var entities: [Entity] = []
         var tiles: [Tile] = []
-                
+        var fogTiles: [FogTile] = []
+        
         for y in (0 ..< self.level.height) {
             for x in (0 ..< self.level.width) {
                 let coord = vector_int2(Int32(x), Int32(y))
@@ -289,6 +305,10 @@ class Game {
                     // TODO: Add dummy entity to indicate missing content?
                 }
                 
+                let fogTile = FogTile(json: [:], coord: coord)
+                fogTile.sprite.zPosition = 500
+                fogTiles.append(fogTile)
+                
                 if tile == 3 {
                     self.hero.coord = coord
                     entities.append(self.hero)
@@ -306,8 +326,12 @@ class Game {
             }
         }
         
+        self.fogTiles = fogTiles
         self.tiles = tiles
         self.entities = entities
+        
+        updateFogTilesVisibility()
+        self.visibility.compute(origin: self.hero.coord, rangeLimit: self.hero.sight)
     }
     
     func update(_ deltaTime: TimeInterval) {
@@ -335,6 +359,9 @@ class Game {
             if let hero = activeActor as? Hero {
                 print("move hero")
                 
+                updateFogTilesVisibility()
+                self.visibility.compute(origin: moveAction.path.last!, rangeLimit: 4)
+
                 self.delegate?.gameDidMove(hero: hero, path: moveAction.path, duration: moveAction.duration)
             }
         case _ as DieAction:
@@ -396,5 +423,20 @@ class Game {
         }
 
         hideSelectionTiles()
+    }
+    
+    func updateFogTilesVisibility() {
+        let range = Int32(self.hero.sight) + 1
+        let x1 = max(self.hero.coord.x - range, 0)
+        let x2 = min(self.hero.coord.x + range + 1, Int32(self.level.width))
+        let y1 = max(self.hero.coord.y - range, 0)
+        let y2 = min(self.hero.coord.y + range + 1, Int32(self.level.height))
+        
+        for x in x1 ..< x2 {
+            for y in y1 ..< y2 {
+                let fogTileIdx = Int32(self.level.width) * y + x
+                self.fogTiles[Int(fogTileIdx)].sprite.alpha = 1.0
+            }
+        }
     }
 }

@@ -100,6 +100,12 @@ class GameScene: SKScene, SceneManagerConstructable {
             self.world.addChild(entity.sprite)
         }
         
+        for fogTile in self.game.fogTiles {
+            let position = GameScene.pointForCoord(fogTile.coord)
+            fogTile.sprite.position = position
+            self.world.addChild(fogTile.sprite)
+        }
+        
         self.actionBar = ActionBar(size: CGSize(width: self.size.width, height: 50), delegate: self)
         self.actionBar.position = CGPoint(x: 0, y: -(size.height / 2))
         self.actionBar.zPosition = 1_000_000_000
@@ -149,7 +155,7 @@ class GameScene: SKScene, SceneManagerConstructable {
     }
 }
 
-func isInRange(origin: vector_int2, radius: Int, coord: vector_int2) -> Bool {
+func isInRange(origin: vector_int2, radius: Int32, coord: vector_int2) -> Bool {
     return ((coord.x - origin.x) * (coord.x - origin.x) + (coord.y - origin.y) * (coord.y - origin.y)) <= (radius * radius)
 }
 
