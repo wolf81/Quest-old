@@ -273,8 +273,12 @@ class Game {
         self.visibility = RaycastVisibility(mapSize: CGSize(width: Int(self.level.width), height: Int(self.level.height)), blocksLight: { (x, y) -> (Bool) in
             self.level.getTileAt(coord: vector2(x, y)) == 1
         }, setVisible: { (x, y) in
-            let tile = self.fogTiles[Int(y * self.level.width + x)]
-            tile.sprite.alpha = 0.0
+            let tileIdx = Int(y * self.level.width + x)
+            let tile = self.tiles[tileIdx]
+            tile.didExplore = true
+            
+            let fogTile = self.fogTiles[tileIdx]
+            fogTile.sprite.alpha = 0.0
         }, getDistance: { (x1, y1, x2, y2) -> Int in
             let x = pow(Float(x2 - x1), 2)
             let y = pow(Float(y2 - y1), 2)
@@ -434,8 +438,9 @@ class Game {
         
         for x in x1 ..< x2 {
             for y in y1 ..< y2 {
-                let fogTileIdx = Int32(self.level.width) * y + x
-                self.fogTiles[Int(fogTileIdx)].sprite.alpha = 1.0
+                let tileIdx = Int(Int32(self.level.width) * y + x)
+                let alpha: CGFloat = (self.tiles[tileIdx] as Tile).didExplore ? 0.5 : 1.0
+                self.fogTiles[tileIdx].sprite.alpha = alpha                
             }
         }
     }

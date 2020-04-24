@@ -12,6 +12,8 @@ import GameplayKit
 class Tile: GKGridGraphNode, TileProtocol {
     var coord: vector_int2 { return self.gridPosition }
     
+    var didExplore: Bool = false;
+    
     private var json: [String: Any]
 
     lazy var name: String = {
