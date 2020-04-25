@@ -40,9 +40,7 @@ class MoveAction: Action {
         }
         
         defer {
-            print("subtract tu: \(self.timeUnitCost)")
             self.actor.subtractTimeUnits(self.timeUnitCost)
-            print("tu: \(self.actor.timeUnits)")
         }
                 
         self.duration = 0
@@ -57,7 +55,10 @@ class MoveAction: Action {
             SKAction.sequence(moves),
             SKAction.run {
                 self.actor.coord = self.toCoord
-                completion()
+                
+                DispatchQueue.main.async {
+                    completion()
+                }
             }
         ])
         self.actor.sprite.run(move, withKey: AnimationKey.move)

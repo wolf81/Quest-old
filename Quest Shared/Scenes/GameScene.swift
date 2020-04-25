@@ -88,7 +88,7 @@ class GameScene: SKScene, SceneManagerConstructable {
     private func setUpScene() {
         self.game.start(tileSize: GameScene.tileSize)
         
-        self.backgroundColor = SKColor.darkGray
+        self.backgroundColor = SKColor.black
         
         for tile in self.game.tiles {
             let position = GameScene.pointForCoord(tile.coord)

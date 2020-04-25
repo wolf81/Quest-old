@@ -334,8 +334,7 @@ class Game {
         self.tiles = tiles
         self.entities = entities
         
-        updateFogTilesVisibility()
-        self.visibility.compute(origin: self.hero.coord, rangeLimit: self.hero.sight)
+        updateFogTilesVisibilityForHero()
     }
     
     func update(_ deltaTime: TimeInterval) {
@@ -354,19 +353,38 @@ class Game {
 
         // Start the action for the current actor ... make sure only 1 action is performed at any time
         self.isBusy = true
-        guard action.perform(completion: { self.isBusy = false }) else {
+                
+        let visibleMonsters1 = getMonstersInHeroSight()
+        
+        guard action.perform(completion: {            
+            self.updateFogTilesVisibilityForHero()
+         
+            let visibleMonsters2 = self.getMonstersInHeroSight()
+
+            let hiddenMonsters = visibleMonsters1.subtracting(visibleMonsters2)
+            for monster in hiddenMonsters {
+                monster.sprite.alpha = 0.0
+            }
+            
+            let visibleMonsters = visibleMonsters2.subtracting(hiddenMonsters)
+            for monster in visibleMonsters {
+                monster.sprite.alpha = 1.0                
+            }
+
+            self.isBusy = false
+        }) else {
             return self.isBusy = false
         }
-                
+        
+        // get all monsters in visual range of hero 2
+        // compare monster list 1 and 2 ... monsters added fade in, monsters removed fade out ...
+        
         switch action {
         case let moveAction as MoveAction:
-            if let hero = activeActor as? Hero {
-                print("move hero")
-                
-                updateFogTilesVisibility()
-                self.visibility.compute(origin: moveAction.path.last!, rangeLimit: 4)
-
+            switch activeActor {
+            case let hero as Hero:
                 self.delegate?.gameDidMove(hero: hero, path: moveAction.path, duration: moveAction.duration)
+            default: break
             }
         case _ as DieAction:
             remove(actor: activeActor)
@@ -429,8 +447,28 @@ class Game {
         hideSelectionTiles()
     }
     
-    func updateFogTilesVisibility() {
-        let range = Int32(self.hero.sight) + 1
+    func getMonstersInHeroSight() -> Set<Monster> {
+        var monsters = Set<Monster>()
+        
+        let range = Int32(self.hero.sight)
+        let x1 = max(self.hero.coord.x - range, 0)
+        let x2 = min(self.hero.coord.x + range + 1, Int32(self.level.width))
+        let y1 = max(self.hero.coord.y - range, 0)
+        let y2 = min(self.hero.coord.y + range + 1, Int32(self.level.height))
+        
+        for x in x1 ..< x2 {
+            for y in y1 ..< y2 {
+                if let monster = getActorAt(coord: vector_int2(x,y)) as? Monster {
+                    monsters.insert(monster)
+                }
+            }
+        }
+
+        return monsters
+    }
+    
+    func updateFogTilesVisibilityForHero() {
+        let range = Int32(self.hero.sight + 1)
         let x1 = max(self.hero.coord.x - range, 0)
         let x2 = min(self.hero.coord.x + range + 1, Int32(self.level.width))
         let y1 = max(self.hero.coord.y - range, 0)
@@ -440,8 +478,10 @@ class Game {
             for y in y1 ..< y2 {
                 let tileIdx = Int(Int32(self.level.width) * y + x)
                 let alpha: CGFloat = (self.tiles[tileIdx] as Tile).didExplore ? 0.5 : 1.0
-                self.fogTiles[tileIdx].sprite.alpha = alpha                
+                self.fogTiles[tileIdx].sprite.alpha = alpha
             }
         }
+
+        self.visibility.compute(origin: self.hero.coord, rangeLimit: self.hero.sight)
     }
 }

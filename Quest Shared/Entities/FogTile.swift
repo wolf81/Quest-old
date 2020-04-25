@@ -12,7 +12,7 @@ class FogTile: EntityProtocol {
     var name: String = "Fog"
     
     var sprite: SKSpriteNode = {
-        return SKSpriteNode(color: .darkGray, size: CGSize(width: 48, height: 48))
+        return SKSpriteNode(color: .black, size: CGSize(width: 48, height: 48))
     }()
     
     private(set) var coord: vector_int2

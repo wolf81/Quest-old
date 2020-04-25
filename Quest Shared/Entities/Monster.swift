@@ -62,11 +62,9 @@ class Monster: Actor, CustomStringConvertible {
                 pathNodes.removeLast() // we don't want to move on top of the hero
 
                 let moveCount = self.timeUnits / self.actionCost.move
-                print("timeUnits: \(self.timeUnits)")
                 
                 if pathNodes.count > 0 && moveCount > 0 {
                     let nodeCount = pathNodes.count
-                    print("nodeCount: \(nodeCount), moveCount: \(moveCount)")
                     
                     let removeNodeCount = max(nodeCount - moveCount - 1, 0)
                     pathNodes.removeLast(removeNodeCount)
