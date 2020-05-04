@@ -19,7 +19,10 @@ final public class RaycastVisibility: Visibility {
     private let setVisible: (Int32, Int32) -> ()
     private let getDistance: (Int32, Int32, Int32, Int32) -> Int
     
-    init(mapSize: CGSize, blocksLight: @escaping (Int32, Int32) -> (Bool), setVisible: @escaping (Int32, Int32) -> (), getDistance: @escaping (Int32, Int32, Int32, Int32) -> Int)  {
+    init(mapSize: CGSize,
+         blocksLight: @escaping (Int32, Int32) -> (Bool),
+         setVisible: @escaping (Int32, Int32) -> (),
+         getDistance: @escaping (Int32, Int32, Int32, Int32) -> Int)  {
         self.mapSize = mapSize
         self.blocksLight = blocksLight
         self.setVisible = setVisible

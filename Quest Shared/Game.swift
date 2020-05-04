@@ -66,12 +66,18 @@ class Game {
     
     private(set) var tiles: [Tile] = []
     
+    private(set) var visibleTileCoords = Set<vector_int2>()
+    
     private(set) var fogTiles: [FogTile] = []
     
     private var activeActorIdx: Int = 0
     
     var actors: [Actor] {
         return self.entities.filter({ $0 is Actor }) as! [Actor]
+    }
+    
+    var monsters: [Monster] {
+        return self.entities.filter({ $0 is Monster }) as! [Monster]
     }
     
     func getTileAt(coord: vector_int2) -> Int? {
@@ -277,6 +283,8 @@ class Game {
             let tile = self.tiles[tileIdx]
             tile.didExplore = true
             
+            self.visibleTileCoords.insert(vector_int2(x, y))
+            
             let fogTile = self.fogTiles[tileIdx]
             fogTile.sprite.alpha = 0.0
         }, getDistance: { (x1, y1, x2, y2) -> Int in
@@ -343,34 +351,63 @@ class Game {
 
         let activeActor = self.actors[self.activeActorIdx]
         activeActor.addTimeUnits(Constants.timeUnitsPerTurn)
-        
+                
         // Wait until the current active actor performs an action
         guard let action = activeActor.getAction(state: self) else {
             return
         }
-
+        
         print(action.message)
 
         // Start the action for the current actor ... make sure only 1 action is performed at any time
         self.isBusy = true
-                
-        let visibleMonsters1 = getMonstersInHeroSight()
+                        
+        let visibleTileCoords = self.visibleTileCoords
         
-        guard action.perform(completion: {            
+        guard action.perform(completion: { [unowned self] in
             self.updateFogTilesVisibilityForHero()
-         
-            let visibleMonsters2 = self.getMonstersInHeroSight()
-
-            let hiddenMonsters = visibleMonsters1.subtracting(visibleMonsters2)
-            for monster in hiddenMonsters {
-                monster.sprite.alpha = 0.0
+             
+            if action.actor is Monster && action is MoveAction {
+                if visibleTileCoords.contains(action.actor.coord) {
+                    DispatchQueue.main.async {
+                        action.actor.sprite.alpha = 1.0
+                    }
+                }
+                else
+                {
+                    DispatchQueue.main.async {
+                        action.actor.sprite.alpha = 0.0
+                    }
+                }
             }
             
-            let visibleMonsters = visibleMonsters2.subtracting(hiddenMonsters)
-            for monster in visibleMonsters {
-                monster.sprite.alpha = 1.0                
-            }
+            if action.actor is Hero && action is MoveAction {
+                let newVisibleTileCoords = self.visibleTileCoords
+                let removedTileCoords = visibleTileCoords.subtracting(newVisibleTileCoords)
+                let addedTileCoords = newVisibleTileCoords.subtracting(visibleTileCoords)
 
+                for monster in self.monsters {
+                    if addedTileCoords.contains(monster.coord) {
+                        print("show: \(monster)")
+                        DispatchQueue.main.async {
+                            monster.sprite.alpha = 1.0
+//                            monster.sprite.run(SKAction.fadeIn(withDuration: 0))
+                        }
+                    }
+                    
+                    if removedTileCoords.contains(monster.coord) {
+                        print("hide: \(monster)")
+                        DispatchQueue.main.async {
+                            monster.sprite.alpha = 0.0
+//                            monster.sprite.run(SKAction.fadeOut(withDuration: 0))
+                        }
+                    }
+                }
+                
+                print("removed: \(removedTileCoords.compactMap({ "\($0.x).\($0.y)" }))")
+                print("added: \(addedTileCoords.compactMap({ "\($0.x).\($0.y)" }))")
+            }
+            
             self.isBusy = false
         }) else {
             return self.isBusy = false
@@ -446,27 +483,7 @@ class Game {
 
         hideSelectionTiles()
     }
-    
-    func getMonstersInHeroSight() -> Set<Monster> {
-        var monsters = Set<Monster>()
         
-        let range = Int32(self.hero.sight)
-        let x1 = max(self.hero.coord.x - range, 0)
-        let x2 = min(self.hero.coord.x + range + 1, Int32(self.level.width))
-        let y1 = max(self.hero.coord.y - range, 0)
-        let y2 = min(self.hero.coord.y + range + 1, Int32(self.level.height))
-        
-        for x in x1 ..< x2 {
-            for y in y1 ..< y2 {
-                if let monster = getActorAt(coord: vector_int2(x,y)) as? Monster {
-                    monsters.insert(monster)
-                }
-            }
-        }
-
-        return monsters
-    }
-    
     func updateFogTilesVisibilityForHero() {
         let range = Int32(self.hero.sight + 1)
         let x1 = max(self.hero.coord.x - range, 0)
@@ -482,6 +499,7 @@ class Game {
             }
         }
 
+        self.visibleTileCoords.removeAll()
         self.visibility.compute(origin: self.hero.coord, rangeLimit: self.hero.sight)
     }
 }
