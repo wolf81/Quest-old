@@ -34,10 +34,17 @@ class Entity: EntityProtocol & Hashable {
         // appropriate size already - the game scene controls the tile size
         
         guard let spriteName = self.json["sprite"] as? String else {
-            return SKSpriteNode(color: SKColor.lightGray, size: CGSize(width: 48, height: 48))
+            let sprite = SKSpriteNode(color: SKColor.lightGray, size: CGSize(width: 48, height: 48))
+            sprite.zPosition = EntityDrawLayerHelper.zPosition(for: self)
+            return sprite
         }
+        
         let texture = SKTexture(imageNamed: spriteName)        
-        return SKSpriteNode(texture: texture, size: CGSize(width: 48, height: 48))
+        let sprite = SKSpriteNode(texture: texture, size: CGSize(width: 48, height: 48))
+        
+        sprite.zPosition = EntityDrawLayerHelper.zPosition(for: self)
+
+        return sprite
     }()
     
     required init(json: [String: Any]) {

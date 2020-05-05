@@ -32,8 +32,6 @@ class Monster: Actor, CustomStringConvertible {
         let equipmentInfo = json["EQ"] as? [String: String] ?? [:]
         let equipment = Equipment(json: equipmentInfo, entityFactory: Entity.entityFactory)
         super.init(json: json, hitPoints: hitPoints, armorClass: armorClass, skills: skills, equipment: equipment)
-
-        self.sprite.zPosition = 100
     }
         
     var description: String {

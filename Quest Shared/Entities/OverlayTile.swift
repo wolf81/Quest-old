@@ -18,7 +18,6 @@ class OverlayTile: Tile {
             color: color,
             size: CGSize(width: 48, height: 48)
         )
-        sprite.zPosition = 1_000_000
                 
         super.init(sprite: sprite, coord: coord)
         

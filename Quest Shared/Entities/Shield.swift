@@ -13,7 +13,7 @@ class Shield: Entity, CustomStringConvertible {
     
     required init(json: [String : Any]) {
         self.armorClass = json["AC"] as? Int ?? 0
-        
+                
         super.init(json: json)
     }
     

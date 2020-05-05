@@ -11,8 +11,10 @@ import SpriteKit
 class FogTile: EntityProtocol {
     var name: String = "Fog"
     
-    var sprite: SKSpriteNode = {
-        return SKSpriteNode(color: .black, size: CGSize(width: 48, height: 48))
+    lazy var sprite: SKSpriteNode = {
+        let sprite = SKSpriteNode(color: .black, size: CGSize(width: 48, height: 48))
+        sprite.zPosition = EntityDrawLayerHelper.zPosition(for: self)
+        return sprite
     }()
     
     private(set) var coord: vector_int2

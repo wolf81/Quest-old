@@ -64,9 +64,7 @@ class Actor: Entity {
         
         self.sprite.addChild(equipment.armor.sprite)
         self.sprite.addChild(equipment.meleeWeapon.sprite)
-        self.sprite.addChild(equipment.shield.sprite)
-        
-        self.sprite.zPosition = 100
+        self.sprite.addChild(equipment.shield.sprite)        
     }
     
     required init(json: [String : Any]) {
@@ -75,8 +73,6 @@ class Actor: Entity {
         self.equipment = Equipment.none
     
         super.init(json: json)
-    
-        self.sprite.zPosition = 100
     }
     
     func getMeleeAttackDamage(_ dieRoll: DieRoll) -> Int {

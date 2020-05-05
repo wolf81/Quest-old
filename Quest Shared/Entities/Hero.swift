@@ -64,9 +64,7 @@ class Hero: Actor, CustomStringConvertible {
         self.race = .human
         self.role = .fighter
         
-        super.init(json: json)
-    
-        sprite.zPosition = 1000
+        super.init(json: json)    
     }
     
     func move(path: [vector_int2]) {

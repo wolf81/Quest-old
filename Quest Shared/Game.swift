@@ -318,7 +318,6 @@ class Game {
                 }
                 
                 let fogTile = FogTile(json: [:], coord: coord)
-                fogTile.sprite.zPosition = 500
                 fogTiles.append(fogTile)
                 
                 if tile == 3 {

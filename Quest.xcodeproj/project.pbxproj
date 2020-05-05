@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7914DD32246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
+		7914DD33246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
+		7914DD34246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
 		7929FBFA22AFBADE003C1964 /* DungeonBuilder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FBF922AFBADE003C1964 /* DungeonBuilder.framework */; };
 		7929FBFE22AFBAED003C1964 /* DungeonBuilder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FBFD22AFBAED003C1964 /* DungeonBuilder.framework */; };
 		7929FC0422B0002E003C1964 /* Fenris.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FC0322B0002D003C1964 /* Fenris.framework */; };
@@ -183,6 +186,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7914DD31246182120047EFB6 /* EntityDrawLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDrawLayer.swift; sourceTree = "<group>"; };
 		7929FBF922AFBADE003C1964 /* DungeonBuilder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DungeonBuilder.framework; path = Carthage/Build/iOS/DungeonBuilder.framework; sourceTree = SOURCE_ROOT; };
 		7929FBFB22AFBAE7003C1964 /* DungeonBuilder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DungeonBuilder.framework; path = Carthage/Build/Mac/DungeonBuilder.framework; sourceTree = SOURCE_ROOT; };
 		7929FBFD22AFBAED003C1964 /* DungeonBuilder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DungeonBuilder.framework; path = Carthage/Build/tvOS/DungeonBuilder.framework; sourceTree = SOURCE_ROOT; };
@@ -323,6 +327,7 @@
 				7960DED623A6083400B4CDF8 /* EntityProtocol.swift */,
 				79492BE823A61299005B9508 /* TileProtocol.swift */,
 				799EA0192451313200F690DC /* FogTile.swift */,
+				7914DD31246182120047EFB6 /* EntityDrawLayer.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -699,6 +704,7 @@
 				79C61A7B22A7C415008D3609 /* GameViewController.swift in Sources */,
 				792C698C23A40D4700A729C3 /* Spell.swift in Sources */,
 				79ACC81E22AB473200AC3BF0 /* Action.swift in Sources */,
+				7914DD32246182120047EFB6 /* EntityDrawLayer.swift in Sources */,
 				798C997623A2060000C6EC1C /* MeleeAttackAction.swift in Sources */,
 				79ACC7F122AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
 				7963DE4A239D092300183DF2 /* Equipment.swift in Sources */,
@@ -757,6 +763,7 @@
 				792C699123A5495500A729C3 /* CastSpellAction.swift in Sources */,
 				79C61A8C22A7C415008D3609 /* GameViewController.swift in Sources */,
 				792C698D23A40D4700A729C3 /* Spell.swift in Sources */,
+				7914DD33246182120047EFB6 /* EntityDrawLayer.swift in Sources */,
 				79ACC81F22AB473200AC3BF0 /* Action.swift in Sources */,
 				798C997723A2060000C6EC1C /* MeleeAttackAction.swift in Sources */,
 				79FC68F0244C4A8C00E6D63C /* CreateCharacterScene.swift in Sources */,
@@ -798,6 +805,7 @@
 				7963DE3C239CE12A00183DF2 /* Race.swift in Sources */,
 				79423B7C239E99CC0042B9BD /* HeroBuilder.swift in Sources */,
 				7960DED923A6083400B4CDF8 /* EntityProtocol.swift in Sources */,
+				7914DD34246182120047EFB6 /* EntityDrawLayer.swift in Sources */,
 				79FC68F3244C4A9000E6D63C /* MainMenuScene.swift in Sources */,
 				79C61AA722A7C415008D3609 /* GameScene.swift in Sources */,
 				794864D522A7E60300F84A72 /* Game.swift in Sources */,
