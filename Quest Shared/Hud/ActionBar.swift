@@ -33,6 +33,7 @@ class ActionBar: SKShapeNode {
 
         self.path = CGPath(rect: CGRect(origin: CGPoint(x: -size.width / 2, y: size.height / 2), size: size), transform: nil)
         self.lineWidth = 0
+        self.zPosition = DrawLayerHelper.zPosition(for: self)
 
         addButtons()
     }

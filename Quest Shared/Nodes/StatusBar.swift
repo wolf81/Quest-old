@@ -31,7 +31,7 @@ class StatusBar: SKShapeNode {
         self.label.fontColor = SKColor.white
         self.label.position = CGPoint(x: size.width / 2, y: (size.height - font.capHeight) / 2)
      
-        self.zPosition = 1_000_000
+        self.zPosition = DrawLayerHelper.zPosition(for: self)
         
         self.addChild(self.label)
     }

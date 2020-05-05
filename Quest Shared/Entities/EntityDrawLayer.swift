@@ -6,9 +6,9 @@
 //  Copyright © 2020 Wolftrail. All rights reserved.
 //
 
-import Foundation
+import SpriteKit
 
-struct EntityDrawLayerHelper {
+struct DrawLayerHelper {
     private enum EntityDrawLayer: CGFloat {
         case tile = 1_000
         case actor = 10_000
@@ -28,6 +28,14 @@ struct EntityDrawLayerHelper {
         case is OverlayTile: return EntityDrawLayer.overlay.rawValue
         case is Tile: return EntityDrawLayer.tile.rawValue
         default: fatalError()
+        }
+    }
+    
+    public static func zPosition(for shape: SKShapeNode) -> CGFloat {
+        switch shape {
+        case is ActionBar: fallthrough
+        case is StatusBar: return EntityDrawLayer.overlay.rawValue
+        default: fatalError()            
         }
     }
 }

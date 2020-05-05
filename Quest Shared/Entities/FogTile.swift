@@ -13,7 +13,7 @@ class FogTile: EntityProtocol {
     
     lazy var sprite: SKSpriteNode = {
         let sprite = SKSpriteNode(color: .black, size: CGSize(width: 48, height: 48))
-        sprite.zPosition = EntityDrawLayerHelper.zPosition(for: self)
+        sprite.zPosition = DrawLayerHelper.zPosition(for: self)
         return sprite
     }()
     

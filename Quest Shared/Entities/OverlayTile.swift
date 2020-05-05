@@ -20,7 +20,9 @@ class OverlayTile: Tile {
         )
                 
         super.init(sprite: sprite, coord: coord)
-        
+
+        sprite.zPosition = DrawLayerHelper.zPosition(for: self)
+
         self.name = "Overlay"
     }
     

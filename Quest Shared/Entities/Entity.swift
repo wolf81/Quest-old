@@ -35,14 +35,14 @@ class Entity: EntityProtocol & Hashable {
         
         guard let spriteName = self.json["sprite"] as? String else {
             let sprite = SKSpriteNode(color: SKColor.lightGray, size: CGSize(width: 48, height: 48))
-            sprite.zPosition = EntityDrawLayerHelper.zPosition(for: self)
+            sprite.zPosition = DrawLayerHelper.zPosition(for: self)
             return sprite
         }
         
         let texture = SKTexture(imageNamed: spriteName)        
         let sprite = SKSpriteNode(texture: texture, size: CGSize(width: 48, height: 48))
         
-        sprite.zPosition = EntityDrawLayerHelper.zPosition(for: self)
+        sprite.zPosition = DrawLayerHelper.zPosition(for: self)
 
         return sprite
     }()
