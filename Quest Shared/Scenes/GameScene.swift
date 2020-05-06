@@ -166,8 +166,6 @@ func isInRange(origin: vector_int2, radius: Int32, coord: vector_int2) -> Bool {
 extension GameScene: GameDelegate {
     func gameDidMove(hero: Hero, path: [vector_int2], duration: TimeInterval) {
         moveCamera(path: path, duration: duration)
-        
-        self.statusBar.update(text: "hero moved to: \(path[0].x).\(path[0].y)")
     }
     
     func gameDidAdd(entity: EntityProtocol) {
@@ -177,6 +175,10 @@ extension GameScene: GameDelegate {
     
     func gameDidRemove(entity: EntityProtocol) {
         self.spritesToRemove.append(entity.sprite)
+    }
+
+    func gameDidUpdateStatus(message: String) {
+        self.statusBar.update(text: message)
     }
 }
 

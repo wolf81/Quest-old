@@ -6,18 +6,16 @@
 //  Copyright © 2019 Wolftrail. All rights reserved.
 //
 
-import Foundation
+import SpriteKit
 
-class MeleeAttackAction: Action {
+class MeleeAttackAction: Action, StatusUpdatable {
     public let targetActor: Actor
+    
+    private(set) var message: String?
     
     init(actor: Actor, targetActor: Actor, timeUnitCost: Int) {
         self.targetActor = targetActor
         super.init(actor: actor, timeUnitCost: timeUnitCost)
-    }
-    
-    override var message: String {
-        return "[\(self.actor.name)] ✕ \(self.targetActor.name) (\(self.targetActor.hitPoints.current)/\(self.targetActor.hitPoints.base))"
     }
     
     override func perform(completion: @escaping () -> Void) -> Bool {
@@ -39,7 +37,7 @@ class MeleeAttackAction: Action {
             self.targetActor.hitPoints.remove(hitPoints: damage)
         default:
             let attackRoll = baseAttackRoll + self.actor.meleeAttackBonus
-            status = "\tAT \(attackRoll) vs AC \(armorClass): "
+            status = "AT \(attackRoll) vs AC \(armorClass): "
             if attackRoll > armorClass {
                 let damage = self.actor.getMeleeAttackDamage(.random)
                 status += "hit for \(damage) damage"
@@ -48,11 +46,19 @@ class MeleeAttackAction: Action {
                 status += "miss"
             }
         }
+
+        self.message = "\(self.actor.name) attacks \(self.targetActor.name): \(status)"
+
+        let attack = SKAction.sequence([
+            SKAction.wait(forDuration: 6),
+            SKAction.run({
+                DispatchQueue.main.async {
+                    completion()
+                }
+            })
+        ])
+        self.actor.sprite.run(attack)
                         
-        print(status)
-        
-        completion()
-        
         return true
     }
 }

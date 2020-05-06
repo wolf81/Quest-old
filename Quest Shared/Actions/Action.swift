@@ -13,8 +13,6 @@ class Action {
     
     private(set) var timeUnitCost: Int = Constants.timeUnitsPerTurn
 
-    var message: String { get { fatalError() } }
-
     init(actor: Actor, timeUnitCost: Int) {
         self.actor = actor
         self.timeUnitCost = timeUnitCost

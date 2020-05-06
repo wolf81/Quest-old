@@ -6,14 +6,16 @@
 //  Copyright © 2019 Wolftrail. All rights reserved.
 //
 
-import Foundation
+import SpriteKit
 
-class RangedAttackAction: Action {
+class RangedAttackAction: Action, StatusUpdatable {
     public let targetActor: Actor
-       
-    override var message: String {
-        return "[\(self.actor.name)] ↣ \(self.targetActor.name) (\(self.targetActor.hitPoints.current)/\(self.targetActor.hitPoints.base))"
-    }
+
+    private(set) var message: String?
+    
+//    override var message: String {
+//        return "[\(self.actor.name)] ↣ \(self.targetActor.name) (\(self.targetActor.hitPoints.current)/\(self.targetActor.hitPoints.base))"
+//    }
 
     init(actor: Actor, targetActor: Actor, timeUnitCost: Int) {
         self.targetActor = targetActor
@@ -48,10 +50,17 @@ class RangedAttackAction: Action {
                 status += "miss"
             }
         }
-                        
-        print(status)
+                                
+        self.message = status
         
-        completion()
+        let attack = SKAction.sequence([
+            SKAction.wait(forDuration: 6),
+            SKAction.run {
+                completion()
+            }
+        ])
+
+        self.actor.sprite.run(attack)
         
         return true
     }

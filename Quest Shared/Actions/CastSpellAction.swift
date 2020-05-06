@@ -11,7 +11,7 @@ import Foundation
 class CastSpellAction: Action {
     private let spell: Spell
     
-    override var message: String { return "\(self.actor.name) casts \(spell.name) on \((self.spell as! SingleTargetDamageSpell).targetActor.name)" }
+//    override var message: String { return "\(self.actor.name) casts \(spell.name) on \((self.spell as! SingleTargetDamageSpell).targetActor.name)" }
     
     init(actor: Actor, spell: Spell, timeUnitCost: Int) {
         self.spell = spell
@@ -25,8 +25,7 @@ class CastSpellAction: Action {
         }
 
         switch self.spell {
-        case let singleTargetDamageSpell as SingleTargetDamageSpell:
-            
+        case let singleTargetDamageSpell as SingleTargetDamageSpell:            
             let damage = singleTargetDamageSpell.getDamage()
             singleTargetDamageSpell.targetActor.hitPoints.remove(hitPoints: damage)
             print("\t\(spell.name) hits \(singleTargetDamageSpell.targetActor.name) for \(damage) damage")

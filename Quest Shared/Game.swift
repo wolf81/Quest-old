@@ -14,6 +14,8 @@ protocol GameDelegate: class {
     func gameDidMove(hero: Hero, path: [vector_int2], duration: TimeInterval)
     func gameDidAdd(entity: EntityProtocol)
     func gameDidRemove(entity: EntityProtocol)
+    
+    func gameDidUpdateStatus(message: String)
 }
 
 enum SelectionMode {
@@ -137,7 +139,7 @@ class Game {
             let pathNodes = actorNode.findPath(to: node)
             if pathNodes.count == 0 {
                 let nodeCoord = (node as! GKGridGraphNode).gridPosition
-                print("could not find path to: \(nodeCoord.x).\(nodeCoord.y)")
+//                print("could not find path to: \(nodeCoord.x).\(nodeCoord.y)")
                 movementGraph.remove([node])
             }
         }
@@ -355,15 +357,18 @@ class Game {
         guard let action = activeActor.getAction(state: self) else {
             return
         }
-        
-        print(action.message)
-
+                
         // Start the action for the current actor ... make sure only 1 action is performed at any time
         self.isBusy = true
                         
         let visibleTileCoords = self.visibleTileCoords
         
         guard action.perform(completion: { [unowned self] in
+            if let statusUpdatable = action as? StatusUpdatable, let message = statusUpdatable.message {
+                print(message)
+                self.delegate?.gameDidUpdateStatus(message: message)
+            }
+
             self.updateFogTilesVisibilityForHero()
              
             if action.actor is Monster && action is MoveAction {
@@ -403,8 +408,8 @@ class Game {
                     }
                 }
                 
-                print("removed: \(removedTileCoords.compactMap({ "\($0.x).\($0.y)" }))")
-                print("added: \(addedTileCoords.compactMap({ "\($0.x).\($0.y)" }))")
+//                print("removed: \(removedTileCoords.compactMap({ "\($0.x).\($0.y)" }))")
+//                print("added: \(addedTileCoords.compactMap({ "\($0.x).\($0.y)" }))")
             }
             
             self.isBusy = false

@@ -8,12 +8,18 @@
 
 import Foundation
 
+protocol HitPointsDelegate: class {
+    func hitPointsChanged(current: Int, total: Int)
+}
+
 struct HitPoints: CustomStringConvertible {
     private(set) var base: Int
     private var lost: Int
     
     var current: Int { return self.base - self.lost }
         
+    weak var delegate: HitPointsDelegate?
+    
     init(base: Int) {
         self.base = base
         self.lost = 0
@@ -21,6 +27,8 @@ struct HitPoints: CustomStringConvertible {
     
     mutating func remove(hitPoints: Int) {
         self.lost += hitPoints
+        
+        self.delegate?.hitPointsChanged(current: max(self.current, 0), total: self.base)
     }
     
     var description: String {

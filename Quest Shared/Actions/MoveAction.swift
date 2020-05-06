@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class MoveAction: Action {
+class MoveAction: Action, StatusUpdatable {
     public let path: [vector_int2]
     
     public var toCoord: vector_int2 {
@@ -18,9 +18,10 @@ class MoveAction: Action {
     
     private(set) var duration: TimeInterval = MoveAction.stepDuration
     
-    override var message: String {
-        return "[\(self.actor.name)] → \(self.toCoord.x).\(self.toCoord.y)"
-    }
+    private(set) var message: String?
+//    override var message: String {
+//        return "[\(self.actor.name)] → \(self.toCoord.x).\(self.toCoord.y)"
+//    }
     
     private static let stepDuration = 1.5
     
@@ -50,7 +51,9 @@ class MoveAction: Action {
             moves.append(SKAction.move(to: position, duration: MoveAction.stepDuration))
             self.duration += MoveAction.stepDuration
         }
-        
+
+        self.message = "\(self.actor.name) moved to \(self.toCoord.x).\(self.toCoord.y)"
+
         let move = SKAction.sequence([
             SKAction.sequence(moves),
             SKAction.run {

@@ -37,6 +37,8 @@ class Actor: Entity {
     private(set) var level: Int = 1
     
     private(set) var timeUnits: Int = 0
+    
+    private(set) var healthBar: HealthBar!
                 
     init(json: [String : Any], hitPoints: Int, armorClass: Int, skills: Skills, equipment: Equipment) {
         self.hitPoints = HitPoints(base: hitPoints)
@@ -50,8 +52,12 @@ class Actor: Entity {
         self.actionCost = ActionCost(json: actionCostJson)
 
         super.init(json: json)
-        
+                
         self.sprite.addChild(equipment.meleeWeapon.sprite)
+        
+        self.hitPoints.delegate = self
+
+        self.healthBar = Actor.addHealthBar(sprite: self.sprite)
     }    
     
     init(name: String, hitPoints: Int, race: Race, gender: Gender, attributes: Attributes, skills: Skills, equipment: Equipment) {
@@ -61,10 +67,14 @@ class Actor: Entity {
         self.attributes = attributes
         
         super.init(json: ["name": name, "sprite": "\(race)_\(gender)"])
-        
+
         self.sprite.addChild(equipment.armor.sprite)
         self.sprite.addChild(equipment.meleeWeapon.sprite)
-        self.sprite.addChild(equipment.shield.sprite)        
+        self.sprite.addChild(equipment.shield.sprite)
+
+        self.hitPoints.delegate = self
+
+        self.healthBar = Actor.addHealthBar(sprite: self.sprite)
     }
     
     required init(json: [String : Any]) {
@@ -73,6 +83,10 @@ class Actor: Entity {
         self.equipment = Equipment.none
     
         super.init(json: json)
+
+        self.hitPoints.delegate = self
+
+        self.healthBar = Actor.addHealthBar(sprite: self.sprite)
     }
     
     func getMeleeAttackDamage(_ dieRoll: DieRoll) -> Int {
@@ -93,5 +107,22 @@ class Actor: Entity {
 
     func getAction(state: Game) -> Action? {
         return nil
+    }
+    
+    // MARK: - Private
+    
+    private static func addHealthBar(sprite: SKSpriteNode) -> HealthBar {
+        let barWidth = sprite.frame.width - 6
+        let healthBar = HealthBar(size: CGSize(width: barWidth, height: 6))
+        healthBar.position = CGPoint(x: -(barWidth / 2), y: (sprite.frame.height / 2) + 4)
+        sprite.addChild(healthBar)
+        return healthBar
+    }
+}
+
+extension Actor: HitPointsDelegate {
+    func hitPointsChanged(current: Int, total: Int) {
+        let percentageHealth = CGFloat(current) / CGFloat(total)
+        self.healthBar.update(health: percentageHealth)
     }
 }
