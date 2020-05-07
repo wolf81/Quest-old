@@ -370,22 +370,12 @@ class Game {
             }
 
             self.updateFogTilesVisibilityForHero()
-             
-            if action.actor is Monster && action is MoveAction {
-                if visibleTileCoords.contains(action.actor.coord) {
-                    DispatchQueue.main.async {
-                        action.actor.sprite.alpha = 1.0
-                    }
-                }
-                else
-                {
-                    DispatchQueue.main.async {
-                        action.actor.sprite.alpha = 0.0
-                    }
-                }
-            }
             
-            if action.actor is Hero && action is MoveAction {
+            switch (action, action.actor) {
+            case is (MoveAction, Monster):
+                let isMonsterInRangeOfHero = visibleTileCoords.contains(action.actor.coord)
+                action.actor.sprite.alpha = isMonsterInRangeOfHero ? 1.0 : 0.0
+            case is (MoveAction, Hero):
                 let newVisibleTileCoords = self.visibleTileCoords
                 let removedTileCoords = visibleTileCoords.subtracting(newVisibleTileCoords)
                 let addedTileCoords = newVisibleTileCoords.subtracting(visibleTileCoords)
@@ -393,25 +383,18 @@ class Game {
                 for monster in self.monsters {
                     if addedTileCoords.contains(monster.coord) {
                         print("show: \(monster)")
-                        DispatchQueue.main.async {
-                            monster.sprite.alpha = 1.0
-//                            monster.sprite.run(SKAction.fadeIn(withDuration: 0))
-                        }
+                        monster.sprite.alpha = 1.0
                     }
-                    
-                    if removedTileCoords.contains(monster.coord) {
+                    else if removedTileCoords.contains(monster.coord) {
                         print("hide: \(monster)")
-                        DispatchQueue.main.async {
-                            monster.sprite.alpha = 0.0
-//                            monster.sprite.run(SKAction.fadeOut(withDuration: 0))
-                        }
+                        monster.sprite.alpha = 0.0
                     }
                 }
-                
-//                print("removed: \(removedTileCoords.compactMap({ "\($0.x).\($0.y)" }))")
-//                print("added: \(addedTileCoords.compactMap({ "\($0.x).\($0.y)" }))")
+            case is (DieAction, Actor):
+                self.remove(actor: activeActor)
+            default: break
             }
-            
+             
             self.isBusy = false
         }) else {
             return self.isBusy = false
@@ -427,8 +410,6 @@ class Game {
                 self.delegate?.gameDidMove(hero: hero, path: moveAction.path, duration: moveAction.duration)
             default: break
             }
-        case _ as DieAction:
-            remove(actor: activeActor)
         default: break
         }
                 

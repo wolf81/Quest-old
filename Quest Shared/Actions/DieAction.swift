@@ -12,10 +12,8 @@ class DieAction: Action, StatusUpdatable {
     var message: String? { "\(self.actor.name) died" }
         
     override func perform(completion: @escaping () -> Void) -> Bool {
-        completion()
-        
         let die = SKAction.sequence([
-            SKAction.wait(forDuration: 6),
+            SKAction.fadeOut(withDuration: 6),
             SKAction.run {
                 DispatchQueue.main.async {
                     completion()
