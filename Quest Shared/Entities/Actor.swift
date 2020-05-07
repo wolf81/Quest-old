@@ -117,7 +117,7 @@ class Actor: Entity {
         healthBar.position = CGPoint(x: -(barWidth / 2), y: (sprite.frame.height / 2) + 4)
         sprite.addChild(healthBar)
         return healthBar
-    }
+    }        
 }
 
 extension Actor: HitPointsDelegate {

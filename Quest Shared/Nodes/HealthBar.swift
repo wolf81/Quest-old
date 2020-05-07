@@ -31,6 +31,8 @@ class HealthBar: SKCropNode {
         self.addChild(self.barNode)
         
         self.barNode.position = CGPoint(x: size.width / 2, y: size.height / 2)
+        
+        self.zPosition = DrawLayerHelper.zPosition(for: self)
     }
     
     required init?(coder aDecoder: NSCoder) {

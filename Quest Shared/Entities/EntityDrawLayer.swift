@@ -11,7 +11,8 @@ import SpriteKit
 struct DrawLayerHelper {
     private enum EntityDrawLayer: CGFloat {
         case tile = 1_000
-        case actor = 10_000
+        case monster = 10_000
+        case hero = 50_000
         case equipment = 100_000
         case fog = 500_000
         case overlay = 1_000_000
@@ -20,7 +21,8 @@ struct DrawLayerHelper {
         
     public static func zPosition(for entity: EntityProtocol) -> CGFloat {
         switch entity {
-        case is Actor: return EntityDrawLayer.actor.rawValue
+        case is Hero: return EntityDrawLayer.hero.rawValue
+        case is Monster: return EntityDrawLayer.monster.rawValue
         case is Weapon: fallthrough
         case is Armor: fallthrough
         case is Shield: return EntityDrawLayer.equipment.rawValue
@@ -31,10 +33,11 @@ struct DrawLayerHelper {
         }
     }
     
-    public static func zPosition(for shape: SKShapeNode) -> CGFloat {
-        switch shape {
+    public static func zPosition(for node: SKNode) -> CGFloat {
+        switch node {
         case is ActionBar: fallthrough
         case is StatusBar: return EntityDrawLayer.overlay.rawValue
+        case is HealthBar: return EntityDrawLayer.equipment.rawValue
         default: fatalError()            
         }
     }

@@ -23,7 +23,7 @@ class MoveAction: Action, StatusUpdatable {
 //        return "[\(self.actor.name)] → \(self.toCoord.x).\(self.toCoord.y)"
 //    }
     
-    private static let stepDuration = 1.5
+    private static let stepDuration = 1.0
     
     init(actor: Actor, toCoord: vector_int2, timeUnitCost: Int) {
         self.path = [toCoord]
