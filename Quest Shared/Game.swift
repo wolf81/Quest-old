@@ -71,7 +71,7 @@ class Game {
     private(set) var visibleTileCoords = Set<vector_int2>()
     
     private(set) var fogTiles: [FogTile] = []
-    
+        
     private var activeActorIdx: Int = 0
     
     var actors: [Actor] {
@@ -422,7 +422,7 @@ class Game {
                 
         self.hero.move(direction: direction)
     }
-    
+        
     private func remove(actor: Actor) {
         self.entities.removeAll(where: { $0 == actor })                
 

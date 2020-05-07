@@ -174,6 +174,12 @@
 		79DF73B0246320D00030E7A8 /* HealthBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF73AF246320D00030E7A8 /* HealthBar.swift */; };
 		79DF73B1246320D00030E7A8 /* HealthBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF73AF246320D00030E7A8 /* HealthBar.swift */; };
 		79DF73B2246320D00030E7A8 /* HealthBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF73AF246320D00030E7A8 /* HealthBar.swift */; };
+		79DF73B42463DD310030E7A8 /* InventoryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF73B32463DD310030E7A8 /* InventoryNode.swift */; };
+		79DF73B52463DD310030E7A8 /* InventoryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF73B32463DD310030E7A8 /* InventoryNode.swift */; };
+		79DF73B62463DD310030E7A8 /* InventoryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF73B32463DD310030E7A8 /* InventoryNode.swift */; };
+		79DF73B82463E16A0030E7A8 /* ListNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF73B72463E16A0030E7A8 /* ListNode.swift */; };
+		79DF73B92463E16A0030E7A8 /* ListNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF73B72463E16A0030E7A8 /* ListNode.swift */; };
+		79DF73BA2463E16A0030E7A8 /* ListNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF73B72463E16A0030E7A8 /* ListNode.swift */; };
 		79FC68ED244C4A0300E6D63C /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC68EC244C4A0300E6D63C /* MainMenuScene.swift */; };
 		79FC68EF244C4A8C00E6D63C /* CreateCharacterScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC68EE244C4A8C00E6D63C /* CreateCharacterScene.swift */; };
 		79FC68F0244C4A8C00E6D63C /* CreateCharacterScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC68EE244C4A8C00E6D63C /* CreateCharacterScene.swift */; };
@@ -265,6 +271,8 @@
 		79C61A9E22A7C415008D3609 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79DF73AB2462D3570030E7A8 /* StatusUpdatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusUpdatable.swift; sourceTree = "<group>"; };
 		79DF73AF246320D00030E7A8 /* HealthBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthBar.swift; sourceTree = "<group>"; };
+		79DF73B32463DD310030E7A8 /* InventoryNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryNode.swift; sourceTree = "<group>"; };
+		79DF73B72463E16A0030E7A8 /* ListNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNode.swift; sourceTree = "<group>"; };
 		79FC68EC244C4A0300E6D63C /* MainMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 		79FC68EE244C4A8C00E6D63C /* CreateCharacterScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCharacterScene.swift; sourceTree = "<group>"; };
 		79FC68F4244C4C4700E6D63C /* SettingsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScene.swift; sourceTree = "<group>"; };
@@ -387,6 +395,8 @@
 			children = (
 				7990950B244C9E410091791F /* StatusBar.swift */,
 				79DF73AF246320D00030E7A8 /* HealthBar.swift */,
+				79DF73B32463DD310030E7A8 /* InventoryNode.swift */,
+				79DF73B72463E16A0030E7A8 /* ListNode.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -703,6 +713,7 @@
 				799EA0162450A8E600F690DC /* Visibility.swift in Sources */,
 				7960DED723A6083400B4CDF8 /* EntityProtocol.swift in Sources */,
 				793A575C2445A12F0089E693 /* ActionCost.swift in Sources */,
+				79DF73B42463DD310030E7A8 /* InventoryNode.swift in Sources */,
 				7990950C244C9E410091791F /* StatusBar.swift in Sources */,
 				79C61AA522A7C415008D3609 /* GameScene.swift in Sources */,
 				7960DEC723A6082B00B4CDF8 /* Shield.swift in Sources */,
@@ -728,6 +739,7 @@
 				7960DEC123A6082B00B4CDF8 /* Hero.swift in Sources */,
 				7960DEBE23A6082B00B4CDF8 /* Weapon.swift in Sources */,
 				7963DE4E239DD2D600183DF2 /* HitPoints.swift in Sources */,
+				79DF73B82463E16A0030E7A8 /* ListNode.swift in Sources */,
 				79FC68F9244C4C9E00E6D63C /* ChooseAttributesScene.swift in Sources */,
 				7960DED023A6082B00B4CDF8 /* Armor.swift in Sources */,
 				7963DE3E239CE15700183DF2 /* Role.swift in Sources */,
@@ -764,6 +776,7 @@
 				799EA0172450A8E600F690DC /* Visibility.swift in Sources */,
 				7960DED423A6082B00B4CDF8 /* OverlayTile.swift in Sources */,
 				7960DED823A6083400B4CDF8 /* EntityProtocol.swift in Sources */,
+				79DF73B52463DD310030E7A8 /* InventoryNode.swift in Sources */,
 				7990950D244C9E410091791F /* StatusBar.swift in Sources */,
 				793A575D2445A12F0089E693 /* ActionCost.swift in Sources */,
 				79C61AA622A7C415008D3609 /* GameScene.swift in Sources */,
@@ -789,6 +802,7 @@
 				7960DEBC23A6082B00B4CDF8 /* Monster.swift in Sources */,
 				7960DEC223A6082B00B4CDF8 /* Hero.swift in Sources */,
 				7960DEBF23A6082B00B4CDF8 /* Weapon.swift in Sources */,
+				79DF73B92463E16A0030E7A8 /* ListNode.swift in Sources */,
 				79FC68FA244C4C9E00E6D63C /* ChooseAttributesScene.swift in Sources */,
 				7963DE4F239DD2D600183DF2 /* HitPoints.swift in Sources */,
 				7960DED123A6082B00B4CDF8 /* Armor.swift in Sources */,
@@ -850,6 +864,7 @@
 				79C61A9822A7C415008D3609 /* AppDelegate.swift in Sources */,
 				793A575E2445A12F0089E693 /* ActionCost.swift in Sources */,
 				7963DE34239CDE2600183DF2 /* Attribute.swift in Sources */,
+				79DF73B62463DD310030E7A8 /* InventoryNode.swift in Sources */,
 				794864D122A7E48400F84A72 /* GameView.swift in Sources */,
 				7963DE59239E456900183DF2 /* ActionBarButton.swift in Sources */,
 				7960DECC23A6082B00B4CDF8 /* Actor.swift in Sources */,
@@ -862,6 +877,7 @@
 				798C997423A205EF00C6EC1C /* MoveAction.swift in Sources */,
 				7963DE54239E3D2A00183DF2 /* ActionBar.swift in Sources */,
 				798C998023A2068C00C6EC1C /* AnimationKey.swift in Sources */,
+				79DF73BA2463E16A0030E7A8 /* ListNode.swift in Sources */,
 				792C699223A5495500A729C3 /* CastSpellAction.swift in Sources */,
 				7960DED523A6082B00B4CDF8 /* OverlayTile.swift in Sources */,
 				7960DEC623A6082B00B4CDF8 /* Entity.swift in Sources */,

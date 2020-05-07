@@ -36,6 +36,7 @@ struct DrawLayerHelper {
     public static func zPosition(for node: SKNode) -> CGFloat {
         switch node {
         case is ActionBar: fallthrough
+        case is InventoryNode: fallthrough
         case is StatusBar: return EntityDrawLayer.overlay.rawValue
         case is HealthBar: return EntityDrawLayer.equipment.rawValue
         default: fatalError()            

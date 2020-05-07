@@ -28,6 +28,8 @@ class GameScene: SKScene, SceneManagerConstructable {
     private var world: SKNode = SKNode()
     
     private var playerCamera: SKCameraNode!
+    
+    private var inventory: InventoryNode?
 
     // Sprites should be removed on the main thread, to make this easy, we remove sprites in the update loop and then clear this array
     private var spritesToRemove: [SKSpriteNode] = []
@@ -129,7 +131,7 @@ class GameScene: SKScene, SceneManagerConstructable {
         statusBarSize.width -= 40
         self.statusBar = StatusBar(size: statusBarSize, font: DefaultMenuConfiguration.shared.labelFont)
         let statusBarY = self.actionBar.frame.maxY + 20
-        self.statusBar.position = CGPoint(x: -size.width / 2 + 20, y: statusBarY)
+        self.statusBar.position = CGPoint(x: -self.size.width / 2 + 20, y: statusBarY)
         self.playerCamera.addChild(self.statusBar)
         
         self.statusBar.update(text: "Welcome to Quest")
@@ -154,6 +156,18 @@ class GameScene: SKScene, SceneManagerConstructable {
         var position = GameScene.pointForCoord(coord)
         position.y -= self.actionBar.size.height
         return position
+    }
+    
+    fileprivate func toggleInventory() {
+        if let inventory = self.inventory {
+            inventory.removeFromParent()
+            self.inventory = nil
+        }
+        else {
+            let inventory = InventoryNode(size: CGSize(width: 600, height: 400))
+            self.playerCamera.addChild(inventory)
+            self.inventory = inventory
+        }
     }
 }
 
@@ -227,6 +241,14 @@ extension GameScene {
 // Mouse- & keyboard-based event handling
 extension GameScene {
     override func mouseDown(with event: NSEvent) {
+        let location = event.location(in: self)
+        
+        let nodes = self.nodes(at: location)
+
+        if let inventory = self.inventory, nodes.contains(inventory) {
+            inventory.convert(location, from: self)
+            inventory.mouseDown(with: event)
+        }
     }
     
     override func mouseDragged(with event: NSEvent) {
@@ -234,21 +256,31 @@ extension GameScene {
     
     override func mouseUp(with event: NSEvent) {
         let location = event.location(in: self)
-        if self.nodes(at: location).contains(self.actionBar) {
+        
+        let nodes = self.nodes(at: location)
+        
+        if nodes.contains(self.actionBar) {
             self.actionBar.convert(location, from: self)
             self.actionBar.mouseUp(with: event)
-        } else if self.nodes(at: location).contains(self.world) {
+        } else if let inventory = self.inventory, nodes.contains(inventory) {
+            inventory.convert(location, from: self)
+            inventory.mouseUp(with: event)
+        } else if nodes.contains(self.world) {
             let coord = GameScene.coordForPoint(location)
             self.game.handleInteraction(at: coord)
         }
     }
     
     override func keyUp(with event: NSEvent) {
+        debugPrint(event.keyCode)
+        
         switch event.keyCode {
-        case 123: self.game.movePlayer(direction: .left)
-        case 124: self.game.movePlayer(direction: .right)
-        case 125: self.game.movePlayer(direction: .down)
-        case 126: self.game.movePlayer(direction: .up)
+        case /* esc  */ 53: if self.inventory != nil { toggleInventory() }
+        case /* a, ← */ 0, 123: self.game.movePlayer(direction: .left)
+        case /* d, → */ 2, 124: self.game.movePlayer(direction: .right)
+        case /* s, ↓ */ 1, 125: self.game.movePlayer(direction: .down)
+        case /* w, ↑ */ 13, 126: self.game.movePlayer(direction: .up)
+        case /* i    */ 34: toggleInventory()
         default: print("\(event.keyCode)")
         }
     }
