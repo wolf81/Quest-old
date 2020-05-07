@@ -40,7 +40,7 @@ class InventoryNode: SKNode {
 
 extension InventoryNode: ListNodeDelegate {
     func listNodeNumberOfItems(listNode: ListNode) -> Int {
-        return 6
+        return 9
     }
     
     func listNode(_ listNode: ListNode, nodeAtIndex index: Int, size: CGSize) -> SKNode {

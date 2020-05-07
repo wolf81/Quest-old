@@ -139,7 +139,9 @@ class ListNode: SKNode {
                 y -= itemHeight
             }
             
-            self.maxContentOffset = CGPoint(x: 0, y: CGFloat(itemCount) * itemHeight - self.list.frame.height)
+            let totalItemHeight = CGFloat(itemCount) * itemHeight
+            let maxY = totalItemHeight > self.list.frame.height ? totalItemHeight - self.list.frame.height : 0
+            self.maxContentOffset = CGPoint(x: 0, y: maxY)
         } else {
             self.contentSize = .zero
         }
