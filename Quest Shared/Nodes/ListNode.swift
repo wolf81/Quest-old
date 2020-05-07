@@ -46,6 +46,8 @@ class ListNode: SKNode {
     
     private var contentOffset: CGPoint = .zero
     
+    private var maxContentOffset: CGPoint = .zero
+    
     private var previousButton: SKSpriteNode
     
     private var nextButton: SKSpriteNode
@@ -136,6 +138,8 @@ class ListNode: SKNode {
                 
                 y -= itemHeight
             }
+            
+            self.maxContentOffset = CGPoint(x: 0, y: CGFloat(itemCount) * itemHeight - self.list.frame.height)
         } else {
             self.contentSize = .zero
         }
@@ -143,15 +147,15 @@ class ListNode: SKNode {
     
     @objc private func performAutoscroll() {
         DispatchQueue.main.async { [unowned self] in
+            let offset = self.contentOffset
+            
             switch self.scrollDirection {
             case .forward:
-                var offset = self.contentOffset
-                offset.y += 1
-                self.contentOffset = offset
+                let y: CGFloat = min(offset.y + 1, self.maxContentOffset.y)
+                self.contentOffset = CGPoint(x: 0, y: y)
             case .backward:
-                var offset = self.contentOffset
-                offset.y -= 1
-                self.contentOffset = offset
+                let y: CGFloat = max(offset.y - 1, 0)
+                self.contentOffset = CGPoint(x: 0, y: y)
             default: break
             }
             self.updateLayout()
