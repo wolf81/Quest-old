@@ -49,8 +49,16 @@ class MeleeAttackAction: Action, StatusUpdatable {
 
         self.message = "\(self.actor.name) attacks \(self.targetActor.name): \(status)"
 
+        let fromPosition = GameScene.pointForCoord(self.actor.coord)
+        var toPosition = GameScene.pointForCoord(self.targetActor.coord)
+        let xOffset = (fromPosition.x - toPosition.x) / 2
+        let yOffset = (fromPosition.y - toPosition.y) / 2
+        toPosition.x += xOffset
+        toPosition.y += yOffset
+        
         let attack = SKAction.sequence([
-            SKAction.wait(forDuration: 6),
+            SKAction.move(to: toPosition, duration: 3),
+            SKAction.move(to: fromPosition, duration: 3),
             SKAction.run({
                 DispatchQueue.main.async {
                     completion()
