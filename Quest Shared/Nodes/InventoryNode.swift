@@ -14,7 +14,11 @@ class InventoryNode: SKShapeNode {
     private let itemList: ListNode
     private let paperDoll: PaperDollNode
     
-    init(size: CGSize, backgroundColor: SKColor) {
+    private let hero: Hero
+    
+    init(size: CGSize, backgroundColor: SKColor, hero: Hero) {
+        self.hero = hero
+        
         let spacing: CGFloat = 5
         let nodeWidth = (size.width - spacing * 3) / 2
         let nodeSize = CGSize(width: nodeWidth, height: size.height - spacing * 2)
@@ -38,6 +42,8 @@ class InventoryNode: SKShapeNode {
         self.paperDoll.position = CGPoint(x: -(size.width - nodeWidth) / 2 + spacing, y: 0)
         
         self.zPosition = DrawLayerHelper.zPosition(for: self)
+        
+        self.paperDoll.update(equipment: self.hero.equipment)
     }
     
     required init?(coder aDecoder: NSCoder) {

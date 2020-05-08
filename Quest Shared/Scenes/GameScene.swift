@@ -164,7 +164,7 @@ class GameScene: SKScene, SceneManagerConstructable {
             self.inventory = nil
         }
         else {
-            let inventory = InventoryNode(size: CGSize(width: 600, height: 400), backgroundColor: .black)
+            let inventory = InventoryNode(size: CGSize(width: 600, height: 400), backgroundColor: .black, hero: self.game.hero)
             self.playerCamera.addChild(inventory)
             self.inventory = inventory
         }
