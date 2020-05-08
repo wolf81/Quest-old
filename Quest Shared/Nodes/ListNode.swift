@@ -58,6 +58,14 @@ class ListNode: SKNode {
     
     private var isScrollForwardEnabled: Bool { self.orientation == .vertical ? self.contentOffset.y == self.maxContentOffset.y : self.contentOffset.x == self.maxContentOffset.x }
     
+    override var zPosition: CGFloat {
+        didSet {
+            self.previousButton.zPosition = self.zPosition + 1
+            self.nextButton.zPosition = self.zPosition + 1
+            self.list.zPosition = self.zPosition + 1
+        }
+    }
+    
     private var scrollDirection: ScrollDirection = .none {
         didSet {
             print("direction: \(self.scrollDirection)")
@@ -94,11 +102,7 @@ class ListNode: SKNode {
         self.container.addChild(self.listContainer)
         self.container.addChild(self.previousButton)
         self.container.addChild(self.nextButton)
-        
-        self.previousButton.zPosition = self.zPosition + 2
-        self.nextButton.zPosition = self.zPosition + 2
-        self.list.zPosition = self.zPosition + 2
-        
+                
         let halfContainerWidth = self.container.frame.width / 2
         let halfContainerHeight = self.container.frame.height / 2
         switch self.orientation {
@@ -116,9 +120,7 @@ class ListNode: SKNode {
     }
     
     private func reload() {
-        for childNode in self.listContainer.children {
-            childNode.removeFromParent()
-        }
+        self.listContainer.children.forEach{ $0.removeFromParent() }
 
         if let delegate = delegate {
             let itemCount = delegate.listNodeNumberOfItems(listNode: self)
@@ -194,69 +196,20 @@ class ListNode: SKNode {
         
     override func mouseDown(with event: NSEvent) {
         let location = event.location(in: self)
-        
-        guard let delegate = self.delegate else { return }
-        
-        let itemCount = delegate.listNodeNumberOfItems(listNode: self)
-        let offset = self.orientation == .horizontal ? delegate.listNodeWidthForItem(self) : delegate.listNodeHeightForItem(self)
-        
-//        switch self.orientation {
-//        case .horizontal: self.contentSize = CGSize(width: itemWidth * CGFloat(itemCount), height: itemHeight)
-//        case .vertical: self.contentSize = CGSize(width: itemWidth, height: itemHeight * CGFloat(itemCount))
-//        }
-
+                
         if self.previousButton.frame.contains(location) {
-//            var offset = self.contentOffset
-//            offset.y -= 1
-//            self.contentOffset = offset
-
             self.scrollDirection = .backward
-            
-            print("<< PREVIOUS <<")
         }
         else if self.nextButton.frame.contains(location) {
-            print(">> NEXT >>")
-
             self.scrollDirection = .forward
-            
-//            var offset = self.contentOffset
-//            offset.y += 1
-//            self.contentOffset = offset
         }
         
         updateLayout()
     }
     
     override func mouseUp(with event: NSEvent) {
-        let location = event.location(in: self)
-
         self.scrollDirection = .none
-        
-        guard let delegate = self.delegate else { return }
-        
-        let itemCount = delegate.listNodeNumberOfItems(listNode: self)
-        let offset = self.orientation == .horizontal ? delegate.listNodeWidthForItem(self) : delegate.listNodeHeightForItem(self)
-        
-//        switch self.orientation {
-//        case .horizontal: self.contentSize = CGSize(width: itemWidth * CGFloat(itemCount), height: itemHeight)
-//        case .vertical: self.contentSize = CGSize(width: itemWidth, height: itemHeight * CGFloat(itemCount))
-//        }
-
-        if self.previousButton.frame.contains(location) {
-//            var offset = self.contentOffset
-//            offset.y -= 1
-//            self.contentOffset = offset
-
-            print("<< PREVIOUS <<")
-        }
-        else if self.nextButton.frame.contains(location) {
-            print(">> NEXT >>")
-
-//            var offset = self.contentOffset
-//            offset.y += 1
-//            self.contentOffset = offset
-        }
-        
+                
         updateLayout()
     }
     
