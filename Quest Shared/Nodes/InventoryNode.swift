@@ -10,18 +10,25 @@ import SpriteKit
 
 import Fenris
 
-class InventoryNode: SKNode {
+class InventoryNode: SKShapeNode {
     private let listNode: ListNode
     
-    init(size: CGSize) {
-        self.listNode = ListNode(size: size, orientation: .vertical, backgroundColor: SKColor.black)
+    init(size: CGSize, backgroundColor: SKColor) {
+        self.listNode = ListNode(size: CGSize(width: size.width - 10, height: size.height - 10), orientation: .vertical, backgroundColor: backgroundColor)
         
         super.init()
+        self.path = CGPath(rect: CGRect(origin: CGPoint(x: -(size.width / 2), y: -(size.height / 2)), size: size), transform: nil)
         
         addChild(self.listNode)
         
         self.listNode.delegate = self
+        
+        self.lineWidth = 1
+        self.strokeColor = .white
+        self.fillColor = backgroundColor
 
+        self.listNode.position = .zero
+        
         self.zPosition = DrawLayerHelper.zPosition(for: self)
     }
     

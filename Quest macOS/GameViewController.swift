@@ -25,7 +25,7 @@ class GameViewController: NSViewController {
         let skView = self.view as! SKView
         skView.ignoresSiblingOrder = true
         skView.showsFPS = true
-        skView.showsNodeCount = true
+        skView.showsNodeCount = true        
         
         try! ServiceLocator.shared.add(service: SceneManager(view: skView))
         try! ServiceLocator.shared.get(service: SceneManager.self).fade(to: MainMenuScene.self)

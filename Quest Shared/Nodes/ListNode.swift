@@ -83,8 +83,8 @@ class ListNode: SKShapeNode {
         self.orientation = orientation
         
         let buttonSize = self.orientation == .horizontal ? CGSize(width: 40, height: size.height) : CGSize(width: size.width, height: 40)
-        self.previousButton = ButtonNode(size: buttonSize, color: .black, text: "PREVIOUS")
-        self.nextButton = ButtonNode(size: buttonSize, color: .black, text: "NEXT")
+        self.previousButton = ButtonNode(size: buttonSize, color: backgroundColor, text: "PREVIOUS")
+        self.nextButton = ButtonNode(size: buttonSize, color: backgroundColor, text: "NEXT")
 
         let listSize = orientation == .vertical ? CGSize(width: size.width, height: size.height - buttonSize.height * 2) : CGSize(width: size.width - buttonSize.width * 2, height: size.height)
         self.list = SKSpriteNode(color: backgroundColor, size: listSize)
