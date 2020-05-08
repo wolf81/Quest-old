@@ -68,7 +68,6 @@ class ListNode: SKNode {
     
     private var scrollDirection: ScrollDirection = .none {
         didSet {
-            print("direction: \(self.scrollDirection)")
             switch self.scrollDirection {
             case .none:
                 self.scrollTimer?.invalidate()

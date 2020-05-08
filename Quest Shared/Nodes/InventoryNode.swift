@@ -46,17 +46,18 @@ extension InventoryNode: ListNodeDelegate {
     func listNode(_ listNode: ListNode, nodeAtIndex index: Int, size: CGSize) -> SKNode {
         let (remainder, _) = index.remainderReportingOverflow(dividingBy: 2)
         let label = SKLabelNode(text: "Item \(index)")
-        
+        label.fontSize = 14
+        label.position = CGPoint(x: 0, y: -(label.frame.height / 2))
+
         var node: SKNode
         
         if remainder == 0 {
             node = SKSpriteNode(color: SKColor.blue, size: size)
-            node.addChild(label)
-        }
-        else {
+        } else {
             node = SKSpriteNode(color: SKColor.magenta, size: size)
-            node.addChild(label)
         }
+        
+        node.addChild(label)
         
         return node
     }
@@ -66,6 +67,6 @@ extension InventoryNode: ListNodeDelegate {
     }
     
     func listNodeHeightForItem(_ listNode: ListNode) -> CGFloat {
-        return 60
+        return 40
     }
 }
