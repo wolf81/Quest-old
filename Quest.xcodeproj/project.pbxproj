@@ -171,6 +171,9 @@
 		79D81570246572450099567B /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D8156F246572450099567B /* ButtonNode.swift */; };
 		79D81571246572450099567B /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D8156F246572450099567B /* ButtonNode.swift */; };
 		79D81572246572450099567B /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D8156F246572450099567B /* ButtonNode.swift */; };
+		79D815742465AEAF0099567B /* PaperDollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D815732465AEAF0099567B /* PaperDollNode.swift */; };
+		79D815752465AEAF0099567B /* PaperDollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D815732465AEAF0099567B /* PaperDollNode.swift */; };
+		79D815762465AEAF0099567B /* PaperDollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D815732465AEAF0099567B /* PaperDollNode.swift */; };
 		79DF73AC2462D3570030E7A8 /* StatusUpdatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF73AB2462D3570030E7A8 /* StatusUpdatable.swift */; };
 		79DF73AD2462D3570030E7A8 /* StatusUpdatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF73AB2462D3570030E7A8 /* StatusUpdatable.swift */; };
 		79DF73AE2462D3570030E7A8 /* StatusUpdatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF73AB2462D3570030E7A8 /* StatusUpdatable.swift */; };
@@ -273,6 +276,7 @@
 		79C61A9C22A7C415008D3609 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		79C61A9E22A7C415008D3609 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79D8156F246572450099567B /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
+		79D815732465AEAF0099567B /* PaperDollNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperDollNode.swift; sourceTree = "<group>"; };
 		79DF73AB2462D3570030E7A8 /* StatusUpdatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusUpdatable.swift; sourceTree = "<group>"; };
 		79DF73AF246320D00030E7A8 /* HealthBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthBar.swift; sourceTree = "<group>"; };
 		79DF73B32463DD310030E7A8 /* InventoryNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryNode.swift; sourceTree = "<group>"; };
@@ -402,6 +406,7 @@
 				79DF73B32463DD310030E7A8 /* InventoryNode.swift */,
 				79DF73B72463E16A0030E7A8 /* ListNode.swift */,
 				79D8156F246572450099567B /* ButtonNode.swift */,
+				79D815732465AEAF0099567B /* PaperDollNode.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -730,6 +735,7 @@
 				792C699023A5495500A729C3 /* CastSpellAction.swift in Sources */,
 				79C61A7B22A7C415008D3609 /* GameViewController.swift in Sources */,
 				792C698C23A40D4700A729C3 /* Spell.swift in Sources */,
+				79D815742465AEAF0099567B /* PaperDollNode.swift in Sources */,
 				79ACC81E22AB473200AC3BF0 /* Action.swift in Sources */,
 				7914DD32246182120047EFB6 /* EntityDrawLayer.swift in Sources */,
 				798C997623A2060000C6EC1C /* MeleeAttackAction.swift in Sources */,
@@ -794,6 +800,7 @@
 				79742A6B239E60A7008504E8 /* Gender.swift in Sources */,
 				792C699123A5495500A729C3 /* CastSpellAction.swift in Sources */,
 				79C61A8C22A7C415008D3609 /* GameViewController.swift in Sources */,
+				79D815752465AEAF0099567B /* PaperDollNode.swift in Sources */,
 				792C698D23A40D4700A729C3 /* Spell.swift in Sources */,
 				7914DD33246182120047EFB6 /* EntityDrawLayer.swift in Sources */,
 				79ACC81F22AB473200AC3BF0 /* Action.swift in Sources */,
@@ -842,6 +849,7 @@
 				7960DED923A6083400B4CDF8 /* EntityProtocol.swift in Sources */,
 				7914DD34246182120047EFB6 /* EntityDrawLayer.swift in Sources */,
 				79FC68F3244C4A9000E6D63C /* MainMenuScene.swift in Sources */,
+				79D815762465AEAF0099567B /* PaperDollNode.swift in Sources */,
 				79C61AA722A7C415008D3609 /* GameScene.swift in Sources */,
 				794864D522A7E60300F84A72 /* Game.swift in Sources */,
 				79ACC81C22AAB6F100AC3BF0 /* HitDice.swift in Sources */,

@@ -11,23 +11,31 @@ import SpriteKit
 import Fenris
 
 class InventoryNode: SKShapeNode {
-    private let listNode: ListNode
+    private let itemList: ListNode
+    private let paperDoll: PaperDollNode
     
     init(size: CGSize, backgroundColor: SKColor) {
-        self.listNode = ListNode(size: CGSize(width: size.width / 2 - 10, height: size.height - 10), orientation: .vertical, backgroundColor: backgroundColor)
+        let spacing: CGFloat = 5
+        let nodeWidth = (size.width - spacing * 3) / 2
+        let nodeSize = CGSize(width: nodeWidth, height: size.height - spacing * 2)
+        self.itemList = ListNode(size: nodeSize, orientation: .vertical, backgroundColor: backgroundColor)
+        self.paperDoll = PaperDollNode(size: nodeSize, backgroundColor: backgroundColor)
         
         super.init()
+        
         self.path = CGPath(rect: CGRect(origin: CGPoint(x: -(size.width / 2), y: -(size.height / 2)), size: size), transform: nil)
         
-        addChild(self.listNode)
+        addChild(self.itemList)
+        addChild(self.paperDoll)
         
-        self.listNode.delegate = self
+        self.itemList.delegate = self
         
         self.lineWidth = 1
         self.strokeColor = .white
         self.fillColor = backgroundColor
 
-        self.listNode.position = CGPoint(x: size.width / 4, y: 0)
+        self.itemList.position = CGPoint(x: (size.width - nodeWidth) / 2 - spacing, y: 0)
+        self.paperDoll.position = CGPoint(x: -(size.width - nodeWidth) / 2 + spacing, y: 0)
         
         self.zPosition = DrawLayerHelper.zPosition(for: self)
     }
@@ -37,11 +45,11 @@ class InventoryNode: SKShapeNode {
     }
     
     override func mouseUp(with event: NSEvent) {
-        self.listNode.mouseUp(with: event)
+        self.itemList.mouseUp(with: event)
     }
     
     override func mouseDown(with event: NSEvent) {
-        self.listNode.mouseDown(with: event)
+        self.itemList.mouseDown(with: event)
     }
 }
 
@@ -51,19 +59,12 @@ extension InventoryNode: ListNodeDelegate {
     }
     
     func listNode(_ listNode: ListNode, nodeAtIndex index: Int, size: CGSize) -> SKNode {
-        let (remainder, _) = index.remainderReportingOverflow(dividingBy: 2)
         let label = SKLabelNode(text: "Item \(index)")
         label.fontSize = 16
         label.fontName = "Papyrus"
         label.position = CGPoint(x: 0, y: -(label.frame.height / 2))
 
-        var node: SKNode
-        
-        if remainder == 0 {
-            node = SKSpriteNode(color: SKColor.blue, size: size)
-        } else {
-            node = SKSpriteNode(color: SKColor.magenta, size: size)
-        }
+        let node = SKSpriteNode(color: SKColor.black, size: size)
         
         node.addChild(label)
         

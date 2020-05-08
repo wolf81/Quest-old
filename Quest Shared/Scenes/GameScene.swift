@@ -273,7 +273,7 @@ extension GameScene {
     
     override func keyUp(with event: NSEvent) {
         debugPrint(event.keyCode)
-        
+                
         switch event.keyCode {
         case /* esc  */ 53: if self.inventory != nil { toggleInventory() }
         case /* a, ← */ 0, 123: self.game.movePlayer(direction: .left)
