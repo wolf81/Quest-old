@@ -54,6 +54,10 @@ class ListNode: SKNode {
     
     private var scrollTimer: Timer?
     
+    private var isScrollBackEnabled: Bool { self.contentOffset == .zero }
+    
+    private var isScrollForwardEnabled: Bool { self.orientation == .vertical ? self.contentOffset.y == self.maxContentOffset.y : self.contentOffset.x == self.maxContentOffset.x }
+    
     private var scrollDirection: ScrollDirection = .none {
         didSet {
             print("direction: \(self.scrollDirection)")
@@ -145,6 +149,8 @@ class ListNode: SKNode {
         } else {
             self.contentSize = .zero
         }
+        
+        updateLayout()
     }
     
     @objc private func performAutoscroll() {
@@ -179,6 +185,9 @@ class ListNode: SKNode {
             
             y -= itemHeight
         }
+
+        self.previousButton.alpha = self.isScrollBackEnabled ? 0.5 : 1.0
+        self.nextButton.alpha = self.isScrollForwardEnabled ? 0.5 : 1.0
     }
     
     #if os(macOS)
