@@ -14,7 +14,7 @@ class InventoryNode: SKNode {
     private let listNode: ListNode
     
     init(size: CGSize) {
-        self.listNode = ListNode(size: size, orientation: .vertical, backgroundColor: SKColor.white)
+        self.listNode = ListNode(size: size, orientation: .vertical, backgroundColor: SKColor.black)
         
         super.init()
         
@@ -46,7 +46,8 @@ extension InventoryNode: ListNodeDelegate {
     func listNode(_ listNode: ListNode, nodeAtIndex index: Int, size: CGSize) -> SKNode {
         let (remainder, _) = index.remainderReportingOverflow(dividingBy: 2)
         let label = SKLabelNode(text: "Item \(index)")
-        label.fontSize = 14
+        label.fontSize = 16
+        label.fontName = "Papyrus"
         label.position = CGPoint(x: 0, y: -(label.frame.height / 2))
 
         var node: SKNode

@@ -31,9 +31,7 @@ private enum ScrollDirection {
     case none
 }
 
-class ListNode: SKNode {
-    private let container: SKSpriteNode
-    
+class ListNode: SKShapeNode {
     private let listContainer: SKCropNode
     
     private let list: SKSpriteNode
@@ -48,15 +46,15 @@ class ListNode: SKNode {
     
     private var maxContentOffset: CGPoint = .zero
     
-    private var previousButton: SKSpriteNode
+    private var previousButton: ButtonNode
     
-    private var nextButton: SKSpriteNode
+    private var nextButton: ButtonNode
     
     private var scrollTimer: Timer?
     
-    private var isScrollBackEnabled: Bool { self.contentOffset == .zero }
+    private var isScrollBackEnabled: Bool { self.contentOffset != .zero }
     
-    private var isScrollForwardEnabled: Bool { self.orientation == .vertical ? self.contentOffset.y == self.maxContentOffset.y : self.contentOffset.x == self.maxContentOffset.x }
+    private var isScrollForwardEnabled: Bool { self.orientation == .vertical ? self.contentOffset.y < self.maxContentOffset.y : self.contentOffset.x < self.maxContentOffset.x }
     
     override var zPosition: CGFloat {
         didSet {
@@ -83,27 +81,30 @@ class ListNode: SKNode {
         
     init(size: CGSize, orientation: ListNodeOrientation, backgroundColor: SKColor) {
         self.orientation = orientation
-        self.container = SKSpriteNode(color: backgroundColor, size: size)
         
         let buttonSize = self.orientation == .horizontal ? CGSize(width: 40, height: size.height) : CGSize(width: size.width, height: 40)
-        self.previousButton = SKSpriteNode(color: SKColor.orange, size: buttonSize)
-        self.nextButton = SKSpriteNode(color: SKColor.red, size: buttonSize)
+        self.previousButton = ButtonNode(size: buttonSize, color: .black, text: "PREVIOUS")
+        self.nextButton = ButtonNode(size: buttonSize, color: .black, text: "NEXT")
 
-        let listSize = orientation == .vertical ? CGSize(width: size.width, height: size.height - buttonSize.height * 2 - 2) : CGSize(width: size.width - buttonSize.width * 2 - 2, height: size.height)
-        self.list = SKSpriteNode(color: .lightGray, size: listSize)
+        let listSize = orientation == .vertical ? CGSize(width: size.width, height: size.height - buttonSize.height * 2) : CGSize(width: size.width - buttonSize.width * 2, height: size.height)
+        self.list = SKSpriteNode(color: backgroundColor, size: listSize)
 
         self.listContainer = SKCropNode()
         self.listContainer.maskNode = self.list
-                
+                        
         super.init()
         
-        addChild(self.container)
-        self.container.addChild(self.listContainer)
-        self.container.addChild(self.previousButton)
-        self.container.addChild(self.nextButton)
+        self.path = CGPath(rect: CGRect(origin: CGPoint(x: -(size.width / 2), y: -(size.height / 2)), size: size), transform: nil)
+        self.fillColor = backgroundColor
+        self.strokeColor = .white
+        self.lineWidth = 1
+        
+        self.addChild(self.listContainer)
+        self.addChild(self.previousButton)
+        self.addChild(self.nextButton)
                 
-        let halfContainerWidth = self.container.frame.width / 2
-        let halfContainerHeight = self.container.frame.height / 2
+        let halfContainerWidth = self.frame.width / 2
+        let halfContainerHeight = self.frame.height / 2
         switch self.orientation {
         case .horizontal:
             self.previousButton.position = CGPoint(x: -halfContainerWidth, y: 0)
@@ -123,8 +124,8 @@ class ListNode: SKNode {
 
         if let delegate = delegate {
             let itemCount = delegate.listNodeNumberOfItems(listNode: self)
-            let itemWidth = self.orientation == .vertical ? self.container.size.width : delegate.listNodeWidthForItem(self)
-            let itemHeight = self.orientation == .horizontal ? self.container.size.height : delegate.listNodeHeightForItem(self) 
+            let itemWidth = self.orientation == .vertical ? self.frame.width : delegate.listNodeWidthForItem(self)
+            let itemHeight = self.orientation == .horizontal ? self.frame.height : delegate.listNodeHeightForItem(self)
             
             switch self.orientation {
             case .horizontal: self.contentSize = CGSize(width: itemWidth * CGFloat(itemCount), height: itemHeight)
@@ -174,8 +175,8 @@ class ListNode: SKNode {
     private func updateLayout() {
         guard let delegate = self.delegate else { return }
         
-        let itemWidth = self.orientation == .vertical ? self.container.size.width : delegate.listNodeWidthForItem(self)
-        let itemHeight = self.orientation == .horizontal ? self.container.size.height : delegate.listNodeHeightForItem(self)
+        let itemWidth = self.orientation == .vertical ? self.frame.width : delegate.listNodeWidthForItem(self)
+        let itemHeight = self.orientation == .horizontal ? self.frame.height : delegate.listNodeHeightForItem(self)
 
         var y: CGFloat = self.list.frame.height / 2 - itemHeight / 2 + self.contentOffset.y
         for (i, node) in self.listContainer.children.enumerated()  {
@@ -187,8 +188,8 @@ class ListNode: SKNode {
             y -= itemHeight
         }
 
-        self.previousButton.alpha = self.isScrollBackEnabled ? 0.5 : 1.0
-        self.nextButton.alpha = self.isScrollForwardEnabled ? 0.5 : 1.0
+        self.previousButton.isEnabled = self.isScrollBackEnabled
+        self.nextButton.isEnabled = self.isScrollForwardEnabled
     }
     
     #if os(macOS)
