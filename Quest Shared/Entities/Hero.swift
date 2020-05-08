@@ -21,8 +21,10 @@ class Hero: Actor, CustomStringConvertible {
     private var meleeTarget: Actor?
     
     private var rangedTarget: Actor?
-    
+        
     private var spell: Spell?
+
+    var backpack: [Entity] = []
 
     override var meleeAttackBonus: Int {
         var attackBonus = self.attributes.strength.bonus + self.equipment.meleeWeapon.attack

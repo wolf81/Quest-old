@@ -11,7 +11,7 @@ import SpriteKit
 import Fenris
 
 class InventoryNode: SKShapeNode {
-    private let itemList: ListNode
+    private let backpack: ListNode
     private let paperDoll: PaperDollNode
     
     private let hero: Hero
@@ -22,23 +22,23 @@ class InventoryNode: SKShapeNode {
         let spacing: CGFloat = 5
         let nodeWidth = (size.width - spacing * 3) / 2
         let nodeSize = CGSize(width: nodeWidth, height: size.height - spacing * 2)
-        self.itemList = ListNode(size: nodeSize, orientation: .vertical, backgroundColor: backgroundColor)
+        self.backpack = ListNode(size: nodeSize, orientation: .vertical, backgroundColor: backgroundColor)
         self.paperDoll = PaperDollNode(size: nodeSize, backgroundColor: backgroundColor)
         
         super.init()
         
         self.path = CGPath(rect: CGRect(origin: CGPoint(x: -(size.width / 2), y: -(size.height / 2)), size: size), transform: nil)
         
-        addChild(self.itemList)
+        addChild(self.backpack)
         addChild(self.paperDoll)
         
-        self.itemList.delegate = self
+        self.backpack.delegate = self
         
         self.lineWidth = 1
         self.strokeColor = .white
         self.fillColor = backgroundColor
 
-        self.itemList.position = CGPoint(x: (size.width - nodeWidth) / 2 - spacing, y: 0)
+        self.backpack.position = CGPoint(x: (size.width - nodeWidth) / 2 - spacing, y: 0)
         self.paperDoll.position = CGPoint(x: -(size.width - nodeWidth) / 2 + spacing, y: 0)
         
         self.zPosition = DrawLayerHelper.zPosition(for: self)
@@ -51,11 +51,12 @@ class InventoryNode: SKShapeNode {
     }
     
     override func mouseUp(with event: NSEvent) {
-        self.itemList.mouseUp(with: event)
+        self.backpack.mouseUp(with: event)
+        self.paperDoll.mouseUp(with: event)
     }
     
     override func mouseDown(with event: NSEvent) {
-        self.itemList.mouseDown(with: event)
+        self.backpack.mouseDown(with: event)
     }
 }
 

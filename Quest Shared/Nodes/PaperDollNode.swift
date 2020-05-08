@@ -8,12 +8,18 @@
 
 import SpriteKit
 
+protocol PaperDollNodeDelegate: class {
+    func paperDoll(_ paperDoll: PaperDollNode, didUnequipItem item: Entity)
+}
+
 class PaperDollNode: SKShapeNode {
     private let chest: EquippedItemNode
     
     private let leftArm: EquippedItemNode
     
     private let rightArm: EquippedItemNode
+    
+    weak var delegate: PaperDollNodeDelegate?
     
     init(size: CGSize, backgroundColor: SKColor) {
         let itemSize = CGSize(width: 50, height: 50)
@@ -45,6 +51,16 @@ class PaperDollNode: SKShapeNode {
         self.chest.update(entity: equipment.armor)
         self.leftArm.update(entity: equipment.shield)
         self.rightArm.update(entity: equipment.meleeWeapon)
+    }
+    
+    override func mouseUp(with event: NSEvent) {
+        let location = event.location(in: self)
+
+        let nodes = [self.leftArm, self.rightArm, self.chest]
+
+        if let selectedNode = nodes.filter({ $0.contains(location) }).first {
+            print("selected: \(selectedNode)")
+        }
     }
     
     // MARK: - Private

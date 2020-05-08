@@ -221,7 +221,7 @@ class ListNode: SKShapeNode {
                     break
                 }
             }
-        }
+        }        
         
         updateLayout()
     }
