@@ -14,7 +14,7 @@ class InventoryNode: SKShapeNode {
     private let listNode: ListNode
     
     init(size: CGSize, backgroundColor: SKColor) {
-        self.listNode = ListNode(size: CGSize(width: size.width - 10, height: size.height - 10), orientation: .vertical, backgroundColor: backgroundColor)
+        self.listNode = ListNode(size: CGSize(width: size.width / 2 - 10, height: size.height - 10), orientation: .vertical, backgroundColor: backgroundColor)
         
         super.init()
         self.path = CGPath(rect: CGRect(origin: CGPoint(x: -(size.width / 2), y: -(size.height / 2)), size: size), transform: nil)
@@ -27,7 +27,7 @@ class InventoryNode: SKShapeNode {
         self.strokeColor = .white
         self.fillColor = backgroundColor
 
-        self.listNode.position = .zero
+        self.listNode.position = CGPoint(x: size.width / 4, y: 0)
         
         self.zPosition = DrawLayerHelper.zPosition(for: self)
     }
@@ -68,6 +68,12 @@ extension InventoryNode: ListNodeDelegate {
         node.addChild(label)
         
         return node
+    }
+    
+    func listNode(_ listNode: ListNode, didSelectNode node: SKNode) {
+        if let label = node.children.first as? SKLabelNode, let text = label.text {
+            print("\(text)")
+        }
     }
     
     func listNodeWidthForItem(_ listNode: ListNode) -> CGFloat {

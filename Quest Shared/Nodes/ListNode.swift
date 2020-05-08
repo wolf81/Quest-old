@@ -13,6 +13,8 @@ protocol ListNodeDelegate: class {
     
     func listNode(_ listNode: ListNode, nodeAtIndex index: Int, size: CGSize) -> SKNode
     
+    func listNode(_ listNode: ListNode, didSelectNode node: SKNode)
+    
     // for vertical orientation
     func listNodeHeightForItem(_ listNode: ListNode) -> CGFloat
     
@@ -210,6 +212,17 @@ class ListNode: SKShapeNode {
     override func mouseUp(with event: NSEvent) {
         self.scrollDirection = .none
                 
+        let location = event.location(in: self)
+
+        if self.listContainer.contains(location) {
+            for node in self.listContainer.children {
+                if node.frame.contains(location) {
+                    self.delegate?.listNode(self, didSelectNode: node)
+                    break
+                }
+            }
+        }
+        
         updateLayout()
     }
     
