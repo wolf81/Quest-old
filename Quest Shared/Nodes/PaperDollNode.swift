@@ -13,6 +13,8 @@ protocol PaperDollNodeDelegate: class {
 }
 
 class PaperDollNode: SKShapeNode {
+    private let silhouette: SKSpriteNode
+    
     private let chest: EquippedItemNode
     
     private let leftArm: EquippedItemNode
@@ -20,12 +22,17 @@ class PaperDollNode: SKShapeNode {
     private let rightArm: EquippedItemNode
     
     weak var delegate: PaperDollNodeDelegate?
-    
+        
     init(size: CGSize, backgroundColor: SKColor) {
         let itemSize = CGSize(width: 50, height: 50)
         self.chest = EquippedItemNode(size: itemSize)
         self.leftArm = EquippedItemNode(size: itemSize)
         self.rightArm = EquippedItemNode(size: itemSize)
+        
+        let silhouetteTexture = SKTexture(imageNamed: "paper_doll")
+        let silhouetteSize = CGSize(width: size.width - 30, height: size.height - 30)
+        self.silhouette = SKSpriteNode(texture: silhouetteTexture, color: SKColor(white: 0.25, alpha: 1.0), size: silhouetteSize)
+        self.silhouette.colorBlendFactor = 1.0
         
         super.init()
         
@@ -35,12 +42,17 @@ class PaperDollNode: SKShapeNode {
         self.strokeColor = .white
         self.lineWidth = 1
         
+        addChild(self.silhouette)
         addChild(self.chest)
         addChild(self.leftArm)
         addChild(self.rightArm)
         
+        self.silhouette.zPosition = 0
+        self.chest.zPosition = 1
         self.leftArm.position = CGPoint(x: size.width / 3, y: 0)
+        self.leftArm.zPosition = 1
         self.rightArm.position = CGPoint(x: -(size.width / 3), y: 0)
+        self.rightArm.zPosition = 1
     }
     
     required init?(coder aDecoder: NSCoder) {
