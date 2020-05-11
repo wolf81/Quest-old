@@ -222,24 +222,26 @@ class Game {
     }
     
     func showRangedAttackTilesForHero() {
-        guard self.actors[self.activeActorIdx] == self.hero && self.isBusy == false else { return }
-
-        if selectionMode.isSelection { hideSelectionTiles() }
-
-        let attackRange = Int32(self.hero.equipment.rangedWeapon.range)
-        let xRange = self.hero.coord.x - attackRange ... self.hero.coord.x + attackRange
-        let yRange = self.hero.coord.y - attackRange ... self.hero.coord.y + attackRange
+        return
         
-        let actorCoords = self.actors.filter({ $0 != self.hero }).compactMap({ $0.coord })
-        for actorCoord in actorCoords {
-            if xRange.contains(actorCoord.x) && yRange.contains(actorCoord.y) {
-                let movementTile = OverlayTile(color: SKColor.orange.withAlphaComponent(0.4), coord: actorCoord, isBlocked: true)
-                self.tiles.append(movementTile)
-                self.delegate?.gameDidAdd(entity: movementTile)
-            }
-        }
-        
-        self.selectionMode = .selectRangedTarget
+//        guard self.actors[self.activeActorIdx] == self.hero && self.isBusy == false else { return }
+//
+//        if selectionMode.isSelection { hideSelectionTiles() }
+//
+//        let attackRange = Int32(self.hero.equipment.rangedWeapon.range)
+//        let xRange = self.hero.coord.x - attackRange ... self.hero.coord.x + attackRange
+//        let yRange = self.hero.coord.y - attackRange ... self.hero.coord.y + attackRange
+//        
+//        let actorCoords = self.actors.filter({ $0 != self.hero }).compactMap({ $0.coord })
+//        for actorCoord in actorCoords {
+//            if xRange.contains(actorCoord.x) && yRange.contains(actorCoord.y) {
+//                let movementTile = OverlayTile(color: SKColor.orange.withAlphaComponent(0.4), coord: actorCoord, isBlocked: true)
+//                self.tiles.append(movementTile)
+//                self.delegate?.gameDidAdd(entity: movementTile)
+//            }
+//        }
+//        
+//        self.selectionMode = .selectRangedTarget
     }
     
     func showMeleeAttackTilesForHero() {

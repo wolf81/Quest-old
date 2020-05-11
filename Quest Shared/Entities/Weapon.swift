@@ -8,10 +8,12 @@
 
 import SpriteKit
 
-class Weapon: Entity, CustomStringConvertible {
+class Weapon: Entity & Equippable, CustomStringConvertible {
     let attack: Int
     let damage: HitDie
     let range: Int
+    
+    var equipmentSlot: EquipmentSlot { .arms }
     
     required init(json: [String : Any]) {
         self.attack = json["AT"] as? Int ?? 0

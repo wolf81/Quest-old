@@ -60,9 +60,9 @@ class PaperDollNode: SKShapeNode {
     }
     
     func update(equipment: Equipment) {
-        self.chest.update(entity: equipment.armor)
-        self.leftArm.update(entity: equipment.shield)
-        self.rightArm.update(entity: equipment.meleeWeapon)
+        self.chest.update(entity: equipment.chest)
+        self.leftArm.update(entity: equipment.leftArm)
+        self.rightArm.update(entity: equipment.rightArm)
     }
     
     override func mouseUp(with event: NSEvent) {
@@ -98,7 +98,12 @@ class PaperDollNode: SKShapeNode {
             fatalError()
         }
         
-        func update(entity: Entity) {
+        func update(entity: Entity?) {
+            guard let entity = entity else {
+                self.sprite.texture = nil
+                return
+            }
+
             let update = SKAction.setTexture(entity.sprite.texture!, resize: false)
             self.sprite.run(update)
         }

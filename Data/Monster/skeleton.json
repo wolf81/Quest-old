@@ -7,7 +7,7 @@
 	"HD": "1d12",
 	"AC": 15,
     "EQ": {
-        "melee_weapon": "Battleaxe +3",
+        "weapon": "Longsword",
     },
     
     "skills": {

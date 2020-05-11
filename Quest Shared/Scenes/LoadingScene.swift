@@ -47,11 +47,12 @@ class LoadingScene: MenuSceneBase {
     }
     
     private func loadDataFinished(entityFactory: EntityFactory) {
-        let armor = try! entityFactory.newEntity(type: Armor.self, name: "Studded Leather")
-        let meleeWeapon = try! entityFactory.newEntity(type: Weapon.self, name: "Longsword")
-        let rangedWeapon = try! entityFactory.newEntity(type: Weapon.self, name: "Shortbow")
-        let shield = try! entityFactory.newEntity(type: Shield.self, name: "Buckler")
-        let equipment = Equipment(armor: armor, meleeWeapon: meleeWeapon, rangedWeapon: rangedWeapon, shield: shield)
+//        let rangedWeapon = try! entityFactory.newEntity(type: Weapon.self, name: "Shortbow")
+        
+        var equipment = Equipment()
+        equipment.chest = try! entityFactory.newEntity(type: Armor.self, name: "Studded Leather")
+        equipment.leftArm = try! entityFactory.newEntity(type: Weapon.self, name: "Longsword")
+        equipment.rightArm = try! entityFactory.newEntity(type: Shield.self, name: "Buckler")
         
         let hero = try! self.heroBuilder
             .with(equipment: equipment)

@@ -53,7 +53,7 @@ class Actor: Entity {
 
         super.init(json: json)
                 
-        self.sprite.addChild(equipment.meleeWeapon.sprite)
+        self.sprite.addChild(equipment.weapon.sprite)
         
         self.hitPoints.delegate = self
 
@@ -68,9 +68,10 @@ class Actor: Entity {
         
         super.init(json: ["name": name, "sprite": "\(race)_\(gender)"])
 
-        self.sprite.addChild(equipment.armor.sprite)
-        self.sprite.addChild(equipment.meleeWeapon.sprite)
-        self.sprite.addChild(equipment.shield.sprite)
+        let equipmentItems = [equipment.chest, equipment.leftArm, equipment.rightArm].compactMap{ $0 }
+        for equipmentItem in equipmentItems {
+            self.sprite.addChild(equipmentItem.sprite)
+        }
 
         self.hitPoints.delegate = self
 
@@ -80,7 +81,7 @@ class Actor: Entity {
     required init(json: [String : Any]) {
         self.hitPoints = HitPoints(base: 1)
         self.skills = Skills(physical: 0, subterfuge: 0, knowledge: 0, communication: 0)
-        self.equipment = Equipment.none
+        self.equipment = Equipment()
     
         super.init(json: json)
 
@@ -90,11 +91,11 @@ class Actor: Entity {
     }
     
     func getMeleeAttackDamage(_ dieRoll: DieRoll) -> Int {
-        return dieRoll == .maximum ? self.equipment.meleeWeapon.damage.maxValue : self.equipment.meleeWeapon.damage.randomValue
+        dieRoll == .maximum ? self.equipment.weapon.damage.maxValue : self.equipment.weapon.damage.randomValue
     }
 
     func getRangedAttackDamage(_ dieRoll: DieRoll) -> Int {
-        return dieRoll == .maximum ? self.equipment.rangedWeapon.damage.maxValue : self.equipment.rangedWeapon.damage.randomValue
+        dieRoll == .maximum ? self.equipment.weapon.damage.maxValue : self.equipment.weapon.damage.randomValue
     }
     
     func addTimeUnits(_ timeUnits: Int) {

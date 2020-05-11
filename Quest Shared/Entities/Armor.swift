@@ -8,8 +8,10 @@
 
 import Foundation
 
-class Armor: Entity {
+class Armor: Entity & Equippable {
     let armorClass: Int
+    
+    var equipmentSlot: EquipmentSlot { .chest }
     
     required init(json: [String : Any]) {
         let armorClass = json["AC"] as! Int

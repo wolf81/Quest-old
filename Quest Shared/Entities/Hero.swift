@@ -27,7 +27,7 @@ class Hero: Actor, CustomStringConvertible {
     var backpack: [Entity] = []
 
     override var meleeAttackBonus: Int {
-        var attackBonus = self.attributes.strength.bonus + self.equipment.meleeWeapon.attack
+        var attackBonus = self.attributes.strength.bonus + self.equipment.weapon.attack
         if self.role == .fighter {
             attackBonus += 1
             attackBonus += self.level % 5
@@ -36,7 +36,7 @@ class Hero: Actor, CustomStringConvertible {
     }
     
     override var rangedAttackBonus: Int {
-        var attackBonus = self.attributes.dexterity.bonus + self.equipment.rangedWeapon.attack
+        var attackBonus = self.attributes.dexterity.bonus + self.equipment.weapon.attack
         if self.role == .fighter {
             attackBonus += 1
             attackBonus += self.level % 5
@@ -45,14 +45,20 @@ class Hero: Actor, CustomStringConvertible {
     }
         
     override func getMeleeAttackDamage(_ dieRoll: DieRoll) -> Int {
-        return self.attributes.strength.bonus + (dieRoll == .maximum ? self.equipment.meleeWeapon.damage.maxValue : self.equipment.meleeWeapon.damage.randomValue)
+        self.attributes.strength.bonus + (dieRoll == .maximum
+            ? self.equipment.weapon.damage.maxValue
+            : self.equipment.weapon.damage.randomValue)
     }
     
     override func getRangedAttackDamage(_ dieRoll: DieRoll) -> Int {
-        return dieRoll == .maximum ? self.equipment.rangedWeapon.damage.maxValue : self.equipment.rangedWeapon.damage.randomValue
+        return dieRoll == .maximum
+            ? self.equipment.weapon.damage.maxValue
+            : self.equipment.weapon.damage.randomValue
     }
 
-    override var armorClass: Int { return 10 + attributes.dexterity.bonus + self.equipment.armor.armorClass + self.equipment.shield.armorClass }
+    override var armorClass: Int {
+        10 + attributes.dexterity.bonus + self.equipment.armor.armorClass + self.equipment.shield.armorClass
+    }
     
     public init(name: String, race: Race, gender: Gender, role: Role, attributes: Attributes, skills: Skills, equipment: Equipment) {
         self.race = race

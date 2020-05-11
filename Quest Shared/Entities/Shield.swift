@@ -8,8 +8,10 @@
 
 import Foundation
 
-class Shield: Entity, CustomStringConvertible {
+class Shield: Entity & Equippable, CustomStringConvertible {
     let armorClass: Int
+    
+    var equipmentSlot: EquipmentSlot { .arms }
     
     required init(json: [String : Any]) {
         self.armorClass = json["AC"] as? Int ?? 0

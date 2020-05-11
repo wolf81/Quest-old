@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		79042E5C2469473800730646 /* Equippable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E5B2469473800730646 /* Equippable.swift */; };
+		79042E5D2469473800730646 /* Equippable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E5B2469473800730646 /* Equippable.swift */; };
+		79042E5E2469473800730646 /* Equippable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E5B2469473800730646 /* Equippable.swift */; };
 		7914DD32246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
 		7914DD33246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
 		7914DD34246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
@@ -204,6 +207,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		79042E5B2469473800730646 /* Equippable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equippable.swift; sourceTree = "<group>"; };
 		7914DD31246182120047EFB6 /* EntityDrawLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDrawLayer.swift; sourceTree = "<group>"; };
 		7929FBF922AFBADE003C1964 /* DungeonBuilder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DungeonBuilder.framework; path = Carthage/Build/iOS/DungeonBuilder.framework; sourceTree = SOURCE_ROOT; };
 		7929FBFB22AFBAE7003C1964 /* DungeonBuilder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DungeonBuilder.framework; path = Carthage/Build/Mac/DungeonBuilder.framework; sourceTree = SOURCE_ROOT; };
@@ -379,6 +383,7 @@
 				795746BA22A9029D00E04BEC /* Direction.swift */,
 				792C698B23A40D4700A729C3 /* Spell.swift */,
 				793A575B2445A12E0089E693 /* ActionCost.swift */,
+				79042E5B2469473800730646 /* Equippable.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -764,6 +769,7 @@
 				7963DE2E239CC35F00183DF2 /* DefaultMenuConfiguration.swift in Sources */,
 				798537C623A2924E00721CE7 /* RangedAttackAction.swift in Sources */,
 				79ACC7ED22AA5D8700AC3BF0 /* EntityLoader.swift in Sources */,
+				79042E5C2469473800730646 /* Equippable.swift in Sources */,
 				79492BE923A61299005B9508 /* TileProtocol.swift in Sources */,
 				798C997E23A2068C00C6EC1C /* AnimationKey.swift in Sources */,
 				7963DE42239CEC6A00183DF2 /* Skill.swift in Sources */,
@@ -829,6 +835,7 @@
 				7963DE2F239CC35F00183DF2 /* DefaultMenuConfiguration.swift in Sources */,
 				798537C723A2924E00721CE7 /* RangedAttackAction.swift in Sources */,
 				79ACC7EE22AA5D8700AC3BF0 /* EntityLoader.swift in Sources */,
+				79042E5D2469473800730646 /* Equippable.swift in Sources */,
 				79492BEA23A61299005B9508 /* TileProtocol.swift in Sources */,
 				798C997F23A2068C00C6EC1C /* AnimationKey.swift in Sources */,
 				7963DE43239CEC6A00183DF2 /* Skill.swift in Sources */,
@@ -879,6 +886,7 @@
 				79C61A9822A7C415008D3609 /* AppDelegate.swift in Sources */,
 				793A575E2445A12F0089E693 /* ActionCost.swift in Sources */,
 				7963DE34239CDE2600183DF2 /* Attribute.swift in Sources */,
+				79042E5E2469473800730646 /* Equippable.swift in Sources */,
 				79DF73B62463DD310030E7A8 /* InventoryNode.swift in Sources */,
 				79D81572246572450099567B /* ButtonNode.swift in Sources */,
 				794864D122A7E48400F84A72 /* GameView.swift in Sources */,
