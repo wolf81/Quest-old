@@ -20,7 +20,7 @@ class Actor: Entity {
 
     private(set) var skills: Skills
     
-    private(set) var equipment: Equipment
+    var equipment: Equipment
     
     private(set) var attributes: Attributes = Attributes(strength: 12, dexterity: 12, mind: 12)
 
@@ -68,8 +68,7 @@ class Actor: Entity {
         
         super.init(json: ["name": name, "sprite": "\(race)_\(gender)"])
 
-        let equipmentItems = [equipment.chest, equipment.leftArm, equipment.rightArm].compactMap{ $0 }
-        for equipmentItem in equipmentItems {
+        for equipmentItem in self.equipment.values {
             self.sprite.addChild(equipmentItem.sprite)
         }
 

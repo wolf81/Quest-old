@@ -11,10 +11,11 @@ import Foundation
 enum EquipmentSlot {
     case head
     case chest
-    case arms
+    case leftArm
+    case rightArm
     case legs
 }
 
-protocol Equippable: Entity {
+protocol Equippable: Lootable {
     var equipmentSlot: EquipmentSlot { get }
 }

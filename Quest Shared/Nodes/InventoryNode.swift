@@ -41,8 +41,9 @@ class InventoryNode: SKShapeNode {
         self.backpack.position = CGPoint(x: (size.width - nodeWidth) / 2 - spacing, y: 0)
         self.paperDoll.position = CGPoint(x: -(size.width - nodeWidth) / 2 + spacing, y: 0)
         
-        self.zPosition = DrawLayerHelper.zPosition(for: self)
+        self.zPosition = DrawLayerHelper.zPosition(for: self)                
         
+        self.paperDoll.delegate = self
         self.paperDoll.update(equipment: self.hero.equipment)
     }
     
@@ -60,13 +61,23 @@ class InventoryNode: SKShapeNode {
     }
 }
 
+extension InventoryNode: PaperDollNodeDelegate {
+    func paperDoll(_ paperDoll: PaperDollNode, didUnequip equipment: Equippable) {
+        print("unequipped: \(equipment)")
+        self.hero.backpack.append(equipment)
+        self.backpack.reload()
+    }
+}
+
 extension InventoryNode: ListNodeDelegate {
     func listNodeNumberOfItems(listNode: ListNode) -> Int {
-        return 9
+        return self.hero.backpack.count
     }
     
     func listNode(_ listNode: ListNode, nodeAtIndex index: Int, size: CGSize) -> SKNode {
-        let label = SKLabelNode(text: "Item \(index)")
+        let item = self.hero.backpack[index]
+        
+        let label = SKLabelNode(text: "\(item.name)")
         label.fontSize = 16
         label.fontName = "Papyrus"
         label.position = CGPoint(x: 0, y: -(label.frame.height / 2))
@@ -78,10 +89,19 @@ extension InventoryNode: ListNodeDelegate {
         return node
     }
     
-    func listNode(_ listNode: ListNode, didSelectNode node: SKNode) {
-        if let label = node.children.first as? SKLabelNode, let text = label.text {
-            print("\(text)")
+    func listNode(_ listNode: ListNode, didSelectNode node: SKNode, atIndex index: Int) {
+        let item = self.hero.backpack[index]
+        
+        if let equipment = item as? Equippable {
+            self.hero.equip(equipment)
+            self.paperDoll.update(equipment: self.hero.equipment)
+            self.hero.backpack.remove(at: index)
+            self.backpack.reload()
         }
+        
+//        if let label = node.children.first as? SKLabelNode, let text = label.text {
+//            print("\(text)")
+//        }
     }
     
     func listNodeWidthForItem(_ listNode: ListNode) -> CGFloat {

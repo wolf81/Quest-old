@@ -9,7 +9,7 @@
 import SpriteKit
 
 protocol PaperDollNodeDelegate: class {
-    func paperDoll(_ paperDoll: PaperDollNode, didUnequipItem item: Entity)
+    func paperDoll(_ paperDoll: PaperDollNode, didUnequip equipment: Equippable)
 }
 
 class PaperDollNode: SKShapeNode {
@@ -60,9 +60,9 @@ class PaperDollNode: SKShapeNode {
     }
     
     func update(equipment: Equipment) {
-        self.chest.update(entity: equipment.chest)
-        self.leftArm.update(entity: equipment.leftArm)
-        self.rightArm.update(entity: equipment.rightArm)
+        self.chest.equipment = equipment[.chest]
+        self.leftArm.equipment = equipment[.leftArm]
+        self.rightArm.equipment = equipment[.rightArm]
     }
     
     override func mouseUp(with event: NSEvent) {
@@ -72,6 +72,12 @@ class PaperDollNode: SKShapeNode {
 
         if let selectedNode = nodes.filter({ $0.contains(location) }).first {
             print("selected: \(selectedNode)")
+
+            if let equipment = selectedNode.equipment {
+                selectedNode.equipment = nil
+                
+                self.delegate?.paperDoll(self, didUnequip: equipment)
+            }            
         }
     }
     
@@ -80,8 +86,19 @@ class PaperDollNode: SKShapeNode {
     private class EquippedItemNode: SKShapeNode {
         var sprite: SKSpriteNode
         
+        var equipment: Equippable? {
+            didSet {
+                guard let equipment = self.equipment else {
+                    return self.sprite.texture = nil
+                }
+                
+                let update = SKAction.setTexture(equipment.sprite.texture!, resize: false)
+                self.sprite.run(update)
+            }
+        }
+        
         init(size: CGSize) {
-            self.sprite = SKSpriteNode(color: .red, size: CGSize(width: size.width - 2, height: size.height - 2))
+            self.sprite = SKSpriteNode(color: .clear, size: CGSize(width: size.width - 2, height: size.height - 2))
             
             super.init()
             
@@ -96,16 +113,6 @@ class PaperDollNode: SKShapeNode {
         
         required init?(coder aDecoder: NSCoder) {
             fatalError()
-        }
-        
-        func update(entity: Entity?) {
-            guard let entity = entity else {
-                self.sprite.texture = nil
-                return
-            }
-
-            let update = SKAction.setTexture(entity.sprite.texture!, resize: false)
-            self.sprite.run(update)
         }
     }
 }

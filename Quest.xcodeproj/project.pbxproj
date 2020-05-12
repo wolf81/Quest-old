@@ -13,6 +13,9 @@
 		7914DD32246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
 		7914DD33246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
 		7914DD34246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
+		792467DF246A59A0000568A6 /* Lootable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792467DE246A59A0000568A6 /* Lootable.swift */; };
+		792467E0246A59A0000568A6 /* Lootable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792467DE246A59A0000568A6 /* Lootable.swift */; };
+		792467E1246A59A0000568A6 /* Lootable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792467DE246A59A0000568A6 /* Lootable.swift */; };
 		7929FBFA22AFBADE003C1964 /* DungeonBuilder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FBF922AFBADE003C1964 /* DungeonBuilder.framework */; };
 		7929FBFE22AFBAED003C1964 /* DungeonBuilder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FBFD22AFBAED003C1964 /* DungeonBuilder.framework */; };
 		7929FC0422B0002E003C1964 /* Fenris.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FC0322B0002D003C1964 /* Fenris.framework */; };
@@ -209,6 +212,7 @@
 /* Begin PBXFileReference section */
 		79042E5B2469473800730646 /* Equippable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equippable.swift; sourceTree = "<group>"; };
 		7914DD31246182120047EFB6 /* EntityDrawLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDrawLayer.swift; sourceTree = "<group>"; };
+		792467DE246A59A0000568A6 /* Lootable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lootable.swift; sourceTree = "<group>"; };
 		7929FBF922AFBADE003C1964 /* DungeonBuilder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DungeonBuilder.framework; path = Carthage/Build/iOS/DungeonBuilder.framework; sourceTree = SOURCE_ROOT; };
 		7929FBFB22AFBAE7003C1964 /* DungeonBuilder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DungeonBuilder.framework; path = Carthage/Build/Mac/DungeonBuilder.framework; sourceTree = SOURCE_ROOT; };
 		7929FBFD22AFBAED003C1964 /* DungeonBuilder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DungeonBuilder.framework; path = Carthage/Build/tvOS/DungeonBuilder.framework; sourceTree = SOURCE_ROOT; };
@@ -384,6 +388,7 @@
 				792C698B23A40D4700A729C3 /* Spell.swift */,
 				793A575B2445A12E0089E693 /* ActionCost.swift */,
 				79042E5B2469473800730646 /* Equippable.swift */,
+				792467DE246A59A0000568A6 /* Lootable.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -778,6 +783,7 @@
 				79DF73AC2462D3570030E7A8 /* StatusUpdatable.swift in Sources */,
 				795746BB22A9029D00E04BEC /* Direction.swift in Sources */,
 				79D81570246572450099567B /* ButtonNode.swift in Sources */,
+				792467DF246A59A0000568A6 /* Lootable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -844,6 +850,7 @@
 				79DF73AD2462D3570030E7A8 /* StatusUpdatable.swift in Sources */,
 				795746BC22A9029D00E04BEC /* Direction.swift in Sources */,
 				79D81571246572450099567B /* ButtonNode.swift in Sources */,
+				792467E0246A59A0000568A6 /* Lootable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -903,6 +910,7 @@
 				798C998023A2068C00C6EC1C /* AnimationKey.swift in Sources */,
 				79DF73BA2463E16A0030E7A8 /* ListNode.swift in Sources */,
 				792C699223A5495500A729C3 /* CastSpellAction.swift in Sources */,
+				792467E1246A59A0000568A6 /* Lootable.swift in Sources */,
 				7960DED523A6082B00B4CDF8 /* OverlayTile.swift in Sources */,
 				7960DEC623A6082B00B4CDF8 /* Entity.swift in Sources */,
 				7963DE50239DD2D600183DF2 /* HitPoints.swift in Sources */,

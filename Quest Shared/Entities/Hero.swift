@@ -8,6 +8,8 @@
 
 import SpriteKit
 
+typealias Backpack = [Lootable]
+
 class Hero: Actor, CustomStringConvertible {
     let race: Race
     let role: Role
@@ -24,7 +26,7 @@ class Hero: Actor, CustomStringConvertible {
         
     private var spell: Spell?
 
-    var backpack: [Entity] = []
+    var backpack = Backpack()
 
     override var meleeAttackBonus: Int {
         var attackBonus = self.attributes.strength.bonus + self.equipment.weapon.attack
@@ -60,9 +62,10 @@ class Hero: Actor, CustomStringConvertible {
         10 + attributes.dexterity.bonus + self.equipment.armor.armorClass + self.equipment.shield.armorClass
     }
     
-    public init(name: String, race: Race, gender: Gender, role: Role, attributes: Attributes, skills: Skills, equipment: Equipment) {
+    public init(name: String, race: Race, gender: Gender, role: Role, attributes: Attributes, skills: Skills, equipment: Equipment, backpack: [Lootable]) {
         self.race = race
         self.role = role
+        self.backpack = backpack
         
         let hitPoints = HitDie.d6(1, 0).maxValue + attributes.strength.bonus // 1d6 + STR bonus per level, for first level use max health
         super.init(name: name, hitPoints: hitPoints, race: race, gender: gender, attributes: attributes, skills: skills, equipment: equipment)
@@ -93,6 +96,10 @@ class Hero: Actor, CustomStringConvertible {
     
     func attackRanged(actor: Actor) {
         self.rangedTarget = actor
+    }
+    
+    func equip(_ item: Equippable) {
+        self.equipment[item.equipmentSlot] = item
     }
     
     var description: String {

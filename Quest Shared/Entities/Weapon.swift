@@ -13,7 +13,7 @@ class Weapon: Entity & Equippable, CustomStringConvertible {
     let damage: HitDie
     let range: Int
     
-    var equipmentSlot: EquipmentSlot { .arms }
+    var equipmentSlot: EquipmentSlot { .leftArm }
     
     required init(json: [String : Any]) {
         self.attack = json["AT"] as? Int ?? 0

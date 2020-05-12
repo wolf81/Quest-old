@@ -13,7 +13,7 @@ protocol ListNodeDelegate: class {
     
     func listNode(_ listNode: ListNode, nodeAtIndex index: Int, size: CGSize) -> SKNode
     
-    func listNode(_ listNode: ListNode, didSelectNode node: SKNode)
+    func listNode(_ listNode: ListNode, didSelectNode node: SKNode, atIndex index: Int)
     
     // for vertical orientation
     func listNodeHeightForItem(_ listNode: ListNode) -> CGFloat
@@ -41,7 +41,7 @@ class ListNode: SKShapeNode {
     weak var delegate: ListNodeDelegate? {
         didSet { reload() }
     }
-    
+        
     private var contentSize: CGSize = .zero
     
     private var contentOffset: CGPoint = .zero
@@ -121,7 +121,7 @@ class ListNode: SKShapeNode {
         fatalError()
     }
     
-    private func reload() {
+    func reload() {
         self.listContainer.children.forEach{ $0.removeFromParent() }
 
         if let delegate = delegate {
@@ -215,9 +215,9 @@ class ListNode: SKShapeNode {
         let location = event.location(in: self)
 
         if self.listContainer.contains(location) {
-            for node in self.listContainer.children {
+            for (idx, node) in self.listContainer.children.enumerated() {
                 if node.frame.contains(location) {
-                    self.delegate?.listNode(self, didSelectNode: node)
+                    self.delegate?.listNode(self, didSelectNode: node, atIndex: idx)
                     break
                 }
             }

@@ -19,6 +19,7 @@ class HeroBuilder {
     private(set) var role: Role!
     private(set) var attributes: Attributes!
     private(set) var equipment: Equipment!
+    private(set) var backpack: Backpack!
     
     func with(gender: Gender) -> Self {
         self.gender = gender
@@ -50,6 +51,11 @@ class HeroBuilder {
         return self
     }
     
+    func with(backpack: Backpack) -> Self {
+        self.backpack = backpack
+        return self
+    }
+    
     func build() throws -> Hero {
         // Parse all properties, raise an error if a property was not set
         for child in Mirror(reflecting: self).children {
@@ -77,7 +83,8 @@ class HeroBuilder {
             role: self.role,
             attributes: self.attributes,
             skills: Skills(physical: physical, subterfuge: subterfuge, knowledge: knowledge, communication: communication),
-            equipment: self.equipment
+            equipment: self.equipment,
+            backpack: self.backpack
         )
     }
 }
