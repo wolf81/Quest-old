@@ -47,13 +47,8 @@ class LoadingScene: MenuSceneBase {
     }
     
     private func loadDataFinished(entityFactory: EntityFactory) {
-        let backpack: [String: String] = [
-            "weapon": "Battleaxe +3"
-        ]
-        
         let hero = try! self.heroBuilder
             .with(name: "Kendrick")
-            .with(backpack: backpack)
             .build(entityFactory: entityFactory)
         
         let game = Game(entityFactory: entityFactory, hero: hero)

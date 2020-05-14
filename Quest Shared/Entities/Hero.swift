@@ -58,7 +58,7 @@ class Hero: Actor, CustomStringConvertible {
         10 + attributes.dexterity.bonus + self.inventory.armor.armorClass + self.inventory.shield.armorClass
     }
     
-    public init(name: String, race: Race, gender: Gender, role: Role, attributes: Attributes, skills: Skills, backpack: [String: String], entityFactory: EntityFactory) {
+    public init(name: String, race: Race, gender: Gender, role: Role, attributes: Attributes, skills: Skills, entityFactory: EntityFactory) {
         self.race = race
         self.role = role
                 
