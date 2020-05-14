@@ -63,15 +63,10 @@ class Hero: Actor, CustomStringConvertible {
         self.role = role
                 
         let equipment = Hero.initialEquipmentFor(role, entityFactory: entityFactory)
-        
-        var backpackItems: [Lootable] = []
-        for (typeName, itemName) in backpack {
-            let backpackItem = try! entityFactory.newEntity(typeName: typeName.capitalized, name: itemName) as! Lootable
-            backpackItems.append(backpackItem)
-        }        
+        let backpack = Hero.initialBackpackFor(role, entityFactory: entityFactory)
         
         let hitPoints = HitDie.d6(1, 0).maxValue + attributes.strength.bonus // 1d6 + STR bonus per level, for first level use max health
-        super.init(name: name, hitPoints: hitPoints, race: race, gender: gender, attributes: attributes, skills: skills, equipment: equipment, backpack: backpackItems, entityFactory: entityFactory)
+        super.init(name: name, hitPoints: hitPoints, race: race, gender: gender, attributes: attributes, skills: skills, equipment: equipment, backpack: backpack, entityFactory: entityFactory)
     }
 
     required init(json: [String : Any], entityFactory: EntityFactory) {
@@ -150,7 +145,17 @@ class Hero: Actor, CustomStringConvertible {
     }
         
     private static func initialBackpackFor(_ role: Role, entityFactory: EntityFactory) -> [Lootable] {
-        return []
+        let lootInfo = [
+            "weapon": "Battleaxe +3",
+        ]
+        
+        var loot: [Lootable] = []
+        for (typeName, itemName) in lootInfo {
+            let item = try! entityFactory.newEntity(typeName: typeName.capitalized, name: itemName) as! Lootable
+            loot.append(item)
+        }
+        
+        return loot
     }
     
     private static func initialEquipmentFor(_ role: Role, entityFactory: EntityFactory) -> [Equippable] {
