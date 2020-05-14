@@ -53,6 +53,7 @@ class Actor: Entity {
         super.init(json: json, entityFactory: entityFactory)
                 
         for equipmentItem in equipment {
+            self.inventory.equip(equipmentItem)
             self.sprite.addChild(equipmentItem.sprite)
         }
         
