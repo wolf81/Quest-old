@@ -57,7 +57,7 @@ class HeroBuilder: Codable {
     }
     
     func build(entityFactory: EntityFactory) throws -> Hero {
-//        HeroBuilder.save(builder: self)
+        HeroBuilder.save(builder: self)
         
         // Parse all properties, raise an error if a property was not set
         for child in Mirror(reflecting: self).children {
