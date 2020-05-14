@@ -22,7 +22,7 @@ extension Attribute {
     }
 }
 
-struct Attributes: CustomStringConvertible {
+struct Attributes: Codable & CustomStringConvertible {
     let strength: Attribute
     let dexterity: Attribute
     let mind: Attribute

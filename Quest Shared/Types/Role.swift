@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Role: String {
+enum Role: String, Codable {
     case fighter
     case rogue
     case mage

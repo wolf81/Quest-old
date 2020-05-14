@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class Entity: EntityProtocol & Hashable {    
+class Entity: EntityProtocol & Hashable {
     static func == (lhs: Entity, rhs: Entity) -> Bool {
         return lhs.name == rhs.name && lhs.coord == rhs.coord
     }
@@ -18,14 +18,14 @@ class Entity: EntityProtocol & Hashable {
         hasher.combine(self.coord)        
     }
     
-    var coord: SIMD2<Int32>
+    var coord: vector_int2
     
     private let json: [String: Any]
     
     lazy var name: String = {
         return self.json["name"] as! String;
     }()
-    
+        
     lazy var sprite: SKSpriteNode = {
         // TODO:
         // ideally we don't know the sprite size here or perhaps the textures should be of

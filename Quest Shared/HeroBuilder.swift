@@ -12,15 +12,15 @@ enum HeroBuilderError: LocalizedError {
     case missingValue(String)
 }
 
-class HeroBuilder {
+class HeroBuilder: Codable {
     private(set) var name: String!
     private(set) var gender: Gender!
     private(set) var race: Race!
     private(set) var role: Role!
     private(set) var attributes: Attributes!
-    private(set) var equipment: [Equippable]!
-    private(set) var backpack: [Lootable]!
-        
+    private(set) var equipment: [String: String] = [:]
+    private(set) var backpack: [String: String] = [:]
+            
     func with(gender: Gender) -> Self {
         self.gender = gender
         return self
@@ -46,17 +46,19 @@ class HeroBuilder {
         return self
     }
     
-    func with(equipment: [Equippable]) -> Self {
+    func with(equipment: [String: String]) -> Self {
         self.equipment = equipment
         return self
     }
     
-    func with(backpack: [Lootable]) -> Self {
+    func with(backpack: [String: String]) -> Self {
         self.backpack = backpack
         return self
     }
     
     func build(entityFactory: EntityFactory) throws -> Hero {
+//        HeroBuilder.save(builder: self)
+        
         // Parse all properties, raise an error if a property was not set
         for child in Mirror(reflecting: self).children {
             if case Optional<Any>.none = child.value {
@@ -87,5 +89,24 @@ class HeroBuilder {
             backpack: self.backpack,
             entityFactory: entityFactory
         )
+    }
+    
+    static func last() -> HeroBuilder {
+        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+        let url = URL(fileURLWithPath: documentsPath).appendingPathComponent("builder.dat")
+        print("load from: \(url.path)")
+
+        let data = try! Data(contentsOf: url)
+        let builder = try! JSONDecoder().decode(HeroBuilder.self, from: data)
+        return builder
+    }
+    
+    private static func save(builder: HeroBuilder) {
+        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+        let url = URL(fileURLWithPath: documentsPath).appendingPathComponent("builder.dat")
+        print("save to: \(url.path)")
+
+        let data = try! JSONEncoder().encode(builder)
+        try! data.write(to: url, options: [])
     }
 }

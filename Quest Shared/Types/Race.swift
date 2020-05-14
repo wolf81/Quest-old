@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Race: String {
+enum Race: String, Codable {
     case human
     case elf
     case dwarf

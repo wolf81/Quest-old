@@ -19,13 +19,7 @@ class GameOverScene: MenuSceneBase {
                     sceneManager.crossFade(to: MainMenuScene.self)
                 }),
                 ButtonItem(title: "Restart", onClick: {
-                    let heroBuilder = HeroBuilder()
-                        .with(gender: Gender.male)
-                        .with(race: Race.human)
-                        .with(role: Role.fighter)
-                        .with(attributes: Attributes(strength: Attribute(12), dexterity: Attribute(12), mind: Attribute(12)))
-                        .with(name: "Kendrick")
-                                        
+                    let heroBuilder = HeroBuilder.last()                                        
                     let sceneManager = try! ServiceLocator.shared.get(service: SceneManager.self)
                     sceneManager.crossFade(to: LoadingScene.self, userInfo: [LoadingScene.UserInfoKey.heroBuilder: heroBuilder])
                 })
