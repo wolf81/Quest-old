@@ -9,6 +9,7 @@
 import SpriteKit
 import DungeonBuilder
 import GameplayKit
+import Fenris
 
 protocol GameDelegate: class {
     func gameDidMove(hero: Hero, path: [vector_int2], duration: TimeInterval)
@@ -279,7 +280,7 @@ class Game {
     func start(levelIdx: Int = 0, tileSize: CGSize) {
         self.level = Level()
         self.tileSize = tileSize
-                
+        
         self.visibility = RaycastVisibility(mapSize: CGSize(width: Int(self.level.width), height: Int(self.level.height)), blocksLight: { (x, y) -> (Bool) in
             self.level.getTileAt(coord: vector2(x, y)) == 1
         }, setVisible: { (x, y) in
@@ -351,6 +352,12 @@ class Game {
     func update(_ deltaTime: TimeInterval) {
         // If the game is busy for any reason (e.g. show animation), wait until ready
         guard self.isBusy == false else { return }
+                
+        if self.hero.hitPoints.current <= 0 {
+            let sceneManager = try! ServiceLocator.shared.get(service: SceneManager.self)
+            sceneManager.crossFade(to: GameOverScene.self)
+            self.isBusy = true
+        }
 
         let activeActor = self.actors[self.activeActorIdx]
         activeActor.addTimeUnits(Constants.timeUnitsPerTurn)

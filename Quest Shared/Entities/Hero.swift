@@ -8,8 +8,6 @@
 
 import SpriteKit
 
-typealias Backpack = [Lootable]
-
 class Hero: Actor, CustomStringConvertible {
     let race: Race
     let role: Role
@@ -60,12 +58,12 @@ class Hero: Actor, CustomStringConvertible {
         10 + attributes.dexterity.bonus + self.inventory.armor.armorClass + self.inventory.shield.armorClass
     }
     
-    public init(name: String, race: Race, gender: Gender, role: Role, attributes: Attributes, skills: Skills, equipment: [Equippable], entityFactory: EntityFactory) {
+    public init(name: String, race: Race, gender: Gender, role: Role, attributes: Attributes, skills: Skills, equipment: [Equippable], backpack: [Lootable], entityFactory: EntityFactory) {
         self.race = race
         self.role = role
                 
         let hitPoints = HitDie.d6(1, 0).maxValue + attributes.strength.bonus // 1d6 + STR bonus per level, for first level use max health
-        super.init(name: name, hitPoints: hitPoints, race: race, gender: gender, attributes: attributes, skills: skills, equipment: equipment, entityFactory: entityFactory)
+        super.init(name: name, hitPoints: hitPoints, race: race, gender: gender, attributes: attributes, skills: skills, equipment: equipment, backpack: backpack, entityFactory: entityFactory)
     }
 
     required init(json: [String : Any], entityFactory: EntityFactory) {

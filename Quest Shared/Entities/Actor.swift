@@ -56,13 +56,13 @@ class Actor: Entity {
             self.inventory.equip(equipmentItem)
             self.sprite.addChild(equipmentItem.sprite)
         }
-        
+                
         self.hitPoints.delegate = self
 
         self.healthBar = Actor.addHealthBar(sprite: self.sprite)
     }    
     
-    init(name: String, hitPoints: Int, race: Race, gender: Gender, attributes: Attributes, skills: Skills, equipment: [Equippable], entityFactory: EntityFactory) {
+    init(name: String, hitPoints: Int, race: Race, gender: Gender, attributes: Attributes, skills: Skills, equipment: [Equippable], backpack: [Lootable], entityFactory: EntityFactory) {
         self.hitPoints = HitPoints(base: hitPoints)
         self.skills = skills
         self.attributes = attributes
@@ -73,6 +73,8 @@ class Actor: Entity {
             self.inventory.equip(equipmentItem)
             self.sprite.addChild(equipmentItem.sprite)
         }
+        
+        self.inventory.append(backpack)
         
         self.hitPoints.delegate = self
 
@@ -126,4 +128,25 @@ extension Actor: HitPointsDelegate {
         let percentageHealth = CGFloat(current) / CGFloat(total)
         self.healthBar.update(health: percentageHealth)
     }
+}
+
+extension Actor {
+    @discardableResult
+    func equip(at index: Int) -> Bool { self.inventory.equip(at: index) }
+    
+    func equip(_ equipment: Equippable) { self.inventory.equip(equipment) }
+    
+    @discardableResult
+    func unequip(_ equipmentSlot: EquipmentSlot) -> Bool { self.inventory.unequip(equipmentSlot) }
+    
+    @discardableResult
+    func append(_ loot: Lootable) -> Int { self.inventory.append(loot) }
+    
+    @discardableResult
+    func append(_ loot: [Lootable]) -> Int { self.inventory.append(loot) }
+        
+    @discardableResult
+    func remove(at index: Int) -> Lootable { self.inventory.remove(at: index) }
+    
+    func equippedItem(in equipmentSlot: EquipmentSlot) -> Equippable? { self.inventory.equippedItem(in: equipmentSlot) }
 }

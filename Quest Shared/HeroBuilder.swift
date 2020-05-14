@@ -19,14 +19,8 @@ class HeroBuilder {
     private(set) var role: Role!
     private(set) var attributes: Attributes!
     private(set) var equipment: [Equippable]!
-    private(set) var backpack: Backpack!
-    
-    private var entityFactory: EntityFactory
-    
-    init(entityFactory: EntityFactory) {
-        self.entityFactory = entityFactory
-    }
-    
+    private(set) var backpack: [Lootable]!
+        
     func with(gender: Gender) -> Self {
         self.gender = gender
         return self
@@ -57,12 +51,12 @@ class HeroBuilder {
         return self
     }
     
-    func with(backpack: Backpack) -> Self {
+    func with(backpack: [Lootable]) -> Self {
         self.backpack = backpack
         return self
     }
     
-    func build() throws -> Hero {
+    func build(entityFactory: EntityFactory) throws -> Hero {
         // Parse all properties, raise an error if a property was not set
         for child in Mirror(reflecting: self).children {
             if case Optional<Any>.none = child.value {
@@ -90,7 +84,8 @@ class HeroBuilder {
             attributes: self.attributes,
             skills: Skills(physical: physical, subterfuge: subterfuge, knowledge: knowledge, communication: communication),
             equipment: self.equipment,
-            entityFactory: self.entityFactory
+            backpack: self.backpack,
+            entityFactory: entityFactory
         )
     }
 }

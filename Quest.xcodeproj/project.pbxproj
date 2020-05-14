@@ -19,6 +19,9 @@
 		792467E3246AFC03000568A6 /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792467E2246AFC03000568A6 /* Inventory.swift */; };
 		792467E4246AFC03000568A6 /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792467E2246AFC03000568A6 /* Inventory.swift */; };
 		792467E5246AFC03000568A6 /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792467E2246AFC03000568A6 /* Inventory.swift */; };
+		792467E7246D37D5000568A6 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792467E6246D37D5000568A6 /* GameOverScene.swift */; };
+		792467E8246D37D5000568A6 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792467E6246D37D5000568A6 /* GameOverScene.swift */; };
+		792467E9246D37D5000568A6 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792467E6246D37D5000568A6 /* GameOverScene.swift */; };
 		7929FBFA22AFBADE003C1964 /* DungeonBuilder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FBF922AFBADE003C1964 /* DungeonBuilder.framework */; };
 		7929FBFE22AFBAED003C1964 /* DungeonBuilder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FBFD22AFBAED003C1964 /* DungeonBuilder.framework */; };
 		7929FC0422B0002E003C1964 /* Fenris.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FC0322B0002D003C1964 /* Fenris.framework */; };
@@ -217,6 +220,7 @@
 		7914DD31246182120047EFB6 /* EntityDrawLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDrawLayer.swift; sourceTree = "<group>"; };
 		792467DE246A59A0000568A6 /* Lootable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lootable.swift; sourceTree = "<group>"; };
 		792467E2246AFC03000568A6 /* Inventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
+		792467E6246D37D5000568A6 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		7929FBF922AFBADE003C1964 /* DungeonBuilder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DungeonBuilder.framework; path = Carthage/Build/iOS/DungeonBuilder.framework; sourceTree = SOURCE_ROOT; };
 		7929FBFB22AFBAE7003C1964 /* DungeonBuilder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DungeonBuilder.framework; path = Carthage/Build/Mac/DungeonBuilder.framework; sourceTree = SOURCE_ROOT; };
 		7929FBFD22AFBAED003C1964 /* DungeonBuilder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DungeonBuilder.framework; path = Carthage/Build/tvOS/DungeonBuilder.framework; sourceTree = SOURCE_ROOT; };
@@ -522,6 +526,7 @@
 				79FC68F4244C4C4700E6D63C /* SettingsScene.swift */,
 				79FC68F8244C4C9E00E6D63C /* ChooseAttributesScene.swift */,
 				79FC68FC244C552B00E6D63C /* LoadingScene.swift */,
+				792467E6246D37D5000568A6 /* GameOverScene.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -777,6 +782,7 @@
 				798C997A23A2061700C6EC1C /* IdleAction.swift in Sources */,
 				7960DECA23A6082B00B4CDF8 /* Actor.swift in Sources */,
 				7963DE57239E456900183DF2 /* ActionBarButton.swift in Sources */,
+				792467E7246D37D5000568A6 /* GameOverScene.swift in Sources */,
 				7963DE2E239CC35F00183DF2 /* DefaultMenuConfiguration.swift in Sources */,
 				798537C623A2924E00721CE7 /* RangedAttackAction.swift in Sources */,
 				79ACC7ED22AA5D8700AC3BF0 /* EntityLoader.swift in Sources */,
@@ -845,6 +851,7 @@
 				798C997B23A2061700C6EC1C /* IdleAction.swift in Sources */,
 				7960DECB23A6082B00B4CDF8 /* Actor.swift in Sources */,
 				7963DE58239E456900183DF2 /* ActionBarButton.swift in Sources */,
+				792467E8246D37D5000568A6 /* GameOverScene.swift in Sources */,
 				7963DE2F239CC35F00183DF2 /* DefaultMenuConfiguration.swift in Sources */,
 				798537C723A2924E00721CE7 /* RangedAttackAction.swift in Sources */,
 				79ACC7EE22AA5D8700AC3BF0 /* EntityLoader.swift in Sources */,
@@ -881,6 +888,7 @@
 				7960DEC923A6082B00B4CDF8 /* Shield.swift in Sources */,
 				7960DEBD23A6082B00B4CDF8 /* Monster.swift in Sources */,
 				7963DE4C239D092300183DF2 /* Equipment.swift in Sources */,
+				792467E9246D37D5000568A6 /* GameOverScene.swift in Sources */,
 				795746BD22A9029D00E04BEC /* Direction.swift in Sources */,
 				79ACC82022AB473200AC3BF0 /* Action.swift in Sources */,
 				798C997C23A2061700C6EC1C /* IdleAction.swift in Sources */,

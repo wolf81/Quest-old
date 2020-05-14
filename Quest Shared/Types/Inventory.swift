@@ -9,7 +9,7 @@
 import Foundation
 
 class Inventory {
-    var backpack: [Lootable] = []
+    private(set) var backpack: [Lootable] = []
             
     private var equippedItems: [EquipmentSlot: Equippable] = [:]
     

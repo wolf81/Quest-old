@@ -54,14 +54,14 @@ class LoadingScene: MenuSceneBase {
         equipment.append(try! entityFactory.newEntity(type: Weapon.self, name: "Longsword"))
         equipment.append(try! entityFactory.newEntity(type: Shield.self, name: "Buckler"))
         
-        var backpack = Backpack()
+        var backpack: [Lootable] = []
         backpack.append(try! entityFactory.newEntity(type: Weapon.self, name: "Battleaxe +3"))
         
         let hero = try! self.heroBuilder
             .with(equipment: equipment)
             .with(name: "Kendrick")
             .with(backpack: backpack)
-            .build()
+            .build(entityFactory: entityFactory)
         
         let game = Game(entityFactory: entityFactory, hero: hero)
         
