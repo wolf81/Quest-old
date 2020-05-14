@@ -56,6 +56,18 @@ class EntityFactory {
             throw EntityFactoryError.notRegistered(name)
         }
         
-        return entity.copy(coord: coord) as! T
+        return entity.copy(coord: coord, entityFactory: self) as! T
+    }
+    
+    func newEntity(typeName: String, name: String, coord: vector_int2 = vector_int2(0, 0)) throws -> EntityProtocol {
+        guard let entities = self.registry[typeName] else {
+            throw EntityFactoryError.notRegistered(typeName)
+        }
+        
+        guard let entity = entities[name] else {
+            throw EntityFactoryError.notRegistered(name)
+        }
+        
+        return entity.copy(coord: coord, entityFactory: self)
     }
 }

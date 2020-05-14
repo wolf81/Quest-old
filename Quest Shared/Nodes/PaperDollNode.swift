@@ -9,7 +9,9 @@
 import SpriteKit
 
 protocol PaperDollNodeDelegate: class {
-    func paperDoll(_ paperDoll: PaperDollNode, didUnequip equipment: Equippable)
+    func paperDoll(_ paperDoll: PaperDollNode, didUnequip equipmentSlot: EquipmentSlot)
+    
+    func paperDoll(_ paperDoll: PaperDollNode, equipmentIn equipmentSlot: EquipmentSlot) -> Equippable?
 }
 
 class PaperDollNode: SKShapeNode {
@@ -21,13 +23,17 @@ class PaperDollNode: SKShapeNode {
     
     private let rightArm: EquippedItemNode
     
-    weak var delegate: PaperDollNodeDelegate?
+    weak var delegate: PaperDollNodeDelegate? {
+        didSet {
+            reload()
+        }
+    }
         
     init(size: CGSize, backgroundColor: SKColor) {
         let itemSize = CGSize(width: 50, height: 50)
-        self.chest = EquippedItemNode(size: itemSize)
-        self.leftArm = EquippedItemNode(size: itemSize)
-        self.rightArm = EquippedItemNode(size: itemSize)
+        self.chest = EquippedItemNode(size: itemSize, equipmentSlot: .chest)
+        self.leftArm = EquippedItemNode(size: itemSize, equipmentSlot: .leftArm)
+        self.rightArm = EquippedItemNode(size: itemSize, equipmentSlot: .rightArm)
         
         let silhouetteTexture = SKTexture(imageNamed: "paper_doll")
         let silhouetteSize = CGSize(width: size.width - 30, height: size.height - 30)
@@ -58,13 +64,7 @@ class PaperDollNode: SKShapeNode {
     required init?(coder aDecoder: NSCoder) {
         fatalError()
     }
-    
-    func update(equipment: Equipment) {
-        self.chest.equipment = equipment[.chest]
-        self.leftArm.equipment = equipment[.leftArm]
-        self.rightArm.equipment = equipment[.rightArm]
-    }
-    
+        
     override func mouseUp(with event: NSEvent) {
         let location = event.location(in: self)
 
@@ -73,18 +73,26 @@ class PaperDollNode: SKShapeNode {
         if let selectedNode = nodes.filter({ $0.contains(location) }).first {
             print("selected: \(selectedNode)")
 
-            if let equipment = selectedNode.equipment {
+            if let _ = selectedNode.equipment {
                 selectedNode.equipment = nil
                 
-                self.delegate?.paperDoll(self, didUnequip: equipment)
+                self.delegate?.paperDoll(self, didUnequip: selectedNode.equipmentSlot)
             }            
         }
+    }
+    
+    func reload() {        
+        self.chest.equipment = self.delegate?.paperDoll(self, equipmentIn: .chest)
+        self.leftArm.equipment = self.delegate?.paperDoll(self, equipmentIn: .leftArm)
+        self.rightArm.equipment = self.delegate?.paperDoll(self, equipmentIn: .rightArm)
     }
     
     // MARK: - Private
     
     private class EquippedItemNode: SKShapeNode {
         var sprite: SKSpriteNode
+        
+        let equipmentSlot: EquipmentSlot
         
         var equipment: Equippable? {
             didSet {
@@ -97,7 +105,8 @@ class PaperDollNode: SKShapeNode {
             }
         }
         
-        init(size: CGSize) {
+        init(size: CGSize, equipmentSlot: EquipmentSlot) {
+            self.equipmentSlot = equipmentSlot
             self.sprite = SKSpriteNode(color: .clear, size: CGSize(width: size.width - 2, height: size.height - 2))
             
             super.init()

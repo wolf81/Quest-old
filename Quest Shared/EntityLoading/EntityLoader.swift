@@ -24,25 +24,23 @@ class EntityLoader {
     }()
     
     static func loadEntities(for entityFactory: EntityFactory) throws {
-        Entity.entityFactory = entityFactory
-        
-        let weapons = try loadEntities(type: Weapon.self, in: "Data/Weapons")
+        let weapons = try loadEntities(type: Weapon.self, in: "Data/Weapons", entityFactory: entityFactory)
         weapons.forEach({ entityFactory.register(entity: $0) })
         
-        let shields = try loadEntities(type: Shield.self, in: "Data/Shields")
+        let shields = try loadEntities(type: Shield.self, in: "Data/Shields", entityFactory: entityFactory)
         shields.forEach({ entityFactory.register(entity: $0) })
         
-        let armor = try loadEntities(type: Armor.self, in: "Data/Armor")
+        let armor = try loadEntities(type: Armor.self, in: "Data/Armor", entityFactory: entityFactory)
         armor.forEach({ entityFactory.register(entity: $0) })
         
-        let tiles = try loadEntities(type: Tile.self, in: "Data/Tile")
+        let tiles = try loadEntities(type: Tile.self, in: "Data/Tile", entityFactory: entityFactory)
         tiles.forEach({ entityFactory.register(entity: $0) })
 
-        let monsters =  try loadEntities(type: Monster.self, in: "Data/Monster")
+        let monsters =  try loadEntities(type: Monster.self, in: "Data/Monster", entityFactory: entityFactory)
         monsters.forEach({ entityFactory.register(entity: $0) })
     }
 
-    private static func loadEntities<T: EntityProtocol>(type: T.Type, in directory: String) throws -> [T] {
+    private static func loadEntities<T: EntityProtocol>(type: T.Type, in directory: String, entityFactory: EntityFactory) throws -> [T] {
         print("load entities from: \(directory)")
         let paths = Bundle.main.paths(forResourcesOfType: "json", inDirectory: directory)
         
@@ -55,7 +53,7 @@ class EntityLoader {
                 print("failed to load json from file: \(url)")
                 continue
             }
-            let tile = T(json: json)
+            let tile = T(json: json, entityFactory: entityFactory)
             entities.append(tile)
         }
         

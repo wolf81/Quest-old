@@ -9,5 +9,5 @@
 import SpriteKit
 
 protocol TileProtocol: EntityProtocol {
-    init(json: [String: Any], coord: vector_int2)
+    init(json: [String: Any], entityFactory: EntityFactory, coord: vector_int2)
 }

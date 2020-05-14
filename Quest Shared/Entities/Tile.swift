@@ -38,16 +38,16 @@ class Tile: GKGridGraphNode, TileProtocol {
         return sprite
     }()
     
-    required init(json: [String : Any]) {
-        self.json = json
-        super.init(gridPosition: vector_int2(0, 0))
-    }
-    
-    required init(json: [String: Any], coord: vector_int2) {
+    required init(json: [String : Any], entityFactory: EntityFactory, coord: vector_int2) {
         self.json = json
         super.init(gridPosition: coord)
     }
     
+    required init(json: [String : Any], entityFactory: EntityFactory) {
+        self.json = json
+        super.init(gridPosition: vector_int2(0, 0))
+    }
+            
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -57,12 +57,12 @@ class Tile: GKGridGraphNode, TileProtocol {
         super.init(gridPosition: coord)
         self.sprite = sprite
     }
-    
-    func copy(coord: vector_int2) -> Self {
-        return copyInternal(coord: coord)
+        
+    func copy(coord: vector_int2, entityFactory: EntityFactory) -> Self {
+        return copyInternal(coord: coord, entityFactory: entityFactory)
     }
-    
-    private func copyInternal<T: Tile>(coord: vector_int2) -> T {
-        return T(json: self.json, coord: coord)
+
+    private func copyInternal<T: Tile>(coord: vector_int2, entityFactory: EntityFactory) -> T {
+        return T(json: self.json, entityFactory: entityFactory, coord: coord)
     }
 }

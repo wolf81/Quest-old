@@ -49,10 +49,10 @@ class LoadingScene: MenuSceneBase {
     private func loadDataFinished(entityFactory: EntityFactory) {
 //        let rangedWeapon = try! entityFactory.newEntity(type: Weapon.self, name: "Shortbow")
         
-        var equipment = Equipment()        
-        equipment[.chest] = try! entityFactory.newEntity(type: Armor.self, name: "Studded Leather")
-        equipment[.leftArm] = try! entityFactory.newEntity(type: Weapon.self, name: "Longsword")
-        equipment[.rightArm] = try! entityFactory.newEntity(type: Shield.self, name: "Buckler")                
+        var equipment: [Equippable] = []
+        equipment.append(try! entityFactory.newEntity(type: Armor.self, name: "Studded Leather"))
+        equipment.append(try! entityFactory.newEntity(type: Weapon.self, name: "Longsword"))
+        equipment.append(try! entityFactory.newEntity(type: Shield.self, name: "Buckler"))
         
         var backpack = Backpack()
         backpack.append(try! entityFactory.newEntity(type: Weapon.self, name: "Battleaxe +3"))

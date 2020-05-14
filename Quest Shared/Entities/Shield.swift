@@ -13,13 +13,13 @@ class Shield: Entity & Equippable, CustomStringConvertible {
     
     var equipmentSlot: EquipmentSlot { .rightArm }
     
-    required init(json: [String : Any]) {
+    required init(json: [String : Any], entityFactory: EntityFactory) {
         self.armorClass = json["AC"] as? Int ?? 0
                 
-        super.init(json: json)
+        super.init(json: json, entityFactory: entityFactory)
     }
     
-    static var none: Shield { return Shield(json: [:]) }
+    static var none: Shield { return Shield(json: [:], entityFactory: EntityFactory()) }
         
     var description: String {
         return "{ armorClass: \(self.armorClass) }"

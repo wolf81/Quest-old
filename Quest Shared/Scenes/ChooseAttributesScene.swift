@@ -73,7 +73,7 @@ class ChooseAttributesScene: MenuSceneBase {
             let entityFactory = EntityFactory()
             try EntityLoader.loadEntities(for: entityFactory)
 
-            let heroBuilder = HeroBuilder()
+            let heroBuilder = HeroBuilder(entityFactory: entityFactory)
                 .with(gender: self.gender)
                 .with(race: self.race)
                 .with(role: self.role)

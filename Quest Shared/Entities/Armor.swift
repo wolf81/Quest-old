@@ -13,16 +13,16 @@ class Armor: Entity & Equippable {
     
     var equipmentSlot: EquipmentSlot { .chest }
     
-    required init(json: [String : Any]) {
+    required init(json: [String : Any], entityFactory: EntityFactory) {
         let armorClass = json["AC"] as! Int
         self.armorClass = armorClass
         
-        super.init(json: json)
+        super.init(json: json, entityFactory: entityFactory)
     }
     
     static var none: Armor {
         get {
-            return self.init(json: ["AC": 0])
+            return self.init(json: ["AC": 0], entityFactory: EntityFactory())
         }
     }
 }

@@ -19,9 +19,9 @@ class Actor: Entity {
     var isAlive: Bool { return self.hitPoints.current > 0 }
 
     private(set) var skills: Skills
-    
-    var equipment: Equipment
-    
+        
+    private(set) var inventory = Inventory()
+
     private(set) var attributes: Attributes = Attributes(strength: 12, dexterity: 12, mind: 12)
 
     private(set) var actionCost: ActionCost = ActionCost()
@@ -40,49 +40,49 @@ class Actor: Entity {
     
     private(set) var healthBar: HealthBar!
                 
-    init(json: [String : Any], hitPoints: Int, armorClass: Int, skills: Skills, equipment: Equipment) {
+    init(json: [String : Any], hitPoints: Int, armorClass: Int, skills: Skills, equipment: [Equippable], entityFactory: EntityFactory) {
         self.hitPoints = HitPoints(base: hitPoints)
         self.armorClass = armorClass
         self.skills = skills
-        self.equipment = equipment
         
         self.sight = json["sight"] as? Int32 ?? 6
 
         let actionCostJson = json["actionCost"] as? [String: Int] ?? [:]
         self.actionCost = ActionCost(json: actionCostJson)
 
-        super.init(json: json)
+        super.init(json: json, entityFactory: entityFactory)
                 
-        self.sprite.addChild(equipment.weapon.sprite)
+        for equipmentItem in equipment {
+            self.sprite.addChild(equipmentItem.sprite)
+        }
         
         self.hitPoints.delegate = self
 
         self.healthBar = Actor.addHealthBar(sprite: self.sprite)
     }    
     
-    init(name: String, hitPoints: Int, race: Race, gender: Gender, attributes: Attributes, skills: Skills, equipment: Equipment) {
+    init(name: String, hitPoints: Int, race: Race, gender: Gender, attributes: Attributes, skills: Skills, equipment: [Equippable], entityFactory: EntityFactory) {
         self.hitPoints = HitPoints(base: hitPoints)
         self.skills = skills
-        self.equipment = equipment
         self.attributes = attributes
         
-        super.init(json: ["name": name, "sprite": "\(race)_\(gender)"])
+        super.init(json: ["name": name, "sprite": "\(race)_\(gender)"], entityFactory: entityFactory)
 
-        for equipmentItem in self.equipment.values {
+        for equipmentItem in equipment {
+            self.inventory.equip(equipmentItem)
             self.sprite.addChild(equipmentItem.sprite)
         }
-
+        
         self.hitPoints.delegate = self
 
         self.healthBar = Actor.addHealthBar(sprite: self.sprite)
     }
     
-    required init(json: [String : Any]) {
+    required init(json: [String : Any], entityFactory: EntityFactory) {
         self.hitPoints = HitPoints(base: 1)
         self.skills = Skills(physical: 0, subterfuge: 0, knowledge: 0, communication: 0)
-        self.equipment = Equipment()
     
-        super.init(json: json)
+        super.init(json: json, entityFactory: entityFactory)
 
         self.hitPoints.delegate = self
 
@@ -90,11 +90,11 @@ class Actor: Entity {
     }
     
     func getMeleeAttackDamage(_ dieRoll: DieRoll) -> Int {
-        dieRoll == .maximum ? self.equipment.weapon.damage.maxValue : self.equipment.weapon.damage.randomValue
+        dieRoll == .maximum ? self.inventory.weapon.damage.maxValue : self.inventory.weapon.damage.randomValue
     }
 
     func getRangedAttackDamage(_ dieRoll: DieRoll) -> Int {
-        dieRoll == .maximum ? self.equipment.weapon.damage.maxValue : self.equipment.weapon.damage.randomValue
+        dieRoll == .maximum ? self.inventory.weapon.damage.maxValue : self.inventory.weapon.damage.randomValue
     }
     
     func addTimeUnits(_ timeUnits: Int) {
@@ -108,7 +108,7 @@ class Actor: Entity {
     func getAction(state: Game) -> Action? {
         return nil
     }
-    
+        
     // MARK: - Private
     
     private static func addHealthBar(sprite: SKSpriteNode) -> HealthBar {

@@ -33,7 +33,8 @@ class InventoryNode: SKShapeNode {
         addChild(self.paperDoll)
         
         self.backpack.delegate = self
-        
+        self.paperDoll.delegate = self
+
         self.lineWidth = 1
         self.strokeColor = .white
         self.fillColor = backgroundColor
@@ -42,9 +43,6 @@ class InventoryNode: SKShapeNode {
         self.paperDoll.position = CGPoint(x: -(size.width - nodeWidth) / 2 + spacing, y: 0)
         
         self.zPosition = DrawLayerHelper.zPosition(for: self)                
-        
-        self.paperDoll.delegate = self
-        self.paperDoll.update(equipment: self.hero.equipment)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -59,23 +57,33 @@ class InventoryNode: SKShapeNode {
     override func mouseDown(with event: NSEvent) {
         self.backpack.mouseDown(with: event)
     }
+    
+    private func reload() {
+        self.backpack.reload()
+        self.paperDoll.reload()
+        
+        print(self.hero)
+    }
 }
 
 extension InventoryNode: PaperDollNodeDelegate {
-    func paperDoll(_ paperDoll: PaperDollNode, didUnequip equipment: Equippable) {
-        print("unequipped: \(equipment)")
-        self.hero.backpack.append(equipment)
-        self.backpack.reload()
+    func paperDoll(_ paperDoll: PaperDollNode, didUnequip equipmentSlot: EquipmentSlot) {
+        self.hero.inventory.unequip(equipmentSlot)
+        reload()
+    }
+    
+    func paperDoll(_ paperDoll: PaperDollNode, equipmentIn equipmentSlot: EquipmentSlot) -> Equippable? {
+        self.hero.inventory.equippedItem(in: equipmentSlot)
     }
 }
 
 extension InventoryNode: ListNodeDelegate {
     func listNodeNumberOfItems(listNode: ListNode) -> Int {
-        return self.hero.backpack.count
+        return self.hero.inventory.backpack.count
     }
     
     func listNode(_ listNode: ListNode, nodeAtIndex index: Int, size: CGSize) -> SKNode {
-        let item = self.hero.backpack[index]
+        let item = self.hero.inventory.backpack[index]
         
         let label = SKLabelNode(text: "\(item.name)")
         label.fontSize = 16
@@ -90,18 +98,8 @@ extension InventoryNode: ListNodeDelegate {
     }
     
     func listNode(_ listNode: ListNode, didSelectNode node: SKNode, atIndex index: Int) {
-        let item = self.hero.backpack[index]
-        
-        if let equipment = item as? Equippable {
-            self.hero.equip(equipment)
-            self.paperDoll.update(equipment: self.hero.equipment)
-            self.hero.backpack.remove(at: index)
-            self.backpack.reload()
-        }
-        
-//        if let label = node.children.first as? SKLabelNode, let text = label.text {
-//            print("\(text)")
-//        }
+        self.hero.inventory.equip(at: index)
+        reload()
     }
     
     func listNodeWidthForItem(_ listNode: ListNode) -> CGFloat {

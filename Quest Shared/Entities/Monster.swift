@@ -12,13 +12,13 @@ import GameplayKit
 class Monster: Actor, CustomStringConvertible {
     let hitDie: HitDie
                     
-    override var meleeAttackBonus: Int { self.equipment.weapon.attack }
+    override var meleeAttackBonus: Int { self.inventory.weapon.attack }
     
     override func getMeleeAttackDamage(_ dieRoll: DieRoll) -> Int {
-        dieRoll == .maximum ? self.equipment.weapon.damage.maxValue : self.equipment.weapon.damage.randomValue
+        dieRoll == .maximum ? self.inventory.weapon.damage.maxValue : self.inventory.weapon.damage.randomValue
     }
 
-    required init(json: [String : Any]) {
+    required init(json: [String : Any], entityFactory: EntityFactory) {
         let hitDieString = json["HD"] as! String
         let hitDie = HitDie(rawValue: hitDieString)!
         self.hitDie = hitDie
@@ -29,9 +29,13 @@ class Monster: Actor, CustomStringConvertible {
         let skillInfo = json["skills"] as? [String: Int] ?? [:]
         let skills = Skills(json: skillInfo, defaultValue: hitDie.dieCount)
         
+        var equipment: [Equippable] = []
         let equipmentInfo = json["EQ"] as? [String: String] ?? [:]
-        let equipment = Equipment(json: equipmentInfo, entityFactory: Entity.entityFactory)
-        super.init(json: json, hitPoints: hitPoints, armorClass: armorClass, skills: skills, equipment: equipment)
+        for (type, name) in equipmentInfo {
+            equipment.append(try! entityFactory.newEntity(typeName: type.capitalized, name: name) as! Equippable)
+        }
+                
+        super.init(json: json, hitPoints: hitPoints, armorClass: armorClass, skills: skills, equipment: equipment, entityFactory: entityFactory)
     }
         
     var description: String {

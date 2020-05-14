@@ -25,15 +25,15 @@ class OverlayTile: Tile {
 
         self.name = "Overlay"
     }
-    
-    required init(json: [String : Any]) {
-        fatalError()
+            
+    required init(json: [String : Any], entityFactory: EntityFactory) {
+        fatalError("init(json:entityFactory:) has not been implemented")
     }
     
-    required init(json: [String : Any], coord: vector_int2) {
-        fatalError("init(json:coord:) has not been implemented")
+    required init(json: [String : Any], entityFactory: EntityFactory, coord: vector_int2) {
+        fatalError("init(json:entityFactory:coord:) has not been implemented")
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -15,9 +15,7 @@ class GameViewController: NSViewController {
     private var skView: SKView { return self.view as! SKView }
 
     fileprivate let serviceLocator = ServiceLocator.shared
-        
-    fileprivate var heroBuilder = HeroBuilder()
-                
+                        
     override func viewDidLoad() {
         super.viewDidLoad()
         

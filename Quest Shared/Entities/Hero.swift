@@ -25,11 +25,9 @@ class Hero: Actor, CustomStringConvertible {
     private var rangedTarget: Actor?
         
     private var spell: Spell?
-
-    var backpack = Backpack()
-
+    
     override var meleeAttackBonus: Int {
-        var attackBonus = self.attributes.strength.bonus + self.equipment.weapon.attack
+        var attackBonus = self.attributes.strength.bonus + self.inventory.weapon.attack
         if self.role == .fighter {
             attackBonus += 1
             attackBonus += self.level % 5
@@ -38,7 +36,7 @@ class Hero: Actor, CustomStringConvertible {
     }
     
     override var rangedAttackBonus: Int {
-        var attackBonus = self.attributes.dexterity.bonus + self.equipment.weapon.attack
+        var attackBonus = self.attributes.dexterity.bonus + self.inventory.weapon.attack
         if self.role == .fighter {
             attackBonus += 1
             attackBonus += self.level % 5
@@ -48,34 +46,33 @@ class Hero: Actor, CustomStringConvertible {
         
     override func getMeleeAttackDamage(_ dieRoll: DieRoll) -> Int {
         self.attributes.strength.bonus + (dieRoll == .maximum
-            ? self.equipment.weapon.damage.maxValue
-            : self.equipment.weapon.damage.randomValue)
+            ? self.inventory.weapon.damage.maxValue
+            : self.inventory.weapon.damage.randomValue)
     }
     
     override func getRangedAttackDamage(_ dieRoll: DieRoll) -> Int {
         return dieRoll == .maximum
-            ? self.equipment.weapon.damage.maxValue
-            : self.equipment.weapon.damage.randomValue
+            ? self.inventory.weapon.damage.maxValue
+            : self.inventory.weapon.damage.randomValue
     }
 
     override var armorClass: Int {
-        10 + attributes.dexterity.bonus + self.equipment.armor.armorClass + self.equipment.shield.armorClass
+        10 + attributes.dexterity.bonus + self.inventory.armor.armorClass + self.inventory.shield.armorClass
     }
     
-    public init(name: String, race: Race, gender: Gender, role: Role, attributes: Attributes, skills: Skills, equipment: Equipment, backpack: [Lootable]) {
+    public init(name: String, race: Race, gender: Gender, role: Role, attributes: Attributes, skills: Skills, equipment: [Equippable], entityFactory: EntityFactory) {
         self.race = race
         self.role = role
-        self.backpack = backpack
-        
+                
         let hitPoints = HitDie.d6(1, 0).maxValue + attributes.strength.bonus // 1d6 + STR bonus per level, for first level use max health
-        super.init(name: name, hitPoints: hitPoints, race: race, gender: gender, attributes: attributes, skills: skills, equipment: equipment)
+        super.init(name: name, hitPoints: hitPoints, race: race, gender: gender, attributes: attributes, skills: skills, equipment: equipment, entityFactory: entityFactory)
     }
-    
-    required init(json: [String : Any]) {
+
+    required init(json: [String : Any], entityFactory: EntityFactory) {
         self.race = .human
         self.role = .fighter
-        
-        super.init(json: json)    
+
+        super.init(json: json, entityFactory: entityFactory)
     }
     
     func move(path: [vector_int2]) {
@@ -98,16 +95,15 @@ class Hero: Actor, CustomStringConvertible {
         self.rangedTarget = actor
     }
     
-    func equip(_ item: Equippable) {
-        self.equipment[item.equipmentSlot] = item
-    }
-    
     var description: String {
         return """
         \(self.name)
         \t\(self.race) \(self.role) (\(self.hitPoints))
         \t\(self.attributes)
         \t\(self.skills)
+        \tAC: \(self.armorClass)
+        \tATT: \(self.meleeAttackBonus)
+        \tDMG: \(self.getMeleeAttackDamage(.maximum))
         """
     }
     

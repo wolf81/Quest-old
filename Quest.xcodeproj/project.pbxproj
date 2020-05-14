@@ -16,6 +16,9 @@
 		792467DF246A59A0000568A6 /* Lootable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792467DE246A59A0000568A6 /* Lootable.swift */; };
 		792467E0246A59A0000568A6 /* Lootable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792467DE246A59A0000568A6 /* Lootable.swift */; };
 		792467E1246A59A0000568A6 /* Lootable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792467DE246A59A0000568A6 /* Lootable.swift */; };
+		792467E3246AFC03000568A6 /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792467E2246AFC03000568A6 /* Inventory.swift */; };
+		792467E4246AFC03000568A6 /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792467E2246AFC03000568A6 /* Inventory.swift */; };
+		792467E5246AFC03000568A6 /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792467E2246AFC03000568A6 /* Inventory.swift */; };
 		7929FBFA22AFBADE003C1964 /* DungeonBuilder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FBF922AFBADE003C1964 /* DungeonBuilder.framework */; };
 		7929FBFE22AFBAED003C1964 /* DungeonBuilder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FBFD22AFBAED003C1964 /* DungeonBuilder.framework */; };
 		7929FC0422B0002E003C1964 /* Fenris.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FC0322B0002D003C1964 /* Fenris.framework */; };
@@ -213,6 +216,7 @@
 		79042E5B2469473800730646 /* Equippable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equippable.swift; sourceTree = "<group>"; };
 		7914DD31246182120047EFB6 /* EntityDrawLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDrawLayer.swift; sourceTree = "<group>"; };
 		792467DE246A59A0000568A6 /* Lootable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lootable.swift; sourceTree = "<group>"; };
+		792467E2246AFC03000568A6 /* Inventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
 		7929FBF922AFBADE003C1964 /* DungeonBuilder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DungeonBuilder.framework; path = Carthage/Build/iOS/DungeonBuilder.framework; sourceTree = SOURCE_ROOT; };
 		7929FBFB22AFBAE7003C1964 /* DungeonBuilder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DungeonBuilder.framework; path = Carthage/Build/Mac/DungeonBuilder.framework; sourceTree = SOURCE_ROOT; };
 		7929FBFD22AFBAED003C1964 /* DungeonBuilder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DungeonBuilder.framework; path = Carthage/Build/tvOS/DungeonBuilder.framework; sourceTree = SOURCE_ROOT; };
@@ -389,6 +393,7 @@
 				793A575B2445A12E0089E693 /* ActionCost.swift */,
 				79042E5B2469473800730646 /* Equippable.swift */,
 				792467DE246A59A0000568A6 /* Lootable.swift */,
+				792467E2246AFC03000568A6 /* Inventory.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -766,6 +771,7 @@
 				7963DE3E239CE15700183DF2 /* Role.swift in Sources */,
 				79FC68ED244C4A0300E6D63C /* MainMenuScene.swift in Sources */,
 				79423B7A239E99CC0042B9BD /* HeroBuilder.swift in Sources */,
+				792467E3246AFC03000568A6 /* Inventory.swift in Sources */,
 				79C61A7922A7C415008D3609 /* AppDelegate.swift in Sources */,
 				798C997223A205EF00C6EC1C /* MoveAction.swift in Sources */,
 				798C997A23A2061700C6EC1C /* IdleAction.swift in Sources */,
@@ -833,6 +839,7 @@
 				7960DED123A6082B00B4CDF8 /* Armor.swift in Sources */,
 				7963DE3F239CE15700183DF2 /* Role.swift in Sources */,
 				79423B7B239E99CC0042B9BD /* HeroBuilder.swift in Sources */,
+				792467E4246AFC03000568A6 /* Inventory.swift in Sources */,
 				79C61A8A22A7C415008D3609 /* AppDelegate.swift in Sources */,
 				798C997323A205EF00C6EC1C /* MoveAction.swift in Sources */,
 				798C997B23A2061700C6EC1C /* IdleAction.swift in Sources */,
@@ -890,6 +897,7 @@
 				799EA01C2451313200F690DC /* FogTile.swift in Sources */,
 				79FC68F1244C4A8C00E6D63C /* CreateCharacterScene.swift in Sources */,
 				7963DE40239CE15700183DF2 /* Role.swift in Sources */,
+				792467E5246AFC03000568A6 /* Inventory.swift in Sources */,
 				79C61A9822A7C415008D3609 /* AppDelegate.swift in Sources */,
 				793A575E2445A12F0089E693 /* ActionCost.swift in Sources */,
 				7963DE34239CDE2600183DF2 /* Attribute.swift in Sources */,

@@ -18,8 +18,14 @@ class HeroBuilder {
     private(set) var race: Race!
     private(set) var role: Role!
     private(set) var attributes: Attributes!
-    private(set) var equipment: Equipment!
+    private(set) var equipment: [Equippable]!
     private(set) var backpack: Backpack!
+    
+    private var entityFactory: EntityFactory
+    
+    init(entityFactory: EntityFactory) {
+        self.entityFactory = entityFactory
+    }
     
     func with(gender: Gender) -> Self {
         self.gender = gender
@@ -46,7 +52,7 @@ class HeroBuilder {
         return self
     }
     
-    func with(equipment: Equipment) -> Self {
+    func with(equipment: [Equippable]) -> Self {
         self.equipment = equipment
         return self
     }
@@ -84,7 +90,7 @@ class HeroBuilder {
             attributes: self.attributes,
             skills: Skills(physical: physical, subterfuge: subterfuge, knowledge: knowledge, communication: communication),
             equipment: self.equipment,
-            backpack: self.backpack
+            entityFactory: self.entityFactory
         )
     }
 }
