@@ -1,0 +1,6 @@
+{
+    "name": "Shortsword",
+    "sprite": "short_sword",
+    
+    "damage": "1d6"
+}

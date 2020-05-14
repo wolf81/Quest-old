@@ -55,9 +55,9 @@ class PaperDollNode: SKShapeNode {
         
         self.silhouette.zPosition = 0
         self.chest.zPosition = 1
-        self.leftArm.position = CGPoint(x: size.width / 3, y: 0)
+        self.leftArm.position = CGPoint(x: -(size.width / 3), y: 0)
         self.leftArm.zPosition = 1
-        self.rightArm.position = CGPoint(x: -(size.width / 3), y: 0)
+        self.rightArm.position = CGPoint(x: size.width / 3, y: 0)
         self.rightArm.zPosition = 1
     }
     

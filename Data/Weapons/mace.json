@@ -1,0 +1,6 @@
+{
+    "name": "Mace",
+    "sprite": "mace_new",
+    
+    "damage": "1d4+2"
+}

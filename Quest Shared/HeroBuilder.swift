@@ -18,7 +18,6 @@ class HeroBuilder: Codable {
     private(set) var race: Race!
     private(set) var role: Role!
     private(set) var attributes: Attributes!
-    private(set) var equipment: [String: String] = [:]
     private(set) var backpack: [String: String] = [:]
             
     func with(gender: Gender) -> Self {
@@ -45,12 +44,7 @@ class HeroBuilder: Codable {
         self.name = name
         return self
     }
-    
-    func with(equipment: [String: String]) -> Self {
-        self.equipment = equipment
-        return self
-    }
-    
+        
     func with(backpack: [String: String]) -> Self {
         self.backpack = backpack
         return self
@@ -85,7 +79,6 @@ class HeroBuilder: Codable {
             role: self.role,
             attributes: self.attributes,
             skills: Skills(physical: physical, subterfuge: subterfuge, knowledge: knowledge, communication: communication),
-            equipment: self.equipment,
             backpack: self.backpack,
             entityFactory: entityFactory
         )

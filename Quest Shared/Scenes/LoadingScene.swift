@@ -47,18 +47,11 @@ class LoadingScene: MenuSceneBase {
     }
     
     private func loadDataFinished(entityFactory: EntityFactory) {
-        let equipment: [String: String] = [
-            "armor": "Studded Leather",
-            "weapon": "Longsword",
-            "shield": "Buckler"
-        ]
-        
         let backpack: [String: String] = [
             "weapon": "Battleaxe +3"
         ]
         
         let hero = try! self.heroBuilder
-            .with(equipment: equipment)
             .with(name: "Kendrick")
             .with(backpack: backpack)
             .build(entityFactory: entityFactory)

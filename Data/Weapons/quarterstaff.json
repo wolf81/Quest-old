@@ -1,0 +1,7 @@
+{
+    "name": "Quarterstaff",
+    "sprite": "quarterstaff",
+    
+    "damage": "1d8"
+}
+

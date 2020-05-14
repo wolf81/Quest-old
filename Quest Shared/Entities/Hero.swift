@@ -58,15 +58,11 @@ class Hero: Actor, CustomStringConvertible {
         10 + attributes.dexterity.bonus + self.inventory.armor.armorClass + self.inventory.shield.armorClass
     }
     
-    public init(name: String, race: Race, gender: Gender, role: Role, attributes: Attributes, skills: Skills, equipment: [String: String], backpack: [String: String], entityFactory: EntityFactory) {
+    public init(name: String, race: Race, gender: Gender, role: Role, attributes: Attributes, skills: Skills, backpack: [String: String], entityFactory: EntityFactory) {
         self.race = race
         self.role = role
                 
-        var equipmentItems: [Equippable] = []
-        for (typeName, itemName) in equipment {
-            let equipmentItem = try! entityFactory.newEntity(typeName: typeName.capitalized, name: itemName) as! Equippable
-            equipmentItems.append(equipmentItem)
-        }
+        let equipment = Hero.initialEquipmentFor(role, entityFactory: entityFactory)
         
         var backpackItems: [Lootable] = []
         for (typeName, itemName) in backpack {
@@ -75,7 +71,7 @@ class Hero: Actor, CustomStringConvertible {
         }        
         
         let hitPoints = HitDie.d6(1, 0).maxValue + attributes.strength.bonus // 1d6 + STR bonus per level, for first level use max health
-        super.init(name: name, hitPoints: hitPoints, race: race, gender: gender, attributes: attributes, skills: skills, equipment: equipmentItems, backpack: backpackItems, entityFactory: entityFactory)
+        super.init(name: name, hitPoints: hitPoints, race: race, gender: gender, attributes: attributes, skills: skills, equipment: equipment, backpack: backpackItems, entityFactory: entityFactory)
     }
 
     required init(json: [String : Any], entityFactory: EntityFactory) {
@@ -151,5 +147,42 @@ class Hero: Actor, CustomStringConvertible {
         }
                              
         return nil
-    }    
+    }
+    
+    private static func initialEquipmentFor(_ role: Role, entityFactory: EntityFactory) -> [Equippable] {
+        var equipmentInfo: [String: String] = [:]
+        
+        switch role {
+        case .fighter:
+            equipmentInfo = [
+                "armor": "Chainmail",
+                "weapon": "Longsword",
+                "shield": "Buckler"
+            ]
+        case .mage:
+            equipmentInfo = [
+                "armor": "Robe",
+                "weapon": "Quarterstaff",
+            ]
+        case .cleric:
+            equipmentInfo = [
+                "armor": "Chainmail",
+                "weapon": "Mace",
+                "shield": "Buckler"
+            ]
+        case .rogue:
+            equipmentInfo = [
+                "armor": "Studded Leather",
+                "weapon": "Shortsword",
+            ]
+        }
+        
+        var equipment: [Equippable] = []
+        for (typeName, itemName) in equipmentInfo {
+            let item = try! entityFactory.newEntity(typeName: typeName.capitalized, name: itemName) as! Equippable
+            equipment.append(item)
+        }
+        
+        return equipment
+    }
 }
