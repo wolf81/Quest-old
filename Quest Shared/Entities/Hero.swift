@@ -23,7 +23,7 @@ class Hero: Actor, CustomStringConvertible {
     private var rangedTarget: Actor?
         
     private var spell: Spell?
-    
+        
     override var meleeAttackBonus: Int {
         var attackBonus = self.attributes.strength.bonus + self.inventory.weapon.attack
         if self.role == .fighter {

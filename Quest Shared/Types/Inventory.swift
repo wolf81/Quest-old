@@ -11,8 +11,8 @@ import Foundation
 class Inventory {
     private(set) var backpack: [Lootable] = []
             
-    private var equippedItems: [EquipmentSlot: Equippable] = [:]
-    
+    private(set) var equippedItems: [EquipmentSlot: Equippable] = [:]    
+        
     @discardableResult
     func equip(at index: Int) -> Bool {
         if let equipment = self.backpack[index] as? Equippable {

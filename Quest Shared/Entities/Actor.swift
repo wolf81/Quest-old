@@ -20,8 +20,6 @@ class Actor: Entity {
 
     private(set) var skills: Skills
         
-    private(set) var inventory = Inventory()
-
     private(set) var attributes: Attributes = Attributes(strength: 12, dexterity: 12, mind: 12)
 
     private(set) var actionCost: ActionCost = ActionCost()
@@ -40,6 +38,8 @@ class Actor: Entity {
     
     private(set) var healthBar: HealthBar!
                 
+    private(set) var inventory: Inventory = Inventory()
+
     init(json: [String : Any], hitPoints: Int, armorClass: Int, skills: Skills, equipment: [Equippable], entityFactory: EntityFactory) {
         self.hitPoints = HitPoints(base: hitPoints)
         self.armorClass = armorClass
@@ -49,18 +49,18 @@ class Actor: Entity {
 
         let actionCostJson = json["actionCost"] as? [String: Int] ?? [:]
         self.actionCost = ActionCost(json: actionCostJson)
-
+        
         super.init(json: json, entityFactory: entityFactory)
-                
+                                
+        self.hitPoints.delegate = self
+
+        self.healthBar = Actor.addHealthBar(sprite: self.sprite)
+        
         for equipmentItem in equipment {
             self.inventory.equip(equipmentItem)
             self.sprite.addChild(equipmentItem.sprite)
         }
-                
-        self.hitPoints.delegate = self
-
-        self.healthBar = Actor.addHealthBar(sprite: self.sprite)
-    }    
+    }
     
     init(name: String, hitPoints: Int, race: Race, gender: Gender, attributes: Attributes, skills: Skills, equipment: [Equippable], backpack: [Lootable], entityFactory: EntityFactory) {
         self.hitPoints = HitPoints(base: hitPoints)
@@ -68,17 +68,17 @@ class Actor: Entity {
         self.attributes = attributes
         
         super.init(json: ["name": name, "sprite": "\(race)_\(gender)"], entityFactory: entityFactory)
-
+        
+        self.hitPoints.delegate = self
+        
+        self.healthBar = Actor.addHealthBar(sprite: self.sprite)
+        
         for equipmentItem in equipment {
             self.inventory.equip(equipmentItem)
             self.sprite.addChild(equipmentItem.sprite)
         }
         
         self.inventory.append(backpack)
-        
-        self.hitPoints.delegate = self
-
-        self.healthBar = Actor.addHealthBar(sprite: self.sprite)
     }
     
     required init(json: [String : Any], entityFactory: EntityFactory) {
@@ -88,7 +88,7 @@ class Actor: Entity {
         super.init(json: json, entityFactory: entityFactory)
 
         self.hitPoints.delegate = self
-
+        
         self.healthBar = Actor.addHealthBar(sprite: self.sprite)
     }
     
@@ -112,6 +112,17 @@ class Actor: Entity {
         return nil
     }
         
+    func updateSpriteForEquipment() {
+        let children = self.sprite.children.filter({ $0 != self.healthBar })
+        for child in children {
+            child.removeFromParent()
+        }
+        
+        for (_, equipment) in self.inventory.equippedItems {
+            self.sprite.addChild(equipment.sprite)
+        }
+    }
+    
     // MARK: - Private
     
     private static func addHealthBar(sprite: SKSpriteNode) -> HealthBar {
@@ -128,25 +139,4 @@ extension Actor: HitPointsDelegate {
         let percentageHealth = CGFloat(current) / CGFloat(total)
         self.healthBar.update(health: percentageHealth)
     }
-}
-
-extension Actor {
-    @discardableResult
-    func equip(at index: Int) -> Bool { self.inventory.equip(at: index) }
-    
-    func equip(_ equipment: Equippable) { self.inventory.equip(equipment) }
-    
-    @discardableResult
-    func unequip(_ equipmentSlot: EquipmentSlot) -> Bool { self.inventory.unequip(equipmentSlot) }
-    
-    @discardableResult
-    func append(_ loot: Lootable) -> Int { self.inventory.append(loot) }
-    
-    @discardableResult
-    func append(_ loot: [Lootable]) -> Int { self.inventory.append(loot) }
-        
-    @discardableResult
-    func remove(at index: Int) -> Lootable { self.inventory.remove(at: index) }
-    
-    func equippedItem(in equipmentSlot: EquipmentSlot) -> Equippable? { self.inventory.equippedItem(in: equipmentSlot) }
 }

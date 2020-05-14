@@ -62,6 +62,7 @@ class InventoryNode: SKShapeNode {
         self.backpack.reload()
         self.paperDoll.reload()
         
+        self.hero.updateSpriteForEquipment()
         print(self.hero)
     }
 }
