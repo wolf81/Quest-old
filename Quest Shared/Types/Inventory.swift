@@ -84,7 +84,7 @@ class Inventory {
         return self.backpack[index]
     }
     
-    var weapon: Weapon { self.equippedItems[.leftArm] as? Weapon ?? Weapon.none }
+    var weapon: Weapon { self.equippedItems[.leftArm] as? Weapon ?? Weapon.fists }
     
     var armor: Armor { self.equippedItems[.chest] as? Armor ?? Armor.none }
     

@@ -148,6 +148,10 @@ class Hero: Actor, CustomStringConvertible {
                              
         return nil
     }
+        
+    private static func initialBackpackFor(_ role: Role, entityFactory: EntityFactory) -> [Lootable] {
+        return []
+    }
     
     private static func initialEquipmentFor(_ role: Role, entityFactory: EntityFactory) -> [Equippable] {
         var equipmentInfo: [String: String] = [:]
