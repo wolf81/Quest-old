@@ -11,5 +11,5 @@ import SpriteKit
 protocol Lootable: Entity {
     var sprite: SKSpriteNode { get }
     
-    var name: String { get }
+    var name: String { get }        
 }

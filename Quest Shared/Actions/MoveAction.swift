@@ -35,7 +35,7 @@ class MoveAction: Action, StatusUpdatable {
         super.init(actor: actor, timeUnitCost: timeUnitCost)
     }
     
-    override func perform(completion: @escaping () -> Void) -> Bool {
+    override func perform(game: Game, completion: @escaping () -> Void) -> Bool {
         guard self.actor.sprite.action(forKey: AnimationKey.move) == nil else {
             return false
         }
@@ -48,6 +48,10 @@ class MoveAction: Action, StatusUpdatable {
         var moves: [SKAction] = []
         for coord in self.path {
             let position = GameScene.pointForCoord(coord)
+            if let hero = self.actor as? Hero, let loot = game.getLoot(at: coord) {
+                game.remove(entity: loot)
+                hero.inventory.append(loot)
+            }
             moves.append(SKAction.move(to: position, duration: MoveAction.stepDuration))
             self.duration += MoveAction.stepDuration            
         }

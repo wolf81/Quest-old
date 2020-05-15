@@ -65,42 +65,48 @@ class Game {
         self.hero = hero
     }
 
+    // all currently existing entities (players, monsters, loot), entities that are destroyed are removed
     private(set) var entities: [Entity] = []
         
+    // level tiles used for walls, floor, etc...
     private(set) var tiles: [Tile] = []
-    
-    private(set) var visibleTileCoords = Set<vector_int2>()
-    
+
+    // tiles used for the fog of war
     private(set) var fogTiles: [FogTile] = []
+
+    // coordinates of tiles that are currently visible for the player
+    private(set) var visibleTileCoords = Set<vector_int2>()
         
+    // the current active actor, either a player or monster
     private var activeActorIdx: Int = 0
     
-    var loot: [Lootable] {
-        return self.entities.filter({ $0 is Lootable }) as! [Lootable]
-    }
+    // a list of dungeon loot
+    var loot: [Lootable] { self.entities.filter({ $0 is Lootable }) as! [Lootable] }
 
-    var actors: [Actor] {
-        return self.entities.filter({ $0 is Actor }) as! [Actor]
+    var actors: [Actor] { self.entities.filter({ $0 is Actor }) as! [Actor] }
+    
+    var monsters: [Monster] { self.entities.filter({ $0 is Monster }) as! [Monster] }
+    
+    // get a value for a tile at a coordinate, can be nil when out of range and is otherwise some integer value that represents a wall, floor or other scenery
+    func getTile(at coord: vector_int2) -> Int? {
+        self.level.getTileAt(coord: coord)
     }
     
-    var monsters: [Monster] {
-        return self.entities.filter({ $0 is Monster }) as! [Monster]
-    }
-    
-    func getTileAt(coord: vector_int2) -> Int? {
-        return self.level.getTileAt(coord: coord)
-    }
-    
-    func getActorAt(coord: vector_int2) -> Actor? {
+    func getActor(at coord: vector_int2) -> Actor? {
         return self.actors.filter({ $0.coord == coord }).first
     }
     
-    func canMove(entity: Entity, toCoord coord: vector_int2) -> Bool {
+    func getLoot(at coord: vector_int2) -> Lootable? {
+        print("loot: \(self.loot.compactMap({ $0.coord }))")
+        return self.loot.filter({ $0.coord == coord}).first
+    }
+    
+    func canMove(entity: Entity, to coord: vector_int2) -> Bool {
         guard self.actors.filter({ $0.coord == coord}).first == nil else {
             return false
         }
 
-        guard let tile = self.getTileAt(coord: coord) else {
+        guard let tile = self.getTile(at: coord) else {
             return false
         }
         
@@ -125,7 +131,7 @@ class Game {
             for y in movementGraph.gridOrigin.y ..< (movementGraph.gridOrigin.y + Int32(movementGraph.gridHeight)) {
                 let coord = vector_int2(x, y)
 
-                if isInRange(origin: actor.coord, radius: range, coord: coord) == false || getTileAt(coord: coord) == 1 {
+                if isInRange(origin: actor.coord, radius: range, coord: coord) == false || getTile(at: coord) == 1 {
                     if let node = movementGraph.node(atGridPosition: coord) {
                         movementGraph.remove([node])
                     }
@@ -151,7 +157,7 @@ class Game {
         
         return movementGraph
     }
-    
+        
     func isHeroVisible(for actor: Actor) -> Bool {
         guard self.hero.isAlive else { return false }
         
@@ -173,7 +179,7 @@ class Game {
             for y in visibleAreaGraph.gridOrigin.y ..< (visibleAreaGraph.gridOrigin.y + Int32(visibleAreaGraph.gridHeight)) {
                 let coord = vector_int2(x, y)
 
-                if isInRange(origin: actor.coord, radius: radius, coord: coord) == false || getTileAt(coord: coord) == 1 {
+                if isInRange(origin: actor.coord, radius: radius, coord: coord) == false || getTile(at: coord) == 1 {
                     if let node = visibleAreaGraph.node(atGridPosition: coord) {
                         visibleAreaGraph.remove([node])
                     }
@@ -345,7 +351,7 @@ class Game {
                 }
                 
                 let potionCoords = [vector_int2(4, 4)]
-                for potionCoord in potionCoords {
+                for potionCoord in potionCoords where potionCoord == coord {
                     let potion = try! entityFactory.newEntity(type: Potion.self, name: "Health Potion", coord: potionCoord)
                     entities.append(potion)
                 }
@@ -382,7 +388,7 @@ class Game {
                         
         let visibleTileCoords = self.visibleTileCoords
         
-        guard action.perform(completion: { [unowned self] in
+        guard action.perform(game: self, completion: { [unowned self] in
             if let statusUpdatable = action as? StatusUpdatable, let message = statusUpdatable.message {
                 print(message)
                 self.delegate?.gameDidUpdateStatus(message: message)
@@ -410,7 +416,7 @@ class Game {
                     }
                 }
             case is (DieAction, Actor):
-                self.remove(actor: activeActor)
+                self.remove(entity: activeActor)
             default: break
             }
              
@@ -442,13 +448,15 @@ class Game {
         self.hero.move(direction: direction)
     }
         
-    private func remove(actor: Actor) {
-        self.entities.removeAll(where: { $0 == actor })                
+    func remove(entity: Entity) {
+        self.entities.removeAll(where: { $0 == entity })
 
-        // After we remove an actor, update the index to prevent an index out of range error
-        self.activeActorIdx = self.activeActorIdx % self.actors.count
-        
-        self.delegate?.gameDidRemove(entity: actor)
+        if entity is Actor {
+            // After we remove an actor, update the index to prevent an index out of range error
+            self.activeActorIdx = self.activeActorIdx % self.actors.count
+        }
+                
+        self.delegate?.gameDidRemove(entity: entity)
     }
 
     func handleInteraction(at coord: vector_int2) {

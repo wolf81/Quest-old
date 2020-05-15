@@ -35,7 +35,7 @@ protocol Usable {
     func use(actor: Actor) 
 }
 
-class Potion: Entity & Usable {
+class Potion: Entity & Usable & Lootable {
     let effects: [Effect]
     
     required init(json: [String : Any], entityFactory: EntityFactory) {

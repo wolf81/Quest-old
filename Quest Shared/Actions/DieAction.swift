@@ -11,7 +11,7 @@ import SpriteKit
 class DieAction: Action, StatusUpdatable {
     var message: String? { "\(self.actor.name) died" }
         
-    override func perform(completion: @escaping () -> Void) -> Bool {
+    override func perform(game: Game, completion: @escaping () -> Void) -> Bool {
         let die = SKAction.sequence([
             SKAction.fadeOut(withDuration: 6),
             SKAction.run {

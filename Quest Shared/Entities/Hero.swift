@@ -124,11 +124,11 @@ class Hero: Actor, CustomStringConvertible {
         if let direction = self.direction {
             let toCoord = self.coord &+ direction.coord
             
-            if let targetActor = state.getActorAt(coord: toCoord) {                
+            if let targetActor = state.getActor(at: toCoord) {                
                 return MeleeAttackAction(actor: self, targetActor: targetActor, timeUnitCost: self.actionCost.meleeAttack)
             }
             
-            if state.canMove(entity: self, toCoord: toCoord) {
+            if state.canMove(entity: self, to: toCoord) {
                 return MoveAction(actor: self, toCoord: toCoord, timeUnitCost: self.actionCost.move)
             }
         } else if let path = self.path {

@@ -22,7 +22,7 @@ class RangedAttackAction: Action, StatusUpdatable {
         super.init(actor: actor, timeUnitCost: timeUnitCost)
     }
     
-    override func perform(completion: @escaping () -> Void) -> Bool {
+    override func perform(game: Game, completion: @escaping () -> Void) -> Bool {
         defer {
             self.actor.subtractTimeUnits(self.timeUnitCost)
         }
