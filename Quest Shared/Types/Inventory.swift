@@ -36,7 +36,7 @@ class Inventory {
         
         self.equippedItems[equipment.equipmentSlot] = equipment
     }
-    
+        
     @discardableResult
     func unequip(_ equipmentSlot: EquipmentSlot) -> Bool {
         if let equipment = self.equippedItems.removeValue(forKey: equipmentSlot) {

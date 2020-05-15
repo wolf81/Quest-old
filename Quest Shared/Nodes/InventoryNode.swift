@@ -100,6 +100,11 @@ extension InventoryNode: ListNodeDelegate {
     
     func listNode(_ listNode: ListNode, didSelectNode node: SKNode, atIndex index: Int) {
         self.hero.inventory.equip(at: index)
+        
+        if let usableItem = self.hero.inventory.backpack[index] as? Usable {
+            usableItem.use(actor: self.hero)
+        }
+        
         reload()
     }
     

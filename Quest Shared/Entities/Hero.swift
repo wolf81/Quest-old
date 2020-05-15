@@ -87,7 +87,7 @@ class Hero: Actor, CustomStringConvertible {
     func cast(spell: Spell) {
         self.spell = spell
     }
-    
+        
     func attackMelee(actor: Actor) {
         self.meleeTarget = actor
     }
