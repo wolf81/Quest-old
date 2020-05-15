@@ -1,0 +1,8 @@
+{
+    "name": "Health Potion",
+    "sprite": "ruby_new",
+    
+    "effects": {
+        "addHitpoints": 5
+    }
+}

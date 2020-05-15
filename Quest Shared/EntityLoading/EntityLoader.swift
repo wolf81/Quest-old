@@ -24,20 +24,23 @@ class EntityLoader {
     }()
     
     static func loadEntities(for entityFactory: EntityFactory) throws {
+        let potions = try loadEntities(type: Potion.self, in: "Data/Potions", entityFactory: entityFactory)
+        potions.forEach{ entityFactory.register(entity: $0) }
+
         let weapons = try loadEntities(type: Weapon.self, in: "Data/Weapons", entityFactory: entityFactory)
-        weapons.forEach({ entityFactory.register(entity: $0) })
+        weapons.forEach{ entityFactory.register(entity: $0) }
         
         let shields = try loadEntities(type: Shield.self, in: "Data/Shields", entityFactory: entityFactory)
-        shields.forEach({ entityFactory.register(entity: $0) })
+        shields.forEach{ entityFactory.register(entity: $0) }
         
         let armor = try loadEntities(type: Armor.self, in: "Data/Armor", entityFactory: entityFactory)
-        armor.forEach({ entityFactory.register(entity: $0) })
+        armor.forEach{ entityFactory.register(entity: $0) }
         
         let tiles = try loadEntities(type: Tile.self, in: "Data/Tile", entityFactory: entityFactory)
-        tiles.forEach({ entityFactory.register(entity: $0) })
+        tiles.forEach{ entityFactory.register(entity: $0) }
 
-        let monsters =  try loadEntities(type: Monster.self, in: "Data/Monster", entityFactory: entityFactory)
-        monsters.forEach({ entityFactory.register(entity: $0) })
+        let monsters = try loadEntities(type: Monster.self, in: "Data/Monster", entityFactory: entityFactory)
+        monsters.forEach{ entityFactory.register(entity: $0) }
     }
 
     private static func loadEntities<T: EntityProtocol>(type: T.Type, in directory: String, entityFactory: EntityFactory) throws -> [T] {

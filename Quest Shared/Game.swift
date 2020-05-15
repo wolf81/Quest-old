@@ -339,6 +339,12 @@ class Game {
                     entities.append(monster)
                     print(monster)
                 }
+                
+                let potionCoords = [vector_int2(4, 4)]
+                for potionCoord in potionCoords {
+                    let potion = try! entityFactory.newEntity(type: Potion.self, name: "Health Potion", coord: potionCoord)
+                    entities.append(potion)
+                }
             }
         }
         

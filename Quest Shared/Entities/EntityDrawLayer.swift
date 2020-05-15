@@ -11,6 +11,7 @@ import SpriteKit
 struct DrawLayerHelper {
     private enum EntityDrawLayer: CGFloat {
         case tile = 1_000
+        case loot = 5_000
         case monster = 10_000
         case hero = 50_000
         case equipment = 100_000
@@ -21,6 +22,7 @@ struct DrawLayerHelper {
         
     public static func zPosition(for entity: EntityProtocol) -> CGFloat {
         switch entity {
+        case is Potion: return EntityDrawLayer.loot.rawValue
         case is Hero: return EntityDrawLayer.hero.rawValue
         case is Monster: return EntityDrawLayer.monster.rawValue
         case is Weapon: fallthrough

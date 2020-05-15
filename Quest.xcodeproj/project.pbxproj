@@ -22,6 +22,12 @@
 		792467E7246D37D5000568A6 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792467E6246D37D5000568A6 /* GameOverScene.swift */; };
 		792467E8246D37D5000568A6 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792467E6246D37D5000568A6 /* GameOverScene.swift */; };
 		792467E9246D37D5000568A6 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792467E6246D37D5000568A6 /* GameOverScene.swift */; };
+		792467EB246E4130000568A6 /* Usable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792467EA246E4130000568A6 /* Usable.swift */; };
+		792467EC246E4130000568A6 /* Usable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792467EA246E4130000568A6 /* Usable.swift */; };
+		792467ED246E4130000568A6 /* Usable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792467EA246E4130000568A6 /* Usable.swift */; };
+		792467EF246E4360000568A6 /* Potion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792467EE246E4360000568A6 /* Potion.swift */; };
+		792467F0246E4360000568A6 /* Potion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792467EE246E4360000568A6 /* Potion.swift */; };
+		792467F1246E4360000568A6 /* Potion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792467EE246E4360000568A6 /* Potion.swift */; };
 		7929FBFA22AFBADE003C1964 /* DungeonBuilder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FBF922AFBADE003C1964 /* DungeonBuilder.framework */; };
 		7929FBFE22AFBAED003C1964 /* DungeonBuilder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FBFD22AFBAED003C1964 /* DungeonBuilder.framework */; };
 		7929FC0422B0002E003C1964 /* Fenris.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929FC0322B0002D003C1964 /* Fenris.framework */; };
@@ -221,6 +227,8 @@
 		792467DE246A59A0000568A6 /* Lootable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lootable.swift; sourceTree = "<group>"; };
 		792467E2246AFC03000568A6 /* Inventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
 		792467E6246D37D5000568A6 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		792467EA246E4130000568A6 /* Usable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Usable.swift; sourceTree = "<group>"; };
+		792467EE246E4360000568A6 /* Potion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Potion.swift; sourceTree = "<group>"; };
 		7929FBF922AFBADE003C1964 /* DungeonBuilder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DungeonBuilder.framework; path = Carthage/Build/iOS/DungeonBuilder.framework; sourceTree = SOURCE_ROOT; };
 		7929FBFB22AFBAE7003C1964 /* DungeonBuilder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DungeonBuilder.framework; path = Carthage/Build/Mac/DungeonBuilder.framework; sourceTree = SOURCE_ROOT; };
 		7929FBFD22AFBAED003C1964 /* DungeonBuilder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DungeonBuilder.framework; path = Carthage/Build/tvOS/DungeonBuilder.framework; sourceTree = SOURCE_ROOT; };
@@ -368,6 +376,7 @@
 				79492BE823A61299005B9508 /* TileProtocol.swift */,
 				799EA0192451313200F690DC /* FogTile.swift */,
 				7914DD31246182120047EFB6 /* EntityDrawLayer.swift */,
+				792467EE246E4360000568A6 /* Potion.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -398,6 +407,7 @@
 				79042E5B2469473800730646 /* Equippable.swift */,
 				792467DE246A59A0000568A6 /* Lootable.swift */,
 				792467E2246AFC03000568A6 /* Inventory.swift */,
+				792467EA246E4130000568A6 /* Usable.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -766,6 +776,7 @@
 				7960DEC423A6082B00B4CDF8 /* Entity.swift in Sources */,
 				7960DEBB23A6082B00B4CDF8 /* Monster.swift in Sources */,
 				79FC68EF244C4A8C00E6D63C /* CreateCharacterScene.swift in Sources */,
+				792467EF246E4360000568A6 /* Potion.swift in Sources */,
 				79FC68FD244C552B00E6D63C /* LoadingScene.swift in Sources */,
 				7960DEC123A6082B00B4CDF8 /* Hero.swift in Sources */,
 				7960DEBE23A6082B00B4CDF8 /* Weapon.swift in Sources */,
@@ -790,6 +801,7 @@
 				79492BE923A61299005B9508 /* TileProtocol.swift in Sources */,
 				798C997E23A2068C00C6EC1C /* AnimationKey.swift in Sources */,
 				7963DE42239CEC6A00183DF2 /* Skill.swift in Sources */,
+				792467EB246E4130000568A6 /* Usable.swift in Sources */,
 				7963DE32239CDE2600183DF2 /* Attribute.swift in Sources */,
 				79FC68F5244C4C4700E6D63C /* SettingsScene.swift in Sources */,
 				79DF73AC2462D3570030E7A8 /* StatusUpdatable.swift in Sources */,
@@ -835,6 +847,7 @@
 				79ACC81B22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
 				795746B422A7CA9800E04BEC /* Level.swift in Sources */,
 				7960DEC523A6082B00B4CDF8 /* Entity.swift in Sources */,
+				792467F0246E4360000568A6 /* Potion.swift in Sources */,
 				79FC68FE244C552B00E6D63C /* LoadingScene.swift in Sources */,
 				7960DEBC23A6082B00B4CDF8 /* Monster.swift in Sources */,
 				7960DEC223A6082B00B4CDF8 /* Hero.swift in Sources */,
@@ -859,6 +872,7 @@
 				79492BEA23A61299005B9508 /* TileProtocol.swift in Sources */,
 				798C997F23A2068C00C6EC1C /* AnimationKey.swift in Sources */,
 				7963DE43239CEC6A00183DF2 /* Skill.swift in Sources */,
+				792467EC246E4130000568A6 /* Usable.swift in Sources */,
 				7963DE33239CDE2600183DF2 /* Attribute.swift in Sources */,
 				79FC68F6244C4C4700E6D63C /* SettingsScene.swift in Sources */,
 				79DF73AD2462D3570030E7A8 /* StatusUpdatable.swift in Sources */,
@@ -875,6 +889,7 @@
 				7963DE3C239CE12A00183DF2 /* Race.swift in Sources */,
 				79423B7C239E99CC0042B9BD /* HeroBuilder.swift in Sources */,
 				7960DED923A6083400B4CDF8 /* EntityProtocol.swift in Sources */,
+				792467ED246E4130000568A6 /* Usable.swift in Sources */,
 				7914DD34246182120047EFB6 /* EntityDrawLayer.swift in Sources */,
 				79FC68F3244C4A9000E6D63C /* MainMenuScene.swift in Sources */,
 				79D815762465AEAF0099567B /* PaperDollNode.swift in Sources */,
@@ -890,6 +905,7 @@
 				7963DE4C239D092300183DF2 /* Equipment.swift in Sources */,
 				792467E9246D37D5000568A6 /* GameOverScene.swift in Sources */,
 				795746BD22A9029D00E04BEC /* Direction.swift in Sources */,
+				792467F1246E4360000568A6 /* Potion.swift in Sources */,
 				79ACC82022AB473200AC3BF0 /* Action.swift in Sources */,
 				798C997C23A2061700C6EC1C /* IdleAction.swift in Sources */,
 				7985AF9623A20DDC0067F884 /* DieAction.swift in Sources */,
