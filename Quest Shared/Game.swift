@@ -66,7 +66,7 @@ class Game {
     }
 
     private(set) var entities: [Entity] = []
-    
+        
     private(set) var tiles: [Tile] = []
     
     private(set) var visibleTileCoords = Set<vector_int2>()
@@ -75,6 +75,10 @@ class Game {
         
     private var activeActorIdx: Int = 0
     
+    var loot: [Lootable] {
+        return self.entities.filter({ $0 is Lootable }) as! [Lootable]
+    }
+
     var actors: [Actor] {
         return self.entities.filter({ $0 is Actor }) as! [Actor]
     }

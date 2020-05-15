@@ -31,6 +31,12 @@ struct HitPoints: CustomStringConvertible {
         self.delegate?.hitPointsChanged(current: max(self.current, 0), total: self.base)
     }
     
+    mutating func restore(hitPoints: Int) {
+        self.lost -= (hitPoints > self.lost) ? self.lost : hitPoints
+        
+        self.delegate?.hitPointsChanged(current: max(self.current, 0), total: self.base)
+    }
+    
     var description: String {
         return "HP: \(self.current) / \(self.base)"
     }

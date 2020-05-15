@@ -49,7 +49,7 @@ class MoveAction: Action, StatusUpdatable {
         for coord in self.path {
             let position = GameScene.pointForCoord(coord)
             moves.append(SKAction.move(to: position, duration: MoveAction.stepDuration))
-            self.duration += MoveAction.stepDuration
+            self.duration += MoveAction.stepDuration            
         }
 
         self.message = "\(self.actor.name) moved to \(self.toCoord.x).\(self.toCoord.y)"

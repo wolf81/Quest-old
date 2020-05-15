@@ -24,6 +24,9 @@ class EntityLoader {
     }()
     
     static func loadEntities(for entityFactory: EntityFactory) throws {
+        let effects = try loadEntities(type: Effect.self, in: "Data/Effects", entityFactory: entityFactory)
+        effects.forEach{ entityFactory.register(entity: $0) }
+        
         let potions = try loadEntities(type: Potion.self, in: "Data/Potions", entityFactory: entityFactory)
         potions.forEach{ entityFactory.register(entity: $0) }
 
