@@ -157,6 +157,10 @@ extension Actor {
         if let weapon = self.backpackItem(at: index) as? Weapon, weapon.wieldStyle == .twoHanded {
             self.inventory.unequip(.offhand)
         }
+        
+        if let _ = self.backpackItem(at: index) as? Shield, self.equippedWeapon.wieldStyle == .twoHanded {
+            self.inventory.unequip(.mainhand)
+        }
 
         self.inventory.use(at: index, with: self)
     }
