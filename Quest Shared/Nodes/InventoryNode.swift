@@ -11,7 +11,7 @@ import SpriteKit
 import Fenris
 
 class InventoryNode: SKShapeNode {
-    private let backpack: ListNode
+    private let backpack: BackpackNode
     private let paperDoll: PaperDollNode
     
     private let hero: Hero
@@ -22,7 +22,7 @@ class InventoryNode: SKShapeNode {
         let spacing: CGFloat = 5
         let nodeWidth = (size.width - spacing * 3) / 2
         let nodeSize = CGSize(width: nodeWidth, height: size.height - spacing * 2)
-        self.backpack = ListNode(size: nodeSize, orientation: .vertical, backgroundColor: backgroundColor)
+        self.backpack = BackpackNode(size: nodeSize, orientation: .vertical, backgroundColor: backgroundColor)
         self.paperDoll = PaperDollNode(size: nodeSize, backgroundColor: backgroundColor)
         
         super.init()
@@ -78,12 +78,12 @@ extension InventoryNode: PaperDollNodeDelegate {
     }
 }
 
-extension InventoryNode: ListNodeDelegate {
-    func listNodeNumberOfItems(listNode: ListNode) -> Int {
+extension InventoryNode: BackpackNodeDelegate {
+    func backpackNodeNumberOfItems(backpackNode: BackpackNode) -> Int {
         return self.hero.backpackItemCount
     }
-    
-    func listNode(_ listNode: ListNode, nodeAtIndex index: Int, size: CGSize) -> SKNode {
+
+    func backpackNode(_ backpackNode: BackpackNode, nodeAtIndex index: Int, size: CGSize) -> SKNode {
         let item = self.hero.backpackItem(at: index)
         
         let label = SKLabelNode(text: "\(item.name)")
@@ -98,17 +98,17 @@ extension InventoryNode: ListNodeDelegate {
         return node
     }
     
-    func listNode(_ listNode: ListNode, didSelectNode node: SKNode, atIndex index: Int) {
+    func backpackNode(_ backpackNode: BackpackNode, didSelectNode node: SKNode, atIndex index: Int) {
         self.hero.useBackpackItem(at: index)
         
         reload()
     }
-    
-    func listNodeWidthForItem(_ listNode: ListNode) -> CGFloat {
+
+    func backpackNodeWidthForItem(_ backpackNode: BackpackNode) -> CGFloat {
         return 0
     }
-    
-    func listNodeHeightForItem(_ listNode: ListNode) -> CGFloat {
+
+    func backpackNodeHeightForItem(_ backpackNode: BackpackNode) -> CGFloat {
         return 40
     }
 }

@@ -82,9 +82,7 @@ class Weapon: Entity & Equippable, CustomStringConvertible {
         
         super.init(json: json, entityFactory: entityFactory)
     }
-    
-//    static var unarmed: Weapon { return self.init(json: ["damage": "1d3"], entityFactory: EntityFactory()) }
-    
+        
     var description: String {
         return "{ attack: \(attack), damage: \(damage) }"
     }

@@ -30,6 +30,8 @@ class GameScene: SKScene, SceneManagerConstructable {
     private var playerCamera: SKCameraNode!
     
     private var inventory: InventoryNode?
+    
+    private var characterInfo: CharacterInfoNode?
 
     // Sprites should be removed on the main thread, to make this easy, we remove sprites in the update loop and then clear this array
     private var spritesToRemove: [SKSpriteNode] = []
@@ -159,14 +161,28 @@ class GameScene: SKScene, SceneManagerConstructable {
     }
     
     fileprivate func toggleInventory() {
+        if self.characterInfo != nil { toggleCharacterInfo() }
+        
         if let inventory = self.inventory {
             inventory.removeFromParent()
             self.inventory = nil
-        }
-        else {
+        } else {
             let inventory = InventoryNode(size: CGSize(width: 600, height: 400), backgroundColor: .black, hero: self.game.hero)
             self.playerCamera.addChild(inventory)
             self.inventory = inventory
+        }
+    }
+    
+    fileprivate func toggleCharacterInfo() {
+        if self.inventory != nil { toggleInventory() }
+        
+        if let characterInfo = self.characterInfo {
+            characterInfo.removeFromParent()
+            self.characterInfo = nil
+        } else {
+            let characterInfo = CharacterInfoNode(size: CGSize(width: 600, height: 400), backgroundColor: .black, hero: self.game.hero)
+            self.playerCamera.addChild(characterInfo)
+            self.characterInfo = characterInfo
         }
     }
 }
@@ -281,6 +297,7 @@ extension GameScene {
         case /* s, ↓ */ 1, 125: self.game.movePlayer(direction: .down)
         case /* w, ↑ */ 13, 126: self.game.movePlayer(direction: .up)
         case /* i    */ 34: toggleInventory()
+        case /* c    */ 8: toggleCharacterInfo()
         default: print("\(event.keyCode)")
         }
     }

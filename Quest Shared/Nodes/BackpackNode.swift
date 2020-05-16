@@ -1,5 +1,5 @@
 //
-//  ListNode.swift
+//  BackpackNode.swift
 //  Quest
 //
 //  Created by Wolfgang Schreurs on 07/05/2020.
@@ -8,18 +8,18 @@
 
 import SpriteKit
 
-protocol ListNodeDelegate: class {
-    func listNodeNumberOfItems(listNode: ListNode) -> Int
+protocol BackpackNodeDelegate: class {
+    func backpackNodeNumberOfItems(backpackNode: BackpackNode) -> Int
     
-    func listNode(_ listNode: ListNode, nodeAtIndex index: Int, size: CGSize) -> SKNode
+    func backpackNode(_ backpackNode: BackpackNode, nodeAtIndex index: Int, size: CGSize) -> SKNode
     
-    func listNode(_ listNode: ListNode, didSelectNode node: SKNode, atIndex index: Int)
+    func backpackNode(_ backpackNode: BackpackNode, didSelectNode node: SKNode, atIndex index: Int)
     
     // for vertical orientation
-    func listNodeHeightForItem(_ listNode: ListNode) -> CGFloat
+    func backpackNodeHeightForItem(_ backpackNode: BackpackNode) -> CGFloat
     
     // for horizontal orientation
-    func listNodeWidthForItem(_ listNode: ListNode) -> CGFloat
+    func backpackNodeWidthForItem(_ backpackNode: BackpackNode) -> CGFloat
 }
 
 enum ListNodeOrientation {
@@ -33,12 +33,12 @@ private enum ScrollDirection {
     case none
 }
 
-class ListNode: SKShapeNode {
+class BackpackNode: SKShapeNode {
     private let listContainer: SKCropNode
     
     private let list: SKSpriteNode
     
-    weak var delegate: ListNodeDelegate? {
+    weak var delegate: BackpackNodeDelegate? {
         didSet { reload() }
     }
         
@@ -74,7 +74,7 @@ class ListNode: SKShapeNode {
                 self.scrollTimer = nil
             default:
                 guard self.scrollTimer == nil else { return }
-                self.scrollTimer = Timer.scheduledTimer(timeInterval: 0.005, target: self, selector: #selector(ListNode.performAutoscroll), userInfo: nil, repeats: true)
+                self.scrollTimer = Timer.scheduledTimer(timeInterval: 0.005, target: self, selector: #selector(BackpackNode.performAutoscroll), userInfo: nil, repeats: true)
             }
         }
     }
@@ -125,9 +125,9 @@ class ListNode: SKShapeNode {
         self.listContainer.children.forEach{ $0.removeFromParent() }
 
         if let delegate = delegate {
-            let itemCount = delegate.listNodeNumberOfItems(listNode: self)
-            let itemWidth = self.orientation == .vertical ? self.frame.width : delegate.listNodeWidthForItem(self)
-            let itemHeight = self.orientation == .horizontal ? self.frame.height : delegate.listNodeHeightForItem(self)
+            let itemCount = delegate.backpackNodeNumberOfItems(backpackNode: self)
+            let itemWidth = self.orientation == .vertical ? self.frame.width : delegate.backpackNodeWidthForItem(self)
+            let itemHeight = self.orientation == .horizontal ? self.frame.height : delegate.backpackNodeHeightForItem(self)
             
             switch self.orientation {
             case .horizontal: self.contentSize = CGSize(width: itemWidth * CGFloat(itemCount), height: itemHeight)
@@ -136,7 +136,7 @@ class ListNode: SKShapeNode {
             
             var y: CGFloat = self.list.frame.height / 2 - itemHeight / 2
             for i in (0 ..< itemCount) {
-                let node = delegate.listNode(self, nodeAtIndex: i, size: CGSize(width: itemWidth, height: itemHeight))
+                let node = delegate.backpackNode(self, nodeAtIndex: i, size: CGSize(width: itemWidth, height: itemHeight))
                 self.listContainer.addChild(node)
                 
                 switch self.orientation {
@@ -177,8 +177,8 @@ class ListNode: SKShapeNode {
     private func updateLayout() {
         guard let delegate = self.delegate else { return }
         
-        let itemWidth = self.orientation == .vertical ? self.frame.width : delegate.listNodeWidthForItem(self)
-        let itemHeight = self.orientation == .horizontal ? self.frame.height : delegate.listNodeHeightForItem(self)
+        let itemWidth = self.orientation == .vertical ? self.frame.width : delegate.backpackNodeWidthForItem(self)
+        let itemHeight = self.orientation == .horizontal ? self.frame.height : delegate.backpackNodeHeightForItem(self)
 
         var y: CGFloat = self.list.frame.height / 2 - itemHeight / 2 + self.contentOffset.y
         for (i, node) in self.listContainer.children.enumerated()  {
@@ -217,7 +217,7 @@ class ListNode: SKShapeNode {
         if self.listContainer.contains(location) {
             for (idx, node) in self.listContainer.children.enumerated() {
                 if node.frame.contains(location) {
-                    self.delegate?.listNode(self, didSelectNode: node, atIndex: idx)
+                    self.delegate?.backpackNode(self, didSelectNode: node, atIndex: idx)
                     break
                 }
             }

@@ -38,6 +38,7 @@ struct DrawLayerHelper {
         switch node {
         case is ActionBar: fallthrough
         case is InventoryNode: fallthrough
+        case is CharacterInfoNode: fallthrough
         case is StatusBar: return EntityDrawLayer.overlay.rawValue
         case is HealthBar: return EntityDrawLayer.equipment.rawValue
         default: fatalError()            
