@@ -84,11 +84,11 @@ class CharacterInfoNode: SKShapeNode {
             let nodeHeight = size.height / 5
 
             let header = SKLabelNode(text: header)
-            header.fontSize = 18
+            header.fontSize = 16
             header.verticalAlignmentMode = .center
             header.fontName = "Papyrus"
             addChild(header)
-            header.position = CGPoint(x: 0, y: size.height / 2 - nodeHeight / 2)
+            header.position = CGPoint(x: -(header.frame.width / 2), y: size.height / 2 - nodeHeight / 2)
                         
             var i = 0
             for (title, details) in labelInfo {
@@ -99,14 +99,14 @@ class CharacterInfoNode: SKShapeNode {
                 titleLabel.verticalAlignmentMode = .baseline
                 titleLabel.fontName = "Papyrus"
                 addChild(titleLabel)
-                titleLabel.position = CGPoint(x: -(size.width - titleLabel.frame.width) / 2 + spacing, y: y)
+                titleLabel.position = CGPoint(x: -(titleLabel.frame.width / 2) - spacing, y: y)
 
                 let detailLabel = SKLabelNode(text: details)
                 detailLabel.fontSize = 16
                 detailLabel.verticalAlignmentMode = .baseline
                 detailLabel.fontName = "Papyrus"
                 addChild(detailLabel)
-                detailLabel.position = CGPoint(x: (size.width - detailLabel.frame.width) / 2 - spacing, y: y)
+                detailLabel.position = CGPoint(x: (detailLabel.frame.width / 2) + spacing, y: y)
                 
                 i += 1
             }
