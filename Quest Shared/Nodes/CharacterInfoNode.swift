@@ -27,7 +27,7 @@ class CharacterInfoNode: SKShapeNode {
             ("Role:", "\(hero.role)"),
             ("Level:", "\(hero.level)")
         ])
-        self.statsNode = InfoNode(size: infoNodeSize, backgroundColor: backgroundColor, header: "Stats", labelInfo: [
+        self.statsNode = InfoNode(size: infoNodeSize, backgroundColor: backgroundColor, header: "Combat Stats", labelInfo: [
             ("Hitpoints:", "\(hero.hitPoints.current) / \(hero.hitPoints.base)"),
             ("Armor Class:", "\(hero.armorClass)"),
             ("Attack Bonus:", "\(hero.meleeAttackBonus)")
