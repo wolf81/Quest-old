@@ -71,9 +71,6 @@
 		7960DEC423A6082B00B4CDF8 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7960DEB523A6082B00B4CDF8 /* Entity.swift */; };
 		7960DEC523A6082B00B4CDF8 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7960DEB523A6082B00B4CDF8 /* Entity.swift */; };
 		7960DEC623A6082B00B4CDF8 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7960DEB523A6082B00B4CDF8 /* Entity.swift */; };
-		7960DEC723A6082B00B4CDF8 /* Shield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7960DEB623A6082B00B4CDF8 /* Shield.swift */; };
-		7960DEC823A6082B00B4CDF8 /* Shield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7960DEB623A6082B00B4CDF8 /* Shield.swift */; };
-		7960DEC923A6082B00B4CDF8 /* Shield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7960DEB623A6082B00B4CDF8 /* Shield.swift */; };
 		7960DECA23A6082B00B4CDF8 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7960DEB723A6082B00B4CDF8 /* Actor.swift */; };
 		7960DECB23A6082B00B4CDF8 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7960DEB723A6082B00B4CDF8 /* Actor.swift */; };
 		7960DECC23A6082B00B4CDF8 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7960DEB723A6082B00B4CDF8 /* Actor.swift */; };
@@ -242,7 +239,6 @@
 		7960DEB323A6082B00B4CDF8 /* Weapon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
 		7960DEB423A6082B00B4CDF8 /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
 		7960DEB523A6082B00B4CDF8 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
-		7960DEB623A6082B00B4CDF8 /* Shield.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shield.swift; sourceTree = "<group>"; };
 		7960DEB723A6082B00B4CDF8 /* Actor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actor.swift; sourceTree = "<group>"; };
 		7960DEB823A6082B00B4CDF8 /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		7960DEB923A6082B00B4CDF8 /* Armor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Armor.swift; sourceTree = "<group>"; };
@@ -359,7 +355,6 @@
 				7960DEB323A6082B00B4CDF8 /* Weapon.swift */,
 				7960DEB423A6082B00B4CDF8 /* Hero.swift */,
 				7960DEB523A6082B00B4CDF8 /* Entity.swift */,
-				7960DEB623A6082B00B4CDF8 /* Shield.swift */,
 				7960DEB723A6082B00B4CDF8 /* Actor.swift */,
 				7960DEB823A6082B00B4CDF8 /* Tile.swift */,
 				7960DEB923A6082B00B4CDF8 /* Armor.swift */,
@@ -746,7 +741,6 @@
 				79DF73B42463DD310030E7A8 /* InventoryNode.swift in Sources */,
 				7990950C244C9E410091791F /* StatusBar.swift in Sources */,
 				79C61AA522A7C415008D3609 /* GameScene.swift in Sources */,
-				7960DEC723A6082B00B4CDF8 /* Shield.swift in Sources */,
 				793A575824459A070089E693 /* Constants.swift in Sources */,
 				794864D322A7E60300F84A72 /* Game.swift in Sources */,
 				7985AF9423A20DDC0067F884 /* DieAction.swift in Sources */,
@@ -816,7 +810,6 @@
 				7990950D244C9E410091791F /* StatusBar.swift in Sources */,
 				793A575D2445A12F0089E693 /* ActionCost.swift in Sources */,
 				79C61AA622A7C415008D3609 /* GameScene.swift in Sources */,
-				7960DEC823A6082B00B4CDF8 /* Shield.swift in Sources */,
 				793A575924459A070089E693 /* Constants.swift in Sources */,
 				794864D422A7E60300F84A72 /* Game.swift in Sources */,
 				7985AF9523A20DDC0067F884 /* DieAction.swift in Sources */,
@@ -885,7 +878,6 @@
 				79ACC82C22AB81F000AC3BF0 /* JSONConstructable.swift in Sources */,
 				79492BEB23A61299005B9508 /* TileProtocol.swift in Sources */,
 				799EA0182450A8E600F690DC /* Visibility.swift in Sources */,
-				7960DEC923A6082B00B4CDF8 /* Shield.swift in Sources */,
 				7960DEBD23A6082B00B4CDF8 /* Monster.swift in Sources */,
 				792467E9246D37D5000568A6 /* GameOverScene.swift in Sources */,
 				795746BD22A9029D00E04BEC /* Direction.swift in Sources */,

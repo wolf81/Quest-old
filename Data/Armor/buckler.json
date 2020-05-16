@@ -2,5 +2,6 @@
     "name": "Buckler",
     "sprite": "buckler_round_3",
     
-    "AC": 1
+    "AC": 1,
+    "type": "shield"
 }

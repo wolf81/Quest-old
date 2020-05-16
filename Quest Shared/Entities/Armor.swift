@@ -14,6 +14,7 @@ class Armor: Entity & Equippable {
         case light
         case medium
         case heavy
+        case shield
         
         init(rawValue: String) {
             switch rawValue {
@@ -21,14 +22,15 @@ class Armor: Entity & Equippable {
             case "light": self = .light
             case "medium": self = .medium
             case "heavy": self = .heavy
+            case "shield": self = .shield
             default: fatalError()
             }
         }
     }
-    
+        
     let armorClass: Int
     
-    var equipmentSlot: EquipmentSlot { .chest }
+    var equipmentSlot: EquipmentSlot { type == .shield ? .offhand : .chest }
     
     let type: ArmorType
     

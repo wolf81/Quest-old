@@ -2,7 +2,7 @@
     "name": "Chainmail",
     "sprite": "chainmail",
     
-    "AC": 0,
+    "AC": 5,
     "type": "heavy"
 }
 

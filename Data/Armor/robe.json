@@ -2,6 +2,7 @@
     "name": "Robe",
     "sprite": "robe_red_2",
     
-    "AC": 0
+    "AC": 0,
+    "type": "none"
 }
 

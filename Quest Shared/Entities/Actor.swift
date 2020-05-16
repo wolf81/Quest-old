@@ -164,7 +164,7 @@ extension Actor {
             self.inventory.unequip(.offhand)
         }
         
-        if let _ = self.backpackItem(at: index) as? Shield, self.equippedWeapon.style == .twoHanded {
+        if let armor = self.backpackItem(at: index) as? Armor, armor.equipmentSlot == .offhand, self.equippedWeapon.style == .twoHanded {
             self.inventory.unequip(.mainhand)
         }
 
@@ -179,7 +179,7 @@ extension Actor {
     
     var equippedArmor: Armor { self.inventory.equippedItems[.chest] as? Armor ?? Armor.none }
     
-    var equippedShield: Shield { self.inventory.equippedItems[.offhand] as? Shield ?? Shield.none }
+    var equippedShield: Armor { self.inventory.equippedItems[.offhand] as? Armor ?? Armor.none }
         
     func equippedItem(in equipmentSlot: EquipmentSlot) -> Equippable? { self.inventory.equippedItem(in: equipmentSlot) }
 

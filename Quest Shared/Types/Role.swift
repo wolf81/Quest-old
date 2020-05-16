@@ -58,37 +58,37 @@ enum Role: String, Codable {
     }
     
     func defaultEquipment(entityFactory: EntityFactory) -> [Equippable] {
-        var equipmentInfo: [String: String] = [:]
+        var equipmentInfo: [String: [String]] = [:]
         
         switch self {
         case .fighter:
             equipmentInfo = [
-                "armor": "Chainmail",
-                "weapon": "Longsword",
-                "shield": "Buckler"
+                "armor": ["Chainmail", "Buckler"],
+                "weapon": ["Longsword"],
             ]
         case .mage:
             equipmentInfo = [
-                "armor": "Robe",
-                "weapon": "Quarterstaff",
+                "armor": ["Robe"],
+                "weapon": ["Quarterstaff"],
             ]
         case .cleric:
             equipmentInfo = [
-                "armor": "Chainmail",
-                "weapon": "Mace",
-                "shield": "Buckler"
+                "armor": ["Chainmail", "Buckler"],
+                "weapon": ["Mace"],
             ]
         case .rogue:
             equipmentInfo = [
-                "armor": "Studded Leather",
-                "weapon": "Shortsword",
+                "armor": ["Studded Leather"],
+                "weapon": ["Shortsword"],
             ]
         }
         
         var equipment: [Equippable] = []
-        for (typeName, itemName) in equipmentInfo {
-            let item = try! entityFactory.newEntity(typeName: typeName.capitalized, name: itemName) as! Equippable
-            equipment.append(item)
+        for (typeName, itemNames) in equipmentInfo {
+            for itemName in itemNames {
+                let item = try! entityFactory.newEntity(typeName: typeName.capitalized, name: itemName) as! Equippable
+                equipment.append(item)
+            }            
         }
         
         return equipment

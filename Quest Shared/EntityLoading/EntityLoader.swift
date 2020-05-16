@@ -32,10 +32,7 @@ class EntityLoader {
 
         let weapons = try loadEntities(type: Weapon.self, in: "Data/Weapons", entityFactory: entityFactory)
         weapons.forEach{ entityFactory.register(entity: $0) }
-        
-        let shields = try loadEntities(type: Shield.self, in: "Data/Shields", entityFactory: entityFactory)
-        shields.forEach{ entityFactory.register(entity: $0) }
-        
+                
         let armor = try loadEntities(type: Armor.self, in: "Data/Armor", entityFactory: entityFactory)
         armor.forEach{ entityFactory.register(entity: $0) }
         
