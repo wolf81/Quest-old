@@ -19,9 +19,9 @@ class PaperDollNode: SKShapeNode {
     
     private let chest: EquippedItemNode
     
-    private let leftArm: EquippedItemNode
+    private let mainhand: EquippedItemNode
     
-    private let rightArm: EquippedItemNode
+    private let offhand: EquippedItemNode
     
     weak var delegate: PaperDollNodeDelegate? {
         didSet {
@@ -32,8 +32,8 @@ class PaperDollNode: SKShapeNode {
     init(size: CGSize, backgroundColor: SKColor) {
         let itemSize = CGSize(width: 50, height: 50)
         self.chest = EquippedItemNode(size: itemSize, equipmentSlot: .chest)
-        self.leftArm = EquippedItemNode(size: itemSize, equipmentSlot: .mainhand)
-        self.rightArm = EquippedItemNode(size: itemSize, equipmentSlot: .offhand)
+        self.mainhand = EquippedItemNode(size: itemSize, equipmentSlot: .mainhand)
+        self.offhand = EquippedItemNode(size: itemSize, equipmentSlot: .offhand)
         
         let silhouetteTexture = SKTexture(imageNamed: "paper_doll")
         let silhouetteSize = CGSize(width: size.width - 30, height: size.height - 30)
@@ -50,15 +50,15 @@ class PaperDollNode: SKShapeNode {
         
         addChild(self.silhouette)
         addChild(self.chest)
-        addChild(self.leftArm)
-        addChild(self.rightArm)
+        addChild(self.mainhand)
+        addChild(self.offhand)
         
         self.silhouette.zPosition = 0
         self.chest.zPosition = 1
-        self.leftArm.position = CGPoint(x: -(size.width / 3), y: 0)
-        self.leftArm.zPosition = 1
-        self.rightArm.position = CGPoint(x: size.width / 3, y: 0)
-        self.rightArm.zPosition = 1
+        self.mainhand.position = CGPoint(x: -(size.width / 3), y: 0)
+        self.mainhand.zPosition = 1
+        self.offhand.position = CGPoint(x: size.width / 3, y: 0)
+        self.offhand.zPosition = 1
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -68,7 +68,7 @@ class PaperDollNode: SKShapeNode {
     override func mouseUp(with event: NSEvent) {
         let location = event.location(in: self)
 
-        let nodes = [self.leftArm, self.rightArm, self.chest]
+        let nodes = [self.mainhand, self.offhand, self.chest]
 
         if let selectedNode = nodes.filter({ $0.contains(location) }).first {
             print("selected: \(selectedNode)")
@@ -83,8 +83,8 @@ class PaperDollNode: SKShapeNode {
     
     func reload() {        
         self.chest.equipment = self.delegate?.paperDoll(self, equipmentIn: .chest)
-        self.leftArm.equipment = self.delegate?.paperDoll(self, equipmentIn: .mainhand)
-        self.rightArm.equipment = self.delegate?.paperDoll(self, equipmentIn: .offhand)
+        self.mainhand.equipment = self.delegate?.paperDoll(self, equipmentIn: .mainhand)
+        self.offhand.equipment = self.delegate?.paperDoll(self, equipmentIn: .offhand)
     }
     
     // MARK: - Private

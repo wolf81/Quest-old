@@ -173,15 +173,6 @@ extension Actor {
         
     func equippedItem(in equipmentSlot: EquipmentSlot) -> Equippable? { self.inventory.equippedItem(in: equipmentSlot) }
 
-//    @discardableResult
-//    func equipFromBackpack(at index: Int) -> Bool {
-//        if let weapon = self.backpackItem(at: index) as? Weapon, weapon.wieldStyle == .twoHanded {
-//            self.inventory.unequip(.offhand)
-//        }
-//
-//        return self.inventory.equip(at: index)
-//    }
-
     @discardableResult
     func unequip(_ equipmentSlot: EquipmentSlot) -> Bool { self.inventory.unequip(equipmentSlot) }
 }
