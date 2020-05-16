@@ -14,9 +14,36 @@ enum Role: String, Codable {
     case mage
     case cleric
     
+    func canEquip(_ equippable: Equippable) -> Bool {
+        if let armor = equippable as? Armor {
+            let armorRestrictionInfo: [Armor.ArmorType: [Role]] = [
+                .light: [.rogue, .cleric, .fighter, .mage],
+                .medium: [.rogue, .cleric, .fighter],
+                .heavy: [.cleric, .fighter]
+            ]
+
+            if let validRoles = armorRestrictionInfo[armor.type] {
+                return validRoles.contains(self)
+            }
+        } else if let weapon = equippable as? Weapon {
+            let weaponRestrictionInfo: [Weapon.WeaponCategory: [Role]] = [
+                .light: [.fighter, .cleric, .mage],
+                .medium: [.fighter, .cleric],
+                .heavy: [.fighter]
+            ]
+
+            if let validRoles = weaponRestrictionInfo[weapon.category] {
+                return validRoles.contains(self)
+            }
+        }
+        
+        return true
+    }
+    
     func defaultBackpack(entityFactory: EntityFactory) -> [Lootable] {
         let lootInfo = [
             "weapon": "Battleaxe +3",
+            "armor": "Chainmail",
         ]
         
         var loot: [Lootable] = []

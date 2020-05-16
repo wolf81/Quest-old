@@ -1,5 +1,7 @@
 {
     "name": "Unarmed",
     
-    "damage": "1d3"
+    "AT": 0,
+    "damage": "1d3",
+    "type": "unarmed"
 }

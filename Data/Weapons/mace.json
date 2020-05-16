@@ -2,5 +2,7 @@
     "name": "Mace",
     "sprite": "mace_new",
     
-    "damage": "1d4+2"
+    "AT": 0,
+    "damage": "1d4+2",
+    "type": "mace"
 }

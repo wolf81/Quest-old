@@ -37,6 +37,8 @@ class Actor: Entity {
     private(set) var timeUnits: Int = 0
     
     private(set) var healthBar: HealthBar!
+    
+    private(set) var unarmed: Weapon
                 
     private let inventory: Inventory = Inventory()
 
@@ -44,6 +46,7 @@ class Actor: Entity {
         self.hitPoints = HitPoints(base: hitPoints)
         self.armorClass = armorClass
         self.skills = skills
+        self.unarmed = try! entityFactory.newEntity(type: Weapon.self, name: "Unarmed")
         
         self.sight = json["sight"] as? Int32 ?? 6
 
@@ -64,7 +67,8 @@ class Actor: Entity {
         self.hitPoints = HitPoints(base: hitPoints)
         self.skills = skills
         self.attributes = attributes
-        
+        self.unarmed = try! entityFactory.newEntity(type: Weapon.self, name: "Unarmed")
+
         super.init(json: ["name": name, "sprite": "\(race)_\(gender)"], entityFactory: entityFactory)
         
         self.hitPoints.delegate = self
@@ -80,7 +84,8 @@ class Actor: Entity {
     required init(json: [String : Any], entityFactory: EntityFactory) {
         self.hitPoints = HitPoints(base: 1)
         self.skills = Skills(physical: 0, subterfuge: 0, knowledge: 0, communication: 0)
-    
+        self.unarmed = try! entityFactory.newEntity(type: Weapon.self, name: "Unarmed")
+
         super.init(json: json, entityFactory: entityFactory)
 
         self.hitPoints.delegate = self
@@ -153,12 +158,13 @@ extension Actor {
     @discardableResult
     func removeFromBackpack(at index: Int) -> Lootable { self.inventory.remove(at: index) }
     
+    @objc
     func useBackpackItem(at index: Int) {
-        if let weapon = self.backpackItem(at: index) as? Weapon, weapon.wieldStyle == .twoHanded {
+        if let weapon = self.backpackItem(at: index) as? Weapon, weapon.style == .twoHanded {
             self.inventory.unequip(.offhand)
         }
         
-        if let _ = self.backpackItem(at: index) as? Shield, self.equippedWeapon.wieldStyle == .twoHanded {
+        if let _ = self.backpackItem(at: index) as? Shield, self.equippedWeapon.style == .twoHanded {
             self.inventory.unequip(.mainhand)
         }
 
@@ -169,7 +175,7 @@ extension Actor {
 // MARK: - Equipment handling
 
 extension Actor {
-    var equippedWeapon: Weapon { self.inventory.equippedItems[.mainhand] as? Weapon ?? Weapon.fists }
+    var equippedWeapon: Weapon { self.inventory.equippedItems[.mainhand] as? Weapon ?? self.unarmed }
     
     var equippedArmor: Armor { self.inventory.equippedItems[.chest] as? Armor ?? Armor.none }
     

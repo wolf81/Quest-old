@@ -2,6 +2,8 @@
     "name": "Longsword",
     "sprite": "long_sword",
     
-    "damage": "1d8"
+    "AT": 0,
+    "damage": "1d8",    
+    "type": "longsword"
 }
 

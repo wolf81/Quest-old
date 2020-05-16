@@ -143,4 +143,14 @@ class Hero: Actor, CustomStringConvertible {
                              
         return nil
     }
+    
+    override func useBackpackItem(at index: Int) {
+        if let armor = self.backpackItem(at: index) as? Equippable {
+            if self.role.canEquip(armor) == false {
+                return
+            }
+        }
+        
+        super.useBackpackItem(at: index)
+    }
 }

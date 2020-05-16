@@ -2,5 +2,6 @@
     "name": "Studded Leather",
     "sprite": "leather_armor_3",
     
-    "AC": 3
+    "AC": 3,
+    "type": "medium"
 }

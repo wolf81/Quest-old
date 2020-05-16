@@ -8,25 +8,65 @@
 
 import SpriteKit
 
-enum WieldStyle: String {
-    case oneHanded
-    case twoHanded
-//    case dual
+class Weapon: Entity & Equippable, CustomStringConvertible {
+    enum WeaponCategory {
+        case light
+        case medium
+        case heavy
+    }
+    
+    enum WieldStyle: String {
+        case oneHanded
+        case twoHanded
+    }
 
-    init(rawValue: String) {
-        switch rawValue {
-        case "oneHanded": self = .oneHanded
-        case "towHanded": self = .twoHanded
-        default: fatalError()
+    enum WeaponType: String {
+        case unarmed
+        case shortbow
+        case shortsword
+        case longsword
+        case greataxe
+        case staff
+        case mace
+        
+        init(rawValue: String) {
+            switch rawValue {
+            case "unarmed": self = .unarmed
+            case "shortbow": self = .shortbow
+            case "shortsword": self = .shortsword
+            case "longsword": self = .longsword
+            case "greataxe": self = .greataxe
+            case "staff": self = .staff
+            case "mace": self = .mace
+            default: fatalError()
+            }
+        }
+        
+        fileprivate var category: WeaponCategory {
+            switch self {
+            case .greataxe, .staff: return .heavy
+            case .shortsword, .unarmed: return .light
+            case .longsword, .mace, .shortbow: return .medium
+            }
+        }
+        
+        fileprivate var wieldStyle: WieldStyle {
+            if self == .shortbow { return .twoHanded }
+            
+            switch self.category {
+            case .heavy: return .twoHanded
+            case .light, .medium: return .oneHanded
+            }
         }
     }
-}
 
-class Weapon: Entity & Equippable, CustomStringConvertible {
     let attack: Int
     let damage: HitDie
     let range: Int
-    let wieldStyle: WieldStyle
+    let type: WeaponType
+    
+    var category: WeaponCategory { self.type.category }
+    var style: WieldStyle { self.type.wieldStyle }
     
     var equipmentSlot: EquipmentSlot { .mainhand }
     
@@ -37,15 +77,13 @@ class Weapon: Entity & Equippable, CustomStringConvertible {
         let damage = json["damage"] as! String
         self.damage = HitDie(rawValue: damage)!
         
-        let wield = json["wieldStyle"] as? String ?? "oneHanded"
-        self.wieldStyle = WieldStyle(rawValue: wield)
+        let weaponType = json["type"] as! String
+        self.type = WeaponType(rawValue: weaponType)
         
         super.init(json: json, entityFactory: entityFactory)
     }
     
-    static var none: Weapon { return self.init(json: ["damage": "0d0"], entityFactory: EntityFactory()) }
-    
-    static var fists: Weapon { return self.init(json: ["damage": "1d3"], entityFactory: EntityFactory()) }
+//    static var unarmed: Weapon { return self.init(json: ["damage": "1d3"], entityFactory: EntityFactory()) }
     
     var description: String {
         return "{ attack: \(attack), damage: \(damage) }"

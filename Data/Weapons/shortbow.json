@@ -3,5 +3,6 @@
     
     "AT": 0,
     "damage": "1d6",
+    "type": "shortbow",
     "range": 12
 }
