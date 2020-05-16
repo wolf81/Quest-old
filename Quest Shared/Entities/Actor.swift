@@ -38,7 +38,7 @@ class Actor: Entity {
     
     private(set) var healthBar: HealthBar!
                 
-    private(set) var inventory: Inventory = Inventory()
+    private let inventory: Inventory = Inventory()
 
     init(json: [String : Any], hitPoints: Int, armorClass: Int, skills: Skills, equipment: [Equippable], entityFactory: EntityFactory) {
         self.hitPoints = HitPoints(base: hitPoints)
@@ -139,4 +139,39 @@ extension Actor: HitPointsDelegate {
         let percentageHealth = CGFloat(current) / CGFloat(total)
         self.healthBar.update(health: percentageHealth)
     }
+}
+
+// MARK: Backpack handling
+
+extension Actor {
+    var backpackItemCount: Int { self.inventory.backpack.count }
+    
+    func backpackItem(at index: Int) -> Lootable { self.inventory.backpack[index] }
+
+    @discardableResult
+    func addToBackpack(_ loot: Lootable) -> Int { self.inventory.append(loot) }
+    
+    @discardableResult
+    func addToBackpack(_ loot: [Lootable]) -> Int { self.inventory.append(loot) }
+        
+    @discardableResult
+    func removeFromBackpack(at index: Int) -> Lootable { self.inventory.remove(at: index) }
+}
+
+// MARK: - Equipment handling
+
+extension Actor {
+    var equippedWeapon: Weapon { self.inventory.equippedItems[.leftArm] as? Weapon ?? Weapon.fists }
+    
+    var equippedArmor: Armor { self.inventory.equippedItems[.chest] as? Armor ?? Armor.none }
+    
+    var equippedShield: Shield { self.inventory.equippedItems[.rightArm] as? Shield ?? Shield.none }
+        
+    func equippedItem(in equipmentSlot: EquipmentSlot) -> Equippable? { self.inventory.equippedItem(in: equipmentSlot) }
+
+    @discardableResult
+    func equipFromBackpack(at index: Int) -> Bool { self.inventory.equip(at: index) }
+
+    @discardableResult
+    func unequip(_ equipmentSlot: EquipmentSlot) -> Bool { self.inventory.unequip(equipmentSlot) }
 }

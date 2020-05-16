@@ -2,6 +2,6 @@
     "name": "Quarterstaff",
     "sprite": "quarterstaff",
     
-    "damage": "1d8"
+    "damage": "1d6"
 }
 

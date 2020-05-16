@@ -25,7 +25,7 @@ class Hero: Actor, CustomStringConvertible {
     private var spell: Spell?
         
     override var meleeAttackBonus: Int {
-        var attackBonus = self.attributes.strength.bonus + self.inventory.weapon.attack
+        var attackBonus = self.attributes.strength.bonus + self.equippedWeapon.attack
         if self.role == .fighter {
             attackBonus += 1
             attackBonus += self.level % 5
@@ -34,7 +34,7 @@ class Hero: Actor, CustomStringConvertible {
     }
     
     override var rangedAttackBonus: Int {
-        var attackBonus = self.attributes.dexterity.bonus + self.inventory.weapon.attack
+        var attackBonus = self.attributes.dexterity.bonus + self.equippedWeapon.attack
         if self.role == .fighter {
             attackBonus += 1
             attackBonus += self.level % 5
@@ -44,18 +44,18 @@ class Hero: Actor, CustomStringConvertible {
         
     override func getMeleeAttackDamage(_ dieRoll: DieRoll) -> Int {
         self.attributes.strength.bonus + (dieRoll == .maximum
-            ? self.inventory.weapon.damage.maxValue
-            : self.inventory.weapon.damage.randomValue)
+            ? self.equippedWeapon.damage.maxValue
+            : self.equippedWeapon.damage.randomValue)
     }
     
     override func getRangedAttackDamage(_ dieRoll: DieRoll) -> Int {
         return dieRoll == .maximum
-            ? self.inventory.weapon.damage.maxValue
-            : self.inventory.weapon.damage.randomValue
+            ? self.equippedWeapon.damage.maxValue
+            : self.equippedWeapon.damage.randomValue
     }
 
     override var armorClass: Int {
-        10 + attributes.dexterity.bonus + self.inventory.armor.armorClass + self.inventory.shield.armorClass
+        10 + attributes.dexterity.bonus + self.equippedArmor.armorClass + self.equippedShield.armorClass
     }
     
     public init(name: String, race: Race, gender: Gender, role: Role, attributes: Attributes, skills: Skills, entityFactory: EntityFactory) {
@@ -94,6 +94,19 @@ class Hero: Actor, CustomStringConvertible {
     
     func attackRanged(actor: Actor) {
         self.rangedTarget = actor
+    }
+    
+    func useBackpackItem(at index: Int) {
+        let item = self.backpackItem(at: index)
+        
+        switch item {
+        case _ as Equippable:
+            self.equipFromBackpack(at: index)
+        case let item as Usable:
+            item.use(actor: self)
+            self.removeFromBackpack(at: index)
+        default: fatalError()
+        }
     }
     
     var description: String {

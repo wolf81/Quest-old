@@ -12,10 +12,10 @@ import GameplayKit
 class Monster: Actor, CustomStringConvertible {
     let hitDie: HitDie
                     
-    override var meleeAttackBonus: Int { self.inventory.weapon.attack }
+    override var meleeAttackBonus: Int { self.equippedWeapon.attack }
     
     override func getMeleeAttackDamage(_ dieRoll: DieRoll) -> Int {
-        dieRoll == .maximum ? self.inventory.weapon.damage.maxValue : self.inventory.weapon.damage.randomValue
+        dieRoll == .maximum ? self.equippedWeapon.damage.maxValue : self.equippedWeapon.damage.randomValue
     }
 
     required init(json: [String : Any], entityFactory: EntityFactory) {

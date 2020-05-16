@@ -50,7 +50,7 @@ class MoveAction: Action, StatusUpdatable {
             let position = GameScene.pointForCoord(coord)
             if let hero = self.actor as? Hero, let loot = game.getLoot(at: coord) {
                 game.remove(entity: loot)
-                hero.inventory.append(loot)
+                hero.addToBackpack(loot)
             }
             moves.append(SKAction.move(to: position, duration: MoveAction.stepDuration))
             self.duration += MoveAction.stepDuration            

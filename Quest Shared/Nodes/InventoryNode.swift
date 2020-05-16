@@ -69,22 +69,22 @@ class InventoryNode: SKShapeNode {
 
 extension InventoryNode: PaperDollNodeDelegate {
     func paperDoll(_ paperDoll: PaperDollNode, didUnequip equipmentSlot: EquipmentSlot) {
-        self.hero.inventory.unequip(equipmentSlot)
+        self.hero.unequip(equipmentSlot)
         reload()
     }
     
     func paperDoll(_ paperDoll: PaperDollNode, equipmentIn equipmentSlot: EquipmentSlot) -> Equippable? {
-        self.hero.inventory.equippedItem(in: equipmentSlot)
+        self.hero.equippedItem(in: equipmentSlot)
     }
 }
 
 extension InventoryNode: ListNodeDelegate {
     func listNodeNumberOfItems(listNode: ListNode) -> Int {
-        return self.hero.inventory.backpack.count
+        return self.hero.backpackItemCount
     }
     
     func listNode(_ listNode: ListNode, nodeAtIndex index: Int, size: CGSize) -> SKNode {
-        let item = self.hero.inventory.backpack[index]
+        let item = self.hero.backpackItem(at: index)
         
         let label = SKLabelNode(text: "\(item.name)")
         label.fontSize = 16
@@ -99,11 +99,7 @@ extension InventoryNode: ListNodeDelegate {
     }
     
     func listNode(_ listNode: ListNode, didSelectNode node: SKNode, atIndex index: Int) {
-        self.hero.inventory.equip(at: index)
-        
-        if let usableItem = self.hero.inventory.backpack[index] as? Usable {
-            usableItem.use(actor: self.hero)
-        }
+        self.hero.useBackpackItem(at: index)
         
         reload()
     }
