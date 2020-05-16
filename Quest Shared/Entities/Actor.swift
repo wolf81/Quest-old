@@ -156,6 +156,8 @@ extension Actor {
         
     @discardableResult
     func removeFromBackpack(at index: Int) -> Lootable { self.inventory.remove(at: index) }
+    
+    func useBackpackItem(at index: Int) { self.inventory.use(at: index, with: self) }
 }
 
 // MARK: - Equipment handling

@@ -95,20 +95,7 @@ class Hero: Actor, CustomStringConvertible {
     func attackRanged(actor: Actor) {
         self.rangedTarget = actor
     }
-    
-    func useBackpackItem(at index: Int) {
-        let item = self.backpackItem(at: index)
         
-        switch item {
-        case _ as Equippable:
-            self.equipFromBackpack(at: index)
-        case let item as Usable:
-            item.use(actor: self)
-            self.removeFromBackpack(at: index)
-        default: fatalError()
-        }
-    }
-    
     var description: String {
         return """
         \(self.name)

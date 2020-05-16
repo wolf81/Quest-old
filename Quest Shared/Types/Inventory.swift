@@ -89,6 +89,17 @@ class Inventory {
     var armor: Armor { self.equippedItems[.chest] as? Armor ?? Armor.none }
     
     var shield: Shield { self.equippedItems[.rightArm] as? Shield ?? Shield.none }
+    
+    func use(at index: Int, with actor: Actor) {
+        switch self.backpack[index] {
+        case _ as Equippable:
+            self.equip(at: index)
+        case let item as Usable:
+            item.use(actor: actor)
+            remove(at: index)
+        default: fatalError()
+        }
+    }
 }
 
 
