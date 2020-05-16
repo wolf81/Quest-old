@@ -3,5 +3,7 @@
     "sprite": "axe_blood",
     
     "AT": 3,
-	"damage": "1d8+2"	
+	"damage": "1d8+2",
+    
+    "wieldStyle": "towHanded"
 }

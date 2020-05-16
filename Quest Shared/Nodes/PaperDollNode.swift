@@ -32,8 +32,8 @@ class PaperDollNode: SKShapeNode {
     init(size: CGSize, backgroundColor: SKColor) {
         let itemSize = CGSize(width: 50, height: 50)
         self.chest = EquippedItemNode(size: itemSize, equipmentSlot: .chest)
-        self.leftArm = EquippedItemNode(size: itemSize, equipmentSlot: .leftArm)
-        self.rightArm = EquippedItemNode(size: itemSize, equipmentSlot: .rightArm)
+        self.leftArm = EquippedItemNode(size: itemSize, equipmentSlot: .mainhand)
+        self.rightArm = EquippedItemNode(size: itemSize, equipmentSlot: .offhand)
         
         let silhouetteTexture = SKTexture(imageNamed: "paper_doll")
         let silhouetteSize = CGSize(width: size.width - 30, height: size.height - 30)
@@ -83,8 +83,8 @@ class PaperDollNode: SKShapeNode {
     
     func reload() {        
         self.chest.equipment = self.delegate?.paperDoll(self, equipmentIn: .chest)
-        self.leftArm.equipment = self.delegate?.paperDoll(self, equipmentIn: .leftArm)
-        self.rightArm.equipment = self.delegate?.paperDoll(self, equipmentIn: .rightArm)
+        self.leftArm.equipment = self.delegate?.paperDoll(self, equipmentIn: .mainhand)
+        self.rightArm.equipment = self.delegate?.paperDoll(self, equipmentIn: .offhand)
     }
     
     // MARK: - Private

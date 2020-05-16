@@ -89,11 +89,11 @@ class Actor: Entity {
     }
     
     func getMeleeAttackDamage(_ dieRoll: DieRoll) -> Int {
-        dieRoll == .maximum ? self.inventory.weapon.damage.maxValue : self.inventory.weapon.damage.randomValue
+        dieRoll == .maximum ? self.equippedWeapon.damage.maxValue : self.equippedWeapon.damage.randomValue
     }
 
     func getRangedAttackDamage(_ dieRoll: DieRoll) -> Int {
-        dieRoll == .maximum ? self.inventory.weapon.damage.maxValue : self.inventory.weapon.damage.randomValue
+        dieRoll == .maximum ? self.equippedWeapon.damage.maxValue : self.equippedWeapon.damage.randomValue
     }
     
     func addTimeUnits(_ timeUnits: Int) {
@@ -153,22 +153,34 @@ extension Actor {
     @discardableResult
     func removeFromBackpack(at index: Int) -> Lootable { self.inventory.remove(at: index) }
     
-    func useBackpackItem(at index: Int) { self.inventory.use(at: index, with: self) }
+    func useBackpackItem(at index: Int) {
+        if let weapon = self.backpackItem(at: index) as? Weapon, weapon.wieldStyle == .twoHanded {
+            self.inventory.unequip(.offhand)
+        }
+
+        self.inventory.use(at: index, with: self)
+    }
 }
 
 // MARK: - Equipment handling
 
 extension Actor {
-    var equippedWeapon: Weapon { self.inventory.equippedItems[.leftArm] as? Weapon ?? Weapon.fists }
+    var equippedWeapon: Weapon { self.inventory.equippedItems[.mainhand] as? Weapon ?? Weapon.fists }
     
     var equippedArmor: Armor { self.inventory.equippedItems[.chest] as? Armor ?? Armor.none }
     
-    var equippedShield: Shield { self.inventory.equippedItems[.rightArm] as? Shield ?? Shield.none }
+    var equippedShield: Shield { self.inventory.equippedItems[.offhand] as? Shield ?? Shield.none }
         
     func equippedItem(in equipmentSlot: EquipmentSlot) -> Equippable? { self.inventory.equippedItem(in: equipmentSlot) }
 
-    @discardableResult
-    func equipFromBackpack(at index: Int) -> Bool { self.inventory.equip(at: index) }
+//    @discardableResult
+//    func equipFromBackpack(at index: Int) -> Bool {
+//        if let weapon = self.backpackItem(at: index) as? Weapon, weapon.wieldStyle == .twoHanded {
+//            self.inventory.unequip(.offhand)
+//        }
+//
+//        return self.inventory.equip(at: index)
+//    }
 
     @discardableResult
     func unequip(_ equipmentSlot: EquipmentSlot) -> Bool { self.inventory.unequip(equipmentSlot) }

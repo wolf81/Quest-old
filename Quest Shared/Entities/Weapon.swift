@@ -8,12 +8,27 @@
 
 import SpriteKit
 
+enum WieldStyle: String {
+    case oneHanded
+    case twoHanded
+//    case dual
+
+    init(rawValue: String) {
+        switch rawValue {
+        case "oneHanded": self = .oneHanded
+        case "towHanded": self = .twoHanded
+        default: fatalError()
+        }
+    }
+}
+
 class Weapon: Entity & Equippable, CustomStringConvertible {
     let attack: Int
     let damage: HitDie
     let range: Int
+    let wieldStyle: WieldStyle
     
-    var equipmentSlot: EquipmentSlot { .leftArm }
+    var equipmentSlot: EquipmentSlot { .mainhand }
     
     required init(json: [String : Any], entityFactory: EntityFactory) {
         self.attack = json["AT"] as? Int ?? 0
@@ -21,7 +36,10 @@ class Weapon: Entity & Equippable, CustomStringConvertible {
 
         let damage = json["damage"] as! String
         self.damage = HitDie(rawValue: damage)!
-                
+        
+        let wield = json["wieldStyle"] as? String ?? "oneHanded"
+        self.wieldStyle = WieldStyle(rawValue: wield)
+        
         super.init(json: json, entityFactory: entityFactory)
     }
     

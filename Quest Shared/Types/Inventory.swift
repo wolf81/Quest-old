@@ -18,7 +18,7 @@ class Inventory {
         if let equipment = self.backpack[index] as? Equippable {
             unequip(equipment.equipmentSlot)
 
-            remove(at: index)
+            remove(at: index)                        
             
             self.equippedItems[equipment.equipmentSlot] = equipment
             print("equip: \(equipment.name)")
@@ -83,13 +83,7 @@ class Inventory {
     subscript(index: Int) -> Lootable {
         return self.backpack[index]
     }
-    
-    var weapon: Weapon { self.equippedItems[.leftArm] as? Weapon ?? Weapon.fists }
-    
-    var armor: Armor { self.equippedItems[.chest] as? Armor ?? Armor.none }
-    
-    var shield: Shield { self.equippedItems[.rightArm] as? Shield ?? Shield.none }
-    
+        
     func use(at index: Int, with actor: Actor) {
         switch self.backpack[index] {
         case _ as Equippable:

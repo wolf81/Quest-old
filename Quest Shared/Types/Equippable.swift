@@ -11,8 +11,8 @@ import Foundation
 enum EquipmentSlot {
     case head
     case chest
-    case leftArm
-    case rightArm
+    case mainhand
+    case offhand
     case legs
 }
 
