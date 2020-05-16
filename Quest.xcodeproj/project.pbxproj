@@ -104,9 +104,6 @@
 		7963DE42239CEC6A00183DF2 /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE41239CEC6A00183DF2 /* Skill.swift */; };
 		7963DE43239CEC6A00183DF2 /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE41239CEC6A00183DF2 /* Skill.swift */; };
 		7963DE44239CEC6A00183DF2 /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE41239CEC6A00183DF2 /* Skill.swift */; };
-		7963DE4A239D092300183DF2 /* Equipment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE49239D092300183DF2 /* Equipment.swift */; };
-		7963DE4B239D092300183DF2 /* Equipment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE49239D092300183DF2 /* Equipment.swift */; };
-		7963DE4C239D092300183DF2 /* Equipment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE49239D092300183DF2 /* Equipment.swift */; };
 		7963DE4E239DD2D600183DF2 /* HitPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE4D239DD2D600183DF2 /* HitPoints.swift */; };
 		7963DE4F239DD2D600183DF2 /* HitPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE4D239DD2D600183DF2 /* HitPoints.swift */; };
 		7963DE50239DD2D600183DF2 /* HitPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE4D239DD2D600183DF2 /* HitPoints.swift */; };
@@ -256,7 +253,6 @@
 		7963DE39239CE12A00183DF2 /* Race.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Race.swift; sourceTree = "<group>"; };
 		7963DE3D239CE15700183DF2 /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
 		7963DE41239CEC6A00183DF2 /* Skill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skill.swift; sourceTree = "<group>"; };
-		7963DE49239D092300183DF2 /* Equipment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equipment.swift; sourceTree = "<group>"; };
 		7963DE4D239DD2D600183DF2 /* HitPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitPoints.swift; sourceTree = "<group>"; };
 		7963DE51239E3D2A00183DF2 /* ActionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionBar.swift; sourceTree = "<group>"; };
 		7963DE56239E456900183DF2 /* ActionBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionBarButton.swift; sourceTree = "<group>"; };
@@ -393,7 +389,6 @@
 				7963DE39239CE12A00183DF2 /* Race.swift */,
 				7963DE3D239CE15700183DF2 /* Role.swift */,
 				7963DE41239CEC6A00183DF2 /* Skill.swift */,
-				7963DE49239D092300183DF2 /* Equipment.swift */,
 				7963DE4D239DD2D600183DF2 /* HitPoints.swift */,
 				79742A69239E60A7008504E8 /* Gender.swift */,
 				79ACC81922AAB6F100AC3BF0 /* HitDice.swift */,
@@ -765,7 +760,6 @@
 				7914DD32246182120047EFB6 /* EntityDrawLayer.swift in Sources */,
 				798C997623A2060000C6EC1C /* MeleeAttackAction.swift in Sources */,
 				79ACC7F122AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
-				7963DE4A239D092300183DF2 /* Equipment.swift in Sources */,
 				79ACC81A22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
 				795746B322A7C59A00E04BEC /* Level.swift in Sources */,
 				7960DEC423A6082B00B4CDF8 /* Entity.swift in Sources */,
@@ -837,7 +831,6 @@
 				798C997723A2060000C6EC1C /* MeleeAttackAction.swift in Sources */,
 				79FC68F0244C4A8C00E6D63C /* CreateCharacterScene.swift in Sources */,
 				79ACC7F222AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
-				7963DE4B239D092300183DF2 /* Equipment.swift in Sources */,
 				79ACC81B22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
 				795746B422A7CA9800E04BEC /* Level.swift in Sources */,
 				7960DEC523A6082B00B4CDF8 /* Entity.swift in Sources */,
@@ -894,7 +887,6 @@
 				799EA0182450A8E600F690DC /* Visibility.swift in Sources */,
 				7960DEC923A6082B00B4CDF8 /* Shield.swift in Sources */,
 				7960DEBD23A6082B00B4CDF8 /* Monster.swift in Sources */,
-				7963DE4C239D092300183DF2 /* Equipment.swift in Sources */,
 				792467E9246D37D5000568A6 /* GameOverScene.swift in Sources */,
 				795746BD22A9029D00E04BEC /* Direction.swift in Sources */,
 				792467F1246E4360000568A6 /* Potion.swift in Sources */,

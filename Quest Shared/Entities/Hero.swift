@@ -62,8 +62,8 @@ class Hero: Actor, CustomStringConvertible {
         self.race = race
         self.role = role
                 
-        let equipment = Hero.initialEquipmentFor(role, entityFactory: entityFactory)
-        let backpack = Hero.initialBackpackFor(role, entityFactory: entityFactory)
+        let equipment = role.defaultEquipment(entityFactory: entityFactory)
+        let backpack = role.defaultBackpack(entityFactory: entityFactory)
         
         let hitPoints = HitDie.d6(1, 0).maxValue + attributes.strength.bonus // 1d6 + STR bonus per level, for first level use max health
         super.init(name: name, hitPoints: hitPoints, race: race, gender: gender, attributes: attributes, skills: skills, equipment: equipment, backpack: backpack, entityFactory: entityFactory)
@@ -142,56 +142,5 @@ class Hero: Actor, CustomStringConvertible {
         }
                              
         return nil
-    }
-        
-    private static func initialBackpackFor(_ role: Role, entityFactory: EntityFactory) -> [Lootable] {
-        let lootInfo = [
-            "weapon": "Battleaxe +3",
-        ]
-        
-        var loot: [Lootable] = []
-        for (typeName, itemName) in lootInfo {
-            let item = try! entityFactory.newEntity(typeName: typeName.capitalized, name: itemName) as! Lootable
-            loot.append(item)
-        }
-        
-        return loot
-    }
-    
-    private static func initialEquipmentFor(_ role: Role, entityFactory: EntityFactory) -> [Equippable] {
-        var equipmentInfo: [String: String] = [:]
-        
-        switch role {
-        case .fighter:
-            equipmentInfo = [
-                "armor": "Chainmail",
-                "weapon": "Longsword",
-                "shield": "Buckler"
-            ]
-        case .mage:
-            equipmentInfo = [
-                "armor": "Robe",
-                "weapon": "Quarterstaff",
-            ]
-        case .cleric:
-            equipmentInfo = [
-                "armor": "Chainmail",
-                "weapon": "Mace",
-                "shield": "Buckler"
-            ]
-        case .rogue:
-            equipmentInfo = [
-                "armor": "Studded Leather",
-                "weapon": "Shortsword",
-            ]
-        }
-        
-        var equipment: [Equippable] = []
-        for (typeName, itemName) in equipmentInfo {
-            let item = try! entityFactory.newEntity(typeName: typeName.capitalized, name: itemName) as! Equippable
-            equipment.append(item)
-        }
-        
-        return equipment
     }
 }

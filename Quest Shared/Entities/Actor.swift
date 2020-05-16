@@ -56,10 +56,8 @@ class Actor: Entity {
 
         self.healthBar = Actor.addHealthBar(sprite: self.sprite)
         
-        for equipmentItem in equipment {
-            self.inventory.equip(equipmentItem)
-            self.sprite.addChild(equipmentItem.sprite)
-        }
+        equipment.forEach({ self.inventory.equip($0 )})
+        updateSpriteForEquipment()
     }
     
     init(name: String, hitPoints: Int, race: Race, gender: Gender, attributes: Attributes, skills: Skills, equipment: [Equippable], backpack: [Lootable], entityFactory: EntityFactory) {
@@ -73,12 +71,10 @@ class Actor: Entity {
         
         self.healthBar = Actor.addHealthBar(sprite: self.sprite)
         
-        for equipmentItem in equipment {
-            self.inventory.equip(equipmentItem)
-            self.sprite.addChild(equipmentItem.sprite)
-        }
-        
         self.inventory.append(backpack)
+        
+        equipment.forEach({ self.inventory.equip($0 )})
+        updateSpriteForEquipment()
     }
     
     required init(json: [String : Any], entityFactory: EntityFactory) {
@@ -131,7 +127,7 @@ class Actor: Entity {
         healthBar.position = CGPoint(x: -(barWidth / 2), y: (sprite.frame.height / 2) + 4)
         sprite.addChild(healthBar)
         return healthBar
-    }        
+    }
 }
 
 extension Actor: HitPointsDelegate {
