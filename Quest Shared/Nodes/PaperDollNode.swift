@@ -100,7 +100,10 @@ class PaperDollNode: SKShapeNode {
                     return self.sprite.texture = nil
                 }
                 
-                let update = SKAction.setTexture(equipment.sprite.texture!, resize: false)
+                let update = SKAction.sequence([
+                    SKAction.setTexture(equipment.sprite.texture!, resize: true),
+                    SKAction.resize(toWidth: self.frame.width - 10, height: self.frame.height - 10, duration: 0)
+                ])
                 self.sprite.run(update)
             }
         }
