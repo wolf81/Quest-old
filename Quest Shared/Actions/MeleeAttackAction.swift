@@ -42,6 +42,10 @@ class MeleeAttackAction: Action, StatusUpdatable {
                 let damage = self.actor.getMeleeAttackDamage(.random)
                 status += "hit for \(damage) damage"
                 self.targetActor.hitPoints.remove(hitPoints: damage)
+                
+                if let hero = self.actor as? Hero, let monster = self.targetActor as? Monster, self.targetActor.hitPoints.current <= 0 {
+                    hero.experience += monster.hitDie.dieCount
+                }
             } else {
                 status += "miss"
             }

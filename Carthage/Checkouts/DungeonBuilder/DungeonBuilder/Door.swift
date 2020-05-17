@@ -7,8 +7,11 @@
 //
 
 import Foundation
+import SpriteKit
 
-struct Door {
+public struct Door {
+    public var coord: vector_int2 { return vector_int2(Int32(row), Int32(col)) }
+    
     var row: Int
     var col: Int
 //    var key: String

@@ -14,6 +14,8 @@ class Hero: Actor, CustomStringConvertible {
     
     override var level: Int { return 1 }
         
+    var experience: Int = 0
+    
     private var direction: Direction?
         
     private var path: [vector_int2]?

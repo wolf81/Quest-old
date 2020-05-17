@@ -91,7 +91,7 @@ open class DungeonBuilder {
     }
     
     private func collapseTunnel(in dungeon: Dungeon, position: Position, directionCloseInfo: [Direction: [CloseType: [Any]]]) {
-        if dungeon.node(at: position).isDisjoint(with: .openspace) {
+        if dungeon.getNodeAt(x: position.i, y: position.j).isDisjoint(with: .openspace) {
             return
         }
         
@@ -116,7 +116,7 @@ open class DungeonBuilder {
                 if let recurseInfo = directionCloseEndInfo[.recurse] as? [Int] {
                     let r = position.i + recurseInfo[0]
                     let c = position.j + recurseInfo[1]
-                    if !(0 ..< dungeon.n_rows).contains(r) || !(0 ..< dungeon.n_cols).contains(c) {
+                    if !(0 ..< dungeon.height).contains(r) || !(0 ..< dungeon.width).contains(c) {
                         continue
                     }
 
@@ -157,12 +157,12 @@ open class DungeonBuilder {
             return
         }
         
-        let mr = Float(mask.count) / Float(dungeon.n_rows)
-        let mc = Float(mask[0].count) / Float(dungeon.n_cols)
+        let mr = Float(mask.count) / Float(dungeon.height)
+        let mc = Float(mask[0].count) / Float(dungeon.width)
         
-        for r in 0 ..< dungeon.n_rows {
+        for r in 0 ..< dungeon.height {
             let rv = mask[Int(Float(r) * mr)]
-            for cv in 0 ..< dungeon.n_cols {
+            for cv in 0 ..< dungeon.width {
                 if rv[Int(Float(cv) * mc)] == 0 {
                     dungeon.nodes[r][cv] = .blocked
                 }
@@ -327,7 +327,7 @@ open class DungeonBuilder {
             }
         }
         
-        if room.south <= (dungeon.n_rows - 3) {
+        if room.south <= (dungeon.height - 3) {
             for c in stride(from: room.west, to: room.east, by: 2) {
                 let position = Position(i: room.south, j: c)
                 if let sill = checkSill(for: dungeon, roomId: roomId, position: position, direction: .south) {
@@ -345,7 +345,7 @@ open class DungeonBuilder {
             }
         }
         
-        if room.east <= (dungeon.n_cols - 3) {
+        if room.east <= (dungeon.width - 3) {
             for r in stride(from: room.north, to: room.south, by: 2) {
                 let position = Position(i: r, j: room.east)
                 if let sill = checkSill(for: dungeon, roomId: roomId, position: position, direction: .east) {
@@ -432,8 +432,8 @@ open class DungeonBuilder {
     }
     
     private func soundTunnel(in dungeon: Dungeon, origin: Position, destination: Position) -> Bool {
-        guard (0 ..< dungeon.n_rows).contains(destination.i) else { return false }
-        guard (0 ..< dungeon.n_cols).contains(destination.j) else { return false }
+        guard (0 ..< dungeon.height).contains(destination.i) else { return false }
+        guard (0 ..< dungeon.width).contains(destination.j) else { return false }
         
         let rowIdxs = [origin.i, destination.i].sorted()
         let colIdxs = [origin.j, destination.j].sorted()
@@ -526,8 +526,8 @@ open class DungeonBuilder {
         let c2 = (room.j + room.width) * 2 + 1
         
         guard
-            (r1 > 0 && r2 < dungeon.max_row) &&
-            (c1 > 0 && c2 < dungeon.max_col) else {
+            (r1 > 0 && r2 < dungeon.maxRowIndex) &&
+            (c1 > 0 && c2 < dungeon.maxColumnIndex) else {
             return
         }
         
@@ -646,7 +646,7 @@ open class DungeonBuilder {
     private func allocateRooms(for dungeon: Dungeon, roomSize: RoomSize) -> Int {
         let size = roomSize.size
         let radix = roomSize.radix
-        let dungeonArea = dungeon.n_cols * dungeon.n_rows
+        let dungeonArea = dungeon.width * dungeon.height
         let roomArea = (size + radix + 1) ^ 2
         var roomCount = Int(dungeonArea / roomArea) * 2
         if self.configuration.roomLayout == .sparse {

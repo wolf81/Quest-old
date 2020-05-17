@@ -87,16 +87,15 @@ final public class RaycastVisibility: Visibility {
         let errorInc = yLen * 2
         var error = -(xLen)
         let errorReset = xLen * 2
+        xLen -= 1
         while (xLen >= 0) {
-            xLen -= 1
-            
             index += xInc
             error += errorInc
             if (error > 0) {
                 error -= errorReset
                 index += yInc
             }
-            let x = index & 0xFFFF
+            let x = index & 0xffff
             let y = index >> 16
             if rangeLimit >= 0 && getDistance(origin.x, origin.y, x, y) > rangeLimit {
                 break

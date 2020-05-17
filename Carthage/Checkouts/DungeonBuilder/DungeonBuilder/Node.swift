@@ -12,31 +12,31 @@ public struct Node: OptionSet {
     public var rawValue: UInt
     
     // MARK: - singular values
-    static let nothing = Node(rawValue: 0)
-    static let blocked = Node(rawValue: 1 << 0)
-    static let room = Node(rawValue: 1 << 1)
-    static let corridor = Node(rawValue: 1 << 2)
-    static let perimeter = Node(rawValue: 1 << 3)
-    static let entrance = Node(rawValue: 1 << 4)
-    static let roomId = Node(rawValue: (1 << 16) - (1 << 6))
-    static let arch = Node(rawValue: 1 << 16)
-    static let door = Node(rawValue: 1 << 17)
-    static let locked = Node(rawValue: 1 << 18)
-    static let trapped = Node(rawValue: 1 << 19)
-    static let secret = Node(rawValue: 1 << 20)
-    static let portcullis = Node(rawValue: 1 << 21)
-    static let stairDown = Node(rawValue: 1 << 22)
-    static let stairUp = Node(rawValue: 1 << 23)
-    static let label = Node(rawValue: (1 << 32) - (1 << 24))
+    public static let nothing = Node(rawValue: 0)
+    public static let blocked = Node(rawValue: 1 << 0)
+    public static let room = Node(rawValue: 1 << 1)
+    public static let corridor = Node(rawValue: 1 << 2)
+    public static let perimeter = Node(rawValue: 1 << 3)
+    public static let entrance = Node(rawValue: 1 << 4)
+    public static let roomId = Node(rawValue: (1 << 16) - (1 << 6))
+    public static let arch = Node(rawValue: 1 << 16)
+    public static let door = Node(rawValue: 1 << 17)
+    public static let locked = Node(rawValue: 1 << 18)
+    public static let trapped = Node(rawValue: 1 << 19)
+    public static let secret = Node(rawValue: 1 << 20)
+    public static let portcullis = Node(rawValue: 1 << 21)
+    public static let stairDown = Node(rawValue: 1 << 22)
+    public static let stairUp = Node(rawValue: 1 << 23)
+    public static let label = Node(rawValue: (1 << 32) - (1 << 24))
     
     // MARK: - compound values
-    static let openspace: Node = [.room, .corridor]
-    static let doorspace: Node = [.arch, .door, .locked, .trapped, .secret, .portcullis]
-    static let espace: Node = [.entrance, .doorspace, .label]
-    static let stairs: Node = [.stairUp, .stairDown]
-    static let blockRoom: Node = [.blocked, .room]
-    static let blockCorr: Node = [.blocked, .perimeter, .corridor]
-    static let blockDoor: Node = [.blocked, .doorspace]
+    public static let openspace: Node = [.room, .corridor]
+    public static let doorspace: Node = [.arch, .door, .locked, .trapped, .secret, .portcullis]
+    public static let espace: Node = [.entrance, .doorspace, .label]
+    public static let stairs: Node = [.stairUp, .stairDown]
+    public static let blockRoom: Node = [.blocked, .room]
+    public static let blockCorr: Node = [.blocked, .perimeter, .corridor]
+    public static let blockDoor: Node = [.blocked, .doorspace]
     
     // MARK: - Constructors
     

@@ -292,8 +292,10 @@ class Game {
         self.tileSize = tileSize
         
         self.visibility = RaycastVisibility(mapSize: CGSize(width: Int(self.level.width), height: Int(self.level.height)), blocksLight: { (x, y) -> (Bool) in
-            self.level.getTileAt(coord: vector2(x, y)) == 1
+            let tile = self.level.getTileAt(coord: vector2(x, y))
+            return tile != 0
         }, setVisible: { (x, y) in
+//            print("set visible: \(x).\(y)")
             let tileIdx = Int(y * self.level.width + x)
             let tile = self.tiles[tileIdx]
             tile.didExplore = true
@@ -311,6 +313,8 @@ class Game {
         var entities: [Entity] = []
         var tiles: [Tile] = []
         var fogTiles: [FogTile] = []
+        
+        var didAddHero = false
         
         for y in (0 ..< self.level.height) {
             for x in (0 ..< self.level.width) {
@@ -335,26 +339,29 @@ class Game {
                 let fogTile = FogTile(json: [:], coord: coord)
                 fogTiles.append(fogTile)
                 
-                if tile == 3 {
+                if !didAddHero, let room = level.getRoomId(coord: coord) {
+                    print("hero added to room: \(room)")
                     self.hero.coord = coord
                     entities.append(self.hero)
                     print(self.hero)
+                    
+                    didAddHero = true
                 }
 
-                let monsterCoords = [vector_int2(8, 6), vector_int2(18, 3), vector_int2(22, 8)]
-                for monsterCoord in monsterCoords where monsterCoord == coord {
-                    let idx = monsterCoords.firstIndex(where: { $0 == coord })!
-                    let isEven = idx.remainderReportingOverflow(dividingBy: 2).partialValue == 0
-                    let monster = try! entityFactory.newEntity(type: Monster.self, name: isEven ? "Gnoll" : "Skeleton", coord: monsterCoord)
-                    entities.append(monster)
-                    print(monster)
-                }
-                
-                let potionCoords = [vector_int2(4, 4)]
-                for potionCoord in potionCoords where potionCoord == coord {
-                    let potion = try! entityFactory.newEntity(type: Potion.self, name: "Health Potion", coord: potionCoord)
-                    entities.append(potion)
-                }
+//                let monsterCoords = [vector_int2(8, 6), vector_int2(18, 3), vector_int2(22, 8)]
+//                for monsterCoord in monsterCoords where monsterCoord == coord {
+//                    let idx = monsterCoords.firstIndex(where: { $0 == coord })!
+//                    let isEven = idx.remainderReportingOverflow(dividingBy: 2).partialValue == 0
+//                    let monster = try! entityFactory.newEntity(type: Monster.self, name: isEven ? "Gnoll" : "Skeleton", coord: monsterCoord)
+//                    entities.append(monster)
+//                    print(monster)
+//                }
+//
+//                let potionCoords = [vector_int2(4, 4)]
+//                for potionCoord in potionCoords where potionCoord == coord {
+//                    let potion = try! entityFactory.newEntity(type: Potion.self, name: "Health Potion", coord: potionCoord)
+//                    entities.append(potion)
+//                }
             }
         }
         
@@ -497,6 +504,8 @@ class Game {
     }
         
     func updateFogTilesVisibilityForHero() {
+        print("visible tile count: \(self.visibleTileCoords.count)")
+        
         let range = Int32(self.hero.sight + 1)
         let x1 = max(self.hero.coord.x - range, 0)
         let x2 = min(self.hero.coord.x + range + 1, Int32(self.level.width))
