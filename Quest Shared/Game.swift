@@ -129,7 +129,7 @@ class Game {
         let movementGraph = GKGridGraph(fromGridStartingAt: vector_int2(xRange.lowerBound, yRange.lowerBound), width: width, height: height, diagonalsAllowed: false)
         for x in movementGraph.gridOrigin.x ..< (movementGraph.gridOrigin.x + Int32(movementGraph.gridWidth)) {
             for y in movementGraph.gridOrigin.y ..< (movementGraph.gridOrigin.y + Int32(movementGraph.gridHeight)) {
-                let coord = vector_int2(x, y)
+                let coord = vector_int2(x, self.level.height - 1 - y)
 
                 if isInRange(origin: actor.coord, radius: range, coord: coord) == false || getTile(at: coord) == 1 {
                     if let node = movementGraph.node(atGridPosition: coord) {
@@ -161,9 +161,15 @@ class Game {
     func isHeroVisible(for actor: Actor) -> Bool {
         guard self.hero.isAlive else { return false }
         
-        let xRange = getRange(position: actor.coord.x, radius: actor.sight, constrainedTo: 0 ..< self.level.width)
-        let yRange = getRange(position: actor.coord.y, radius: actor.sight, constrainedTo: 0 ..< self.level.height)
-        return xRange.contains(self.hero.coord.x) && yRange.contains(self.hero.coord.y)
+        let x1 = actor.coord.x
+        let y1 = actor.coord.y
+        
+        let x2 = self.hero.coord.x
+        let y2 = self.hero.coord.y
+        
+        let x = pow(Float(x2 - x1), 2)
+        let y = pow(Float(y2 - y1), 2)
+        return Int(sqrt(x + y)) <= actor.sight        
     }
     
     private func getVisiblityGraph(for actor: Actor) -> GKGridGraph<GKGridGraphNode> {
@@ -340,7 +346,8 @@ class Game {
                 fogTiles.append(fogTile)
                 
                 if !didAddHero, let room = level.getRoomId(coord: coord) {
-                    print("hero added to room: \(room)")
+                    print("level size: \(self.level.width) x \(self.level.height)")
+                    print("hero added to room: \(room) @ \(coord.x).\(coord.y)")
                     self.hero.coord = coord
                     entities.append(self.hero)
                     print(self.hero)
@@ -363,6 +370,19 @@ class Game {
 //                    entities.append(potion)
 //                }
             }
+        }
+        
+        var monsterCount = 0
+        for (roomId, room) in self.level.getRoomInfo() {
+            // TODO: fix room coord calc in DungeonBuilder, so we don't have to do the following to get good coords ...
+            let roomCoord = vector_int2(room.coord.y * 2 + 1, self.level.width - 1 - (room.coord.x * 2 + 1))
+            
+            print("\(roomId): \(room.coord.x).\( room.coord.y) -> \(roomCoord.x).\(roomCoord.y)")
+            let isEven = monsterCount.remainderReportingOverflow(dividingBy: 2).partialValue == 0
+            let monster = try! entityFactory.newEntity(type: Monster.self, name: isEven ? "Gnoll" : "Skeleton", coord: roomCoord)
+            entities.append(monster)
+            
+            monsterCount += 1
         }
         
         self.fogTiles = fogTiles
@@ -406,7 +426,7 @@ class Game {
             switch (action, action.actor) {
             case is (MoveAction, Monster):
                 let isMonsterInRangeOfHero = visibleTileCoords.contains(action.actor.coord)
-                action.actor.sprite.alpha = isMonsterInRangeOfHero ? 1.0 : 0.0
+//                action.actor.sprite.alpha = isMonsterInRangeOfHero ? 1.0 : 0.0
             case is (MoveAction, Hero):
                 let newVisibleTileCoords = self.visibleTileCoords
                 let removedTileCoords = visibleTileCoords.subtracting(newVisibleTileCoords)
@@ -504,8 +524,6 @@ class Game {
     }
         
     func updateFogTilesVisibilityForHero() {
-        print("visible tile count: \(self.visibleTileCoords.count)")
-        
         let range = Int32(self.hero.sight + 1)
         let x1 = max(self.hero.coord.x - range, 0)
         let x2 = min(self.hero.coord.x + range + 1, Int32(self.level.width))
