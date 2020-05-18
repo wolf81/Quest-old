@@ -160,6 +160,10 @@ class GameScene: SKScene, SceneManagerConstructable {
         return position
     }
     
+    private func coordForCameraPosition() -> vector_int2 {
+        return GameScene.coordForPoint(self.camera!.position)
+    }
+    
     fileprivate func toggleInventory() {
         if self.characterInfo != nil { toggleCharacterInfo() }
         
@@ -200,6 +204,46 @@ func isInRange(origin: vector_int2, radius: Int32, coord: vector_int2) -> Bool {
 
 extension GameScene: GameDelegate {
     func gameDidMove(hero: Hero, path: [vector_int2], duration: TimeInterval) {
+        let halfWidth = self.size.width / 2
+        let minX = self.camera!.position.x - halfWidth
+        let maxX = self.camera!.position.x + halfWidth
+        let halfHeight = self.size.height / 2
+        let minY = self.camera!.position.y - halfHeight
+        let maxY = self.camera!.position.y + halfHeight
+        let min = GameScene.coordForPoint(CGPoint(x: minX, y: minY))
+        let max = GameScene.coordForPoint(CGPoint(x: maxX, y: maxY))
+                
+        let xRange = Int32(min.x) ... Int32(max.x + 1)
+        let yRange = Int32(min.y) ... Int32(max.y + 1)
+        print("x: \(xRange)")
+        print("y: \(yRange)")
+        let visibleTiles = self.game.tiles.filter({ xRange.contains($0.coord.x) && yRange.contains($0.coord.y) })
+        let visibleEntities = self.game.entities.filter({ xRange.contains($0.coord.x) && yRange.contains($0.coord.y) })
+                
+        for child in self.world.children {
+            if child != self.playerCamera {
+                child.removeFromParent()
+            }
+        }
+        
+        for tile in visibleTiles {
+            self.world.addChild(tile.sprite)
+        }
+        
+        for entity in visibleEntities {
+            self.world.addChild(entity.sprite)
+        }
+        
+        var count = 0
+//            if xRange.contains(tile.coord.x) && yRange.contains(tile.coord.y) {
+//                print("add: \(tile.coord)")
+//                count += 1
+//            }
+        print("visibileEntities: \(visibleEntities.count)")
+        print("render nodes: \(min.x).\(min.y) ... \(max.x).\(max.y)")
+        
+        let cameraCoord = coordForCameraPosition()
+        print("camera coord: \(cameraCoord.x).\(cameraCoord.y)")
         moveCamera(path: path, duration: duration)
     }
     
