@@ -38,7 +38,7 @@ enum SelectionMode {
 }
 
 class Game {
-    private var level: Level!
+    public var level: Level!
     
     public weak var delegate: GameDelegate?
     
@@ -69,7 +69,7 @@ class Game {
     private(set) var entities: [Entity] = []
         
     // level tiles used for walls, floor, etc...
-    private(set) var tiles: [Tile] = []
+    private(set) var tiles: [[Tile]] = []
 
     // tiles used for the fog of war
     private(set) var fogTiles: [FogTile] = []
@@ -199,6 +199,7 @@ class Game {
     // MARK: - Public
     
     func showMovementTilesForHero() {
+        /*
         guard self.actors[self.activeActorIdx] == self.hero && self.isBusy == false else { return }
 
         if selectionMode.isSelection { hideSelectionTiles() }
@@ -228,6 +229,7 @@ class Game {
         }
         
         self.selectionMode = .selectDestinationTile
+         */
     }
     
     func showTargetTilesForSpellType<T: Spell>(spellType: T.Type) {
@@ -262,6 +264,7 @@ class Game {
     }
     
     func showMeleeAttackTilesForHero() {
+        /*
         guard self.actors[self.activeActorIdx] == self.hero && self.isBusy == false else { return }
 
         if selectionMode.isSelection { hideSelectionTiles() }
@@ -279,11 +282,12 @@ class Game {
         }
         
         self.selectionMode = .selectMeleeTarget
+         */
     }
         
     private func hideSelectionTiles() {
+        /*
         guard self.selectionMode.isSelection else { return }
-        
         let tiles = self.tiles.filter({ $0 is OverlayTile })
 
         self.tiles.removeAll(where: { tiles.contains($0 )})
@@ -291,6 +295,7 @@ class Game {
         tiles.forEach({ self.delegate?.gameDidRemove(entity: $0) })
         
         self.selectionMode = .none
+         */
     }
     
     func start(levelIdx: Int = 0, tileSize: CGSize) {
@@ -304,14 +309,13 @@ class Game {
             return tile != 0
         }, setVisible: { (x, y) in
 //            print("set visible: \(x).\(y)")
-            let tileIdx = Int(y * self.level.width + x)
-            let tile = self.tiles[tileIdx]
+            let tile = self.tiles[Int(x)][Int(y)]
             tile.didExplore = true
             
             self.visibleTileCoords.insert(vector_int2(x, y))
             
-            let fogTile = self.fogTiles[tileIdx]
-            fogTile.sprite.alpha = 0.0
+//            let fogTile = self.fogTiles[tileIdx]
+//            fogTile.sprite.alpha = 0.0
         }, getDistance: { (x1, y1, x2, y2) -> Int in
             let x = pow(Float(x2 - x1), 2)
             let y = pow(Float(y2 - y1), 2)
@@ -319,12 +323,14 @@ class Game {
         })
         
         var entities: [Entity] = []
-        var tiles: [Tile] = []
+        var tiles: [[Tile]] = []
         var fogTiles: [FogTile] = []
         
         var didAddHero = false
-        
+                
         for y in (0 ..< self.level.height) {
+            var tileRow: [Tile] = []
+            
             for x in (0 ..< self.level.width) {
                 let coord = vector_int2(Int32(x), Int32(y))
                 let tile = self.level[coord]
@@ -339,7 +345,7 @@ class Game {
                 }
 
                 if let entity = entity {
-                    tiles.append(entity as! Tile)
+                    tileRow.append(entity as! Tile)
                 } else {
                     // TODO: Add dummy entity to indicate missing content?
                 }
@@ -363,6 +369,7 @@ class Game {
 //                    entities.append(potion)
 //                }
             }
+            tiles.append(tileRow)
         }
         
         var monsterCount = 0
@@ -517,7 +524,7 @@ class Game {
     }
         
     func updateFogTilesVisibilityForHero() {
-        return
+        /*
         let range = Int32(self.hero.sight + 1)
         let x1 = max(self.hero.coord.x - range, 0)
         let x2 = min(self.hero.coord.x + range + 1, Int32(self.level.width))
@@ -534,5 +541,6 @@ class Game {
 
         self.visibleTileCoords.removeAll()
         self.visibility.compute(origin: self.hero.coord, rangeLimit: self.hero.sight)
+         */
     }
 }

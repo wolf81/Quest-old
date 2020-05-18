@@ -94,10 +94,12 @@ class GameScene: SKScene, SceneManagerConstructable {
         
         self.backgroundColor = SKColor.black
         
-        for tile in self.game.tiles {
-            let position = GameScene.pointForCoord(tile.coord)
-            tile.sprite.position = position
-            self.world.addChild(tile.sprite)
+        for tileRow in self.game.tiles {
+            for tile in tileRow {
+                let position = GameScene.pointForCoord(tile.coord)
+                tile.sprite.position = position
+                self.world.addChild(tile.sprite)
+            }
         }
 
         for entity in self.game.entities {
@@ -210,41 +212,44 @@ extension GameScene: GameDelegate {
         let halfHeight = self.size.height / 2
         let minY = self.camera!.position.y - halfHeight
         let maxY = self.camera!.position.y + halfHeight
-        let min = GameScene.coordForPoint(CGPoint(x: minX, y: minY))
-        let max = GameScene.coordForPoint(CGPoint(x: maxX, y: maxY))
+        let minCoord = GameScene.coordForPoint(CGPoint(x: minX, y: minY))
+        let maxCoord = GameScene.coordForPoint(CGPoint(x: maxX, y: maxY))
                 
-        let xRange = Int32(min.x) ... Int32(max.x + 1)
-        let yRange = Int32(min.y) ... Int32(max.y + 1)
+        let xRange = Int32(minCoord.x) ... Int32(maxCoord.x)
+        let yRange = Int32(minCoord.y) ... Int32(maxCoord.y)
         print("x: \(xRange)")
         print("y: \(yRange)")
-        let visibleTiles = self.game.tiles.filter({ xRange.contains($0.coord.x) && yRange.contains($0.coord.y) })
+//        let visibleTiles = self.game.tiles.filter({ xRange.contains($0.coord.x) && yRange.contains($0.coord.y) })
         let visibleEntities = self.game.entities.filter({ xRange.contains($0.coord.x) && yRange.contains($0.coord.y) })
                 
+        let y1: Int = max(Int(minCoord.y - 1), 0)
+        let y2: Int = min(Int(maxCoord.y + 1), Int(self.game.level.height))
+        
+        let x1: Int = max(Int(minCoord.x - 1), 0)
+        let x2: Int = min(Int(maxCoord.x + 1), Int(self.game.level.width))
         for child in self.world.children {
             if child != self.playerCamera {
                 child.removeFromParent()
             }
         }
         
-        for tile in visibleTiles {
-            self.world.addChild(tile.sprite)
+        for y in y1 ... y2 {
+            for x in x1 ... x2 {
+                let tile = self.game.tiles[y][x]
+                self.world.addChild(tile.sprite)
+            }
         }
         
         for entity in visibleEntities {
             self.world.addChild(entity.sprite)
         }
         
-        var count = 0
-//            if xRange.contains(tile.coord.x) && yRange.contains(tile.coord.y) {
-//                print("add: \(tile.coord)")
-//                count += 1
-//            }
         print("visibileEntities: \(visibleEntities.count)")
-        print("render nodes: \(min.x).\(min.y) ... \(max.x).\(max.y)")
+        print("render nodes: \(minCoord.x).\(minCoord.y) ... \(maxCoord.x).\(maxCoord.y)")
         
         let cameraCoord = coordForCameraPosition()
         print("camera coord: \(cameraCoord.x).\(cameraCoord.y)")
-        moveCamera(path: path, duration: duration)
+        moveCamera(path: path, duration: 0.2)
     }
     
     func gameDidAdd(entity: EntityProtocol) {
