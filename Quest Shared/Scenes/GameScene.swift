@@ -223,10 +223,10 @@ extension GameScene: GameDelegate {
         let visibleEntities = self.game.entities.filter({ xRange.contains($0.coord.x) && yRange.contains($0.coord.y) })
                 
         let y1: Int = max(Int(minCoord.y - 1), 0)
-        let y2: Int = min(Int(maxCoord.y + 1), Int(self.game.level.height))
+        let y2: Int = min(Int(maxCoord.y + 1), Int(self.game.level.height - 1))
         
         let x1: Int = max(Int(minCoord.x - 1), 0)
-        let x2: Int = min(Int(maxCoord.x + 1), Int(self.game.level.width))
+        let x2: Int = min(Int(maxCoord.x + 1), Int(self.game.level.width - 1))
         for child in self.world.children {
             if child != self.playerCamera {
                 child.removeFromParent()
