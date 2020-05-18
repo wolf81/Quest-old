@@ -185,6 +185,11 @@ class GameScene: SKScene, SceneManagerConstructable {
             self.characterInfo = characterInfo
         }
     }
+    
+    fileprivate func dismissCharacterInfoAndInventory() {
+        if self.characterInfo != nil { toggleCharacterInfo() }
+        if self.inventory != nil { toggleInventory() }
+    }
 }
 
 func isInRange(origin: vector_int2, radius: Int32, coord: vector_int2) -> Bool {
@@ -291,7 +296,7 @@ extension GameScene {
         debugPrint(event.keyCode)
                 
         switch event.keyCode {
-        case /* esc  */ 53: if self.inventory != nil { toggleInventory() }
+        case /* esc  */ 53: dismissCharacterInfoAndInventory()
         case /* a, ← */ 0, 123: self.game.movePlayer(direction: .left)
         case /* d, → */ 2, 124: self.game.movePlayer(direction: .right)
         case /* s, ↓ */ 1, 125: self.game.movePlayer(direction: .down)

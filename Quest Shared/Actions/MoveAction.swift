@@ -36,39 +36,23 @@ class MoveAction: Action, StatusUpdatable {
     }
     
     override func perform(game: Game, completion: @escaping () -> Void) -> Bool {
-        guard self.actor.sprite.action(forKey: AnimationKey.move) == nil else {
-            return false
-        }
-        
         defer {
             self.actor.subtractTimeUnits(self.timeUnitCost)
         }
                 
-        self.duration = 0
-        var moves: [SKAction] = []
         for coord in self.path {
             let position = GameScene.pointForCoord(coord)
             if let hero = self.actor as? Hero, let loot = game.getLoot(at: coord) {
                 game.remove(entity: loot)
                 hero.addToBackpack(loot)
             }
-            moves.append(SKAction.move(to: position, duration: MoveAction.stepDuration))
-            self.duration += MoveAction.stepDuration            
+            self.actor.coord = self.toCoord
+            self.actor.sprite.position = GameScene.pointForCoord(self.actor.coord)
         }
 
         self.message = "\(self.actor.name) moved to \(self.toCoord.x).\(self.toCoord.y)"
 
-        let move = SKAction.sequence([
-            SKAction.sequence(moves),
-            SKAction.run {
-                self.actor.coord = self.toCoord
-                
-                DispatchQueue.main.async {
-                    completion()
-                }
-            }
-        ])
-        self.actor.sprite.run(move, withKey: AnimationKey.move)
+        completion()
         
         return true
     }
