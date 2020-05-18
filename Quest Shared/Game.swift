@@ -129,7 +129,7 @@ class Game {
         let movementGraph = GKGridGraph(fromGridStartingAt: vector_int2(xRange.lowerBound, yRange.lowerBound), width: width, height: height, diagonalsAllowed: false)
         for x in movementGraph.gridOrigin.x ..< (movementGraph.gridOrigin.x + Int32(movementGraph.gridWidth)) {
             for y in movementGraph.gridOrigin.y ..< (movementGraph.gridOrigin.y + Int32(movementGraph.gridHeight)) {
-                let coord = vector_int2(x, self.level.height - 1 - y)
+                let coord = vector_int2(x, y)
 
                 if isInRange(origin: actor.coord, radius: range, coord: coord) == false || getTile(at: coord) == 1 {
                     if let node = movementGraph.node(atGridPosition: coord) {
@@ -385,7 +385,7 @@ class Game {
             monsterCount += 1
         }
         
-        self.fogTiles = fogTiles
+        self.fogTiles = [] // fogTiles
         self.tiles = tiles
         self.entities = entities
         
@@ -524,6 +524,7 @@ class Game {
     }
         
     func updateFogTilesVisibilityForHero() {
+        return
         let range = Int32(self.hero.sight + 1)
         let x1 = max(self.hero.coord.x - range, 0)
         let x2 = min(self.hero.coord.x + range + 1, Int32(self.level.width))
