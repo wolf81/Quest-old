@@ -89,7 +89,7 @@ class Game {
     
     // get a value for a tile at a coordinate, can be nil when out of range and is otherwise some integer value that represents a wall, floor or other scenery
     func getTile(at coord: vector_int2) -> Int? {
-        self.level.getTileAt(coord: coord)
+        self.level[coord]
     }
     
     func getActor(at coord: vector_int2) -> Actor? {
@@ -295,10 +295,12 @@ class Game {
     
     func start(levelIdx: Int = 0, tileSize: CGSize) {
         self.level = Level()
+        print(self.level!)
+        
         self.tileSize = tileSize
         
         self.visibility = RaycastVisibility(mapSize: CGSize(width: Int(self.level.width), height: Int(self.level.height)), blocksLight: { (x, y) -> (Bool) in
-            let tile = self.level.getTileAt(coord: vector2(x, y))
+            let tile = self.level[vector2(x, y)]
             return tile != 0
         }, setVisible: { (x, y) in
 //            print("set visible: \(x).\(y)")
@@ -325,7 +327,7 @@ class Game {
         for y in (0 ..< self.level.height) {
             for x in (0 ..< self.level.width) {
                 let coord = vector_int2(Int32(x), Int32(y))
-                let tile = self.level.getTileAt(coord: coord)
+                let tile = self.level[coord]
                 var entity: EntityProtocol?
 
                 switch tile {
@@ -345,7 +347,7 @@ class Game {
                 let fogTile = FogTile(json: [:], coord: coord)
                 fogTiles.append(fogTile)
                 
-                if !didAddHero, let room = level.getRoomId(coord: coord) {
+                if !didAddHero, let room = level.getRoomId(at: coord) {
                     print("level size: \(self.level.width) x \(self.level.height)")
                     print("hero added to room: \(room) @ \(coord.x).\(coord.y)")
                     self.hero.coord = coord
@@ -355,15 +357,6 @@ class Game {
                     didAddHero = true
                 }
 
-//                let monsterCoords = [vector_int2(8, 6), vector_int2(18, 3), vector_int2(22, 8)]
-//                for monsterCoord in monsterCoords where monsterCoord == coord {
-//                    let idx = monsterCoords.firstIndex(where: { $0 == coord })!
-//                    let isEven = idx.remainderReportingOverflow(dividingBy: 2).partialValue == 0
-//                    let monster = try! entityFactory.newEntity(type: Monster.self, name: isEven ? "Gnoll" : "Skeleton", coord: monsterCoord)
-//                    entities.append(monster)
-//                    print(monster)
-//                }
-//
 //                let potionCoords = [vector_int2(4, 4)]
 //                for potionCoord in potionCoords where potionCoord == coord {
 //                    let potion = try! entityFactory.newEntity(type: Potion.self, name: "Health Potion", coord: potionCoord)
@@ -373,13 +366,9 @@ class Game {
         }
         
         var monsterCount = 0
-        for (roomId, room) in self.level.getRoomInfo() {
+        for (roomId, room) in self.level.roomInfo {
             // TODO: fix room coord calc in DungeonBuilder, so we don't have to do the following to get good coords ...
-            let xOffset = Int32((room.width * 2 + 1) / 2)
-            let yOffset = Int32((room.height * 2 + 1) / 2)
-            let x = room.coord.y * 2 + 1 + xOffset
-            let y = self.level.width - 1 - (room.coord.x * 2 + 1) - yOffset
-            let roomCoord = vector_int2(x, y)
+            let roomCoord = vector_int2(Int32(room.coord.x + room.width / 2), Int32(room.coord.y + room.height / 2))
             
             print("\(roomId): \(room.coord.x).\( room.coord.y) -> \(roomCoord.x).\(roomCoord.y)")
             let isEven = monsterCount.remainderReportingOverflow(dividingBy: 2).partialValue == 0
