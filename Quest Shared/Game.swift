@@ -375,7 +375,11 @@ class Game {
         var monsterCount = 0
         for (roomId, room) in self.level.getRoomInfo() {
             // TODO: fix room coord calc in DungeonBuilder, so we don't have to do the following to get good coords ...
-            let roomCoord = vector_int2(room.coord.y * 2 + 1, self.level.width - 1 - (room.coord.x * 2 + 1))
+            let xOffset = Int32((room.width * 2 + 1) / 2)
+            let yOffset = Int32((room.height * 2 + 1) / 2)
+            let x = room.coord.y * 2 + 1 + xOffset
+            let y = self.level.width - 1 - (room.coord.x * 2 + 1) - yOffset
+            let roomCoord = vector_int2(x, y)
             
             print("\(roomId): \(room.coord.x).\( room.coord.y) -> \(roomCoord.x).\(roomCoord.y)")
             let isEven = monsterCount.remainderReportingOverflow(dividingBy: 2).partialValue == 0
