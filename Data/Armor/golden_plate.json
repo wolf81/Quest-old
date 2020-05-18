@@ -1,0 +1,7 @@
+{
+    "name": "Golden Plate",
+    "sprite": "armor_mummy",
+    
+    "AC": 7,
+    "type": "heavy"
+}

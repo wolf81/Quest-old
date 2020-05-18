@@ -44,14 +44,17 @@ enum Role: String, Codable {
     
     func defaultBackpack(entityFactory: EntityFactory) -> [Lootable] {
         let lootInfo = [
-            "weapon": "Battleaxe +3",
-            "armor": "Chainmail",
+            "weapon": ["Battleaxe +3"],
+            "armor": ["Golden Plate"],
+            "potion": ["Health Potion", "Health Potion", "Health Potion"]
         ]
         
         var loot: [Lootable] = []
-        for (typeName, itemName) in lootInfo {
-            let item = try! entityFactory.newEntity(typeName: typeName.capitalized, name: itemName) as! Lootable
-            loot.append(item)
+        for (typeName, itemNames) in lootInfo {
+            for itemName in itemNames {
+                let item = try! entityFactory.newEntity(typeName: typeName.capitalized, name: itemName) as! Lootable
+                loot.append(item)
+            }
         }
         
         return loot
