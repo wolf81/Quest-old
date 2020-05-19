@@ -193,6 +193,21 @@ func isInRange(origin: vector_int2, radius: Int32, coord: vector_int2) -> Bool {
 // MARK: - GameDelegate
 
 extension GameScene: GameDelegate {
+    func gameDidAttack(actor: Actor, targetActor: Actor) {
+        let actorPosition = GameScene.pointForCoord(actor.coord)
+        let targetActorPosition = GameScene.pointForCoord(targetActor.coord)
+        let midX = actorPosition.x + (targetActorPosition.x - actorPosition.x) / 2
+        let midY = actorPosition.y + (targetActorPosition.y - actorPosition.y) / 2
+        
+        let stepDuration = 1.0 / 2
+        let attack = SKAction.sequence([
+            SKAction.move(to: CGPoint(x: midX, y: midY), duration: stepDuration),
+            SKAction.move(to: actorPosition, duration: stepDuration)
+        ])
+        
+        actor.sprite.run(attack)
+    }
+    
     func gameDidMove(entity: Entity, path: [vector_int2], duration: TimeInterval) {
         if let hero = entity as? Hero {
             self.game.updateVisibility(for: hero)

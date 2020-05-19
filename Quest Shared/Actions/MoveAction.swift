@@ -41,13 +41,11 @@ class MoveAction: Action, StatusUpdatable {
         }
                 
         for coord in self.path {
-            let position = GameScene.pointForCoord(coord)
             if let hero = self.actor as? Hero, let loot = game.getLoot(at: coord) {
                 game.remove(entity: loot)
                 hero.addToBackpack(loot)
             }
             self.actor.coord = self.toCoord
-//            self.actor.sprite.position = GameScene.pointForCoord(self.actor.coord)
         }
 
         self.message = "\(self.actor.name) moved to \(self.toCoord.x).\(self.toCoord.y)"

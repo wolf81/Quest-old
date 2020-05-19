@@ -17,6 +17,7 @@ protocol GameDelegate: class {
     func gameDidRemove(entity: EntityProtocol)
     
     func gameDidUpdateStatus(message: String)
+    func gameDidAttack(actor: Actor, targetActor: Actor)
 }
 
 enum SelectionMode {
@@ -377,7 +378,7 @@ class Game {
     func update(_ deltaTime: TimeInterval) {
         // If the game is busy for any reason (e.g. show animation), wait until ready
         guard self.isBusy == false else { return }
-                
+                        
         if self.hero.hitPoints.current <= 0 {
             let sceneManager = try! ServiceLocator.shared.get(service: SceneManager.self)
             sceneManager.crossFade(to: GameOverScene.self)
@@ -414,6 +415,8 @@ class Game {
         switch action {
         case let moveAction as MoveAction:
             self.delegate?.gameDidMove(entity: action.actor, path: moveAction.path, duration: moveAction.duration)
+        case let meleeAttackAction as MeleeAttackAction:
+            self.delegate?.gameDidAttack(actor: meleeAttackAction.actor, targetActor: meleeAttackAction.targetActor)
         default: break
         }
                 
