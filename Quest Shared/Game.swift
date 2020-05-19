@@ -157,19 +157,17 @@ class Game {
         
         return movementGraph
     }
-        
-    func isHeroVisible(for actor: Actor) -> Bool {
-        guard self.hero.isAlive else { return false }
-        
+
+    func isVisible(for actor: Actor, coord: vector_int2) -> Bool {
         let x1 = actor.coord.x
         let y1 = actor.coord.y
         
-        let x2 = self.hero.coord.x
-        let y2 = self.hero.coord.y
+        let x2 = coord.x
+        let y2 = coord.y
         
         let x = pow(Float(x2 - x1), 2)
         let y = pow(Float(y2 - y1), 2)
-        return Int(sqrt(x + y)) <= actor.sight        
+        return Int(sqrt(x + y)) <= actor.sight
     }
     
     private func getVisiblityGraph(for actor: Actor) -> GKGridGraph<GKGridGraphNode> {

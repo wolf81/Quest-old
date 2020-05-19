@@ -219,7 +219,8 @@ extension GameScene: GameDelegate {
         let yRange = Int32(minCoord.y) ... Int32(maxCoord.y)
         print("x: \(xRange)")
         print("y: \(yRange)")
-//        let visibleTiles = self.game.tiles.filter({ xRange.contains($0.coord.x) && yRange.contains($0.coord.y) })
+
+        // TODO: Optimize finding nearby enemies ... this code is not efficient as our list of entities grows ... perhaps do same as we do for tiles
         let visibleEntities = self.game.entities.filter({ xRange.contains($0.coord.x) && yRange.contains($0.coord.y) })
                 
         let y1: Int = max(Int(minCoord.y - 1), 0)
@@ -235,8 +236,20 @@ extension GameScene: GameDelegate {
         
         for y in y1 ... y2 {
             for x in x1 ... x2 {
+                let isTileVisible = self.game.isVisible(for: self.game.hero, coord: vector_int2(Int32(x), Int32(y)))
+
                 let tile = self.game.tiles[y][x]
-                self.world.addChild(tile.sprite)
+                if isTileVisible {
+                    tile.didExplore = true
+                    tile.sprite.alpha = 1.0
+                    self.world.addChild(tile.sprite)
+                }
+                else {
+                    if tile.didExplore {
+                        tile.sprite.alpha = 0.5
+                        self.world.addChild(tile.sprite)
+                    }
+                }
             }
         }
         
