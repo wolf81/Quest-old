@@ -206,6 +206,8 @@ extension GameScene: GameDelegate {
         ])
         
         actor.sprite.run(attack)
+        
+        self.game.activateNextActor()
     }
     
     func gameDidMove(entity: Entity, path: [vector_int2], duration: TimeInterval) {
@@ -273,14 +275,29 @@ extension GameScene: GameDelegate {
             moveCamera(path: path, duration: 0.2)
         }
         else {
+            let firstCoord = path.first!
+            let lastCoord = path.last!
+            
+            let willShow = self.game.actorVisibleCoords.contains(lastCoord) && self.game.actorVisibleCoords.contains(firstCoord) == false
+            
             var move: [SKAction] = []
-            let stepDuration = 1.0 / Double(path.count)
+
+            let stepCount = path.count + (willShow ? 1 : 0)
+            let stepDuration = 1.0 / Double(stepCount)
+
+            if willShow {
+                move.append(SKAction.fadeIn(withDuration: stepDuration))
+            }
+            
             for coord in path {
                 let position = GameScene.pointForCoord(coord)
                 move.append(SKAction.move(to: position, duration: stepDuration))
             }
+            
             entity.sprite.run(SKAction.sequence(move))
         }
+        
+        self.game.activateNextActor()
     }
     
     func gameDidAdd(entity: EntityProtocol) {

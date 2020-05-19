@@ -376,9 +376,6 @@ class Game {
     }
     
     func update(_ deltaTime: TimeInterval) {
-        // If the game is busy for any reason (e.g. show animation), wait until ready
-        guard self.isBusy == false else { return }
-                        
         if self.hero.hitPoints.current <= 0 {
             let sceneManager = try! ServiceLocator.shared.get(service: SceneManager.self)
             sceneManager.crossFade(to: GameOverScene.self)
@@ -392,10 +389,7 @@ class Game {
         guard let action = activeActor.getAction(state: self) else {
             return
         }
-                
-        // Start the action for the current actor ... make sure only 1 action is performed at any time
-        self.isBusy = true
-                                
+                                                
         guard action.perform(game: self, completion: { [unowned self] in
             if let statusUpdatable = action as? StatusUpdatable, let message = statusUpdatable.message {
                 print(message)
@@ -406,27 +400,27 @@ class Game {
             case is (DieAction, Actor): self.remove(entity: activeActor)
             default: break
             }
-             
-            self.isBusy = false
-        }) else {
-            return self.isBusy = false
-        }
+        }) else { return /* wait since we have no action to perform */ }
                 
         switch action {
         case let moveAction as MoveAction:
             self.delegate?.gameDidMove(entity: action.actor, path: moveAction.path, duration: moveAction.duration)
         case let meleeAttackAction as MeleeAttackAction:
             self.delegate?.gameDidAttack(actor: meleeAttackAction.actor, targetActor: meleeAttackAction.targetActor)
+        case _ as IdleAction:
+            activateNextActor()
         default: break
         }
-                
-        // Activate next actor
-        self.activeActorIdx = (self.activeActorIdx + 1) % self.actors.count
-        
+                        
         self.actorVisibleCoords.removeAll()
         updateVisibility(for: self.actors[self.activeActorIdx])
     }
     
+    func activateNextActor() {
+        // Activate next actor
+        self.activeActorIdx = (self.activeActorIdx + 1) % self.actors.count
+    }
+        
     func movePlayer(direction: Direction) {
         hideSelectionTiles()
                 
