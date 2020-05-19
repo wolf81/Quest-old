@@ -38,6 +38,8 @@ class GameScene: SKScene, SceneManagerConstructable {
     
     // Sprites should be added on the main thread, to make this easy, we add sprites in the update loop and then clear this array
     private var spritesToAdd: [SKSpriteNode] = []
+    
+    private var lastViewVisibleCoords = Set<vector_int2>()
             
     required init(size: CGSize, userInfo: [String : Any]) {
         self.game = (userInfo[UserInfoKey.game] as! Game)
@@ -58,7 +60,7 @@ class GameScene: SKScene, SceneManagerConstructable {
     override func update(_ currentTime: TimeInterval) {
         self.spritesToRemove.forEach({ $0.removeFromParent() })
         self.spritesToRemove = []
-        
+
         self.spritesToAdd.forEach({ self.world.addChild($0) })
         self.spritesToAdd = []
                 
@@ -94,19 +96,19 @@ class GameScene: SKScene, SceneManagerConstructable {
         
         self.backgroundColor = SKColor.black
         
-        for tileRow in self.game.tiles {
-            for tile in tileRow {
-                let position = GameScene.pointForCoord(tile.coord)
-                tile.sprite.position = position
-                self.world.addChild(tile.sprite)
-            }
-        }
-
-        for entity in self.game.entities {
-            let position = GameScene.pointForCoord(entity.coord)
-            entity.sprite.position = position            
-            self.world.addChild(entity.sprite)
-        }
+//        for tileRow in self.game.tiles {
+//            for tile in tileRow {
+//                let position = GameScene.pointForCoord(tile.coord)
+//                tile.sprite.position = position
+//                self.world.addChild(tile.sprite)
+//            }
+//        }
+//
+//        for entity in self.game.entities {
+//            let position = GameScene.pointForCoord(entity.coord)
+//            entity.sprite.position = position
+//            self.world.addChild(entity.sprite)
+//        }
                 
         self.actionBar = ActionBar(size: CGSize(width: self.size.width, height: 50), delegate: self)
         self.actionBar.position = CGPoint(x: 0, y: -(size.height / 2))
@@ -134,7 +136,11 @@ class GameScene: SKScene, SceneManagerConstructable {
         
         self.statusBar.update(text: "Welcome to Quest")
         
-        gameDidMove(hero: self.game.hero, path: [self.game.hero.coord], duration: 0)
+        for entity in self.game.entities {
+            entity.sprite.position = GameScene.pointForCoord(self.game.hero.coord)
+        }
+        
+        gameDidMove(entity: self.game.hero, path: [self.game.hero.coord], duration: 0)
     }
 
     private func movePlayer(direction: Direction) {
@@ -201,65 +207,77 @@ func isInRange(origin: vector_int2, radius: Int32, coord: vector_int2) -> Bool {
 // MARK: - GameDelegate
 
 extension GameScene: GameDelegate {
-    func gameDidMove(hero: Hero, path: [vector_int2], duration: TimeInterval) {
-        self.game.updateVisibility(for: hero)
-        
-        let halfWidth = self.size.width / 2
-        let minX = self.camera!.position.x - halfWidth
-        let maxX = self.camera!.position.x + halfWidth
-        let halfHeight = self.size.height / 2
-        let minY = self.camera!.position.y - halfHeight
-        let maxY = self.camera!.position.y + halfHeight
-        let minCoord = GameScene.coordForPoint(CGPoint(x: minX, y: minY))
-        let maxCoord = GameScene.coordForPoint(CGPoint(x: maxX, y: maxY))
-                
-        let xRange = Int32(minCoord.x) ... Int32(maxCoord.x)
-        let yRange = Int32(minCoord.y) ... Int32(maxCoord.y)
-        print("x: \(xRange)")
-        print("y: \(yRange)")
+    func gameDidMove(entity: Entity, path: [vector_int2], duration: TimeInterval) {
+        if let hero = entity as? Hero {
+            self.game.updateVisibility(for: hero)
+            
+            let (minCoord, maxCoord) = getMinMaxVisibleCoordsInView()
+            
+            let xRange = minCoord.x ... maxCoord.x
+            let yRange = minCoord.y ... maxCoord.y
 
-        // TODO: Optimize finding nearby enemies ... this code is not efficient as our list of entities grows ... perhaps do same as we do for tiles
-        let visibleEntities = self.game.entities.filter({ xRange.contains($0.coord.x) && yRange.contains($0.coord.y) })
-                
-        let y1: Int = max(Int(minCoord.y - 1), 0)
-        let y2: Int = min(Int(maxCoord.y + 1), Int(self.game.level.height - 1))
-        
-        let x1: Int = max(Int(minCoord.x - 1), 0)
-        let x2: Int = min(Int(maxCoord.x + 1), Int(self.game.level.width - 1))
-        for child in self.world.children where child != self.playerCamera {
-            child.removeFromParent()
-        }
-        
-        for y in y1 ... y2 {
-            for x in x1 ... x2 {
-                let coord = vector_int2(Int32(x), Int32(y))
-                let isTileVisible = self.game.visibleTileCoords.contains(coord)
+            // TODO: Optimize finding nearby enemies ... this code is not efficient as our list of entities grows ... perhaps do same as we do for tiles
+            let visibleEntities = self.game.entities.filter({ xRange.contains($0.coord.x) && yRange.contains($0.coord.y) })
+                                
+            var viewVisibleCoords = Set<vector_int2>()
 
-                let tile = self.game.tiles[y][x]
-                if isTileVisible {
-                    tile.didExplore = true
-                    tile.sprite.alpha = 1.0
-                    self.world.addChild(tile.sprite)
-                }
-                else {
-                    if tile.didExplore {
-                        tile.sprite.alpha = 0.5
-                        self.world.addChild(tile.sprite)
-                    }
+            for y in minCoord.y ... maxCoord.y {
+                for x in minCoord.x ... maxCoord.x {
+                    viewVisibleCoords.insert(vector_int2(x, y))
                 }
             }
+            
+            // add sprites for all newly added tiles ... these are tiles that used to be out of view bounds
+            let addedCoords = viewVisibleCoords.subtracting(self.lastViewVisibleCoords)
+            for coord in addedCoords {
+                let tile = self.game.tiles[Int(coord.y)][Int(coord.x)]
+
+                if game.actorVisibleCoords.contains(coord) {
+                    tile.didExplore = true
+                }
+
+                tile.sprite.position = GameScene.pointForCoord(tile.coord)
+                tile.sprite.alpha = self.game.actorVisibleCoords.contains(coord) ? 1.0 : tile.didExplore ? 0.5 : 0.0
+                self.world.addChild(tile.sprite)
+            }
+
+            // remove sprites for tiles that are out of view bounds
+            let removedCoords = self.lastViewVisibleCoords.subtracting(viewVisibleCoords)
+            for coord in removedCoords {
+                let tile = self.game.tiles[Int(coord.y)][Int(coord.x)]
+                tile.sprite.removeFromParent()
+            }
+            
+            // update the remaining tiles
+            let remainingCoords = self.lastViewVisibleCoords.subtracting(addedCoords).subtracting(removedCoords)
+            for coord in remainingCoords {
+                let tile = self.game.tiles[Int(coord.y)][Int(coord.x)]
+
+                if game.actorVisibleCoords.contains(coord) {
+                    tile.didExplore = true
+                }
+
+                tile.sprite.alpha = self.game.actorVisibleCoords.contains(coord) ? 1.0 : tile.didExplore ? 0.5 : 0.0
+            }
+            
+            self.lastViewVisibleCoords = viewVisibleCoords
+            
+            for entity in visibleEntities where self.game.actorVisibleCoords.contains(entity.coord) {
+                if entity.sprite.parent == nil {
+                    self.world.addChild(entity.sprite)
+                }
+            }
+            
+            print("visibileEntities: \(visibleEntities.count)")
+            print("render nodes: \(minCoord.x).\(minCoord.y) ... \(maxCoord.x).\(maxCoord.y)")
+            
+            let cameraCoord = coordForCameraPosition()
+            print("camera coord: \(cameraCoord.x).\(cameraCoord.y)")
+            moveCamera(path: path, duration: 0.2)
         }
-        
-        for entity in visibleEntities where self.game.visibleTileCoords.contains(entity.coord) {
-            self.world.addChild(entity.sprite)
+        else {
+            
         }
-        
-        print("visibileEntities: \(visibleEntities.count)")
-        print("render nodes: \(minCoord.x).\(minCoord.y) ... \(maxCoord.x).\(maxCoord.y)")
-        
-        let cameraCoord = coordForCameraPosition()
-        print("camera coord: \(cameraCoord.x).\(cameraCoord.y)")
-        moveCamera(path: path, duration: 0.2)
     }
     
     func gameDidAdd(entity: EntityProtocol) {
@@ -273,6 +291,25 @@ extension GameScene: GameDelegate {
 
     func gameDidUpdateStatus(message: String) {
         self.statusBar.update(text: message)
+    }
+    
+    private func getMinMaxVisibleCoordsInView() -> (vector_int2, vector_int2) {
+        let halfWidth = self.size.width / 2
+        let minX = self.camera!.position.x - halfWidth
+        let maxX = self.camera!.position.x + halfWidth
+        let halfHeight = self.size.height / 2
+        let minY = self.camera!.position.y - halfHeight
+        let maxY = self.camera!.position.y + halfHeight
+        let minCoord = GameScene.coordForPoint(CGPoint(x: minX, y: minY))
+        let maxCoord = GameScene.coordForPoint(CGPoint(x: maxX, y: maxY))
+                                
+        let y1 = max(Int32(minCoord.y - 1), 0)
+        let y2 = min(Int32(maxCoord.y + 1), Int32(self.game.level.height - 1))
+        
+        let x1 = max(Int32(minCoord.x - 1), 0)
+        let x2 = min(Int32(maxCoord.x + 1), Int32(self.game.level.width - 1))
+
+        return (vector_int2(x1, y1), vector_int2(x2, y2))
     }
 }
 

@@ -12,7 +12,7 @@ import GameplayKit
 import Fenris
 
 protocol GameDelegate: class {
-    func gameDidMove(hero: Hero, path: [vector_int2], duration: TimeInterval)
+    func gameDidMove(entity: Entity, path: [vector_int2], duration: TimeInterval)
     func gameDidAdd(entity: EntityProtocol)
     func gameDidRemove(entity: EntityProtocol)
     
@@ -72,7 +72,7 @@ class Game {
     private(set) var tiles: [[Tile]] = []
 
     // coordinates of tiles that are currently visible for the player
-    private(set) var visibleTileCoords = Set<vector_int2>()
+    private(set) var actorVisibleCoords = Set<vector_int2>()
         
     // the current active actor, either a player or monster
     private var activeActorIdx: Int = 0
@@ -300,7 +300,7 @@ class Game {
         self.visibility = RaycastVisibility(mapSize: CGSize(width: Int(self.level.width), height: Int(self.level.height)), blocksLight: { (x, y) -> (Bool) in
             return self.level[vector2(x, y)] != 0
         }, setVisible: { (x, y) in
-            self.visibleTileCoords.insert(vector_int2(x, y))
+            self.actorVisibleCoords.insert(vector_int2(x, y))
         }, getDistance: { (x1, y1, x2, y2) -> Int in
             let x = pow(Float(x2 - x1), 2)
             let y = pow(Float(y2 - y1), 2)
@@ -413,18 +413,14 @@ class Game {
                 
         switch action {
         case let moveAction as MoveAction:
-            switch activeActor {
-            case let hero as Hero:
-                self.delegate?.gameDidMove(hero: hero, path: moveAction.path, duration: moveAction.duration)
-            default: break
-            }
+            self.delegate?.gameDidMove(entity: action.actor, path: moveAction.path, duration: moveAction.duration)
         default: break
         }
                 
         // Activate next actor
         self.activeActorIdx = (self.activeActorIdx + 1) % self.actors.count
         
-        self.visibleTileCoords.removeAll()
+        self.actorVisibleCoords.removeAll()
         updateVisibility(for: self.actors[self.activeActorIdx])
     }
     
@@ -484,5 +480,5 @@ class Game {
     
     func updateVisibility(for actor: Actor) {
         self.visibility.compute(origin: actor.coord, rangeLimit: actor.sight)
-    }
+    }    
 }
