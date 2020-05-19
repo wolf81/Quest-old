@@ -206,6 +206,8 @@ func isInRange(origin: vector_int2, radius: Int32, coord: vector_int2) -> Bool {
 
 extension GameScene: GameDelegate {
     func gameDidMove(hero: Hero, path: [vector_int2], duration: TimeInterval) {
+        self.game.updateVisibility(for: hero)
+        
         let halfWidth = self.size.width / 2
         let minX = self.camera!.position.x - halfWidth
         let maxX = self.camera!.position.x + halfWidth
@@ -228,15 +230,14 @@ extension GameScene: GameDelegate {
         
         let x1: Int = max(Int(minCoord.x - 1), 0)
         let x2: Int = min(Int(maxCoord.x + 1), Int(self.game.level.width - 1))
-        for child in self.world.children {
-            if child != self.playerCamera {
-                child.removeFromParent()
-            }
+        for child in self.world.children where child != self.playerCamera {
+            child.removeFromParent()
         }
         
         for y in y1 ... y2 {
             for x in x1 ... x2 {
-                let isTileVisible = self.game.isVisible(for: self.game.hero, coord: vector_int2(Int32(x), Int32(y)))
+                let coord = vector_int2(Int32(x), Int32(y))
+                let isTileVisible = self.game.visibleTileCoords.contains(coord)
 
                 let tile = self.game.tiles[y][x]
                 if isTileVisible {
@@ -253,7 +254,7 @@ extension GameScene: GameDelegate {
             }
         }
         
-        for entity in visibleEntities {
+        for entity in visibleEntities where self.game.visibleTileCoords.contains(entity.coord) {
             self.world.addChild(entity.sprite)
         }
         

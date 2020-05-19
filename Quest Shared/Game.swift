@@ -130,8 +130,8 @@ class Game {
         for x in movementGraph.gridOrigin.x ..< (movementGraph.gridOrigin.x + Int32(movementGraph.gridWidth)) {
             for y in movementGraph.gridOrigin.y ..< (movementGraph.gridOrigin.y + Int32(movementGraph.gridHeight)) {
                 let coord = vector_int2(x, y)
-
-                if isInRange(origin: actor.coord, radius: range, coord: coord) == false || getTile(at: coord) == 1 {
+                                
+                if isVisible(for: actor, coord: coord) == false || getTile(at: coord) == 1 {
                     if let node = movementGraph.node(atGridPosition: coord) {
                         movementGraph.remove([node])
                     }
@@ -306,14 +306,9 @@ class Game {
             let tile = self.level[vector2(x, y)]
             return tile != 0
         }, setVisible: { (x, y) in
-//            print("set visible: \(x).\(y)")
-            let tile = self.tiles[Int(x)][Int(y)]
-            tile.didExplore = true
-            
+//            let tile = self.tiles[Int(x)][Int(y)]
+//            tile.didExplore = true
             self.visibleTileCoords.insert(vector_int2(x, y))
-            
-//            let fogTile = self.fogTiles[tileIdx]
-//            fogTile.sprite.alpha = 0.0
         }, getDistance: { (x1, y1, x2, y2) -> Int in
             let x = pow(Float(x2 - x1), 2)
             let y = pow(Float(y2 - y1), 2)
@@ -386,8 +381,6 @@ class Game {
         self.fogTiles = [] // fogTiles
         self.tiles = tiles
         self.entities = entities
-        
-        updateFogTilesVisibilityForHero()
     }
     
     func update(_ deltaTime: TimeInterval) {
@@ -418,8 +411,6 @@ class Game {
                 print(message)
                 self.delegate?.gameDidUpdateStatus(message: message)
             }
-
-            self.updateFogTilesVisibilityForHero()
             
             switch (action, action.actor) {
             case is (MoveAction, Monster):
@@ -465,6 +456,9 @@ class Game {
                 
         // Activate next actor
         self.activeActorIdx = (self.activeActorIdx + 1) % self.actors.count
+        
+        self.visibleTileCoords.removeAll()
+        updateVisibility(for: self.actors[self.activeActorIdx])
     }
     
     func movePlayer(direction: Direction) {
@@ -520,25 +514,8 @@ class Game {
 
         hideSelectionTiles()
     }
-        
-    func updateFogTilesVisibilityForHero() {
-        /*
-        let range = Int32(self.hero.sight + 1)
-        let x1 = max(self.hero.coord.x - range, 0)
-        let x2 = min(self.hero.coord.x + range + 1, Int32(self.level.width))
-        let y1 = max(self.hero.coord.y - range, 0)
-        let y2 = min(self.hero.coord.y + range + 1, Int32(self.level.height))
-        
-        for x in x1 ..< x2 {
-            for y in y1 ..< y2 {
-                let tileIdx = Int(Int32(self.level.width) * y + x)
-                let alpha: CGFloat = (self.tiles[tileIdx] as Tile).didExplore ? 0.5 : 1.0
-                self.fogTiles[tileIdx].sprite.alpha = alpha
-            }
-        }
-
-        self.visibleTileCoords.removeAll()
-        self.visibility.compute(origin: self.hero.coord, rangeLimit: self.hero.sight)
-         */
+    
+    func updateVisibility(for actor: Actor) {
+        self.visibility.compute(origin: actor.coord, rangeLimit: actor.sight)
     }
 }
