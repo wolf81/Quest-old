@@ -38,9 +38,7 @@ class GameScene: SKScene, SceneManagerConstructable {
     
     // Sprites should be added on the main thread, to make this easy, we add sprites in the update loop and then clear this array
     private var spritesToAdd: [SKSpriteNode] = []
-    
-    private var selectionModeTiles: [SKSpriteNode] = []
-    
+        
     private var lastViewVisibleCoords = Set<vector_int2>()
             
     required init(size: CGSize, userInfo: [String : Any]) {
@@ -186,6 +184,12 @@ class GameScene: SKScene, SceneManagerConstructable {
         if self.characterInfo != nil { toggleCharacterInfo() }
         if self.inventory != nil { toggleInventory() }
     }
+    
+    fileprivate func clearSelectionModeTiles() {
+        for tile in self.game.selectionModeTiles {
+            tile.sprite.removeFromParent()
+        }
+    }
 }
 
 func isInRange(origin: vector_int2, radius: Int32, coord: vector_int2) -> Bool {
@@ -196,23 +200,15 @@ func isInRange(origin: vector_int2, radius: Int32, coord: vector_int2) -> Bool {
 
 extension GameScene: GameDelegate {
     func gameDidChangeSelectionMode(_ selectionMode: SelectionMode) {
-        for tile in self.selectionModeTiles {
-            tile.removeFromParent()
-        }
-        self.selectionModeTiles.removeAll()
-
-        switch selectionMode {
-        case .selectDestinationTile:
-            var selectionModeTiles: [SKSpriteNode] = []
-            for coord in self.game.selectionModeCoords {
-                let tile = OverlayTile(color: SKColor.green.withAlphaComponent(0.5), coord: coord, isBlocked: false)
+        print("selection mode: \(selectionMode)")
+        
+        clearSelectionModeTiles()
+                
+        if selectionMode.isSelection {
+            for tile in self.game.selectionModeTiles {
                 tile.sprite.position = GameScene.pointForCoord(tile.coord)
                 self.world.addChild(tile.sprite)
-                selectionModeTiles.append(tile.sprite)
             }
-            self.selectionModeTiles = selectionModeTiles
-        case .none: break
-        default: break
         }
     }
     
@@ -385,18 +381,22 @@ extension GameScene: ActionBarDelegate {
     }
     
     func actionBarDidSelectMove() {
+        clearSelectionModeTiles()
         self.game.showMovementTilesForHero()
     }
     
     func actionBarDidSelectMeleeAttack() {
+        clearSelectionModeTiles()
         self.game.showMeleeAttackTilesForHero()
     }
 
     func actionBarDidSelectRangeAttack() {
+        clearSelectionModeTiles()
         self.game.showRangedAttackTilesForHero()
     }
     
     func actionBarDidSelectCastSpell() {
+        clearSelectionModeTiles()
         self.game.showTargetTilesForSpellType(spellType: MagicMissile.self)
     }
 }

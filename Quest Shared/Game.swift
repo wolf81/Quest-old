@@ -82,7 +82,8 @@ class Game {
     // coordinates of tiles that are currently visible for the player
     private(set) var actorVisibleCoords = Set<vector_int2>()
         
-    private(set) var selectionModeCoords = Set<vector_int2>()
+//    private(set) var selectionModeCoords = Set<vector_int2>()
+    private(set) var selectionModeTiles: [OverlayTile] = []
     
     // the current active actor, either a player or monster
     private var activeActorIdx: Int = 0
@@ -203,7 +204,7 @@ class Game {
     // MARK: - Public
     
     func showMovementTilesForHero() {
-        self.selectionModeCoords.removeAll()
+        self.selectionModeTiles.removeAll()
         
         let coords: [vector_int2] = [
             vector_int2(self.hero.coord.x - 1, self.hero.coord.y),
@@ -214,7 +215,7 @@ class Game {
         
         for coord in coords {
             if self.getTile(at: coord) == 0 && self.monsters.filter({ $0.coord == coord }).count == 0 {
-                self.selectionModeCoords.insert(coord)
+                self.selectionModeTiles.append(OverlayTile(color: SKColor.green.withAlphaComponent(0.5), coord: coord, isBlocked: false))
             }
         }
                                     
@@ -253,25 +254,24 @@ class Game {
     }
     
     func showMeleeAttackTilesForHero() {
-        /*
-        guard self.actors[self.activeActorIdx] == self.hero && self.isBusy == false else { return }
-
-        if selectionMode.isSelection { hideSelectionTiles() }
-
-        let xRange = getRange(position: self.hero.coord.x, radius: 1, constrainedTo: 0 ..< self.level.width)
-        let yRange = getRange(position: self.hero.coord.y, radius: 1, constrainedTo: 0 ..< self.level.width)
+        self.selectionModeTiles.removeAll()
         
-        let actorCoords = self.actors.filter({ $0 != self.hero }).compactMap({ $0.coord })
-        for actorCoord in actorCoords {
-            if xRange.contains(actorCoord.x) && yRange.contains(actorCoord.y) {
-                let movementTile = OverlayTile(color: SKColor.red.withAlphaComponent(0.4), coord: actorCoord, isBlocked: true)
-                self.tiles.append(movementTile)
-                self.delegate?.gameDidAdd(entity: movementTile)
+        let xRange = self.hero.coord.x - 1 ... self.hero.coord.x + 1
+        let yRange = self.hero.coord.y - 1 ... self.hero.coord.y + 1
+        
+        for x in xRange {
+            for y in yRange {
+                let coord = vector_int2(x, y)
+                
+                if coord == self.hero.coord { continue }
+        
+                if let _ = self.monsters.filter({ $0.coord == coord }).first {
+                    self.selectionModeTiles.append(OverlayTile(color: SKColor.red.withAlphaComponent(0.5), coord: coord, isBlocked: false))
+                }
             }
         }
         
         self.selectionMode = .selectMeleeTarget
-         */
     }
             
     func start(levelIdx: Int = 0, tileSize: CGSize) {
@@ -425,7 +425,7 @@ class Game {
 
     func handleInteraction(at coord: vector_int2) {
         guard self.selectionMode.isSelection else { return }
-
+        
         let overlayTiles = self.tiles.filter({ $0 is OverlayTile }) as! [OverlayTile]
 
         switch self.selectionMode {
