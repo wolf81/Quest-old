@@ -139,6 +139,8 @@ class GameScene: SKScene, SceneManagerConstructable {
         self.playerCamera.addChild(self.statusBar)
         
         self.statusBar.update(text: "Welcome to Quest")
+        
+        gameDidMove(hero: self.game.hero, path: [self.game.hero.coord], duration: 0)
     }
 
     private func movePlayer(direction: Direction) {
