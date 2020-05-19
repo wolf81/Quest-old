@@ -226,8 +226,11 @@ extension GameScene: GameDelegate {
                 }
 
                 tile.sprite.position = GameScene.pointForCoord(tile.coord)
-                tile.sprite.alpha = self.game.actorVisibleCoords.contains(coord) ? 1.0 : tile.didExplore ? 0.5 : 0.0
+                tile.sprite.alpha = 0.0
                 self.world.addChild(tile.sprite)
+
+                let alpha: CGFloat = self.game.actorVisibleCoords.contains(coord) ? 1.0 : tile.didExplore ? 0.5 : 0.0
+                tile.sprite.run(SKAction.fadeAlpha(to: alpha, duration: 3.0))
             }
 
             // remove sprites for tiles that are out of view bounds
@@ -246,7 +249,8 @@ extension GameScene: GameDelegate {
                     tile.didExplore = true
                 }
 
-                tile.sprite.alpha = self.game.actorVisibleCoords.contains(coord) ? 1.0 : tile.didExplore ? 0.5 : 0.0
+                let alpha: CGFloat = self.game.actorVisibleCoords.contains(coord) ? 1.0 : tile.didExplore ? 0.5 : 0.0
+                tile.sprite.run(SKAction.fadeAlpha(to: alpha, duration: 1.5))
             }
             
             self.lastViewVisibleCoords = viewVisibleCoords
@@ -254,9 +258,13 @@ extension GameScene: GameDelegate {
             moveCamera(path: path, duration: 0.2)
         }
         else {
-            let position = GameScene.pointForCoord(path.last!)
-            entity.sprite.run(SKAction.move(to: position, duration: 1.0))
-
+            var move: [SKAction] = []
+            let stepDuration = 1.0 / Double(path.count)
+            for coord in path {
+                let position = GameScene.pointForCoord(coord)
+                move.append(SKAction.move(to: position, duration: stepDuration))
+            }
+            entity.sprite.run(SKAction.sequence(move))
         }
     }
     
