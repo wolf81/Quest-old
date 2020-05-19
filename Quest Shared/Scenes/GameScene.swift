@@ -225,7 +225,7 @@ extension GameScene: GameDelegate {
                     }
                     else {
                         let position = GameScene.pointForCoord(path.last!)
-                        hero.sprite.run(SKAction.move(to: position, duration: 1.0))
+                        hero.sprite.run(SKAction.move(to: position, duration: 2.0))
                     }
                 }
                 else {
