@@ -41,4 +41,17 @@ class DungeonBuilderTests: XCTestCase {
         assert(node.roomId == 105)
         assert(node.contains([.perimeter, .blocked, .arch]))
     }
+    
+    func testRoomCoord() {
+        let dungeonBuilder = DungeonBuilder(configuration: Configuration.Default)
+        let dungeon = dungeonBuilder.build(name: "Cellar of Bloody Death")
+
+        let roomId: UInt = 22
+        let room = dungeon.roomInfo[roomId]!
+        let node = dungeon[room.coord]
+        
+        // Check if the node at the coordinate is a room and has the correct room id 
+        assert(node.contains(.room))
+        assert(node.roomId == roomId)
+    }
 }

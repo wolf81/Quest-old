@@ -7,10 +7,9 @@
 //
 
 import Foundation
-import SpriteKit
 
 public class Room {
-    public var coord: vector_int2 { return vector_int2(Int32(i), Int32(j)) }    
+    public var coord: Coordinate { return Coordinate(i, j) }    
     public let width: Int
     public let height: Int
     

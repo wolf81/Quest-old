@@ -39,6 +39,8 @@ class GameScene: SKScene, SceneManagerConstructable {
     // Sprites should be added on the main thread, to make this easy, we add sprites in the update loop and then clear this array
     private var spritesToAdd: [SKSpriteNode] = []
     
+    private var selectionModeTiles: [SKSpriteNode] = []
+    
     private var lastViewVisibleCoords = Set<vector_int2>()
             
     required init(size: CGSize, userInfo: [String : Any]) {
@@ -193,6 +195,27 @@ func isInRange(origin: vector_int2, radius: Int32, coord: vector_int2) -> Bool {
 // MARK: - GameDelegate
 
 extension GameScene: GameDelegate {
+    func gameDidChangeSelectionMode(_ selectionMode: SelectionMode) {
+        for tile in self.selectionModeTiles {
+            tile.removeFromParent()
+        }
+        self.selectionModeTiles.removeAll()
+
+        switch selectionMode {
+        case .selectDestinationTile:
+            var selectionModeTiles: [SKSpriteNode] = []
+            for coord in self.game.selectionModeCoords {
+                let tile = OverlayTile(color: SKColor.green.withAlphaComponent(0.5), coord: coord, isBlocked: false)
+                tile.sprite.position = GameScene.pointForCoord(tile.coord)
+                self.world.addChild(tile.sprite)
+                selectionModeTiles.append(tile.sprite)
+            }
+            self.selectionModeTiles = selectionModeTiles
+        case .none: break
+        default: break
+        }
+    }
+    
     func gameDidAttack(actor: Actor, targetActor: Actor) {
         let actorPosition = GameScene.pointForCoord(actor.coord)
         let targetActorPosition = GameScene.pointForCoord(targetActor.coord)
@@ -260,6 +283,8 @@ extension GameScene: GameDelegate {
                 tile.sprite.removeFromParent()
             }
             
+//            var didColorize = false
+            
             // update the remaining tiles
             let remainingCoords = self.lastViewVisibleCoords.subtracting(addedCoords).subtracting(removedCoords)
             for coord in remainingCoords {
@@ -271,6 +296,12 @@ extension GameScene: GameDelegate {
 
                 let alpha: CGFloat = self.game.actorVisibleCoords.contains(coord) ? 1.0 : tile.didExplore ? 0.5 : 0.0
                 tile.sprite.run(SKAction.fadeAlpha(to: alpha, duration: 1.5))
+                
+//                if alpha == 1.0 && !didColorize {
+//                    tile.sprite.color = .green
+//                    tile.sprite.run(SKAction.colorize(withColorBlendFactor: 1.0, duration: 0))
+//                    didColorize = true
+//                }
             }
             
             self.lastViewVisibleCoords = viewVisibleCoords

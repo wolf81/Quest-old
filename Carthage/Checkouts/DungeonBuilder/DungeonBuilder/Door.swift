@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 public struct Door {
-    public var coord: vector_int2 { return vector_int2(Int32(row), Int32(col)) }
+    public var coord: vector_int2 { return vector_int2(Int32(self.row), Int32(self.col)) }
     
     var row: Int
     var col: Int

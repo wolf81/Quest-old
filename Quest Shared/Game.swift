@@ -19,6 +19,8 @@ protocol GameDelegate: class {
     func gameDidUpdateStatus(message: String)
     func gameDidAttack(actor: Actor, targetActor: Actor)
     func gameDidDie(actor: Actor)
+    
+    func gameDidChangeSelectionMode(_ selectionMode: SelectionMode)
 }
 
 enum SelectionMode {
@@ -52,7 +54,11 @@ class Game {
         
     private var tileSize: CGSize = .zero
     
-    private var selectionMode: SelectionMode = .none
+    private var selectionMode: SelectionMode = .none {
+        didSet {
+            self.delegate?.gameDidChangeSelectionMode(self.selectionMode)
+        }
+    }
         
     private var timeInterval: TimeInterval = 0
     
@@ -76,6 +82,8 @@ class Game {
     // coordinates of tiles that are currently visible for the player
     private(set) var actorVisibleCoords = Set<vector_int2>()
         
+    private(set) var selectionModeCoords = Set<vector_int2>()
+    
     // the current active actor, either a player or monster
     private var activeActorIdx: Int = 0
     
@@ -195,37 +203,22 @@ class Game {
     // MARK: - Public
     
     func showMovementTilesForHero() {
-        /*
-        guard self.actors[self.activeActorIdx] == self.hero && self.isBusy == false else { return }
-
-        if selectionMode.isSelection { hideSelectionTiles() }
+        self.selectionModeCoords.removeAll()
         
-        let actorCoords = self.actors.filter({ $0.coord != self.hero.coord }).compactMap({ $0.coord })
-        let movementGraph = getMovementGraph(for: self.hero, range: 1, excludedCoords: actorCoords)
-        let visibleAreaGraph = getVisiblityGraph(for: self.hero)
+        let coords: [vector_int2] = [
+            vector_int2(self.hero.coord.x - 1, self.hero.coord.y),
+            vector_int2(self.hero.coord.x + 1, self.hero.coord.y),
+            vector_int2(self.hero.coord.x, self.hero.coord.y - 1),
+            vector_int2(self.hero.coord.x, self.hero.coord.y + 1),
+        ]
         
-        // Compare visible area graph and movement graph and show appropriate tile colors depending if a tile is reachable or not
-        for x in visibleAreaGraph.gridOrigin.x ..< visibleAreaGraph.gridOrigin.x + Int32(visibleAreaGraph.gridWidth) {
-            for y in visibleAreaGraph.gridOrigin.y ..< visibleAreaGraph.gridOrigin.y + Int32(visibleAreaGraph.gridHeight) {
-                let coord = vector_int2(x,y)
-                guard coord != self.hero.coord else { continue }
-                
-                if let _ = visibleAreaGraph.node(atGridPosition: coord) {
-                    if let _ = movementGraph.node(atGridPosition: coord) {
-                        let movementTile = OverlayTile(color: SKColor.green.withAlphaComponent(0.4), coord: coord, isBlocked: false)
-                        self.tiles.append(movementTile)
-                        self.delegate?.gameDidAdd(entity: movementTile)
-                    } else {
-                        let movementTile = OverlayTile(color: SKColor.green.withAlphaComponent(0.1), coord: coord, isBlocked: true)
-                        self.tiles.append(movementTile)
-                        self.delegate?.gameDidAdd(entity: movementTile)
-                    }
-                }
+        for coord in coords {
+            if self.getTile(at: coord) == 0 && self.monsters.filter({ $0.coord == coord }).count == 0 {
+                self.selectionModeCoords.insert(coord)
             }
         }
-        
+                                    
         self.selectionMode = .selectDestinationTile
-         */
     }
     
     func showTargetTilesForSpellType<T: Spell>(spellType: T.Type) {
@@ -280,20 +273,7 @@ class Game {
         self.selectionMode = .selectMeleeTarget
          */
     }
-        
-    private func hideSelectionTiles() {
-        /*
-        guard self.selectionMode.isSelection else { return }
-        let tiles = self.tiles.filter({ $0 is OverlayTile })
-
-        self.tiles.removeAll(where: { tiles.contains($0 )})
-
-        tiles.forEach({ self.delegate?.gameDidRemove(entity: $0) })
-        
-        self.selectionMode = .none
-         */
-    }
-    
+            
     func start(levelIdx: Int = 0, tileSize: CGSize) {
         self.level = Level()
         print(self.level!)
@@ -427,7 +407,7 @@ class Game {
     }
         
     func movePlayer(direction: Direction) {
-        hideSelectionTiles()
+        self.selectionMode = .none
                 
         self.hero.move(direction: direction)
     }
@@ -477,7 +457,7 @@ class Game {
         case .none: break
         }
 
-        hideSelectionTiles()
+        self.selectionMode = .none
     }
     
     private func updateVisibility(for actor: Actor) {

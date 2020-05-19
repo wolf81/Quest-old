@@ -21,13 +21,60 @@
 		790A2B1C213EB45B00BBE94D /* DeadEndRemoval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B1B213EB45B00BBE94D /* DeadEndRemoval.swift */; };
 		790A2B1E213EB76200BBE94D /* NumberGeneratable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B1D213EB76200BBE94D /* NumberGeneratable.swift */; };
 		790A2B22213EB88000BBE94D /* RandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B21213EB88000BBE94D /* RandomNumberGenerator.swift */; };
-		790A2B26213EC03E00BBE94D /* Dungeon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B25213EC03E00BBE94D /* Dungeon.swift */; };
+		790A2B26213EC03E00BBE94D /* DungeonInternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B25213EC03E00BBE94D /* DungeonInternal.swift */; };
 		790A2B28213EE68F00BBE94D /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B27213EE68F00BBE94D /* Room.swift */; };
-		790A2B2F213F8A7000BBE94D /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B2E213F8A7000BBE94D /* Position.swift */; };
+		790A2B2F213F8A7000BBE94D /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B2E213F8A7000BBE94D /* Coordinate.swift */; };
 		790A2B32213FEA7300BBE94D /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B31213FEA7300BBE94D /* Direction.swift */; };
 		790A2B382140D3EF00BBE94D /* Sill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B372140D3EF00BBE94D /* Sill.swift */; };
 		7929FBD222AFAD5A003C1964 /* DungeonBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 7929FBD022AFAD5A003C1964 /* DungeonBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7929FBDF22AFAD88003C1964 /* DungeonBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 7929FBDD22AFAD88003C1964 /* DungeonBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		792E4550247257530088FBD7 /* Dungeon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792E454F247257530088FBD7 /* Dungeon.swift */; };
+		792E4551247257530088FBD7 /* Dungeon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792E454F247257530088FBD7 /* Dungeon.swift */; };
+		792E4552247257530088FBD7 /* Dungeon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792E454F247257530088FBD7 /* Dungeon.swift */; };
+		792E4553247257630088FBD7 /* DungeonInternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B25213EC03E00BBE94D /* DungeonInternal.swift */; };
+		792E4554247257640088FBD7 /* DungeonInternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B25213EC03E00BBE94D /* DungeonInternal.swift */; };
+		792E4555247257670088FBD7 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B0B213EB0B000BBE94D /* Node.swift */; };
+		792E4556247257680088FBD7 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B0B213EB0B000BBE94D /* Node.swift */; };
+		792E45572472576B0088FBD7 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B27213EE68F00BBE94D /* Room.swift */; };
+		792E45582472576B0088FBD7 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B27213EE68F00BBE94D /* Room.swift */; };
+		792E45592472576E0088FBD7 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B2E213F8A7000BBE94D /* Coordinate.swift */; };
+		792E455A2472576F0088FBD7 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B2E213F8A7000BBE94D /* Coordinate.swift */; };
+		792E455B247257710088FBD7 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B31213FEA7300BBE94D /* Direction.swift */; };
+		792E455C247257710088FBD7 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B31213FEA7300BBE94D /* Direction.swift */; };
+		792E455D247257740088FBD7 /* Sill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B372140D3EF00BBE94D /* Sill.swift */; };
+		792E455E247257740088FBD7 /* Sill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B372140D3EF00BBE94D /* Sill.swift */; };
+		792E455F247257770088FBD7 /* CloseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793DCBB32140EBC2004BA50D /* CloseInfo.swift */; };
+		792E4560247257780088FBD7 /* CloseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793DCBB32140EBC2004BA50D /* CloseInfo.swift */; };
+		792E45612472577A0088FBD7 /* CloseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793DCBB52140EBD3004BA50D /* CloseType.swift */; };
+		792E45622472577B0088FBD7 /* CloseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793DCBB52140EBD3004BA50D /* CloseType.swift */; };
+		792E45642472577E0088FBD7 /* Door.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799615EC21422E0300117F3A /* Door.swift */; };
+		792E45652472577E0088FBD7 /* Door.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799615EC21422E0300117F3A /* Door.swift */; };
+		792E4566247257810088FBD7 /* Mask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E069562141048D000BBA8D /* Mask.swift */; };
+		792E4567247257820088FBD7 /* Mask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E069562141048D000BBA8D /* Mask.swift */; };
+		792E45682472578E0088FBD7 /* DungeonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B09213EB07000BBE94D /* DungeonBuilder.swift */; };
+		792E45692472578F0088FBD7 /* DungeonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B09213EB07000BBE94D /* DungeonBuilder.swift */; };
+		792E456B247257940088FBD7 /* Doors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799615EA21422AFC00117F3A /* Doors.swift */; };
+		792E456C247257940088FBD7 /* Doors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799615EA21422AFC00117F3A /* Doors.swift */; };
+		792E456D247257990088FBD7 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B0D213EB12300BBE94D /* Configuration.swift */; };
+		792E456E247257990088FBD7 /* CorridorLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B19213EB42F00BBE94D /* CorridorLayout.swift */; };
+		792E456F247257990088FBD7 /* DeadEndRemoval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B1B213EB45B00BBE94D /* DeadEndRemoval.swift */; };
+		792E4570247257990088FBD7 /* DungeonLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B11213EB39B00BBE94D /* DungeonLayout.swift */; };
+		792E4571247257990088FBD7 /* DungeonSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B15213EB3F300BBE94D /* DungeonSize.swift */; };
+		792E4572247257990088FBD7 /* RoomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B13213EB3A200BBE94D /* RoomLayout.swift */; };
+		792E4573247257990088FBD7 /* RoomSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B17213EB3FA00BBE94D /* RoomSize.swift */; };
+		792E4574247257990088FBD7 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B0D213EB12300BBE94D /* Configuration.swift */; };
+		792E4575247257990088FBD7 /* CorridorLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B19213EB42F00BBE94D /* CorridorLayout.swift */; };
+		792E4576247257990088FBD7 /* DeadEndRemoval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B1B213EB45B00BBE94D /* DeadEndRemoval.swift */; };
+		792E4577247257990088FBD7 /* DungeonLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B11213EB39B00BBE94D /* DungeonLayout.swift */; };
+		792E4578247257990088FBD7 /* DungeonSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B15213EB3F300BBE94D /* DungeonSize.swift */; };
+		792E4579247257990088FBD7 /* RoomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B13213EB3A200BBE94D /* RoomLayout.swift */; };
+		792E457A247257990088FBD7 /* RoomSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B17213EB3FA00BBE94D /* RoomSize.swift */; };
+		792E457B2472579D0088FBD7 /* NumberGeneratable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B1D213EB76200BBE94D /* NumberGeneratable.swift */; };
+		792E457C2472579D0088FBD7 /* RandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B21213EB88000BBE94D /* RandomNumberGenerator.swift */; };
+		792E457D2472579E0088FBD7 /* NumberGeneratable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B1D213EB76200BBE94D /* NumberGeneratable.swift */; };
+		792E457E2472579E0088FBD7 /* RandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B21213EB88000BBE94D /* RandomNumberGenerator.swift */; };
+		792E457F247257A20088FBD7 /* StringProtocolExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E069592141202B000BBA8D /* StringProtocolExtensions.swift */; };
+		792E4580247257A20088FBD7 /* StringProtocolExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E069592141202B000BBA8D /* StringProtocolExtensions.swift */; };
 		793DCBB42140EBC2004BA50D /* CloseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793DCBB32140EBC2004BA50D /* CloseInfo.swift */; };
 		793DCBB62140EBD3004BA50D /* CloseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793DCBB52140EBD3004BA50D /* CloseType.swift */; };
 		799615EB21422AFC00117F3A /* Doors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799615EA21422AFC00117F3A /* Doors.swift */; };
@@ -64,11 +111,11 @@
 		790A2B1B213EB45B00BBE94D /* DeadEndRemoval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadEndRemoval.swift; sourceTree = "<group>"; };
 		790A2B1D213EB76200BBE94D /* NumberGeneratable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberGeneratable.swift; sourceTree = "<group>"; };
 		790A2B21213EB88000BBE94D /* RandomNumberGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomNumberGenerator.swift; sourceTree = "<group>"; };
-		790A2B25213EC03E00BBE94D /* Dungeon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dungeon.swift; sourceTree = "<group>"; };
+		790A2B25213EC03E00BBE94D /* DungeonInternal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DungeonInternal.swift; sourceTree = "<group>"; };
 		790A2B27213EE68F00BBE94D /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		790A2B2A213F7C9A00BBE94D /* dungeon.pl */ = {isa = PBXFileReference; lastKnownFileType = text.script.perl; path = dungeon.pl; sourceTree = "<group>"; };
 		790A2B2C213F7CB100BBE94D /* dungeon.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = dungeon.js; sourceTree = "<group>"; };
-		790A2B2E213F8A7000BBE94D /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
+		790A2B2E213F8A7000BBE94D /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		790A2B30213FE2F200BBE94D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		790A2B31213FEA7300BBE94D /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		790A2B372140D3EF00BBE94D /* Sill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sill.swift; sourceTree = "<group>"; };
@@ -78,6 +125,7 @@
 		7929FBDB22AFAD88003C1964 /* DungeonBuilder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DungeonBuilder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7929FBDD22AFAD88003C1964 /* DungeonBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DungeonBuilder.h; sourceTree = "<group>"; };
 		7929FBDE22AFAD88003C1964 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		792E454F247257530088FBD7 /* Dungeon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dungeon.swift; sourceTree = "<group>"; };
 		793DCBB32140EBC2004BA50D /* CloseInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseInfo.swift; sourceTree = "<group>"; };
 		793DCBB52140EBD3004BA50D /* CloseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseType.swift; sourceTree = "<group>"; };
 		799615EA21422AFC00117F3A /* Doors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Doors.swift; sourceTree = "<group>"; };
@@ -151,16 +199,17 @@
 				790A2B24213EBD6400BBE94D /* NumberGenerator */,
 				790A2B23213EBD4E00BBE94D /* Configuration */,
 				790A2B09213EB07000BBE94D /* DungeonBuilder.swift */,
-				790A2B25213EC03E00BBE94D /* Dungeon.swift */,
+				790A2B25213EC03E00BBE94D /* DungeonInternal.swift */,
 				790A2B0B213EB0B000BBE94D /* Node.swift */,
 				790A2B27213EE68F00BBE94D /* Room.swift */,
-				790A2B2E213F8A7000BBE94D /* Position.swift */,
+				790A2B2E213F8A7000BBE94D /* Coordinate.swift */,
 				790A2B31213FEA7300BBE94D /* Direction.swift */,
 				790A2B372140D3EF00BBE94D /* Sill.swift */,
 				793DCBB32140EBC2004BA50D /* CloseInfo.swift */,
 				793DCBB52140EBD3004BA50D /* CloseType.swift */,
 				79E069562141048D000BBA8D /* Mask.swift */,
 				799615EC21422E0300117F3A /* Door.swift */,
+				792E454F247257530088FBD7 /* Dungeon.swift */,
 			);
 			path = DungeonBuilder;
 			sourceTree = "<group>";
@@ -364,9 +413,11 @@
 					};
 					7929FBCD22AFAD5A003C1964 = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1130;
 					};
 					7929FBDA22AFAD88003C1964 = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1130;
 					};
 				};
 			};
@@ -427,12 +478,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				790A2B2F213F8A7000BBE94D /* Position.swift in Sources */,
+				790A2B2F213F8A7000BBE94D /* Coordinate.swift in Sources */,
 				790A2B14213EB3A200BBE94D /* RoomLayout.swift in Sources */,
 				790A2B1A213EB42F00BBE94D /* CorridorLayout.swift in Sources */,
 				790A2B12213EB39B00BBE94D /* DungeonLayout.swift in Sources */,
 				790A2B0E213EB12300BBE94D /* Configuration.swift in Sources */,
-				790A2B26213EC03E00BBE94D /* Dungeon.swift in Sources */,
+				790A2B26213EC03E00BBE94D /* DungeonInternal.swift in Sources */,
 				790A2B22213EB88000BBE94D /* RandomNumberGenerator.swift in Sources */,
 				790A2B28213EE68F00BBE94D /* Room.swift in Sources */,
 				790A2B32213FEA7300BBE94D /* Direction.swift in Sources */,
@@ -446,6 +497,7 @@
 				793DCBB62140EBD3004BA50D /* CloseType.swift in Sources */,
 				790A2B1E213EB76200BBE94D /* NumberGeneratable.swift in Sources */,
 				790A2B1C213EB45B00BBE94D /* DeadEndRemoval.swift in Sources */,
+				792E4550247257530088FBD7 /* Dungeon.swift in Sources */,
 				79E0695A2141202B000BBA8D /* StringProtocolExtensions.swift in Sources */,
 				799615EB21422AFC00117F3A /* Doors.swift in Sources */,
 				790A2B0C213EB0B000BBE94D /* Node.swift in Sources */,
@@ -464,6 +516,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				792E4577247257990088FBD7 /* DungeonLayout.swift in Sources */,
+				792E4555247257670088FBD7 /* Node.swift in Sources */,
+				792E4566247257810088FBD7 /* Mask.swift in Sources */,
+				792E4574247257990088FBD7 /* Configuration.swift in Sources */,
+				792E45682472578E0088FBD7 /* DungeonBuilder.swift in Sources */,
+				792E4551247257530088FBD7 /* Dungeon.swift in Sources */,
+				792E45572472576B0088FBD7 /* Room.swift in Sources */,
+				792E4579247257990088FBD7 /* RoomLayout.swift in Sources */,
+				792E456B247257940088FBD7 /* Doors.swift in Sources */,
+				792E457F247257A20088FBD7 /* StringProtocolExtensions.swift in Sources */,
+				792E457A247257990088FBD7 /* RoomSize.swift in Sources */,
+				792E45652472577E0088FBD7 /* Door.swift in Sources */,
+				792E455D247257740088FBD7 /* Sill.swift in Sources */,
+				792E455F247257770088FBD7 /* CloseInfo.swift in Sources */,
+				792E4576247257990088FBD7 /* DeadEndRemoval.swift in Sources */,
+				792E4575247257990088FBD7 /* CorridorLayout.swift in Sources */,
+				792E457E2472579E0088FBD7 /* RandomNumberGenerator.swift in Sources */,
+				792E45622472577B0088FBD7 /* CloseType.swift in Sources */,
+				792E457D2472579E0088FBD7 /* NumberGeneratable.swift in Sources */,
+				792E45592472576E0088FBD7 /* Coordinate.swift in Sources */,
+				792E4578247257990088FBD7 /* DungeonSize.swift in Sources */,
+				792E4553247257630088FBD7 /* DungeonInternal.swift in Sources */,
+				792E455B247257710088FBD7 /* Direction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,6 +546,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				792E4570247257990088FBD7 /* DungeonLayout.swift in Sources */,
+				792E4556247257680088FBD7 /* Node.swift in Sources */,
+				792E4567247257820088FBD7 /* Mask.swift in Sources */,
+				792E456D247257990088FBD7 /* Configuration.swift in Sources */,
+				792E45692472578F0088FBD7 /* DungeonBuilder.swift in Sources */,
+				792E4552247257530088FBD7 /* Dungeon.swift in Sources */,
+				792E45582472576B0088FBD7 /* Room.swift in Sources */,
+				792E4572247257990088FBD7 /* RoomLayout.swift in Sources */,
+				792E456C247257940088FBD7 /* Doors.swift in Sources */,
+				792E4580247257A20088FBD7 /* StringProtocolExtensions.swift in Sources */,
+				792E4573247257990088FBD7 /* RoomSize.swift in Sources */,
+				792E45642472577E0088FBD7 /* Door.swift in Sources */,
+				792E455E247257740088FBD7 /* Sill.swift in Sources */,
+				792E4560247257780088FBD7 /* CloseInfo.swift in Sources */,
+				792E456F247257990088FBD7 /* DeadEndRemoval.swift in Sources */,
+				792E456E247257990088FBD7 /* CorridorLayout.swift in Sources */,
+				792E457C2472579D0088FBD7 /* RandomNumberGenerator.swift in Sources */,
+				792E45612472577A0088FBD7 /* CloseType.swift in Sources */,
+				792E457B2472579D0088FBD7 /* NumberGeneratable.swift in Sources */,
+				792E455A2472576F0088FBD7 /* Coordinate.swift in Sources */,
+				792E4571247257990088FBD7 /* DungeonSize.swift in Sources */,
+				792E4554247257640088FBD7 /* DungeonInternal.swift in Sources */,
+				792E455C247257710088FBD7 /* Direction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -704,6 +802,7 @@
 		7929FBD322AFAD5A003C1964 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -722,6 +821,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.wolftrail.DungeonBuilder;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -730,6 +831,7 @@
 		7929FBD422AFAD5A003C1964 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -748,6 +850,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.wolftrail.DungeonBuilder;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -757,6 +860,7 @@
 		7929FBE122AFAD88003C1964 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -774,6 +878,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.wolftrail.DungeonBuilder;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 11.0;
@@ -783,6 +888,7 @@
 		7929FBE222AFAD88003C1964 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;

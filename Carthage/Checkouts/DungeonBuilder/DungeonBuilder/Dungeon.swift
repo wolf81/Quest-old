@@ -2,58 +2,39 @@
 //  Dungeon.swift
 //  DungeonBuilder
 //
-//  Created by Wolfgang Schreurs on 04/09/2018.
-//  Copyright © 2018 Wolftrail. All rights reserved.
+//  Created by Wolfgang Schreurs on 18/05/2020.
+//  Copyright © 2020 Wolftrail. All rights reserved.
 //
 
 import Foundation
 
-public class Dungeon  {
-    let n_i: Int
-    let n_j: Int
+public class Dungeon {
+    private let dungeon: DungeonInternal
     
-    public lazy var height: Int = { return self.n_i * 2 + 1 }()
-    public lazy var width: Int = { return self.n_j * 2 + 1 }()
-    
-    lazy var maxRowIndex: Int = { return self.height - 1 }()
-    lazy var maxColumnIndex: Int = { return self.width - 1 }()
-    
-    var nodes: [[Node]] = [[]]
-    
-    public var rooms: [UInt: Room] = [:]
-    public var doors: [Door] = []
-    public var connections: [String] = []
-    
-    // MARK: - Constructors
-    
-    /// Create a dungeon based on a base width and height.
-    /// Please note that the actual width and height is
-    /// calculated by multiplying by 2 and adding 1.
-    ///
-    /// - Parameters:
-    ///   - width: The base width
-    ///   - height: The base height
-    init(width: Int, height: Int) {
-        self.n_i = width
-        self.n_j = width
+    public var width: Int { self.dungeon.width }
+    public var height: Int { self.dungeon.height }
         
-        self.nodes = Array(
-            repeating: Array(
-                repeating: .nothing,
-                count: self.width),
-            count: self.height
-        )
+    internal init(dungeon: DungeonInternal) {
+        self.dungeon = dungeon
     }
     
-    // MARK: - Public
-    
-    internal func getNodeAt(x: Int, y: Int) -> Node {
-        self.nodes[x][y]
+    /// Retrieve a node from the dungeon.
+    public subscript(coord: Coordinate) -> Node {
+        return self.dungeon.nodes[coord.y][coord.x]
     }
+    
+    /// Returns a dictionary of room ids and room data
+    public lazy var roomInfo: [UInt: Room] = {
+        var roomInfo: [UInt: Room] = [:]
+                
+        for (roomId, room) in self.dungeon.rooms {
+            let x = Int(room.coord.y * 2 + 1)
+            let y = Int(room.coord.x * 2 + 1)
+            roomInfo[roomId] = Room(i: x, j: y, width: room.width * 2 + 1, height: room.height * 2 + 1)
+        }
         
-    public subscript(x: Int, y: Int) -> Node {
-        return self.nodes[self.height - y - 1][x]
-    }
+        return roomInfo
+    }()
 }
 
 // MARK: - CustomStringConvertible
@@ -64,7 +45,7 @@ extension Dungeon: CustomStringConvertible {
         
         for y in 0 ..< self.height {
             for x in 0 ..< self.width {
-                let node = self.nodes[y][x]
+                let node = self[Coordinate(x, y)]
 
                 switch node {
                 case let node where node.label != nil: output += " \(node.label!)"
@@ -94,6 +75,12 @@ extension Dungeon: CustomStringConvertible {
         └─────────────────────────────────────────┘
         
         """
+        
+        for (roomId, room) in roomInfo.sorted(by: { (kv1, kv2) -> Bool in
+            kv1.key < kv2.key
+        }) {
+            output += "\(roomId) @ \(room.coord.x).\(room.coord.y) (\(room.width) x \(room.height)) \n"
+        }
         
         return output
     }
