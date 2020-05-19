@@ -71,9 +71,6 @@ class Game {
     // level tiles used for walls, floor, etc...
     private(set) var tiles: [[Tile]] = []
 
-    // tiles used for the fog of war
-    private(set) var fogTiles: [FogTile] = []
-
     // coordinates of tiles that are currently visible for the player
     private(set) var visibleTileCoords = Set<vector_int2>()
         
@@ -149,8 +146,6 @@ class Game {
         for node in movementGraph.nodes ?? [] {
             let pathNodes = actorNode.findPath(to: node)
             if pathNodes.count == 0 {
-                let nodeCoord = (node as! GKGridGraphNode).gridPosition
-//                print("could not find path to: \(nodeCoord.x).\(nodeCoord.y)")
                 movementGraph.remove([node])
             }
         }
@@ -303,11 +298,8 @@ class Game {
         self.tileSize = tileSize
         
         self.visibility = RaycastVisibility(mapSize: CGSize(width: Int(self.level.width), height: Int(self.level.height)), blocksLight: { (x, y) -> (Bool) in
-            let tile = self.level[vector2(x, y)]
-            return tile != 0
+            return self.level[vector2(x, y)] != 0
         }, setVisible: { (x, y) in
-//            let tile = self.tiles[Int(x)][Int(y)]
-//            tile.didExplore = true
             self.visibleTileCoords.insert(vector_int2(x, y))
         }, getDistance: { (x1, y1, x2, y2) -> Int in
             let x = pow(Float(x2 - x1), 2)
@@ -378,7 +370,6 @@ class Game {
             monsterCount += 1
         }
         
-        self.fogTiles = [] // fogTiles
         self.tiles = tiles
         self.entities = entities
     }
@@ -403,9 +394,7 @@ class Game {
                 
         // Start the action for the current actor ... make sure only 1 action is performed at any time
         self.isBusy = true
-                        
-        let visibleTileCoords = self.visibleTileCoords
-        
+                                
         guard action.perform(game: self, completion: { [unowned self] in
             if let statusUpdatable = action as? StatusUpdatable, let message = statusUpdatable.message {
                 print(message)
@@ -413,26 +402,7 @@ class Game {
             }
             
             switch (action, action.actor) {
-            case is (MoveAction, Monster):
-                let isMonsterInRangeOfHero = visibleTileCoords.contains(action.actor.coord)
-//                action.actor.sprite.alpha = isMonsterInRangeOfHero ? 1.0 : 0.0
-            case is (MoveAction, Hero):
-                let newVisibleTileCoords = self.visibleTileCoords
-                let removedTileCoords = visibleTileCoords.subtracting(newVisibleTileCoords)
-                let addedTileCoords = newVisibleTileCoords.subtracting(visibleTileCoords)
-
-                for monster in self.monsters {
-                    if addedTileCoords.contains(monster.coord) {
-                        print("show: \(monster)")
-                        monster.sprite.alpha = 1.0
-                    }
-                    else if removedTileCoords.contains(monster.coord) {
-                        print("hide: \(monster)")
-                        monster.sprite.alpha = 0.0
-                    }
-                }
-            case is (DieAction, Actor):
-                self.remove(entity: activeActor)
+            case is (DieAction, Actor): self.remove(entity: activeActor)
             default: break
             }
              
@@ -440,10 +410,7 @@ class Game {
         }) else {
             return self.isBusy = false
         }
-        
-        // get all monsters in visual range of hero 2
-        // compare monster list 1 and 2 ... monsters added fade in, monsters removed fade out ...
-        
+                
         switch action {
         case let moveAction as MoveAction:
             switch activeActor {

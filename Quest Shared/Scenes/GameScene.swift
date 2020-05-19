@@ -107,13 +107,7 @@ class GameScene: SKScene, SceneManagerConstructable {
             entity.sprite.position = position            
             self.world.addChild(entity.sprite)
         }
-        
-        for fogTile in self.game.fogTiles {
-            let position = GameScene.pointForCoord(fogTile.coord)
-            fogTile.sprite.position = position
-            self.world.addChild(fogTile.sprite)
-        }
-        
+                
         self.actionBar = ActionBar(size: CGSize(width: self.size.width, height: 50), delegate: self)
         self.actionBar.position = CGPoint(x: 0, y: -(size.height / 2))
         self.actionBar.zPosition = 1_000_000_000
