@@ -67,7 +67,7 @@ class Game {
 
     // all currently existing entities (players, monsters, loot), entities that are destroyed are removed
     private(set) var entities: [Entity] = []
-        
+            
     // level tiles used for walls, floor, etc...
     private(set) var tiles: [[Tile]] = []
 
@@ -480,5 +480,5 @@ class Game {
     
     func updateVisibility(for actor: Actor) {
         self.visibility.compute(origin: actor.coord, rangeLimit: actor.sight)
-    }    
+    }
 }

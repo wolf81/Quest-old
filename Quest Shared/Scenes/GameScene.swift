@@ -96,20 +96,6 @@ class GameScene: SKScene, SceneManagerConstructable {
         
         self.backgroundColor = SKColor.black
         
-//        for tileRow in self.game.tiles {
-//            for tile in tileRow {
-//                let position = GameScene.pointForCoord(tile.coord)
-//                tile.sprite.position = position
-//                self.world.addChild(tile.sprite)
-//            }
-//        }
-//
-//        for entity in self.game.entities {
-//            let position = GameScene.pointForCoord(entity.coord)
-//            entity.sprite.position = position
-//            self.world.addChild(entity.sprite)
-//        }
-                
         self.actionBar = ActionBar(size: CGSize(width: self.size.width, height: 50), delegate: self)
         self.actionBar.position = CGPoint(x: 0, y: -(size.height / 2))
         self.actionBar.zPosition = 1_000_000_000
@@ -137,7 +123,7 @@ class GameScene: SKScene, SceneManagerConstructable {
         self.statusBar.update(text: "Welcome to Quest")
         
         for entity in self.game.entities {
-            entity.sprite.position = GameScene.pointForCoord(self.game.hero.coord)
+            entity.sprite.position = GameScene.pointForCoord(entity.coord)
         }
         
         gameDidMove(entity: self.game.hero, path: [self.game.hero.coord], duration: 0)
@@ -212,18 +198,21 @@ extension GameScene: GameDelegate {
             self.game.updateVisibility(for: hero)
             
             let (minCoord, maxCoord) = getMinMaxVisibleCoordsInView()
+                                                        
+            let viewVisibleCoords = getCoordsInRange(minCoord: minCoord, maxCoord: maxCoord)
             
-            let xRange = minCoord.x ... maxCoord.x
-            let yRange = minCoord.y ... maxCoord.y
-
-            // TODO: Optimize finding nearby enemies ... this code is not efficient as our list of entities grows ... perhaps do same as we do for tiles
-            let visibleEntities = self.game.entities.filter({ xRange.contains($0.coord.x) && yRange.contains($0.coord.y) })
-                                
-            var viewVisibleCoords = Set<vector_int2>()
-
-            for y in minCoord.y ... maxCoord.y {
-                for x in minCoord.x ... maxCoord.x {
-                    viewVisibleCoords.insert(vector_int2(x, y))
+            for entity in self.game.entities {
+                if self.game.actorVisibleCoords.contains(entity.coord) {
+                    if entity.sprite.parent == nil {
+                        self.world.addChild(entity.sprite)
+                    }
+                    else {
+                        let position = GameScene.pointForCoord(path.last!)
+                        hero.sprite.run(SKAction.move(to: position, duration: 1.0))
+                    }
+                }
+                else {
+                    entity.sprite.removeFromParent()
                 }
             }
             
@@ -262,21 +251,12 @@ extension GameScene: GameDelegate {
             
             self.lastViewVisibleCoords = viewVisibleCoords
             
-            for entity in visibleEntities where self.game.actorVisibleCoords.contains(entity.coord) {
-                if entity.sprite.parent == nil {
-                    self.world.addChild(entity.sprite)
-                }
-            }
-            
-            print("visibileEntities: \(visibleEntities.count)")
-            print("render nodes: \(minCoord.x).\(minCoord.y) ... \(maxCoord.x).\(maxCoord.y)")
-            
-            let cameraCoord = coordForCameraPosition()
-            print("camera coord: \(cameraCoord.x).\(cameraCoord.y)")
             moveCamera(path: path, duration: 0.2)
         }
         else {
-            
+            let position = GameScene.pointForCoord(path.last!)
+            entity.sprite.run(SKAction.move(to: position, duration: 1.0))
+
         }
     }
     
@@ -310,6 +290,16 @@ extension GameScene: GameDelegate {
         let x2 = min(Int32(maxCoord.x + 1), Int32(self.game.level.width - 1))
 
         return (vector_int2(x1, y1), vector_int2(x2, y2))
+    }
+    
+    private func getCoordsInRange(minCoord: vector_int2, maxCoord: vector_int2) -> Set<vector_int2> {
+        var coords = Set<vector_int2>()
+        for y in minCoord.y ... maxCoord.y {
+            for x in minCoord.x ... maxCoord.x {
+                coords.insert(vector_int2(x, y))
+            }
+        }
+        return coords
     }
 }
 

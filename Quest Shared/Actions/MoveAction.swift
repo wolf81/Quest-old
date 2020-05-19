@@ -47,7 +47,7 @@ class MoveAction: Action, StatusUpdatable {
                 hero.addToBackpack(loot)
             }
             self.actor.coord = self.toCoord
-            self.actor.sprite.position = GameScene.pointForCoord(self.actor.coord)
+//            self.actor.sprite.position = GameScene.pointForCoord(self.actor.coord)
         }
 
         self.message = "\(self.actor.name) moved to \(self.toCoord.x).\(self.toCoord.y)"
