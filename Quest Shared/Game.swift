@@ -18,6 +18,7 @@ protocol GameDelegate: class {
     
     func gameDidUpdateStatus(message: String)
     func gameDidAttack(actor: Actor, targetActor: Actor)
+    func gameDidDie(actor: Actor)
 }
 
 enum SelectionMode {
@@ -129,7 +130,7 @@ class Game {
             for y in movementGraph.gridOrigin.y ..< (movementGraph.gridOrigin.y + Int32(movementGraph.gridHeight)) {
                 let coord = vector_int2(x, y)
                                 
-                if isVisible(for: actor, coord: coord) == false || getTile(at: coord) == 1 {
+                if self.actorVisibleCoords.contains(coord) == false || getTile(at: coord) == 1 {
                     if let node = movementGraph.node(atGridPosition: coord) {
                         movementGraph.remove([node])
                     }
@@ -143,14 +144,15 @@ class Game {
             }
         }
         
-        let actorNode = movementGraph.node(atGridPosition: actor.coord)!
-        for node in movementGraph.nodes ?? [] {
-            let pathNodes = actorNode.findPath(to: node)
-            if pathNodes.count == 0 {
-                movementGraph.remove([node])
+        if let actorNode = movementGraph.node(atGridPosition: actor.coord) {
+            for node in movementGraph.nodes ?? [] {
+                let pathNodes = actorNode.findPath(to: node)
+                if pathNodes.count == 0 {
+                    movementGraph.remove([node])
+                }
             }
         }
-        
+
         return movementGraph
     }
 
@@ -373,6 +375,8 @@ class Game {
         
         self.tiles = tiles
         self.entities = entities
+        
+        updateVisibility(for: self.hero)
     }
     
     func update(_ deltaTime: TimeInterval) {
@@ -389,36 +393,37 @@ class Game {
         guard let action = activeActor.getAction(state: self) else {
             return
         }
-                                                
+                                  
         guard action.perform(game: self, completion: { [unowned self] in
             if let statusUpdatable = action as? StatusUpdatable, let message = statusUpdatable.message {
                 print(message)
                 self.delegate?.gameDidUpdateStatus(message: message)
-            }
-            
-            switch (action, action.actor) {
-            case is (DieAction, Actor): self.remove(entity: activeActor)
-            default: break
-            }
+            }            
         }) else { return /* wait since we have no action to perform */ }
                 
         switch action {
         case let moveAction as MoveAction:
+            if action.actor is Hero {
+                updateVisibility(for: self.hero)
+            }
             self.delegate?.gameDidMove(entity: action.actor, path: moveAction.path, duration: moveAction.duration)
         case let meleeAttackAction as MeleeAttackAction:
             self.delegate?.gameDidAttack(actor: meleeAttackAction.actor, targetActor: meleeAttackAction.targetActor)
         case _ as IdleAction:
             activateNextActor()
+        case _ as DieAction:
+            self.remove(entity: activeActor)
+            self.delegate?.gameDidDie(actor: action.actor)
         default: break
         }
-                        
-        self.actorVisibleCoords.removeAll()
-        updateVisibility(for: self.actors[self.activeActorIdx])
     }
     
     func activateNextActor() {
         // Activate next actor
         self.activeActorIdx = (self.activeActorIdx + 1) % self.actors.count
+        let actor = self.actors[self.activeActorIdx]
+        
+        updateVisibility(for: actor)
     }
         
     func movePlayer(direction: Direction) {
@@ -475,7 +480,8 @@ class Game {
         hideSelectionTiles()
     }
     
-    func updateVisibility(for actor: Actor) {
+    private func updateVisibility(for actor: Actor) {
+        self.actorVisibleCoords.removeAll()
         self.visibility.compute(origin: actor.coord, rangeLimit: actor.sight)
     }
 }

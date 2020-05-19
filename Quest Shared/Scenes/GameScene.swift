@@ -210,10 +210,13 @@ extension GameScene: GameDelegate {
         self.game.activateNextActor()
     }
     
+    func gameDidDie(actor: Actor) {
+        let fadeOut = SKAction.fadeOut(withDuration: 1.0)
+        actor.sprite.run(fadeOut)
+    }
+    
     func gameDidMove(entity: Entity, path: [vector_int2], duration: TimeInterval) {
         if let hero = entity as? Hero {
-            self.game.updateVisibility(for: hero)
-            
             let (minCoord, maxCoord) = getMinMaxVisibleCoordsInView()
                                                         
             let viewVisibleCoords = getCoordsInRange(minCoord: minCoord, maxCoord: maxCoord)
@@ -272,7 +275,7 @@ extension GameScene: GameDelegate {
             
             self.lastViewVisibleCoords = viewVisibleCoords
             
-            moveCamera(path: path, duration: 0.2)
+            moveCamera(path: path, duration: 0.5)
         }
         else {
             let firstCoord = path.first!
