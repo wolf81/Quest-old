@@ -45,8 +45,8 @@ enum Role: String, Codable {
     func defaultBackpack(entityFactory: EntityFactory) -> [Lootable] {
         let lootInfo = [
             "weapon": ["Battleaxe +3"],
-            "armor": ["Golden Plate"],
-            "potion": ["Health Potion", "Health Potion", "Health Potion"]
+            "armor": ["Chainmail"],
+            "potion": ["Health Potion"]
         ]
         
         var loot: [Lootable] = []
@@ -66,7 +66,7 @@ enum Role: String, Codable {
         switch self {
         case .fighter:
             equipmentInfo = [
-                "armor": ["Chainmail", "Buckler"],
+                "armor": ["Golden Plate", "Buckler"],
                 "weapon": ["Longsword"],
             ]
         case .mage:

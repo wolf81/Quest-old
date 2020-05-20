@@ -280,13 +280,14 @@ class Game {
         
         self.tileSize = tileSize
         
-        self.visibility = RaycastVisibility(mapSize: CGSize(width: Int(self.level.width), height: Int(self.level.height)), blocksLight: { (x, y) -> (Bool) in
-            return self.level[vector2(x, y)] != 0
-        }, setVisible: { (x, y) in
-            self.actorVisibleCoords.insert(vector_int2(x, y))
-        }, getDistance: { (x1, y1, x2, y2) -> Int in
-            let x = pow(Float(x2 - x1), 2)
-            let y = pow(Float(y2 - y1), 2)
+        let mapSize = CGSize(width: Int(self.level.width), height: Int(self.level.height))
+        self.visibility = RaycastVisibility(mapSize: mapSize, blocksLight: {
+            self.level[$0] != 0
+        }, setVisible: {
+            self.actorVisibleCoords.insert($0)
+        }, getDistance: {
+            let x = pow(Float($1.x - $0.x), 2)
+            let y = pow(Float($1.y - $0.y), 2)
             return Int(sqrt(x + y))
         })
         
@@ -296,6 +297,8 @@ class Game {
         
         var didAddHero = false
                 
+        var roomPotionInfo: [UInt: vector_int2] = [:]
+        
         for y in (0 ..< self.level.height) {
             var tileRow: [Tile] = []
             
@@ -321,21 +324,24 @@ class Game {
                 let fogTile = FogTile(json: [:], coord: coord)
                 fogTiles.append(fogTile)
                 
-                if !didAddHero, let room = level.getRoomId(at: coord) {
+                if let roomId = level.getRoomId(at: coord), roomPotionInfo[roomId] == nil, [2, 8, 9].contains(roomId), let room = level.roomInfo[roomId] {
+                    let coord = vector_int2(Int32(room.coord.x + room.width - 2), Int32(room.coord.y + room.height - 2))
+                    let potion = try! entityFactory.newEntity(type: Potion.self, name: "Health Potion", coord: coord)
+                    entities.append(potion)
+                    print("potion added to room: \(roomId) @ \(coord.x).\(coord.y)")
+                    
+                    roomPotionInfo[roomId] = coord
+                }
+                
+                if !didAddHero, let roomId = level.getRoomId(at: coord) {
                     print("level size: \(self.level.width) x \(self.level.height)")
-                    print("hero added to room: \(room) @ \(coord.x).\(coord.y)")
+                    print("hero added to room: \(roomId) @ \(coord.x).\(coord.y)")
                     self.hero.coord = coord
                     entities.append(self.hero)
                     print(self.hero)
                     
                     didAddHero = true
                 }
-
-//                let potionCoords = [vector_int2(4, 4)]
-//                for potionCoord in potionCoords where potionCoord == coord {
-//                    let potion = try! entityFactory.newEntity(type: Potion.self, name: "Health Potion", coord: potionCoord)
-//                    entities.append(potion)
-//                }
             }
             tiles.append(tileRow)
         }

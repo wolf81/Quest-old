@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SpriteKit
+import simd
 
 protocol Visibility {
     func compute(origin: vector_int2, rangeLimit: Int32)
@@ -15,14 +15,14 @@ protocol Visibility {
 
 final public class RaycastVisibility: Visibility {
     private let mapSize: CGSize
-    private let blocksLight: (Int32, Int32) -> (Bool)
-    private let setVisible: (Int32, Int32) -> ()
-    private let getDistance: (Int32, Int32, Int32, Int32) -> Int
+    private let blocksLight: (vector_int2) -> (Bool)
+    private let setVisible: (vector_int2) -> ()
+    private let getDistance: (vector_int2, vector_int2) -> Int
     
     init(mapSize: CGSize,
-         blocksLight: @escaping (Int32, Int32) -> (Bool),
-         setVisible: @escaping (Int32, Int32) -> (),
-         getDistance: @escaping (Int32, Int32, Int32, Int32) -> Int)  {
+         blocksLight: @escaping (vector_int2) -> (Bool),
+         setVisible: @escaping (vector_int2) -> (),
+         getDistance: @escaping (vector_int2, vector_int2) -> Int)  {
         self.mapSize = mapSize
         self.blocksLight = blocksLight
         self.setVisible = setVisible
@@ -30,7 +30,7 @@ final public class RaycastVisibility: Visibility {
     }
     
     func compute(origin: vector_int2, rangeLimit: Int32) {
-        setVisible(origin.x, origin.y)
+        setVisible(origin)
         
         if rangeLimit != 0 {
             let area = CGRect(x: 0, y: 0, width: mapSize.width, height: mapSize.height)
@@ -52,26 +52,6 @@ final public class RaycastVisibility: Visibility {
         }
     }
     
-    /*
-     int xDiff = x2 - origin.X, yDiff = y2 - origin.Y, xLen = Math.Abs(xDiff), yLen = Math.Abs(yDiff);
-     int xInc = Math.Sign(xDiff), yInc = Math.Sign(yDiff)<<16, index = (origin.Y<<16) + origin.X;
-     if(xLen < yLen) // make sure we walk along the long axis
-     {
-       Utility.Swap(ref xLen, ref yLen);
-       Utility.Swap(ref xInc, ref yInc);
-     }
-     int errorInc = yLen*2, error = -xLen, errorReset = xLen*2;
-     while(--xLen >= 0) // skip the first point (the origin) since it's always visible and should never stop rays
-     {
-       index += xInc; // advance down the long axis (could be X or Y)
-       error += errorInc;
-       if(error > 0) { error -= errorReset; index += yInc; }
-       int x = index & 0xFFFF, y = index >> 16;
-       if(rangeLimit >= 0 && GetDistance(origin.X, origin.Y, x, y) > rangeLimit) break;
-       SetVisible(x, y);
-       if(BlocksLight(x, y)) break;
-     }
-     */
     private func traceLine(origin: vector_int2, x2: Int32, y2: Int32, rangeLimit: Int32) {
         let xDiff = x2 - origin.x
         let yDiff = y2 - origin.y
@@ -97,17 +77,12 @@ final public class RaycastVisibility: Visibility {
             }
             let x = index & 0xffff
             let y = index >> 16
-            if rangeLimit >= 0 && getDistance(origin.x, origin.y, x, y) > rangeLimit {
+            let destination = vector_int2(x, y)
+            if rangeLimit >= 0 && getDistance(origin, destination) > rangeLimit {
                 break
             }
-            setVisible(x, y)
-            if blocksLight(x, y) { break }
+            setVisible(destination)
+            if blocksLight(destination) { break }
         }
-    }
-}
-
-final public class ShadowcastVisibility: Visibility {
-    func compute(origin: vector_int2, rangeLimit: Int32) {
-        
     }
 }

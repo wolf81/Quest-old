@@ -33,10 +33,10 @@ struct Level: CustomStringConvertible {
         self.dungeon = builder.build(name: "First Encounter")
     }
     
-    func getRoomId(at coord: vector_int2) -> Int? {
+    func getRoomId(at coord: vector_int2) -> UInt? {
         let node = self.dungeon[Coordinate(Int(coord.x), Int(coord.y))]
         if node.contains(.room) {
-            return Int(node.roomId)
+            return node.roomId
         }
         return nil
     }
