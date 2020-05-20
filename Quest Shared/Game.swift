@@ -81,7 +81,9 @@ class Game {
 
     // coordinates of tiles that are currently visible for the player
     private(set) var actorVisibleCoords = Set<vector_int2>()
-        
+
+    var viewVisibleCoords = Set<vector_int2>()
+
 //    private(set) var selectionModeCoords = Set<vector_int2>()
     private(set) var selectionModeTiles: [OverlayTile] = []
     

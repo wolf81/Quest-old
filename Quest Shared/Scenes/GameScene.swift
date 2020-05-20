@@ -38,9 +38,7 @@ class GameScene: SKScene, SceneManagerConstructable {
     
     // Sprites should be added on the main thread, to make this easy, we add sprites in the update loop and then clear this array
     private var spritesToAdd: [SKSpriteNode] = []
-        
-    private var lastViewVisibleCoords = Set<vector_int2>()
-            
+                    
     required init(size: CGSize, userInfo: [String : Any]) {
         self.game = (userInfo[UserInfoKey.game] as! Game)
         
@@ -256,7 +254,7 @@ extension GameScene: GameDelegate {
             }
             
             // add sprites for all newly added tiles ... these are tiles that used to be out of view bounds
-            let addedCoords = viewVisibleCoords.subtracting(self.lastViewVisibleCoords)
+            let addedCoords = viewVisibleCoords.subtracting(self.game.viewVisibleCoords)
             for coord in addedCoords {
                 let tile = self.game.tiles[Int(coord.y)][Int(coord.x)]
 
@@ -273,16 +271,14 @@ extension GameScene: GameDelegate {
             }
 
             // remove sprites for tiles that are out of view bounds
-            let removedCoords = self.lastViewVisibleCoords.subtracting(viewVisibleCoords)
+            let removedCoords = self.game.viewVisibleCoords.subtracting(viewVisibleCoords)
             for coord in removedCoords {
                 let tile = self.game.tiles[Int(coord.y)][Int(coord.x)]
                 tile.sprite.removeFromParent()
             }
-            
-//            var didColorize = false
-            
+                        
             // update the remaining tiles
-            let remainingCoords = self.lastViewVisibleCoords.subtracting(addedCoords).subtracting(removedCoords)
+            let remainingCoords = self.game.viewVisibleCoords.subtracting(addedCoords).subtracting(removedCoords)
             for coord in remainingCoords {
                 let tile = self.game.tiles[Int(coord.y)][Int(coord.x)]
 
@@ -292,15 +288,9 @@ extension GameScene: GameDelegate {
 
                 let alpha: CGFloat = self.game.actorVisibleCoords.contains(coord) ? 1.0 : tile.didExplore ? 0.5 : 0.0
                 tile.sprite.run(SKAction.fadeAlpha(to: alpha, duration: 1.5))
-                
-//                if alpha == 1.0 && !didColorize {
-//                    tile.sprite.color = .green
-//                    tile.sprite.run(SKAction.colorize(withColorBlendFactor: 1.0, duration: 0))
-//                    didColorize = true
-//                }
             }
             
-            self.lastViewVisibleCoords = viewVisibleCoords
+            self.game.viewVisibleCoords = viewVisibleCoords
             
             moveCamera(path: path, duration: 0.5)
         }
