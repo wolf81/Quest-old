@@ -378,25 +378,25 @@ class Game {
         
         guard let action = activeActor?.getAction(state: self) else { return }
         
-        print("perform: \(action) for \(action.actor.name)")
-        
         action.perform(game: self)
                 
         switch action {
         case let move as MoveAction:
-            self.delegate?.gameDidMove(entity: action.actor, path: move.path, duration: 0)
-            updateVisibility(for: self.hero)
-        case _ as DieAction:
-            self.delegate?.gameDidDie(actor: action.actor)
-            remove(entity: action.actor)
+            self.delegate?.gameDidMove(entity: move.actor, path: move.path, duration: 0)
+        case let attack as MeleeAttackAction:
+            self.delegate?.gameDidAttack(actor: attack.actor, targetActor: attack.targetActor)
+        case let die as DieAction:
+            self.delegate?.gameDidDie(actor: die.actor)
+            remove(entity: die.actor)
         default: break
         }
         
         self.activeActors.removeFirst()
         if self.activeActors.count == 0 {
             nextTurn()
-            updateVisibility(for: self.activeActors[self.activeActorIdx])
         }
+
+        updateVisibility(for: self.activeActors[self.activeActorIdx])
     }
     
     func nextTurn() {
@@ -406,6 +406,8 @@ class Game {
         
         updateActiveActors()
         self.activeActorIdx = 0
+        
+//        updateVisibility(for: self.activeActors[self.activeActorIdx])
     }
     
     func updateActiveActors() {
@@ -420,15 +422,7 @@ class Game {
             }
         }        
     }
-    
-    func activateNextActor() {
-        // Activate next actor
-        self.activeActorIdx = (self.activeActorIdx + 1) % self.actors.count
-        let actor = self.actors[self.activeActorIdx]
-        
-        updateVisibility(for: actor)
-    }
-        
+            
     func movePlayer(direction: Direction) {
         self.selectionMode = .none
                 

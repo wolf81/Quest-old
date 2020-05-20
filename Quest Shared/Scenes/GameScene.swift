@@ -223,8 +223,6 @@ extension GameScene: GameDelegate {
         ])
         
         actor.sprite.run(attack)
-        
-        self.game.activateNextActor()
     }
     
     func gameDidDie(actor: Actor) {
@@ -315,9 +313,7 @@ extension GameScene: GameDelegate {
             }
             
             entity.sprite.run(SKAction.sequence(move))
-        }
-        
-        self.game.activateNextActor()
+        }        
     }
     
     func gameDidAdd(entity: EntityProtocol) {
