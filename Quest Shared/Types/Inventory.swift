@@ -46,8 +46,7 @@ class Inventory {
 
             return true
         }
-        
-        
+                
         return false
     }
     

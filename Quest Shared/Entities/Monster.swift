@@ -43,17 +43,13 @@ class Monster: Actor, CustomStringConvertible {
     }
     
     override func getAction(state: Game) -> Action? {
-        if self.isAlive == false {
-            return DieAction(actor: self, timeUnitCost: Constants.timeUnitsPerTurn)
-        }
+        guard self.isAlive else { return DieAction(actor: self, timeUnitCost: 0) }
                 
         // If hero is in melee range, perform melee attack
         let xRange = self.coord.x - 1 ... self.coord.x + 1
         let yRange = self.coord.y - 1 ... self.coord.y + 1
         if state.hero.isAlive && xRange.contains(state.hero.coord.x) && yRange.contains(state.hero.coord.y) {
-            if (self.actionCost.meleeAttack <= self.timeUnits) {
-                return MeleeAttackAction(actor: self, targetActor: state.hero, timeUnitCost: self.actionCost.meleeAttack)
-            }
+            return MeleeAttackAction(actor: self, targetActor: state.hero, timeUnitCost: 0)
         }
                 
         if state.actorVisibleCoords.contains(state.hero.coord) {
@@ -63,7 +59,7 @@ class Monster: Actor, CustomStringConvertible {
                 var pathNodes = movementGraph.findPath(from: actorNode, to: heroNode) as! [GKGridGraphNode]
                 pathNodes.removeLast() // we don't want to move on top of the hero
 
-                let moveCount = self.timeUnits / self.actionCost.move
+                let moveCount = 1
                 
                 if pathNodes.count > 0 && moveCount > 0 {
                     let nodeCount = pathNodes.count
@@ -72,9 +68,7 @@ class Monster: Actor, CustomStringConvertible {
                     pathNodes.removeLast(removeNodeCount)
                                         
                     let path = pathNodes.compactMap({ $0.gridPosition })
-                    if (self.actionCost.move <= self.timeUnits) {
-                        return MoveAction(actor: self, coords: path, timeUnitCost: self.actionCost.move * moveCount)
-                    }
+                    return MoveAction(actor: self, coords: path, timeUnitCost: 0)
                 }
             }
         }

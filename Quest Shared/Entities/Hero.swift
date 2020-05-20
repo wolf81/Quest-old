@@ -119,28 +119,28 @@ class Hero: Actor, CustomStringConvertible {
             self.spell = nil
         }
 
-        if self.isAlive == false {
-            return DieAction(actor: self, timeUnitCost: Constants.timeUnitsPerTurn)
+        guard self.isAlive else {
+            return DieAction(actor: self, timeUnitCost: Constants.timeUnitsPerTurn)            
         }
         
         if let direction = self.direction {
             let toCoord = self.coord &+ direction.coord
             
             if let targetActor = state.getActor(at: toCoord) {                
-                return MeleeAttackAction(actor: self, targetActor: targetActor, timeUnitCost: self.actionCost.meleeAttack)
+                return MeleeAttackAction(actor: self, targetActor: targetActor, timeUnitCost: 0)
             }
             
             if state.canMove(entity: self, to: toCoord) {
-                return MoveAction(actor: self, toCoord: toCoord, timeUnitCost: self.actionCost.move)
+                return MoveAction(actor: self, toCoord: toCoord, timeUnitCost: 0)
             }
         } else if let path = self.path {
-            return MoveAction(actor: self, coords: path, timeUnitCost: self.actionCost.move)
+            return MoveAction(actor: self, coords: path, timeUnitCost: 0)
         } else if let meleeTarget = self.meleeTarget {
-            return MeleeAttackAction(actor: self, targetActor: meleeTarget, timeUnitCost: self.actionCost.meleeAttack)
+            return MeleeAttackAction(actor: self, targetActor: meleeTarget, timeUnitCost: 0)
         } else if let rangedTarget = self.rangedTarget {
-            return RangedAttackAction(actor: self, targetActor: rangedTarget, timeUnitCost: self.actionCost.rangedAttack)
+            return RangedAttackAction(actor: self, targetActor: rangedTarget, timeUnitCost: 0)
         } else if let spell = self.spell {
-            return CastSpellAction(actor: self, spell: spell, timeUnitCost: Constants.timeUnitsPerTurn)
+            return CastSpellAction(actor: self, spell: spell, timeUnitCost: 0)
         }
                              
         return nil

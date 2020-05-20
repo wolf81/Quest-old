@@ -49,9 +49,7 @@ class Game {
     private let entityFactory: EntityFactory
     
     private(set) var hero: Hero
-    
-    private var isBusy: Bool = false
-        
+            
     private var tileSize: CGSize = .zero
     
     private var selectionMode: SelectionMode = .none {
@@ -66,7 +64,7 @@ class Game {
     
     private var visibility: Visibility!
     
-    private var turn: Int = 1
+    private var turn: Int = 0
         
     init(entityFactory: EntityFactory, hero: Hero) {
         self.entityFactory = entityFactory
@@ -97,6 +95,8 @@ class Game {
     
     var monsters: [Monster] { self.entities.filter({ $0 is Monster }) as! [Monster] }
     
+    var activeActors: [Actor] = []
+    
     // get a value for a tile at a coordinate, can be nil when out of range and is otherwise some integer value that represents a wall, floor or other scenery
     func getTile(at coord: vector_int2) -> Int? {
         self.level[coord]
@@ -107,7 +107,6 @@ class Game {
     }
     
     func getLoot(at coord: vector_int2) -> Lootable? {
-        print("loot: \(self.loot.compactMap({ $0.coord }))")
         return self.loot.filter({ $0.coord == coord}).first
     }
     
@@ -365,46 +364,61 @@ class Game {
         self.entities = entities
         
         updateVisibility(for: self.hero)
+        
+        nextTurn()
     }
     
     func update(_ deltaTime: TimeInterval) {
         if self.hero.hitPoints.current <= 0 {
             let sceneManager = try! ServiceLocator.shared.get(service: SceneManager.self)
             sceneManager.crossFade(to: GameOverScene.self)
-            self.isBusy = true
         }
 
-        let activeActor = self.actors[self.activeActorIdx]
-        activeActor.addTimeUnits(Constants.timeUnitsPerTurn)
-                
-        // Wait until the current active actor performs an action
-        guard let action = activeActor.getAction(state: self) else {
-            /* wait since we have no action to perform */ 
-            return
-        }
-                                  
+        let activeActor = self.activeActors.first
+        
+        guard let action = activeActor?.getAction(state: self) else { return }
+        
+        print("perform: \(action) for \(action.actor.name)")
+        
         action.perform(game: self)
-
-        if let statusUpdatable = action as? StatusUpdatable, let message = statusUpdatable.message {
-            print(message)
-            self.delegate?.gameDidUpdateStatus(message: message)
-        }
                 
         switch action {
-        case let moveAction as MoveAction:
-            if action.actor is Hero {
-                updateVisibility(for: self.hero)
-            }
-            self.delegate?.gameDidMove(entity: action.actor, path: moveAction.path, duration: moveAction.duration)
-        case let meleeAttackAction as MeleeAttackAction:
-            self.delegate?.gameDidAttack(actor: meleeAttackAction.actor, targetActor: meleeAttackAction.targetActor)
-        case _ as IdleAction:
-            activateNextActor()
+        case let move as MoveAction:
+            self.delegate?.gameDidMove(entity: action.actor, path: move.path, duration: 0)
+            updateVisibility(for: self.hero)
         case _ as DieAction:
-            self.remove(entity: activeActor)
             self.delegate?.gameDidDie(actor: action.actor)
+            remove(entity: action.actor)
         default: break
         }
+        
+        self.activeActors.removeFirst()
+        if self.activeActors.count == 0 {
+            nextTurn()
+            updateVisibility(for: self.activeActors[self.activeActorIdx])
+        }
+    }
+    
+    func nextTurn() {
+        self.turn += 1
+        
+        print("turn: \(self.turn)")
+        
+        updateActiveActors()
+        self.activeActorIdx = 0
+    }
+    
+    func updateActiveActors() {
+        self.activeActors.removeAll()
+        
+        let xRange = max(self.hero.coord.x - 10, 0) ... min(self.hero.coord.x + 10, self.level.width)
+        let yRange = max(self.hero.coord.y - 10, 0) ... min(self.hero.coord.y + 10, self.level.height)
+        
+        for actor in actors {
+            if xRange.contains(actor.coord.x) && yRange.contains(actor.coord.y) {
+                self.activeActors.append(actor)
+            }
+        }        
     }
     
     func activateNextActor() {
