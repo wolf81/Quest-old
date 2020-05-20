@@ -140,9 +140,6 @@
 		7990950C244C9E410091791F /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990950B244C9E410091791F /* StatusBar.swift */; };
 		7990950D244C9E410091791F /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990950B244C9E410091791F /* StatusBar.swift */; };
 		7990950E244C9E410091791F /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990950B244C9E410091791F /* StatusBar.swift */; };
-		799EA0162450A8E600F690DC /* Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799EA0152450A8E600F690DC /* Visibility.swift */; };
-		799EA0172450A8E600F690DC /* Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799EA0152450A8E600F690DC /* Visibility.swift */; };
-		799EA0182450A8E600F690DC /* Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799EA0152450A8E600F690DC /* Visibility.swift */; };
 		799EA01A2451313200F690DC /* FogTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799EA0192451313200F690DC /* FogTile.swift */; };
 		799EA01B2451313200F690DC /* FogTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799EA0192451313200F690DC /* FogTile.swift */; };
 		799EA01C2451313200F690DC /* FogTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799EA0192451313200F690DC /* FogTile.swift */; };
@@ -265,7 +262,6 @@
 		798C997923A2061700C6EC1C /* IdleAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdleAction.swift; sourceTree = "<group>"; };
 		798C997D23A2068C00C6EC1C /* AnimationKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationKey.swift; sourceTree = "<group>"; };
 		7990950B244C9E410091791F /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
-		799EA0152450A8E600F690DC /* Visibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Visibility.swift; sourceTree = "<group>"; };
 		799EA0192451313200F690DC /* FogTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FogTile.swift; sourceTree = "<group>"; };
 		79ACC7DD22AA5BE900AC3BF0 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
 		79ACC7EC22AA5D8700AC3BF0 /* EntityLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityLoader.swift; sourceTree = "<group>"; };
@@ -335,14 +331,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		791DD293244DF4460058915B /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				799EA0152450A8E600F690DC /* Visibility.swift */,
-			);
-			path = Utilities;
-			sourceTree = "<group>";
-		};
 		79423B7D239F4A850042B9BD /* EntityLoading */ = {
 			isa = PBXGroup;
 			children = (
@@ -445,7 +433,6 @@
 		79C61A6C22A7C413008D3609 /* Quest Shared */ = {
 			isa = PBXGroup;
 			children = (
-				791DD293244DF4460058915B /* Utilities */,
 				7990950A244C9E1E0091791F /* Nodes */,
 				79FC68EB244C49ED00E6D63C /* Scenes */,
 				7960DEB123A6082B00B4CDF8 /* Entities */,
@@ -740,7 +727,6 @@
 				7963DE3A239CE12A00183DF2 /* Race.swift in Sources */,
 				7963DE52239E3D2A00183DF2 /* ActionBar.swift in Sources */,
 				7960DED323A6082B00B4CDF8 /* OverlayTile.swift in Sources */,
-				799EA0162450A8E600F690DC /* Visibility.swift in Sources */,
 				7960DED723A6083400B4CDF8 /* EntityProtocol.swift in Sources */,
 				793A575C2445A12F0089E693 /* ActionCost.swift in Sources */,
 				79DF73B42463DD310030E7A8 /* InventoryNode.swift in Sources */,
@@ -809,7 +795,6 @@
 				79FC68F2244C4A8F00E6D63C /* MainMenuScene.swift in Sources */,
 				7963DE3B239CE12A00183DF2 /* Race.swift in Sources */,
 				7963DE53239E3D2A00183DF2 /* ActionBar.swift in Sources */,
-				799EA0172450A8E600F690DC /* Visibility.swift in Sources */,
 				7960DED423A6082B00B4CDF8 /* OverlayTile.swift in Sources */,
 				7960DED823A6083400B4CDF8 /* EntityProtocol.swift in Sources */,
 				79DF73B52463DD310030E7A8 /* InventoryNode.swift in Sources */,
@@ -884,7 +869,6 @@
 				79C61A9A22A7C415008D3609 /* GameViewController.swift in Sources */,
 				79ACC82C22AB81F000AC3BF0 /* JSONConstructable.swift in Sources */,
 				79492BEB23A61299005B9508 /* TileProtocol.swift in Sources */,
-				799EA0182450A8E600F690DC /* Visibility.swift in Sources */,
 				7960DEBD23A6082B00B4CDF8 /* Monster.swift in Sources */,
 				792467E9246D37D5000568A6 /* GameOverScene.swift in Sources */,
 				795746BD22A9029D00E04BEC /* Direction.swift in Sources */,
