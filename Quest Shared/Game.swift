@@ -379,15 +379,16 @@ class Game {
                 
         // Wait until the current active actor performs an action
         guard let action = activeActor.getAction(state: self) else {
+            /* wait since we have no action to perform */ 
             return
         }
                                   
-        guard action.perform(game: self, completion: { [unowned self] in
-            if let statusUpdatable = action as? StatusUpdatable, let message = statusUpdatable.message {
-                print(message)
-                self.delegate?.gameDidUpdateStatus(message: message)
-            }            
-        }) else { return /* wait since we have no action to perform */ }
+        action.perform(game: self)
+
+        if let statusUpdatable = action as? StatusUpdatable, let message = statusUpdatable.message {
+            print(message)
+            self.delegate?.gameDidUpdateStatus(message: message)
+        }
                 
         switch action {
         case let moveAction as MoveAction:

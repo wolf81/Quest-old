@@ -13,9 +13,7 @@ class IdleAction: Action {
 //        return "[\(self.actor.name)] ⦰ \(self.actor.coord.x).\(self.actor.coord.y)"
 //    }
     
-    override func perform(game: Game, completion: @escaping () -> Void) -> Bool {
-        completion()
-        
-        return true
+    override func perform(game: Game) {
+        self.actor.subtractTimeUnits(self.timeUnitCost)
     }
 }

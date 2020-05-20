@@ -19,7 +19,7 @@ class CastSpellAction: Action {
         super.init(actor: actor, timeUnitCost: timeUnitCost)
     }
     
-    override func perform(game: Game, completion: @escaping () -> Void) -> Bool {
+    override func perform(game: Game) {
         defer {
             self.actor.subtractTimeUnits(self.timeUnitCost)
         }
@@ -33,9 +33,5 @@ class CastSpellAction: Action {
         default:
             break
         }
-        
-        completion()
-        
-        return true
     }
 }

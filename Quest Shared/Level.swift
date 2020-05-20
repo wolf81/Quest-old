@@ -20,7 +20,7 @@ struct Level: CustomStringConvertible {
     
     init() {
         let dungeonConfiguration = Configuration(
-            dungeonSize: DungeonSize.gargantuan,
+            dungeonSize: DungeonSize.tiny,
             dungeonLayout: .rectangle,
             roomSize: .medium,
             roomLayout: .dense,

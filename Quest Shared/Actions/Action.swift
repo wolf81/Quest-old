@@ -18,7 +18,7 @@ class Action {
         self.timeUnitCost = timeUnitCost
     }
     
-    func perform(game: Game, completion: @escaping () -> Void) -> Bool {
+    func perform(game: Game) {
         fatalError()
     }
 }

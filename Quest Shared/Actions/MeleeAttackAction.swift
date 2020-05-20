@@ -18,7 +18,7 @@ class MeleeAttackAction: Action, StatusUpdatable {
         super.init(actor: actor, timeUnitCost: timeUnitCost)
     }
     
-    override func perform(game: Game, completion: @escaping () -> Void) -> Bool {
+    override func perform(game: Game) {
         defer {
             self.actor.subtractTimeUnits(self.timeUnitCost)
         }
@@ -52,10 +52,6 @@ class MeleeAttackAction: Action, StatusUpdatable {
         }
 
         self.message = "\(self.actor.name) attacks \(self.targetActor.name): \(status)"
-        
-        completion()
-                        
-        return true
     }
 }
 

@@ -22,7 +22,7 @@ class RangedAttackAction: Action, StatusUpdatable {
         super.init(actor: actor, timeUnitCost: timeUnitCost)
     }
     
-    override func perform(game: Game, completion: @escaping () -> Void) -> Bool {
+    override func perform(game: Game) {
         defer {
             self.actor.subtractTimeUnits(self.timeUnitCost)
         }
@@ -53,15 +53,13 @@ class RangedAttackAction: Action, StatusUpdatable {
                                 
         self.message = status
         
-        let attack = SKAction.sequence([
-            SKAction.wait(forDuration: 6),
-            SKAction.run {
-                completion()
-            }
-        ])
+//        let attack = SKAction.sequence([
+//            SKAction.wait(forDuration: 6),
+//            SKAction.run {
+//                completion()
+//            }
+//        ])
 
-        self.actor.sprite.run(attack)
-        
-        return true
+//        self.actor.sprite.run(attack)        
     }
 }

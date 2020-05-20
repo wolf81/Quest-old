@@ -11,9 +11,7 @@ import SpriteKit
 class DieAction: Action, StatusUpdatable {
     var message: String? { "\(self.actor.name) died" }
         
-    override func perform(game: Game, completion: @escaping () -> Void) -> Bool {
-        completion()
-        
-        return true
+    override func perform(game: Game) {
+        self.actor.subtractTimeUnits(self.timeUnitCost)
     }
 }
