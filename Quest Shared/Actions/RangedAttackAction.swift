@@ -17,15 +17,13 @@ class RangedAttackAction: Action, StatusUpdatable {
 //        return "[\(self.actor.name)] ↣ \(self.targetActor.name) (\(self.targetActor.hitPoints.current)/\(self.targetActor.hitPoints.base))"
 //    }
 
-    init(actor: Actor, targetActor: Actor, timeUnitCost: Int) {
+    init(actor: Actor, targetActor: Actor) {
         self.targetActor = targetActor
-        super.init(actor: actor, timeUnitCost: timeUnitCost)
+        super.init(actor: actor)
     }
     
     override func perform(game: Game) {
-        defer {
-            self.actor.subtractTimeUnits(self.timeUnitCost)
-        }
+        self.actor.subtractTimeUnits(100)
 
         let attackDie = HitDie.d20(1, 0)
         let baseAttackRoll = attackDie.randomValue

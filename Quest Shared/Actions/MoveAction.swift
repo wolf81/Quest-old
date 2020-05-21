@@ -16,30 +16,22 @@ class MoveAction: Action, StatusUpdatable {
         return self.path.last!
     }
     
-    private(set) var duration: TimeInterval = MoveAction.stepDuration
-    
     private(set) var message: String?
 //    override var message: String {
 //        return "[\(self.actor.name)] → \(self.toCoord.x).\(self.toCoord.y)"
-//    }
+//    }    
     
-    private static let stepDuration = 1.0
-    
-    init(actor: Actor, toCoord: vector_int2, timeUnitCost: Int) {
+    init(actor: Actor, toCoord: vector_int2) {
         self.path = [toCoord]
-        super.init(actor: actor, timeUnitCost: timeUnitCost)
+        super.init(actor: actor)
     }
     
-    init(actor: Actor, coords: [vector_int2], timeUnitCost: Int) {
+    init(actor: Actor, coords: [vector_int2]) {
         self.path = coords
-        super.init(actor: actor, timeUnitCost: timeUnitCost)
+        super.init(actor: actor)
     }
     
     override func perform(game: Game) {
-        defer {
-            self.actor.subtractTimeUnits(self.timeUnitCost)
-        }
-                
         for coord in self.path {
             if let hero = self.actor as? Hero, let loot = game.getLoot(at: coord) {
                 game.remove(entity: loot)

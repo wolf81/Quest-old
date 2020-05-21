@@ -42,9 +42,6 @@
 		793A575824459A070089E693 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A575724459A070089E693 /* Constants.swift */; };
 		793A575924459A070089E693 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A575724459A070089E693 /* Constants.swift */; };
 		793A575A24459A070089E693 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A575724459A070089E693 /* Constants.swift */; };
-		793A575C2445A12F0089E693 /* ActionCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A575B2445A12E0089E693 /* ActionCost.swift */; };
-		793A575D2445A12F0089E693 /* ActionCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A575B2445A12E0089E693 /* ActionCost.swift */; };
-		793A575E2445A12F0089E693 /* ActionCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A575B2445A12E0089E693 /* ActionCost.swift */; };
 		79423B7A239E99CC0042B9BD /* HeroBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79423B79239E99CC0042B9BD /* HeroBuilder.swift */; };
 		79423B7B239E99CC0042B9BD /* HeroBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79423B79239E99CC0042B9BD /* HeroBuilder.swift */; };
 		79423B7C239E99CC0042B9BD /* HeroBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79423B79239E99CC0042B9BD /* HeroBuilder.swift */; };
@@ -229,7 +226,6 @@
 		792C698F23A5495500A729C3 /* CastSpellAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastSpellAction.swift; sourceTree = "<group>"; };
 		792E454B247048060088FBD7 /* CharacterInfoNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterInfoNode.swift; sourceTree = "<group>"; };
 		793A575724459A070089E693 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		793A575B2445A12E0089E693 /* ActionCost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCost.swift; sourceTree = "<group>"; };
 		79423B79239E99CC0042B9BD /* HeroBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroBuilder.swift; sourceTree = "<group>"; };
 		794864D022A7E48400F84A72 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		794864D222A7E60300F84A72 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -381,7 +377,6 @@
 				79ACC81922AAB6F100AC3BF0 /* HitDice.swift */,
 				795746BA22A9029D00E04BEC /* Direction.swift */,
 				792C698B23A40D4700A729C3 /* Spell.swift */,
-				793A575B2445A12E0089E693 /* ActionCost.swift */,
 				79042E5B2469473800730646 /* Equippable.swift */,
 				792467DE246A59A0000568A6 /* Lootable.swift */,
 				792467E2246AFC03000568A6 /* Inventory.swift */,
@@ -728,7 +723,6 @@
 				7963DE52239E3D2A00183DF2 /* ActionBar.swift in Sources */,
 				7960DED323A6082B00B4CDF8 /* OverlayTile.swift in Sources */,
 				7960DED723A6083400B4CDF8 /* EntityProtocol.swift in Sources */,
-				793A575C2445A12F0089E693 /* ActionCost.swift in Sources */,
 				79DF73B42463DD310030E7A8 /* InventoryNode.swift in Sources */,
 				7990950C244C9E410091791F /* StatusBar.swift in Sources */,
 				79C61AA522A7C415008D3609 /* GameScene.swift in Sources */,
@@ -799,7 +793,6 @@
 				7960DED823A6083400B4CDF8 /* EntityProtocol.swift in Sources */,
 				79DF73B52463DD310030E7A8 /* InventoryNode.swift in Sources */,
 				7990950D244C9E410091791F /* StatusBar.swift in Sources */,
-				793A575D2445A12F0089E693 /* ActionCost.swift in Sources */,
 				79C61AA622A7C415008D3609 /* GameScene.swift in Sources */,
 				793A575924459A070089E693 /* Constants.swift in Sources */,
 				794864D422A7E60300F84A72 /* Game.swift in Sources */,
@@ -891,7 +884,6 @@
 				7963DE40239CE15700183DF2 /* Role.swift in Sources */,
 				792467E5246AFC03000568A6 /* Inventory.swift in Sources */,
 				79C61A9822A7C415008D3609 /* AppDelegate.swift in Sources */,
-				793A575E2445A12F0089E693 /* ActionCost.swift in Sources */,
 				7963DE34239CDE2600183DF2 /* Attribute.swift in Sources */,
 				79042E5E2469473800730646 /* Equippable.swift in Sources */,
 				79DF73B62463DD310030E7A8 /* InventoryNode.swift in Sources */,

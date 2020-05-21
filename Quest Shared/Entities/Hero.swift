@@ -89,7 +89,7 @@ class Hero: Actor, CustomStringConvertible {
     
     func move(state: Game, direction: Direction) {
         if self.hitPoints.current <= 0 {
-            let die = DieAction(actor: self, timeUnitCost: 0)
+            let die = DieAction(actor: self)
             return setAction(die)
         }
         
@@ -98,10 +98,10 @@ class Hero: Actor, CustomStringConvertible {
         let toCoord = self.coord &+ direction.coord
         
         if let targetActor = state.getActor(at: toCoord) {
-            let attack = MeleeAttackAction(actor: self, targetActor: targetActor, timeUnitCost: 0)
+            let attack = MeleeAttackAction(actor: self, targetActor: targetActor)
             setAction(attack)
         } else if state.canMove(entity: self, to: toCoord) {
-            let move = MoveAction(actor: self, toCoord: toCoord, timeUnitCost: 0)
+            let move = MoveAction(actor: self, toCoord: toCoord)
             setAction(move)
         }
     }

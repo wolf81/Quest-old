@@ -1,14 +1,11 @@
 {
 	"name": "Gnoll",
 	"sprite": "gnoll_old",
-	
+    "speed": 105,
+
 	"HD": "2d8+2",
 	"AC": 15,
     "EQ": {
         "weapon": "Battleaxe +3",
-    },
-    
-    "actionCost": {
-        "move": 140
-    }
+    }    
 }

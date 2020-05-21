@@ -11,11 +11,8 @@ import SpriteKit
 class Action {
     unowned var actor: Actor
     
-    private(set) var timeUnitCost: Int = Constants.timeUnitsPerTurn
-
-    init(actor: Actor, timeUnitCost: Int) {
+    init(actor: Actor) {
         self.actor = actor
-        self.timeUnitCost = timeUnitCost
     }
     
     func perform(game: Game) {

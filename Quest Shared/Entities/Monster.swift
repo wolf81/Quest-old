@@ -44,7 +44,7 @@ class Monster: Actor, CustomStringConvertible {
     
     override func update(state: Game) {        
         guard self.isAlive else {
-            let die = DieAction(actor: self, timeUnitCost: 0)
+            let die = DieAction(actor: self)
             return setAction(die)
         }
                 
@@ -52,7 +52,7 @@ class Monster: Actor, CustomStringConvertible {
         let xRange = self.coord.x - 1 ... self.coord.x + 1
         let yRange = self.coord.y - 1 ... self.coord.y + 1
         if state.hero.isAlive && xRange.contains(state.hero.coord.x) && yRange.contains(state.hero.coord.y) {
-            let attack = MeleeAttackAction(actor: self, targetActor: state.hero, timeUnitCost: 0)
+            let attack = MeleeAttackAction(actor: self, targetActor: state.hero)
             return setAction(attack)
         }
                 
@@ -72,13 +72,13 @@ class Monster: Actor, CustomStringConvertible {
                     pathNodes.removeLast(removeNodeCount)
                                         
                     let path = pathNodes.compactMap({ $0.gridPosition })
-                    let move = MoveAction(actor: self, coords: path, timeUnitCost: 0)
+                    let move = MoveAction(actor: self, coords: path)
                     return setAction(move)
                 }
             }
         }
         
-        let idle = IdleAction(actor: self, timeUnitCost: 0)
+        let idle = IdleAction(actor: self)
         setAction(idle)
     }
 }

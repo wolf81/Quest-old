@@ -372,6 +372,8 @@ class Game {
         let activeActor = self.activeActors.first
         activeActor?.update(state: self)
         
+        activeActor?.addTimeUnits(Constants.timeUnitsPerTick)
+        
         guard let action = activeActor?.getAction() else { return }
         
         action.perform(game: self)
