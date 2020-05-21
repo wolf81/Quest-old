@@ -228,6 +228,11 @@ extension GameScene: GameDelegate {
     func gameDidDie(actor: Actor) {
         let fadeOut = SKAction.fadeOut(withDuration: 1.0)
         actor.sprite.run(fadeOut)
+        
+        if actor is Hero {
+            let sceneManager = try! ServiceLocator.shared.get(service: SceneManager.self)
+            sceneManager.crossFade(to: GameOverScene.self)
+        }
     }
     
     func gameDidMove(entity: Entity, path: [vector_int2], duration: TimeInterval) {

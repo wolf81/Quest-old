@@ -369,11 +369,6 @@ class Game {
     }
     
     func update(_ deltaTime: TimeInterval) {
-        if self.hero.hitPoints.current <= 0 {
-            let sceneManager = try! ServiceLocator.shared.get(service: SceneManager.self)
-            sceneManager.crossFade(to: GameOverScene.self)
-        }
-
         let activeActor = self.activeActors.first
         
         guard let action = activeActor?.getAction(state: self) else { return }
