@@ -369,32 +369,47 @@ class Game {
     }
     
     func update(_ deltaTime: TimeInterval) {
-        let activeActor = self.activeActors.first
-        activeActor?.update(state: self)
-        
-        activeActor?.addTimeUnits(Constants.timeUnitsPerTick)
-        
-        guard let action = activeActor?.getAction() else { return }
-        
-        action.perform(game: self)
-                
-        switch action {
-        case let move as MoveAction:
-            self.delegate?.gameDidMove(entity: move.actor, path: move.path, duration: 0)
-        case let attack as MeleeAttackAction:
-            self.delegate?.gameDidAttack(actor: attack.actor, targetActor: attack.targetActor)
-        case let die as DieAction:
-            self.delegate?.gameDidDie(actor: die.actor)
-            remove(entity: die.actor)
-        default: break
+        guard let activeActor = self.activeActors.first else {
+            // if the actor list is empty, all actors performed their turns, so create a new turn
+            return nextTurn()
         }
         
-        self.activeActors.removeFirst()
-        if self.activeActors.count == 0 {
-            nextTurn()
-        }
+        if activeActor.timeUnits >= 100 {
+            updateVisibility(for: activeActor)
+            activeActor.update(state: self)
 
-        updateVisibility(for: self.activeActors[self.activeActorIdx])
+            guard activeActor.isAwaitingInput == false else { return }
+
+            print("active: \(activeActor.name) @ \(activeActor.coord.x).\(activeActor.coord.y)")
+            if let action = activeActor.getAction() {
+                action.perform(game: self)
+                        
+                switch action {
+                case let move as MoveAction:
+                    self.delegate?.gameDidMove(entity: move.actor, path: move.path, duration: 0)
+                    
+                    if activeActor is Hero {
+                        updateVisibility(for: activeActor)
+                        updateActiveActors()
+                    }
+                case let attack as MeleeAttackAction:
+                    self.delegate?.gameDidAttack(actor: attack.actor, targetActor: attack.targetActor)
+                case let die as DieAction:
+                    self.delegate?.gameDidDie(actor: die.actor)
+                    remove(entity: die.actor)
+                default: break
+                }
+
+                self.activeActors.removeFirst()
+            } else {
+                fatalError() // should never happen?
+            }
+        }
+        else {
+            // move to next actor
+            activeActor.addTimeUnits(Constants.timeUnitsPerTick)
+            self.activeActors.removeFirst()
+        }
     }
     
     func nextTurn() {

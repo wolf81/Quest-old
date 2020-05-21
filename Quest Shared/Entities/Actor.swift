@@ -47,6 +47,7 @@ class Actor: Entity {
     private(set) var isAwaitingInput = true
     
     func setAction(_ action: Action) {
+        print("set action for: \(self.name)")
         self.action = action
         self.isAwaitingInput = false
     }
@@ -57,9 +58,9 @@ class Actor: Entity {
             self.isAwaitingInput = true
         }
 
-        guard self.timeUnits > 100 else { return nil }
+        print("get action for: \(self.name)")
 
-        return action
+        return self.action
     }
     
     func update(state: Game) { fatalError() }
@@ -126,6 +127,7 @@ class Actor: Entity {
     func addTimeUnits(_ timeUnits: Int) {
         let timeUnitsBonus = self.speed - Constants.defaultSpeed
         self.timeUnits += timeUnits + timeUnitsBonus
+        print("[TU] \(self.name): \(self.timeUnits)")
     }
     
     func subtractTimeUnits(_ timeUnits: Int) {
