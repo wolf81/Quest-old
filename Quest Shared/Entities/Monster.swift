@@ -42,14 +42,18 @@ class Monster: Actor, CustomStringConvertible {
         return "\(self.name) [ HD: \(self.hitDie) / HP: \(self.hitPoints.current) / AC: \(self.armorClass) ]"
     }
     
-    override func getAction(state: Game) -> Action? {
-        guard self.isAlive else { return DieAction(actor: self, timeUnitCost: 0) }
+    override func update(state: Game) {        
+        guard self.isAlive else {
+            let die = DieAction(actor: self, timeUnitCost: 0)
+            return setAction(die)
+        }
                 
         // If hero is in melee range, perform melee attack
         let xRange = self.coord.x - 1 ... self.coord.x + 1
         let yRange = self.coord.y - 1 ... self.coord.y + 1
         if state.hero.isAlive && xRange.contains(state.hero.coord.x) && yRange.contains(state.hero.coord.y) {
-            return MeleeAttackAction(actor: self, targetActor: state.hero, timeUnitCost: 0)
+            let attack = MeleeAttackAction(actor: self, targetActor: state.hero, timeUnitCost: 0)
+            return setAction(attack)
         }
                 
         if state.actorVisibleCoords.contains(state.hero.coord) {
@@ -68,12 +72,14 @@ class Monster: Actor, CustomStringConvertible {
                     pathNodes.removeLast(removeNodeCount)
                                         
                     let path = pathNodes.compactMap({ $0.gridPosition })
-                    return MoveAction(actor: self, coords: path, timeUnitCost: 0)
+                    let move = MoveAction(actor: self, coords: path, timeUnitCost: 0)
+                    return setAction(move)
                 }
             }
         }
         
-        return IdleAction(actor: self, timeUnitCost: 0)
+        let idle = IdleAction(actor: self, timeUnitCost: 0)
+        setAction(idle)
     }
 }
 

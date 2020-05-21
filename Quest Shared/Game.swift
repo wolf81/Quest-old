@@ -370,8 +370,9 @@ class Game {
     
     func update(_ deltaTime: TimeInterval) {
         let activeActor = self.activeActors.first
+        activeActor?.update(state: self)
         
-        guard let action = activeActor?.getAction(state: self) else { return }
+        guard let action = activeActor?.getAction() else { return }
         
         action.perform(game: self)
                 
@@ -421,7 +422,7 @@ class Game {
     func movePlayer(direction: Direction) {
         self.selectionMode = .none
                 
-        self.hero.move(direction: direction)
+        self.hero.move(state: self, direction: direction)
     }
         
     func remove(entity: Entity) {
@@ -436,6 +437,7 @@ class Game {
     }
 
     func handleInteraction(at coord: vector_int2) {
+        /*
         guard self.selectionMode.isSelection else { return }
         
         let overlayTiles = self.tiles.filter({ $0 is OverlayTile }) as! [OverlayTile]
@@ -469,6 +471,7 @@ class Game {
         case .none: break
         }
 
+     */
         self.selectionMode = .none
     }
     

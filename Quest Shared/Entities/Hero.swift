@@ -18,13 +18,13 @@ class Hero: Actor, CustomStringConvertible {
     
     private var direction: Direction?
         
-    private var path: [vector_int2]?
+//    private var path: [vector_int2]?
     
-    private var meleeTarget: Actor?
-    
-    private var rangedTarget: Actor?
-        
-    private var spell: Spell?
+//    private var meleeTarget: Actor?
+//
+//    private var rangedTarget: Actor?
+//
+//    private var spell: Spell?
         
     override var meleeAttackBonus: Int {
         var attackBonus = self.attributes.strength.bonus + self.equippedWeapon.attack
@@ -78,25 +78,45 @@ class Hero: Actor, CustomStringConvertible {
         super.init(json: json, entityFactory: entityFactory)
     }
     
-    func move(path: [vector_int2]) {
-        self.path = path
-    }
-    
-    func move(direction: Direction) {
-        self.direction = direction
-    }
-    
-    func cast(spell: Spell) {
-        self.spell = spell
-    }
+    override func update(state: Game) {
         
-    func attackMelee(actor: Actor) {
-        self.meleeTarget = actor
     }
     
-    func attackRanged(actor: Actor) {
-        self.rangedTarget = actor
+//    func move(path: [vector_int2]) {
+//        let move = MoveAction(actor: self, coords: path, timeUnitCost: 0)
+//        setAction(move)
+//    }
+    
+    func move(state: Game, direction: Direction) {
+        if self.hitPoints.current <= 0 {
+            let die = DieAction(actor: self, timeUnitCost: 0)
+            return setAction(die)
+        }
+        
+        self.direction = direction
+        
+        let toCoord = self.coord &+ direction.coord
+        
+        if let targetActor = state.getActor(at: toCoord) {
+            let attack = MeleeAttackAction(actor: self, targetActor: targetActor, timeUnitCost: 0)
+            setAction(attack)
+        } else if state.canMove(entity: self, to: toCoord) {
+            let move = MoveAction(actor: self, toCoord: toCoord, timeUnitCost: 0)
+            setAction(move)
+        }
     }
+    
+//    func cast(spell: Spell) {
+//        self.spell = spell
+//    }
+//
+//    func attackMelee(actor: Actor) {
+//        self.meleeTarget = actor
+//    }
+//
+//    func attackRanged(actor: Actor) {
+//        self.rangedTarget = actor
+//    }
         
     var description: String {
         return """
@@ -110,41 +130,41 @@ class Hero: Actor, CustomStringConvertible {
         """
     }
     
-    override func getAction(state: Game) -> Action? {
-        defer {
-            self.path = nil
-            self.direction = nil
-            self.meleeTarget = nil
-            self.rangedTarget = nil
-            self.spell = nil
-        }
-
-        guard self.isAlive else {
-            return DieAction(actor: self, timeUnitCost: Constants.timeUnitsPerTurn)            
-        }
-        
-        if let direction = self.direction {
-            let toCoord = self.coord &+ direction.coord
-            
-            if let targetActor = state.getActor(at: toCoord) {                
-                return MeleeAttackAction(actor: self, targetActor: targetActor, timeUnitCost: 0)
-            }
-            
-            if state.canMove(entity: self, to: toCoord) {
-                return MoveAction(actor: self, toCoord: toCoord, timeUnitCost: 0)
-            }
-        } else if let path = self.path {
-            return MoveAction(actor: self, coords: path, timeUnitCost: 0)
-        } else if let meleeTarget = self.meleeTarget {
-            return MeleeAttackAction(actor: self, targetActor: meleeTarget, timeUnitCost: 0)
-        } else if let rangedTarget = self.rangedTarget {
-            return RangedAttackAction(actor: self, targetActor: rangedTarget, timeUnitCost: 0)
-        } else if let spell = self.spell {
-            return CastSpellAction(actor: self, spell: spell, timeUnitCost: 0)
-        }
-                             
-        return nil
-    }
+//    override func getAction(state: Game) -> Action? {
+//        defer {
+//            self.path = nil
+//            self.direction = nil
+//            self.meleeTarget = nil
+//            self.rangedTarget = nil
+//            self.spell = nil
+//        }
+//
+//        guard self.isAlive else {
+//            return DieAction(actor: self, timeUnitCost: Constants.timeUnitsPerTurn)            
+//        }
+//        
+//        if let direction = self.direction {
+//            let toCoord = self.coord &+ direction.coord
+//            
+//            if let targetActor = state.getActor(at: toCoord) {                
+//                return MeleeAttackAction(actor: self, targetActor: targetActor, timeUnitCost: 0)
+//            }
+//            
+//            if state.canMove(entity: self, to: toCoord) {
+//                return MoveAction(actor: self, toCoord: toCoord, timeUnitCost: 0)
+//            }
+//        } else if let path = self.path {
+//            return MoveAction(actor: self, coords: path, timeUnitCost: 0)
+//        } else if let meleeTarget = self.meleeTarget {
+//            return MeleeAttackAction(actor: self, targetActor: meleeTarget, timeUnitCost: 0)
+//        } else if let rangedTarget = self.rangedTarget {
+//            return RangedAttackAction(actor: self, targetActor: rangedTarget, timeUnitCost: 0)
+//        } else if let spell = self.spell {
+//            return CastSpellAction(actor: self, spell: spell, timeUnitCost: 0)
+//        }
+//                             
+//        return nil
+//    }
     
     override func useBackpackItem(at index: Int) {
         if let armor = self.backpackItem(at: index) as? Equippable {

@@ -41,6 +41,22 @@ class Actor: Entity {
     private(set) var unarmed: Weapon
                 
     private let inventory: Inventory = Inventory()
+    
+    private var action: Action?
+    
+    func setAction(_ action: Action) {
+        self.action = action
+    }
+    
+    func getAction() -> Action? {
+        defer {
+            self.action = nil
+        }
+        
+        return action
+    }
+    
+    func update(state: Game) { fatalError() }
 
     init(json: [String : Any], hitPoints: Int, armorClass: Int, skills: Skills, equipment: [Equippable], entityFactory: EntityFactory) {
         self.hitPoints = HitPoints(base: hitPoints)
