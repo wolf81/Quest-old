@@ -13,6 +13,9 @@
 		79042E642478192600730646 /* Energy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E632478192600730646 /* Energy.swift */; };
 		79042E652478192600730646 /* Energy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E632478192600730646 /* Energy.swift */; };
 		79042E662478192600730646 /* Energy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E632478192600730646 /* Energy.swift */; };
+		79042E6824781BFD00730646 /* EnergyCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E6724781BFD00730646 /* EnergyCost.swift */; };
+		79042E6924781BFD00730646 /* EnergyCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E6724781BFD00730646 /* EnergyCost.swift */; };
+		79042E6A24781BFD00730646 /* EnergyCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E6724781BFD00730646 /* EnergyCost.swift */; };
 		7914DD32246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
 		7914DD33246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
 		7914DD34246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
@@ -215,6 +218,7 @@
 /* Begin PBXFileReference section */
 		79042E5B2469473800730646 /* Equippable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equippable.swift; sourceTree = "<group>"; };
 		79042E632478192600730646 /* Energy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Energy.swift; sourceTree = "<group>"; };
+		79042E6724781BFD00730646 /* EnergyCost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyCost.swift; sourceTree = "<group>"; };
 		7914DD31246182120047EFB6 /* EntityDrawLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDrawLayer.swift; sourceTree = "<group>"; };
 		792467DE246A59A0000568A6 /* Lootable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lootable.swift; sourceTree = "<group>"; };
 		792467E2246AFC03000568A6 /* Inventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
@@ -385,6 +389,7 @@
 				792467DE246A59A0000568A6 /* Lootable.swift */,
 				792467E2246AFC03000568A6 /* Inventory.swift */,
 				79042E632478192600730646 /* Energy.swift */,
+				79042E6724781BFD00730646 /* EnergyCost.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -747,6 +752,7 @@
 				79ACC7F122AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
 				79ACC81A22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
 				795746B322A7C59A00E04BEC /* Level.swift in Sources */,
+				79042E6824781BFD00730646 /* EnergyCost.swift in Sources */,
 				7960DEC423A6082B00B4CDF8 /* Entity.swift in Sources */,
 				7960DEBB23A6082B00B4CDF8 /* Monster.swift in Sources */,
 				79FC68EF244C4A8C00E6D63C /* CreateCharacterScene.swift in Sources */,
@@ -815,6 +821,7 @@
 				798C997723A2060000C6EC1C /* MeleeAttackAction.swift in Sources */,
 				79FC68F0244C4A8C00E6D63C /* CreateCharacterScene.swift in Sources */,
 				79ACC7F222AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
+				79042E6924781BFD00730646 /* EnergyCost.swift in Sources */,
 				79ACC81B22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
 				795746B422A7CA9800E04BEC /* Level.swift in Sources */,
 				7960DEC523A6082B00B4CDF8 /* Entity.swift in Sources */,
@@ -915,6 +922,7 @@
 				7960DEC623A6082B00B4CDF8 /* Entity.swift in Sources */,
 				7963DE50239DD2D600183DF2 /* HitPoints.swift in Sources */,
 				79FC68F7244C4C4700E6D63C /* SettingsScene.swift in Sources */,
+				79042E6A24781BFD00730646 /* EnergyCost.swift in Sources */,
 				79DF73B2246320D00030E7A8 /* HealthBar.swift in Sources */,
 				79FC68FF244C552B00E6D63C /* LoadingScene.swift in Sources */,
 				79742A6C239E60A7008504E8 /* Gender.swift in Sources */,

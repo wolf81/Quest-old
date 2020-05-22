@@ -14,7 +14,7 @@ import Fenris
 protocol GameDelegate: class {
     func gameDidMove(entity: Entity, path: [vector_int2])
     func gameDidAdd(entity: EntityProtocol)
-    func gamedidDestroy(entity: EntityProtocol)
+    func gameDidDestroy(entity: EntityProtocol)
 
     func gameDidUpdateStatus(message: String)
     func gameDidAttack(actor: Actor, targetActor: Actor)
@@ -389,7 +389,6 @@ class Game {
             case let attack as MeleeAttackAction:
                 self.delegate?.gameDidAttack(actor: attack.actor, targetActor: attack.targetActor)
             case let die as DieAction:
-                self.delegate?.gamedidDestroy(entity: die.actor)
                 // on deleting an entity, update a list of active actors to exclude the deleted entity
                 remove(entity: die.actor)
                 updateActiveActors()
@@ -403,12 +402,12 @@ class Game {
         while self.actions.isEmpty {
             let actor = self.activeActors[self.activeActorIdx]
                         
-            if actor.energy.canTakeTurn && actor.isAwaitingInput {
+            if actor.canTakeTurn && actor.isAwaitingInput {
                 // in case of the hero, we might need to wait for input before we can get a new action
                 return actor.update(state: self)
             }
 
-            if actor.energy.canTakeTurn {
+            if actor.canTakeTurn {
                 // if the actor has a pending action, add the action to the pending action list
                 guard let action = actor.getAction() else { fatalError() }
                 self.actions.append(action)
@@ -452,7 +451,7 @@ class Game {
         
     func remove(entity: Entity) {
         self.entities.removeAll(where: { $0 == entity })
-        self.delegate?.gamedidDestroy(entity: entity)
+        self.delegate?.gameDidDestroy(entity: entity)
     }
 
     func handleInteraction(at coord: vector_int2) {

@@ -43,8 +43,6 @@ class Monster: Actor, CustomStringConvertible {
     }
     
     override func update(state: Game) {
-//        guard self.isAwaitingInput else { return }
-        
         guard self.isAlive else {
             let die = DieAction(actor: self)
             return setAction(die)
@@ -54,11 +52,13 @@ class Monster: Actor, CustomStringConvertible {
         let xRange = self.coord.x - 1 ... self.coord.x + 1
         let yRange = self.coord.y - 1 ... self.coord.y + 1
         if state.hero.isAlive && xRange.contains(state.hero.coord.x) && yRange.contains(state.hero.coord.y) {
+            guard self.energy.amount >= self.energyCost.attack else { return }
             let attack = MeleeAttackAction(actor: self, targetActor: state.hero)
             return setAction(attack)
         }
                 
         if state.actorVisibleCoords.contains(state.hero.coord) {
+            guard self.energy.amount >= self.energyCost.move else { return }
             let actorCoords = state.activeActors.filter({ $0.coord != self.coord && $0.coord != state.hero.coord }).compactMap({ $0.coord })
             let movementGraph = state.getMovementGraph(for: self, range: self.sight, excludedCoords: actorCoords)
             if let actorNode = movementGraph.node(atGridPosition: self.coord), let heroNode = movementGraph.node(atGridPosition: state.hero.coord)  {

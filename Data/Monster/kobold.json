@@ -9,7 +9,7 @@
     },
     
     "energyCost": {
-        "move": 10,
-        "attack": 10
+        "move": 50,
+        "attack": 50
     }
 }

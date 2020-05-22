@@ -9,15 +9,13 @@
 import Foundation
 
 class Energy {
-    private var energy: UInt = 0
-    
-    var canTakeTurn: Bool { energy >= 50 }
-    
+    private(set) var amount: UInt = 0
+            
     func increment(_ energy: UInt) {
-        self.energy += energy
+        self.amount += energy
     }
     
     func drain() {
-        self.energy = 0
+        self.amount = 0
     }
 }

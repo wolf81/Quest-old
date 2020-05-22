@@ -252,7 +252,7 @@ extension GameScene: GameDelegate {
         actor.sprite.run(attack)
     }
     
-    func gamedidDestroy(entity: EntityProtocol) {
+    func gameDidDestroy(entity: EntityProtocol) {
         var fade: [SKAction] = [
             SKAction.fadeOut(withDuration: entity is Actor ? 2.0 : 0.5),
             SKAction.run {
