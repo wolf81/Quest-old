@@ -374,11 +374,13 @@ class Game {
     }
     
     func update(_ deltaTime: TimeInterval) {
+        // process the list if pending actions
         while let action = self.actions.first {
             action.perform(game: self)
             
             switch action {
             case let move as MoveAction:
+                // after the hero moved to a new location, update the visible tiles for the hero
                 if action.actor is Hero {
                     updateActiveActors()
                     updateVisibility(for: action.actor)
@@ -388,6 +390,7 @@ class Game {
                 self.delegate?.gameDidAttack(actor: attack.actor, targetActor: attack.targetActor)
             case let die as DieAction:
                 self.delegate?.gamedidDestroy(entity: die.actor)
+                // on deleting an entity, update a list of active actors to exclude the deleted entity
                 remove(entity: die.actor)
                 updateActiveActors()
             default: break
@@ -396,28 +399,30 @@ class Game {
             self.actions.removeFirst()
         }
                 
+        // if no actions are pending, process each actor until an action is added
         while self.actions.isEmpty {
             let actor = self.activeActors[self.activeActorIdx]
                         
             if actor.canPerformAction && actor.isAwaitingInput {
+                // in case of the hero, we might need to wait for input before we can get a new action
                 return actor.update(state: self)
             }
 
             if actor.canPerformAction {
+                // if the actor has a pending action, add the action to the pending action list
                 guard let action = actor.getAction() else { fatalError() }
                 self.actions.append(action)
             } else {
+                // otherwise increment the time units until we have enough to allow for an action
                 actor.addTimeUnits(10)
             }
-                        
+            
             nextActor()
         }
     }
     
     private func nextActor() {
         self.activeActorIdx = (self.activeActorIdx + 1) % self.activeActors.count
-        
-//        print("\(self.activeActorIdx + 1) of \(self.activeActors.count)")
     }
     
     func updateActiveActors() {
@@ -432,9 +437,7 @@ class Game {
             }
         }
         
-        if self.activeActorIdx > (self.activeActors.count - 1) {
-            self.activeActorIdx = 0
-        }
+        self.activeActorIdx = 0
     }
             
     func movePlayer(direction: Direction) {        
