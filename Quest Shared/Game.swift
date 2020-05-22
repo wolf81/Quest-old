@@ -349,9 +349,18 @@ class Game {
             // TODO: fix room coord calc in DungeonBuilder, so we don't have to do the following to get good coords ...
             let roomCoord = vector_int2(Int32(room.coord.x + room.width / 2), Int32(room.coord.y + room.height / 2))
             
+            var monster: Monster
+            
             print("\(roomId): \(room.coord.x).\( room.coord.y) -> \(roomCoord.x).\(roomCoord.y)")
-            let isEven = monsterCount.remainderReportingOverflow(dividingBy: 2).partialValue == 0
-            let monster = try! entityFactory.newEntity(type: Monster.self, name: isEven ? "Gnoll" : "Skeleton", coord: roomCoord)
+            let v = monsterCount.remainderReportingOverflow(dividingBy: 3).partialValue
+            switch v {
+            case 0:
+                monster = try! entityFactory.newEntity(type: Monster.self, name: "Gnoll", coord: roomCoord)
+            case 1:
+                monster = try! entityFactory.newEntity(type: Monster.self, name: "Skeleton", coord: roomCoord)
+            default:
+                monster = try! entityFactory.newEntity(type: Monster.self, name: "Kobold", coord: roomCoord)
+            }            
             entities.append(monster)
             
             monsterCount += 1
@@ -369,7 +378,7 @@ class Game {
             action.perform(game: self)
             
             switch action {
-            case let move as MoveAction:                
+            case let move as MoveAction:
                 if action.actor is Hero {
                     updateActiveActors()
                     updateVisibility(for: action.actor)

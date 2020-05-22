@@ -226,9 +226,7 @@ func isInRange(origin: vector_int2, radius: Int32, coord: vector_int2) -> Bool {
 // MARK: - GameDelegate
 
 extension GameScene: GameDelegate {
-    func gameDidChangeSelectionMode(_ selectionMode: SelectionMode) {
-        print("selection mode: \(selectionMode)")
-        
+    func gameDidChangeSelectionMode(_ selectionMode: SelectionMode) {        
         clearSelectionModeTiles()
                 
         if selectionMode.isSelection {
@@ -285,7 +283,7 @@ extension GameScene: GameDelegate {
                     }
                     else {
                         let position = GameScene.pointForCoord(path.last!)
-                        hero.sprite.run(SKAction.move(to: position, duration: 2.0))                        
+                        hero.sprite.run(SKAction.move(to: position, duration: 2.0))
                     }
                 }
                 else {

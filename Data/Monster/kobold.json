@@ -1,0 +1,15 @@
+{
+    "name": "Kobold",
+    "sprite": "kobold_old",
+
+    "HD": "d4",
+    "AC": 15,
+    "EQ": {
+        "weapon": "Shortsword",
+    },
+    
+    "energyCost": {
+        "move": 10,
+        "attack": 10
+    }
+}

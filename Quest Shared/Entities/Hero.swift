@@ -87,7 +87,6 @@ class Hero: Actor, CustomStringConvertible {
             setAction(attack)
         } else {
             if state.canMove(entity: self, to: toCoord) {
-                print("\(self.coord.x).\(self.coord.y) => \(toCoord.x).\(toCoord.y)")
                 let move = MoveAction(actor: self, toCoord: toCoord)
                 setAction(move)
             }
