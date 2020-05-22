@@ -14,11 +14,10 @@ import Fenris
 protocol GameDelegate: class {
     func gameDidMove(entity: Entity, path: [vector_int2])
     func gameDidAdd(entity: EntityProtocol)
-    func gameDidRemove(entity: EntityProtocol)
-    
+    func gamedidDestroy(entity: EntityProtocol)
+
     func gameDidUpdateStatus(message: String)
     func gameDidAttack(actor: Actor, targetActor: Actor)
-    func gameDidDie(actor: Actor)
     
     func gameDidChangeSelectionMode(_ selectionMode: SelectionMode)
 }
@@ -384,7 +383,7 @@ class Game {
             case let attack as MeleeAttackAction:
                 self.delegate?.gameDidAttack(actor: attack.actor, targetActor: attack.targetActor)
             case let die as DieAction:
-                self.delegate?.gameDidDie(actor: die.actor)
+                self.delegate?.gamedidDestroy(entity: die.actor)
                 remove(entity: die.actor)
                 updateActiveActors()
             default: break
@@ -441,7 +440,7 @@ class Game {
         
     func remove(entity: Entity) {
         self.entities.removeAll(where: { $0 == entity })
-        self.delegate?.gameDidRemove(entity: entity)
+        self.delegate?.gamedidDestroy(entity: entity)
     }
 
     func handleInteraction(at coord: vector_int2) {

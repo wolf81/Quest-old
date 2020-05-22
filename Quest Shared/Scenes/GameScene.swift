@@ -34,7 +34,7 @@ class GameScene: SKScene, SceneManagerConstructable {
     private var characterInfo: CharacterInfoNode?
 
     // Sprites should be removed on the main thread, to make this easy, we remove sprites in the update loop and then clear this array
-    private var spritesToRemove: [SKSpriteNode] = []
+//    private var spritesToRemove: [SKSpriteNode] = []
     
     // Sprites should be added on the main thread, to make this easy, we add sprites in the update loop and then clear this array
     private var spritesToAdd: [SKSpriteNode] = []
@@ -56,8 +56,8 @@ class GameScene: SKScene, SceneManagerConstructable {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        self.spritesToRemove.forEach({ $0.removeFromParent() })
-        self.spritesToRemove = []
+//        self.spritesToRemove.forEach({ $0.removeFromParent() })
+//        self.spritesToRemove = []
 
         self.spritesToAdd.forEach({ self.world.addChild($0) })
         self.spritesToAdd = []
@@ -225,14 +225,22 @@ extension GameScene: GameDelegate {
         actor.sprite.run(attack)
     }
     
-    func gameDidDie(actor: Actor) {
-        let fadeOut = SKAction.fadeOut(withDuration: 1.0)
-        actor.sprite.run(fadeOut)
-        
-        if actor is Hero {
-            let sceneManager = try! ServiceLocator.shared.get(service: SceneManager.self)
-            sceneManager.crossFade(to: GameOverScene.self)
+    func gamedidDestroy(entity: EntityProtocol) {
+        var fade: [SKAction] = [
+            SKAction.fadeOut(withDuration: entity is Actor ? 2.0 : 0.5),
+            SKAction.run {
+                entity.sprite.removeFromParent()
+            }
+        ]
+
+        if entity is Hero {
+            fade.append(SKAction.run {
+                let sceneManager = try! ServiceLocator.shared.get(service: SceneManager.self)
+                sceneManager.crossFade(to: GameOverScene.self)
+            })
         }
+
+        entity.sprite.run(SKAction.sequence(fade))
     }
     
     func gameDidMove(entity: Entity, path: [vector_int2]) {
@@ -327,7 +335,7 @@ extension GameScene: GameDelegate {
     }
     
     func gameDidRemove(entity: EntityProtocol) {
-        self.spritesToRemove.append(entity.sprite)
+//        self.spritesToRemove.append(entity.sprite)
     }
 
     func gameDidUpdateStatus(message: String) {
