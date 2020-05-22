@@ -446,10 +446,14 @@ extension GameScene {
         
     override func keyDown(with event: NSEvent) {        
         switch event.keyCode {
-        case /* a, ← */ 0, 123: self.game.movePlayer(direction: .left)
-        case /* d, → */ 2, 124: self.game.movePlayer(direction: .right)
-        case /* s, ↓ */ 1, 125: self.game.movePlayer(direction: .down)
-        case /* w, ↑ */ 13, 126: self.game.movePlayer(direction: .up)
+        case /* q */ 12: self.game.movePlayer(direction: .northWest)
+        case /* e */ 14: self.game.movePlayer(direction: .northEast)
+        case /* z */ 6: self.game.movePlayer(direction: .southWest)
+        case /* c */ 8: self.game.movePlayer(direction: .southEast)
+        case /* a */ 0: self.game.movePlayer(direction: .west)
+        case /* d */ 2: self.game.movePlayer(direction: .east)
+        case /* s */ 1: self.game.movePlayer(direction: .south)
+        case /* w */ 13: self.game.movePlayer(direction: .north)
         default: print("\(event.keyCode)")
         }
     }
@@ -458,13 +462,10 @@ extension GameScene {
 //        debugPrint(event.keyCode)
                 
         switch event.keyCode {
-        case /* esc  */ 53: dismissCharacterInfoAndInventory()
-        case /* a, ← */ 0, 123: self.game.stopPlayer()
-        case /* d, → */ 2, 124: self.game.stopPlayer()
-        case /* s, ↓ */ 1, 125: self.game.stopPlayer()
-        case /* w, ↑ */ 13, 126: self.game.stopPlayer()
-        case /* i    */ 34: toggleInventory()
-        case /* c    */ 8: toggleCharacterInfo()
+        case /* esc */ 53: dismissCharacterInfoAndInventory()
+        case /* q e z c a d s w */ 12, 14, 6, 8, 0, 1, 2, 13: self.game.stopPlayer()
+        case /* i   */ 34: toggleInventory()
+        case /* c   */ 35: toggleCharacterInfo()
         default: print("\(event.keyCode)")
         }
     }
