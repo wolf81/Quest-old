@@ -34,7 +34,7 @@ class Actor: Entity {
     
     private(set) var timeUnits: Int = 0
     
-    var canPerformAction: Bool { self.timeUnits >= 20 }
+    var canPerformAction: Bool { self.timeUnits >= 50 }
         
     private(set) var healthBar: HealthBar!
     

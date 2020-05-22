@@ -395,10 +395,13 @@ class Game {
                 
         while self.actions.isEmpty {
             let actor = self.activeActors[self.activeActorIdx]
-            
-            actor.update(state: self)
-            
-            if actor.canPerformAction && actor.isAwaitingInput { return }
+                        
+            if actor.canPerformAction && actor.isAwaitingInput {
+                if actor is Monster {
+                    actor.update(state: self)
+                }
+                return
+            }
 
             if actor.canPerformAction {
                 guard let action = actor.getAction() else { fatalError() }
