@@ -414,7 +414,7 @@ class Game {
                 self.actions.append(action)
             } else {
                 // otherwise increment the time units until we have enough to allow for an action
-                actor.addTimeUnits(10)
+                actor.addEnergy(10)
             }
             
             nextActor()

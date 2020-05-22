@@ -19,7 +19,7 @@ class MeleeAttackAction: Action, StatusUpdatable {
     }
     
     override func perform(game: Game) {
-        self.actor.subtractTimeUnits(self.actor.timeUnits)
+        self.actor.drainEnergy()
 
         let attackDie = HitDie.d20(1, 0)
         let baseAttackRoll = attackDie.randomValue

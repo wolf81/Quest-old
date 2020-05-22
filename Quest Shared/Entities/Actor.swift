@@ -32,9 +32,9 @@ class Actor: Entity {
     
     private(set) var level: Int = 1
     
-    private(set) var timeUnits: Int = 0
+    private(set) var energy: Int = 0
     
-    var canPerformAction: Bool { self.timeUnits >= 50 }
+    var canPerformAction: Bool { self.energy >= 50 }
         
     private(set) var healthBar: HealthBar!
     
@@ -116,12 +116,12 @@ class Actor: Entity {
         dieRoll == .maximum ? self.equippedWeapon.damage.maxValue : self.equippedWeapon.damage.randomValue
     }
     
-    func addTimeUnits(_ timeUnits: Int) {
-        self.timeUnits += timeUnits
+    func addEnergy(_ energy: Int) {
+        self.energy += energy
     }
     
-    func subtractTimeUnits(_ timeUnits: Int) {
-        self.timeUnits -= timeUnits
+    func drainEnergy() {
+        self.energy = 0
     }
 
     func getAction(state: Game) -> Action? {
