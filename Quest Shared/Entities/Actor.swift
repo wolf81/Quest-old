@@ -34,7 +34,7 @@ class Actor: Entity {
     
     private(set) var timeUnits: Int = 0
     
-    var canPerformAction: Bool { self.timeUnits >= 100 }
+    var canPerformAction: Bool { self.timeUnits >= 20 }
         
     private(set) var healthBar: HealthBar!
     
@@ -44,18 +44,15 @@ class Actor: Entity {
     
     private var action: Action?
     
-    private(set) var isAwaitingInput = true
+    var isAwaitingInput: Bool { self.action == nil }
     
-    func setAction(_ action: Action) {
-        print("set action for: \(self.name)")
+    final func setAction(_ action: Action) {
         self.action = action
-        self.isAwaitingInput = false
     }
     
-    func getAction() -> Action? {
+    final func getAction() -> Action? {
         defer {
             self.action = nil
-            self.isAwaitingInput = true
         }
 
         return self.action

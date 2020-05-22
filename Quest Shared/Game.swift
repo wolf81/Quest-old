@@ -97,6 +97,8 @@ class Game {
     
     var activeActors: [Actor] = []
     
+    var actions: [Action] = []
+    
     // get a value for a tile at a coordinate, can be nil when out of range and is otherwise some integer value that represents a wall, floor or other scenery
     func getTile(at coord: vector_int2) -> Int? {
         self.level[coord]
@@ -368,44 +370,51 @@ class Game {
     }
     
     func update(_ deltaTime: TimeInterval) {
-        let actor = self.activeActors[self.activeActorIdx]
-        
-        guard actor.canPerformAction else {
-            actor.addTimeUnits(10)
-            nextActor()
-            return
-        }
-
-        actor.update(state: self)
-
-        guard actor.isAwaitingInput == false else { return }
-
-        guard let action = actor.getAction() else { fatalError() }
-
-        action.perform(game: self)
-        
-        switch action {
-        case let move as MoveAction:
-            self.delegate?.gameDidMove(entity: move.actor, path: move.path, duration: 0)
+        while let action = self.actions.first {
+            action.perform(game: self)
             
-            if actor is Hero {
+            switch action {
+            case let move as MoveAction:
+                self.delegate?.gameDidMove(entity: move.actor, path: move.path, duration: 0)
+                
+                if action.actor is Hero {
+                    updateActiveActors()
+                    updateVisibility(for: action.actor)
+                }
+            case let attack as MeleeAttackAction:
+                self.delegate?.gameDidAttack(actor: attack.actor, targetActor: attack.targetActor)
+            case let die as DieAction:
+                self.delegate?.gameDidDie(actor: die.actor)
+                remove(entity: die.actor)
                 updateActiveActors()
-                updateVisibility(for: actor)
+            default: break
             }
-        case let attack as MeleeAttackAction:
-            self.delegate?.gameDidAttack(actor: attack.actor, targetActor: attack.targetActor)
-        case let die as DieAction:
-            self.delegate?.gameDidDie(actor: die.actor)
-            remove(entity: die.actor)
-        default: break
+                        
+            self.actions.removeFirst()
         }
-        
-        actor.subtractTimeUnits(actor.timeUnits)
-        nextActor()
+                
+        while self.actions.isEmpty {
+            let actor = self.activeActors[self.activeActorIdx]
+            
+            actor.update(state: self)
+            
+            if actor.canPerformAction && actor.isAwaitingInput { return }
+
+            if actor.canPerformAction {
+                guard let action = actor.getAction() else { fatalError() }
+                self.actions.append(action)
+            }
+            else {
+                actor.addTimeUnits(10)
+            }
+                        
+            nextActor()
+        }
     }
     
     private func nextActor() {
         self.activeActorIdx = (self.activeActorIdx + 1) % self.activeActors.count
+        print("\(self.activeActorIdx + 1) of \(self.activeActors.count)")
     }
     
     func updateActiveActors() {
@@ -414,11 +423,15 @@ class Game {
         let xRange = max(self.hero.coord.x - 10, 0) ... min(self.hero.coord.x + 10, self.level.width)
         let yRange = max(self.hero.coord.y - 10, 0) ... min(self.hero.coord.y + 10, self.level.height)
         
-        for actor in actors {
+        for actor in self.actors {
             if xRange.contains(actor.coord.x) && yRange.contains(actor.coord.y) {
                 self.activeActors.append(actor)
             }
-        }        
+        }
+        
+        if self.activeActorIdx > (self.activeActors.count - 1) {
+            self.activeActorIdx = 0
+        }
     }
             
     func movePlayer(direction: Direction) {
@@ -429,12 +442,6 @@ class Game {
         
     func remove(entity: Entity) {
         self.entities.removeAll(where: { $0 == entity })
-
-        if entity is Actor {
-            // After we remove an actor, update the index to prevent an index out of range error
-            self.activeActorIdx = self.activeActorIdx % self.actors.count
-        }
-                
         self.delegate?.gameDidRemove(entity: entity)
     }
 

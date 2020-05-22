@@ -42,7 +42,9 @@ class Monster: Actor, CustomStringConvertible {
         return "\(self.name) [ HD: \(self.hitDie) / HP: \(self.hitPoints.current) / AC: \(self.armorClass) ]"
     }
     
-    override func update(state: Game) {        
+    override func update(state: Game) {
+//        guard self.isAwaitingInput else { return }
+        
         guard self.isAlive else {
             let die = DieAction(actor: self)
             return setAction(die)

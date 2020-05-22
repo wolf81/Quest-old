@@ -14,6 +14,6 @@ class IdleAction: Action {
 //    }
     
     override func perform(game: Game) {
-        self.actor.subtractTimeUnits(100)
+        self.actor.subtractTimeUnits(self.actor.timeUnits)
     }
 }

@@ -116,6 +116,9 @@
 		797DBF7B22A91FA300D0F8E7 /* Sprites.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */; };
 		797DBF7C22A91FA300D0F8E7 /* Sprites.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */; };
 		797DBF7D22A91FA300D0F8E7 /* Sprites.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */; };
+		798325912477B12600397C12 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798325902477B12600397C12 /* LinkedList.swift */; };
+		798325922477B12600397C12 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798325902477B12600397C12 /* LinkedList.swift */; };
+		798325932477B12600397C12 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798325902477B12600397C12 /* LinkedList.swift */; };
 		798537C623A2924E00721CE7 /* RangedAttackAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798537C523A2924E00721CE7 /* RangedAttackAction.swift */; };
 		798537C723A2924E00721CE7 /* RangedAttackAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798537C523A2924E00721CE7 /* RangedAttackAction.swift */; };
 		798537C823A2924E00721CE7 /* RangedAttackAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798537C523A2924E00721CE7 /* RangedAttackAction.swift */; };
@@ -251,6 +254,7 @@
 		7963DE56239E456900183DF2 /* ActionBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionBarButton.swift; sourceTree = "<group>"; };
 		79742A69239E60A7008504E8 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Sprites.xcassets; sourceTree = "<group>"; };
+		798325902477B12600397C12 /* LinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
 		798537C523A2924E00721CE7 /* RangedAttackAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangedAttackAction.swift; sourceTree = "<group>"; };
 		7985AF9323A20DDC0067F884 /* DieAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DieAction.swift; sourceTree = "<group>"; };
 		798C997123A205EF00C6EC1C /* MoveAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveAction.swift; sourceTree = "<group>"; };
@@ -380,6 +384,7 @@
 				79042E5B2469473800730646 /* Equippable.swift */,
 				792467DE246A59A0000568A6 /* Lootable.swift */,
 				792467E2246AFC03000568A6 /* Inventory.swift */,
+				798325902477B12600397C12 /* LinkedList.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -767,6 +772,7 @@
 				798537C623A2924E00721CE7 /* RangedAttackAction.swift in Sources */,
 				79ACC7ED22AA5D8700AC3BF0 /* EntityLoader.swift in Sources */,
 				79042E5C2469473800730646 /* Equippable.swift in Sources */,
+				798325912477B12600397C12 /* LinkedList.swift in Sources */,
 				79492BE923A61299005B9508 /* TileProtocol.swift in Sources */,
 				798C997E23A2068C00C6EC1C /* AnimationKey.swift in Sources */,
 				7963DE42239CEC6A00183DF2 /* Skill.swift in Sources */,
@@ -834,6 +840,7 @@
 				798537C723A2924E00721CE7 /* RangedAttackAction.swift in Sources */,
 				79ACC7EE22AA5D8700AC3BF0 /* EntityLoader.swift in Sources */,
 				79042E5D2469473800730646 /* Equippable.swift in Sources */,
+				798325922477B12600397C12 /* LinkedList.swift in Sources */,
 				79492BEA23A61299005B9508 /* TileProtocol.swift in Sources */,
 				798C997F23A2068C00C6EC1C /* AnimationKey.swift in Sources */,
 				7963DE43239CEC6A00183DF2 /* Skill.swift in Sources */,
@@ -854,6 +861,7 @@
 				79423B7C239E99CC0042B9BD /* HeroBuilder.swift in Sources */,
 				7960DED923A6083400B4CDF8 /* EntityProtocol.swift in Sources */,
 				7914DD34246182120047EFB6 /* EntityDrawLayer.swift in Sources */,
+				798325932477B12600397C12 /* LinkedList.swift in Sources */,
 				79FC68F3244C4A9000E6D63C /* MainMenuScene.swift in Sources */,
 				79D815762465AEAF0099567B /* PaperDollNode.swift in Sources */,
 				79C61AA722A7C415008D3609 /* GameScene.swift in Sources */,
