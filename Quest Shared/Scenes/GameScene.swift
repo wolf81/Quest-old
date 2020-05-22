@@ -188,6 +188,35 @@ class GameScene: SKScene, SceneManagerConstructable {
             tile.sprite.removeFromParent()
         }
     }
+    
+    private func getMinMaxVisibleCoordsInView() -> (vector_int2, vector_int2) {
+        let halfWidth = self.size.width / 2
+        let minX = self.camera!.position.x - halfWidth
+        let maxX = self.camera!.position.x + halfWidth
+        let halfHeight = self.size.height / 2
+        let minY = self.camera!.position.y - halfHeight
+        let maxY = self.camera!.position.y + halfHeight
+        let minCoord = GameScene.coordForPoint(CGPoint(x: minX, y: minY))
+        let maxCoord = GameScene.coordForPoint(CGPoint(x: maxX, y: maxY))
+                                
+        let y1 = max(Int32(minCoord.y - 1), 0)
+        let y2 = min(Int32(maxCoord.y + 1), Int32(self.game.level.height - 1))
+        
+        let x1 = max(Int32(minCoord.x - 1), 0)
+        let x2 = min(Int32(maxCoord.x + 1), Int32(self.game.level.width - 1))
+
+        return (vector_int2(x1, y1), vector_int2(x2, y2))
+    }
+    
+    private func getCoordsInRange(minCoord: vector_int2, maxCoord: vector_int2) -> Set<vector_int2> {
+        var coords = Set<vector_int2>()
+        for y in minCoord.y ... maxCoord.y {
+            for x in minCoord.x ... maxCoord.x {
+                coords.insert(vector_int2(x, y))
+            }
+        }
+        return coords
+    }
 }
 
 func isInRange(origin: vector_int2, radius: Int32, coord: vector_int2) -> Bool {
@@ -304,8 +333,7 @@ extension GameScene: GameDelegate {
             self.game.viewVisibleCoords = viewVisibleCoords
             
             moveCamera(path: path, duration: 2.0)
-        }
-        else {
+        } else {
             let firstCoord = path.first!
             let lastCoord = path.last!
             
@@ -334,41 +362,8 @@ extension GameScene: GameDelegate {
         self.spritesToAdd.append(entity.sprite)
     }
     
-    func gameDidRemove(entity: EntityProtocol) {
-//        self.spritesToRemove.append(entity.sprite)
-    }
-
     func gameDidUpdateStatus(message: String) {
         self.statusBar.update(text: message)
-    }
-    
-    private func getMinMaxVisibleCoordsInView() -> (vector_int2, vector_int2) {
-        let halfWidth = self.size.width / 2
-        let minX = self.camera!.position.x - halfWidth
-        let maxX = self.camera!.position.x + halfWidth
-        let halfHeight = self.size.height / 2
-        let minY = self.camera!.position.y - halfHeight
-        let maxY = self.camera!.position.y + halfHeight
-        let minCoord = GameScene.coordForPoint(CGPoint(x: minX, y: minY))
-        let maxCoord = GameScene.coordForPoint(CGPoint(x: maxX, y: maxY))
-                                
-        let y1 = max(Int32(minCoord.y - 1), 0)
-        let y2 = min(Int32(maxCoord.y + 1), Int32(self.game.level.height - 1))
-        
-        let x1 = max(Int32(minCoord.x - 1), 0)
-        let x2 = min(Int32(maxCoord.x + 1), Int32(self.game.level.width - 1))
-
-        return (vector_int2(x1, y1), vector_int2(x2, y2))
-    }
-    
-    private func getCoordsInRange(minCoord: vector_int2, maxCoord: vector_int2) -> Set<vector_int2> {
-        var coords = Set<vector_int2>()
-        for y in minCoord.y ... maxCoord.y {
-            for x in minCoord.x ... maxCoord.x {
-                coords.insert(vector_int2(x, y))
-            }
-        }
-        return coords
     }
 }
 
@@ -451,9 +446,7 @@ extension GameScene {
         }
     }
         
-    override func keyDown(with event: NSEvent) {
-        debugPrint(event.keyCode)
-        
+    override func keyDown(with event: NSEvent) {        
         switch event.keyCode {
         case /* a, ← */ 0, 123: self.game.movePlayer(direction: .left)
         case /* d, → */ 2, 124: self.game.movePlayer(direction: .right)
@@ -468,10 +461,10 @@ extension GameScene {
                 
         switch event.keyCode {
         case /* esc  */ 53: dismissCharacterInfoAndInventory()
-//        case /* a, ← */ 0, 123: self.game.movePlayer(direction: .left)
-//        case /* d, → */ 2, 124: self.game.movePlayer(direction: .right)
-//        case /* s, ↓ */ 1, 125: self.game.movePlayer(direction: .down)
-//        case /* w, ↑ */ 13, 126: self.game.movePlayer(direction: .up)
+        case /* a, ← */ 0, 123: self.game.stopPlayer()
+        case /* d, → */ 2, 124: self.game.stopPlayer()
+        case /* s, ↓ */ 1, 125: self.game.stopPlayer()
+        case /* w, ↑ */ 13, 126: self.game.stopPlayer()
         case /* i    */ 34: toggleInventory()
         case /* c    */ 8: toggleCharacterInfo()
         default: print("\(event.keyCode)")

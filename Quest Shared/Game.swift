@@ -57,14 +57,10 @@ class Game {
         }
     }
         
-    private var timeInterval: TimeInterval = 0
-    
     public var turnDuration: TimeInterval = 6
     
     private var visibility: Visibility!
-    
-    private var turn: Int = 0
-        
+            
     init(entityFactory: EntityFactory, hero: Hero) {
         self.entityFactory = entityFactory
         self.hero = hero
@@ -378,6 +374,7 @@ class Game {
                 
                 if action.actor is Hero {
                     updateActiveActors()
+                    print("coord: \(action.actor.coord.x).\(action.actor.coord.y)")
                     updateVisibility(for: action.actor)
                 }
             case let attack as MeleeAttackAction:
@@ -402,8 +399,7 @@ class Game {
             if actor.canPerformAction {
                 guard let action = actor.getAction() else { fatalError() }
                 self.actions.append(action)
-            }
-            else {
+            } else {
                 actor.addTimeUnits(10)
             }
                         
@@ -433,9 +429,14 @@ class Game {
         }
     }
             
-    func movePlayer(direction: Direction) {
+    func movePlayer(direction: Direction) {        
         self.selectionMode = .none
-        self.hero.move(state: self, direction: direction)
+        self.hero.move(direction: direction)
+    }
+    
+    func stopPlayer() {
+        self.selectionMode = .none
+        self.hero.stop()
     }
         
     func remove(entity: Entity) {
