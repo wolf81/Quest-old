@@ -12,7 +12,7 @@ import GameplayKit
 import Fenris
 
 protocol GameDelegate: class {
-    func gameDidMove(entity: Entity, path: [vector_int2], duration: TimeInterval)
+    func gameDidMove(entity: Entity, path: [vector_int2])
     func gameDidAdd(entity: EntityProtocol)
     func gameDidRemove(entity: EntityProtocol)
     
@@ -375,7 +375,7 @@ class Game {
             
             switch action {
             case let move as MoveAction:
-                self.delegate?.gameDidMove(entity: move.actor, path: move.path, duration: 0)
+                self.delegate?.gameDidMove(entity: move.actor, path: move.path)
                 
                 if action.actor is Hero {
                     updateActiveActors()
@@ -397,10 +397,7 @@ class Game {
             let actor = self.activeActors[self.activeActorIdx]
                         
             if actor.canPerformAction && actor.isAwaitingInput {
-                if actor is Monster {
-                    actor.update(state: self)
-                }
-                return
+                return actor.update(state: self)
             }
 
             if actor.canPerformAction {
@@ -417,7 +414,7 @@ class Game {
     
     private func nextActor() {
         self.activeActorIdx = (self.activeActorIdx + 1) % self.activeActors.count
-        print("\(self.activeActorIdx + 1) of \(self.activeActors.count)")
+//        print("\(self.activeActorIdx + 1) of \(self.activeActors.count)")
     }
     
     func updateActiveActors() {
@@ -439,7 +436,6 @@ class Game {
             
     func movePlayer(direction: Direction) {
         self.selectionMode = .none
-                
         self.hero.move(state: self, direction: direction)
     }
         

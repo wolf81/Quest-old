@@ -45,7 +45,7 @@ class Actor: Entity {
     private var action: Action?
     
     var isAwaitingInput: Bool { self.action == nil }
-    
+        
     final func setAction(_ action: Action) {
         self.action = action
     }
@@ -71,7 +71,7 @@ class Actor: Entity {
         super.init(json: json, entityFactory: entityFactory)
                                 
         self.hitPoints.delegate = self
-
+        
         self.healthBar = Actor.addHealthBar(sprite: self.sprite)
         
         equipment.forEach({ self.inventory.equip($0 )})

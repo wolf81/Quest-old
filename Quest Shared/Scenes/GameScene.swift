@@ -124,7 +124,7 @@ class GameScene: SKScene, SceneManagerConstructable {
             entity.sprite.position = GameScene.pointForCoord(entity.coord)
         }
         
-        gameDidMove(entity: self.game.hero, path: [self.game.hero.coord], duration: 0)
+        gameDidMove(entity: self.game.hero, path: [self.game.hero.coord])
     }
 
     private func movePlayer(direction: Direction) {
@@ -235,7 +235,7 @@ extension GameScene: GameDelegate {
         }
     }
     
-    func gameDidMove(entity: Entity, path: [vector_int2], duration: TimeInterval) {
+    func gameDidMove(entity: Entity, path: [vector_int2]) {
         if let hero = entity as? Hero {
             let (minCoord, maxCoord) = getMinMaxVisibleCoordsInView()
                                                         
@@ -295,7 +295,7 @@ extension GameScene: GameDelegate {
             
             self.game.viewVisibleCoords = viewVisibleCoords
             
-            moveCamera(path: path, duration: 0.5)
+            moveCamera(path: path, duration: 2.0)
         }
         else {
             let firstCoord = path.first!
@@ -442,16 +442,28 @@ extension GameScene {
             self.game.handleInteraction(at: coord)
         }
     }
-    
-    override func keyUp(with event: NSEvent) {
+        
+    override func keyDown(with event: NSEvent) {
         debugPrint(event.keyCode)
-                
+        
         switch event.keyCode {
-        case /* esc  */ 53: dismissCharacterInfoAndInventory()
         case /* a, ← */ 0, 123: self.game.movePlayer(direction: .left)
         case /* d, → */ 2, 124: self.game.movePlayer(direction: .right)
         case /* s, ↓ */ 1, 125: self.game.movePlayer(direction: .down)
         case /* w, ↑ */ 13, 126: self.game.movePlayer(direction: .up)
+        default: print("\(event.keyCode)")
+        }
+    }
+    
+    override func keyUp(with event: NSEvent) {
+//        debugPrint(event.keyCode)
+                
+        switch event.keyCode {
+        case /* esc  */ 53: dismissCharacterInfoAndInventory()
+//        case /* a, ← */ 0, 123: self.game.movePlayer(direction: .left)
+//        case /* d, → */ 2, 124: self.game.movePlayer(direction: .right)
+//        case /* s, ↓ */ 1, 125: self.game.movePlayer(direction: .down)
+//        case /* w, ↑ */ 13, 126: self.game.movePlayer(direction: .up)
         case /* i    */ 34: toggleInventory()
         case /* c    */ 8: toggleCharacterInfo()
         default: print("\(event.keyCode)")
