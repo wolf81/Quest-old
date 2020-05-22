@@ -65,6 +65,8 @@ class Weapon: Entity & Equippable, CustomStringConvertible {
     let range: Int
     let type: WeaponType
     
+    var projectile: Projectile?
+    
     var category: WeaponCategory { self.type.category }
     var style: WieldStyle { self.type.wieldStyle }
     
@@ -79,6 +81,10 @@ class Weapon: Entity & Equippable, CustomStringConvertible {
         
         let weaponType = json["type"] as! String
         self.type = WeaponType(rawValue: weaponType)
+        
+        if let projectile = json["projectile"] as? String {
+            self.projectile = try! entityFactory.newEntity(type: Projectile.self, name: projectile)
+        }
         
         super.init(json: json, entityFactory: entityFactory)
     }

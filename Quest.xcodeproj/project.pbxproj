@@ -16,6 +16,9 @@
 		79042E6824781BFD00730646 /* EnergyCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E6724781BFD00730646 /* EnergyCost.swift */; };
 		79042E6924781BFD00730646 /* EnergyCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E6724781BFD00730646 /* EnergyCost.swift */; };
 		79042E6A24781BFD00730646 /* EnergyCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E6724781BFD00730646 /* EnergyCost.swift */; };
+		79042E6C2478405100730646 /* Projectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E6B2478405100730646 /* Projectile.swift */; };
+		79042E6D2478405100730646 /* Projectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E6B2478405100730646 /* Projectile.swift */; };
+		79042E6E2478405100730646 /* Projectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E6B2478405100730646 /* Projectile.swift */; };
 		7914DD32246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
 		7914DD33246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
 		7914DD34246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
@@ -216,6 +219,7 @@
 		79042E5B2469473800730646 /* Equippable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equippable.swift; sourceTree = "<group>"; };
 		79042E632478192600730646 /* Energy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Energy.swift; sourceTree = "<group>"; };
 		79042E6724781BFD00730646 /* EnergyCost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyCost.swift; sourceTree = "<group>"; };
+		79042E6B2478405100730646 /* Projectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Projectile.swift; sourceTree = "<group>"; };
 		7914DD31246182120047EFB6 /* EntityDrawLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDrawLayer.swift; sourceTree = "<group>"; };
 		792467DE246A59A0000568A6 /* Lootable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lootable.swift; sourceTree = "<group>"; };
 		792467E2246AFC03000568A6 /* Inventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
@@ -356,6 +360,7 @@
 				799EA0192451313200F690DC /* FogTile.swift */,
 				7914DD31246182120047EFB6 /* EntityDrawLayer.swift */,
 				792467EE246E4360000568A6 /* Potion.swift */,
+				79042E6B2478405100730646 /* Projectile.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -723,6 +728,7 @@
 			files = (
 				79ACC82A22AB81F000AC3BF0 /* JSONConstructable.swift in Sources */,
 				79DF73B0246320D00030E7A8 /* HealthBar.swift in Sources */,
+				79042E6C2478405100730646 /* Projectile.swift in Sources */,
 				7960DECD23A6082B00B4CDF8 /* Tile.swift in Sources */,
 				7963DE3A239CE12A00183DF2 /* Race.swift in Sources */,
 				7963DE52239E3D2A00183DF2 /* ActionBar.swift in Sources */,
@@ -791,6 +797,7 @@
 			files = (
 				79ACC82B22AB81F000AC3BF0 /* JSONConstructable.swift in Sources */,
 				79DF73B1246320D00030E7A8 /* HealthBar.swift in Sources */,
+				79042E6D2478405100730646 /* Projectile.swift in Sources */,
 				7960DECE23A6082B00B4CDF8 /* Tile.swift in Sources */,
 				79FC68F2244C4A8F00E6D63C /* MainMenuScene.swift in Sources */,
 				7963DE3B239CE12A00183DF2 /* Race.swift in Sources */,
@@ -917,6 +924,7 @@
 				79042E6A24781BFD00730646 /* EnergyCost.swift in Sources */,
 				79DF73B2246320D00030E7A8 /* HealthBar.swift in Sources */,
 				79FC68FF244C552B00E6D63C /* LoadingScene.swift in Sources */,
+				79042E6E2478405100730646 /* Projectile.swift in Sources */,
 				79742A6C239E60A7008504E8 /* Gender.swift in Sources */,
 				798C997823A2060000C6EC1C /* MeleeAttackAction.swift in Sources */,
 			);

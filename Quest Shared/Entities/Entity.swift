@@ -20,7 +20,7 @@ class Entity: EntityProtocol & Hashable {
     
     var coord: vector_int2
     
-    private let json: [String: Any]
+    private(set) var json: [String: Any]
     
     lazy var name: String = {
         return self.json["name"] as! String;

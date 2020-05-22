@@ -18,6 +18,7 @@ protocol GameDelegate: class {
 
     func gameDidUpdateStatus(message: String)
     func gameDidAttack(actor: Actor, targetActor: Actor)
+    func gameDidRangedAttack(actor: Actor, targetActor: Actor, projectile: Projectile)
     
     func gameDidChangeSelectionMode(_ selectionMode: SelectionMode)
 }
@@ -161,18 +162,6 @@ class Game {
         }
 
         return movementGraph
-    }
-
-    func isVisible(for actor: Actor, coord: vector_int2) -> Bool {
-        let x1 = actor.coord.x
-        let y1 = actor.coord.y
-        
-        let x2 = coord.x
-        let y2 = coord.y
-        
-        let x = pow(Float(x2 - x1), 2)
-        let y = pow(Float(y2 - y1), 2)
-        return Int(sqrt(x + y)) <= actor.sight
     }
     
     private func getVisiblityGraph(for actor: Actor) -> GKGridGraph<GKGridGraphNode> {
@@ -394,6 +383,18 @@ class Game {
                     remove(entity: attack.targetActor)
                     updateActiveActors()
                 }
+            case let attack as RangedAttackAction:
+                let projectile = action.actor.equippedWeapon.projectile!
+                projectile.configureSprite(origin: attack.actor.coord, target: attack.targetActor.coord)
+                self.delegate?.gameDidRangedAttack(actor: attack.actor, targetActor: attack.targetActor, projectile: projectile)
+
+                if attack.targetActor.isAlive == false {
+                    self.delegate?.gameDidDestroy(entity: attack.targetActor)
+                    // on deleting an entity, update a list of active actors to exclude the deleted entity
+                    remove(entity: attack.targetActor)
+                    updateActiveActors()
+                }
+                break
             default: break
             }
                         
@@ -406,10 +407,12 @@ class Game {
             
             if actor.canTakeTurn && actor.isAwaitingInput {
                 // in case of the hero, we might need to wait for input before we can get a new action
+                updateVisibility(for: actor)
                 return actor.update(state: self)
             }
 
             if actor.canTakeTurn {
+                updateVisibility(for: actor)
                 // if the actor has a pending action, add the action to the pending action list
                 guard let action = actor.getAction() else { fatalError() }
                 self.actions.append(action)

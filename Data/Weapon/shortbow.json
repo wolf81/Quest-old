@@ -1,8 +1,11 @@
 {
     "name": "Shortbow",
+    "sprite": "bow",
     
     "AT": 0,
     "damage": "1d6",
     "type": "shortbow",
-    "range": 12
+    "range": 12,
+    
+    "projectile": "Arrow"
 }

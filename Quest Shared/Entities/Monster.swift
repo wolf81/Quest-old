@@ -53,26 +53,39 @@ class Monster: Actor, CustomStringConvertible {
             let attack = MeleeAttackAction(actor: self, targetActor: state.hero)
             return setAction(attack)
         }
-                
+                        
         if state.actorVisibleCoords.contains(state.hero.coord) {
-            guard self.energy.amount >= self.energyCost.move else { return }
-            let actorCoords = state.activeActors.filter({ $0.coord != self.coord && $0.coord != state.hero.coord }).compactMap({ $0.coord })
-            let movementGraph = state.getMovementGraph(for: self, range: self.sight, excludedCoords: actorCoords)
-            if let actorNode = movementGraph.node(atGridPosition: self.coord), let heroNode = movementGraph.node(atGridPosition: state.hero.coord)  {
-                var pathNodes = movementGraph.findPath(from: actorNode, to: heroNode) as! [GKGridGraphNode]
-                pathNodes.removeLast() // we don't want to move on top of the hero
-
-                let moveCount = 1
+            if self.equippedWeapon.range > 1 {
+                guard self.energy.amount >= self.energyCost.attack else { return }
                 
-                if pathNodes.count > 0 && moveCount > 0 {
-                    let nodeCount = pathNodes.count
+                let x = pow(Float(state.hero.coord.x - self.coord.x), 2)
+                let y = pow(Float(state.hero.coord.x - self.coord.x), 2)
+                let distance = Int(sqrt(x + y))
+                
+                if distance <= self.equippedWeapon.range {
+                    let attack = RangedAttackAction(actor: self, targetActor: state.hero)
+                    return setAction(attack)
+                }
+            } else {
+                guard self.energy.amount >= self.energyCost.move else { return }
+                let actorCoords = state.activeActors.filter({ $0.coord != self.coord && $0.coord != state.hero.coord }).compactMap({ $0.coord })
+                let movementGraph = state.getMovementGraph(for: self, range: self.sight, excludedCoords: actorCoords)
+                if let actorNode = movementGraph.node(atGridPosition: self.coord), let heroNode = movementGraph.node(atGridPosition: state.hero.coord)  {
+                    var pathNodes = movementGraph.findPath(from: actorNode, to: heroNode) as! [GKGridGraphNode]
+                    pathNodes.removeLast() // we don't want to move on top of the hero
+
+                    let moveCount = 1
                     
-                    let removeNodeCount = max(nodeCount - moveCount - 1, 0)
-                    pathNodes.removeLast(removeNodeCount)
-                                        
-                    let path = pathNodes.compactMap({ $0.gridPosition })
-                    let move = MoveAction(actor: self, coords: path)
-                    return setAction(move)
+                    if pathNodes.count > 0 && moveCount > 0 {
+                        let nodeCount = pathNodes.count
+                        
+                        let removeNodeCount = max(nodeCount - moveCount - 1, 0)
+                        pathNodes.removeLast(removeNodeCount)
+                                            
+                        let path = pathNodes.compactMap({ $0.gridPosition })
+                        let move = MoveAction(actor: self, coords: path)
+                        return setAction(move)
+                    }
                 }
             }
         }

@@ -4,8 +4,9 @@
 
     "HD": "d4",
     "AC": 15,
+    "sight": 7,
     "EQ": {
-        "weapon": "Shortsword",
+        "weapon": "Shortbow",
     },
     
     "energyCost": {

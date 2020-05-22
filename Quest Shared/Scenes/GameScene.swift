@@ -237,6 +237,20 @@ extension GameScene: GameDelegate {
         }
     }
     
+    func gameDidRangedAttack(actor: Actor, targetActor: Actor, projectile: Projectile) {
+        projectile.sprite.position = actor.sprite.position
+        self.world.addChild(projectile.sprite)
+        
+        let attack = SKAction.sequence([
+            SKAction.move(to: targetActor.sprite.position, duration: 2.0),
+            SKAction.run {
+                projectile.sprite.removeFromParent()
+            }
+        ])
+        
+        projectile.sprite.run(attack)
+    }
+    
     func gameDidAttack(actor: Actor, targetActor: Actor) {
         let actorPosition = GameScene.pointForCoord(actor.coord)
         let targetActorPosition = GameScene.pointForCoord(targetActor.coord)

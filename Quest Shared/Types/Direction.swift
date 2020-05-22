@@ -31,4 +31,18 @@ enum Direction {
         case .southEast: return vector_int2(1, -1)
         }
     }
+    
+    init(rawValue: vector_int2) {
+        switch rawValue {
+        case vector_int2(0, 1): self = .north
+        case vector_int2(0, -1): self = .south
+        case vector_int2(-1, 0): self = .west
+        case vector_int2(1, 0): self = .east
+        case vector_int2(-1, 1): self = .northWest
+        case vector_int2(1, 1): self = .northEast
+        case vector_int2(-1, -1): self = .southWest
+        case vector_int2(1, -1): self = .southEast
+        default: fatalError()
+        }
+    }
 }
