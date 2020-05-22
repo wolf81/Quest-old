@@ -32,10 +32,8 @@ class Actor: Entity {
     
     private(set) var level: Int = 1
     
-    private(set) var energy: Int = 0
-    
-    var canPerformAction: Bool { self.energy >= 50 }
-        
+    private(set) var energy = Energy()
+            
     private(set) var healthBar: HealthBar!
     
     private(set) var unarmed: Weapon
@@ -116,14 +114,6 @@ class Actor: Entity {
         dieRoll == .maximum ? self.equippedWeapon.damage.maxValue : self.equippedWeapon.damage.randomValue
     }
     
-    func addEnergy(_ energy: Int) {
-        self.energy += energy
-    }
-    
-    func drainEnergy() {
-        self.energy = 0
-    }
-
     func getAction(state: Game) -> Action? {
         return nil
     }

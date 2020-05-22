@@ -10,6 +10,9 @@
 		79042E5C2469473800730646 /* Equippable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E5B2469473800730646 /* Equippable.swift */; };
 		79042E5D2469473800730646 /* Equippable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E5B2469473800730646 /* Equippable.swift */; };
 		79042E5E2469473800730646 /* Equippable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E5B2469473800730646 /* Equippable.swift */; };
+		79042E642478192600730646 /* Energy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E632478192600730646 /* Energy.swift */; };
+		79042E652478192600730646 /* Energy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E632478192600730646 /* Energy.swift */; };
+		79042E662478192600730646 /* Energy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E632478192600730646 /* Energy.swift */; };
 		7914DD32246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
 		7914DD33246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
 		7914DD34246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
@@ -214,6 +217,7 @@
 
 /* Begin PBXFileReference section */
 		79042E5B2469473800730646 /* Equippable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equippable.swift; sourceTree = "<group>"; };
+		79042E632478192600730646 /* Energy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Energy.swift; sourceTree = "<group>"; };
 		7914DD31246182120047EFB6 /* EntityDrawLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDrawLayer.swift; sourceTree = "<group>"; };
 		792467DE246A59A0000568A6 /* Lootable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lootable.swift; sourceTree = "<group>"; };
 		792467E2246AFC03000568A6 /* Inventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
@@ -385,6 +389,7 @@
 				792467DE246A59A0000568A6 /* Lootable.swift */,
 				792467E2246AFC03000568A6 /* Inventory.swift */,
 				798325902477B12600397C12 /* LinkedList.swift */,
+				79042E632478192600730646 /* Energy.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -730,6 +735,7 @@
 				7960DED723A6083400B4CDF8 /* EntityProtocol.swift in Sources */,
 				79DF73B42463DD310030E7A8 /* InventoryNode.swift in Sources */,
 				7990950C244C9E410091791F /* StatusBar.swift in Sources */,
+				79042E642478192600730646 /* Energy.swift in Sources */,
 				79C61AA522A7C415008D3609 /* GameScene.swift in Sources */,
 				793A575824459A070089E693 /* Constants.swift in Sources */,
 				794864D322A7E60300F84A72 /* Game.swift in Sources */,
@@ -798,6 +804,7 @@
 				7960DED423A6082B00B4CDF8 /* OverlayTile.swift in Sources */,
 				7960DED823A6083400B4CDF8 /* EntityProtocol.swift in Sources */,
 				79DF73B52463DD310030E7A8 /* InventoryNode.swift in Sources */,
+				79042E652478192600730646 /* Energy.swift in Sources */,
 				7990950D244C9E410091791F /* StatusBar.swift in Sources */,
 				79C61AA622A7C415008D3609 /* GameScene.swift in Sources */,
 				793A575924459A070089E693 /* Constants.swift in Sources */,
@@ -882,6 +889,7 @@
 				792E454E247048060088FBD7 /* CharacterInfoNode.swift in Sources */,
 				7963DE30239CC35F00183DF2 /* DefaultMenuConfiguration.swift in Sources */,
 				79FC68FB244C4C9E00E6D63C /* ChooseAttributesScene.swift in Sources */,
+				79042E662478192600730646 /* Energy.swift in Sources */,
 				7960DECF23A6082B00B4CDF8 /* Tile.swift in Sources */,
 				798537C823A2924E00721CE7 /* RangedAttackAction.swift in Sources */,
 				795746B522A7CA9800E04BEC /* Level.swift in Sources */,

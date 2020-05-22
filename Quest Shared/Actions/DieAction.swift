@@ -12,6 +12,6 @@ class DieAction: Action, StatusUpdatable {
     var message: String? { "\(self.actor.name) died" }
         
     override func perform(game: Game) {
-        self.actor.drainEnergy()
+        self.actor.energy.drain()
     }
 }

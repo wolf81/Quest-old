@@ -14,6 +14,6 @@ class IdleAction: Action {
 //    }
     
     override func perform(game: Game) {
-        self.actor.drainEnergy()
+        self.actor.energy.drain()
     }
 }

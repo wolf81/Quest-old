@@ -20,7 +20,7 @@ class CastSpellAction: Action {
     }
     
     override func perform(game: Game) {
-        self.actor.drainEnergy()
+        self.actor.energy.drain()
 
         switch self.spell {
         case let singleTargetDamageSpell as SingleTargetDamageSpell:            

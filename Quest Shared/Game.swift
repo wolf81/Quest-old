@@ -403,18 +403,18 @@ class Game {
         while self.actions.isEmpty {
             let actor = self.activeActors[self.activeActorIdx]
                         
-            if actor.canPerformAction && actor.isAwaitingInput {
+            if actor.energy.canTakeTurn && actor.isAwaitingInput {
                 // in case of the hero, we might need to wait for input before we can get a new action
                 return actor.update(state: self)
             }
 
-            if actor.canPerformAction {
+            if actor.energy.canTakeTurn {
                 // if the actor has a pending action, add the action to the pending action list
                 guard let action = actor.getAction() else { fatalError() }
                 self.actions.append(action)
             } else {
                 // otherwise increment the time units until we have enough to allow for an action
-                actor.addEnergy(10)
+                actor.energy.increment(10)
             }
             
             nextActor()

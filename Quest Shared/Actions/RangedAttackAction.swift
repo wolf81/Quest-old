@@ -23,7 +23,7 @@ class RangedAttackAction: Action, StatusUpdatable {
     }
     
     override func perform(game: Game) {
-        self.actor.drainEnergy()
+        self.actor.energy.drain()
 
         let attackDie = HitDie.d20(1, 0)
         let baseAttackRoll = attackDie.randomValue
@@ -49,15 +49,6 @@ class RangedAttackAction: Action, StatusUpdatable {
             }
         }
                                 
-        self.message = status
-        
-//        let attack = SKAction.sequence([
-//            SKAction.wait(forDuration: 6),
-//            SKAction.run {
-//                completion()
-//            }
-//        ])
-
-//        self.actor.sprite.run(attack)        
+        self.message = status        
     }
 }
