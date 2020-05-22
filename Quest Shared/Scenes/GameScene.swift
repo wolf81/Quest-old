@@ -340,7 +340,7 @@ extension GameScene: GameDelegate {
             var move: [SKAction] = []
 
             let stepCount = path.count + (willShow ? 1 : 0)
-            let stepDuration = 1.0 / Double(stepCount)
+            let stepDuration = 2.0 / Double(stepCount)
 
             if willShow {
                 move.append(SKAction.fadeIn(withDuration: stepDuration))
