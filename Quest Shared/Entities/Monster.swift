@@ -43,10 +43,7 @@ class Monster: Actor, CustomStringConvertible {
     }
     
     override func update(state: Game) {
-        guard self.isAlive else {
-            let die = DieAction(actor: self)
-            return setAction(die)
-        }
+        guard self.isAlive else { return }
                 
         // If hero is in melee range, perform melee attack
         let xRange = self.coord.x - 1 ... self.coord.x + 1

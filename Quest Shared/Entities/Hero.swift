@@ -71,21 +71,22 @@ class Hero: Actor, CustomStringConvertible {
     }
     
     override func update(state: Game) {
+        guard self.isAlive else { return }
+
         guard let direction = self.direction else { return }
 
         if self.sprite.hasActions() { return }
         
-        if self.hitPoints.current <= 0 {
-            let die = DieAction(actor: self)
-            return setAction(die)
-        }
-
         let toCoord = self.coord &+ direction.coord
 
         if let targetActor = state.activeActors.filter({ $0.coord == toCoord }).first {
-          let attack = MeleeAttackAction(actor: self, targetActor: targetActor)
+            guard self.energy.amount >= self.energyCost.attack else { return }
+            
+            let attack = MeleeAttackAction(actor: self, targetActor: targetActor)
             setAction(attack)
         } else {
+            guard self.energy.amount >= self.energyCost.move else { return }
+            
             if state.canMove(entity: self, to: toCoord) {
                 let move = MoveAction(actor: self, toCoord: toCoord)
                 setAction(move)

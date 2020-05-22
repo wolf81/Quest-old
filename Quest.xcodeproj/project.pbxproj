@@ -125,9 +125,6 @@
 		798537C623A2924E00721CE7 /* RangedAttackAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798537C523A2924E00721CE7 /* RangedAttackAction.swift */; };
 		798537C723A2924E00721CE7 /* RangedAttackAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798537C523A2924E00721CE7 /* RangedAttackAction.swift */; };
 		798537C823A2924E00721CE7 /* RangedAttackAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798537C523A2924E00721CE7 /* RangedAttackAction.swift */; };
-		7985AF9423A20DDC0067F884 /* DieAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985AF9323A20DDC0067F884 /* DieAction.swift */; };
-		7985AF9523A20DDC0067F884 /* DieAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985AF9323A20DDC0067F884 /* DieAction.swift */; };
-		7985AF9623A20DDC0067F884 /* DieAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985AF9323A20DDC0067F884 /* DieAction.swift */; };
 		798C997223A205EF00C6EC1C /* MoveAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C997123A205EF00C6EC1C /* MoveAction.swift */; };
 		798C997323A205EF00C6EC1C /* MoveAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C997123A205EF00C6EC1C /* MoveAction.swift */; };
 		798C997423A205EF00C6EC1C /* MoveAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C997123A205EF00C6EC1C /* MoveAction.swift */; };
@@ -260,7 +257,6 @@
 		79742A69239E60A7008504E8 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Sprites.xcassets; sourceTree = "<group>"; };
 		798537C523A2924E00721CE7 /* RangedAttackAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangedAttackAction.swift; sourceTree = "<group>"; };
-		7985AF9323A20DDC0067F884 /* DieAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DieAction.swift; sourceTree = "<group>"; };
 		798C997123A205EF00C6EC1C /* MoveAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveAction.swift; sourceTree = "<group>"; };
 		798C997523A2060000C6EC1C /* MeleeAttackAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeleeAttackAction.swift; sourceTree = "<group>"; };
 		798C997923A2061700C6EC1C /* IdleAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdleAction.swift; sourceTree = "<group>"; };
@@ -401,7 +397,6 @@
 				79ACC81D22AB473200AC3BF0 /* Action.swift */,
 				798C997523A2060000C6EC1C /* MeleeAttackAction.swift */,
 				798C997923A2061700C6EC1C /* IdleAction.swift */,
-				7985AF9323A20DDC0067F884 /* DieAction.swift */,
 				798537C523A2924E00721CE7 /* RangedAttackAction.swift */,
 				792C698F23A5495500A729C3 /* CastSpellAction.swift */,
 				79DF73AB2462D3570030E7A8 /* StatusUpdatable.swift */,
@@ -739,7 +734,6 @@
 				79C61AA522A7C415008D3609 /* GameScene.swift in Sources */,
 				793A575824459A070089E693 /* Constants.swift in Sources */,
 				794864D322A7E60300F84A72 /* Game.swift in Sources */,
-				7985AF9423A20DDC0067F884 /* DieAction.swift in Sources */,
 				79742A6A239E60A7008504E8 /* Gender.swift in Sources */,
 				799EA01A2451313200F690DC /* FogTile.swift in Sources */,
 				792C699023A5495500A729C3 /* CastSpellAction.swift in Sources */,
@@ -809,7 +803,6 @@
 				79C61AA622A7C415008D3609 /* GameScene.swift in Sources */,
 				793A575924459A070089E693 /* Constants.swift in Sources */,
 				794864D422A7E60300F84A72 /* Game.swift in Sources */,
-				7985AF9523A20DDC0067F884 /* DieAction.swift in Sources */,
 				799EA01B2451313200F690DC /* FogTile.swift in Sources */,
 				79742A6B239E60A7008504E8 /* Gender.swift in Sources */,
 				792C699123A5495500A729C3 /* CastSpellAction.swift in Sources */,
@@ -882,7 +875,6 @@
 				792467F1246E4360000568A6 /* Potion.swift in Sources */,
 				79ACC82022AB473200AC3BF0 /* Action.swift in Sources */,
 				798C997C23A2061700C6EC1C /* IdleAction.swift in Sources */,
-				7985AF9623A20DDC0067F884 /* DieAction.swift in Sources */,
 				79ACC7F322AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
 				7960DEC023A6082B00B4CDF8 /* Weapon.swift in Sources */,
 				792E454E247048060088FBD7 /* CharacterInfoNode.swift in Sources */,

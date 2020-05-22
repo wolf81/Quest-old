@@ -388,10 +388,12 @@ class Game {
                 self.delegate?.gameDidMove(entity: move.actor, path: move.path)
             case let attack as MeleeAttackAction:
                 self.delegate?.gameDidAttack(actor: attack.actor, targetActor: attack.targetActor)
-            case let die as DieAction:
-                // on deleting an entity, update a list of active actors to exclude the deleted entity
-                remove(entity: die.actor)
-                updateActiveActors()
+                if attack.targetActor.isAlive == false {
+                    self.delegate?.gameDidDestroy(entity: attack.targetActor)
+                    // on deleting an entity, update a list of active actors to exclude the deleted entity
+                    remove(entity: attack.targetActor)
+                    updateActiveActors()
+                }
             default: break
             }
                         
@@ -401,7 +403,7 @@ class Game {
         // if no actions are pending, process each actor until an action is added
         while self.actions.isEmpty {
             let actor = self.activeActors[self.activeActorIdx]
-                        
+            
             if actor.canTakeTurn && actor.isAwaitingInput {
                 // in case of the hero, we might need to wait for input before we can get a new action
                 return actor.update(state: self)
