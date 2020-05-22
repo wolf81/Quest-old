@@ -369,14 +369,12 @@ class Game {
             action.perform(game: self)
             
             switch action {
-            case let move as MoveAction:
-                self.delegate?.gameDidMove(entity: move.actor, path: move.path)
-                
+            case let move as MoveAction:                
                 if action.actor is Hero {
                     updateActiveActors()
-                    print("coord: \(action.actor.coord.x).\(action.actor.coord.y)")
                     updateVisibility(for: action.actor)
                 }
+                self.delegate?.gameDidMove(entity: move.actor, path: move.path)
             case let attack as MeleeAttackAction:
                 self.delegate?.gameDidAttack(actor: attack.actor, targetActor: attack.targetActor)
             case let die as DieAction:
@@ -409,6 +407,7 @@ class Game {
     
     private func nextActor() {
         self.activeActorIdx = (self.activeActorIdx + 1) % self.activeActors.count
+        
 //        print("\(self.activeActorIdx + 1) of \(self.activeActors.count)")
     }
     

@@ -278,14 +278,14 @@ extension GameScene: GameDelegate {
                                                         
             let viewVisibleCoords = getCoordsInRange(minCoord: minCoord, maxCoord: maxCoord)
             
-            for entity in self.game.entities {
+            for entity in self.game.activeActors {
                 if self.game.actorVisibleCoords.contains(entity.coord) {
                     if entity.sprite.parent == nil {
                         self.world.addChild(entity.sprite)
                     }
                     else {
                         let position = GameScene.pointForCoord(path.last!)
-                        hero.sprite.run(SKAction.move(to: position, duration: 2.0))
+                        hero.sprite.run(SKAction.move(to: position, duration: 2.0))                        
                     }
                 }
                 else {
