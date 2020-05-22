@@ -34,8 +34,8 @@ class Actor: Entity {
     
     private(set) var timeUnits: Int = 0
     
-    private(set) var speed: Int
-    
+    var canPerformAction: Bool { self.timeUnits >= 100 }
+        
     private(set) var healthBar: HealthBar!
     
     private(set) var unarmed: Weapon
@@ -58,8 +58,6 @@ class Actor: Entity {
             self.isAwaitingInput = true
         }
 
-        print("get action for: \(self.name)")
-
         return self.action
     }
     
@@ -72,7 +70,6 @@ class Actor: Entity {
         self.unarmed = try! entityFactory.newEntity(type: Weapon.self, name: "Unarmed")
         
         self.sight = json["sight"] as? Int32 ?? 6
-        self.speed = json["speed"] as? Int ?? Constants.defaultSpeed
         
         super.init(json: json, entityFactory: entityFactory)
                                 
@@ -89,7 +86,6 @@ class Actor: Entity {
         self.skills = skills
         self.attributes = attributes
         self.unarmed = try! entityFactory.newEntity(type: Weapon.self, name: "Unarmed")
-        self.speed = Constants.defaultSpeed
 
         super.init(json: ["name": name, "sprite": "\(race)_\(gender)"], entityFactory: entityFactory)
         
@@ -107,7 +103,6 @@ class Actor: Entity {
         self.hitPoints = HitPoints(base: 1)
         self.skills = Skills(physical: 0, subterfuge: 0, knowledge: 0, communication: 0)
         self.unarmed = try! entityFactory.newEntity(type: Weapon.self, name: "Unarmed")
-        self.speed = json["speed"] as? Int ?? Constants.defaultSpeed
 
         super.init(json: json, entityFactory: entityFactory)
 
@@ -125,9 +120,7 @@ class Actor: Entity {
     }
     
     func addTimeUnits(_ timeUnits: Int) {
-        let timeUnitsBonus = self.speed - Constants.defaultSpeed
-        self.timeUnits += timeUnits + timeUnitsBonus
-        print("[TU] \(self.name): \(self.timeUnits)")
+        self.timeUnits += timeUnits
     }
     
     func subtractTimeUnits(_ timeUnits: Int) {

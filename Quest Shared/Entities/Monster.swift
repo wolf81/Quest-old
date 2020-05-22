@@ -57,7 +57,7 @@ class Monster: Actor, CustomStringConvertible {
         }
                 
         if state.actorVisibleCoords.contains(state.hero.coord) {
-            let actorCoords = state.actors.filter({ $0.coord != self.coord && $0.coord != state.hero.coord }).compactMap({ $0.coord })
+            let actorCoords = state.activeActors.filter({ $0.coord != self.coord && $0.coord != state.hero.coord }).compactMap({ $0.coord })
             let movementGraph = state.getMovementGraph(for: self, range: self.sight, excludedCoords: actorCoords)
             if let actorNode = movementGraph.node(atGridPosition: self.coord), let heroNode = movementGraph.node(atGridPosition: state.hero.coord)  {
                 var pathNodes = movementGraph.findPath(from: actorNode, to: heroNode) as! [GKGridGraphNode]
