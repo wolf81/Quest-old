@@ -54,7 +54,7 @@ class Monster: Actor, CustomStringConvertible {
             return setAction(attack)
         }
                         
-        if state.actorVisibleCoords.contains(state.hero.coord) {
+        if state.actorVisibleCoords.contains(state.hero.coord) && state.hero.isAlive {
             if self.equippedWeapon.range > 1 {
                 guard self.energy.amount >= self.energyCost.attack else { return }
 

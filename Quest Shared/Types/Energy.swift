@@ -18,4 +18,8 @@ class Energy {
     func drain() {
         self.amount = 0
     }
+    
+    func drain(_ amount: Int) {
+        self.amount = (amount > self.amount) ? 0 : self.amount - UInt(amount)
+    }
 }
