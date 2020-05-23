@@ -125,6 +125,9 @@
 		797DBF7B22A91FA300D0F8E7 /* Sprites.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */; };
 		797DBF7C22A91FA300D0F8E7 /* Sprites.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */; };
 		797DBF7D22A91FA300D0F8E7 /* Sprites.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */; };
+		798325992478D2B700397C12 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798325982478D2B700397C12 /* Functions.swift */; };
+		7983259A2478D2B700397C12 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798325982478D2B700397C12 /* Functions.swift */; };
+		7983259B2478D2B700397C12 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798325982478D2B700397C12 /* Functions.swift */; };
 		798537C623A2924E00721CE7 /* RangedAttackAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798537C523A2924E00721CE7 /* RangedAttackAction.swift */; };
 		798537C723A2924E00721CE7 /* RangedAttackAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798537C523A2924E00721CE7 /* RangedAttackAction.swift */; };
 		798537C823A2924E00721CE7 /* RangedAttackAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798537C523A2924E00721CE7 /* RangedAttackAction.swift */; };
@@ -260,6 +263,7 @@
 		7963DE56239E456900183DF2 /* ActionBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionBarButton.swift; sourceTree = "<group>"; };
 		79742A69239E60A7008504E8 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Sprites.xcassets; sourceTree = "<group>"; };
+		798325982478D2B700397C12 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		798537C523A2924E00721CE7 /* RangedAttackAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangedAttackAction.swift; sourceTree = "<group>"; };
 		798C997123A205EF00C6EC1C /* MoveAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveAction.swift; sourceTree = "<group>"; };
 		798C997523A2060000C6EC1C /* MeleeAttackAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeleeAttackAction.swift; sourceTree = "<group>"; };
@@ -454,6 +458,7 @@
 				79423B79239E99CC0042B9BD /* HeroBuilder.swift */,
 				798C997D23A2068C00C6EC1C /* AnimationKey.swift */,
 				793A575724459A070089E693 /* Constants.swift */,
+				798325982478D2B700397C12 /* Functions.swift */,
 			);
 			path = "Quest Shared";
 			sourceTree = "<group>";
@@ -764,6 +769,7 @@
 				79DF73B82463E16A0030E7A8 /* BackpackNode.swift in Sources */,
 				79FC68F9244C4C9E00E6D63C /* ChooseAttributesScene.swift in Sources */,
 				792E454C247048060088FBD7 /* CharacterInfoNode.swift in Sources */,
+				798325992478D2B700397C12 /* Functions.swift in Sources */,
 				7960DED023A6082B00B4CDF8 /* Armor.swift in Sources */,
 				7963DE3E239CE15700183DF2 /* Role.swift in Sources */,
 				79FC68ED244C4A0300E6D63C /* MainMenuScene.swift in Sources */,
@@ -833,6 +839,7 @@
 				79DF73B92463E16A0030E7A8 /* BackpackNode.swift in Sources */,
 				79FC68FA244C4C9E00E6D63C /* ChooseAttributesScene.swift in Sources */,
 				792E454D247048060088FBD7 /* CharacterInfoNode.swift in Sources */,
+				7983259A2478D2B700397C12 /* Functions.swift in Sources */,
 				7963DE4F239DD2D600183DF2 /* HitPoints.swift in Sources */,
 				7960DED123A6082B00B4CDF8 /* Armor.swift in Sources */,
 				7963DE3F239CE15700183DF2 /* Role.swift in Sources */,
@@ -899,6 +906,7 @@
 				792467E5246AFC03000568A6 /* Inventory.swift in Sources */,
 				79C61A9822A7C415008D3609 /* AppDelegate.swift in Sources */,
 				7963DE34239CDE2600183DF2 /* Attribute.swift in Sources */,
+				7983259B2478D2B700397C12 /* Functions.swift in Sources */,
 				79042E5E2469473800730646 /* Equippable.swift in Sources */,
 				79DF73B62463DD310030E7A8 /* InventoryNode.swift in Sources */,
 				79D81572246572450099567B /* ButtonNode.swift in Sources */,

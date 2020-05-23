@@ -14,10 +14,7 @@ class Projectile: Entity {
     }
     
     func configureSprite(origin: vector_int2, target: vector_int2) {
-        let y: Int32 = origin.y == target.y ? 0 : (origin.y > target.y ? -1 : 1)
-        let x: Int32 = origin.x == target.x ? 0 : (origin.x > target.x ? -1 : 1)
-        
-        let direction = Direction(rawValue: vector_int2(x, y))
+        let direction = Direction.relative(from: origin, to: target)                
         let name = String(describing: direction)
         let spriteInfo = self.json["sprite"] as! [String: String]
         let spriteName = spriteInfo[name]!

@@ -57,14 +57,20 @@ class Monster: Actor, CustomStringConvertible {
         if state.actorVisibleCoords.contains(state.hero.coord) {
             if self.equippedWeapon.range > 1 {
                 guard self.energy.amount >= self.energyCost.attack else { return }
+
+                let coords = Functions.coordsBetween(self.coord, state.hero.coord)
+                let tiles = coords.compactMap({ state.getTile(at: $0) })
+                let isBlocked = tiles.contains(1)
                 
-                let x = pow(Float(state.hero.coord.x - self.coord.x), 2)
-                let y = pow(Float(state.hero.coord.x - self.coord.x), 2)
-                let distance = Int(sqrt(x + y))
-                
-                if distance <= self.equippedWeapon.range {
-                    let attack = RangedAttackAction(actor: self, targetActor: state.hero)
-                    return setAction(attack)
+                if isBlocked == false {
+                    let x = pow(Float(state.hero.coord.x - self.coord.x), 2)
+                    let y = pow(Float(state.hero.coord.x - self.coord.x), 2)
+                    let distance = Int(sqrt(x + y))
+                    
+                    if distance <= self.equippedWeapon.range {
+                        let attack = RangedAttackAction(actor: self, targetActor: state.hero)
+                        return setAction(attack)
+                    }
                 }
             } else {
                 guard self.energy.amount >= self.energyCost.move else { return }

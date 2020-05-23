@@ -11,6 +11,8 @@ import SpriteKit
 class RangedAttackAction: Action, StatusUpdatable {
     public let targetActor: Actor
 
+    private(set) var isHit: Bool = false
+    
     private(set) var message: String?
     
 //    override var message: String {
@@ -34,6 +36,7 @@ class RangedAttackAction: Action, StatusUpdatable {
         switch baseAttackRoll {
         case attackDie.minValue: status = "critical miss"
         case attackDie.maxValue:
+            self.isHit = true
             let damage = self.actor.getRangedAttackDamage(.maximum)
             status = "critical hit for \(damage) damage"
             self.targetActor.hitPoints.remove(hitPoints: damage)
@@ -41,6 +44,7 @@ class RangedAttackAction: Action, StatusUpdatable {
             let attackRoll = baseAttackRoll + self.actor.rangedAttackBonus
             status = "\tAT \(attackRoll) vs AC \(armorClass): "
             if attackRoll > armorClass {
+                self.isHit = true
                 let damage = self.actor.getRangedAttackDamage(.random)
                 status += "hit for \(damage) damage"
                 self.targetActor.hitPoints.remove(hitPoints: damage)

@@ -237,18 +237,28 @@ extension GameScene: GameDelegate {
         }
     }
     
-    func gameDidRangedAttack(actor: Actor, targetActor: Actor, projectile: Projectile) {
-        projectile.sprite.position = actor.sprite.position
-        self.world.addChild(projectile.sprite)
+    func gameDidRangedAttack(actor: Actor, targetActor: Actor, projectile: Projectile, isHit: Bool) {
+        // Make a copy of the sprite, to prevent the sprite to become unmanaged once the projectile is destroyed
+        let sprite = projectile.sprite.copy() as! SKSpriteNode
+        sprite.position = actor.sprite.position
+        self.world.addChild(sprite)
+
+        // for missing attacks, show arrow hitting coordinate next to the hero
+        var toCoord = targetActor.coord
+        if !isHit {
+            let adjacentDirections = Direction.relative(from: actor.coord, to: targetActor.coord).adjacentDirections
+            let direction = arc4random() % 2 == 0 ? adjacentDirections[0] : adjacentDirections[1]
+            toCoord = toCoord &+ direction.coord
+        }
         
         let attack = SKAction.sequence([
-            SKAction.move(to: targetActor.sprite.position, duration: 2.0),
+            SKAction.move(to: GameScene.pointForCoord(toCoord), duration: 2.5),
             SKAction.run {
-                projectile.sprite.removeFromParent()
+                sprite.removeFromParent()
             }
         ])
         
-        projectile.sprite.run(attack)
+        sprite.run(attack)
     }
     
     func gameDidAttack(actor: Actor, targetActor: Actor) {

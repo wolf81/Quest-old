@@ -32,6 +32,25 @@ enum Direction {
         }
     }
     
+    var adjacentDirections: [Direction] {
+        switch self {
+        case .east: return [.northEast, .southEast]
+        case .west: return [.northWest, .southWest]
+        case .north: return [.northWest, .northEast]
+        case .south: return [.southWest, .southEast]
+        case .northWest: return [.north, .west]
+        case .northEast: return [.north, .east]
+        case .southEast: return [.south, .east]
+        case .southWest: return [.south, .west]
+        }
+    }
+    
+    static func relative(from fromCoord: vector_int2, to toCoord: vector_int2) -> Direction {
+        let y: Int32 = fromCoord.y == toCoord.y ? 0 : (fromCoord.y > toCoord.y ? -1 : 1)
+        let x: Int32 = fromCoord.x == toCoord.x ? 0 : (fromCoord.x > toCoord.x ? -1 : 1)
+        return Direction(rawValue: vector_int2(x, y))
+    }
+    
     init(rawValue: vector_int2) {
         switch rawValue {
         case vector_int2(0, 1): self = .north

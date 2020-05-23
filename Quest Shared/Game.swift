@@ -18,7 +18,7 @@ protocol GameDelegate: class {
 
     func gameDidUpdateStatus(message: String)
     func gameDidAttack(actor: Actor, targetActor: Actor)
-    func gameDidRangedAttack(actor: Actor, targetActor: Actor, projectile: Projectile)
+    func gameDidRangedAttack(actor: Actor, targetActor: Actor, projectile: Projectile, isHit: Bool)
     
     func gameDidChangeSelectionMode(_ selectionMode: SelectionMode)
 }
@@ -386,8 +386,8 @@ class Game {
             case let attack as RangedAttackAction:
                 let projectile = action.actor.equippedWeapon.projectile!
                 projectile.configureSprite(origin: attack.actor.coord, target: attack.targetActor.coord)
-                self.delegate?.gameDidRangedAttack(actor: attack.actor, targetActor: attack.targetActor, projectile: projectile)
-
+                self.delegate?.gameDidRangedAttack(actor: attack.actor, targetActor: attack.targetActor, projectile: projectile, isHit: attack.isHit)
+                
                 if attack.targetActor.isAlive == false {
                     self.delegate?.gameDidDestroy(entity: attack.targetActor)
                     // on deleting an entity, update a list of active actors to exclude the deleted entity
