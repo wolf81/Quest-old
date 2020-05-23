@@ -55,24 +55,26 @@ class Monster: Actor, CustomStringConvertible {
         }
                         
         if state.actorVisibleCoords.contains(state.hero.coord) && state.hero.isAlive {
-            if self.equippedWeapon.range > 1 {
-                guard self.energy.amount >= self.energyCost.attack else { return }
+            let coords = Functions.coordsBetween(self.coord, state.hero.coord)
+            let tiles = coords.compactMap({ state.getTile(at: $0) })
+            let isBlocked = tiles.contains(1)
 
-                let coords = Functions.coordsBetween(self.coord, state.hero.coord)
-                let tiles = coords.compactMap({ state.getTile(at: $0) })
-                let isBlocked = tiles.contains(1)
-                
-                if isBlocked == false {
-                    let x = pow(Float(state.hero.coord.x - self.coord.x), 2)
-                    let y = pow(Float(state.hero.coord.x - self.coord.x), 2)
-                    let distance = Int(sqrt(x + y))
-                    
-                    if distance <= self.equippedWeapon.range {
-                        let attack = RangedAttackAction(actor: self, targetActor: state.hero)
-                        return setAction(attack)
+            // if the hero is not blocked by walls and we carry a ranged weapon, shoot on the hero
+            if isBlocked == false {
+                if self.equippedWeapon.range > 1 {
+                    if self.energy.amount >= self.energyCost.attack {
+                        let x = pow(Float(state.hero.coord.x - self.coord.x), 2)
+                        let y = pow(Float(state.hero.coord.x - self.coord.x), 2)
+                        let distance = Int(sqrt(x + y))
+                        
+                        if distance <= self.equippedWeapon.range {
+                            let attack = RangedAttackAction(actor: self, targetActor: state.hero)
+                            return setAction(attack)
+                        }
                     }
                 }
             } else {
+                if self.energy.amount >= self.energyCost.move {}
                 guard self.energy.amount >= self.energyCost.move else { return }
                 let actorCoords = state.activeActors.filter({ $0.coord != self.coord && $0.coord != state.hero.coord }).compactMap({ $0.coord })
                 let movementGraph = state.getMovementGraph(for: self, range: self.sight, excludedCoords: actorCoords)
