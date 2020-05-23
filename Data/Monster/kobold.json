@@ -1,0 +1,16 @@
+{
+    "name": "Kobold",
+    "sprite": "kobold_old",
+
+    "HD": "d4",
+    "AC": 15,
+    "sight": 7,
+    "EQ": {
+        "weapon": "Shortbow",
+    },
+    
+    "energyCost": {
+        "move": 50,
+        "attack": 50
+    }
+}

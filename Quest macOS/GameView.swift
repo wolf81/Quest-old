@@ -14,7 +14,7 @@ class GameView : SKView {
     }
     
     override func keyDown(with event: NSEvent) {
-        
+        super.keyDown(with: event)
     }
     
     override func keyUp(with event: NSEvent) {

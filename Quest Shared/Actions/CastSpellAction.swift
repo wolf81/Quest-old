@@ -13,16 +13,14 @@ class CastSpellAction: Action {
     
 //    override var message: String { return "\(self.actor.name) casts \(spell.name) on \((self.spell as! SingleTargetDamageSpell).targetActor.name)" }
     
-    init(actor: Actor, spell: Spell, timeUnitCost: Int) {
+    init(actor: Actor, spell: Spell) {
         self.spell = spell
 
-        super.init(actor: actor, timeUnitCost: timeUnitCost)
+        super.init(actor: actor)
     }
     
     override func perform(game: Game) {
-        defer {
-            self.actor.subtractTimeUnits(self.timeUnitCost)
-        }
+        self.actor.energy.drain()
 
         switch self.spell {
         case let singleTargetDamageSpell as SingleTargetDamageSpell:            

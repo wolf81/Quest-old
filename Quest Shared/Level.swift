@@ -20,7 +20,7 @@ struct Level: CustomStringConvertible {
     
     init() {
         let dungeonConfiguration = Configuration(
-            dungeonSize: DungeonSize.tiny,
+            dungeonSize: DungeonSize.large,
             dungeonLayout: .rectangle,
             roomSize: .medium,
             roomLayout: .dense,
@@ -35,6 +35,7 @@ struct Level: CustomStringConvertible {
     
     func getRoomId(at coord: vector_int2) -> UInt? {
         let node = self.dungeon[Coordinate(Int(coord.x), Int(coord.y))]
+                
         if node.contains(.room) {
             return node.roomId
         }
@@ -43,6 +44,7 @@ struct Level: CustomStringConvertible {
             
     subscript(coord: vector_int2) -> Int {
         let node = self.dungeon[Coordinate(Int(coord.x), Int(coord.y))]
+                
         if node.contains(.room) || node.contains(.door) || node.contains(.corridor) {
             return 0
         }

@@ -24,13 +24,16 @@ class EntityLoader {
     }()
     
     static func loadEntities(for entityFactory: EntityFactory) throws {
-        let effects = try loadEntities(type: Effect.self, in: "Data/Effects", entityFactory: entityFactory)
+        let effects = try loadEntities(type: Effect.self, in: "Data/Effect", entityFactory: entityFactory)
         effects.forEach{ entityFactory.register(entity: $0) }
         
-        let potions = try loadEntities(type: Potion.self, in: "Data/Potions", entityFactory: entityFactory)
+        let potions = try loadEntities(type: Potion.self, in: "Data/Potion", entityFactory: entityFactory)
         potions.forEach{ entityFactory.register(entity: $0) }
 
-        let weapons = try loadEntities(type: Weapon.self, in: "Data/Weapons", entityFactory: entityFactory)
+        let projectiles = try loadEntities(type: Projectile.self, in: "Data/Projectile", entityFactory:  entityFactory)
+        projectiles.forEach{ entityFactory.register(entity: $0) }
+        
+        let weapons = try loadEntities(type: Weapon.self, in: "Data/Weapon", entityFactory: entityFactory)
         weapons.forEach{ entityFactory.register(entity: $0) }
                 
         let armor = try loadEntities(type: Armor.self, in: "Data/Armor", entityFactory: entityFactory)

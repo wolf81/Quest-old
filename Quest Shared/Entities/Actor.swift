@@ -21,8 +21,6 @@ class Actor: Entity {
     private(set) var skills: Skills
         
     private(set) var attributes: Attributes = Attributes(strength: 12, dexterity: 12, mind: 12)
-
-    private(set) var actionCost: ActionCost = ActionCost()
     
     private(set) var meleeAttackBonus: Int = 0
 
@@ -34,29 +32,48 @@ class Actor: Entity {
     
     private(set) var level: Int = 1
     
-    private(set) var timeUnits: Int = 0
-    
+    private(set) var energy = Energy()
+            
     private(set) var healthBar: HealthBar!
     
     private(set) var unarmed: Weapon
+    
+    private(set) var energyCost: EnergyCost
                 
     private let inventory: Inventory = Inventory()
+    
+    private var action: Action?
+    
+    var canTakeTurn: Bool { self.energy.amount > self.energyCost.minimumEnergyCost }
+    
+    var isAwaitingInput: Bool { self.action == nil }
+        
+    final func setAction(_ action: Action) {
+        self.action = action
+    }
+    
+    final func getAction() -> Action? {
+        defer {
+            self.action = nil
+        }
+
+        return self.action
+    }
+    
+    func update(state: Game) { fatalError() }
 
     init(json: [String : Any], hitPoints: Int, armorClass: Int, skills: Skills, equipment: [Equippable], entityFactory: EntityFactory) {
         self.hitPoints = HitPoints(base: hitPoints)
         self.armorClass = armorClass
         self.skills = skills
         self.unarmed = try! entityFactory.newEntity(type: Weapon.self, name: "Unarmed")
-        
+        self.energyCost = EnergyCost(json: json["energyCost"] as? [String: Int] ?? [:])
         self.sight = json["sight"] as? Int32 ?? 6
-
-        let actionCostJson = json["actionCost"] as? [String: Int] ?? [:]
-        self.actionCost = ActionCost(json: actionCostJson)
         
         super.init(json: json, entityFactory: entityFactory)
                                 
         self.hitPoints.delegate = self
-
+        
         self.healthBar = Actor.addHealthBar(sprite: self.sprite)
         
         equipment.forEach({ self.inventory.equip($0 )})
@@ -68,6 +85,7 @@ class Actor: Entity {
         self.skills = skills
         self.attributes = attributes
         self.unarmed = try! entityFactory.newEntity(type: Weapon.self, name: "Unarmed")
+        self.energyCost = EnergyCost()
 
         super.init(json: ["name": name, "sprite": "\(race)_\(gender)"], entityFactory: entityFactory)
         
@@ -85,6 +103,7 @@ class Actor: Entity {
         self.hitPoints = HitPoints(base: 1)
         self.skills = Skills(physical: 0, subterfuge: 0, knowledge: 0, communication: 0)
         self.unarmed = try! entityFactory.newEntity(type: Weapon.self, name: "Unarmed")
+        self.energyCost = EnergyCost(json: json["energyCost"] as? [String: Int] ?? [:])
 
         super.init(json: json, entityFactory: entityFactory)
 
@@ -101,14 +120,6 @@ class Actor: Entity {
         dieRoll == .maximum ? self.equippedWeapon.damage.maxValue : self.equippedWeapon.damage.randomValue
     }
     
-    func addTimeUnits(_ timeUnits: Int) {
-        self.timeUnits = min(self.timeUnits + timeUnits, Constants.timeUnitsPerTurn * 2)
-    }
-    
-    func subtractTimeUnits(_ timeUnits: Int) {
-        self.timeUnits = max(self.timeUnits - timeUnits, 0)
-    }
-
     func getAction(state: Game) -> Action? {
         return nil
     }
@@ -142,7 +153,7 @@ extension Actor: HitPointsDelegate {
     }
 }
 
-// MARK: Backpack handling
+// MARK: - Backpack handling
 
 extension Actor {
     var backpackItemCount: Int { self.inventory.backpack.count }

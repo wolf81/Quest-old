@@ -17,15 +17,7 @@ class Hero: Actor, CustomStringConvertible {
     var experience: Int = 0
     
     private var direction: Direction?
-        
-    private var path: [vector_int2]?
-    
-    private var meleeTarget: Actor?
-    
-    private var rangedTarget: Actor?
-        
-    private var spell: Spell?
-        
+                
     override var meleeAttackBonus: Int {
         var attackBonus = self.attributes.strength.bonus + self.equippedWeapon.attack
         if self.role == .fighter {
@@ -78,26 +70,40 @@ class Hero: Actor, CustomStringConvertible {
         super.init(json: json, entityFactory: entityFactory)
     }
     
-    func move(path: [vector_int2]) {
-        self.path = path
+    override func update(state: Game) {
+        guard self.isAlive else { return }
+
+        guard let direction = self.direction else { return }
+
+        if self.sprite.hasActions() { return }
+        
+        let toCoord = self.coord &+ direction.coord
+        
+        if let targetActor = state.activeActors.filter({ $0.coord == toCoord }).first {
+            guard self.energy.amount >= self.energyCost.attack else { return }
+            
+            let attack = MeleeAttackAction(actor: self, targetActor: targetActor)
+            setAction(attack)
+        } else {
+            let attackDirections: [Direction] = [.northWest, .northEast, .southWest, .southEast]
+            guard attackDirections.contains(direction) == false else { return }
+            guard self.energy.amount >= self.energyCost.move else { return }
+            
+            if state.canMove(entity: self, to: toCoord) {
+                let move = MoveAction(actor: self, toCoord: toCoord)
+                setAction(move)
+            }
+        }
     }
     
     func move(direction: Direction) {
         self.direction = direction
     }
     
-    func cast(spell: Spell) {
-        self.spell = spell
+    func stop() {
+        self.direction = nil
     }
-        
-    func attackMelee(actor: Actor) {
-        self.meleeTarget = actor
-    }
-    
-    func attackRanged(actor: Actor) {
-        self.rangedTarget = actor
-    }
-        
+            
     var description: String {
         return """
         \(self.name)
@@ -108,42 +114,6 @@ class Hero: Actor, CustomStringConvertible {
         \tATT: \(self.meleeAttackBonus)
         \tDMG: \(self.getMeleeAttackDamage(.maximum))
         """
-    }
-    
-    override func getAction(state: Game) -> Action? {
-        defer {
-            self.path = nil
-            self.direction = nil
-            self.meleeTarget = nil
-            self.rangedTarget = nil
-            self.spell = nil
-        }
-
-        if self.isAlive == false {
-            return DieAction(actor: self, timeUnitCost: Constants.timeUnitsPerTurn)
-        }
-        
-        if let direction = self.direction {
-            let toCoord = self.coord &+ direction.coord
-            
-            if let targetActor = state.getActor(at: toCoord) {                
-                return MeleeAttackAction(actor: self, targetActor: targetActor, timeUnitCost: self.actionCost.meleeAttack)
-            }
-            
-            if state.canMove(entity: self, to: toCoord) {
-                return MoveAction(actor: self, toCoord: toCoord, timeUnitCost: self.actionCost.move)
-            }
-        } else if let path = self.path {
-            return MoveAction(actor: self, coords: path, timeUnitCost: self.actionCost.move)
-        } else if let meleeTarget = self.meleeTarget {
-            return MeleeAttackAction(actor: self, targetActor: meleeTarget, timeUnitCost: self.actionCost.meleeAttack)
-        } else if let rangedTarget = self.rangedTarget {
-            return RangedAttackAction(actor: self, targetActor: rangedTarget, timeUnitCost: self.actionCost.rangedAttack)
-        } else if let spell = self.spell {
-            return CastSpellAction(actor: self, spell: spell, timeUnitCost: Constants.timeUnitsPerTurn)
-        }
-                             
-        return nil
     }
     
     override func useBackpackItem(at index: Int) {

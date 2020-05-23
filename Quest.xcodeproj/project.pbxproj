@@ -10,6 +10,15 @@
 		79042E5C2469473800730646 /* Equippable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E5B2469473800730646 /* Equippable.swift */; };
 		79042E5D2469473800730646 /* Equippable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E5B2469473800730646 /* Equippable.swift */; };
 		79042E5E2469473800730646 /* Equippable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E5B2469473800730646 /* Equippable.swift */; };
+		79042E642478192600730646 /* Energy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E632478192600730646 /* Energy.swift */; };
+		79042E652478192600730646 /* Energy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E632478192600730646 /* Energy.swift */; };
+		79042E662478192600730646 /* Energy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E632478192600730646 /* Energy.swift */; };
+		79042E6824781BFD00730646 /* EnergyCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E6724781BFD00730646 /* EnergyCost.swift */; };
+		79042E6924781BFD00730646 /* EnergyCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E6724781BFD00730646 /* EnergyCost.swift */; };
+		79042E6A24781BFD00730646 /* EnergyCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E6724781BFD00730646 /* EnergyCost.swift */; };
+		79042E6C2478405100730646 /* Projectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E6B2478405100730646 /* Projectile.swift */; };
+		79042E6D2478405100730646 /* Projectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E6B2478405100730646 /* Projectile.swift */; };
+		79042E6E2478405100730646 /* Projectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E6B2478405100730646 /* Projectile.swift */; };
 		7914DD32246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
 		7914DD33246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
 		7914DD34246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
@@ -42,9 +51,6 @@
 		793A575824459A070089E693 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A575724459A070089E693 /* Constants.swift */; };
 		793A575924459A070089E693 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A575724459A070089E693 /* Constants.swift */; };
 		793A575A24459A070089E693 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A575724459A070089E693 /* Constants.swift */; };
-		793A575C2445A12F0089E693 /* ActionCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A575B2445A12E0089E693 /* ActionCost.swift */; };
-		793A575D2445A12F0089E693 /* ActionCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A575B2445A12E0089E693 /* ActionCost.swift */; };
-		793A575E2445A12F0089E693 /* ActionCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A575B2445A12E0089E693 /* ActionCost.swift */; };
 		79423B7A239E99CC0042B9BD /* HeroBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79423B79239E99CC0042B9BD /* HeroBuilder.swift */; };
 		79423B7B239E99CC0042B9BD /* HeroBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79423B79239E99CC0042B9BD /* HeroBuilder.swift */; };
 		79423B7C239E99CC0042B9BD /* HeroBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79423B79239E99CC0042B9BD /* HeroBuilder.swift */; };
@@ -122,9 +128,6 @@
 		798537C623A2924E00721CE7 /* RangedAttackAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798537C523A2924E00721CE7 /* RangedAttackAction.swift */; };
 		798537C723A2924E00721CE7 /* RangedAttackAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798537C523A2924E00721CE7 /* RangedAttackAction.swift */; };
 		798537C823A2924E00721CE7 /* RangedAttackAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798537C523A2924E00721CE7 /* RangedAttackAction.swift */; };
-		7985AF9423A20DDC0067F884 /* DieAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985AF9323A20DDC0067F884 /* DieAction.swift */; };
-		7985AF9523A20DDC0067F884 /* DieAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985AF9323A20DDC0067F884 /* DieAction.swift */; };
-		7985AF9623A20DDC0067F884 /* DieAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985AF9323A20DDC0067F884 /* DieAction.swift */; };
 		798C997223A205EF00C6EC1C /* MoveAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C997123A205EF00C6EC1C /* MoveAction.swift */; };
 		798C997323A205EF00C6EC1C /* MoveAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C997123A205EF00C6EC1C /* MoveAction.swift */; };
 		798C997423A205EF00C6EC1C /* MoveAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C997123A205EF00C6EC1C /* MoveAction.swift */; };
@@ -214,6 +217,9 @@
 
 /* Begin PBXFileReference section */
 		79042E5B2469473800730646 /* Equippable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equippable.swift; sourceTree = "<group>"; };
+		79042E632478192600730646 /* Energy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Energy.swift; sourceTree = "<group>"; };
+		79042E6724781BFD00730646 /* EnergyCost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyCost.swift; sourceTree = "<group>"; };
+		79042E6B2478405100730646 /* Projectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Projectile.swift; sourceTree = "<group>"; };
 		7914DD31246182120047EFB6 /* EntityDrawLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDrawLayer.swift; sourceTree = "<group>"; };
 		792467DE246A59A0000568A6 /* Lootable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lootable.swift; sourceTree = "<group>"; };
 		792467E2246AFC03000568A6 /* Inventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
@@ -229,7 +235,6 @@
 		792C698F23A5495500A729C3 /* CastSpellAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastSpellAction.swift; sourceTree = "<group>"; };
 		792E454B247048060088FBD7 /* CharacterInfoNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterInfoNode.swift; sourceTree = "<group>"; };
 		793A575724459A070089E693 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		793A575B2445A12E0089E693 /* ActionCost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCost.swift; sourceTree = "<group>"; };
 		79423B79239E99CC0042B9BD /* HeroBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroBuilder.swift; sourceTree = "<group>"; };
 		794864D022A7E48400F84A72 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		794864D222A7E60300F84A72 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -256,7 +261,6 @@
 		79742A69239E60A7008504E8 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Sprites.xcassets; sourceTree = "<group>"; };
 		798537C523A2924E00721CE7 /* RangedAttackAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangedAttackAction.swift; sourceTree = "<group>"; };
-		7985AF9323A20DDC0067F884 /* DieAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DieAction.swift; sourceTree = "<group>"; };
 		798C997123A205EF00C6EC1C /* MoveAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveAction.swift; sourceTree = "<group>"; };
 		798C997523A2060000C6EC1C /* MeleeAttackAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeleeAttackAction.swift; sourceTree = "<group>"; };
 		798C997923A2061700C6EC1C /* IdleAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdleAction.swift; sourceTree = "<group>"; };
@@ -356,6 +360,7 @@
 				799EA0192451313200F690DC /* FogTile.swift */,
 				7914DD31246182120047EFB6 /* EntityDrawLayer.swift */,
 				792467EE246E4360000568A6 /* Potion.swift */,
+				79042E6B2478405100730646 /* Projectile.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -381,10 +386,11 @@
 				79ACC81922AAB6F100AC3BF0 /* HitDice.swift */,
 				795746BA22A9029D00E04BEC /* Direction.swift */,
 				792C698B23A40D4700A729C3 /* Spell.swift */,
-				793A575B2445A12E0089E693 /* ActionCost.swift */,
 				79042E5B2469473800730646 /* Equippable.swift */,
 				792467DE246A59A0000568A6 /* Lootable.swift */,
 				792467E2246AFC03000568A6 /* Inventory.swift */,
+				79042E632478192600730646 /* Energy.swift */,
+				79042E6724781BFD00730646 /* EnergyCost.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -396,7 +402,6 @@
 				79ACC81D22AB473200AC3BF0 /* Action.swift */,
 				798C997523A2060000C6EC1C /* MeleeAttackAction.swift */,
 				798C997923A2061700C6EC1C /* IdleAction.swift */,
-				7985AF9323A20DDC0067F884 /* DieAction.swift */,
 				798537C523A2924E00721CE7 /* RangedAttackAction.swift */,
 				792C698F23A5495500A729C3 /* CastSpellAction.swift */,
 				79DF73AB2462D3570030E7A8 /* StatusUpdatable.swift */,
@@ -723,18 +728,18 @@
 			files = (
 				79ACC82A22AB81F000AC3BF0 /* JSONConstructable.swift in Sources */,
 				79DF73B0246320D00030E7A8 /* HealthBar.swift in Sources */,
+				79042E6C2478405100730646 /* Projectile.swift in Sources */,
 				7960DECD23A6082B00B4CDF8 /* Tile.swift in Sources */,
 				7963DE3A239CE12A00183DF2 /* Race.swift in Sources */,
 				7963DE52239E3D2A00183DF2 /* ActionBar.swift in Sources */,
 				7960DED323A6082B00B4CDF8 /* OverlayTile.swift in Sources */,
 				7960DED723A6083400B4CDF8 /* EntityProtocol.swift in Sources */,
-				793A575C2445A12F0089E693 /* ActionCost.swift in Sources */,
 				79DF73B42463DD310030E7A8 /* InventoryNode.swift in Sources */,
 				7990950C244C9E410091791F /* StatusBar.swift in Sources */,
+				79042E642478192600730646 /* Energy.swift in Sources */,
 				79C61AA522A7C415008D3609 /* GameScene.swift in Sources */,
 				793A575824459A070089E693 /* Constants.swift in Sources */,
 				794864D322A7E60300F84A72 /* Game.swift in Sources */,
-				7985AF9423A20DDC0067F884 /* DieAction.swift in Sources */,
 				79742A6A239E60A7008504E8 /* Gender.swift in Sources */,
 				799EA01A2451313200F690DC /* FogTile.swift in Sources */,
 				792C699023A5495500A729C3 /* CastSpellAction.swift in Sources */,
@@ -747,6 +752,7 @@
 				79ACC7F122AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
 				79ACC81A22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
 				795746B322A7C59A00E04BEC /* Level.swift in Sources */,
+				79042E6824781BFD00730646 /* EnergyCost.swift in Sources */,
 				7960DEC423A6082B00B4CDF8 /* Entity.swift in Sources */,
 				7960DEBB23A6082B00B4CDF8 /* Monster.swift in Sources */,
 				79FC68EF244C4A8C00E6D63C /* CreateCharacterScene.swift in Sources */,
@@ -791,6 +797,7 @@
 			files = (
 				79ACC82B22AB81F000AC3BF0 /* JSONConstructable.swift in Sources */,
 				79DF73B1246320D00030E7A8 /* HealthBar.swift in Sources */,
+				79042E6D2478405100730646 /* Projectile.swift in Sources */,
 				7960DECE23A6082B00B4CDF8 /* Tile.swift in Sources */,
 				79FC68F2244C4A8F00E6D63C /* MainMenuScene.swift in Sources */,
 				7963DE3B239CE12A00183DF2 /* Race.swift in Sources */,
@@ -798,12 +805,11 @@
 				7960DED423A6082B00B4CDF8 /* OverlayTile.swift in Sources */,
 				7960DED823A6083400B4CDF8 /* EntityProtocol.swift in Sources */,
 				79DF73B52463DD310030E7A8 /* InventoryNode.swift in Sources */,
+				79042E652478192600730646 /* Energy.swift in Sources */,
 				7990950D244C9E410091791F /* StatusBar.swift in Sources */,
-				793A575D2445A12F0089E693 /* ActionCost.swift in Sources */,
 				79C61AA622A7C415008D3609 /* GameScene.swift in Sources */,
 				793A575924459A070089E693 /* Constants.swift in Sources */,
 				794864D422A7E60300F84A72 /* Game.swift in Sources */,
-				7985AF9523A20DDC0067F884 /* DieAction.swift in Sources */,
 				799EA01B2451313200F690DC /* FogTile.swift in Sources */,
 				79742A6B239E60A7008504E8 /* Gender.swift in Sources */,
 				792C699123A5495500A729C3 /* CastSpellAction.swift in Sources */,
@@ -815,6 +821,7 @@
 				798C997723A2060000C6EC1C /* MeleeAttackAction.swift in Sources */,
 				79FC68F0244C4A8C00E6D63C /* CreateCharacterScene.swift in Sources */,
 				79ACC7F222AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
+				79042E6924781BFD00730646 /* EnergyCost.swift in Sources */,
 				79ACC81B22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
 				795746B422A7CA9800E04BEC /* Level.swift in Sources */,
 				7960DEC523A6082B00B4CDF8 /* Entity.swift in Sources */,
@@ -875,12 +882,12 @@
 				792467F1246E4360000568A6 /* Potion.swift in Sources */,
 				79ACC82022AB473200AC3BF0 /* Action.swift in Sources */,
 				798C997C23A2061700C6EC1C /* IdleAction.swift in Sources */,
-				7985AF9623A20DDC0067F884 /* DieAction.swift in Sources */,
 				79ACC7F322AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
 				7960DEC023A6082B00B4CDF8 /* Weapon.swift in Sources */,
 				792E454E247048060088FBD7 /* CharacterInfoNode.swift in Sources */,
 				7963DE30239CC35F00183DF2 /* DefaultMenuConfiguration.swift in Sources */,
 				79FC68FB244C4C9E00E6D63C /* ChooseAttributesScene.swift in Sources */,
+				79042E662478192600730646 /* Energy.swift in Sources */,
 				7960DECF23A6082B00B4CDF8 /* Tile.swift in Sources */,
 				798537C823A2924E00721CE7 /* RangedAttackAction.swift in Sources */,
 				795746B522A7CA9800E04BEC /* Level.swift in Sources */,
@@ -891,7 +898,6 @@
 				7963DE40239CE15700183DF2 /* Role.swift in Sources */,
 				792467E5246AFC03000568A6 /* Inventory.swift in Sources */,
 				79C61A9822A7C415008D3609 /* AppDelegate.swift in Sources */,
-				793A575E2445A12F0089E693 /* ActionCost.swift in Sources */,
 				7963DE34239CDE2600183DF2 /* Attribute.swift in Sources */,
 				79042E5E2469473800730646 /* Equippable.swift in Sources */,
 				79DF73B62463DD310030E7A8 /* InventoryNode.swift in Sources */,
@@ -915,8 +921,10 @@
 				7960DEC623A6082B00B4CDF8 /* Entity.swift in Sources */,
 				7963DE50239DD2D600183DF2 /* HitPoints.swift in Sources */,
 				79FC68F7244C4C4700E6D63C /* SettingsScene.swift in Sources */,
+				79042E6A24781BFD00730646 /* EnergyCost.swift in Sources */,
 				79DF73B2246320D00030E7A8 /* HealthBar.swift in Sources */,
 				79FC68FF244C552B00E6D63C /* LoadingScene.swift in Sources */,
+				79042E6E2478405100730646 /* Projectile.swift in Sources */,
 				79742A6C239E60A7008504E8 /* Gender.swift in Sources */,
 				798C997823A2060000C6EC1C /* MeleeAttackAction.swift in Sources */,
 			);

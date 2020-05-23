@@ -9,5 +9,5 @@
 import Foundation
 
 public struct Constants {
-    public static let timeUnitsPerTurn = 100
+    public static let energyPerTick: Int = 10
 }

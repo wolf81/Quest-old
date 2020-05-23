@@ -1,0 +1,14 @@
+{
+    "name": "Arrow",
+    
+    "sprite": {
+        "north": "arrow_0",
+        "south": "arrow_4",
+        "east": "arrow_2",
+        "west": "arrow_6",
+        "southWest": "arrow_5",
+        "northWest": "arrow_7",
+        "southEast": "arrow_3",
+        "northEast": "arrow_1"
+    }
+}

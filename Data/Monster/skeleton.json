@@ -1,7 +1,7 @@
 {
 	"name": "Skeleton",
 	"sprite": "skeletal_warrior_old",
-	
+    
     "sight": 8,
     
 	"HD": "1d12",
@@ -14,7 +14,8 @@
         "physical": 4
     },
     
-    "actionCost": {
-        "move": 70
+    "energyCost": {
+        "move": 40,
+        "attack": 50
     }
 }

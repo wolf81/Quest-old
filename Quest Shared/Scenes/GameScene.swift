@@ -34,7 +34,7 @@ class GameScene: SKScene, SceneManagerConstructable {
     private var characterInfo: CharacterInfoNode?
 
     // Sprites should be removed on the main thread, to make this easy, we remove sprites in the update loop and then clear this array
-    private var spritesToRemove: [SKSpriteNode] = []
+//    private var spritesToRemove: [SKSpriteNode] = []
     
     // Sprites should be added on the main thread, to make this easy, we add sprites in the update loop and then clear this array
     private var spritesToAdd: [SKSpriteNode] = []
@@ -56,8 +56,8 @@ class GameScene: SKScene, SceneManagerConstructable {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        self.spritesToRemove.forEach({ $0.removeFromParent() })
-        self.spritesToRemove = []
+//        self.spritesToRemove.forEach({ $0.removeFromParent() })
+//        self.spritesToRemove = []
 
         self.spritesToAdd.forEach({ self.world.addChild($0) })
         self.spritesToAdd = []
@@ -124,7 +124,7 @@ class GameScene: SKScene, SceneManagerConstructable {
             entity.sprite.position = GameScene.pointForCoord(entity.coord)
         }
         
-        gameDidMove(entity: self.game.hero, path: [self.game.hero.coord], duration: 0)
+        gameDidMove(entity: self.game.hero, path: [self.game.hero.coord])
     }
 
     private func movePlayer(direction: Direction) {
@@ -188,6 +188,35 @@ class GameScene: SKScene, SceneManagerConstructable {
             tile.sprite.removeFromParent()
         }
     }
+    
+    private func getMinMaxVisibleCoordsInView() -> (vector_int2, vector_int2) {
+        let halfWidth = self.size.width / 2
+        let minX = self.camera!.position.x - halfWidth
+        let maxX = self.camera!.position.x + halfWidth
+        let halfHeight = self.size.height / 2
+        let minY = self.camera!.position.y - halfHeight
+        let maxY = self.camera!.position.y + halfHeight
+        let minCoord = GameScene.coordForPoint(CGPoint(x: minX, y: minY))
+        let maxCoord = GameScene.coordForPoint(CGPoint(x: maxX, y: maxY))
+                                
+        let y1 = max(Int32(minCoord.y - 1), 0)
+        let y2 = min(Int32(maxCoord.y + 1), Int32(self.game.level.height - 1))
+        
+        let x1 = max(Int32(minCoord.x - 1), 0)
+        let x2 = min(Int32(maxCoord.x + 1), Int32(self.game.level.width - 1))
+
+        return (vector_int2(x1, y1), vector_int2(x2, y2))
+    }
+    
+    private func getCoordsInRange(minCoord: vector_int2, maxCoord: vector_int2) -> Set<vector_int2> {
+        var coords = Set<vector_int2>()
+        for y in minCoord.y ... maxCoord.y {
+            for x in minCoord.x ... maxCoord.x {
+                coords.insert(vector_int2(x, y))
+            }
+        }
+        return coords
+    }
 }
 
 func isInRange(origin: vector_int2, radius: Int32, coord: vector_int2) -> Bool {
@@ -197,9 +226,7 @@ func isInRange(origin: vector_int2, radius: Int32, coord: vector_int2) -> Bool {
 // MARK: - GameDelegate
 
 extension GameScene: GameDelegate {
-    func gameDidChangeSelectionMode(_ selectionMode: SelectionMode) {
-        print("selection mode: \(selectionMode)")
-        
+    func gameDidChangeSelectionMode(_ selectionMode: SelectionMode) {        
         clearSelectionModeTiles()
                 
         if selectionMode.isSelection {
@@ -208,6 +235,20 @@ extension GameScene: GameDelegate {
                 self.world.addChild(tile.sprite)
             }
         }
+    }
+    
+    func gameDidRangedAttack(actor: Actor, targetActor: Actor, projectile: Projectile) {
+        projectile.sprite.position = actor.sprite.position
+        self.world.addChild(projectile.sprite)
+        
+        let attack = SKAction.sequence([
+            SKAction.move(to: targetActor.sprite.position, duration: 2.0),
+            SKAction.run {
+                projectile.sprite.removeFromParent()
+            }
+        ])
+        
+        projectile.sprite.run(attack)
     }
     
     func gameDidAttack(actor: Actor, targetActor: Actor) {
@@ -223,22 +264,33 @@ extension GameScene: GameDelegate {
         ])
         
         actor.sprite.run(attack)
-        
-        self.game.activateNextActor()
     }
     
-    func gameDidDie(actor: Actor) {
-        let fadeOut = SKAction.fadeOut(withDuration: 1.0)
-        actor.sprite.run(fadeOut)
+    func gameDidDestroy(entity: EntityProtocol) {
+        var fade: [SKAction] = [
+            SKAction.fadeOut(withDuration: entity is Actor ? 2.0 : 0.5),
+            SKAction.run {
+                entity.sprite.removeFromParent()
+            }
+        ]
+
+        if entity is Hero {
+            fade.append(SKAction.run {
+                let sceneManager = try! ServiceLocator.shared.get(service: SceneManager.self)
+                sceneManager.crossFade(to: GameOverScene.self)
+            })
+        }
+
+        entity.sprite.run(SKAction.sequence(fade))
     }
     
-    func gameDidMove(entity: Entity, path: [vector_int2], duration: TimeInterval) {
+    func gameDidMove(entity: Entity, path: [vector_int2]) {
         if let hero = entity as? Hero {
             let (minCoord, maxCoord) = getMinMaxVisibleCoordsInView()
                                                         
             let viewVisibleCoords = getCoordsInRange(minCoord: minCoord, maxCoord: maxCoord)
             
-            for entity in self.game.entities {
+            for entity in self.game.activeActors {
                 if self.game.actorVisibleCoords.contains(entity.coord) {
                     if entity.sprite.parent == nil {
                         self.world.addChild(entity.sprite)
@@ -292,9 +344,8 @@ extension GameScene: GameDelegate {
             
             self.game.viewVisibleCoords = viewVisibleCoords
             
-            moveCamera(path: path, duration: 0.5)
-        }
-        else {
+            moveCamera(path: path, duration: 2.0)
+        } else {
             let firstCoord = path.first!
             let lastCoord = path.last!
             
@@ -303,7 +354,7 @@ extension GameScene: GameDelegate {
             var move: [SKAction] = []
 
             let stepCount = path.count + (willShow ? 1 : 0)
-            let stepDuration = 1.0 / Double(stepCount)
+            let stepDuration = 2.0 / Double(stepCount)
 
             if willShow {
                 move.append(SKAction.fadeIn(withDuration: stepDuration))
@@ -315,9 +366,7 @@ extension GameScene: GameDelegate {
             }
             
             entity.sprite.run(SKAction.sequence(move))
-        }
-        
-        self.game.activateNextActor()
+        }        
     }
     
     func gameDidAdd(entity: EntityProtocol) {
@@ -325,41 +374,8 @@ extension GameScene: GameDelegate {
         self.spritesToAdd.append(entity.sprite)
     }
     
-    func gameDidRemove(entity: EntityProtocol) {
-        self.spritesToRemove.append(entity.sprite)
-    }
-
     func gameDidUpdateStatus(message: String) {
         self.statusBar.update(text: message)
-    }
-    
-    private func getMinMaxVisibleCoordsInView() -> (vector_int2, vector_int2) {
-        let halfWidth = self.size.width / 2
-        let minX = self.camera!.position.x - halfWidth
-        let maxX = self.camera!.position.x + halfWidth
-        let halfHeight = self.size.height / 2
-        let minY = self.camera!.position.y - halfHeight
-        let maxY = self.camera!.position.y + halfHeight
-        let minCoord = GameScene.coordForPoint(CGPoint(x: minX, y: minY))
-        let maxCoord = GameScene.coordForPoint(CGPoint(x: maxX, y: maxY))
-                                
-        let y1 = max(Int32(minCoord.y - 1), 0)
-        let y2 = min(Int32(maxCoord.y + 1), Int32(self.game.level.height - 1))
-        
-        let x1 = max(Int32(minCoord.x - 1), 0)
-        let x2 = min(Int32(maxCoord.x + 1), Int32(self.game.level.width - 1))
-
-        return (vector_int2(x1, y1), vector_int2(x2, y2))
-    }
-    
-    private func getCoordsInRange(minCoord: vector_int2, maxCoord: vector_int2) -> Set<vector_int2> {
-        var coords = Set<vector_int2>()
-        for y in minCoord.y ... maxCoord.y {
-            for x in minCoord.x ... maxCoord.x {
-                coords.insert(vector_int2(x, y))
-            }
-        }
-        return coords
     }
 }
 
@@ -441,18 +457,29 @@ extension GameScene {
             self.game.handleInteraction(at: coord)
         }
     }
+        
+    override func keyDown(with event: NSEvent) {        
+        switch event.keyCode {
+        case /* q */ 12: self.game.movePlayer(direction: .northWest)
+        case /* e */ 14: self.game.movePlayer(direction: .northEast)
+        case /* z */ 6: self.game.movePlayer(direction: .southWest)
+        case /* c */ 8: self.game.movePlayer(direction: .southEast)
+        case /* a */ 0: self.game.movePlayer(direction: .west)
+        case /* d */ 2: self.game.movePlayer(direction: .east)
+        case /* s */ 1: self.game.movePlayer(direction: .south)
+        case /* w */ 13: self.game.movePlayer(direction: .north)
+        default: print("\(event.keyCode)")
+        }
+    }
     
     override func keyUp(with event: NSEvent) {
-        debugPrint(event.keyCode)
+//        debugPrint(event.keyCode)
                 
         switch event.keyCode {
-        case /* esc  */ 53: dismissCharacterInfoAndInventory()
-        case /* a, ← */ 0, 123: self.game.movePlayer(direction: .left)
-        case /* d, → */ 2, 124: self.game.movePlayer(direction: .right)
-        case /* s, ↓ */ 1, 125: self.game.movePlayer(direction: .down)
-        case /* w, ↑ */ 13, 126: self.game.movePlayer(direction: .up)
-        case /* i    */ 34: toggleInventory()
-        case /* c    */ 8: toggleCharacterInfo()
+        case /* esc */ 53: dismissCharacterInfoAndInventory()
+        case /* q e z c a d s w */ 12, 14, 6, 8, 0, 1, 2, 13: self.game.stopPlayer()
+        case /* i   */ 34: toggleInventory()
+        case /* c   */ 35: toggleCharacterInfo()
         default: print("\(event.keyCode)")
         }
     }
