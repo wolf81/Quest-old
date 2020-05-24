@@ -9,10 +9,10 @@
 import Foundation
 
 class Energy {
-    private(set) var amount: UInt = 0
+    private(set) var amount: Int = 0
             
     func increment(_ energy: UInt) {
-        self.amount += energy
+        self.amount = min(self.amount + Int(energy), 50)
     }
     
     func drain() {
@@ -20,6 +20,6 @@ class Energy {
     }
     
     func drain(_ amount: Int) {
-        self.amount = (amount > self.amount) ? 0 : self.amount - UInt(amount)
+        self.amount -= amount
     }
 }

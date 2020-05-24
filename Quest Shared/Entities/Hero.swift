@@ -75,19 +75,16 @@ class Hero: Actor, CustomStringConvertible {
 
         guard let direction = self.direction else { return }
 
-        if self.sprite.hasActions() { return }
+        guard self.sprite.hasActions() == false else { return }
         
         let toCoord = self.coord &+ direction.coord
         
         if let targetActor = state.activeActors.filter({ $0.coord == toCoord }).first {
-            guard self.energy.amount >= self.energyCost.attack else { return }
-            
             let attack = MeleeAttackAction(actor: self, targetActor: targetActor)
             setAction(attack)
         } else {
             let attackDirections: [Direction] = [.northWest, .northEast, .southWest, .southEast]
             guard attackDirections.contains(direction) == false else { return }
-            guard self.energy.amount >= self.energyCost.move else { return }
             
             if state.canMove(entity: self, to: toCoord) {
                 let move = MoveAction(actor: self, toCoord: toCoord)

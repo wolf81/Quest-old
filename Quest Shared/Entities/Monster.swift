@@ -14,6 +14,8 @@ class Monster: Actor, CustomStringConvertible {
                     
     override var meleeAttackBonus: Int { self.equippedWeapon.attack }
     
+    override var isAwaitingInput: Bool { false }
+    
     override func getMeleeAttackDamage(_ dieRoll: DieRoll) -> Int {
         dieRoll == .maximum ? self.equippedWeapon.damage.maxValue : self.equippedWeapon.damage.randomValue
     }
@@ -43,11 +45,7 @@ class Monster: Actor, CustomStringConvertible {
     }
         
     override func update(state: Game) {
-        guard self.isAlive else { return }
-                        
-        guard state.hero.isAlive else {
-            return idle()
-        }
+        guard self.isAlive && state.hero.isAlive else { return idle() }
 
         let didMeleeAttack = attack(meleeTarget: state.hero, state: state)
         guard didMeleeAttack == false else { return }
@@ -56,14 +54,12 @@ class Monster: Actor, CustomStringConvertible {
         guard didRangedAttack == false else { return }
         
         let didMove = move(to: state.hero, state: state)
-        print("didMove: \(didMove)")
+        guard didMove == false else { return }        
     }
     
     // MARK: - Private
     
     private func attack(rangedTarget: Actor, state: Game) -> Bool {
-        guard self.energy.amount >= self.energyCost.attack else { return false }
-
         guard state.actorVisibleCoords.contains(rangedTarget.coord) else { return false }
 
         let coords = Functions.coordsBetween(self.coord, rangedTarget.coord)
@@ -87,8 +83,6 @@ class Monster: Actor, CustomStringConvertible {
     }
     
     private func attack(meleeTarget: Actor, state: Game) -> Bool {
-        guard self.energy.amount >= self.energyCost.attack else { return false }
-
         // If hero is in melee range, perform melee attack
         let xRange = self.coord.x - 1 ... self.coord.x + 1
         let yRange = self.coord.y - 1 ... self.coord.y + 1
@@ -106,8 +100,6 @@ class Monster: Actor, CustomStringConvertible {
     }
     
     private func move(to actor: Actor, state: Game) -> Bool {
-        guard self.energy.amount >= self.energyCost.move else { return false }
-
         guard state.actorVisibleCoords.contains(actor.coord) else { return false }
 
         let actorCoords = state.activeActors.filter({ $0.coord != self.coord && $0.coord != actor.coord }).compactMap({ $0.coord })

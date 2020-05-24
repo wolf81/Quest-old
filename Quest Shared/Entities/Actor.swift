@@ -44,7 +44,7 @@ class Actor: Entity {
     
     private var action: Action?
     
-    var canTakeTurn: Bool { self.energy.amount > self.energyCost.minimumEnergyCost }
+    var canTakeTurn: Bool { self.energy.amount > 0 }
     
     var isAwaitingInput: Bool { self.action == nil }
         

@@ -16,6 +16,6 @@
     
     "energyCost": {
         "move": 40,
-        "attack": 50
+        "attack": 40
     }
 }

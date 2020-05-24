@@ -369,6 +369,7 @@ class Game {
             
             switch action {
             case let move as MoveAction:
+                print("\(move.actor.name) @ \(move.actor.coord.x).\(move.actor.coord.y) is performing move")
                 // after the hero moved to a new location, update the visible tiles for the hero
                 if action.actor is Hero {
                     updateActiveActors()
@@ -376,6 +377,7 @@ class Game {
                 }
                 self.delegate?.gameDidMove(entity: move.actor, path: move.path)
             case let attack as MeleeAttackAction:
+                print("\(attack.actor.name) @ \(attack.actor.coord.x).\(attack.actor.coord.y) is performing melee attack")
                 self.delegate?.gameDidAttack(actor: attack.actor, targetActor: attack.targetActor)
                 if attack.targetActor.isAlive == false {
                     self.delegate?.gameDidDestroy(entity: attack.targetActor)
@@ -384,6 +386,7 @@ class Game {
                     updateActiveActors()
                 }
             case let attack as RangedAttackAction:
+                print("\(attack.actor.name) @ \(attack.actor.coord.x).\(attack.actor.coord.y) is performing ranged attack")
                 let projectile = action.actor.equippedWeapon.projectile!
                 projectile.configureSprite(origin: attack.actor.coord, target: attack.targetActor.coord)
                 self.delegate?.gameDidRangedAttack(actor: attack.actor, targetActor: attack.targetActor, projectile: projectile, isHit: attack.isHit)
@@ -397,6 +400,8 @@ class Game {
                 break
             default: break
             }
+            
+            print("energy: \(action.actor.energy.amount)")
                         
             self.actions.removeFirst()
         }
@@ -405,7 +410,7 @@ class Game {
         while self.actions.isEmpty {
             let actor = self.activeActors[self.activeActorIdx]
             
-            if actor.canTakeTurn && actor.isAwaitingInput {
+            if actor.canTakeTurn && actor.isAwaitingInput {                
                 // in case of the hero, we might need to wait for input before we can get a new action
                 updateVisibility(for: actor)
                 return actor.update(state: self)
@@ -413,15 +418,21 @@ class Game {
 
             if actor.canTakeTurn {
                 updateVisibility(for: actor)
+                
+                guard actorVisibleCoords.contains(self.hero.coord) else { return nextActor() }
+                                
+                actor.energy.increment(10)
+                actor.update(state: self)
+
                 // if the actor has a pending action, add the action to the pending action list
-                guard let action = actor.getAction() else { fatalError() }
+                guard let action = actor.getAction() else { return nextActor() }
+
                 self.actions.append(action)
             } else {
                 // otherwise increment the time units until we have enough to allow for an action
                 actor.energy.increment(10)                
+                nextActor()
             }
-            
-            nextActor()
         }
     }
     
