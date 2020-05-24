@@ -3,5 +3,5 @@
     "sprite": "tourmaline",
     
     "type": "ring",
-    "effects": ["toughness1"],
+    "effects": ["Minor Toughness"],
 }

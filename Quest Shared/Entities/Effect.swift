@@ -11,6 +11,7 @@ import SpriteKit
 enum EffectType: String {
     case reduceDamage
     case restoreHealth
+    case reduceMovementEnergyCost
 }
 
 class Effect: EntityProtocol {

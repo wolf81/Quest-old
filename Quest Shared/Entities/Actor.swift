@@ -61,6 +61,11 @@ class Actor: Entity {
     }
     
     func update(state: Game) { fatalError() }
+    
+    var effects: [Effect] {
+        let equippedItems: [Equippable] = [self.equippedArmor, self.equippedShield, self.equippedRing, self.equippedWeapon, self.equippedBoots]
+        return equippedItems.compactMap({ $0.effects }).flatMap({ $0 })
+    }
 
     init(json: [String : Any], hitPoints: Int, armorClass: Int, skills: Skills, equipment: [Equippable], entityFactory: EntityFactory) {
         self.hitPoints = HitPoints(base: hitPoints)
@@ -140,10 +145,7 @@ class Actor: Entity {
     func reduceHealth(with hitPoints: Int) {
         var hitPointsToTake = hitPoints
         
-        let equippedItems: [Equippable] = [self.equippedArmor, self.equippedShield, self.equippedRing, self.equippedWeapon]
-        let effects = equippedItems.compactMap({ $0.effects }).flatMap({ $0 })
-        
-        for effect in effects {
+        for effect in self.effects {
             if effect.type == .reduceDamage {
                 hitPointsToTake -= effect.value
             }

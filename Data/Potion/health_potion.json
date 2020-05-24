@@ -2,5 +2,5 @@
     "name": "Health Potion",
     "sprite": "ruby_new",
     
-    "effects": ["heal1"]
+    "effects": ["Minor Heal"]
 }

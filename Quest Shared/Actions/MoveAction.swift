@@ -32,7 +32,15 @@ class MoveAction: Action, StatusUpdatable {
     }
     
     override func perform(game: Game) {
-        self.actor.energy.drain(self.actor.energyCost.move)
+        var energyCost = self.actor.energyCost.move
+        
+        for effect in self.actor.effects {
+            if effect.type == .reduceMovementEnergyCost {
+                energyCost -= effect.value
+            }
+        }
+        
+        self.actor.energy.drain(max(energyCost, 0))
 
         for coord in self.path {
             if let hero = self.actor as? Hero, let loot = game.getLoot(at: coord) {

@@ -47,7 +47,7 @@ enum Role: String, Codable {
             "weapon": ["Battleaxe +3"],
             "armor": ["Chainmail"],
             "potion": ["Health Potion"],
-            "accessory": ["Ring of Toughness", "Simple Boots"]
+            "accessory": ["Ring of Toughness", "Simple Boots", "Boots of the Cheetah"]
         ]
         
         var loot: [Lootable] = []
