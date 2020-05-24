@@ -21,7 +21,7 @@ class Inventory {
             remove(at: index)                        
             
             self.equippedItems[equipment.equipmentSlot] = equipment
-            print("equip: \(equipment.name)")
+//            print("equip: \(equipment.name)")
             
             return true
         }
@@ -30,7 +30,7 @@ class Inventory {
     }
     
     func equip(_ equipment: Equippable) {
-        print("equip: \(equipment)")
+//        print("equip: \(equipment)")
         
         unequip(equipment.equipmentSlot)
         
@@ -40,7 +40,7 @@ class Inventory {
     @discardableResult
     func unequip(_ equipmentSlot: EquipmentSlot) -> Bool {
         if let equipment = self.equippedItems.removeValue(forKey: equipmentSlot) {
-            print("unequip: \(equipment.name)")
+//            print("unequip: \(equipment.name)")
 
             append(equipment)
 
