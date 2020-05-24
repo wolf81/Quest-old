@@ -24,6 +24,7 @@ struct DrawLayerHelper {
         case is Potion: return EntityDrawLayer.loot.rawValue
         case is Hero: return EntityDrawLayer.hero.rawValue
         case is Monster: return EntityDrawLayer.monster.rawValue
+        case is Ring: fallthrough
         case is Weapon: fallthrough
         case is Projectile: fallthrough
         case is Armor: return EntityDrawLayer.equipment.rawValue

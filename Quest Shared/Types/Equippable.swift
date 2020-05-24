@@ -14,6 +14,7 @@ enum EquipmentSlot {
     case mainhand
     case offhand
     case legs
+    case ring
 }
 
 protocol Equippable: Lootable {
