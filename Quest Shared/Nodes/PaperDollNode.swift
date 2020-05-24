@@ -22,6 +22,7 @@ class PaperDollNode: SKShapeNode {
     private let offhand: EquippedItemNode
     private let ring: EquippedItemNode
     private let feet: EquippedItemNode
+    private let head: EquippedItemNode
     
     weak var delegate: PaperDollNodeDelegate? {
         didSet {
@@ -36,6 +37,7 @@ class PaperDollNode: SKShapeNode {
         self.offhand = EquippedItemNode(size: itemSize, equipmentSlot: .offhand)
         self.ring = EquippedItemNode(size: itemSize, equipmentSlot: .ring)
         self.feet = EquippedItemNode(size: itemSize, equipmentSlot: .feet)
+        self.head = EquippedItemNode(size: itemSize, equipmentSlot: .head)
         
         let silhouetteTexture = SKTexture(imageNamed: "paper_doll")
         let silhouetteSize = CGSize(width: size.width - 30, height: size.height - 30)
@@ -56,6 +58,7 @@ class PaperDollNode: SKShapeNode {
         addChild(self.offhand)
         addChild(self.ring)
         addChild(self.feet)
+        addChild(self.head)
         
         self.silhouette.zPosition = 0
         self.chest.zPosition = 1
@@ -67,6 +70,8 @@ class PaperDollNode: SKShapeNode {
         self.ring.zPosition = 1
         self.feet.position = CGPoint(x: 0, y: -size.height / 2.5)
         self.feet.zPosition = 1
+        self.head.position = CGPoint(x: 0, y: size.height / 2.5)
+        self.head.zPosition = 1
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -76,7 +81,7 @@ class PaperDollNode: SKShapeNode {
     override func mouseUp(with event: NSEvent) {
         let location = event.location(in: self)
 
-        let nodes = [self.mainhand, self.offhand, self.chest, self.ring, self.feet]
+        let nodes = [self.mainhand, self.offhand, self.chest, self.ring, self.feet, self.head]
 
         if let selectedNode = nodes.filter({ $0.contains(location) }).first {
             print("selected: \(selectedNode)")
@@ -95,6 +100,7 @@ class PaperDollNode: SKShapeNode {
         self.offhand.equipment = self.delegate?.paperDoll(self, equipmentIn: .offhand)
         self.ring.equipment = self.delegate?.paperDoll(self, equipmentIn: .ring)
         self.feet.equipment = self.delegate?.paperDoll(self, equipmentIn: .feet)
+        self.head.equipment = self.delegate?.paperDoll(self, equipmentIn: .head)
     }
     
     // MARK: - Private

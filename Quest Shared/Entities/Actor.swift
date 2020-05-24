@@ -63,7 +63,7 @@ class Actor: Entity {
     func update(state: Game) { fatalError() }
     
     var effects: [Effect] {
-        let equippedItems: [Equippable] = [self.equippedArmor, self.equippedShield, self.equippedRing, self.equippedWeapon, self.equippedBoots]
+        let equippedItems: [Equippable] = [self.equippedArmor, self.equippedShield, self.equippedRing, self.equippedWeapon, self.equippedBoots, self.equippedHeadpiece]
         return equippedItems.compactMap({ $0.effects }).flatMap({ $0 })
     }
 
@@ -215,8 +215,10 @@ extension Actor {
     
     var equippedBoots: Accessory { self.inventory.equippedItem(in: .feet) as? Accessory ?? Accessory.none(type: .boots) }
     
-    func equippedItem(in equipmentSlot: EquipmentSlot) -> Equippable? { self.inventory.equippedItem(in: equipmentSlot) }
+    var equippedHeadpiece: Accessory { self.inventory.equippedItem(in: .head) as? Accessory ?? Accessory.none(type: .headpiece) }
 
+    func equippedItem(in equipmentSlot: EquipmentSlot) -> Equippable? { self.inventory.equippedItem(in: equipmentSlot) }
+    
     @discardableResult
     func unequip(_ equipmentSlot: EquipmentSlot) -> Bool { self.inventory.unequip(equipmentSlot) }
 }

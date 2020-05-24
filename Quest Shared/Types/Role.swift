@@ -75,7 +75,7 @@ enum Role: String, Codable {
             equipmentInfo = [
                 "armor": ["Robe"],
                 "weapon": ["Quarterstaff"],
-                "accessory": ["Simple Boots"],
+                "accessory": ["Simple Boots", "Wizard Hat"],
             ]
         case .cleric:
             equipmentInfo = [

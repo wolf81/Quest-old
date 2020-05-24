@@ -12,6 +12,7 @@ enum AccessoryType: String {
     case boots
     case ring
     case belt
+    case headpiece
 }
 
 class Accessory: Entity & Equippable {
@@ -20,6 +21,7 @@ class Accessory: Entity & Equippable {
         case .ring: return .ring
         case .boots: return .feet
         case .belt: return .waist
+        case .headpiece: return .head
         }
     }
     
