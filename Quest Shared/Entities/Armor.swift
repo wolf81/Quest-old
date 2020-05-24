@@ -34,6 +34,8 @@ class Armor: Entity & Equippable {
     
     let type: ArmorType
     
+    var effects: [Effect] = []
+    
     required init(json: [String : Any], entityFactory: EntityFactory) {
         let armorClass = json["AC"] as! Int
         self.armorClass = armorClass

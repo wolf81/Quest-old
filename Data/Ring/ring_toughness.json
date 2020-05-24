@@ -1,4 +1,6 @@
 {
     "name": "Ring of Toughness",
-    "sprite": "tourmaline"
+    "sprite": "tourmaline",
+    
+    "effects": ["toughness1"]
 }

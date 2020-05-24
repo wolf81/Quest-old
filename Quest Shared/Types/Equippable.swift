@@ -19,4 +19,6 @@ enum EquipmentSlot {
 
 protocol Equippable: Lootable {
     var equipmentSlot: EquipmentSlot { get }
+    
+    var effects: [Effect] { get }
 }

@@ -72,6 +72,8 @@ class Weapon: Entity & Equippable, CustomStringConvertible {
     
     var equipmentSlot: EquipmentSlot { .mainhand }
     
+    var effects: [Effect] = []
+    
     required init(json: [String : Any], entityFactory: EntityFactory) {
         self.attack = json["AT"] as? Int ?? 0
         self.range = json["range"] as? Int ?? 1

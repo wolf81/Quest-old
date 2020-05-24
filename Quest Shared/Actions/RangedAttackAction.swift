@@ -39,7 +39,7 @@ class RangedAttackAction: Action, StatusUpdatable {
             self.isHit = true
             let damage = self.actor.getRangedAttackDamage(.maximum)
             status = "critical hit for \(damage) damage"
-            self.targetActor.hitPoints.remove(hitPoints: damage)
+            self.targetActor.reduceHealth(with: damage)
         default:
             let attackRoll = baseAttackRoll + self.actor.rangedAttackBonus
             status = "\tAT \(attackRoll) vs AC \(armorClass): "
@@ -47,7 +47,7 @@ class RangedAttackAction: Action, StatusUpdatable {
                 self.isHit = true
                 let damage = self.actor.getRangedAttackDamage(.random)
                 status += "hit for \(damage) damage"
-                self.targetActor.hitPoints.remove(hitPoints: damage)
+                self.targetActor.reduceHealth(with: damage)
             } else {
                 status += "miss"
             }

@@ -25,7 +25,7 @@ struct HitPoints: CustomStringConvertible {
         self.lost = 0
     }
     
-    mutating func remove(hitPoints: Int) {
+    mutating func remove(_ hitPoints: Int) {
         self.lost += hitPoints
         
         self.delegate?.hitPointsChanged(current: max(self.current, 0), total: self.base)

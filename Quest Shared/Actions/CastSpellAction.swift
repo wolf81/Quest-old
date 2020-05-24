@@ -25,7 +25,7 @@ class CastSpellAction: Action {
         switch self.spell {
         case let singleTargetDamageSpell as SingleTargetDamageSpell:            
             let damage = singleTargetDamageSpell.getDamage()
-            singleTargetDamageSpell.targetActor.hitPoints.remove(hitPoints: damage)
+            singleTargetDamageSpell.targetActor.reduceHealth(with: damage)
             print("\t\(spell.name) hits \(singleTargetDamageSpell.targetActor.name) for \(damage) damage")
             break
         default:

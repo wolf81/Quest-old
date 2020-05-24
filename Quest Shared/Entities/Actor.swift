@@ -43,7 +43,7 @@ class Actor: Entity {
     private let inventory: Inventory = Inventory()
     
     private var action: Action?
-    
+        
     var canTakeTurn: Bool { self.energy.amount > 0 }
     
     var isAwaitingInput: Bool { self.action == nil }
@@ -135,6 +135,21 @@ class Actor: Entity {
         }
     }
     
+    func reduceHealth(with hitPoints: Int) {
+        var hitPointsToTake = hitPoints
+        
+        let equippedItems: [Equippable] = [self.equippedArmor, self.equippedShield, self.equippedRing, self.equippedWeapon]
+        let effects = equippedItems.compactMap({ $0.effects }).flatMap({ $0 })
+        
+        for effect in effects {
+            if effect.type == .reduceDamage {
+                hitPointsToTake -= effect.value
+            }
+        }
+        
+        self.hitPoints.remove(max(hitPointsToTake, 0))
+    }
+    
     // MARK: - Private
     
     private static func addHealthBar(sprite: SKSpriteNode) -> HealthBar {
@@ -192,6 +207,8 @@ extension Actor {
     
     var equippedShield: Armor { self.inventory.equippedItems[.offhand] as? Armor ?? Armor.none }
         
+    var equippedRing: Ring { self.inventory.equippedItem(in: .ring) as? Ring ?? Ring.none }
+    
     func equippedItem(in equipmentSlot: EquipmentSlot) -> Equippable? { self.inventory.equippedItem(in: equipmentSlot) }
 
     @discardableResult

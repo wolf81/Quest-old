@@ -1,4 +1,5 @@
 {
     "name": "heal1",
-    "restore": 6
+    "type": "restoreHealth",
+    "value": 6
 }
