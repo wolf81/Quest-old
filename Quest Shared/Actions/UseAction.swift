@@ -1,5 +1,5 @@
 //
-//  UseAction.swift
+//  InteractAction.swift
 //  Quest
 //
 //  Created by Wolfgang Schreurs on 24/05/2020.
@@ -8,18 +8,21 @@
 
 import Foundation
 
-class UseAction: Action {
-    unowned let door: Door
+class InteractAction: Action {    
+    unowned let entity: EntityProtocol
     
-    init(actor: Actor, door: Door) {
-        self.door = door
+    init(actor: Actor, entity: EntityProtocol) {
+        self.entity = entity
         
         super.init(actor: actor)
     }
     
     override func perform(game: Game) {
-        self.door.isOpen = !self.door.isOpen
-
         self.actor.energy.drain(50)
+
+        switch entity {
+        case let door as Door: door.isOpen = !door.isOpen
+        default: fatalError()
+        }
     }
 }

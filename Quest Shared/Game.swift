@@ -19,7 +19,7 @@ protocol GameDelegate: class {
     func gameDidAttack(actor: Actor, targetActor: Actor)
     func gameDidRangedAttack(actor: Actor, targetActor: Actor, projectile: Projectile, isHit: Bool)
     
-    func gameDidUseDoor(door: Door, by actor: Actor)
+    func gameDidInteract(by actor: Actor, with entity: EntityProtocol)
     
     func gameDidChangeSelectionMode(_ selectionMode: SelectionMode)
 }
@@ -369,12 +369,12 @@ class Game {
             action.perform(game: self)
             
             switch action {
-            case let use as UseAction:
-                print("\(use.actor.name) @ \(use.actor.coord.x).\(use.actor.coord.y) is using door")
-                updateVisibility(for: use.actor)
-                self.delegate?.gameDidUseDoor(door: use.door, by: use.actor)
+            case let interact as InteractAction:
+//                print("\(interact.actor.name) @ \(interact.actor.coord.x).\(interact.actor.coord.y) is interacting with \(interact.entity.name)")
+                updateVisibility(for: interact.actor)
+                self.delegate?.gameDidInteract(by: interact.actor, with: interact.entity)
             case let move as MoveAction:
-                print("\(move.actor.name) @ \(move.actor.coord.x).\(move.actor.coord.y) is performing move")
+//                print("\(move.actor.name) @ \(move.actor.coord.x).\(move.actor.coord.y) is performing move")
                 // after the hero moved to a new location, update the visible tiles for the hero
                 if action.actor is Hero {
                     updateActiveActors()
@@ -382,7 +382,7 @@ class Game {
                 }
                 self.delegate?.gameDidMove(entity: move.actor, path: move.path)
             case let attack as MeleeAttackAction:
-                print("\(attack.actor.name) @ \(attack.actor.coord.x).\(attack.actor.coord.y) is performing melee attack")
+//                print("\(attack.actor.name) @ \(attack.actor.coord.x).\(attack.actor.coord.y) is performing melee attack")
                 self.delegate?.gameDidAttack(actor: attack.actor, targetActor: attack.targetActor)
                 if attack.targetActor.isAlive == false {
                     self.delegate?.gameDidDestroy(entity: attack.targetActor)
@@ -391,7 +391,7 @@ class Game {
                     updateActiveActors()
                 }
             case let attack as RangedAttackAction:
-                print("\(attack.actor.name) @ \(attack.actor.coord.x).\(attack.actor.coord.y) is performing ranged attack")
+//                print("\(attack.actor.name) @ \(attack.actor.coord.x).\(attack.actor.coord.y) is performing ranged attack")
                 let projectile = action.actor.equippedWeapon.projectile!
                 projectile.configureSprite(origin: attack.actor.coord, target: attack.targetActor.coord)
                 self.delegate?.gameDidRangedAttack(actor: attack.actor, targetActor: attack.targetActor, projectile: projectile, isHit: attack.isHit)
@@ -406,7 +406,7 @@ class Game {
             default: break
             }
             
-            print("energy: \(action.actor.energy.amount)")
+//            print("energy: \(action.actor.energy.amount)")
                         
             self.actions.removeFirst()
         }

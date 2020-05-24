@@ -215,25 +215,28 @@ func isInRange(origin: vector_int2, radius: Int32, coord: vector_int2) -> Bool {
 // MARK: - GameDelegate
 
 extension GameScene: GameDelegate {
-    func gameDidUseDoor(door: Door, by actor: Actor) {
-        let oldSprite = door.sprite
-        
-        oldSprite.run(SKAction.sequence([
-            SKAction.fadeOut(withDuration: 1.0),
-            SKAction.run({ oldSprite.removeFromParent() })
-        ]))
+    func gameDidInteract(by actor: Actor, with entity: EntityProtocol) {
+        if let door = entity as? Door {
+            let oldSprite = door.sprite
+            
+            oldSprite.run(SKAction.sequence([
+                SKAction.fadeOut(withDuration: 1.0),
+                SKAction.run({ oldSprite.removeFromParent() })
+            ]))
 
-        let newSprite = door.getSprite(isOpen: door.isOpen)
-        newSprite.position = oldSprite.position
-        newSprite.alpha = 0.0
-        self.world.addChild(newSprite)
+            let newSprite = door.getSprite(isOpen: door.isOpen)
+            newSprite.position = oldSprite.position
+            newSprite.alpha = 0.0
+            self.world.addChild(newSprite)
 
-        newSprite.run(SKAction.sequence([
-            SKAction.fadeIn(withDuration: 1.0),
-            SKAction.run({ door.sprite = newSprite })
-        ]))
-        
-        gameDidMove(entity: actor, path: [actor.coord])
+            newSprite.run(SKAction.sequence([
+                SKAction.fadeIn(withDuration: 1.0),
+                SKAction.run({ door.sprite = newSprite })
+            ]))
+            
+            // update visible nodes
+            gameDidMove(entity: actor, path: [actor.coord])
+        }
     }
     
     func gameDidChangeSelectionMode(_ selectionMode: SelectionMode) {        

@@ -91,8 +91,8 @@ class Hero: Actor, CustomStringConvertible {
                 setAction(move)
             } else {
                 if let door = state.tiles[Int(toCoord.y)][Int(toCoord.x)] as? Door {
-                    let use = UseAction(actor: self, door: door)
-                    setAction(use)
+                    let interact = InteractAction(actor: self, entity: door)
+                    setAction(interact)
                 }
             }
         }
