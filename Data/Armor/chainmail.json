@@ -1,6 +1,6 @@
 {
     "name": "Chainmail",
-    "sprite": "chainmail",
+    "sprite": ["chainmail", "leg_armor_2"],
     
     "AC": 5,
     "type": "medium"

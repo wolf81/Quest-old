@@ -19,6 +19,9 @@
 		79042E6C2478405100730646 /* Projectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E6B2478405100730646 /* Projectile.swift */; };
 		79042E6D2478405100730646 /* Projectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E6B2478405100730646 /* Projectile.swift */; };
 		79042E6E2478405100730646 /* Projectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E6B2478405100730646 /* Projectile.swift */; };
+		79042E70247AC0B400730646 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E6F247AC0B400730646 /* Image.swift */; };
+		79042E71247AC0B400730646 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E6F247AC0B400730646 /* Image.swift */; };
+		79042E72247AC0B400730646 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E6F247AC0B400730646 /* Image.swift */; };
 		7914DD32246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
 		7914DD33246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
 		7914DD34246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
@@ -232,6 +235,7 @@
 		79042E632478192600730646 /* Energy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Energy.swift; sourceTree = "<group>"; };
 		79042E6724781BFD00730646 /* EnergyCost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyCost.swift; sourceTree = "<group>"; };
 		79042E6B2478405100730646 /* Projectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Projectile.swift; sourceTree = "<group>"; };
+		79042E6F247AC0B400730646 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		7914DD31246182120047EFB6 /* EntityDrawLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDrawLayer.swift; sourceTree = "<group>"; };
 		792467DE246A59A0000568A6 /* Lootable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lootable.swift; sourceTree = "<group>"; };
 		792467E2246AFC03000568A6 /* Inventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
@@ -409,6 +413,7 @@
 				792467E2246AFC03000568A6 /* Inventory.swift */,
 				79042E632478192600730646 /* Energy.swift */,
 				79042E6724781BFD00730646 /* EnergyCost.swift */,
+				79042E6F247AC0B400730646 /* Image.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -805,6 +810,7 @@
 				79492BE923A61299005B9508 /* TileProtocol.swift in Sources */,
 				798C997E23A2068C00C6EC1C /* AnimationKey.swift in Sources */,
 				7963DE42239CEC6A00183DF2 /* Skill.swift in Sources */,
+				79042E70247AC0B400730646 /* Image.swift in Sources */,
 				79D6E6DC247A59FE00D7333A /* Door.swift in Sources */,
 				7963DE32239CDE2600183DF2 /* Attribute.swift in Sources */,
 				79FC68F5244C4C4700E6D63C /* SettingsScene.swift in Sources */,
@@ -878,6 +884,7 @@
 				79492BEA23A61299005B9508 /* TileProtocol.swift in Sources */,
 				798C997F23A2068C00C6EC1C /* AnimationKey.swift in Sources */,
 				7963DE43239CEC6A00183DF2 /* Skill.swift in Sources */,
+				79042E71247AC0B400730646 /* Image.swift in Sources */,
 				79D6E6DD247A59FE00D7333A /* Door.swift in Sources */,
 				7963DE33239CDE2600183DF2 /* Attribute.swift in Sources */,
 				79FC68F6244C4C4700E6D63C /* SettingsScene.swift in Sources */,
@@ -937,6 +944,7 @@
 				794864D122A7E48400F84A72 /* GameView.swift in Sources */,
 				7963DE59239E456900183DF2 /* ActionBarButton.swift in Sources */,
 				7960DECC23A6082B00B4CDF8 /* Actor.swift in Sources */,
+				79042E72247AC0B400730646 /* Image.swift in Sources */,
 				7990950E244C9E410091791F /* StatusBar.swift in Sources */,
 				7963DE44239CEC6A00183DF2 /* Skill.swift in Sources */,
 				7960DEC323A6082B00B4CDF8 /* Hero.swift in Sources */,
