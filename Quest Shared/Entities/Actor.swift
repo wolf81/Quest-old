@@ -209,7 +209,9 @@ extension Actor {
     
     var equippedShield: Armor { self.inventory.equippedItems[.offhand] as? Armor ?? Armor.none }
         
-    var equippedRing: Ring { self.inventory.equippedItem(in: .ring) as? Ring ?? Ring.none }
+    var equippedRing: Accessory { self.inventory.equippedItem(in: .ring) as? Accessory ?? Accessory.none(type: .ring) }
+    
+    var equippedBoots: Accessory { self.inventory.equippedItem(in: .feet) as? Accessory ?? Accessory.none(type: .boots) }
     
     func equippedItem(in equipmentSlot: EquipmentSlot) -> Equippable? { self.inventory.equippedItem(in: equipmentSlot) }
 

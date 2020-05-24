@@ -189,9 +189,9 @@
 		79D6E6E0247A6DD200D7333A /* UseAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6E6DF247A6DD200D7333A /* UseAction.swift */; };
 		79D6E6E1247A6DD200D7333A /* UseAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6E6DF247A6DD200D7333A /* UseAction.swift */; };
 		79D6E6E2247A6DD200D7333A /* UseAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6E6DF247A6DD200D7333A /* UseAction.swift */; };
-		79D6E6E4247A98DF00D7333A /* Ring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6E6E3247A98DF00D7333A /* Ring.swift */; };
-		79D6E6E5247A98DF00D7333A /* Ring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6E6E3247A98DF00D7333A /* Ring.swift */; };
-		79D6E6E6247A98DF00D7333A /* Ring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6E6E3247A98DF00D7333A /* Ring.swift */; };
+		79D6E6E4247A98DF00D7333A /* Accessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6E6E3247A98DF00D7333A /* Accessory.swift */; };
+		79D6E6E5247A98DF00D7333A /* Accessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6E6E3247A98DF00D7333A /* Accessory.swift */; };
+		79D6E6E6247A98DF00D7333A /* Accessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6E6E3247A98DF00D7333A /* Accessory.swift */; };
 		79D6E6E8247A9D1700D7333A /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6E6E7247A9D1700D7333A /* Effect.swift */; };
 		79D6E6E9247A9D1700D7333A /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6E6E7247A9D1700D7333A /* Effect.swift */; };
 		79D6E6EA247A9D1700D7333A /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6E6E7247A9D1700D7333A /* Effect.swift */; };
@@ -309,7 +309,7 @@
 		79C61A9E22A7C415008D3609 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79D6E6DB247A59FE00D7333A /* Door.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Door.swift; sourceTree = "<group>"; };
 		79D6E6DF247A6DD200D7333A /* UseAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseAction.swift; sourceTree = "<group>"; };
-		79D6E6E3247A98DF00D7333A /* Ring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ring.swift; sourceTree = "<group>"; };
+		79D6E6E3247A98DF00D7333A /* Accessory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accessory.swift; sourceTree = "<group>"; };
 		79D6E6E7247A9D1700D7333A /* Effect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effect.swift; sourceTree = "<group>"; };
 		79D8156F246572450099567B /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		79D815732465AEAF0099567B /* PaperDollNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperDollNode.swift; sourceTree = "<group>"; };
@@ -381,7 +381,7 @@
 				792467EE246E4360000568A6 /* Potion.swift */,
 				79042E6B2478405100730646 /* Projectile.swift */,
 				79D6E6DB247A59FE00D7333A /* Door.swift */,
-				79D6E6E3247A98DF00D7333A /* Ring.swift */,
+				79D6E6E3247A98DF00D7333A /* Accessory.swift */,
 				79D6E6E7247A9D1700D7333A /* Effect.swift */,
 			);
 			path = Entities;
@@ -758,7 +758,7 @@
 				7963DE3A239CE12A00183DF2 /* Race.swift in Sources */,
 				7963DE52239E3D2A00183DF2 /* ActionBar.swift in Sources */,
 				7960DED323A6082B00B4CDF8 /* OverlayTile.swift in Sources */,
-				79D6E6E4247A98DF00D7333A /* Ring.swift in Sources */,
+				79D6E6E4247A98DF00D7333A /* Accessory.swift in Sources */,
 				7960DED723A6083400B4CDF8 /* EntityProtocol.swift in Sources */,
 				79DF73B42463DD310030E7A8 /* InventoryNode.swift in Sources */,
 				7990950C244C9E410091791F /* StatusBar.swift in Sources */,
@@ -832,7 +832,7 @@
 				79FC68F2244C4A8F00E6D63C /* MainMenuScene.swift in Sources */,
 				7963DE3B239CE12A00183DF2 /* Race.swift in Sources */,
 				7963DE53239E3D2A00183DF2 /* ActionBar.swift in Sources */,
-				79D6E6E5247A98DF00D7333A /* Ring.swift in Sources */,
+				79D6E6E5247A98DF00D7333A /* Accessory.swift in Sources */,
 				7960DED423A6082B00B4CDF8 /* OverlayTile.swift in Sources */,
 				7960DED823A6083400B4CDF8 /* EntityProtocol.swift in Sources */,
 				79DF73B52463DD310030E7A8 /* InventoryNode.swift in Sources */,
@@ -931,7 +931,7 @@
 				795746B522A7CA9800E04BEC /* Level.swift in Sources */,
 				79DF73AE2462D3570030E7A8 /* StatusUpdatable.swift in Sources */,
 				793A575A24459A070089E693 /* Constants.swift in Sources */,
-				79D6E6E6247A98DF00D7333A /* Ring.swift in Sources */,
+				79D6E6E6247A98DF00D7333A /* Accessory.swift in Sources */,
 				79FC68F1244C4A8C00E6D63C /* CreateCharacterScene.swift in Sources */,
 				7963DE40239CE15700183DF2 /* Role.swift in Sources */,
 				792467E5246AFC03000568A6 /* Inventory.swift in Sources */,

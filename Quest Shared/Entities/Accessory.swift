@@ -8,10 +8,24 @@
 
 import Foundation
 
-class Ring: Entity & Equippable {
-    var equipmentSlot: EquipmentSlot { .ring }
+enum AccessoryType: String {
+    case boots
+    case ring
+    case belt
+}
+
+class Accessory: Entity & Equippable {
+    var equipmentSlot: EquipmentSlot {
+        switch self.type {
+        case .ring: return .ring
+        case .boots: return .feet
+        case .belt: return .waist
+        }
+    }
     
     let effects: [Effect]
+    
+    let type: AccessoryType
     
     required init(json: [String : Any], entityFactory: EntityFactory) {
         var effects: [Effect] = []
@@ -23,12 +37,13 @@ class Ring: Entity & Equippable {
         }
         self.effects = effects
         
+        let accessoryType = json["type"] as! String
+        self.type = AccessoryType(rawValue: accessoryType)!
+        
         super.init(json: json, entityFactory: entityFactory)
     }
     
-    static var none: Ring {
-        get {
-            return self.init(json: [:], entityFactory: EntityFactory())
-        }
+    static func none(type: AccessoryType) -> Accessory {
+        return self.init(json: ["type": type.rawValue], entityFactory: EntityFactory())
     }
 }

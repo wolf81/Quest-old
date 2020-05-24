@@ -33,7 +33,7 @@ class EntityLoader {
         let projectiles = try loadEntities(type: Projectile.self, in: "Data/Projectile", entityFactory:  entityFactory)
         projectiles.forEach{ entityFactory.register(entity: $0) }
         
-        let rings = try loadEntities(type: Ring.self, in: "Data/Ring", entityFactory: entityFactory)
+        let rings = try loadEntities(type: Accessory.self, in: "Data/Accessory", entityFactory: entityFactory)
         rings.forEach{ entityFactory.register(entity: $0) }
         
         let weapons = try loadEntities(type: Weapon.self, in: "Data/Weapon", entityFactory: entityFactory)
