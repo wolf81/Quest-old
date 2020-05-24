@@ -15,6 +15,7 @@ struct DrawLayerHelper {
         case monster = 10_000
         case hero = 50_000
         case equipment = 100_000
+        case accessory = 500_000
         case overlay = 1_000_000
         case hud = 5_000_000
     }
@@ -24,7 +25,7 @@ struct DrawLayerHelper {
         case is Potion: return EntityDrawLayer.loot.rawValue
         case is Hero: return EntityDrawLayer.hero.rawValue
         case is Monster: return EntityDrawLayer.monster.rawValue
-        case is Accessory: fallthrough
+        case is Accessory: return EntityDrawLayer.accessory.rawValue
         case is Weapon: fallthrough
         case is Projectile: fallthrough
         case is Armor: return EntityDrawLayer.equipment.rawValue
