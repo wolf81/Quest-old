@@ -498,6 +498,7 @@ extension GameScene {
         case /* q e z c a d s w */ 12, 14, 6, 8, 0, 1, 2, 13: self.game.stopPlayer()
         case /* i   */ 34: toggleInventory()
         case /* c   */ 35: toggleCharacterInfo()
+        case /* u   */ 32: self.game.tryPlayerInteraction()
         default: print("\(event.keyCode)")
         }
     }

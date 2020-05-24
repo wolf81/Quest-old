@@ -8,6 +8,11 @@
 
 import SpriteKit
 
+enum HeroAction {
+    case move(Direction)
+    case interact(Direction)
+}
+
 class Hero: Actor, CustomStringConvertible {
     let race: Race
     let role: Role
@@ -16,8 +21,8 @@ class Hero: Actor, CustomStringConvertible {
         
     var experience: Int = 0
     
-    private var direction: Direction?
-                
+    private var heroAction: HeroAction?
+                    
     override var meleeAttackBonus: Int {
         var attackBonus = self.attributes.strength.bonus + self.equippedWeapon.attack
         if self.role == .fighter {
@@ -72,38 +77,53 @@ class Hero: Actor, CustomStringConvertible {
     
     override func update(state: Game) {
         guard self.isAlive else { return }
-
-        guard let direction = self.direction else { return }
-
+        
+        guard let heroAction = self.heroAction else { return }
+        
         guard self.sprite.hasActions() == false else { return }
         
-        let toCoord = self.coord &+ direction.coord        
-        
-        if let targetActor = state.activeActors.filter({ $0.coord == toCoord }).first {
-            let attack = MeleeAttackAction(actor: self, targetActor: targetActor)
-            setAction(attack)
-        } else {
-            let attackDirections: [Direction] = [.northWest, .northEast, .southWest, .southEast]
-            guard attackDirections.contains(direction) == false else { return }
+        switch heroAction {
+        case .interact(let direction):
+            let toCoord = self.coord &+ direction.coord
+            if let door = state.tiles[Int(toCoord.y)][Int(toCoord.x)] as? Door {
+                let interact = InteractAction(actor: self, entity: door)
+                setAction(interact)
+            }
+        case .move(let direction):
+            let toCoord = self.coord &+ direction.coord
             
-            if state.canMove(entity: self, to: toCoord) {
-                let move = MoveAction(actor: self, toCoord: toCoord)
-                setAction(move)
+            if let targetActor = state.activeActors.filter({ $0.coord == toCoord }).first {
+                let attack = MeleeAttackAction(actor: self, targetActor: targetActor)
+                setAction(attack)
             } else {
-                if let door = state.tiles[Int(toCoord.y)][Int(toCoord.x)] as? Door {
-                    let interact = InteractAction(actor: self, entity: door)
-                    setAction(interact)
+                let attackDirections: [Direction] = [.northWest, .northEast, .southWest, .southEast]
+                guard attackDirections.contains(direction) == false else { return }
+                
+                if state.canMove(entity: self, to: toCoord) {
+                    let move = MoveAction(actor: self, toCoord: toCoord)
+                    setAction(move)
+                } else {
+                    if let door = state.tiles[Int(toCoord.y)][Int(toCoord.x)] as? Door {
+                        let interact = InteractAction(actor: self, entity: door)
+                        setAction(interact)
+                    }
                 }
             }
         }
+
+        self.heroAction = nil
     }
     
     func move(direction: Direction) {
-        self.direction = direction
+        self.heroAction = HeroAction.move(direction)
+    }
+    
+    func interact(direction: Direction) {
+        self.heroAction = HeroAction.interact(direction)
     }
     
     func stop() {
-        self.direction = nil
+        self.heroAction = nil
     }
             
     var description: String {

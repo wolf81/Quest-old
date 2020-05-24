@@ -469,6 +469,24 @@ class Game {
         self.selectionMode = .none
         self.hero.stop()
     }
+    
+    func tryPlayerInteraction() {
+        let coords: [vector_int2] = [
+            vector_int2(self.hero.coord.x - 1, self.hero.coord.y),
+            vector_int2(self.hero.coord.x + 1, self.hero.coord.y),
+            vector_int2(self.hero.coord.x, self.hero.coord.y - 1),
+            vector_int2(self.hero.coord.x, self.hero.coord.y + 1),
+        ]
+
+        for coord in coords {
+            let node = self.level.getNode(at: coord)
+            if node.contains(.door) {
+                let direction = Direction.relative(from: hero.coord, to: coord)
+                self.selectionMode = .none
+                self.hero.interact(direction: direction)
+            }
+        }
+    }
         
     func remove(entity: Entity) {
         self.entities.removeAll(where: { $0 == entity })
