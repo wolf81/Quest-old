@@ -11,7 +11,7 @@
     
     "energyCost": {
         "move": 50,
-        "attackRanged": 35,
+        "attackRanged": 45,
         "attackMelee": 50
     }
 }
