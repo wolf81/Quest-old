@@ -47,7 +47,7 @@ enum Role: String, Codable {
             "weapon": ["Battleaxe +3"],
             "armor": ["Chainmail"],
             "potion": ["Health Potion"],
-            "accessory": ["Ring of Toughness", "Simple Boots", "Boots of the Cheetah"]
+            "accessory": ["Ring of Toughness", "Boots of the Cheetah"]
         ]
         
         var loot: [Lootable] = []
@@ -69,21 +69,25 @@ enum Role: String, Codable {
             equipmentInfo = [
                 "armor": ["Golden Plate", "Buckler"],
                 "weapon": ["Longsword"],
+                "accessory": ["Simple Boots"],
             ]
         case .mage:
             equipmentInfo = [
                 "armor": ["Robe"],
                 "weapon": ["Quarterstaff"],
+                "accessory": ["Simple Boots"],
             ]
         case .cleric:
             equipmentInfo = [
                 "armor": ["Chainmail", "Buckler"],
                 "weapon": ["Mace"],
+                "accessory": ["Simple Boots"],
             ]
         case .rogue:
             equipmentInfo = [
                 "armor": ["Studded Leather"],
                 "weapon": ["Shortsword"],
+                "accessory": ["Simple Boots"],
             ]
         }
         
