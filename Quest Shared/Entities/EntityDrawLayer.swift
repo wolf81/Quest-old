@@ -14,8 +14,8 @@ struct DrawLayerHelper {
         case loot = 5_000
         case monster = 10_000
         case hero = 50_000
-        case equipment = 100_000
-        case accessory = 500_000
+        case accessory = 100_000
+        case equipment = 500_000
         case overlay = 1_000_000
         case hud = 5_000_000
     }
