@@ -10,9 +10,8 @@ import Foundation
 
 class EnergyCost {
     var move: Int = 50
-    var attack: Int = 50
-    
-    var minimumEnergyCost: Int { min(self.move, self.attack) }
+    var attackMelee: Int = 50
+    var attackRanged: Int = 50
     
     convenience init() {
         self.init(json: [:])
@@ -20,6 +19,7 @@ class EnergyCost {
     
     init(json: [String: Int]) {
         self.move = json["move"] ?? 50
-        self.attack = json["attack"] ?? 50
+        self.attackMelee = json["attackMelee"] ?? 50
+        self.attackRanged = json["attackRanged"] ?? 50
     }
 }

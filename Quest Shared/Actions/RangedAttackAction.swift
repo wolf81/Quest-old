@@ -25,7 +25,7 @@ class RangedAttackAction: Action, StatusUpdatable {
     }
     
     override func perform(game: Game) {
-        self.actor.energy.drain(self.actor.energyCost.attack)
+        self.actor.energy.drain(self.actor.energyCost.attackRanged)
 
         let attackDie = HitDie.d20(1, 0)
         let baseAttackRoll = attackDie.randomValue
