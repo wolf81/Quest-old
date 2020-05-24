@@ -42,6 +42,9 @@ class EntityLoader {
         let tiles = try loadEntities(type: Tile.self, in: "Data/Tile", entityFactory: entityFactory)
         tiles.forEach{ entityFactory.register(entity: $0) }
 
+        let doors = try loadEntities(type: Door.self, in: "Data/Door", entityFactory: entityFactory)
+        doors.forEach{ entityFactory.register(entity: $0) }
+        
         let monsters = try loadEntities(type: Monster.self, in: "Data/Monster", entityFactory: entityFactory)
         monsters.forEach{ entityFactory.register(entity: $0) }
     }

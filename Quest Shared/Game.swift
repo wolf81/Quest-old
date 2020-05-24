@@ -13,7 +13,6 @@ import Fenris
 
 protocol GameDelegate: class {
     func gameDidMove(entity: Entity, path: [vector_int2])
-    func gameDidAdd(entity: EntityProtocol)
     func gameDidDestroy(entity: EntityProtocol)
 
     func gameDidUpdateStatus(message: String)
@@ -71,7 +70,7 @@ class Game {
     private(set) var entities: [Entity] = []
             
     // level tiles used for walls, floor, etc...
-    private(set) var tiles: [[Tile]] = []
+    private(set) var tiles: [[TileProtocol]] = []
 
     // coordinates of tiles that are currently visible for the player
     private(set) var actorVisibleCoords = Set<vector_int2>()
@@ -279,38 +278,29 @@ class Game {
         })
         
         var entities: [Entity] = []
-        var tiles: [[Tile]] = []
-        var fogTiles: [FogTile] = []
+        var tiles: [[TileProtocol]] = []
         
         var didAddHero = false
                 
         var roomPotionInfo: [UInt: vector_int2] = [:]
         
-        for y in (0 ..< self.level.height) {
-            var tileRow: [Tile] = []
+        for y in (0 ..< Int32(self.level.height)) {
+            var tileRow: [TileProtocol] = []
             
-            for x in (0 ..< self.level.width) {
-                let coord = vector_int2(Int32(x), Int32(y))
+            for x in (0 ..< Int32(self.level.width)) {
+                let coord = vector_int2(x, y)
                 let tile = self.level[coord]
-                var entity: EntityProtocol?
+                var entity: TileProtocol
 
                 switch tile {
-                case 0: entity = try! entityFactory.newEntity(type: Tile.self, name: "floor", coord: coord)
-                case 1: entity = try! entityFactory.newEntity(type: Tile.self, name: "wall", coord: coord)
-                case 2: entity = try! entityFactory.newEntity(type: Tile.self, name: "stairs_up", coord: coord)
-                case 3: entity = try! entityFactory.newEntity(type: Tile.self, name: "stairs_down", coord: coord)
-                default: break
+                case 0: entity = try! entityFactory.newEntity(type: Tile.self, name: "Floor", coord: coord)
+                case 1: entity = try! entityFactory.newEntity(type: Tile.self, name: "Wall", coord: coord)
+                case 2: entity = try! entityFactory.newEntity(type: Door.self, name: "Door", coord: coord)
+                default: fatalError()
                 }
 
-                if let entity = entity {
-                    tileRow.append(entity as! Tile)
-                } else {
-                    // TODO: Add dummy entity to indicate missing content?
-                }
-                
-                let fogTile = FogTile(json: [:], coord: coord)
-                fogTiles.append(fogTile)
-                
+                tileRow.append(entity)
+                                
                 if let roomId = level.getRoomId(at: coord), roomPotionInfo[roomId] == nil, [2, 8, 9].contains(roomId), let room = level.roomInfo[roomId] {
                     let coord = vector_int2(Int32(room.coord.x + room.width - 2), Int32(room.coord.y + room.height - 2))
                     let potion = try! entityFactory.newEntity(type: Potion.self, name: "Health Potion", coord: coord)
@@ -357,7 +347,7 @@ class Game {
         
         self.tiles = tiles
         self.entities = entities
-        
+                
         updateActiveActors()
         updateVisibility(for: self.hero)
     }

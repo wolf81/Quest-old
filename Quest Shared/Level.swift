@@ -41,14 +41,23 @@ struct Level: CustomStringConvertible {
         }
         return nil
     }
+    
+    func getNode(at coord: vector_int2) -> Node {
+        let node = self.dungeon[Coordinate(Int(coord.x), Int(coord.y))]
+        return node
+    }
             
     subscript(coord: vector_int2) -> Int {
         let node = self.dungeon[Coordinate(Int(coord.x), Int(coord.y))]
-                
-        if node.contains(.room) || node.contains(.door) || node.contains(.corridor) {
+        
+        if node.contains(.door) {
+            return 2
+        }
+
+        if node.contains(.room) || node.contains(.corridor) {
             return 0
         }
-        
+                
         return 1
     }
     

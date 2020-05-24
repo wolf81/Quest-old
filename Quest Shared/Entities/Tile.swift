@@ -9,12 +9,12 @@
 import SpriteKit
 import GameplayKit
 
-class Tile: GKGridGraphNode, TileProtocol {
+class Tile: GKGridGraphNode & TileProtocol {
     var coord: vector_int2 { return self.gridPosition }
     
     var didExplore: Bool = false;
     
-    private var json: [String: Any]
+    private(set) var json: [String: Any]
 
     lazy var name: String = {
         return self.json["name"] as! String;

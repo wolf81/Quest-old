@@ -146,9 +146,6 @@
 		7990950C244C9E410091791F /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990950B244C9E410091791F /* StatusBar.swift */; };
 		7990950D244C9E410091791F /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990950B244C9E410091791F /* StatusBar.swift */; };
 		7990950E244C9E410091791F /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990950B244C9E410091791F /* StatusBar.swift */; };
-		799EA01A2451313200F690DC /* FogTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799EA0192451313200F690DC /* FogTile.swift */; };
-		799EA01B2451313200F690DC /* FogTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799EA0192451313200F690DC /* FogTile.swift */; };
-		799EA01C2451313200F690DC /* FogTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799EA0192451313200F690DC /* FogTile.swift */; };
 		79ACC7DE22AA5BE900AC3BF0 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 79ACC7DD22AA5BE900AC3BF0 /* Data */; };
 		79ACC7DF22AA5BE900AC3BF0 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 79ACC7DD22AA5BE900AC3BF0 /* Data */; };
 		79ACC7E022AA5BE900AC3BF0 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 79ACC7DD22AA5BE900AC3BF0 /* Data */; };
@@ -183,6 +180,9 @@
 		79C61AA822A7C415008D3609 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C61A7022A7C415008D3609 /* Assets.xcassets */; };
 		79C61AA922A7C415008D3609 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C61A7022A7C415008D3609 /* Assets.xcassets */; };
 		79C61AAA22A7C415008D3609 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C61A7022A7C415008D3609 /* Assets.xcassets */; };
+		79D6E6DC247A59FE00D7333A /* Door.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6E6DB247A59FE00D7333A /* Door.swift */; };
+		79D6E6DD247A59FE00D7333A /* Door.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6E6DB247A59FE00D7333A /* Door.swift */; };
+		79D6E6DE247A59FE00D7333A /* Door.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6E6DB247A59FE00D7333A /* Door.swift */; };
 		79D81570246572450099567B /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D8156F246572450099567B /* ButtonNode.swift */; };
 		79D81571246572450099567B /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D8156F246572450099567B /* ButtonNode.swift */; };
 		79D81572246572450099567B /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D8156F246572450099567B /* ButtonNode.swift */; };
@@ -270,7 +270,6 @@
 		798C997923A2061700C6EC1C /* IdleAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdleAction.swift; sourceTree = "<group>"; };
 		798C997D23A2068C00C6EC1C /* AnimationKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationKey.swift; sourceTree = "<group>"; };
 		7990950B244C9E410091791F /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
-		799EA0192451313200F690DC /* FogTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FogTile.swift; sourceTree = "<group>"; };
 		79ACC7DD22AA5BE900AC3BF0 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
 		79ACC7EC22AA5D8700AC3BF0 /* EntityLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityLoader.swift; sourceTree = "<group>"; };
 		79ACC7F022AA60E300AC3BF0 /* EntityFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityFactory.swift; sourceTree = "<group>"; };
@@ -295,6 +294,7 @@
 		79C61A9922A7C415008D3609 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		79C61A9C22A7C415008D3609 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		79C61A9E22A7C415008D3609 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79D6E6DB247A59FE00D7333A /* Door.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Door.swift; sourceTree = "<group>"; };
 		79D8156F246572450099567B /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		79D815732465AEAF0099567B /* PaperDollNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperDollNode.swift; sourceTree = "<group>"; };
 		79DF73AB2462D3570030E7A8 /* StatusUpdatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusUpdatable.swift; sourceTree = "<group>"; };
@@ -361,10 +361,10 @@
 				7960DEBA23A6082B00B4CDF8 /* OverlayTile.swift */,
 				7960DED623A6083400B4CDF8 /* EntityProtocol.swift */,
 				79492BE823A61299005B9508 /* TileProtocol.swift */,
-				799EA0192451313200F690DC /* FogTile.swift */,
 				7914DD31246182120047EFB6 /* EntityDrawLayer.swift */,
 				792467EE246E4360000568A6 /* Potion.swift */,
 				79042E6B2478405100730646 /* Projectile.swift */,
+				79D6E6DB247A59FE00D7333A /* Door.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -746,7 +746,6 @@
 				793A575824459A070089E693 /* Constants.swift in Sources */,
 				794864D322A7E60300F84A72 /* Game.swift in Sources */,
 				79742A6A239E60A7008504E8 /* Gender.swift in Sources */,
-				799EA01A2451313200F690DC /* FogTile.swift in Sources */,
 				792C699023A5495500A729C3 /* CastSpellAction.swift in Sources */,
 				79C61A7B22A7C415008D3609 /* GameViewController.swift in Sources */,
 				792C698C23A40D4700A729C3 /* Spell.swift in Sources */,
@@ -788,6 +787,7 @@
 				79492BE923A61299005B9508 /* TileProtocol.swift in Sources */,
 				798C997E23A2068C00C6EC1C /* AnimationKey.swift in Sources */,
 				7963DE42239CEC6A00183DF2 /* Skill.swift in Sources */,
+				79D6E6DC247A59FE00D7333A /* Door.swift in Sources */,
 				7963DE32239CDE2600183DF2 /* Attribute.swift in Sources */,
 				79FC68F5244C4C4700E6D63C /* SettingsScene.swift in Sources */,
 				79DF73AC2462D3570030E7A8 /* StatusUpdatable.swift in Sources */,
@@ -816,7 +816,6 @@
 				79C61AA622A7C415008D3609 /* GameScene.swift in Sources */,
 				793A575924459A070089E693 /* Constants.swift in Sources */,
 				794864D422A7E60300F84A72 /* Game.swift in Sources */,
-				799EA01B2451313200F690DC /* FogTile.swift in Sources */,
 				79742A6B239E60A7008504E8 /* Gender.swift in Sources */,
 				792C699123A5495500A729C3 /* CastSpellAction.swift in Sources */,
 				79C61A8C22A7C415008D3609 /* GameViewController.swift in Sources */,
@@ -858,6 +857,7 @@
 				79492BEA23A61299005B9508 /* TileProtocol.swift in Sources */,
 				798C997F23A2068C00C6EC1C /* AnimationKey.swift in Sources */,
 				7963DE43239CEC6A00183DF2 /* Skill.swift in Sources */,
+				79D6E6DD247A59FE00D7333A /* Door.swift in Sources */,
 				7963DE33239CDE2600183DF2 /* Attribute.swift in Sources */,
 				79FC68F6244C4C4700E6D63C /* SettingsScene.swift in Sources */,
 				79DF73AD2462D3570030E7A8 /* StatusUpdatable.swift in Sources */,
@@ -879,6 +879,7 @@
 				79D815762465AEAF0099567B /* PaperDollNode.swift in Sources */,
 				79C61AA722A7C415008D3609 /* GameScene.swift in Sources */,
 				794864D522A7E60300F84A72 /* Game.swift in Sources */,
+				79D6E6DE247A59FE00D7333A /* Door.swift in Sources */,
 				79ACC81C22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
 				79C61A9A22A7C415008D3609 /* GameViewController.swift in Sources */,
 				79ACC82C22AB81F000AC3BF0 /* JSONConstructable.swift in Sources */,
@@ -900,7 +901,6 @@
 				795746B522A7CA9800E04BEC /* Level.swift in Sources */,
 				79DF73AE2462D3570030E7A8 /* StatusUpdatable.swift in Sources */,
 				793A575A24459A070089E693 /* Constants.swift in Sources */,
-				799EA01C2451313200F690DC /* FogTile.swift in Sources */,
 				79FC68F1244C4A8C00E6D63C /* CreateCharacterScene.swift in Sources */,
 				7963DE40239CE15700183DF2 /* Role.swift in Sources */,
 				792467E5246AFC03000568A6 /* Inventory.swift in Sources */,

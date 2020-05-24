@@ -32,12 +32,6 @@ class GameScene: SKScene, SceneManagerConstructable {
     private var inventory: InventoryNode?
     
     private var characterInfo: CharacterInfoNode?
-
-    // Sprites should be removed on the main thread, to make this easy, we remove sprites in the update loop and then clear this array
-//    private var spritesToRemove: [SKSpriteNode] = []
-    
-    // Sprites should be added on the main thread, to make this easy, we add sprites in the update loop and then clear this array
-    private var spritesToAdd: [SKSpriteNode] = []
                     
     required init(size: CGSize, userInfo: [String : Any]) {
         self.game = (userInfo[UserInfoKey.game] as! Game)
@@ -56,11 +50,6 @@ class GameScene: SKScene, SceneManagerConstructable {
     }
     
     override func update(_ currentTime: TimeInterval) {
-//        self.spritesToRemove.forEach({ $0.removeFromParent() })
-//        self.spritesToRemove = []
-
-        self.spritesToAdd.forEach({ self.world.addChild($0) })
-        self.spritesToAdd = []
                 
         // Called before each frame is rendered
         let deltaTime = currentTime - self.lastUpdateTime
@@ -378,12 +367,7 @@ extension GameScene: GameDelegate {
             entity.sprite.run(SKAction.sequence(move))
         }        
     }
-    
-    func gameDidAdd(entity: EntityProtocol) {
-        entity.sprite.position = GameScene.pointForCoord(entity.coord)
-        self.spritesToAdd.append(entity.sprite)
-    }
-    
+        
     func gameDidUpdateStatus(message: String) {
         self.statusBar.update(text: message)
     }

@@ -15,7 +15,6 @@ struct DrawLayerHelper {
         case monster = 10_000
         case hero = 50_000
         case equipment = 100_000
-        case fog = 500_000
         case overlay = 1_000_000
         case hud = 5_000_000
     }
@@ -28,9 +27,9 @@ struct DrawLayerHelper {
         case is Weapon: fallthrough
         case is Projectile: fallthrough
         case is Armor: return EntityDrawLayer.equipment.rawValue
-        case is FogTile: return EntityDrawLayer.fog.rawValue
         case is OverlayTile: return EntityDrawLayer.overlay.rawValue
         case is Tile: return EntityDrawLayer.tile.rawValue
+        case is Door: return EntityDrawLayer.tile.rawValue + 1
         default: fatalError()
         }
     }
