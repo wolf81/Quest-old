@@ -77,7 +77,7 @@ class Hero: Actor, CustomStringConvertible {
 
         guard self.sprite.hasActions() == false else { return }
         
-        let toCoord = self.coord &+ direction.coord
+        let toCoord = self.coord &+ direction.coord        
         
         if let targetActor = state.activeActors.filter({ $0.coord == toCoord }).first {
             let attack = MeleeAttackAction(actor: self, targetActor: targetActor)
@@ -89,6 +89,11 @@ class Hero: Actor, CustomStringConvertible {
             if state.canMove(entity: self, to: toCoord) {
                 let move = MoveAction(actor: self, toCoord: toCoord)
                 setAction(move)
+            } else {
+                if let door = state.tiles[Int(toCoord.y)][Int(toCoord.x)] as? Door {
+                    let use = UseAction(actor: self, door: door)
+                    setAction(use)
+                }
             }
         }
     }

@@ -19,6 +19,8 @@ protocol GameDelegate: class {
     func gameDidAttack(actor: Actor, targetActor: Actor)
     func gameDidRangedAttack(actor: Actor, targetActor: Actor, projectile: Projectile, isHit: Bool)
     
+    func gameDidUseDoor(door: Door, by actor: Actor)
+    
     func gameDidChangeSelectionMode(_ selectionMode: SelectionMode)
 }
 
@@ -112,11 +114,14 @@ class Game {
             return false
         }
 
-        guard let tile = self.getTile(at: coord) else {
-            return false
+        let node = self.level.getNode(at: coord)
+        
+        if node.contains(.door) {
+            let door = self.tiles[Int(coord.y)][Int(coord.x)] as! Door
+            return door.isOpen
         }
         
-        return tile != 1
+        return node.contains(.openspace) || node.contains(.room) || node.contains(.corridor)
     }
     
     func getRange(position: Int32, radius: Int32, constrainedTo range: Range<Int32>) -> Range<Int32> {
@@ -268,7 +273,13 @@ class Game {
         
         let mapSize = CGSize(width: Int(self.level.width), height: Int(self.level.height))
         self.visibility = RaycastVisibility(mapSize: mapSize, blocksLight: {
-            self.level[$0] != 0
+            let node = self.level.getNode(at: $0)
+            if node.contains(.door) {
+                let door = self.tiles[Int($0.y)][Int($0.x)] as! Door
+                return door.isOpen == false
+            }
+            
+            return node.isDisjoint(with: .openspace)
         }, setVisible: {
             self.actorVisibleCoords.insert($0)
         }, getDistance: {
@@ -358,6 +369,10 @@ class Game {
             action.perform(game: self)
             
             switch action {
+            case let use as UseAction:
+                print("\(use.actor.name) @ \(use.actor.coord.x).\(use.actor.coord.y) is using door")
+                updateVisibility(for: use.actor)
+                self.delegate?.gameDidUseDoor(door: use.door, by: use.actor)
             case let move as MoveAction:
                 print("\(move.actor.name) @ \(move.actor.coord.x).\(move.actor.coord.y) is performing move")
                 // after the hero moved to a new location, update the visible tiles for the hero

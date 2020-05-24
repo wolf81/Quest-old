@@ -215,6 +215,27 @@ func isInRange(origin: vector_int2, radius: Int32, coord: vector_int2) -> Bool {
 // MARK: - GameDelegate
 
 extension GameScene: GameDelegate {
+    func gameDidUseDoor(door: Door, by actor: Actor) {
+        let oldSprite = door.sprite
+        
+        oldSprite.run(SKAction.sequence([
+            SKAction.fadeOut(withDuration: 1.0),
+            SKAction.run({ oldSprite.removeFromParent() })
+        ]))
+
+        let newSprite = door.getSprite(isOpen: door.isOpen)
+        newSprite.position = oldSprite.position
+        newSprite.alpha = 0.0
+        self.world.addChild(newSprite)
+
+        newSprite.run(SKAction.sequence([
+            SKAction.fadeIn(withDuration: 1.0),
+            SKAction.run({ door.sprite = newSprite })
+        ]))
+        
+        gameDidMove(entity: actor, path: [actor.coord])
+    }
+    
     func gameDidChangeSelectionMode(_ selectionMode: SelectionMode) {        
         clearSelectionModeTiles()
                 
@@ -225,7 +246,7 @@ extension GameScene: GameDelegate {
             }
         }
     }
-    
+        
     func gameDidRangedAttack(actor: Actor, targetActor: Actor, projectile: Projectile, isHit: Bool) {
         // Make a copy of the sprite, to prevent the sprite to become unmanaged once the projectile is destroyed
         let sprite = projectile.sprite.copy() as! SKSpriteNode
@@ -316,7 +337,7 @@ extension GameScene: GameDelegate {
                 tile.sprite.position = GameScene.pointForCoord(tile.coord)
                 tile.sprite.alpha = 0.0
                 self.world.addChild(tile.sprite)
-
+                
                 let alpha: CGFloat = self.game.actorVisibleCoords.contains(coord) ? 1.0 : tile.didExplore ? 0.5 : 0.0
                 tile.sprite.run(SKAction.fadeAlpha(to: alpha, duration: 3.0))
             }

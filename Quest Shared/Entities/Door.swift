@@ -22,11 +22,7 @@ class Door: GKGridGraphNode & TileProtocol {
     
     var coord: vector_int2 { return self.gridPosition }
 
-    var isOpen: Bool = false {
-        didSet {
-            configureSprite()
-        }
-    }
+    var isOpen: Bool = false
             
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -37,7 +33,7 @@ class Door: GKGridGraphNode & TileProtocol {
         
         super.init(gridPosition: coord)
         
-        configureSprite()
+        self.sprite = getSprite(isOpen: self.isOpen)
     }
     
     required init(json: [String : Any], entityFactory: EntityFactory) {
@@ -45,23 +41,23 @@ class Door: GKGridGraphNode & TileProtocol {
 
         super.init(gridPosition: vector2(0, 0))
 
-        configureSprite()
+        self.sprite = getSprite(isOpen: self.isOpen)
     }
-        
-    private func configureSprite() {
+            
+    func getSprite(isOpen: Bool) -> SKSpriteNode {
         let spriteInfo = self.json["sprite"] as! [String: String]
-        let spriteName = spriteInfo[self.isOpen ? "open" : "closed"]!
+        let spriteName = spriteInfo[isOpen ? "open" : "closed"]!
         
-        loadSprite(spriteName: spriteName)
+        return loadSprite(spriteName: spriteName)
     }
     
-    private func loadSprite(spriteName: String) {
+    private func loadSprite(spriteName: String) -> SKSpriteNode {
         let texture = SKTexture(imageNamed: spriteName)
         let sprite = SKSpriteNode(texture: texture, size: CGSize(width: 48, height: 48))
         
         sprite.zPosition = DrawLayerHelper.zPosition(for: self)
 
-        self.sprite = sprite
+        return sprite
     }
     
     func copy(coord: vector_int2, entityFactory: EntityFactory) -> Self {
