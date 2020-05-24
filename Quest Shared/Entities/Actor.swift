@@ -131,7 +131,9 @@ class Actor: Entity {
         }
         
         for (_, equipment) in self.inventory.equippedItems {
-            self.sprite.addChild(equipment.sprite)
+            if equipment.equipmentSlot != .ring {
+                self.sprite.addChild(equipment.sprite)
+            }
         }
     }
     
