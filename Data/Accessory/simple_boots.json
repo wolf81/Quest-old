@@ -1,6 +1,7 @@
 {
     "name": "Simple Boots",
-    "sprite": "middle_ybrown",
+    "sprite": "boots_1_brown_new",
+    "equipSprite": "middle_ybrown",
     
     "type": "boots"
 }

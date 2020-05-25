@@ -1,6 +1,7 @@
 {
     "name": "Boots of the Cheetah",
-    "sprite": "middle_gold",
+    "sprite": "low_boots",
+    "equipSprite": "middle_gold",
     
     "type": "boots",
     "effects": ["Increase Movespeed"]
