@@ -1,6 +1,7 @@
 {
     "name": "Studded Leather",
-    "sprite": ["leather_armor_3", "pants_short_brown"],
+    "sprite": "leather_armor_1",
+    "equipSprite": ["leather_armor_3", "pants_short_brown"],
     
     "AC": 2,
     "type": "light"

@@ -1,7 +1,8 @@
 {
     "name": "Shortsword",
     "sprite": "short_sword",
-    
+    "equipSprite": "short_sword",
+
     "AT": 0,
     "damage": "1d6",
     "type": "shortsword"

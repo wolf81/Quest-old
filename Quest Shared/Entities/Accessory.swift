@@ -6,16 +6,16 @@
 //  Copyright © 2020 Wolftrail. All rights reserved.
 //
 
-import Foundation
-
-enum AccessoryType: String {
-    case boots
-    case ring
-    case belt
-    case headpiece
-}
+import SpriteKit
 
 class Accessory: Entity & Equippable {
+    enum AccessoryType: String {
+        case boots
+        case ring
+        case belt
+        case headpiece
+    }
+
     var equipmentSlot: EquipmentSlot {
         switch self.type {
         case .ring: return .ring
@@ -29,6 +29,12 @@ class Accessory: Entity & Equippable {
     
     let type: AccessoryType
     
+    lazy var equipSprite: SKSpriteNode = {        
+        guard let spriteName = (self.json["sprite"] ?? self.json["equipSprite"]) as? String else { fatalError() }
+        
+        return Entity.loadSprite(type: self, spriteName: spriteName)
+    }()
+
     required init(json: [String : Any], entityFactory: EntityFactory) {
         var effects: [Effect] = []
         if let effectNames = json["effects"] as? [String] {

@@ -1,7 +1,8 @@
 {
 	"name": "Battleaxe +3",
     "sprite": "axe_blood",
-    
+    "equipSprite": "axe_blood",
+
     "AT": 3,
 	"damage": "1d8+2",    
     "type": "greataxe"

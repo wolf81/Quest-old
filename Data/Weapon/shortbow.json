@@ -1,7 +1,8 @@
 {
     "name": "Shortbow",
     "sprite": "bow",
-    
+    "equipSprite": "bow",
+
     "AT": 0,
     "damage": "1d6",
     "type": "shortbow",

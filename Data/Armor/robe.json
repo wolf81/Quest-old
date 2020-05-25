@@ -1,6 +1,7 @@
 {
     "name": "Robe",
     "sprite": "robe_red_2",
+    "equipSprite": "robe_red_2",
     
     "AC": 0,
     "type": "none"

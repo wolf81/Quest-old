@@ -28,20 +28,7 @@ class Weapon: Entity & Equippable, CustomStringConvertible {
         case greataxe
         case staff
         case mace
-        
-        init(rawValue: String) {
-            switch rawValue {
-            case "unarmed": self = .unarmed
-            case "shortbow": self = .shortbow
-            case "shortsword": self = .shortsword
-            case "longsword": self = .longsword
-            case "greataxe": self = .greataxe
-            case "staff": self = .staff
-            case "mace": self = .mace
-            default: fatalError()
-            }
-        }
-        
+                
         fileprivate var category: WeaponCategory {
             switch self {
             case .greataxe, .staff: return .heavy
@@ -59,6 +46,12 @@ class Weapon: Entity & Equippable, CustomStringConvertible {
             }
         }
     }
+
+    lazy var equipSprite: SKSpriteNode = {
+        guard let spriteName = self.json["equipSprite"] as? String else { fatalError() }
+        
+        return Entity.loadSprite(type: self, spriteName: spriteName)
+    }()
 
     let attack: Int
     let damage: HitDie
@@ -82,7 +75,7 @@ class Weapon: Entity & Equippable, CustomStringConvertible {
         self.damage = HitDie(rawValue: damage)!
         
         let weaponType = json["type"] as! String
-        self.type = WeaponType(rawValue: weaponType)
+        self.type = WeaponType(rawValue: weaponType)!
         
         if let projectile = json["projectile"] as? String {
             self.projectile = try! entityFactory.newEntity(type: Projectile.self, name: projectile)

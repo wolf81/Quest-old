@@ -1,6 +1,7 @@
 {
     "name": "Golden Plate",
-    "sprite": "armor_mummy",
+    "sprite": "gold_dragon_armor_new",
+    "equipSprite": "armor_mummy",
     
     "AC": 7,
     "type": "heavy"

@@ -6,7 +6,7 @@
 //  Copyright © 2020 Wolftrail. All rights reserved.
 //
 
-import Foundation
+import SpriteKit
 
 enum EquipmentSlot {
     case head
@@ -21,6 +21,8 @@ enum EquipmentSlot {
 
 protocol Equippable: Lootable {
     var equipmentSlot: EquipmentSlot { get }
+    
+    var equipSprite: SKSpriteNode { get }
     
     var effects: [Effect] { get }
 }

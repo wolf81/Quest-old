@@ -1,6 +1,7 @@
 {
     "name": "Buckler",
     "sprite": "buckler_round_3",
+    "equipSprite": "buckler_round_3",
     
     "AC": 1,
     "type": "shield"

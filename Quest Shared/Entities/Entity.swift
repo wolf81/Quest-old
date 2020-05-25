@@ -27,22 +27,9 @@ class Entity: EntityProtocol & Hashable {
     }()
         
     lazy var sprite: SKSpriteNode = {
-        // TODO:
-        // ideally we don't know the sprite size here or perhaps the textures should be of
-        // appropriate size already - the game scene controls the tile size
+        guard let spriteName = self.json["sprite"] as? String else { fatalError() }
         
-        guard let spriteName = self.json["sprite"] as? String else {
-            let sprite = SKSpriteNode(color: SKColor.lightGray, size: CGSize(width: 48, height: 48))
-            sprite.zPosition = DrawLayerHelper.zPosition(for: self)
-            return sprite
-        }
-        
-        let texture = SKTexture(imageNamed: spriteName)        
-        let sprite = SKSpriteNode(texture: texture, size: CGSize(width: 48, height: 48))
-        
-        sprite.zPosition = DrawLayerHelper.zPosition(for: self)
-
-        return sprite
+        return Entity.loadSprite(type: self, spriteName: spriteName)
     }()
     
     required init(json: [String : Any], entityFactory: EntityFactory) {
@@ -58,5 +45,45 @@ class Entity: EntityProtocol & Hashable {
         let entity = T(json: self.json, entityFactory: entityFactory)
         entity.coord = coord
         return entity
+    }
+}
+
+// MARK: - Sprite loading utilities
+
+extension Entity {
+    static func loadSprite<T: EntityProtocol>(type: T, spriteName: String) -> SKSpriteNode {
+        // TODO:
+        // ideally we don't know the sprite size here or perhaps the textures should be of
+        // appropriate size already - the game scene controls the tile size
+        
+        let texture = SKTexture(imageNamed: spriteName)
+        let sprite = SKSpriteNode(texture: texture, size: CGSize(width: 48, height: 48))
+        
+        sprite.zPosition = DrawLayerHelper.zPosition(for: type)
+
+        return sprite
+    }
+    
+    static func loadSprite<T: EntityProtocol>(type: T, spriteNames: [String]) -> SKSpriteNode {
+        // TODO:
+        // ideally we don't know the sprite size here or perhaps the textures should be of
+        // appropriate size already - the game scene controls the tile size
+        
+        let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
+        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
+        let context = CGContext(data: nil, width: 48, height: 48, bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)
+        
+        for spriteName in spriteNames {
+            let image = Image(named: spriteName)!
+            let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil)
+            context!.draw(cgImage!, in: CGRect(x: 0, y: 0, width: 48, height: 48))
+        }
+
+        let result = context!.makeImage()!
+        let texture = SKTexture(cgImage: result)
+        
+        let sprite = SKSpriteNode(texture: texture, size: CGSize(width: 48, height: 48))
+        sprite.zPosition = DrawLayerHelper.zPosition(for: type)
+        return sprite
     }
 }
