@@ -1,6 +1,6 @@
 {
 	"name": "Battleaxe +3",
-    "sprite": "axe_blood",
+    "sprite": "spwpn_wrath_of_trog_2",
     "equipSprite": "axe_blood",
 
     "AT": 3,

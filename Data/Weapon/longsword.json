@@ -1,6 +1,6 @@
 {
     "name": "Longsword",
-    "sprite": "long_sword",
+    "sprite": "long_sword_1_new",
     "equipSprite": "long_sword",
 
     "AT": 0,

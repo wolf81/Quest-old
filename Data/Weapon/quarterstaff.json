@@ -1,6 +1,6 @@
 {
     "name": "Quarterstaff",
-    "sprite": "quarterstaff",
+    "sprite": "quarterstaff_new",
     "equipSprite": "quarterstaff",
 
     "AT": 0,

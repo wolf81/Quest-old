@@ -1,6 +1,6 @@
 {
     "name": "Shortbow",
-    "sprite": "bow",
+    "sprite": "bow_1",
     "equipSprite": "bow",
 
     "AT": 0,

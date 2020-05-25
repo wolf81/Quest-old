@@ -1,6 +1,7 @@
 {
     "name": "Wizard Hat",
-    "sprite": "wizard_red",
+    "sprite": "hat_1",
+    "equipSprite": "wizard_red",
     
     "type": "headpiece"
 }

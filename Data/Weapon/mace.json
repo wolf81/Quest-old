@@ -1,6 +1,6 @@
 {
     "name": "Mace",
-    "sprite": "mace_new",
+    "sprite": "mace_1_new",
     "equipSprite": "mace_new",
 
     "AT": 0,
