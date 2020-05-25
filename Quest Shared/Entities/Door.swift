@@ -53,7 +53,7 @@ class Door: GKGridGraphNode & TileProtocol {
     
     private func loadSprite(spriteName: String) -> SKSpriteNode {
         let texture = SKTexture(imageNamed: spriteName)
-        let sprite = SKSpriteNode(texture: texture, size: CGSize(width: 48, height: 48))
+        let sprite = SKSpriteNode(texture: texture, size: Constants.tileSize)
         
         sprite.zPosition = DrawLayerHelper.zPosition(for: self)
 

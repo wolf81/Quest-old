@@ -11,12 +11,12 @@ import SpriteKit
 class OverlayTile: Tile {
     let isBlocked: Bool
         
-    init(color: SKColor, coord: SIMD2<Int32>, isBlocked: Bool) {
+    init(color: SKColor, coord: vector_int2, isBlocked: Bool) {
         self.isBlocked = isBlocked
         
         let sprite = SKSpriteNode(
             color: color,
-            size: CGSize(width: 48, height: 48)
+            size: Constants.tileSize
         )
                 
         super.init(sprite: sprite, coord: coord)

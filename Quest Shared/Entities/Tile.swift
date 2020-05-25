@@ -26,12 +26,12 @@ class Tile: GKGridGraphNode & TileProtocol {
         // appropriate size already - the game scene controls the tile size
 
         guard let spriteName = self.json["sprite"] as? String else {
-            let sprite = SKSpriteNode(color: SKColor.lightGray, size: CGSize(width: 48, height: 48))
+            let sprite = SKSpriteNode(color: SKColor.lightGray, size: Constants.tileSize)
             sprite.zPosition = DrawLayerHelper.zPosition(for: self)
             return sprite
         }
         let texture = SKTexture(imageNamed: spriteName)
-        let sprite = SKSpriteNode(texture: texture, size: CGSize(width: 48, height: 48))
+        let sprite = SKSpriteNode(texture: texture, size: Constants.tileSize)
         
         sprite.zPosition = DrawLayerHelper.zPosition(for: self)
 

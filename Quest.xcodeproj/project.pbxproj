@@ -22,6 +22,9 @@
 		79042E70247AC0B400730646 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E6F247AC0B400730646 /* Image.swift */; };
 		79042E71247AC0B400730646 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E6F247AC0B400730646 /* Image.swift */; };
 		79042E72247AC0B400730646 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E6F247AC0B400730646 /* Image.swift */; };
+		79042E74247BF86700730646 /* Tileset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E73247BF86700730646 /* Tileset.swift */; };
+		79042E75247BF86700730646 /* Tileset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E73247BF86700730646 /* Tileset.swift */; };
+		79042E76247BF86700730646 /* Tileset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E73247BF86700730646 /* Tileset.swift */; };
 		7914DD32246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
 		7914DD33246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
 		7914DD34246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
@@ -236,6 +239,7 @@
 		79042E6724781BFD00730646 /* EnergyCost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyCost.swift; sourceTree = "<group>"; };
 		79042E6B2478405100730646 /* Projectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Projectile.swift; sourceTree = "<group>"; };
 		79042E6F247AC0B400730646 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		79042E73247BF86700730646 /* Tileset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tileset.swift; sourceTree = "<group>"; };
 		7914DD31246182120047EFB6 /* EntityDrawLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDrawLayer.swift; sourceTree = "<group>"; };
 		792467DE246A59A0000568A6 /* Lootable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lootable.swift; sourceTree = "<group>"; };
 		792467E2246AFC03000568A6 /* Inventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
@@ -414,6 +418,7 @@
 				79042E632478192600730646 /* Energy.swift */,
 				79042E6724781BFD00730646 /* EnergyCost.swift */,
 				79042E6F247AC0B400730646 /* Image.swift */,
+				79042E73247BF86700730646 /* Tileset.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -765,6 +770,7 @@
 				79042E642478192600730646 /* Energy.swift in Sources */,
 				79C61AA522A7C415008D3609 /* GameScene.swift in Sources */,
 				793A575824459A070089E693 /* Constants.swift in Sources */,
+				79042E74247BF86700730646 /* Tileset.swift in Sources */,
 				794864D322A7E60300F84A72 /* Game.swift in Sources */,
 				79742A6A239E60A7008504E8 /* Gender.swift in Sources */,
 				792C699023A5495500A729C3 /* CastSpellAction.swift in Sources */,
@@ -839,6 +845,7 @@
 				79042E652478192600730646 /* Energy.swift in Sources */,
 				7990950D244C9E410091791F /* StatusBar.swift in Sources */,
 				79C61AA622A7C415008D3609 /* GameScene.swift in Sources */,
+				79042E75247BF86700730646 /* Tileset.swift in Sources */,
 				793A575924459A070089E693 /* Constants.swift in Sources */,
 				794864D422A7E60300F84A72 /* Game.swift in Sources */,
 				79742A6B239E60A7008504E8 /* Gender.swift in Sources */,
@@ -926,6 +933,7 @@
 				7963DE30239CC35F00183DF2 /* DefaultMenuConfiguration.swift in Sources */,
 				79FC68FB244C4C9E00E6D63C /* ChooseAttributesScene.swift in Sources */,
 				79042E662478192600730646 /* Energy.swift in Sources */,
+				79042E76247BF86700730646 /* Tileset.swift in Sources */,
 				7960DECF23A6082B00B4CDF8 /* Tile.swift in Sources */,
 				798537C823A2924E00721CE7 /* RangedAttackAction.swift in Sources */,
 				795746B522A7CA9800E04BEC /* Level.swift in Sources */,

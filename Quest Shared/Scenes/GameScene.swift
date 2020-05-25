@@ -16,9 +16,7 @@ class GameScene: SKScene, SceneManagerConstructable {
     }
     
     private var lastUpdateTime: TimeInterval = 0
-    
-    private static let tileSize = CGSize(width: 48, height: 48)
-    
+        
     private var game: Game!
     
     private var actionBar: ActionBar!
@@ -65,21 +63,21 @@ class GameScene: SKScene, SceneManagerConstructable {
     // MARK: - Public
     
     static func pointForCoord(_ coord: SIMD2<Int32>) -> CGPoint {
-        let x = CGFloat(coord.x) * GameScene.tileSize.width
-        let y = CGFloat(coord.y) * GameScene.tileSize.height
+        let x = CGFloat(coord.x) * Constants.tileSize.width
+        let y = CGFloat(coord.y) * Constants.tileSize.height
         return CGPoint(x: x, y: y)
     }
     
     static func coordForPoint(_ point: CGPoint) -> vector_int2 {
-        let x = Int32((point.x + (GameScene.tileSize.width / 2)) / GameScene.tileSize.width)
-        let y = Int32((point.y + (GameScene.tileSize.height / 2)) / GameScene.tileSize.height)
+        let x = Int32((point.x + (Constants.tileSize.width / 2)) / Constants.tileSize.width)
+        let y = Int32((point.y + (Constants.tileSize.height / 2)) / Constants.tileSize.height)
         return vector_int2(x, y)
     }
 
     // MARK: - Private
     
     private func setUpScene() {
-        self.game.start(tileSize: GameScene.tileSize)
+        self.game.start(tileSize: Constants.tileSize)
         
         self.backgroundColor = SKColor.black
         

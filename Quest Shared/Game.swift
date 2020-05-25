@@ -358,6 +358,38 @@ class Game {
         
         self.tiles = tiles
         self.entities = entities
+                        
+        /* WIP */
+        let path = Bundle.main.path(forResource: "marble", ofType: "json", inDirectory: "Data/Tileset")
+        let url = URL(fileURLWithPath: path!)
+        let data = try! Data(contentsOf: url)
+        let json = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+        let tileset = Tileset(json: json)
+        print("tileset: \(tileset)")
+        
+        guard let room = self.level.roomInfo[1] else { fatalError() }
+        for x in (room.coord.x - 1) ... (room.coord.x + room.width) {
+            for y in (room.coord.y - 1) ... (room.coord.y + room.height) {
+                let tile = self.tiles[y][x]
+
+                let tileType = self.getTile(at: vector_int2(Int32(x), Int32(y)))!
+
+                var sprite: SKSpriteNode
+                
+                switch tileType {
+                case 0, 2: sprite = tileset.floorTiles[0].copy() as! SKSpriteNode
+                case 1: sprite = tileset.wallTiles[0].copy() as! SKSpriteNode
+                default: fatalError()
+                }
+                
+                
+                sprite.zPosition = tile.sprite.zPosition
+                let newTile = Tile(sprite: sprite, coord: tile.coord)
+                self.tiles[y][x] = newTile
+            }
+        }
+        
+        /* WIP */
                 
         updateActiveActors()
         updateVisibility(for: self.hero)

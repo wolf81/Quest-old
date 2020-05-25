@@ -6,7 +6,7 @@
 //  Copyright © 2019 Wolftrail. All rights reserved.
 //
 
-import SpriteKit
+import simd
 
 enum Direction {
     case north

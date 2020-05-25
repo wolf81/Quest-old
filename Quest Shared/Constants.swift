@@ -6,8 +6,10 @@
 //  Copyright © 2020 Wolftrail. All rights reserved.
 //
 
-import Foundation
+import CoreGraphics
 
-public struct Constants {
-    public static let energyPerTick: Int = 10
+struct Constants {
+    static let energyPerTick: Int = 10
+    
+    static let tileSize: CGSize = CGSize(width: 48, height: 48)
 }
