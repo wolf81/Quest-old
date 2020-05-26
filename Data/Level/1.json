@@ -1,0 +1,16 @@
+{
+    "name": "First Encounter",
+    "dungeon": {
+        "layout": "square",
+        "size": "medium",
+        "room": {
+            "layout": "dense",
+            "size": "medium",
+            "doors": "basic",
+        },
+        "corridor": {
+            "layout": "straight",
+            "removeDeadEnds": "all",
+        }
+    }
+}

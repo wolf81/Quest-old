@@ -293,7 +293,7 @@ class Game {
         
         var didAddHero = false
                 
-        let tileset = try! Tileset.load(fileNamed: "catacombs")
+        let tileset = try! DataLoader.load(type: Tileset.self, fromFileNamed: "catacombs", inDirectory: "Data/Tileset")
         
         var roomPotionInfo: [UInt: vector_int2] = [:]
         
@@ -366,11 +366,7 @@ class Game {
  
         var tilesets: [Tileset] = []
         for tilesetFile in ["snake", "orc", "marble", "sandstone", "church"] {
-            let path = Bundle.main.path(forResource: tilesetFile, ofType: "json", inDirectory: "Data/Tileset")
-            let url = URL(fileURLWithPath: path!)
-            let data = try! Data(contentsOf: url)
-            let json = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-            let tileset = Tileset(json: json)
+            let tileset = try! DataLoader.load(type: Tileset.self, fromFileNamed: tilesetFile, inDirectory: "Data/Tileset")
             tilesets.append(tileset)
         }
                         

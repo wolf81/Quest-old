@@ -53,20 +53,13 @@ class EntityLoader {
     }
 
     private static func loadEntities<T: EntityProtocol>(type: T.Type, in directory: String, entityFactory: EntityFactory) throws -> [T] {
-        print("load entities from: \(directory)")
         let paths = Bundle.main.paths(forResourcesOfType: "json", inDirectory: directory)
         
         var entities: [T] = []
         
         for path in paths {
-            let url = URL(fileURLWithPath: path)
-            let data = try Data(contentsOf: url)
-            guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
-                print("failed to load json from file: \(url)")
-                continue
-            }
-            let tile = T(json: json, entityFactory: entityFactory)
-            entities.append(tile)
+            let entity = try DataLoader.loadEntity(type: type, fromPath: path, entityFactory: entityFactory)
+            entities.append(entity)
         }
         
         return entities

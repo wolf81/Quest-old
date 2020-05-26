@@ -29,14 +29,6 @@ class Tileset: JSONConstructable {
         self.wallTiles = Tileset.getSprites(for: json["wallTiles"] as? [String] ?? [])
     }
     
-    static func load(fileNamed filename: String) throws -> Tileset {
-        let path = Bundle.main.path(forResource: filename, ofType: "json", inDirectory: "Data/Tileset")
-        let url = URL(fileURLWithPath: path!)
-        let data = try Data(contentsOf: url)
-        let json = try JSONSerialization.jsonObject(with: data, options: [])
-        return Tileset(json: json as! [String: Any])
-    }
-
     // MARK: - Private
     
     private static func getSprites(for spriteNames: [String]) -> [SKSpriteNode] {

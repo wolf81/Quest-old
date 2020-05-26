@@ -25,6 +25,15 @@
 		79042E74247BF86700730646 /* Tileset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E73247BF86700730646 /* Tileset.swift */; };
 		79042E75247BF86700730646 /* Tileset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E73247BF86700730646 /* Tileset.swift */; };
 		79042E76247BF86700730646 /* Tileset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E73247BF86700730646 /* Tileset.swift */; };
+		79042E78247CD54D00730646 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E77247CD54D00730646 /* GameState.swift */; };
+		79042E79247CD54D00730646 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E77247CD54D00730646 /* GameState.swift */; };
+		79042E7A247CD54D00730646 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E77247CD54D00730646 /* GameState.swift */; };
+		79042E7D247CD61A00730646 /* DungeonConfigurationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E7C247CD61A00730646 /* DungeonConfigurationExtensions.swift */; };
+		79042E7E247CD61A00730646 /* DungeonConfigurationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E7C247CD61A00730646 /* DungeonConfigurationExtensions.swift */; };
+		79042E7F247CD61A00730646 /* DungeonConfigurationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E7C247CD61A00730646 /* DungeonConfigurationExtensions.swift */; };
+		79042E82247CD8A900730646 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E81247CD8A900730646 /* DataLoader.swift */; };
+		79042E83247CD8A900730646 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E81247CD8A900730646 /* DataLoader.swift */; };
+		79042E84247CD8A900730646 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79042E81247CD8A900730646 /* DataLoader.swift */; };
 		7914DD32246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
 		7914DD33246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
 		7914DD34246182120047EFB6 /* EntityDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914DD31246182120047EFB6 /* EntityDrawLayer.swift */; };
@@ -246,6 +255,9 @@
 		79042E6B2478405100730646 /* Projectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Projectile.swift; sourceTree = "<group>"; };
 		79042E6F247AC0B400730646 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		79042E73247BF86700730646 /* Tileset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tileset.swift; sourceTree = "<group>"; };
+		79042E77247CD54D00730646 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		79042E7C247CD61A00730646 /* DungeonConfigurationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DungeonConfigurationExtensions.swift; sourceTree = "<group>"; };
+		79042E81247CD8A900730646 /* DataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
 		7914DD31246182120047EFB6 /* EntityDrawLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDrawLayer.swift; sourceTree = "<group>"; };
 		792467DE246A59A0000568A6 /* Lootable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lootable.swift; sourceTree = "<group>"; };
 		792467E2246AFC03000568A6 /* Inventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
@@ -367,6 +379,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		79042E7B247CD60500730646 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				79042E7C247CD61A00730646 /* DungeonConfigurationExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		79042E80247CD89400730646 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				79042E81247CD8A900730646 /* DataLoader.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		79423B7D239F4A850042B9BD /* EntityLoading */ = {
 			isa = PBXGroup;
 			children = (
@@ -427,6 +455,7 @@
 				79042E6724781BFD00730646 /* EnergyCost.swift */,
 				79042E6F247AC0B400730646 /* Image.swift */,
 				79042E73247BF86700730646 /* Tileset.swift */,
+				79042E77247CD54D00730646 /* GameState.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -475,6 +504,8 @@
 		79C61A6C22A7C413008D3609 /* Quest Shared */ = {
 			isa = PBXGroup;
 			children = (
+				79042E80247CD89400730646 /* Utilities */,
+				79042E7B247CD60500730646 /* Extensions */,
 				7990950A244C9E1E0091791F /* Nodes */,
 				79FC68EB244C49ED00E6D63C /* Scenes */,
 				7960DEB123A6082B00B4CDF8 /* Entities */,
@@ -784,6 +815,7 @@
 				79DF73B42463DD310030E7A8 /* InventoryNode.swift in Sources */,
 				7990950C244C9E410091791F /* StatusBar.swift in Sources */,
 				79042E642478192600730646 /* Energy.swift in Sources */,
+				79042E78247CD54D00730646 /* GameState.swift in Sources */,
 				79C61AA522A7C415008D3609 /* GameScene.swift in Sources */,
 				793A575824459A070089E693 /* Constants.swift in Sources */,
 				79042E74247BF86700730646 /* Tileset.swift in Sources */,
@@ -794,6 +826,7 @@
 				792C698C23A40D4700A729C3 /* Spell.swift in Sources */,
 				79D815742465AEAF0099567B /* PaperDollNode.swift in Sources */,
 				79ACC81E22AB473200AC3BF0 /* Action.swift in Sources */,
+				79042E82247CD8A900730646 /* DataLoader.swift in Sources */,
 				7914DD32246182120047EFB6 /* EntityDrawLayer.swift in Sources */,
 				798C997623A2060000C6EC1C /* MeleeAttackAction.swift in Sources */,
 				79ACC7F122AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
@@ -836,6 +869,7 @@
 				79D6E6DC247A59FE00D7333A /* Door.swift in Sources */,
 				7963DE32239CDE2600183DF2 /* Attribute.swift in Sources */,
 				79FC68F5244C4C4700E6D63C /* SettingsScene.swift in Sources */,
+				79042E7D247CD61A00730646 /* DungeonConfigurationExtensions.swift in Sources */,
 				79DF73AC2462D3570030E7A8 /* StatusUpdatable.swift in Sources */,
 				795746BB22A9029D00E04BEC /* Direction.swift in Sources */,
 				79D81570246572450099567B /* ButtonNode.swift in Sources */,
@@ -859,6 +893,7 @@
 				7960DED823A6083400B4CDF8 /* EntityProtocol.swift in Sources */,
 				79DF73B52463DD310030E7A8 /* InventoryNode.swift in Sources */,
 				79042E652478192600730646 /* Energy.swift in Sources */,
+				79042E79247CD54D00730646 /* GameState.swift in Sources */,
 				7990950D244C9E410091791F /* StatusBar.swift in Sources */,
 				79C61AA622A7C415008D3609 /* GameScene.swift in Sources */,
 				79042E75247BF86700730646 /* Tileset.swift in Sources */,
@@ -869,6 +904,7 @@
 				79C61A8C22A7C415008D3609 /* GameViewController.swift in Sources */,
 				79D815752465AEAF0099567B /* PaperDollNode.swift in Sources */,
 				792C698D23A40D4700A729C3 /* Spell.swift in Sources */,
+				79042E83247CD8A900730646 /* DataLoader.swift in Sources */,
 				7914DD33246182120047EFB6 /* EntityDrawLayer.swift in Sources */,
 				79ACC81F22AB473200AC3BF0 /* Action.swift in Sources */,
 				798C997723A2060000C6EC1C /* MeleeAttackAction.swift in Sources */,
@@ -911,6 +947,7 @@
 				79D6E6DD247A59FE00D7333A /* Door.swift in Sources */,
 				7963DE33239CDE2600183DF2 /* Attribute.swift in Sources */,
 				79FC68F6244C4C4700E6D63C /* SettingsScene.swift in Sources */,
+				79042E7E247CD61A00730646 /* DungeonConfigurationExtensions.swift in Sources */,
 				79DF73AD2462D3570030E7A8 /* StatusUpdatable.swift in Sources */,
 				795746BC22A9029D00E04BEC /* Direction.swift in Sources */,
 				79D81571246572450099567B /* ButtonNode.swift in Sources */,
@@ -929,6 +966,7 @@
 				79FC68F3244C4A9000E6D63C /* MainMenuScene.swift in Sources */,
 				79D815762465AEAF0099567B /* PaperDollNode.swift in Sources */,
 				79C61AA722A7C415008D3609 /* GameScene.swift in Sources */,
+				79042E7A247CD54D00730646 /* GameState.swift in Sources */,
 				794864D522A7E60300F84A72 /* Game.swift in Sources */,
 				79D6E6DE247A59FE00D7333A /* Door.swift in Sources */,
 				79ACC81C22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
@@ -965,6 +1003,7 @@
 				79042E5E2469473800730646 /* Equippable.swift in Sources */,
 				79DF73B62463DD310030E7A8 /* InventoryNode.swift in Sources */,
 				79D81572246572450099567B /* ButtonNode.swift in Sources */,
+				79042E84247CD8A900730646 /* DataLoader.swift in Sources */,
 				794864D122A7E48400F84A72 /* GameView.swift in Sources */,
 				7963DE59239E456900183DF2 /* ActionBarButton.swift in Sources */,
 				7960DECC23A6082B00B4CDF8 /* Actor.swift in Sources */,
@@ -991,6 +1030,7 @@
 				79042E6E2478405100730646 /* Projectile.swift in Sources */,
 				79742A6C239E60A7008504E8 /* Gender.swift in Sources */,
 				798C997823A2060000C6EC1C /* MeleeAttackAction.swift in Sources */,
+				79042E7F247CD61A00730646 /* DungeonConfigurationExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
