@@ -30,10 +30,10 @@ class GameState {
     
     private var activeActorIndex: Int = 0
     
-    private var loot: [Lootable] { self.entities.filter({ $0 is Lootable }) as! [Lootable] }
+    var loot: [Lootable] { self.entities.filter({ $0 is Lootable }) as! [Lootable] }
 
     var entities: [Entity] = []
-
+    
     private var actors: [Actor] { self.entities.filter({ $0 is Actor }) as! [Actor] }
     
     var monsters: [Monster] { self.entities.filter({ $0 is Monster }) as! [Monster] }
@@ -229,7 +229,7 @@ class GameState {
         
         var lootRoomIds: [UInt] = []
         
-        let lootCount = max(roomCount / 1, 1)
+        let lootCount = max(roomCount / 6, 1)
         while lootRoomIds.count < lootCount {
             let roomId = UInt(arc4random_uniform(UInt32(roomCount))) + 1
             

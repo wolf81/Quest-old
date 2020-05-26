@@ -20,7 +20,7 @@ protocol GameDelegate: class {
     func gameDidRangedAttack(actor: Actor, targetActor: Actor, projectile: Projectile, isHit: Bool)
     
     func gameDidInteract(by actor: Actor, with entity: EntityProtocol)
-    
+        
     func gameDidChangeSelectionMode(_ selectionMode: SelectionMode)
 }
 
@@ -240,9 +240,14 @@ class Game {
             case let move as MoveAction:
 //                print("\(move.actor.name) @ \(move.actor.coord.x).\(move.actor.coord.y) is performing move")
                 // after the hero moved to a new location, update the visible tiles for the hero
-                if action.actor is Hero {
+                if let hero = action.actor as? Hero {
                     self.state.updateActiveActors()
-                    updateVisibility(for: action.actor)
+                    updateVisibility(for: hero)
+                    if let loot = self.state.getLoot(at: hero.coord) {
+                        self.state.remove(entity: loot)
+                        hero.addToBackpack(loot)
+                        self.delegate?.gameDidDestroy(entity: loot)
+                    }
                 }
                 self.delegate?.gameDidMove(entity: move.actor, path: move.path)
             case let attack as MeleeAttackAction:

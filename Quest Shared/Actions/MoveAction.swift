@@ -42,13 +42,7 @@ class MoveAction: Action, StatusUpdatable {
         
         self.actor.energy.drain(max(energyCost, 0))
 
-        for coord in self.path {
-            if let hero = self.actor as? Hero, let loot = state.getLoot(at: coord) {
-                state.remove(entity: loot)
-                hero.addToBackpack(loot)
-            }
-            self.actor.coord = self.toCoord
-        }
+        self.actor.coord = self.toCoord
 
         self.message = "\(self.actor.name) moved to \(self.toCoord.x).\(self.toCoord.y)"
     }

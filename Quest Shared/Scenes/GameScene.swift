@@ -325,7 +325,22 @@ extension GameScene: GameDelegate {
                     entity.sprite.removeFromParent()
                 }
             }
-            
+
+            for entity in self.game.state.loot {
+                if self.game.state.actorVisibleCoords.contains(entity.coord) {
+                    
+                    if entity.sprite.parent == nil {
+                        self.world.addChild(entity.sprite)
+                    }
+                    else {
+                        let position = GameScene.pointForCoord(path.last!)
+                        hero.sprite.run(SKAction.move(to: position, duration: 2.0))
+                    }
+                } else {
+                    entity.sprite.removeFromParent()
+                }
+            }
+                        
             // add sprites for all newly added tiles ... these are tiles that used to be out of view bounds
             let addedCoords = viewVisibleCoords.subtracting(self.game.viewVisibleCoords)
             for coord in addedCoords {
