@@ -46,9 +46,7 @@ class Game {
     public let state: GameState
     
     public weak var delegate: GameDelegate?
-                    
-    private var tileSize: CGSize = .zero
-    
+                        
     private var selectionMode: SelectionMode = .none {
         didSet {
             self.delegate?.gameDidChangeSelectionMode(self.selectionMode)
@@ -154,10 +152,8 @@ class Game {
         self.selectionMode = .selectMeleeTarget
     }
             
-    func start(levelIdx: Int = 0, tileSize: CGSize) {
-        self.tileSize = tileSize
-        
-        let mapSize = CGSize(width: Int(self.state.width), height: Int(self.state.height))
+    func start(levelIdx: Int = 0, tileSize: CGSize) {        
+        let mapSize = CGSize(width: Int(self.state.mapWidth), height: Int(self.state.mapHeight))
         self.visibility = RaycastVisibility(mapSize: mapSize, blocksLight: {
             if let door = self.state.getDoor(at: $0) {
                 return door.isOpen == false

@@ -187,10 +187,10 @@ class GameScene: SKScene, SceneManagerConstructable {
         let maxCoord = GameScene.coordForPoint(CGPoint(x: maxX, y: maxY))
                                 
         let y1 = max(Int32(minCoord.y - 1), 0)
-        let y2 = min(Int32(maxCoord.y + 1), Int32(self.game.state.height - 1))
+        let y2 = min(Int32(maxCoord.y + 1), Int32(self.game.state.mapHeight - 1))
         
         let x1 = max(Int32(minCoord.x - 1), 0)
-        let x2 = min(Int32(maxCoord.x + 1), Int32(self.game.state.width - 1))
+        let x2 = min(Int32(maxCoord.x + 1), Int32(self.game.state.mapWidth - 1))
 
         return (vector_int2(x1, y1), vector_int2(x2, y2))
     }

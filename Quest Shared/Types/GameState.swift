@@ -18,14 +18,14 @@ enum NodeType: Int {
 }
 
 class GameState {
-    lazy var width: Int32 = { Int32(self.dungeonInternal.width) }()
-    lazy var height: Int32 = { Int32(self.dungeonInternal.height) }()
+    private var map: [[NodeType]] = []
 
-    private let dungeonInternal: Dungeon
-    
-    // level tiles used for walls, floor, etc...
-    private var dungeon: [[NodeType]] = []
-    
+    lazy var mapSize: CGSize = { CGSize(width: Int(self.mapWidth), height: Int(self.mapHeight)) }()
+    lazy var mapWidth: Int32 = { Int32(self.map[0].count) }()
+    lazy var mapHeight: Int32 = { Int32(self.map.count) }()
+
+//    private let dungeonInternal: Dungeon
+        
     var hero: Hero
     
     private var activeActorIndex: Int = 0
@@ -52,10 +52,10 @@ class GameState {
         let name = json["name"] as! String
         let configuration = DungeonConfiguration(json: json["dungeon"] as! [String: Any])
         let builder = DungeonBuilder(configuration: configuration)
-        self.dungeonInternal = builder.build(name: name)
-        print(self.dungeonInternal)
+        let dungeon = builder.build(name: name)
+        print(dungeon)
                                 
-        configure(for: self.dungeonInternal, entityFactory: entityFactory)
+        configure(for: dungeon, entityFactory: entityFactory)
     }
     
     private func configure(for dungeon: Dungeon, entityFactory: EntityFactory) {
@@ -76,47 +76,11 @@ class GameState {
             nodes.append(row)
         }
         
-        self.dungeon = nodes
-            
-        addHeroToRoom(1)
-                
-        var tiles: [[TileProtocol]] = []
-                        
-        let tileset = try! DataLoader.load(type: Tileset.self, fromFileNamed: "catacombs", inDirectory: "Data/Tileset")
+        self.map = nodes
         
-        var roomPotionInfo: [UInt: vector_int2] = [:]
-        
-        for y in (0 ..< Int32(self.height)) {
-            var tileRow: [TileProtocol] = []
-            
-            for x in (0 ..< Int32(self.width)) {
-                let coord = vector_int2(x, y)
-                let tile = self[coord]
-                var entity: TileProtocol
-
-                switch tile {
-                case .open: entity = Tile(sprite: tileset.getFloorTile(), coord: coord)
-                case .blocked: entity = Tile(sprite: tileset.getWallTile(), coord: coord)
-                case .door: entity = try! entityFactory.newEntity(type: Door.self, name: "Door", coord: coord)
-                }
-
-                tileRow.append(entity)
-                                
-//                if let roomId = level.getRoomId(at: coord), roomPotionInfo[roomId] == nil, [2, 8, 9].contains(roomId), let room = level.roomInfo[roomId] {
-//                    let coord = vector_int2(Int32(room.coord.x + room.width - 2), Int32(room.coord.y + room.height - 2))
-//                    let potion = try! entityFactory.newEntity(type: Potion.self, name: "Health Potion", coord: coord)
-//                    entities.append(potion)
-//                    print("potion added to room: \(roomId) @ \(coord.x).\(coord.y)")
-//
-//                    roomPotionInfo[roomId] = coord
-//                }
-            }
-            tiles.append(tileRow)
-        }
-        
-        self.tiles = tiles
-        
-        addMonsters(entityFactory: entityFactory)
+        addTiles(to: dungeon, entityFactory: entityFactory)
+        addHero(to: dungeon, roomId: 1)
+        addMonsters(to: dungeon, entityFactory: entityFactory)
     }
     
     func getLoot(at coord: vector_int2) -> Lootable? {
@@ -130,8 +94,8 @@ class GameState {
     func updateActiveActors() {
         self.activeActors.removeAll()
         
-        let xRange = max(self.hero.coord.x - 10, 0) ... min(self.hero.coord.x + 10, self.width)
-        let yRange = max(self.hero.coord.y - 10, 0) ... min(self.hero.coord.y + 10, self.height)
+        let xRange = max(self.hero.coord.x - 10, 0) ... min(self.hero.coord.x + 10, self.mapWidth)
+        let yRange = max(self.hero.coord.y - 10, 0) ... min(self.hero.coord.y + 10, self.mapHeight)
         
         for actor in self.actors {
             if xRange.contains(actor.coord.x) && yRange.contains(actor.coord.y) {
@@ -152,9 +116,9 @@ class GameState {
     }
 
     func getMovementGraph(for actor: Actor, range: Int32, excludedCoords: [vector_int2]) -> GKGridGraph<GKGridGraphNode> {
-        let xRange = getRange(position: actor.coord.x, radius: range, constrainedTo: 0 ..< self.width)
+        let xRange = getRange(position: actor.coord.x, radius: range, constrainedTo: 0 ..< self.mapWidth)
         let width = xRange.upperBound - xRange.lowerBound
-        let yRange = getRange(position: actor.coord.y, radius: range, constrainedTo: 0 ..< self.height)
+        let yRange = getRange(position: actor.coord.y, radius: range, constrainedTo: 0 ..< self.mapHeight)
         let height = yRange.upperBound - yRange.lowerBound
         
         // Create a graph for the visible area
@@ -206,7 +170,7 @@ class GameState {
 //        }
     
     subscript(coord: vector_int2) -> NodeType {
-        return self.dungeon[Int(coord.y)][Int(coord.x)]
+        return self.map[Int(coord.y)][Int(coord.x)]
     }
         
     func remove(entity: Entity) {
@@ -230,9 +194,49 @@ class GameState {
     
     // MARK: - Private
     
-    private func addMonsters(entityFactory: EntityFactory) {
+    private func addTiles(to dungeon: Dungeon, entityFactory: EntityFactory) {
+        var tiles: [[TileProtocol]] = []
+                       
+        let tileset = try! DataLoader.load(type: Tileset.self, fromFileNamed: "catacombs", inDirectory: "Data/Tileset")
+
+        for y in (0 ..< Int32(self.mapHeight)) {
+           var tileRow: [TileProtocol] = []
+           
+           for x in (0 ..< Int32(self.mapWidth)) {
+               let coord = vector_int2(x, y)
+               let tile = self[coord]
+               var entity: TileProtocol
+
+               switch tile {
+               case .open: entity = Tile(sprite: tileset.getFloorTile(), coord: coord)
+               case .blocked: entity = Tile(sprite: tileset.getWallTile(), coord: coord)
+               case .door: entity = try! entityFactory.newEntity(type: Door.self, name: "Door", coord: coord)
+               }
+
+               tileRow.append(entity)
+           }
+           tiles.append(tileRow)
+        }
+        
+        self.tiles = tiles
+               
+        /*
+         var roomPotionInfo: [UInt: vector_int2] = [:]
+
+         if let roomId = level.getRoomId(at: coord), roomPotionInfo[roomId] == nil, [2, 8, 9].contains(roomId), let room = level.roomInfo[roomId] {
+             let coord = vector_int2(Int32(room.coord.x + room.width - 2), Int32(room.coord.y + room.height - 2))
+             let potion = try! entityFactory.newEntity(type: Potion.self, name: "Health Potion", coord: coord)
+             entities.append(potion)
+             print("potion added to room: \(roomId) @ \(coord.x).\(coord.y)")
+
+             roomPotionInfo[roomId] = coord
+         }
+         */
+    }
+    
+    private func addMonsters(to dungeon: Dungeon, entityFactory: EntityFactory) {
         var monsterCount = 0
-        for (roomId, room) in self.dungeonInternal.roomInfo {
+        for (roomId, room) in dungeon.roomInfo {
             // TODO: fix room coord calc in DungeonBuilder, so we don't have to do the following to get good coords ...
             let roomCoord = vector_int2(Int32(room.coord.y + room.height / 2), Int32(room.coord.x + room.width / 2))
             
@@ -254,8 +258,8 @@ class GameState {
         }
     }
     
-    private func addHeroToRoom(_ roomId: UInt) {
-        let room = self.dungeonInternal.roomInfo[1]!
+    private func addHero(to dungeon: Dungeon, roomId: UInt) {
+        let room = dungeon.roomInfo[roomId]!
         self.hero.coord = vector_int2(Int32(room.coord.y), Int32(room.coord.x))
         self.entities.append(self.hero)
     }
@@ -265,13 +269,13 @@ extension GameState: CustomStringConvertible {
     var description: String {
         var description: String = ""
         
-        for y in 0 ..< Int(self.height) {
-            for x in 0 ..< Int(self.width) {
+        for y in 0 ..< Int(self.mapHeight) {
+            for x in 0 ..< Int(self.mapWidth) {
                 if self.hero.coord == vector_int2(Int32(x), Int32(y)) {
                     description += "H "
                 }
                 
-                let value = self.dungeon[x][y]
+                let value = self.map[x][y]
                 switch value {
                 case .open: description += "` "
                 case .blocked: description += "  "
