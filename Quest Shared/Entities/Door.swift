@@ -46,20 +46,10 @@ class Door: GKGridGraphNode & TileProtocol {
             
     func getSprite(isOpen: Bool) -> SKSpriteNode {
         let spriteInfo = self.json["sprite"] as! [String: String]
-        let spriteName = spriteInfo[isOpen ? "open" : "closed"]!
-        
-        return loadSprite(spriteName: spriteName)
+        let spriteName = spriteInfo[isOpen ? "open" : "closed"]!        
+        return Entity.loadSprite(type: self, spriteName: spriteName)
     }
-    
-    private func loadSprite(spriteName: String) -> SKSpriteNode {
-        let texture = SKTexture(imageNamed: spriteName)
-        let sprite = SKSpriteNode(texture: texture, size: Constants.tileSize)
         
-        sprite.zPosition = DrawLayerHelper.zPosition(for: self)
-
-        return sprite
-    }
-    
     func copy(coord: vector_int2, entityFactory: EntityFactory) -> Self {
         copyInternal(coord: coord, entityFactory: entityFactory)
     }

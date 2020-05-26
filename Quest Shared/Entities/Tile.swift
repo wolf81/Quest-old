@@ -20,22 +20,9 @@ class Tile: GKGridGraphNode & TileProtocol {
         return self.json["name"] as! String;
     }()
     
-    lazy var sprite: SKSpriteNode = {        
-        // TODO:
-        // ideally we don't know the sprite size here or perhaps the textures should be of
-        // appropriate size already - the game scene controls the tile size
-
-        guard let spriteName = self.json["sprite"] as? String else {
-            let sprite = SKSpriteNode(color: SKColor.lightGray, size: Constants.tileSize)
-            sprite.zPosition = DrawLayerHelper.zPosition(for: self)
-            return sprite
-        }
-        let texture = SKTexture(imageNamed: spriteName)
-        let sprite = SKSpriteNode(texture: texture, size: Constants.tileSize)
-        
-        sprite.zPosition = DrawLayerHelper.zPosition(for: self)
-
-        return sprite
+    lazy var sprite: SKSpriteNode = {
+        let spriteName = self.json["sprite"] as! String
+        return Entity.loadSprite(type: self, spriteName: spriteName)
     }()
     
     required init(json: [String : Any], entityFactory: EntityFactory, coord: vector_int2) {

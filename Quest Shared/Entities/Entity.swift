@@ -27,8 +27,7 @@ class Entity: EntityProtocol & Hashable {
     }()
         
     lazy var sprite: SKSpriteNode = {
-        guard let spriteName = self.json["sprite"] as? String else { fatalError() }
-        
+        guard let spriteName = self.json["sprite"] as? String else { fatalError() }        
         return Entity.loadSprite(type: self, spriteName: spriteName)
     }()
     

@@ -35,7 +35,9 @@ class GameState {
     var entities: [Entity] = []
 
     private var actors: [Actor] { self.entities.filter({ $0 is Actor }) as! [Actor] }
-        
+    
+    var monsters: [Monster] { self.entities.filter({ $0 is Monster }) as! [Monster] }
+    
     private(set) var tiles: [[TileProtocol]] = []
         
     var actorVisibleCoords = Set<vector_int2>()
@@ -234,7 +236,7 @@ class GameState {
             if lootRoomIds.contains(roomId) { continue }
             
             let room = dungeon.roomInfo[roomId]!
-            let coord = vector_int2(Int32(room.coord.y + room.height - 1), Int32(room.coord.x + room.width - 1))
+            let coord = vector_int2(Int32(room.coord.y + room.height - 2), Int32(room.coord.x + room.width - 2))
             let potion = try! entityFactory.newEntity(type: Potion.self, name: "Health Potion", coord: coord)
             self.entities.append(potion)
             
@@ -284,7 +286,7 @@ extension GameState: CustomStringConvertible {
                     continue
                 }
                 
-                if let loot = getLoot(at: coord) {
+                if let _ = getLoot(at: coord) {
                     description += "L "
                     continue
                 }

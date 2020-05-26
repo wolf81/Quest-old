@@ -47,8 +47,8 @@ class Potion: Entity & Usable & Lootable {
             }
         }
         self.effects = effects
-        
-        super.init(json: json, entityFactory: entityFactory)
+                
+        super.init(json: json, entityFactory: entityFactory)        
     }
     
     func use(actor: Actor) {

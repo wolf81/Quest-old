@@ -66,19 +66,8 @@ class Game {
 
 //    private(set) var selectionModeCoords = Set<vector_int2>()
     private(set) var selectionModeTiles: [OverlayTile] = []
-        
-    // a list of dungeon loot
-    var loot: [Lootable] { self.state.entities.filter({ $0 is Lootable }) as! [Lootable] }
-    
-    var monsters: [Monster] { self.state.entities.filter({ $0 is Monster }) as! [Monster] }
-        
+                
     var actions: [Action] = []
-                    
-    func getRange(position: Int32, radius: Int32, constrainedTo range: Range<Int32>) -> Range<Int32> {
-        let minValue = max(position - radius, range.lowerBound)
-        let maxValue = min(position + radius + 1, range.upperBound)
-        return Int32(minValue) ..< Int32(maxValue)
-    }
         
     // MARK: - Public
     
@@ -93,7 +82,7 @@ class Game {
         ]
         
         for coord in coords {
-            if self.state[coord] == .open && self.monsters.filter({ $0.coord == coord }).count == 0 {
+            if self.state[coord] == .open && self.state.monsters.filter({ $0.coord == coord }).count == 0 {
                 self.selectionModeTiles.append(OverlayTile(color: SKColor.green.withAlphaComponent(0.5), coord: coord, isBlocked: false))
             }
         }
@@ -144,7 +133,7 @@ class Game {
                 
                 if coord == self.state.hero.coord { continue }
         
-                if let _ = self.monsters.filter({ $0.coord == coord }).first {
+                if let _ = self.state.monsters.filter({ $0.coord == coord }).first {
                     self.selectionModeTiles.append(OverlayTile(color: SKColor.red.withAlphaComponent(0.5), coord: coord, isBlocked: false))
                 }
             }

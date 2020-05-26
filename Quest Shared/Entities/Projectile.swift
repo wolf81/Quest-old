@@ -17,17 +17,7 @@ class Projectile: Entity {
         let direction = Direction.relative(from: origin, to: target)                
         let name = String(describing: direction)
         let spriteInfo = self.json["sprite"] as! [String: String]
-        let spriteName = spriteInfo[name]!
-        
-        loadSprite(spriteName: spriteName)
-    }
-    
-    private func loadSprite(spriteName: String) {
-        let texture = SKTexture(imageNamed: spriteName)
-        let sprite = SKSpriteNode(texture: texture, size: Constants.tileSize)
-        
-        sprite.zPosition = DrawLayerHelper.zPosition(for: self)
-
-        self.sprite = sprite
-    }
+        let spriteName = spriteInfo[name]!        
+        self.sprite = Entity.loadSprite(type: self, spriteName: spriteName)
+    }    
 }
