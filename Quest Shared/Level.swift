@@ -10,6 +10,7 @@ import Foundation
 import SpriteKit
 import DungeonBuilder
 
+/*
 struct Level: CustomStringConvertible {
     lazy var width: Int32 = { Int32(self.dungeon.width) }()
     lazy var height: Int32 = { Int32(self.dungeon.height) }()
@@ -19,19 +20,21 @@ struct Level: CustomStringConvertible {
     private let dungeon: Dungeon
     
     init() {
-        self.dungeon = try! GameState(level: 0).dungeon
-//        let dungeonConfiguration = DungeonConfiguration(
-//            dungeonSize: DungeonSize.large,
-//            dungeonLayout: .rectangle,
-//            roomSize: .medium,
-//            roomLayout: .dense,
-//            corridorLayout: .straight,
-//            deadEndRemoval: .all,
-//            doors: .basic
-//        )
-//
-//        let builder = DungeonBuilder(configuration: dungeonConfiguration)
-//        self.dungeon = builder.build(name: "First Encounter")
+        let state = try! GameState(level: 0)
+        print(state)
+        
+        let dungeonConfiguration = DungeonConfiguration(
+            dungeonSize: DungeonSize.large,
+            dungeonLayout: .rectangle,
+            roomSize: .medium,
+            roomLayout: .dense,
+            corridorLayout: .straight,
+            deadEndRemoval: .all,
+            doors: .basic
+        )
+
+        let builder = DungeonBuilder(configuration: dungeonConfiguration)
+        self.dungeon = builder.build(name: "First Encounter")
     }
     
     func getRoomId(at coord: vector_int2) -> UInt? {
@@ -66,3 +69,4 @@ struct Level: CustomStringConvertible {
         return self.dungeon.description
     }
 }
+ */

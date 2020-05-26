@@ -2,7 +2,7 @@
     "name": "First Encounter",
     "dungeon": {
         "layout": "square",
-        "size": "medium",
+        "size": "tiny",
         "room": {
             "layout": "dense",
             "size": "medium",
@@ -12,5 +12,9 @@
             "layout": "straight",
             "deadEndRemoval": "all",
         }
+    },
+    "tilesets": {
+        "main": "catacombs",
+        "alt": ["orc", "marble"],
     }
 }

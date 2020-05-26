@@ -43,7 +43,9 @@ enum SelectionMode {
 }
 
 class Game {
-    public var level: Level!
+//    public var level: Level!
+    
+    public var state: GameState!
     
     public weak var delegate: GameDelegate?
     
@@ -69,7 +71,7 @@ class Game {
     }
 
     // all currently existing entities (players, monsters, loot), entities that are destroyed are removed
-    private(set) var entities: [Entity] = []
+    var entities: [Entity] { self.state.entities }
             
     // level tiles used for walls, floor, etc...
     private(set) var tiles: [[TileProtocol]] = []
@@ -96,10 +98,10 @@ class Game {
     
     var actions: [Action] = []
     
-    // get a value for a tile at a coordinate, can be nil when out of range and is otherwise some integer value that represents a wall, floor or other scenery
-    func getTile(at coord: vector_int2) -> Int? {
-        self.level[coord]
-    }
+//    // get a value for a tile at a coordinate, can be nil when out of range and is otherwise some integer value that represents a wall, floor or other scenery
+//    func getTile(at coord: vector_int2) -> Int {
+//        return self.state[coord].rawValue
+//    }
     
     func getActor(at coord: vector_int2) -> Actor? {
         return self.actors.filter({ $0.coord == coord }).first
@@ -114,14 +116,14 @@ class Game {
             return false
         }
 
-        let node = self.level.getNode(at: coord)
+        let node = self.state[coord]
         
-        if node.contains(.door) {
+        if node == .door {
             let door = self.tiles[Int(coord.y)][Int(coord.x)] as! Door
             return door.isOpen
         }
         
-        return node.contains(.openspace) || node.contains(.room) || node.contains(.corridor)
+        return node == .open
     }
     
     func getRange(position: Int32, radius: Int32, constrainedTo range: Range<Int32>) -> Range<Int32> {
@@ -131,9 +133,9 @@ class Game {
     }
     
     func getMovementGraph(for actor: Actor, range: Int32, excludedCoords: [vector_int2]) -> GKGridGraph<GKGridGraphNode> {
-        let xRange = getRange(position: actor.coord.x, radius: range, constrainedTo: 0 ..< self.level.width)
+        let xRange = getRange(position: actor.coord.x, radius: range, constrainedTo: 0 ..< self.state.width)
         let width = xRange.upperBound - xRange.lowerBound
-        let yRange = getRange(position: actor.coord.y, radius: range, constrainedTo: 0 ..< self.level.height)
+        let yRange = getRange(position: actor.coord.y, radius: range, constrainedTo: 0 ..< self.state.height)
         let height = yRange.upperBound - yRange.lowerBound
         
         // Create a graph for the visible area
@@ -142,7 +144,7 @@ class Game {
             for y in movementGraph.gridOrigin.y ..< (movementGraph.gridOrigin.y + Int32(movementGraph.gridHeight)) {
                 let coord = vector_int2(x, y)
                                 
-                if self.actorVisibleCoords.contains(coord) == false || getTile(at: coord) == 1 {
+                if self.actorVisibleCoords.contains(coord) == false || self.state[coord] == .blocked {
                     if let node = movementGraph.node(atGridPosition: coord) {
                         movementGraph.remove([node])
                     }
@@ -170,9 +172,9 @@ class Game {
     
     private func getVisiblityGraph(for actor: Actor) -> GKGridGraph<GKGridGraphNode> {
         let radius: Int32 = 1
-        let xRange = getRange(position: actor.coord.x, radius: radius, constrainedTo: 0 ..< self.level.width)
+        let xRange = getRange(position: actor.coord.x, radius: radius, constrainedTo: 0 ..< self.state.width)
         let width = xRange.upperBound - xRange.lowerBound
-        let yRange = getRange(position: actor.coord.y, radius: radius, constrainedTo: 0 ..< self.level.height)
+        let yRange = getRange(position: actor.coord.y, radius: radius, constrainedTo: 0 ..< self.state.height)
         let height = yRange.upperBound - yRange.lowerBound
 
         // Create a graph for the visible area
@@ -181,7 +183,7 @@ class Game {
             for y in visibleAreaGraph.gridOrigin.y ..< (visibleAreaGraph.gridOrigin.y + Int32(visibleAreaGraph.gridHeight)) {
                 let coord = vector_int2(x, y)
 
-                if isInRange(origin: actor.coord, radius: radius, coord: coord) == false || getTile(at: coord) == 1 {
+                if isInRange(origin: actor.coord, radius: radius, coord: coord) == false || self.state[coord] == .blocked {
                     if let node = visibleAreaGraph.node(atGridPosition: coord) {
                         visibleAreaGraph.remove([node])
                     }
@@ -205,7 +207,7 @@ class Game {
         ]
         
         for coord in coords {
-            if self.getTile(at: coord) == 0 && self.monsters.filter({ $0.coord == coord }).count == 0 {
+            if self.state[coord] == .open && self.monsters.filter({ $0.coord == coord }).count == 0 {
                 self.selectionModeTiles.append(OverlayTile(color: SKColor.green.withAlphaComponent(0.5), coord: coord, isBlocked: false))
             }
         }
@@ -266,20 +268,22 @@ class Game {
     }
             
     func start(levelIdx: Int = 0, tileSize: CGSize) {
-        self.level = Level()
-        print(self.level!)
+        self.state = try! GameState(level: 0, hero: self.hero, entityFactory: self.entityFactory)
+
+//        self.level = Level()
+//        print(self.level!)
         
         self.tileSize = tileSize
         
-        let mapSize = CGSize(width: Int(self.level.width), height: Int(self.level.height))
+        let mapSize = CGSize(width: Int(self.state.width), height: Int(self.state.height))
         self.visibility = RaycastVisibility(mapSize: mapSize, blocksLight: {
-            let node = self.level.getNode(at: $0)
-            if node.contains(.door) {
+            let node = self.state[$0]
+            if node == .door {
                 let door = self.tiles[Int($0.y)][Int($0.x)] as! Door
                 return door.isOpen == false
             }
             
-            return node.isDisjoint(with: .openspace)
+            return node == .blocked
         }, setVisible: {
             self.actorVisibleCoords.insert($0)
         }, getDistance: {
@@ -297,73 +301,73 @@ class Game {
         
         var roomPotionInfo: [UInt: vector_int2] = [:]
         
-        for y in (0 ..< Int32(self.level.height)) {
+        for y in (0 ..< Int32(self.state.height)) {
             var tileRow: [TileProtocol] = []
             
-            for x in (0 ..< Int32(self.level.width)) {
+            for x in (0 ..< Int32(self.state.width)) {
                 let coord = vector_int2(x, y)
-                let tile = self.level[coord]
+                let tile = self.state[coord]
                 var entity: TileProtocol
 
                 switch tile {
-                case 0: entity = Tile(sprite: tileset.getFloorTile(), coord: coord)
-                case 1: entity = Tile(sprite: tileset.getWallTile(), coord: coord)
-                case 2: entity = try! entityFactory.newEntity(type: Door.self, name: "Door", coord: coord)
+                case .open: entity = Tile(sprite: tileset.getFloorTile(), coord: coord)
+                case .blocked: entity = Tile(sprite: tileset.getWallTile(), coord: coord)
+                case .door: entity = try! entityFactory.newEntity(type: Door.self, name: "Door", coord: coord)
                 default: fatalError()
                 }
 
                 tileRow.append(entity)
                                 
-                if let roomId = level.getRoomId(at: coord), roomPotionInfo[roomId] == nil, [2, 8, 9].contains(roomId), let room = level.roomInfo[roomId] {
-                    let coord = vector_int2(Int32(room.coord.x + room.width - 2), Int32(room.coord.y + room.height - 2))
-                    let potion = try! entityFactory.newEntity(type: Potion.self, name: "Health Potion", coord: coord)
-                    entities.append(potion)
-                    print("potion added to room: \(roomId) @ \(coord.x).\(coord.y)")
-                    
-                    roomPotionInfo[roomId] = coord
-                }
-                
-                if !didAddHero, let roomId = level.getRoomId(at: coord) {
-                    print("level size: \(self.level.width) x \(self.level.height)")
-                    print("hero added to room: \(roomId) @ \(coord.x).\(coord.y)")
-                    self.hero.coord = coord
-                    entities.append(self.hero)
-                    print(self.hero)
-                    
-                    didAddHero = true
-                }
+//                if let roomId = level.getRoomId(at: coord), roomPotionInfo[roomId] == nil, [2, 8, 9].contains(roomId), let room = level.roomInfo[roomId] {
+//                    let coord = vector_int2(Int32(room.coord.x + room.width - 2), Int32(room.coord.y + room.height - 2))
+//                    let potion = try! entityFactory.newEntity(type: Potion.self, name: "Health Potion", coord: coord)
+//                    entities.append(potion)
+//                    print("potion added to room: \(roomId) @ \(coord.x).\(coord.y)")
+//
+//                    roomPotionInfo[roomId] = coord
+//                }
+//
+//                if !didAddHero, let roomId = level.getRoomId(at: coord) {
+//                    print("level size: \(self.level.width) x \(self.level.height)")
+//                    print("hero added to room: \(roomId) @ \(coord.x).\(coord.y)")
+//                    self.hero.coord = coord
+//                    entities.append(self.hero)
+//                    print(self.hero)
+//
+//                    didAddHero = true
+//                }
             }
             tiles.append(tileRow)
         }
         
-        var monsterCount = 0
-        for (roomId, room) in self.level.roomInfo {
-            // TODO: fix room coord calc in DungeonBuilder, so we don't have to do the following to get good coords ...
-            let roomCoord = vector_int2(Int32(room.coord.x + room.width / 2), Int32(room.coord.y + room.height / 2))
-            
-            var monster: Monster
-            
-            print("\(roomId): \(room.coord.x).\( room.coord.y) -> \(roomCoord.x).\(roomCoord.y)")
-            let v = monsterCount.remainderReportingOverflow(dividingBy: 3).partialValue
-            switch v {
-            case 0:
-                monster = try! entityFactory.newEntity(type: Monster.self, name: "Gnoll", coord: roomCoord)
-            case 1:
-                monster = try! entityFactory.newEntity(type: Monster.self, name: "Skeleton", coord: roomCoord)
-            default:
-                monster = try! entityFactory.newEntity(type: Monster.self, name: "Kobold", coord: roomCoord)
-            }            
-            entities.append(monster)
-            
-            monsterCount += 1
-        }
+//        var monsterCount = 0
+//        for (roomId, room) in self.level.roomInfo {
+//            // TODO: fix room coord calc in DungeonBuilder, so we don't have to do the following to get good coords ...
+//            let roomCoord = vector_int2(Int32(room.coord.x + room.width / 2), Int32(room.coord.y + room.height / 2))
+//
+//            var monster: Monster
+//
+//            print("\(roomId): \(room.coord.x).\( room.coord.y) -> \(roomCoord.x).\(roomCoord.y)")
+//            let v = monsterCount.remainderReportingOverflow(dividingBy: 3).partialValue
+//            switch v {
+//            case 0:
+//                monster = try! entityFactory.newEntity(type: Monster.self, name: "Gnoll", coord: roomCoord)
+//            case 1:
+//                monster = try! entityFactory.newEntity(type: Monster.self, name: "Skeleton", coord: roomCoord)
+//            default:
+//                monster = try! entityFactory.newEntity(type: Monster.self, name: "Kobold", coord: roomCoord)
+//            }
+//            entities.append(monster)
+//
+//            monsterCount += 1
+//        }
         
         self.tiles = tiles
-        self.entities = entities
+//        self.entities = entities
 
 
         /* WIP */
- 
+/*
         var tilesets: [Tileset] = []
         for tilesetFile in ["snake", "orc", "marble", "sandstone", "church"] {
             let tileset = try! DataLoader.load(type: Tileset.self, fromFileNamed: tilesetFile, inDirectory: "Data/Tileset")
@@ -423,10 +427,9 @@ class Game {
             }
         }
                 
+ */
         /* WIP */
-                
-        let state = try! GameState(level: 0)
-        
+                        
         updateActiveActors()
         updateVisibility(for: self.hero)
     }
@@ -516,8 +519,8 @@ class Game {
     func updateActiveActors() {
         self.activeActors.removeAll()
         
-        let xRange = max(self.hero.coord.x - 10, 0) ... min(self.hero.coord.x + 10, self.level.width)
-        let yRange = max(self.hero.coord.y - 10, 0) ... min(self.hero.coord.y + 10, self.level.height)
+        let xRange = max(self.state.hero.coord.x - 10, 0) ... min(self.state.hero.coord.x + 10, self.state.width)
+        let yRange = max(self.state.hero.coord.y - 10, 0) ... min(self.state.hero.coord.y + 10, self.state.height)
         
         for actor in self.actors {
             if xRange.contains(actor.coord.x) && yRange.contains(actor.coord.y) {
@@ -547,8 +550,8 @@ class Game {
         ]
 
         for coord in coords {
-            let node = self.level.getNode(at: coord)
-            if node.contains(.door) {
+            let node = self.state[coord]
+            if node == .door {
                 let direction = Direction.relative(from: hero.coord, to: coord)
                 self.selectionMode = .none
                 self.hero.interact(direction: direction)
@@ -557,7 +560,7 @@ class Game {
     }
         
     func remove(entity: Entity) {
-        self.entities.removeAll(where: { $0 == entity })
+        self.state.entities.removeAll(where: { $0 == entity })
         self.delegate?.gameDidDestroy(entity: entity)
     }
 

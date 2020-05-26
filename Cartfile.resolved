@@ -1,2 +1,2 @@
-git "file:///Users/wolf/Development/DungeonBuilder" "532270ff32c4811843fe52f10eefa7f55f711ba7"
+github "wolf81/DungeonBuilder" "v1.0.9"
 github "wolf81/Fenris" "v1.0.9"

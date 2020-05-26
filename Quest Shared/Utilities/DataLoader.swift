@@ -23,13 +23,9 @@ class DataLoader {
         return T(json: json, entityFactory: entityFactory)
     }
     
-    static func loadLevel(index: Int) throws -> Dungeon {
+    static func loadLevel(index: Int) throws -> [String: Any] {
         let path = Bundle.main.path(forResource: "\(index)", ofType: "json", inDirectory: "Data/Level")!
-        let json = try loadJson(path: path)
-        let name = json["name"] as! String
-        let configuration = DungeonConfiguration(json: json["dungeon"] as! [String: Any])
-        let builder = DungeonBuilder(configuration: configuration)
-        return builder.build(name: name)        
+        return try loadJson(path: path)
     }
     
     private static func loadJson(path: String) throws -> [String: Any] {
