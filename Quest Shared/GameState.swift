@@ -43,7 +43,7 @@ class GameState {
     private var activeActorIndex: Int = 0
 
     private(set) var tiles: [[TileProtocol]] = []
-                
+                    
     init(level: Int, hero: Hero, entityFactory: EntityFactory) throws {
         self.hero = hero
         
@@ -118,9 +118,9 @@ class GameState {
     }
 
     func getMovementGraph(for actor: Actor, range: Int32, excludedCoords: [vector_int2]) -> GKGridGraph<GKGridGraphNode> {
-        let xRange = getRange(position: actor.coord.x, radius: range, constrainedTo: 0 ..< self.mapWidth)
+        let xRange = Functions.getRange(origin: actor.coord.x, radius: range, constrainedTo: 0 ..< self.mapWidth)
         let width = xRange.upperBound - xRange.lowerBound
-        let yRange = getRange(position: actor.coord.y, radius: range, constrainedTo: 0 ..< self.mapHeight)
+        let yRange = Functions.getRange(origin: actor.coord.y, radius: range, constrainedTo: 0 ..< self.mapHeight)
         let height = yRange.upperBound - yRange.lowerBound
         
         // Create a graph for the visible area
@@ -155,12 +155,6 @@ class GameState {
         return movementGraph
     }
     
-    func getRange(position: Int32, radius: Int32, constrainedTo range: Range<Int32>) -> Range<Int32> {
-        let minValue = max(position - radius, range.lowerBound)
-        let maxValue = min(position + radius + 1, range.upperBound)
-        return Int32(minValue) ..< Int32(maxValue)
-    }
-        
     func getMapNode(at coord: vector_int2) -> NodeType {
         return self.map[Int(coord.y)][Int(coord.x)]
     }
@@ -272,7 +266,7 @@ class GameState {
         var roomTilesetInfo: [UInt: Bool] = [:]
                 
         for (roomId, room) in dungeon.roomInfo {
-            if arc4random_uniform(4) != 0 || roomTilesetInfo.index(forKey: roomId) != nil { continue }
+            if arc4random_uniform(6) != 0 || roomTilesetInfo.index(forKey: roomId) != nil { continue }
                         
             let midX: Int32 = Int32(room.coord.x + room.width / 2)
             let midY: Int32 = Int32(room.coord.y + room.height / 2)

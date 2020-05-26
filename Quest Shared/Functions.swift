@@ -28,6 +28,12 @@ struct Functions {
         return internalCoordsBetween(p1, p2, isSteep: isSteep)
     }
     
+    static func getRange<T: BinaryInteger>(origin: T, radius: T, constrainedTo range: Range<T>) -> Range<T> {
+        let minValue = max(origin - radius, range.lowerBound)
+        let maxValue = min(origin + radius + 1, range.upperBound)
+        return T(minValue) ..< T(maxValue)
+    }
+    
     private static func internalCoordsBetween(_ start: vector_int2, _ end: vector_int2, isSteep: Bool) -> [vector_int2] {
         let dx = end.x - start.x
         let dy = end.y - start.y
