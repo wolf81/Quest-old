@@ -61,6 +61,7 @@ class Game {
             
     init(state: GameState) {
         self.state = state
+        print(self.state)
     }
 
 //    private(set) var selectionModeCoords = Set<vector_int2>()

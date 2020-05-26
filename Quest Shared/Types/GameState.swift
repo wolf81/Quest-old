@@ -35,7 +35,7 @@ class GameState {
     var entities: [Entity] = []
 
     private var actors: [Actor] { self.entities.filter({ $0 is Actor }) as! [Actor] }
-    
+        
     private(set) var tiles: [[TileProtocol]] = []
         
     var actorVisibleCoords = Set<vector_int2>()
@@ -269,12 +269,13 @@ extension GameState: CustomStringConvertible {
     var description: String {
         var description: String = ""
         
-        for y in 0 ..< Int(self.mapHeight) {
-            for x in 0 ..< Int(self.mapWidth) {
-                if self.hero.coord == vector_int2(Int32(x), Int32(y)) {
-                    description += "H "
+        for x in (0 ..< Int(self.mapWidth)).reversed() {
+            for y in 0 ..< Int(self.mapHeight) {
+                if let actor = getActor(at: vector_int2(Int32(y), Int32(x))) {
+                    description += actor is Hero ? "H " : "M "
+                    continue
                 }
-                
+
                 let value = self.map[x][y]
                 switch value {
                 case .open: description += "` "
