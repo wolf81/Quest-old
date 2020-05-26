@@ -365,7 +365,7 @@ class Game {
         /* WIP */
  
         var tilesets: [Tileset] = []
-        for tilesetFile in ["catacombs", "marble", "sandstone"] {
+        for tilesetFile in ["marble", "sandstone"] {
             let path = Bundle.main.path(forResource: tilesetFile, ofType: "json", inDirectory: "Data/Tileset")
             let url = URL(fileURLWithPath: path!)
             let data = try! Data(contentsOf: url)
@@ -377,15 +377,15 @@ class Game {
         var roomTilesetInfo: [UInt: Bool] = [:]
                 
         for (roomId, room) in self.level.roomInfo {
-            if roomTilesetInfo.index(forKey: roomId) != nil { continue }
-            
+            if arc4random_uniform(4) != 0 || roomTilesetInfo.index(forKey: roomId) != nil { continue }
+                        
             let midX: Int32 = Int32(room.coord.x + room.width / 2)
             let midY: Int32 = Int32(room.coord.y + room.height / 2)
 
             let minX = Int32(max(room.coord.x - 2, 0))
             let maxX = Int32(min(room.coord.x + room.width + 2, Int(self.level.width - 1)))
             let minY = Int32(max(room.coord.y - 2, 0))
-            let maxY = Int32(min(room.coord.y + room.height + 2, Int(self.level.height - 1)))            
+            let maxY = Int32(min(room.coord.y + room.height + 2, Int(self.level.height - 1)))
             let p1 = vector_int2(minX, midY)
             let p2 = vector_int2(maxX, midY)
             let p3 = vector_int2(midX, minY)
@@ -401,7 +401,7 @@ class Game {
                     roomTilesetInfo[node.roomId] = false
                 }
             }
-            
+                        
             roomTilesetInfo[roomId] = true
             
             let tilesetIdx = arc4random_uniform(UInt32(tilesets.count))
