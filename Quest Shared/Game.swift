@@ -82,7 +82,7 @@ class Game {
         ]
         
         for coord in coords {
-            if self.state[coord] == .open && self.state.monsters.filter({ $0.coord == coord }).count == 0 {
+            if self.state.getMapNode(at: coord) == .open && self.state.monsters.filter({ $0.coord == coord }).count == 0 {
                 self.selectionModeTiles.append(OverlayTile(color: SKColor.green.withAlphaComponent(0.5), coord: coord, isBlocked: false))
             }
         }
@@ -149,7 +149,7 @@ class Game {
                 return door.isOpen == false
             }
             
-            return self.state[$0] == .blocked
+            return self.state.getMapNode(at: $0) == .blocked
         }, setVisible: {
             self.state.actorVisibleCoords.insert($0)
         }, getDistance: {
@@ -329,8 +329,7 @@ class Game {
         ]
 
         for coord in coords {
-            let node = self.state[coord]
-            if node == .door {
+            if self.state.getDoor(at: coord) != nil {
                 let direction = Direction.relative(from: self.state.hero.coord, to: coord)
                 self.selectionMode = .none
                 self.state.hero.interact(direction: direction)

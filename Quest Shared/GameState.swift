@@ -24,8 +24,6 @@ class GameState {
     lazy var mapWidth: Int32 = { Int32(self.map[0].count) }()
     lazy var mapHeight: Int32 = { Int32(self.map.count) }()
 
-//    private let dungeonInternal: Dungeon
-        
     var hero: Hero
     
     private var activeActorIndex: Int = 0
@@ -129,8 +127,8 @@ class GameState {
         for x in movementGraph.gridOrigin.x ..< (movementGraph.gridOrigin.x + Int32(movementGraph.gridWidth)) {
             for y in movementGraph.gridOrigin.y ..< (movementGraph.gridOrigin.y + Int32(movementGraph.gridHeight)) {
                 let coord = vector_int2(x, y)
-                                
-                if self.actorVisibleCoords.contains(coord) == false || self[coord] == .blocked {
+                                                
+                if self.actorVisibleCoords.contains(coord) == false || self.getMapNode(at: coord) == .blocked {
                     if let node = movementGraph.node(atGridPosition: coord) {
                         movementGraph.remove([node])
                     }
@@ -161,18 +159,12 @@ class GameState {
         let maxValue = min(position + radius + 1, range.upperBound)
         return Int32(minValue) ..< Int32(maxValue)
     }
-
-            
-//        if let roomId = level.getRoomId(at: coord), roomPotionInfo[roomId] == nil, [2, 8, 9].contains(roomId), let room = level.roomInfo[roomId] {
-//            let coord = vector_int2(Int32(room.coord.x + room.width - 2), Int32(room.coord.y + room.height - 2))
-//            let potion = try! entityFactory.newEntity(type: Potion.self, name: "Health Potion", coord: coord)
-//            entities.append(potion)
-//            print("potion added to room: \(roomId) @ \(coord.x).\(coord.y)")
-//
-//            roomPotionInfo[roomId] = coord
-//        }
     
-    subscript(coord: vector_int2) -> NodeType {
+//    subscript(coord: vector_int2) -> NodeType {
+//        return self.map[Int(coord.y)][Int(coord.x)]
+//    }
+    
+    func getMapNode(at coord: vector_int2) -> NodeType {
         return self.map[Int(coord.y)][Int(coord.x)]
     }
         
@@ -185,7 +177,7 @@ class GameState {
             return false
         }
 
-        let node = self[coord]
+        let node = self.map[Int(coord.y)][Int(coord.x)]
         
         if node == .door {
             let door = self.tiles[Int(coord.y)][Int(coord.x)] as! Door
@@ -207,10 +199,10 @@ class GameState {
            
            for x in (0 ..< Int32(self.mapWidth)) {
                let coord = vector_int2(x, y)
-               let tile = self[coord]
+               let node = self.map[Int(coord.y)][Int(coord.x)]
                var entity: TileProtocol
 
-               switch tile {
+               switch node {
                case .open: entity = Tile(sprite: tileset.getFloorTile(), coord: coord)
                case .blocked: entity = Tile(sprite: tileset.getWallTile(), coord: coord)
                case .door: entity = try! entityFactory.newEntity(type: Door.self, name: "Door", coord: coord)
