@@ -425,6 +425,8 @@ class Game {
                 
         /* WIP */
                 
+        let state = try! GameState(level: 0)
+        
         updateActiveActors()
         updateVisibility(for: self.hero)
     }

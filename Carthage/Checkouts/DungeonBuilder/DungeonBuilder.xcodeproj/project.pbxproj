@@ -12,7 +12,7 @@
 		790A2B00213EB05700BBE94D /* DungeonBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 790A2AF2213EB05700BBE94D /* DungeonBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		790A2B0A213EB07000BBE94D /* DungeonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B09213EB07000BBE94D /* DungeonBuilder.swift */; };
 		790A2B0C213EB0B000BBE94D /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B0B213EB0B000BBE94D /* Node.swift */; };
-		790A2B0E213EB12300BBE94D /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B0D213EB12300BBE94D /* Configuration.swift */; };
+		790A2B0E213EB12300BBE94D /* DungeonConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B0D213EB12300BBE94D /* DungeonConfiguration.swift */; };
 		790A2B12213EB39B00BBE94D /* DungeonLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B11213EB39B00BBE94D /* DungeonLayout.swift */; };
 		790A2B14213EB3A200BBE94D /* RoomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B13213EB3A200BBE94D /* RoomLayout.swift */; };
 		790A2B16213EB3F300BBE94D /* DungeonSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B15213EB3F300BBE94D /* DungeonSize.swift */; };
@@ -55,14 +55,14 @@
 		792E45692472578F0088FBD7 /* DungeonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B09213EB07000BBE94D /* DungeonBuilder.swift */; };
 		792E456B247257940088FBD7 /* Doors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799615EA21422AFC00117F3A /* Doors.swift */; };
 		792E456C247257940088FBD7 /* Doors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799615EA21422AFC00117F3A /* Doors.swift */; };
-		792E456D247257990088FBD7 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B0D213EB12300BBE94D /* Configuration.swift */; };
+		792E456D247257990088FBD7 /* DungeonConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B0D213EB12300BBE94D /* DungeonConfiguration.swift */; };
 		792E456E247257990088FBD7 /* CorridorLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B19213EB42F00BBE94D /* CorridorLayout.swift */; };
 		792E456F247257990088FBD7 /* DeadEndRemoval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B1B213EB45B00BBE94D /* DeadEndRemoval.swift */; };
 		792E4570247257990088FBD7 /* DungeonLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B11213EB39B00BBE94D /* DungeonLayout.swift */; };
 		792E4571247257990088FBD7 /* DungeonSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B15213EB3F300BBE94D /* DungeonSize.swift */; };
 		792E4572247257990088FBD7 /* RoomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B13213EB3A200BBE94D /* RoomLayout.swift */; };
 		792E4573247257990088FBD7 /* RoomSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B17213EB3FA00BBE94D /* RoomSize.swift */; };
-		792E4574247257990088FBD7 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B0D213EB12300BBE94D /* Configuration.swift */; };
+		792E4574247257990088FBD7 /* DungeonConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B0D213EB12300BBE94D /* DungeonConfiguration.swift */; };
 		792E4575247257990088FBD7 /* CorridorLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B19213EB42F00BBE94D /* CorridorLayout.swift */; };
 		792E4576247257990088FBD7 /* DeadEndRemoval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B1B213EB45B00BBE94D /* DeadEndRemoval.swift */; };
 		792E4577247257990088FBD7 /* DungeonLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B11213EB39B00BBE94D /* DungeonLayout.swift */; };
@@ -102,7 +102,7 @@
 		790A2AFF213EB05700BBE94D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		790A2B09213EB07000BBE94D /* DungeonBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DungeonBuilder.swift; sourceTree = "<group>"; };
 		790A2B0B213EB0B000BBE94D /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
-		790A2B0D213EB12300BBE94D /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		790A2B0D213EB12300BBE94D /* DungeonConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DungeonConfiguration.swift; sourceTree = "<group>"; };
 		790A2B11213EB39B00BBE94D /* DungeonLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DungeonLayout.swift; sourceTree = "<group>"; };
 		790A2B13213EB3A200BBE94D /* RoomLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomLayout.swift; sourceTree = "<group>"; };
 		790A2B15213EB3F300BBE94D /* DungeonSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DungeonSize.swift; sourceTree = "<group>"; };
@@ -226,7 +226,7 @@
 		790A2B23213EBD4E00BBE94D /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
-				790A2B0D213EB12300BBE94D /* Configuration.swift */,
+				790A2B0D213EB12300BBE94D /* DungeonConfiguration.swift */,
 				790A2B19213EB42F00BBE94D /* CorridorLayout.swift */,
 				790A2B1B213EB45B00BBE94D /* DeadEndRemoval.swift */,
 				790A2B11213EB39B00BBE94D /* DungeonLayout.swift */,
@@ -482,7 +482,7 @@
 				790A2B14213EB3A200BBE94D /* RoomLayout.swift in Sources */,
 				790A2B1A213EB42F00BBE94D /* CorridorLayout.swift in Sources */,
 				790A2B12213EB39B00BBE94D /* DungeonLayout.swift in Sources */,
-				790A2B0E213EB12300BBE94D /* Configuration.swift in Sources */,
+				790A2B0E213EB12300BBE94D /* DungeonConfiguration.swift in Sources */,
 				790A2B26213EC03E00BBE94D /* DungeonInternal.swift in Sources */,
 				790A2B22213EB88000BBE94D /* RandomNumberGenerator.swift in Sources */,
 				790A2B28213EE68F00BBE94D /* Room.swift in Sources */,
@@ -519,7 +519,7 @@
 				792E4577247257990088FBD7 /* DungeonLayout.swift in Sources */,
 				792E4555247257670088FBD7 /* Node.swift in Sources */,
 				792E4566247257810088FBD7 /* Mask.swift in Sources */,
-				792E4574247257990088FBD7 /* Configuration.swift in Sources */,
+				792E4574247257990088FBD7 /* DungeonConfiguration.swift in Sources */,
 				792E45682472578E0088FBD7 /* DungeonBuilder.swift in Sources */,
 				792E4551247257530088FBD7 /* Dungeon.swift in Sources */,
 				792E45572472576B0088FBD7 /* Room.swift in Sources */,
@@ -549,7 +549,7 @@
 				792E4570247257990088FBD7 /* DungeonLayout.swift in Sources */,
 				792E4556247257680088FBD7 /* Node.swift in Sources */,
 				792E4567247257820088FBD7 /* Mask.swift in Sources */,
-				792E456D247257990088FBD7 /* Configuration.swift in Sources */,
+				792E456D247257990088FBD7 /* DungeonConfiguration.swift in Sources */,
 				792E45692472578F0088FBD7 /* DungeonBuilder.swift in Sources */,
 				792E4552247257530088FBD7 /* Dungeon.swift in Sources */,
 				792E45582472576B0088FBD7 /* Room.swift in Sources */,

@@ -9,10 +9,10 @@
 import Foundation
 
 open class DungeonBuilder {
-    let configuration: Configuration
+    let configuration: DungeonConfiguration
     let numberGenerator: NumberGeneratable
     
-    public init(configuration: Configuration, numberGenerator: NumberGeneratable? = nil) {
+    public init(configuration: DungeonConfiguration, numberGenerator: NumberGeneratable? = nil) {
         self.configuration = configuration
         self.numberGenerator = numberGenerator ?? RandomNumberGenerator()
     }
@@ -21,7 +21,7 @@ open class DungeonBuilder {
         let data = name.data(using: .utf8)!
         self.numberGenerator.seed(data: data)
         
-        let size = self.configuration.dungeonSize.rawValue
+        let size = self.configuration.dungeonSize.size
         let aspectRatio = self.configuration.dungeonLayout.aspectRatio
         
         let height = Int(Float(size) * aspectRatio)

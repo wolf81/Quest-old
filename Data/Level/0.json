@@ -10,7 +10,7 @@
         },
         "corridor": {
             "layout": "straight",
-            "removeDeadEnds": "all",
+            "deadEndRemoval": "all",
         }
     }
 }

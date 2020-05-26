@@ -10,18 +10,23 @@ import Foundation
 import DungeonBuilder
 
 class GameState {
-    init() {
-        let dungeonConfiguration = Configuration(
-            dungeonSize: .large,
-            dungeonLayout: .rectangle,
-            roomSize: .medium,
-            roomLayout: .dense,
-            corridorLayout: .straight,
-            deadEndRemoval: .all,
-            doors: .basic
-        )
-            
-        let builder = DungeonBuilder(configuration: dungeonConfiguration)
-        let dungeon = builder.build(name: "First Encounter")
+    let dungeon: Dungeon
+    
+    init(level: Int) throws {
+        self.dungeon = try DataLoader.loadLevel(index: level)
+        
+//        let dungeonConfiguration = DungeonConfiguration(
+//            dungeonSize: .large,
+//            dungeonLayout: .rectangle,
+//            roomSize: .medium,
+//            roomLayout: .dense,
+//            corridorLayout: .straight,
+//            deadEndRemoval: .all,
+//            doors: .basic
+//        )
+//            
+//        let builder = DungeonBuilder(configuration: dungeonConfiguration)
+//        let dungeon = builder.build(name: "First Encounter")
+                        
     }
 }

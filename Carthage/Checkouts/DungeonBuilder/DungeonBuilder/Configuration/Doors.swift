@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum Doors {
+public enum Doors: String {
     case none
     case basic
     case secure

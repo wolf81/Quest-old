@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum DungeonLayout {
+public enum DungeonLayout: String {
     case square
     case rectangle
     case box

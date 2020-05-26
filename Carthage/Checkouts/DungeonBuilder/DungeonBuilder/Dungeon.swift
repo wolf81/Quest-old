@@ -76,11 +76,11 @@ extension Dungeon: CustomStringConvertible {
         
         """
         
-        for (roomId, room) in roomInfo.sorted(by: { (kv1, kv2) -> Bool in
-            kv1.key < kv2.key
-        }) {
-            output += "\(roomId) @ \(room.coord.x).\(room.coord.y) (\(room.width) x \(room.height)) \n"
-        }
+//        for (roomId, room) in roomInfo.sorted(by: { (kv1, kv2) -> Bool in
+//            kv1.key < kv2.key
+//        }) {
+//            output += "\(roomId) @ \(room.coord.x).\(room.coord.y) (\(room.width) x \(room.height)) \n"
+//        }
         
         return output
     }

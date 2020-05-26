@@ -7,24 +7,35 @@
 //
 
 import Foundation
+import DungeonBuilder
 
 class DataLoader {
     private init() {}
     
     static func load<T: JSONConstructable>(type: T.Type, fromFileNamed filename: String, inDirectory directory: String) throws -> T {
         let path = Bundle.main.path(forResource: filename, ofType: "json", inDirectory: directory)!
-        print("load file: \(path)")
-        let url = URL(fileURLWithPath: path)
-        let data = try Data(contentsOf: url)
-        let json = try JSONSerialization.jsonObject(with: data, options: [])
-        return T(json: json as! [String: Any])
+        let json = try loadJson(path: path)
+        return T(json: json)
     }
     
     static func loadEntity<T: EntityProtocol>(type: T.Type, fromPath path: String, entityFactory: EntityFactory) throws -> T {
-        print("load entity: \(path)")
+        let json = try loadJson(path: path)
+        return T(json: json, entityFactory: entityFactory)
+    }
+    
+    static func loadLevel(index: Int) throws -> Dungeon {
+        let path = Bundle.main.path(forResource: "\(index)", ofType: "json", inDirectory: "Data/Level")!
+        let json = try loadJson(path: path)
+        let name = json["name"] as! String
+        let configuration = DungeonConfiguration(json: json["dungeon"] as! [String: Any])
+        let builder = DungeonBuilder(configuration: configuration)
+        return builder.build(name: name)        
+    }
+    
+    private static func loadJson(path: String) throws -> [String: Any] {
+        print("load file: \(path)")
         let url = URL(fileURLWithPath: path)
         let data = try Data(contentsOf: url)
-        let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-        return T(json: json, entityFactory: entityFactory)
+        return try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
     }
 }

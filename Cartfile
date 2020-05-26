@@ -1,3 +1,5 @@
-github "wolf81/DungeonBuilder"
+# github "wolf81/DungeonBuilder"
+git "file:///Users/wolf/Development/DungeonBuilder" "532270ff32c4811843fe52f10eefa7f55f711ba7"
+
 github "wolf81/Fenris"
 # git "file:///Users/wolf/Development/Fenris"

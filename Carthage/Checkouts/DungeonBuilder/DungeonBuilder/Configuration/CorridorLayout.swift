@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum CorridorLayout {
+public enum CorridorLayout: String {
     case labyrinth
     case errant
     case straight
@@ -23,5 +23,5 @@ public enum CorridorLayout {
     
     var closeArcs: Bool {
         return self == .straight || self == .errant
-    }
+    }    
 }
