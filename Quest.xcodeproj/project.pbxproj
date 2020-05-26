@@ -189,6 +189,12 @@
 		79C61AA822A7C415008D3609 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C61A7022A7C415008D3609 /* Assets.xcassets */; };
 		79C61AA922A7C415008D3609 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C61A7022A7C415008D3609 /* Assets.xcassets */; };
 		79C61AAA22A7C415008D3609 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C61A7022A7C415008D3609 /* Assets.xcassets */; };
+		79D58E11247D93C200E1EE79 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D58E10247D93C200E1EE79 /* Map.swift */; };
+		79D58E12247D93C200E1EE79 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D58E10247D93C200E1EE79 /* Map.swift */; };
+		79D58E13247D93C200E1EE79 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D58E10247D93C200E1EE79 /* Map.swift */; };
+		79D58E15247D957600E1EE79 /* NodeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D58E14247D957600E1EE79 /* NodeType.swift */; };
+		79D58E16247D957600E1EE79 /* NodeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D58E14247D957600E1EE79 /* NodeType.swift */; };
+		79D58E17247D957600E1EE79 /* NodeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D58E14247D957600E1EE79 /* NodeType.swift */; };
 		79D6E6DC247A59FE00D7333A /* Door.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6E6DB247A59FE00D7333A /* Door.swift */; };
 		79D6E6DD247A59FE00D7333A /* Door.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6E6DB247A59FE00D7333A /* Door.swift */; };
 		79D6E6DE247A59FE00D7333A /* Door.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6E6DB247A59FE00D7333A /* Door.swift */; };
@@ -321,6 +327,8 @@
 		79C61A9922A7C415008D3609 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		79C61A9C22A7C415008D3609 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		79C61A9E22A7C415008D3609 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79D58E10247D93C200E1EE79 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
+		79D58E14247D957600E1EE79 /* NodeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeType.swift; sourceTree = "<group>"; };
 		79D6E6DB247A59FE00D7333A /* Door.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Door.swift; sourceTree = "<group>"; };
 		79D6E6DF247A6DD200D7333A /* UseAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseAction.swift; sourceTree = "<group>"; };
 		79D6E6E3247A98DF00D7333A /* Accessory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accessory.swift; sourceTree = "<group>"; };
@@ -449,6 +457,8 @@
 				79042E6724781BFD00730646 /* EnergyCost.swift */,
 				79042E6F247AC0B400730646 /* Image.swift */,
 				79042E73247BF86700730646 /* Tileset.swift */,
+				79D58E10247D93C200E1EE79 /* Map.swift */,
+				79D58E14247D957600E1EE79 /* NodeType.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -803,6 +813,7 @@
 				79D6E6E4247A98DF00D7333A /* Accessory.swift in Sources */,
 				7960DED723A6083400B4CDF8 /* EntityProtocol.swift in Sources */,
 				79DF73B42463DD310030E7A8 /* InventoryNode.swift in Sources */,
+				79D58E11247D93C200E1EE79 /* Map.swift in Sources */,
 				7990950C244C9E410091791F /* StatusBar.swift in Sources */,
 				79042E642478192600730646 /* Energy.swift in Sources */,
 				79042E78247CD54D00730646 /* GameState.swift in Sources */,
@@ -818,6 +829,7 @@
 				79ACC81E22AB473200AC3BF0 /* Action.swift in Sources */,
 				79042E82247CD8A900730646 /* DataLoader.swift in Sources */,
 				7914DD32246182120047EFB6 /* EntityDrawLayer.swift in Sources */,
+				79D58E15247D957600E1EE79 /* NodeType.swift in Sources */,
 				798C997623A2060000C6EC1C /* MeleeAttackAction.swift in Sources */,
 				79ACC7F122AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
 				79ACC81A22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
@@ -879,6 +891,7 @@
 				79D6E6E5247A98DF00D7333A /* Accessory.swift in Sources */,
 				7960DED423A6082B00B4CDF8 /* OverlayTile.swift in Sources */,
 				7960DED823A6083400B4CDF8 /* EntityProtocol.swift in Sources */,
+				79D58E12247D93C200E1EE79 /* Map.swift in Sources */,
 				79DF73B52463DD310030E7A8 /* InventoryNode.swift in Sources */,
 				79042E652478192600730646 /* Energy.swift in Sources */,
 				79042E79247CD54D00730646 /* GameState.swift in Sources */,
@@ -894,6 +907,7 @@
 				792C698D23A40D4700A729C3 /* Spell.swift in Sources */,
 				79042E83247CD8A900730646 /* DataLoader.swift in Sources */,
 				7914DD33246182120047EFB6 /* EntityDrawLayer.swift in Sources */,
+				79D58E16247D957600E1EE79 /* NodeType.swift in Sources */,
 				79ACC81F22AB473200AC3BF0 /* Action.swift in Sources */,
 				798C997723A2060000C6EC1C /* MeleeAttackAction.swift in Sources */,
 				79FC68F0244C4A8C00E6D63C /* CreateCharacterScene.swift in Sources */,
@@ -957,6 +971,7 @@
 				79D6E6DE247A59FE00D7333A /* Door.swift in Sources */,
 				79ACC81C22AAB6F100AC3BF0 /* HitDice.swift in Sources */,
 				79C61A9A22A7C415008D3609 /* GameViewController.swift in Sources */,
+				79D58E13247D93C200E1EE79 /* Map.swift in Sources */,
 				79ACC82C22AB81F000AC3BF0 /* JSONConstructable.swift in Sources */,
 				79492BEB23A61299005B9508 /* TileProtocol.swift in Sources */,
 				7960DEBD23A6082B00B4CDF8 /* Monster.swift in Sources */,
@@ -1001,6 +1016,7 @@
 				7960DED223A6082B00B4CDF8 /* Armor.swift in Sources */,
 				798C997423A205EF00C6EC1C /* MoveAction.swift in Sources */,
 				7963DE54239E3D2A00183DF2 /* ActionBar.swift in Sources */,
+				79D58E17247D957600E1EE79 /* NodeType.swift in Sources */,
 				79DF73BA2463E16A0030E7A8 /* BackpackNode.swift in Sources */,
 				792C699223A5495500A729C3 /* CastSpellAction.swift in Sources */,
 				792467E1246A59A0000568A6 /* Lootable.swift in Sources */,

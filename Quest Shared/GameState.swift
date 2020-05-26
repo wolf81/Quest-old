@@ -11,14 +11,8 @@ import DungeonBuilder
 import GameplayKit
 import simd
 
-enum NodeType: Int {
-    case open = 0
-    case blocked = 1
-    case door = 2
-}
-
 class GameState {
-    private var map: [[NodeType]] = []
+    private var map: Map = Map()
 
     lazy var mapSize: CGSize = { CGSize(width: Int(self.mapWidth), height: Int(self.mapHeight)) }()
     lazy var mapWidth: Int32 = { Int32(self.map[0].count) }()
@@ -38,6 +32,10 @@ class GameState {
 
     var monsters: [Monster] { self.entities.filter({ $0 is Monster }) as! [Monster] }
 
+    let mainTilesetName: String
+    
+    let altTilesetNames: [String]
+    
     private var actors: [Actor] { self.entities.filter({ $0 is Actor }) as! [Actor] }
         
     private var activeActorIndex: Int = 0
@@ -54,29 +52,33 @@ class GameState {
         let builder = DungeonBuilder(configuration: configuration)
         let dungeon = builder.build(name: name)
         print(dungeon)
+        
+        let tilesetInfo = json["tilesets"] as! [String: Any]
+        self.mainTilesetName = tilesetInfo["main"] as! String
+        self.altTilesetNames = tilesetInfo["alt"] as! [String]
                                 
         configure(for: dungeon, entityFactory: entityFactory)
     }
     
     private func configure(for dungeon: Dungeon, entityFactory: EntityFactory) {
-        var nodes: [[NodeType]] = []
+        var map = Map()
         
         for x in 0 ..< dungeon.width {
-            var row: [NodeType] = []
+            var mapRow: [NodeType] = []
             
             for y in (0 ..< dungeon.height) {
                 let node = dungeon[Coordinate(x, y)]
                 switch node {
-                case _ where node.contains(.door): row.append(.door)
-                case _ where node.contains(.corridor) || node.contains(.room): row.append(.open)
-                default: row.append(.blocked)
+                case _ where node.contains(.door): mapRow.append(.door)
+                case _ where node.contains(.corridor) || node.contains(.room): mapRow.append(.open)
+                default: mapRow.append(.blocked)
                 }
             }
                         
-            nodes.append(row)
+            map.append(mapRow)
         }
         
-        self.map = nodes
+        self.map = map
         
         addTiles(to: dungeon, entityFactory: entityFactory)
         addTilesets(to: dungeon)
@@ -156,7 +158,7 @@ class GameState {
     }
     
     func getMapNode(at coord: vector_int2) -> NodeType {
-        return self.map[Int(coord.y)][Int(coord.x)]
+        return self.map[coord]
     }
         
     func remove(entity: Entity) {
@@ -168,14 +170,12 @@ class GameState {
             return false
         }
 
-        let node = self.map[Int(coord.y)][Int(coord.x)]
+        let node = self.map[coord]
         
-        if node == .door {
-            let door = self.tiles[Int(coord.y)][Int(coord.x)] as! Door
-            return door.isOpen
+        switch node {
+        case .door: return (self.tiles[Int(coord.y)][Int(coord.x)] as! Door).isOpen
+        default: return node == .open
         }
-        
-        return node == .open
     }
     
     // MARK: - Private
@@ -183,14 +183,14 @@ class GameState {
     private func addTiles(to dungeon: Dungeon, entityFactory: EntityFactory) {
         var tiles: [[TileProtocol]] = []
                        
-        let tileset = try! DataLoader.load(type: Tileset.self, fromFileNamed: "catacombs", inDirectory: "Data/Tileset")
+        let tileset = try! DataLoader.load(type: Tileset.self, fromFileNamed: self.mainTilesetName, inDirectory: "Data/Tileset")
 
         for y in (0 ..< Int32(self.mapHeight)) {
            var tileRow: [TileProtocol] = []
            
            for x in (0 ..< Int32(self.mapWidth)) {
                let coord = vector_int2(x, y)
-               let node = self.map[Int(coord.y)][Int(coord.x)]
+               let node = self.map[coord]
                var entity: TileProtocol
 
                switch node {
@@ -258,7 +258,7 @@ class GameState {
     
     private func addTilesets(to dungeon: Dungeon) {
         var tilesets: [Tileset] = []
-        for tilesetFile in ["snake", "orc", "marble", "sandstone", "church"] {
+        for tilesetFile in self.altTilesetNames {
             let tileset = try! DataLoader.load(type: Tileset.self, fromFileNamed: tilesetFile, inDirectory: "Data/Tileset")
             tilesets.append(tileset)
         }
