@@ -55,6 +55,7 @@ class Tile: GKGridGraphNode & TileProtocol {
     init(sprite: SKSpriteNode, coord: vector_int2) {
         self.json = [:]
         super.init(gridPosition: coord)
+        sprite.zPosition = DrawLayerHelper.zPosition(for: self)
         self.sprite = sprite
     }
         

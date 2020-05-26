@@ -9,6 +9,7 @@
 import SpriteKit
 
 class Tileset: JSONConstructable {
+    let name: String
     let floorTiles: [SKSpriteNode]
     let wallTiles: [SKSpriteNode]
     
@@ -22,7 +23,8 @@ class Tileset: JSONConstructable {
         return self.wallTiles[Int(tileIdx)].copy() as! SKSpriteNode
     }
     
-    required init(json: [String : Any]) {        
+    required init(json: [String : Any]) {
+        self.name = json["name"] as! String
         self.floorTiles = Tileset.getSprites(for: json["floorTiles"] as? [String] ?? [])
         self.wallTiles = Tileset.getSprites(for: json["wallTiles"] as? [String] ?? [])
     }
@@ -37,5 +39,13 @@ class Tileset: JSONConstructable {
             sprites.append(sprite)
         }
         return sprites
+    }
+    
+    static func load(fileNamed filename: String) throws -> Tileset {
+        let path = Bundle.main.path(forResource: filename, ofType: "json", inDirectory: "Data/Tileset")
+        let url = URL(fileURLWithPath: path!)
+        let data = try Data(contentsOf: url)
+        let json = try JSONSerialization.jsonObject(with: data, options: [])
+        return Tileset(json: json as! [String: Any])
     }
 }

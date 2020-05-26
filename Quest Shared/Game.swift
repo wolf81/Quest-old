@@ -293,6 +293,8 @@ class Game {
         
         var didAddHero = false
                 
+        let tileset = try! Tileset.load(fileNamed: "catacombs")
+        
         var roomPotionInfo: [UInt: vector_int2] = [:]
         
         for y in (0 ..< Int32(self.level.height)) {
@@ -304,8 +306,8 @@ class Game {
                 var entity: TileProtocol
 
                 switch tile {
-                case 0: entity = try! entityFactory.newEntity(type: Tile.self, name: "Floor", coord: coord)
-                case 1: entity = try! entityFactory.newEntity(type: Tile.self, name: "Wall", coord: coord)
+                case 0: entity = Tile(sprite: tileset.getFloorTile(), coord: coord)
+                case 1: entity = Tile(sprite: tileset.getWallTile(), coord: coord)
                 case 2: entity = try! entityFactory.newEntity(type: Door.self, name: "Door", coord: coord)
                 default: fatalError()
                 }
@@ -416,8 +418,6 @@ class Game {
                         default: continue // ignore doors for now?
                         }
                         
-                        
-                        sprite.zPosition = tile.sprite.zPosition
                         let newTile = Tile(sprite: sprite, coord: tile.coord)
                         self.tiles[y][x] = newTile
                     }
