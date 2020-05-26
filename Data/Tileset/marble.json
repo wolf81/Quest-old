@@ -1,5 +1,25 @@
 {
     "name": "Marble",
-    "floorTiles": ["marble_floor_1"],
-    "wallTiles": ["marble_wall_1"]
+    "floorTiles": [
+        "marble_floor_1",
+        "marble_floor_2",
+        "marble_floor_3",
+        "marble_floor_4",
+        "marble_floor_5",
+        "marble_floor_6",
+    ],
+    "wallTiles": [
+        "marble_wall_1",
+        "marble_wall_2",
+        "marble_wall_3",
+        "marble_wall_4",
+        "marble_wall_5",
+        "marble_wall_6",
+        "marble_wall_7",
+        "marble_wall_8",
+        "marble_wall_9",
+        "marble_wall_10",
+        "marble_wall_11",
+        "marble_wall_12",
+    ]
 }

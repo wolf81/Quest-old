@@ -12,6 +12,16 @@ class Tileset: JSONConstructable {
     let floorTiles: [SKSpriteNode]
     let wallTiles: [SKSpriteNode]
     
+    func getFloorTile() -> SKSpriteNode {
+        let tileIdx = arc4random_uniform(UInt32(self.floorTiles.count))
+        return self.floorTiles[Int(tileIdx)].copy() as! SKSpriteNode
+    }
+    
+    func getWallTile() -> SKSpriteNode {
+        let tileIdx = arc4random_uniform(UInt32(self.wallTiles.count))
+        return self.wallTiles[Int(tileIdx)].copy() as! SKSpriteNode
+    }
+    
     required init(json: [String : Any]) {        
         self.floorTiles = Tileset.getSprites(for: json["floorTiles"] as? [String] ?? [])
         self.wallTiles = Tileset.getSprites(for: json["wallTiles"] as? [String] ?? [])

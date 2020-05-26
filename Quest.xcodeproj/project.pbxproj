@@ -198,6 +198,9 @@
 		79D6E6E8247A9D1700D7333A /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6E6E7247A9D1700D7333A /* Effect.swift */; };
 		79D6E6E9247A9D1700D7333A /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6E6E7247A9D1700D7333A /* Effect.swift */; };
 		79D6E6EA247A9D1700D7333A /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6E6E7247A9D1700D7333A /* Effect.swift */; };
+		79D6E6F9247C98A800D7333A /* Tilesets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79D6E6F8247C98A800D7333A /* Tilesets.xcassets */; };
+		79D6E6FA247C98A800D7333A /* Tilesets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79D6E6F8247C98A800D7333A /* Tilesets.xcassets */; };
+		79D6E6FB247C98A800D7333A /* Tilesets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79D6E6F8247C98A800D7333A /* Tilesets.xcassets */; };
 		79D81570246572450099567B /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D8156F246572450099567B /* ButtonNode.swift */; };
 		79D81571246572450099567B /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D8156F246572450099567B /* ButtonNode.swift */; };
 		79D81572246572450099567B /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D8156F246572450099567B /* ButtonNode.swift */; };
@@ -315,6 +318,7 @@
 		79D6E6DF247A6DD200D7333A /* UseAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseAction.swift; sourceTree = "<group>"; };
 		79D6E6E3247A98DF00D7333A /* Accessory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accessory.swift; sourceTree = "<group>"; };
 		79D6E6E7247A9D1700D7333A /* Effect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effect.swift; sourceTree = "<group>"; };
+		79D6E6F8247C98A800D7333A /* Tilesets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Tilesets.xcassets; sourceTree = "<group>"; };
 		79D8156F246572450099567B /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		79D815732465AEAF0099567B /* PaperDollNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperDollNode.swift; sourceTree = "<group>"; };
 		79DF73AB2462D3570030E7A8 /* StatusUpdatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusUpdatable.swift; sourceTree = "<group>"; };
@@ -484,6 +488,7 @@
 				798C997D23A2068C00C6EC1C /* AnimationKey.swift */,
 				793A575724459A070089E693 /* Constants.swift */,
 				798325982478D2B700397C12 /* Functions.swift */,
+				79D6E6F8247C98A800D7333A /* Tilesets.xcassets */,
 			);
 			path = "Quest Shared";
 			sourceTree = "<group>";
@@ -660,6 +665,7 @@
 				79C61A8122A7C415008D3609 /* LaunchScreen.storyboard in Resources */,
 				79ACC7DE22AA5BE900AC3BF0 /* Data in Resources */,
 				797DBF7B22A91FA300D0F8E7 /* Sprites.xcassets in Resources */,
+				79D6E6F9247C98A800D7333A /* Tilesets.xcassets in Resources */,
 				79C61AA822A7C415008D3609 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -668,6 +674,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79D6E6FA247C98A800D7333A /* Tilesets.xcassets in Resources */,
 				797DBF7C22A91FA300D0F8E7 /* Sprites.xcassets in Resources */,
 				79C61A8F22A7C415008D3609 /* Main.storyboard in Resources */,
 				79ACC7DF22AA5BE900AC3BF0 /* Data in Resources */,
@@ -679,6 +686,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79D6E6FB247C98A800D7333A /* Tilesets.xcassets in Resources */,
 				797DBF7D22A91FA300D0F8E7 /* Sprites.xcassets in Resources */,
 				79C61A9D22A7C415008D3609 /* Main.storyboard in Resources */,
 				79ACC7E022AA5BE900AC3BF0 /* Data in Resources */,

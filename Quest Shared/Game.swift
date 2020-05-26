@@ -358,37 +358,73 @@ class Game {
         
         self.tiles = tiles
         self.entities = entities
-                        
+
+
         /* WIP */
-        let path = Bundle.main.path(forResource: "marble", ofType: "json", inDirectory: "Data/Tileset")
-        let url = URL(fileURLWithPath: path!)
-        let data = try! Data(contentsOf: url)
-        let json = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-        let tileset = Tileset(json: json)
-        print("tileset: \(tileset)")
-        
-        guard let room = self.level.roomInfo[1] else { fatalError() }
-        for x in (room.coord.x - 1) ... (room.coord.x + room.width) {
-            for y in (room.coord.y - 1) ... (room.coord.y + room.height) {
-                let tile = self.tiles[y][x]
 
-                let tileType = self.getTile(at: vector_int2(Int32(x), Int32(y)))!
-
-                var sprite: SKSpriteNode
+        var tilesets: [Tileset] = []
+        for tilesetFile in ["catacombs", "marble", "sandstone"] {
+            let path = Bundle.main.path(forResource: tilesetFile, ofType: "json", inDirectory: "Data/Tileset")
+            let url = URL(fileURLWithPath: path!)
+            let data = try! Data(contentsOf: url)
+            let json = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+            let tileset = Tileset(json: json)
+            tilesets.append(tileset)
+        }
+                        
+        var roomTilesetInfo: [UInt: Bool] = [:]
                 
-                switch tileType {
-                case 0, 2: sprite = tileset.floorTiles[0].copy() as! SKSpriteNode
-                case 1: sprite = tileset.wallTiles[0].copy() as! SKSpriteNode
-                default: fatalError()
+        for (roomId, room) in self.level.roomInfo {
+            if roomTilesetInfo.index(forKey: roomId) != nil { continue }
+            
+            let midX: Int32 = Int32(room.coord.x + room.width / 2)
+            let midY: Int32 = Int32(room.coord.y + room.height / 2)
+            
+            let p1 = vector_int2(Int32(max(room.coord.x - 2, 0)), midY)
+            let p2 = vector_int2(Int32(min(room.coord.x + room.width + 2, Int(self.level.width - 1))), midX)
+            let p3 = vector_int2(Int32(max(room.coord.y - 2, 0)), midY)
+            let p4 = vector_int2(Int32(min(room.coord.y + room.height + 2, Int(self.level.height - 1))), midX)
+
+            
+            var canTileRoom = true
+            for point in [p1, p2, p3, p4] {
+                let node = self.level.getNode(at: point)
+                if node.contains(.room) {
+                    if roomTilesetInfo.contains(where: { $0.key == node.roomId }) {
+                        canTileRoom = false
+                    }
                 }
+            }
+            
+            if canTileRoom {
+                roomTilesetInfo[roomId] = true
                 
+                let tilesetIdx = arc4random_uniform(UInt32(tilesets.count))
+                let tileset = tilesets[Int(tilesetIdx)]
                 
-                sprite.zPosition = tile.sprite.zPosition
-                let newTile = Tile(sprite: sprite, coord: tile.coord)
-                self.tiles[y][x] = newTile
+                for x in (room.coord.x - 1) ... (room.coord.x + room.width) {
+                    for y in (room.coord.y - 1) ... (room.coord.y + room.height) {
+                        let tile = self.tiles[y][x]
+
+                        let tileType = self.getTile(at: vector_int2(Int32(x), Int32(y)))!
+
+                        var sprite: SKSpriteNode
+                        
+                        switch tileType {
+                        case 0: sprite = tileset.getFloorTile()
+                        case 1: sprite = tileset.getWallTile()
+                        default: continue // ignore doors for now?
+                        }
+                        
+                        
+                        sprite.zPosition = tile.sprite.zPosition
+                        let newTile = Tile(sprite: sprite, coord: tile.coord)
+                        self.tiles[y][x] = newTile
+                    }
+                }
             }
         }
-        
+                
         /* WIP */
                 
         updateActiveActors()

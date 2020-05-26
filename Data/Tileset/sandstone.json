@@ -1,0 +1,25 @@
+{
+    "name": "Marble",
+    "floorTiles": [
+        "sandstone_floor_1",
+        "sandstone_floor_2",
+        "sandstone_floor_3",
+        "sandstone_floor_4",
+        "sandstone_floor_5",
+        "sandstone_floor_6",
+        "sandstone_floor_7",
+        "sandstone_floor_8",
+        "sandstone_floor_9",
+    ],
+    "wallTiles": [
+        "sandstone_wall_1",
+        "sandstone_wall_2",
+        "sandstone_wall_3",
+        "sandstone_wall_4",
+        "sandstone_wall_5",
+        "sandstone_wall_6",
+        "sandstone_wall_7",
+        "sandstone_wall_8",
+        "sandstone_wall_9",
+    ]
+}
