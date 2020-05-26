@@ -1,0 +1,21 @@
+{
+    "name": "Snake",
+    "floorTiles": [
+        "snake-c_0",
+        "snake-c_1",
+        "snake-c_2",
+        "snake-c_3",
+    ],
+    "wallTiles": [
+        "snake_wall_0",
+        "snake_wall_1",
+        "snake_wall_2",
+        "snake_wall_3",
+        "snake_wall_4",
+        "snake_wall_5",
+        "snake_wall_6",
+        "snake_wall_7",
+        "snake_wall_8",
+        "snake_wall_9",
+    ]
+}

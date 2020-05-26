@@ -1,0 +1,27 @@
+{
+    "name": "Orc",
+    "floorTiles": [
+        "orc_0",
+        "orc_1",
+        "orc_2",
+        "orc_3",
+        "orc_4",
+        "orc_5",
+        "orc_6",
+        "orc_7",
+    ],
+    "wallTiles": [
+        "orc_wall_0",
+        "orc_wall_1",
+        "orc_wall_2",
+        "orc_wall_3",
+        "orc_wall_4",
+        "orc_wall_5",
+        "orc_wall_6",
+        "orc_wall_7",
+        "orc_wall_8",
+        "orc_wall_9",
+        "orc_wall_10",
+        "orc_wall_11",
+    ]
+}

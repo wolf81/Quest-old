@@ -1,0 +1,16 @@
+{
+    "name": "Church",
+    "floorTiles": [
+        "rect_gray_0_old",
+        "rect_gray_1_old",
+        "rect_gray_2_old",
+        "rect_gray_3_old",
+    ],
+    "wallTiles": [
+        "church_0",
+        "church_1",
+        "church_2",
+        "church_3",
+        "church_4",
+    ]
+}

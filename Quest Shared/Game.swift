@@ -365,7 +365,7 @@ class Game {
         /* WIP */
  
         var tilesets: [Tileset] = []
-        for tilesetFile in ["marble", "sandstone"] {
+        for tilesetFile in ["snake", "orc", "marble", "sandstone", "church"] {
             let path = Bundle.main.path(forResource: tilesetFile, ofType: "json", inDirectory: "Data/Tileset")
             let url = URL(fileURLWithPath: path!)
             let data = try! Data(contentsOf: url)
