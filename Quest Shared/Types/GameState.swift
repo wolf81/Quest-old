@@ -79,8 +79,9 @@ class GameState {
         self.map = nodes
         
         addTiles(to: dungeon, entityFactory: entityFactory)
-        addHero(to: dungeon, roomId: 1)
         addMonsters(to: dungeon, entityFactory: entityFactory)
+        addLoot(to: dungeon, entityFactory: entityFactory)
+        addHero(to: dungeon, roomId: 1)
     }
     
     func getLoot(at coord: vector_int2) -> Lootable? {
@@ -219,32 +220,38 @@ class GameState {
         }
         
         self.tiles = tiles
-               
-        /*
-         var roomPotionInfo: [UInt: vector_int2] = [:]
-
-         if let roomId = level.getRoomId(at: coord), roomPotionInfo[roomId] == nil, [2, 8, 9].contains(roomId), let room = level.roomInfo[roomId] {
-             let coord = vector_int2(Int32(room.coord.x + room.width - 2), Int32(room.coord.y + room.height - 2))
-             let potion = try! entityFactory.newEntity(type: Potion.self, name: "Health Potion", coord: coord)
-             entities.append(potion)
-             print("potion added to room: \(roomId) @ \(coord.x).\(coord.y)")
-
-             roomPotionInfo[roomId] = coord
-         }
-         */
+    }
+    
+    private func addLoot(to dungeon: Dungeon, entityFactory: EntityFactory) {
+        let roomCount = dungeon.roomInfo.count
+        
+        var lootRoomIds: [UInt] = []
+        
+        let lootCount = max(roomCount / 1, 1)
+        while lootRoomIds.count < lootCount {
+            let roomId = UInt(arc4random_uniform(UInt32(roomCount))) + 1
+            
+            if lootRoomIds.contains(roomId) { continue }
+            
+            let room = dungeon.roomInfo[roomId]!
+            let coord = vector_int2(Int32(room.coord.y + room.height - 1), Int32(room.coord.x + room.width - 1))
+            let potion = try! entityFactory.newEntity(type: Potion.self, name: "Health Potion", coord: coord)
+            self.entities.append(potion)
+            
+            lootRoomIds.append(roomId)
+        }
     }
     
     private func addMonsters(to dungeon: Dungeon, entityFactory: EntityFactory) {
         var monsterCount = 0
-        for (roomId, room) in dungeon.roomInfo {
+        for (_, room) in dungeon.roomInfo {
             // TODO: fix room coord calc in DungeonBuilder, so we don't have to do the following to get good coords ...
             let roomCoord = vector_int2(Int32(room.coord.y + room.height / 2), Int32(room.coord.x + room.width / 2))
             
             var monster: Monster
             
-            print("\(roomId): \(room.coord.x).\( room.coord.y) -> \(roomCoord.x).\(roomCoord.y)")
-            let v = monsterCount.remainderReportingOverflow(dividingBy: 3).partialValue
-            switch v {
+            let remainder = monsterCount.remainderReportingOverflow(dividingBy: 3).partialValue
+            switch remainder {
             case 0:
                 monster = try! entityFactory.newEntity(type: Monster.self, name: "Gnoll", coord: roomCoord)
             case 1:
@@ -271,8 +278,14 @@ extension GameState: CustomStringConvertible {
         
         for x in (0 ..< Int(self.mapWidth)).reversed() {
             for y in 0 ..< Int(self.mapHeight) {
-                if let actor = getActor(at: vector_int2(Int32(y), Int32(x))) {
+                let coord = vector_int2(Int32(y), Int32(x))
+                if let actor = getActor(at: coord) {
                     description += actor is Hero ? "H " : "M "
+                    continue
+                }
+                
+                if let loot = getLoot(at: coord) {
+                    description += "L "
                     continue
                 }
 

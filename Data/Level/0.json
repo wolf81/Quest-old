@@ -5,7 +5,7 @@
         "size": "tiny",
         "room": {
             "layout": "dense",
-            "size": "medium",
+            "size": "small",
             "doors": "basic",
         },
         "corridor": {
