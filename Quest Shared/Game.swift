@@ -43,16 +43,10 @@ enum SelectionMode {
 }
 
 class Game {
-//    public var level: Level!
-    
-    public var state: GameState!
+    public let state: GameState
     
     public weak var delegate: GameDelegate?
-    
-    private let entityFactory: EntityFactory
-    
-    private(set) var hero: Hero
-            
+                    
     private var tileSize: CGSize = .zero
     
     private var selectionMode: SelectionMode = .none {
@@ -65,19 +59,17 @@ class Game {
     
     private var visibility: Visibility!
             
-    init(entityFactory: EntityFactory, hero: Hero) {
-        self.entityFactory = entityFactory
-        self.hero = hero
+    init(state: GameState) {
+        self.state = state
     }
 
     // all currently existing entities (players, monsters, loot), entities that are destroyed are removed
     var entities: [Entity] { self.state.entities }
             
     // level tiles used for walls, floor, etc...
-    private(set) var tiles: [[TileProtocol]] = []
+    private var tiles: [[TileProtocol]] { self.state.tiles }
 
     // coordinates of tiles that are currently visible for the player
-    private(set) var actorVisibleCoords = Set<vector_int2>()
 
     var viewVisibleCoords = Set<vector_int2>()
 
@@ -85,47 +77,27 @@ class Game {
     private(set) var selectionModeTiles: [OverlayTile] = []
     
     // the current active actor, either a player or monster
-    private var activeActorIdx: Int = 0
+//    private var activeActorIdx: Int = 0
     
     // a list of dungeon loot
     var loot: [Lootable] { self.entities.filter({ $0 is Lootable }) as! [Lootable] }
 
-    var actors: [Actor] { self.entities.filter({ $0 is Actor }) as! [Actor] }
+//    var actors: [Actor] { self.entities.filter({ $0 is Actor }) as! [Actor] }
     
     var monsters: [Monster] { self.entities.filter({ $0 is Monster }) as! [Monster] }
     
-    var activeActors: [Actor] = []
+    var activeActors: [Actor] { self.state.activeActors }
     
     var actions: [Action] = []
-    
-//    // get a value for a tile at a coordinate, can be nil when out of range and is otherwise some integer value that represents a wall, floor or other scenery
-//    func getTile(at coord: vector_int2) -> Int {
-//        return self.state[coord].rawValue
-//    }
-    
+        
     func getActor(at coord: vector_int2) -> Actor? {
-        return self.actors.filter({ $0.coord == coord }).first
+        self.state.getActor(at: coord)
     }
     
     func getLoot(at coord: vector_int2) -> Lootable? {
         return self.loot.filter({ $0.coord == coord}).first
     }
-    
-    func canMove(entity: Entity, to coord: vector_int2) -> Bool {
-        guard self.actors.filter({ $0.coord == coord}).first == nil else {
-            return false
-        }
-
-        let node = self.state[coord]
         
-        if node == .door {
-            let door = self.tiles[Int(coord.y)][Int(coord.x)] as! Door
-            return door.isOpen
-        }
-        
-        return node == .open
-    }
-    
     func getRange(position: Int32, radius: Int32, constrainedTo range: Range<Int32>) -> Range<Int32> {
         let minValue = max(position - radius, range.lowerBound)
         let maxValue = min(position + radius + 1, range.upperBound)
@@ -144,7 +116,7 @@ class Game {
             for y in movementGraph.gridOrigin.y ..< (movementGraph.gridOrigin.y + Int32(movementGraph.gridHeight)) {
                 let coord = vector_int2(x, y)
                                 
-                if self.actorVisibleCoords.contains(coord) == false || self.state[coord] == .blocked {
+                if self.state.actorVisibleCoords.contains(coord) == false || self.state[coord] == .blocked {
                     if let node = movementGraph.node(atGridPosition: coord) {
                         movementGraph.remove([node])
                     }
@@ -200,10 +172,10 @@ class Game {
         self.selectionModeTiles.removeAll()
         
         let coords: [vector_int2] = [
-            vector_int2(self.hero.coord.x - 1, self.hero.coord.y),
-            vector_int2(self.hero.coord.x + 1, self.hero.coord.y),
-            vector_int2(self.hero.coord.x, self.hero.coord.y - 1),
-            vector_int2(self.hero.coord.x, self.hero.coord.y + 1),
+            vector_int2(self.state.hero.coord.x - 1, self.state.hero.coord.y),
+            vector_int2(self.state.hero.coord.x + 1, self.state.hero.coord.y),
+            vector_int2(self.state.hero.coord.x, self.state.hero.coord.y - 1),
+            vector_int2(self.state.hero.coord.x, self.state.hero.coord.y + 1),
         ]
         
         for coord in coords {
@@ -249,14 +221,14 @@ class Game {
     func showMeleeAttackTilesForHero() {
         self.selectionModeTiles.removeAll()
         
-        let xRange = self.hero.coord.x - 1 ... self.hero.coord.x + 1
-        let yRange = self.hero.coord.y - 1 ... self.hero.coord.y + 1
+        let xRange = self.state.hero.coord.x - 1 ... self.state.hero.coord.x + 1
+        let yRange = self.state.hero.coord.y - 1 ... self.state.hero.coord.y + 1
         
         for x in xRange {
             for y in yRange {
                 let coord = vector_int2(x, y)
                 
-                if coord == self.hero.coord { continue }
+                if coord == self.state.hero.coord { continue }
         
                 if let _ = self.monsters.filter({ $0.coord == coord }).first {
                     self.selectionModeTiles.append(OverlayTile(color: SKColor.red.withAlphaComponent(0.5), coord: coord, isBlocked: false))
@@ -268,8 +240,6 @@ class Game {
     }
             
     func start(levelIdx: Int = 0, tileSize: CGSize) {
-        self.state = try! GameState(level: 0, hero: self.hero, entityFactory: self.entityFactory)
-
 //        self.level = Level()
 //        print(self.level!)
         
@@ -285,14 +255,16 @@ class Game {
             
             return node == .blocked
         }, setVisible: {
-            self.actorVisibleCoords.insert($0)
+            self.state.actorVisibleCoords.insert($0)
         }, getDistance: {
             let x = pow(Float($1.x - $0.x), 2)
             let y = pow(Float($1.y - $0.y), 2)
             return Int(sqrt(x + y))
         })
         
-        var entities: [Entity] = []
+//        var entities: [Entity] = []
+        
+        /*
         var tiles: [[TileProtocol]] = []
         
         var didAddHero = false
@@ -342,7 +314,7 @@ class Game {
         
         self.tiles = tiles
 //        self.entities = entities
-
+*/
 
         /* WIP */
 /*
@@ -408,8 +380,8 @@ class Game {
  */
         /* WIP */
                         
-        updateActiveActors()
-        updateVisibility(for: self.hero)
+        self.state.updateActiveActors()
+        updateVisibility(for: self.state.hero)
     }
     
     func update(_ deltaTime: TimeInterval) {
@@ -426,7 +398,7 @@ class Game {
 //                print("\(move.actor.name) @ \(move.actor.coord.x).\(move.actor.coord.y) is performing move")
                 // after the hero moved to a new location, update the visible tiles for the hero
                 if action.actor is Hero {
-                    updateActiveActors()
+                    self.state.updateActiveActors()
                     updateVisibility(for: action.actor)
                 }
                 self.delegate?.gameDidMove(entity: move.actor, path: move.path)
@@ -437,7 +409,7 @@ class Game {
                     self.delegate?.gameDidDestroy(entity: attack.targetActor)
                     // on deleting an entity, update a list of active actors to exclude the deleted entity
                     remove(entity: attack.targetActor)
-                    updateActiveActors()
+                    self.state.updateActiveActors()
                 }
             case let attack as RangedAttackAction:
 //                print("\(attack.actor.name) @ \(attack.actor.coord.x).\(attack.actor.coord.y) is performing ranged attack")
@@ -449,7 +421,7 @@ class Game {
                     self.delegate?.gameDidDestroy(entity: attack.targetActor)
                     // on deleting an entity, update a list of active actors to exclude the deleted entity
                     remove(entity: attack.targetActor)
-                    updateActiveActors()
+                    self.state.updateActiveActors()
                 }
                 break
             default: break
@@ -462,77 +434,58 @@ class Game {
                 
         // if no actions are pending, process each actor until an action is added
         while self.actions.isEmpty {
-            let actor = self.activeActors[self.activeActorIdx]
+            let actor = self.state.currentActor
             
             if actor.canTakeTurn && actor.isAwaitingInput {                
                 // in case of the hero, we might need to wait for input before we can get a new action
                 updateVisibility(for: actor)
-                return actor.update(state: self)
+                return actor.update(state: self.state)
             }
 
             if actor.canTakeTurn {
                 updateVisibility(for: actor)
                 
-                guard actorVisibleCoords.contains(self.hero.coord) else { return nextActor() }
+                guard self.state.actorVisibleCoords.contains(self.state.hero.coord) else { return self.state.nextActor() }
                                 
                 actor.energy.increment(10)
-                actor.update(state: self)
+                actor.update(state: self.state)
 
                 // if the actor has a pending action, add the action to the pending action list
-                guard let action = actor.getAction() else { return nextActor() }
+                guard let action = actor.getAction() else { return self.state.nextActor() }
 
                 self.actions.append(action)
             } else {
                 // otherwise increment the time units until we have enough to allow for an action
                 actor.energy.increment(10)                
-                nextActor()
+                self.state.nextActor()
             }
         }
     }
-    
-    private func nextActor() {
-        self.activeActorIdx = (self.activeActorIdx + 1) % self.activeActors.count
-    }
-    
-    func updateActiveActors() {
-        self.activeActors.removeAll()
-        
-        let xRange = max(self.state.hero.coord.x - 10, 0) ... min(self.state.hero.coord.x + 10, self.state.width)
-        let yRange = max(self.state.hero.coord.y - 10, 0) ... min(self.state.hero.coord.y + 10, self.state.height)
-        
-        for actor in self.actors {
-            if xRange.contains(actor.coord.x) && yRange.contains(actor.coord.y) {
-                self.activeActors.append(actor)
-            }
-        }
-        
-        self.activeActorIdx = 0
-    }
-            
+                    
     func movePlayer(direction: Direction) {        
         self.selectionMode = .none
-        self.hero.move(direction: direction)
+        self.state.hero.move(direction: direction)
     }
     
     func stopPlayer() {
         self.selectionMode = .none
-        self.hero.stop()
+        self.state.hero.stop()
     }
     
     func tryPlayerInteraction() {
         let coords: [vector_int2] = [
-            vector_int2(self.hero.coord.x - 1, self.hero.coord.y),
-            vector_int2(self.hero.coord.x + 1, self.hero.coord.y),
-            vector_int2(self.hero.coord.x, self.hero.coord.y - 1),
-            vector_int2(self.hero.coord.x, self.hero.coord.y + 1),
+            vector_int2(self.state.hero.coord.x - 1, self.state.hero.coord.y),
+            vector_int2(self.state.hero.coord.x + 1, self.state.hero.coord.y),
+            vector_int2(self.state.hero.coord.x, self.state.hero.coord.y - 1),
+            vector_int2(self.state.hero.coord.x, self.state.hero.coord.y + 1),
         ]
 
         for coord in coords {
             let node = self.state[coord]
             if node == .door {
-                let direction = Direction.relative(from: hero.coord, to: coord)
+                let direction = Direction.relative(from: self.state.hero.coord, to: coord)
                 self.selectionMode = .none
-                self.hero.interact(direction: direction)
+                self.state.hero.interact(direction: direction)
             }
         }
     }
@@ -582,7 +535,7 @@ class Game {
     }
     
     private func updateVisibility(for actor: Actor) {
-        self.actorVisibleCoords.removeAll()
+        self.state.actorVisibleCoords.removeAll()
         self.visibility.compute(origin: actor.coord, rangeLimit: actor.sight)
     }
 }

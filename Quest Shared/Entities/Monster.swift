@@ -44,7 +44,7 @@ class Monster: Actor, CustomStringConvertible {
         return "\(self.name) [ HD: \(self.hitDie) / HP: \(self.hitPoints.current) / AC: \(self.armorClass) ]"
     }
         
-    override func update(state: Game) {
+    override func update(state: GameState) {
         guard self.isAlive && state.hero.isAlive else { return idle() }
 
         let didMeleeAttack = attack(meleeTarget: state.hero, state: state)
@@ -59,11 +59,11 @@ class Monster: Actor, CustomStringConvertible {
     
     // MARK: - Private
     
-    private func attack(rangedTarget: Actor, state: Game) -> Bool {
+    private func attack(rangedTarget: Actor, state: GameState) -> Bool {
         guard state.actorVisibleCoords.contains(rangedTarget.coord) else { return false }
 
         let coords = Functions.coordsBetween(self.coord, rangedTarget.coord)
-        let tiles = coords.compactMap({ state.state[$0] })
+        let tiles = coords.compactMap({ state[$0] })
         let isBlocked = tiles.contains(.blocked)
         let isRangedWeaponEquipped = self.equippedWeapon.range > 1
         // if the hero is not blocked by walls and we carry a ranged weapon, shoot on the hero
@@ -82,7 +82,7 @@ class Monster: Actor, CustomStringConvertible {
         return true
     }
     
-    private func attack(meleeTarget: Actor, state: Game) -> Bool {
+    private func attack(meleeTarget: Actor, state: GameState) -> Bool {
         // If hero is in melee range, perform melee attack
         let xRange = self.coord.x - 1 ... self.coord.x + 1
         let yRange = self.coord.y - 1 ... self.coord.y + 1
@@ -99,7 +99,7 @@ class Monster: Actor, CustomStringConvertible {
         setAction(IdleAction(actor: self))
     }
     
-    private func move(to actor: Actor, state: Game) -> Bool {
+    private func move(to actor: Actor, state: GameState) -> Bool {
         guard state.actorVisibleCoords.contains(actor.coord) else { return false }
 
         let actorCoords = state.activeActors.filter({ $0.coord != self.coord && $0.coord != actor.coord }).compactMap({ $0.coord })

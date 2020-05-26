@@ -86,7 +86,7 @@ class GameScene: SKScene, SceneManagerConstructable {
         self.actionBar.zPosition = 1_000_000_000
 
         self.playerCamera = SKCameraNode()
-        self.playerCamera.position = cameraPositionForCoord(self.game.hero.coord)
+        self.playerCamera.position = cameraPositionForCoord(self.game.state.hero.coord)
         self.playerCamera.addChild(self.actionBar)
 
         self.world.addChild(self.playerCamera)
@@ -111,7 +111,7 @@ class GameScene: SKScene, SceneManagerConstructable {
             entity.sprite.position = GameScene.pointForCoord(entity.coord)
         }
         
-        gameDidMove(entity: self.game.hero, path: [self.game.hero.coord])
+        gameDidMove(entity: self.game.state.hero, path: [self.game.state.hero.coord])
     }
 
     private func movePlayer(direction: Direction) {
@@ -146,7 +146,7 @@ class GameScene: SKScene, SceneManagerConstructable {
             inventory.removeFromParent()
             self.inventory = nil
         } else {
-            let inventory = InventoryNode(size: CGSize(width: 600, height: 400), backgroundColor: .black, hero: self.game.hero)
+            let inventory = InventoryNode(size: CGSize(width: 600, height: 400), backgroundColor: .black, hero: self.game.state.hero)
             self.playerCamera.addChild(inventory)
             self.inventory = inventory
         }
@@ -159,7 +159,7 @@ class GameScene: SKScene, SceneManagerConstructable {
             characterInfo.removeFromParent()
             self.characterInfo = nil
         } else {
-            let characterInfo = CharacterInfoNode(size: CGSize(width: 600, height: 400), backgroundColor: .black, hero: self.game.hero)
+            let characterInfo = CharacterInfoNode(size: CGSize(width: 600, height: 400), backgroundColor: .black, hero: self.game.state.hero)
             self.playerCamera.addChild(characterInfo)
             self.characterInfo = characterInfo
         }
@@ -312,7 +312,7 @@ extension GameScene: GameDelegate {
             let viewVisibleCoords = getCoordsInRange(minCoord: minCoord, maxCoord: maxCoord)
             
             for entity in self.game.activeActors {
-                if self.game.actorVisibleCoords.contains(entity.coord) {
+                if self.game.state.actorVisibleCoords.contains(entity.coord) {
                     if entity.sprite.parent == nil {
                         self.world.addChild(entity.sprite)
                     }
@@ -329,9 +329,9 @@ extension GameScene: GameDelegate {
             // add sprites for all newly added tiles ... these are tiles that used to be out of view bounds
             let addedCoords = viewVisibleCoords.subtracting(self.game.viewVisibleCoords)
             for coord in addedCoords {
-                let tile = self.game.tiles[Int(coord.y)][Int(coord.x)]
+                let tile = self.game.state.tiles[Int(coord.y)][Int(coord.x)]
 
-                if game.actorVisibleCoords.contains(coord) {
+                if self.game.state.actorVisibleCoords.contains(coord) {
                     tile.didExplore = true
                 }
 
@@ -339,27 +339,27 @@ extension GameScene: GameDelegate {
                 tile.sprite.alpha = 0.0
                 self.world.addChild(tile.sprite)
                 
-                let alpha: CGFloat = self.game.actorVisibleCoords.contains(coord) ? 1.0 : tile.didExplore ? 0.5 : 0.0
+                let alpha: CGFloat = self.game.state.actorVisibleCoords.contains(coord) ? 1.0 : tile.didExplore ? 0.5 : 0.0
                 tile.sprite.run(SKAction.fadeAlpha(to: alpha, duration: 3.0))
             }
 
             // remove sprites for tiles that are out of view bounds
             let removedCoords = self.game.viewVisibleCoords.subtracting(viewVisibleCoords)
             for coord in removedCoords {
-                let tile = self.game.tiles[Int(coord.y)][Int(coord.x)]
+                let tile = self.game.state.tiles[Int(coord.y)][Int(coord.x)]
                 tile.sprite.removeFromParent()
             }
                         
             // update the remaining tiles
             let remainingCoords = self.game.viewVisibleCoords.subtracting(addedCoords).subtracting(removedCoords)
             for coord in remainingCoords {
-                let tile = self.game.tiles[Int(coord.y)][Int(coord.x)]
+                let tile = self.game.state.tiles[Int(coord.y)][Int(coord.x)]
 
-                if game.actorVisibleCoords.contains(coord) {
+                if self.game.state.actorVisibleCoords.contains(coord) {
                     tile.didExplore = true
                 }
 
-                let alpha: CGFloat = self.game.actorVisibleCoords.contains(coord) ? 1.0 : tile.didExplore ? 0.5 : 0.0
+                let alpha: CGFloat = self.game.state.actorVisibleCoords.contains(coord) ? 1.0 : tile.didExplore ? 0.5 : 0.0
                 tile.sprite.run(SKAction.fadeAlpha(to: alpha, duration: 1.5))
             }
             
@@ -370,7 +370,7 @@ extension GameScene: GameDelegate {
             let firstCoord = path.first!
             let lastCoord = path.last!
             
-            let willShow = self.game.actorVisibleCoords.contains(lastCoord) && self.game.actorVisibleCoords.contains(firstCoord) == false
+            let willShow = self.game.state.actorVisibleCoords.contains(lastCoord) && self.game.state.actorVisibleCoords.contains(firstCoord) == false
             
             var move: [SKAction] = []
 

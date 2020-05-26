@@ -75,7 +75,7 @@ class Hero: Actor, CustomStringConvertible {
         super.init(json: json, entityFactory: entityFactory)
     }
     
-    override func update(state: Game) {
+    override func update(state: GameState) {
         guard self.isAlive else { return }
         
         guard let heroAction = self.heroAction else { return }
@@ -85,7 +85,7 @@ class Hero: Actor, CustomStringConvertible {
         switch heroAction {
         case .interact(let direction):
             let toCoord = self.coord &+ direction.coord
-            if let door = state.tiles[Int(toCoord.y)][Int(toCoord.x)] as? Door {
+            if let door = state.getDoor(at: toCoord) {
                 let interact = InteractAction(actor: self, entity: door)
                 setAction(interact)
             }
@@ -103,7 +103,7 @@ class Hero: Actor, CustomStringConvertible {
                     let move = MoveAction(actor: self, toCoord: toCoord)
                     setAction(move)
                 } else {
-                    if let door = state.tiles[Int(toCoord.y)][Int(toCoord.x)] as? Door {
+                    if let door = state.getDoor(at: toCoord) {
                         let interact = InteractAction(actor: self, entity: door)
                         setAction(interact)
                     }

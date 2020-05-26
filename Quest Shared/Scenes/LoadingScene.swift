@@ -51,7 +51,8 @@ class LoadingScene: MenuSceneBase {
             .with(name: "Kendrick")
             .build(entityFactory: entityFactory)
         
-        let game = Game(entityFactory: entityFactory, hero: hero)
+        let state = try! GameState(level: 0, hero: hero, entityFactory: entityFactory)
+        let game = Game(state: state)
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
             try! ServiceLocator.shared.get(service: SceneManager.self).fade(to: GameScene.self, userInfo: [

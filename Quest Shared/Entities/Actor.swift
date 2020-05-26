@@ -60,7 +60,7 @@ class Actor: Entity {
         return self.action
     }
     
-    func update(state: Game) { fatalError() }
+    func update(state: GameState) { fatalError() }
     
     var effects: [Effect] {
         let equippedItems: [Equippable] = [self.equippedArmor, self.equippedShield, self.equippedRing, self.equippedWeapon, self.equippedBoots, self.equippedHeadpiece]
