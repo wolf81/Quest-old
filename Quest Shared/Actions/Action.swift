@@ -15,7 +15,7 @@ class Action {
         self.actor = actor
     }
     
-    func perform(game: Game) {
+    func perform(state: GameState) {
         fatalError()
     }
 }

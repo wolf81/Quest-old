@@ -17,8 +17,8 @@ class MeleeAttackAction: Action, StatusUpdatable {
         self.targetActor = targetActor
         super.init(actor: actor)
     }
-    
-    override func perform(game: Game) {        
+
+    override func perform(state: GameState) {
         self.actor.energy.drain(self.actor.energyCost.attackMelee)
 
         let attackDie = HitDie.d20(1, 0)

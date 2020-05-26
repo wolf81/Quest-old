@@ -24,7 +24,7 @@ class RangedAttackAction: Action, StatusUpdatable {
         super.init(actor: actor)
     }
     
-    override func perform(game: Game) {
+    override func perform(state: GameState) {
         self.actor.energy.drain(self.actor.energyCost.attackRanged)
 
         let attackDie = HitDie.d20(1, 0)

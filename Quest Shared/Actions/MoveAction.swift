@@ -31,7 +31,7 @@ class MoveAction: Action, StatusUpdatable {
         super.init(actor: actor)
     }
     
-    override func perform(game: Game) {
+    override func perform(state: GameState) {
         var energyCost = self.actor.energyCost.move
         
         for effect in self.actor.effects {
@@ -43,8 +43,8 @@ class MoveAction: Action, StatusUpdatable {
         self.actor.energy.drain(max(energyCost, 0))
 
         for coord in self.path {
-            if let hero = self.actor as? Hero, let loot = game.getLoot(at: coord) {
-                game.remove(entity: loot)
+            if let hero = self.actor as? Hero, let loot = state.getLoot(at: coord) {
+                state.remove(entity: loot)
                 hero.addToBackpack(loot)
             }
             self.actor.coord = self.toCoord

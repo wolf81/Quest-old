@@ -17,7 +17,7 @@ class InteractAction: Action {
         super.init(actor: actor)
     }
     
-    override func perform(game: Game) {
+    override func perform(state: GameState) {
         self.actor.energy.drain(50)
 
         switch entity {

@@ -29,6 +29,8 @@ class GameState: CustomStringConvertible {
     
     private var activeActorIndex: Int = 0
     
+    private var loot: [Lootable] { self.entities.filter({ $0 is Lootable }) as! [Lootable] }
+
     var entities: [Entity] = []
 
     var activeActors: [Actor] = []
@@ -77,6 +79,10 @@ class GameState: CustomStringConvertible {
         addMonsters(entityFactory: entityFactory)
     }
     
+    func getLoot(at coord: vector_int2) -> Lootable? {
+        return self.loot.filter{ $0.coord == coord }.first
+    }
+    
     public func nextActor() {
         
     }
@@ -114,6 +120,10 @@ class GameState: CustomStringConvertible {
         }
         
         return description
+    }
+    
+    func remove(entity: Entity) {
+        self.entities.removeAll(where: { $0 == entity })
     }
     
     private func addMonsters(entityFactory: EntityFactory) {

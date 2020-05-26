@@ -340,28 +340,6 @@ class Game {
             tiles.append(tileRow)
         }
         
-//        var monsterCount = 0
-//        for (roomId, room) in self.level.roomInfo {
-//            // TODO: fix room coord calc in DungeonBuilder, so we don't have to do the following to get good coords ...
-//            let roomCoord = vector_int2(Int32(room.coord.x + room.width / 2), Int32(room.coord.y + room.height / 2))
-//
-//            var monster: Monster
-//
-//            print("\(roomId): \(room.coord.x).\( room.coord.y) -> \(roomCoord.x).\(roomCoord.y)")
-//            let v = monsterCount.remainderReportingOverflow(dividingBy: 3).partialValue
-//            switch v {
-//            case 0:
-//                monster = try! entityFactory.newEntity(type: Monster.self, name: "Gnoll", coord: roomCoord)
-//            case 1:
-//                monster = try! entityFactory.newEntity(type: Monster.self, name: "Skeleton", coord: roomCoord)
-//            default:
-//                monster = try! entityFactory.newEntity(type: Monster.self, name: "Kobold", coord: roomCoord)
-//            }
-//            entities.append(monster)
-//
-//            monsterCount += 1
-//        }
-        
         self.tiles = tiles
 //        self.entities = entities
 
@@ -437,7 +415,7 @@ class Game {
     func update(_ deltaTime: TimeInterval) {
         // process the list if pending actions
         while let action = self.actions.first {
-            action.perform(game: self)
+            action.perform(state: self.state)
             
             switch action {
             case let interact as InteractAction:

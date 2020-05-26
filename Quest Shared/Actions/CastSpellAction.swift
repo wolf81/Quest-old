@@ -19,7 +19,7 @@ class CastSpellAction: Action {
         super.init(actor: actor)
     }
     
-    override func perform(game: Game) {
+    override func perform(state: GameState) {
         self.actor.energy.drain()
 
         switch self.spell {
