@@ -14,13 +14,13 @@ class Tileset: JSONConstructable {
     let wallTiles: [SKSpriteNode]
     
     func getFloorTile() -> SKSpriteNode {
-        let tileIdx = arc4random_uniform(UInt32(self.floorTiles.count))
-        return self.floorTiles[Int(tileIdx)].copy() as! SKSpriteNode
+        let tileIdx = getRandomIndexEmphasizeZero(self.floorTiles.count)
+        return self.floorTiles[tileIdx].copy() as! SKSpriteNode
     }
     
     func getWallTile() -> SKSpriteNode {
-        let tileIdx = arc4random_uniform(UInt32(self.wallTiles.count))
-        return self.wallTiles[Int(tileIdx)].copy() as! SKSpriteNode
+        let tileIdx = getRandomIndexEmphasizeZero(self.wallTiles.count)
+        return self.wallTiles[tileIdx].copy() as! SKSpriteNode
     }
     
     required init(json: [String : Any]) {
@@ -29,6 +29,14 @@ class Tileset: JSONConstructable {
         self.wallTiles = Tileset.getSprites(for: json["wallTiles"] as? [String] ?? [])
     }
     
+    static func load(fileNamed filename: String) throws -> Tileset {
+        let path = Bundle.main.path(forResource: filename, ofType: "json", inDirectory: "Data/Tileset")
+        let url = URL(fileURLWithPath: path!)
+        let data = try Data(contentsOf: url)
+        let json = try JSONSerialization.jsonObject(with: data, options: [])
+        return Tileset(json: json as! [String: Any])
+    }
+
     // MARK: - Private
     
     private static func getSprites(for spriteNames: [String]) -> [SKSpriteNode] {
@@ -40,12 +48,11 @@ class Tileset: JSONConstructable {
         }
         return sprites
     }
-    
-    static func load(fileNamed filename: String) throws -> Tileset {
-        let path = Bundle.main.path(forResource: filename, ofType: "json", inDirectory: "Data/Tileset")
-        let url = URL(fileURLWithPath: path!)
-        let data = try Data(contentsOf: url)
-        let json = try JSONSerialization.jsonObject(with: data, options: [])
-        return Tileset(json: json as! [String: Any])
+        
+    /// Retrieve a random index, but 0 will be returned most of the time
+    /// - Parameter count: Amount of elements
+    private func getRandomIndexEmphasizeZero(_ count: Int) -> Int {
+        let tileIdx = arc4random_uniform(UInt32(count * 2))
+        return tileIdx >= count ? 0 : Int(tileIdx)
     }
 }

@@ -362,8 +362,8 @@ class Game {
         self.entities = entities
 
 
-        /* WIP */
-
+        /* WIP
+ 
         var tilesets: [Tileset] = []
         for tilesetFile in ["catacombs", "marble", "sandstone"] {
             let path = Bundle.main.path(forResource: tilesetFile, ofType: "json", inDirectory: "Data/Tileset")
@@ -425,7 +425,7 @@ class Game {
             }
         }
                 
-        /* WIP */
+        /* WIP */ */
                 
         updateActiveActors()
         updateVisibility(for: self.hero)
