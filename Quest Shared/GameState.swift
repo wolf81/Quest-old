@@ -26,24 +26,24 @@ class GameState {
 
     var hero: Hero
     
-    private var activeActorIndex: Int = 0
-    
-    var loot: [Lootable] { self.entities.filter({ $0 is Lootable }) as! [Lootable] }
-
-    var entities: [Entity] = []
-    
-    private var actors: [Actor] { self.entities.filter({ $0 is Actor }) as! [Actor] }
-    
-    var monsters: [Monster] { self.entities.filter({ $0 is Monster }) as! [Monster] }
-    
-    private(set) var tiles: [[TileProtocol]] = []
-        
     var actorVisibleCoords = Set<vector_int2>()
 
+    var entities: [Entity] = []
+
     var activeActors: [Actor] = []
-    
+
     var currentActor: Actor { self.activeActors[self.activeActorIndex] }
-    
+
+    var loot: [Lootable] { self.entities.filter({ $0 is Lootable }) as! [Lootable] }
+
+    var monsters: [Monster] { self.entities.filter({ $0 is Monster }) as! [Monster] }
+
+    private var actors: [Actor] { self.entities.filter({ $0 is Actor }) as! [Actor] }
+        
+    private var activeActorIndex: Int = 0
+
+    private(set) var tiles: [[TileProtocol]] = []
+                
     init(level: Int, hero: Hero, entityFactory: EntityFactory) throws {
         self.hero = hero
         
@@ -79,6 +79,7 @@ class GameState {
         self.map = nodes
         
         addTiles(to: dungeon, entityFactory: entityFactory)
+        addTilesets(to: dungeon)
         addMonsters(to: dungeon, entityFactory: entityFactory)
         addLoot(to: dungeon, entityFactory: entityFactory)
         addHero(to: dungeon, roomId: 1)
@@ -159,11 +160,7 @@ class GameState {
         let maxValue = min(position + radius + 1, range.upperBound)
         return Int32(minValue) ..< Int32(maxValue)
     }
-    
-//    subscript(coord: vector_int2) -> NodeType {
-//        return self.map[Int(coord.y)][Int(coord.x)]
-//    }
-    
+        
     func getMapNode(at coord: vector_int2) -> NodeType {
         return self.map[Int(coord.y)][Int(coord.x)]
     }
@@ -264,7 +261,72 @@ class GameState {
         self.hero.coord = vector_int2(Int32(room.coord.y), Int32(room.coord.x))
         self.entities.append(self.hero)
     }
+    
+    private func addTilesets(to dungeon: Dungeon) {
+        var tilesets: [Tileset] = []
+        for tilesetFile in ["snake", "orc", "marble", "sandstone", "church"] {
+            let tileset = try! DataLoader.load(type: Tileset.self, fromFileNamed: tilesetFile, inDirectory: "Data/Tileset")
+            tilesets.append(tileset)
+        }
+                        
+        var roomTilesetInfo: [UInt: Bool] = [:]
+                
+        for (roomId, room) in dungeon.roomInfo {
+            if arc4random_uniform(4) != 0 || roomTilesetInfo.index(forKey: roomId) != nil { continue }
+                        
+            let midX: Int32 = Int32(room.coord.x + room.width / 2)
+            let midY: Int32 = Int32(room.coord.y + room.height / 2)
+
+            let minY = Int32(max(room.coord.x - 2, 0))
+            let maxY = Int32(min(room.coord.x + room.width + 2, Int(self.mapWidth - 1)))
+            let minX = Int32(max(room.coord.y - 2, 0))
+            let maxX = Int32(min(room.coord.y + room.height + 2, Int(self.mapHeight - 1)))
+            let p1 = vector_int2(minX, midY)
+            let p2 = vector_int2(maxX, midY)
+            let p3 = vector_int2(midX, minY)
+            let p4 = vector_int2(midX, maxY)
+            let p5 = vector_int2(minX, minY)
+            let p6 = vector_int2(maxX, minY)
+            let p7 = vector_int2(minX, maxY)
+            let p8 = vector_int2(maxX, maxY)
+
+            for point in [p1, p2, p3, p4, p5, p6, p7, p8] {
+                let coord = Coordinate(Int(point.y), Int(point.x))
+                let node = dungeon[coord]
+                if node.contains(.room) {
+                    roomTilesetInfo[node.roomId] = false
+                }
+            }
+                        
+            roomTilesetInfo[roomId] = true
+            
+            let tilesetIdx = arc4random_uniform(UInt32(tilesets.count))
+            let tileset = tilesets[Int(tilesetIdx)]
+            
+            for x in (room.coord.x - 1) ... (room.coord.x + room.width) {
+                for y in (room.coord.y - 1) ... (room.coord.y + room.height) {
+                    let tile = self.tiles[x][y]
+
+                    let coord = vector_int2(Int32(y), Int32(x))
+                    let node = self.getMapNode(at: coord)
+
+                    var sprite: SKSpriteNode
+                    
+                    switch node {
+                    case .open: sprite = tileset.getFloorTile()
+                    case .blocked: sprite = tileset.getWallTile()
+                    default: continue // ignore doors for now?
+                    }
+                    
+                    let newTile = Tile(sprite: sprite, coord: tile.coord)
+                    self.tiles[x][y] = newTile
+                }
+            }
+        }
+    }
 }
+
+// MARK: - CustomStringConvertible
 
 extension GameState: CustomStringConvertible {
     var description: String {

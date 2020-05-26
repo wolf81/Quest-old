@@ -157,72 +157,7 @@ class Game {
             let y = pow(Float($1.y - $0.y), 2)
             return Int(sqrt(x + y))
         })
-        
-        /*
-         // WIP tilesets
-         
-        var tilesets: [Tileset] = []
-        for tilesetFile in ["snake", "orc", "marble", "sandstone", "church"] {
-            let tileset = try! DataLoader.load(type: Tileset.self, fromFileNamed: tilesetFile, inDirectory: "Data/Tileset")
-            tilesets.append(tileset)
-        }
-                        
-        var roomTilesetInfo: [UInt: Bool] = [:]
-                
-        for (roomId, room) in self.level.roomInfo {
-            if arc4random_uniform(4) != 0 || roomTilesetInfo.index(forKey: roomId) != nil { continue }
-                        
-            let midX: Int32 = Int32(room.coord.x + room.width / 2)
-            let midY: Int32 = Int32(room.coord.y + room.height / 2)
-
-            let minX = Int32(max(room.coord.x - 2, 0))
-            let maxX = Int32(min(room.coord.x + room.width + 2, Int(self.level.width - 1)))
-            let minY = Int32(max(room.coord.y - 2, 0))
-            let maxY = Int32(min(room.coord.y + room.height + 2, Int(self.level.height - 1)))
-            let p1 = vector_int2(minX, midY)
-            let p2 = vector_int2(maxX, midY)
-            let p3 = vector_int2(midX, minY)
-            let p4 = vector_int2(midX, maxY)
-            let p5 = vector_int2(minX, minY)
-            let p6 = vector_int2(maxX, minY)
-            let p7 = vector_int2(minX, maxY)
-            let p8 = vector_int2(maxX, maxY)
-
-            for point in [p1, p2, p3, p4, p5, p6, p7, p8] {
-                let node = self.level.getNode(at: point)
-                if node.contains(.room) {
-                    roomTilesetInfo[node.roomId] = false
-                }
-            }
-                        
-            roomTilesetInfo[roomId] = true
-            
-            let tilesetIdx = arc4random_uniform(UInt32(tilesets.count))
-            let tileset = tilesets[Int(tilesetIdx)]
-            
-            for x in (room.coord.x - 1) ... (room.coord.x + room.width) {
-                for y in (room.coord.y - 1) ... (room.coord.y + room.height) {
-                    let tile = self.tiles[y][x]
-
-                    let tileType = self.getTile(at: vector_int2(Int32(x), Int32(y)))!
-
-                    var sprite: SKSpriteNode
-                    
-                    switch tileType {
-                    case 0: sprite = tileset.getFloorTile()
-                    case 1: sprite = tileset.getWallTile()
-                    default: continue // ignore doors for now?
-                    }
-                    
-                    let newTile = Tile(sprite: sprite, coord: tile.coord)
-                    self.tiles[y][x] = newTile
-                }
-            }
-        }
-                
- */
-        /* WIP */
-                        
+                                
         self.state.updateActiveActors()
         updateVisibility(for: self.state.hero)
     }
