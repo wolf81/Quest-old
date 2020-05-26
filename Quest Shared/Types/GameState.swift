@@ -17,14 +17,14 @@ enum NodeType: Int {
     case door = 2
 }
 
-class GameState: CustomStringConvertible {
+class GameState {
     lazy var width: Int32 = { Int32(self.dungeonInternal.width) }()
     lazy var height: Int32 = { Int32(self.dungeonInternal.height) }()
 
     private let dungeonInternal: Dungeon
     
     // level tiles used for walls, floor, etc...
-    private(set) var dungeon: [[NodeType]] = []
+    private var dungeon: [[NodeType]] = []
     
     var hero: Hero
     
@@ -77,13 +77,9 @@ class GameState: CustomStringConvertible {
         }
         
         self.dungeon = nodes
-        
-        let room = self.dungeonInternal.roomInfo[1]!
-        self.hero.coord = vector_int2(Int32(room.coord.y), Int32(room.coord.x))
-        
-        self.entities.append(self.hero)
-        
-        
+            
+        addHeroToRoom(1)
+                
         var tiles: [[TileProtocol]] = []
                         
         let tileset = try! DataLoader.load(type: Tileset.self, fromFileNamed: "catacombs", inDirectory: "Data/Tileset")
@@ -127,7 +123,7 @@ class GameState: CustomStringConvertible {
         return self.loot.filter{ $0.coord == coord }.first
     }
     
-    public func nextActor() {
+    func nextActor() {
         self.activeActorIndex = (self.activeActorIndex + 1) % self.activeActors.count
     }
     
@@ -212,29 +208,7 @@ class GameState: CustomStringConvertible {
     subscript(coord: vector_int2) -> NodeType {
         return self.dungeon[Int(coord.y)][Int(coord.x)]
     }
-    
-    var description: String {
-        var description: String = ""
         
-        for y in 0 ..< Int(self.height) {
-            for x in 0 ..< Int(self.width) {
-                if self.hero.coord == vector_int2(Int32(x), Int32(y)) {
-                    description += "H "
-                }
-                
-                let value = self.dungeon[x][y]
-                switch value {
-                case .open: description += "` "
-                case .blocked: description += "  "
-                case .door: description += "Π "
-                }
-            }
-            description += "\n"
-        }
-        
-        return description
-    }
-    
     func remove(entity: Entity) {
         self.entities.removeAll(where: { $0 == entity })
     }
@@ -253,6 +227,8 @@ class GameState: CustomStringConvertible {
         
         return node == .open
     }
+    
+    // MARK: - Private
     
     private func addMonsters(entityFactory: EntityFactory) {
         var monsterCount = 0
@@ -276,5 +252,35 @@ class GameState: CustomStringConvertible {
             
             monsterCount += 1
         }
+    }
+    
+    private func addHeroToRoom(_ roomId: UInt) {
+        let room = self.dungeonInternal.roomInfo[1]!
+        self.hero.coord = vector_int2(Int32(room.coord.y), Int32(room.coord.x))
+        self.entities.append(self.hero)
+    }
+}
+
+extension GameState: CustomStringConvertible {
+    var description: String {
+        var description: String = ""
+        
+        for y in 0 ..< Int(self.height) {
+            for x in 0 ..< Int(self.width) {
+                if self.hero.coord == vector_int2(Int32(x), Int32(y)) {
+                    description += "H "
+                }
+                
+                let value = self.dungeon[x][y]
+                switch value {
+                case .open: description += "` "
+                case .blocked: description += "  "
+                case .door: description += "Π "
+                }
+            }
+            description += "\n"
+        }
+        
+        return description
     }
 }
