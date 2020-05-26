@@ -54,7 +54,9 @@ class Game {
             self.delegate?.gameDidChangeSelectionMode(self.selectionMode)
         }
     }
-        
+
+    var viewVisibleCoords = Set<vector_int2>()
+
     public var turnDuration: TimeInterval = 6
     
     private var visibility: Visibility!
@@ -63,109 +65,22 @@ class Game {
         self.state = state
     }
 
-    // all currently existing entities (players, monsters, loot), entities that are destroyed are removed
-    var entities: [Entity] { self.state.entities }
-            
-    // level tiles used for walls, floor, etc...
-    private var tiles: [[TileProtocol]] { self.state.tiles }
-
-    // coordinates of tiles that are currently visible for the player
-
-    var viewVisibleCoords = Set<vector_int2>()
-
 //    private(set) var selectionModeCoords = Set<vector_int2>()
     private(set) var selectionModeTiles: [OverlayTile] = []
-    
-    // the current active actor, either a player or monster
-//    private var activeActorIdx: Int = 0
-    
+        
     // a list of dungeon loot
-    var loot: [Lootable] { self.entities.filter({ $0 is Lootable }) as! [Lootable] }
-
-//    var actors: [Actor] { self.entities.filter({ $0 is Actor }) as! [Actor] }
+    var loot: [Lootable] { self.state.entities.filter({ $0 is Lootable }) as! [Lootable] }
     
-    var monsters: [Monster] { self.entities.filter({ $0 is Monster }) as! [Monster] }
-    
-    var activeActors: [Actor] { self.state.activeActors }
-    
+    var monsters: [Monster] { self.state.entities.filter({ $0 is Monster }) as! [Monster] }
+        
     var actions: [Action] = []
-        
-    func getActor(at coord: vector_int2) -> Actor? {
-        self.state.getActor(at: coord)
-    }
-    
-    func getLoot(at coord: vector_int2) -> Lootable? {
-        return self.loot.filter({ $0.coord == coord}).first
-    }
-        
+                    
     func getRange(position: Int32, radius: Int32, constrainedTo range: Range<Int32>) -> Range<Int32> {
         let minValue = max(position - radius, range.lowerBound)
         let maxValue = min(position + radius + 1, range.upperBound)
         return Int32(minValue) ..< Int32(maxValue)
     }
-    
-    func getMovementGraph(for actor: Actor, range: Int32, excludedCoords: [vector_int2]) -> GKGridGraph<GKGridGraphNode> {
-        let xRange = getRange(position: actor.coord.x, radius: range, constrainedTo: 0 ..< self.state.width)
-        let width = xRange.upperBound - xRange.lowerBound
-        let yRange = getRange(position: actor.coord.y, radius: range, constrainedTo: 0 ..< self.state.height)
-        let height = yRange.upperBound - yRange.lowerBound
         
-        // Create a graph for the visible area
-        let movementGraph = GKGridGraph(fromGridStartingAt: vector_int2(xRange.lowerBound, yRange.lowerBound), width: width, height: height, diagonalsAllowed: false)
-        for x in movementGraph.gridOrigin.x ..< (movementGraph.gridOrigin.x + Int32(movementGraph.gridWidth)) {
-            for y in movementGraph.gridOrigin.y ..< (movementGraph.gridOrigin.y + Int32(movementGraph.gridHeight)) {
-                let coord = vector_int2(x, y)
-                                
-                if self.state.actorVisibleCoords.contains(coord) == false || self.state[coord] == .blocked {
-                    if let node = movementGraph.node(atGridPosition: coord) {
-                        movementGraph.remove([node])
-                    }
-                }
-                
-                if excludedCoords.contains(coord) {
-                    if let movementGraphNode = movementGraph.node(atGridPosition: coord) {
-                        movementGraph.remove([movementGraphNode])
-                    }
-                }
-            }
-        }
-        
-        if let actorNode = movementGraph.node(atGridPosition: actor.coord) {
-            for node in movementGraph.nodes ?? [] {
-                let pathNodes = actorNode.findPath(to: node)
-                if pathNodes.count == 0 {
-                    movementGraph.remove([node])
-                }
-            }
-        }
-
-        return movementGraph
-    }
-    
-    private func getVisiblityGraph(for actor: Actor) -> GKGridGraph<GKGridGraphNode> {
-        let radius: Int32 = 1
-        let xRange = getRange(position: actor.coord.x, radius: radius, constrainedTo: 0 ..< self.state.width)
-        let width = xRange.upperBound - xRange.lowerBound
-        let yRange = getRange(position: actor.coord.y, radius: radius, constrainedTo: 0 ..< self.state.height)
-        let height = yRange.upperBound - yRange.lowerBound
-
-        // Create a graph for the visible area
-        let visibleAreaGraph = GKGridGraph(fromGridStartingAt: vector_int2(xRange.lowerBound, yRange.lowerBound), width: width, height: height, diagonalsAllowed: false)
-        for x in visibleAreaGraph.gridOrigin.x ..< (visibleAreaGraph.gridOrigin.x + Int32(visibleAreaGraph.gridWidth)) {
-            for y in visibleAreaGraph.gridOrigin.y ..< (visibleAreaGraph.gridOrigin.y + Int32(visibleAreaGraph.gridHeight)) {
-                let coord = vector_int2(x, y)
-
-                if isInRange(origin: actor.coord, radius: radius, coord: coord) == false || self.state[coord] == .blocked {
-                    if let node = visibleAreaGraph.node(atGridPosition: coord) {
-                        visibleAreaGraph.remove([node])
-                    }
-                }
-            }
-        }
-                
-        return visibleAreaGraph
-    }
-    
     // MARK: - Public
     
     func showMovementTilesForHero() {
@@ -240,20 +155,15 @@ class Game {
     }
             
     func start(levelIdx: Int = 0, tileSize: CGSize) {
-//        self.level = Level()
-//        print(self.level!)
-        
         self.tileSize = tileSize
         
         let mapSize = CGSize(width: Int(self.state.width), height: Int(self.state.height))
         self.visibility = RaycastVisibility(mapSize: mapSize, blocksLight: {
-            let node = self.state[$0]
-            if node == .door {
-                let door = self.tiles[Int($0.y)][Int($0.x)] as! Door
+            if let door = self.state.getDoor(at: $0) {
                 return door.isOpen == false
             }
             
-            return node == .blocked
+            return self.state[$0] == .blocked
         }, setVisible: {
             self.state.actorVisibleCoords.insert($0)
         }, getDistance: {
@@ -262,62 +172,9 @@ class Game {
             return Int(sqrt(x + y))
         })
         
-//        var entities: [Entity] = []
-        
         /*
-        var tiles: [[TileProtocol]] = []
-        
-        var didAddHero = false
-                
-        let tileset = try! DataLoader.load(type: Tileset.self, fromFileNamed: "catacombs", inDirectory: "Data/Tileset")
-        
-        var roomPotionInfo: [UInt: vector_int2] = [:]
-        
-        for y in (0 ..< Int32(self.state.height)) {
-            var tileRow: [TileProtocol] = []
-            
-            for x in (0 ..< Int32(self.state.width)) {
-                let coord = vector_int2(x, y)
-                let tile = self.state[coord]
-                var entity: TileProtocol
-
-                switch tile {
-                case .open: entity = Tile(sprite: tileset.getFloorTile(), coord: coord)
-                case .blocked: entity = Tile(sprite: tileset.getWallTile(), coord: coord)
-                case .door: entity = try! entityFactory.newEntity(type: Door.self, name: "Door", coord: coord)
-                default: fatalError()
-                }
-
-                tileRow.append(entity)
-                                
-//                if let roomId = level.getRoomId(at: coord), roomPotionInfo[roomId] == nil, [2, 8, 9].contains(roomId), let room = level.roomInfo[roomId] {
-//                    let coord = vector_int2(Int32(room.coord.x + room.width - 2), Int32(room.coord.y + room.height - 2))
-//                    let potion = try! entityFactory.newEntity(type: Potion.self, name: "Health Potion", coord: coord)
-//                    entities.append(potion)
-//                    print("potion added to room: \(roomId) @ \(coord.x).\(coord.y)")
-//
-//                    roomPotionInfo[roomId] = coord
-//                }
-//
-//                if !didAddHero, let roomId = level.getRoomId(at: coord) {
-//                    print("level size: \(self.level.width) x \(self.level.height)")
-//                    print("hero added to room: \(roomId) @ \(coord.x).\(coord.y)")
-//                    self.hero.coord = coord
-//                    entities.append(self.hero)
-//                    print(self.hero)
-//
-//                    didAddHero = true
-//                }
-            }
-            tiles.append(tileRow)
-        }
-        
-        self.tiles = tiles
-//        self.entities = entities
-*/
-
-        /* WIP */
-/*
+         // WIP tilesets
+         
         var tilesets: [Tileset] = []
         for tilesetFile in ["snake", "orc", "marble", "sandstone", "church"] {
             let tileset = try! DataLoader.load(type: Tileset.self, fromFileNamed: tilesetFile, inDirectory: "Data/Tileset")

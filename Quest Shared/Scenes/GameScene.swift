@@ -107,7 +107,7 @@ class GameScene: SKScene, SceneManagerConstructable {
         
         self.statusBar.update(text: "Welcome to Quest")
         
-        for entity in self.game.entities {
+        for entity in self.game.state.entities {
             entity.sprite.position = GameScene.pointForCoord(entity.coord)
         }
         
@@ -311,7 +311,7 @@ extension GameScene: GameDelegate {
                                                         
             let viewVisibleCoords = getCoordsInRange(minCoord: minCoord, maxCoord: maxCoord)
             
-            for entity in self.game.activeActors {
+            for entity in self.game.state.activeActors {
                 if self.game.state.actorVisibleCoords.contains(entity.coord) {
                     if entity.sprite.parent == nil {
                         self.world.addChild(entity.sprite)
