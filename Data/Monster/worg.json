@@ -1,0 +1,13 @@
+{
+    "name": "Wolf",
+    "sprite": "wolf",
+
+    "HD": "2d8+4",
+    "AC": 14,
+    "EQ": {},
+    
+    "energyCost": {
+        "move": 35,
+        "attackMelee": 50
+    }
+}

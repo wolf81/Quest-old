@@ -233,17 +233,9 @@ class GameState {
             // TODO: fix room coord calc in DungeonBuilder, so we don't have to do the following to get good coords ...
             let roomCoord = vector_int2(Int32(room.coord.y + room.height / 2), Int32(room.coord.x + room.width / 2))
             
-            var monster: Monster
-            
-            let remainder = monsterCount.remainderReportingOverflow(dividingBy: 3).partialValue
-            switch remainder {
-            case 0:
-                monster = try! entityFactory.newEntity(type: Monster.self, name: "Gnoll", coord: roomCoord)
-            case 1:
-                monster = try! entityFactory.newEntity(type: Monster.self, name: "Skeleton", coord: roomCoord)
-            default:
-                monster = try! entityFactory.newEntity(type: Monster.self, name: "Kobold", coord: roomCoord)
-            }
+            let monsterNames = entityFactory.entityNames(of: Monster.self)        
+            let remainder = monsterCount.remainderReportingOverflow(dividingBy: monsterNames.count).partialValue
+            let monster = try! entityFactory.newEntity(type: Monster.self, name: monsterNames[remainder], coord: roomCoord)
             self.entities.append(monster)
             
             monsterCount += 1

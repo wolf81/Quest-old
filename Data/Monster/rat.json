@@ -1,0 +1,13 @@
+{
+    "name": "Dire Rat",
+    "sprite": "rat",
+
+    "HD": "1d8+1",
+    "AC": 15,
+    "EQ": {},
+    
+    "energyCost": {
+        "move": 50,
+        "attackMelee": 40
+    }
+}

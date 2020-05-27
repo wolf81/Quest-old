@@ -213,6 +213,9 @@
 		79D6E705247CB3D200D7333A /* Walls.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79D6E704247CB3D200D7333A /* Walls.xcassets */; };
 		79D6E706247CB3D200D7333A /* Walls.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79D6E704247CB3D200D7333A /* Walls.xcassets */; };
 		79D6E707247CB3D200D7333A /* Walls.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79D6E704247CB3D200D7333A /* Walls.xcassets */; };
+		79D6E709247E40B100D7333A /* Creatures.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79D6E708247E40B100D7333A /* Creatures.xcassets */; };
+		79D6E70A247E40B100D7333A /* Creatures.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79D6E708247E40B100D7333A /* Creatures.xcassets */; };
+		79D6E70B247E40B100D7333A /* Creatures.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79D6E708247E40B100D7333A /* Creatures.xcassets */; };
 		79D81570246572450099567B /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D8156F246572450099567B /* ButtonNode.swift */; };
 		79D81571246572450099567B /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D8156F246572450099567B /* ButtonNode.swift */; };
 		79D81572246572450099567B /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D8156F246572450099567B /* ButtonNode.swift */; };
@@ -335,6 +338,7 @@
 		79D6E6E7247A9D1700D7333A /* Effect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effect.swift; sourceTree = "<group>"; };
 		79D6E700247CB3C100D7333A /* Floors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Floors.xcassets; sourceTree = "<group>"; };
 		79D6E704247CB3D200D7333A /* Walls.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Walls.xcassets; sourceTree = "<group>"; };
+		79D6E708247E40B100D7333A /* Creatures.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Creatures.xcassets; sourceTree = "<group>"; };
 		79D8156F246572450099567B /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		79D815732465AEAF0099567B /* PaperDollNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperDollNode.swift; sourceTree = "<group>"; };
 		79DF73AB2462D3570030E7A8 /* StatusUpdatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusUpdatable.swift; sourceTree = "<group>"; };
@@ -525,6 +529,7 @@
 				797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */,
 				79D6E700247CB3C100D7333A /* Floors.xcassets */,
 				79D6E704247CB3D200D7333A /* Walls.xcassets */,
+				79D6E708247E40B100D7333A /* Creatures.xcassets */,
 			);
 			path = "Quest Shared";
 			sourceTree = "<group>";
@@ -701,6 +706,7 @@
 				79C61A8122A7C415008D3609 /* LaunchScreen.storyboard in Resources */,
 				79ACC7DE22AA5BE900AC3BF0 /* Data in Resources */,
 				797DBF7B22A91FA300D0F8E7 /* Sprites.xcassets in Resources */,
+				79D6E709247E40B100D7333A /* Creatures.xcassets in Resources */,
 				79D6E701247CB3C100D7333A /* Floors.xcassets in Resources */,
 				79D6E705247CB3D200D7333A /* Walls.xcassets in Resources */,
 				79C61AA822A7C415008D3609 /* Assets.xcassets in Resources */,
@@ -711,6 +717,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79D6E70A247E40B100D7333A /* Creatures.xcassets in Resources */,
 				797DBF7C22A91FA300D0F8E7 /* Sprites.xcassets in Resources */,
 				79C61A8F22A7C415008D3609 /* Main.storyboard in Resources */,
 				79D6E702247CB3C100D7333A /* Floors.xcassets in Resources */,
@@ -724,6 +731,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79D6E70B247E40B100D7333A /* Creatures.xcassets in Resources */,
 				797DBF7D22A91FA300D0F8E7 /* Sprites.xcassets in Resources */,
 				79C61A9D22A7C415008D3609 /* Main.storyboard in Resources */,
 				79D6E703247CB3C100D7333A /* Floors.xcassets in Resources */,

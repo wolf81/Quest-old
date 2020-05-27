@@ -70,4 +70,10 @@ class EntityFactory {
         
         return entity.copy(coord: coord, entityFactory: self)
     }
+    
+    func entityNames<T: EntityProtocol>(of type: T.Type) -> [String] {
+        let typeName = String(describing: T.self)
+        let entityNames: [String: EntityProtocol] = self.registry[typeName] ?? [:]
+        return Array(entityNames.keys)
+    }
 }
