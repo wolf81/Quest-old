@@ -4,7 +4,9 @@
 
     "HD": "1d8+1",
     "AC": 15,
-    "EQ": {},
+    "EQ": {
+        "weapon": "Bite +4"
+    },
     
     "energyCost": {
         "move": 50,

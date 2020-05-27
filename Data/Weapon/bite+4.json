@@ -1,0 +1,7 @@
+{
+    "name": "Bite +4",
+
+    "AT": 4,
+    "damage": "1d3",
+    "type": "unarmed"
+}

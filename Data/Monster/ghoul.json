@@ -1,0 +1,15 @@
+{
+    "name": "Ghoul",
+    "sprite": "ghoul",
+
+    "HD": "2d12",
+    "AC": 14,
+    "EQ": {
+        "weapon": "Bite +3",
+    },
+    
+    "energyCost": {
+        "move": 40,
+        "attackMelee": 40
+    }
+}

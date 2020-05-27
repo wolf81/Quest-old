@@ -48,7 +48,9 @@ class Weapon: Entity & Equippable, CustomStringConvertible {
     }
 
     lazy var equipSprite: SKSpriteNode = {
-        guard let spriteName = self.json["equipSprite"] as? String else { fatalError() }        
+        guard let spriteName = self.json["equipSprite"] as? String else {
+            return SKSpriteNode(color: .clear, size: Constants.tileSize)
+        }        
         return Entity.loadSprite(type: self, spriteName: spriteName)
     }()
 
