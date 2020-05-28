@@ -171,6 +171,37 @@ class Actor: Entity {
         self.visibility?.compute(origin: self.coord, rangeLimit: self.sight)
     }
     
+    func showBlood(duration: TimeInterval) {
+        print("show blood")
+
+        // TODO: need a cleaner way to handle blood, perhaps make it an effect?
+        let imageNames = [
+            "blood_red_0",
+            "blood_red_5",
+            "blood_red_6",
+            "blood_red_7",
+            "blood_red_8",
+            "blood_red_9",
+            "blood_red_10",
+            "blood_red_11",
+            "blood_red_12",
+            "blood_red_13",
+        ]
+        let imageIdx = arc4random_uniform(UInt32(imageNames.count))
+        let imageName = imageNames[Int(imageIdx)]
+        let blood = SKSpriteNode(imageNamed: imageName)
+        blood.alpha = 0.0
+        blood.zPosition = 600_000
+        self.sprite.addChild(blood)
+        
+        blood.run(SKAction.sequence([
+            SKAction.fadeIn(withDuration: duration / 6 * 1),
+            SKAction.wait(forDuration: duration / 6 * 2),
+            SKAction.fadeOut(withDuration: duration / 6 * 3),
+            SKAction.run({ blood.removeFromParent() })
+        ]))
+    }
+    
     // MARK: - Private
     
     private static func addHealthBar(sprite: SKSpriteNode) -> HealthBar {

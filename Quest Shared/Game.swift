@@ -20,7 +20,7 @@ protocol GameDelegate: class {
     
     func gameActorDidMove(actor: Actor, path: [vector_int2])
     
-    func gameActorDidPerformMeleeAttack(actor: Actor, targetActor: Actor)
+    func gameActorDidPerformMeleeAttack(actor: Actor, targetActor: Actor, success: Bool)
 
     func gameActorDidPerformRangedAttack(actor: Actor, withProjectile projectile: Projectile, targetActor: Actor, success: Bool)
 
@@ -182,7 +182,7 @@ class Game {
                 self.delegate?.gameActorDidMove(actor: move.actor, path: move.path)
             case let attack as MeleeAttackAction:
 //                print("\(attack.actor.name) @ \(attack.actor.coord.x).\(attack.actor.coord.y) is performing melee attack")
-                self.delegate?.gameActorDidPerformMeleeAttack(actor: attack.actor, targetActor: attack.targetActor)
+                self.delegate?.gameActorDidPerformMeleeAttack(actor: attack.actor, targetActor: attack.targetActor, success: attack.isHit)
                 if attack.targetActor.isAlive == false {
                     self.delegate?.gameDidDestroy(entity: attack.targetActor)
                     // on deleting an entity, update a list of active actors to exclude the deleted entity

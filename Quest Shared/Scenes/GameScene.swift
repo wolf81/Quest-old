@@ -269,9 +269,13 @@ extension GameScene: GameDelegate {
         ])
         
         sprite.run(attack)
+        
+        if success {
+            targetActor.showBlood(duration: 8.0)
+        }
     }
     
-    func gameActorDidPerformMeleeAttack(actor: Actor, targetActor: Actor) {
+    func gameActorDidPerformMeleeAttack(actor: Actor, targetActor: Actor, success: Bool) {
         let actorPosition = GameScene.pointForCoord(actor.coord)
         let targetActorPosition = GameScene.pointForCoord(targetActor.coord)
         let midX = actorPosition.x + (targetActorPosition.x - actorPosition.x) / 2
@@ -284,6 +288,10 @@ extension GameScene: GameDelegate {
         ])
         
         actor.sprite.run(attack)
+        
+        if success {
+            targetActor.showBlood(duration: 8.0)
+        }
     }
     
     func gameDidDestroy(entity: EntityProtocol) {

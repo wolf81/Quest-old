@@ -195,6 +195,9 @@
 		79D0B60B247FEDF8001029BE /* Decoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D0B60A247FEDF8001029BE /* Decoration.swift */; };
 		79D0B60C247FEDF8001029BE /* Decoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D0B60A247FEDF8001029BE /* Decoration.swift */; };
 		79D0B60D247FEDF8001029BE /* Decoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D0B60A247FEDF8001029BE /* Decoration.swift */; };
+		79D0B60F248014DA001029BE /* Blood.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B60E248014DA001029BE /* Blood.xcassets */; };
+		79D0B610248014DA001029BE /* Blood.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B60E248014DA001029BE /* Blood.xcassets */; };
+		79D0B611248014DA001029BE /* Blood.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B60E248014DA001029BE /* Blood.xcassets */; };
 		79D58E11247D93C200E1EE79 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D58E10247D93C200E1EE79 /* Map.swift */; };
 		79D58E12247D93C200E1EE79 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D58E10247D93C200E1EE79 /* Map.swift */; };
 		79D58E13247D93C200E1EE79 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D58E10247D93C200E1EE79 /* Map.swift */; };
@@ -338,6 +341,7 @@
 		79C61A9C22A7C415008D3609 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		79C61A9E22A7C415008D3609 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79D0B60A247FEDF8001029BE /* Decoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoration.swift; sourceTree = "<group>"; };
+		79D0B60E248014DA001029BE /* Blood.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Blood.xcassets; sourceTree = "<group>"; };
 		79D58E10247D93C200E1EE79 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		79D58E14247D957600E1EE79 /* NodeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeType.swift; sourceTree = "<group>"; };
 		79D6E6DB247A59FE00D7333A /* Door.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Door.swift; sourceTree = "<group>"; };
@@ -540,6 +544,7 @@
 				79D6E704247CB3D200D7333A /* Walls.xcassets */,
 				79D6E708247E40B100D7333A /* Creatures.xcassets */,
 				79A0955A247FDB60009B285C /* Decorations.xcassets */,
+				79D0B60E248014DA001029BE /* Blood.xcassets */,
 			);
 			path = "Quest Shared";
 			sourceTree = "<group>";
@@ -720,6 +725,7 @@
 				79D6E709247E40B100D7333A /* Creatures.xcassets in Resources */,
 				79D6E701247CB3C100D7333A /* Floors.xcassets in Resources */,
 				79D6E705247CB3D200D7333A /* Walls.xcassets in Resources */,
+				79D0B60F248014DA001029BE /* Blood.xcassets in Resources */,
 				79C61AA822A7C415008D3609 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -728,6 +734,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79D0B610248014DA001029BE /* Blood.xcassets in Resources */,
 				79D6E70A247E40B100D7333A /* Creatures.xcassets in Resources */,
 				797DBF7C22A91FA300D0F8E7 /* Sprites.xcassets in Resources */,
 				79C61A8F22A7C415008D3609 /* Main.storyboard in Resources */,
@@ -743,6 +750,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79D0B611248014DA001029BE /* Blood.xcassets in Resources */,
 				79D6E70B247E40B100D7333A /* Creatures.xcassets in Resources */,
 				797DBF7D22A91FA300D0F8E7 /* Sprites.xcassets in Resources */,
 				79C61A9D22A7C415008D3609 /* Main.storyboard in Resources */,
