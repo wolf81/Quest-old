@@ -80,7 +80,7 @@ class Hero: Actor, CustomStringConvertible {
         
         guard let heroAction = self.heroAction else { return }
         
-//        guard self.sprite.hasActions() == false else { return }
+        guard self.sprite.hasActions() == false else { return }
         
         switch heroAction {
         case .interact(let direction):

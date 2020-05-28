@@ -130,7 +130,7 @@ class GameState {
                                 
         self.activeActorIndex = 0
     }
-    
+        
     func getDoor(at coord: vector_int2) -> Door? {
         let tile = self.tiles[Int(coord.y)][Int(coord.x)]
         return tile as? Door

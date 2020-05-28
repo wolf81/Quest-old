@@ -20,7 +20,7 @@ class InteractAction: Action {
     override func perform(state: GameState) {
         self.actor.energy.drain(50)
 
-        switch entity {
+        switch self.entity {
         case let door as Door: door.isOpen = !door.isOpen
         default: fatalError()
         }
