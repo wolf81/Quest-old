@@ -63,7 +63,7 @@ class Monster: Actor, CustomStringConvertible {
         guard self.visibleCoords.contains(rangedTarget.coord) else { return false }
 
         let coords = Functions.coordsBetween(self.coord, rangedTarget.coord)
-        let nodes = coords.compactMap({ state.getMapNode(at: $0) })
+        let nodes = coords.compactMap({ state.getMapNodeType(at: $0) })
         let isBlocked = nodes.contains(.blocked)
         let isRangedWeaponEquipped = self.equippedWeapon.range > 1
         // if the hero is not blocked by walls and we carry a ranged weapon, shoot on the hero

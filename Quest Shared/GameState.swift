@@ -95,7 +95,7 @@ class GameState {
                     return door.isOpen == false
                 }
                 
-                return self.getMapNode(at: $0) == .blocked
+                return self.getMapNodeType(at: $0) == .blocked
             }, setVisible: {
                 actor.visibleCoords.insert($0)
             }, getDistance: {
@@ -139,13 +139,8 @@ class GameState {
     func getActor(at coord: vector_int2) -> Actor? {
         self.actors.filter({ $0.coord == coord }).first
     }
-
-    func getMovementGraph(for actor: Actor, range: Int32, excludedCoords: [vector_int2]) -> GKGridGraph<GKGridGraphNode> {
-        // TODO: take into account doors, coords of other creatures
-        return self.movementGraph
-    }
     
-    func getMapNode(at coord: vector_int2) -> NodeType {
+    func getMapNodeType(at coord: vector_int2) -> NodeType {
         return self.map[coord]
     }
         
@@ -168,11 +163,11 @@ class GameState {
             return false
         }
 
-        let node = self.map[coord]
+        let nodeType = self.map[coord]
         
-        switch node {
-        case .door: return (self.tiles[Int(coord.y)][Int(coord.x)] as! Door).isOpen
-        default: return node == .open
+        switch nodeType {
+        case .door: return getDoor(at: coord)!.isOpen
+        default: return nodeType == .open
         }
     }
     
@@ -188,10 +183,10 @@ class GameState {
            
            for x in (0 ..< self.mapWidth) {
                let coord = vector_int2(x, y)
-               let node = self.map[coord]
+               let nodeType = self.map[coord]
                var entity: TileProtocol
 
-               switch node {
+               switch nodeType {
                case .open: entity = Tile(sprite: tileset.getFloorTile(), coord: coord)
                case .blocked: entity = Tile(sprite: tileset.getWallTile(), coord: coord)
                case .door: entity = try! entityFactory.newEntity(type: Door.self, name: "Door", coord: coord)
@@ -248,7 +243,6 @@ class GameState {
                 if map[coord] == .blocked {
                     if let node = self.movementGraph.node(atGridPosition: coord) {
                         self.movementGraph.remove([node])
-
                     }
                 }
             }
@@ -307,7 +301,7 @@ class GameState {
                     let tile = self.tiles[x][y]
 
                     let coord = vector_int2(Int32(y), Int32(x))
-                    let node = self.getMapNode(at: coord)
+                    let node = self.getMapNodeType(at: coord)
 
                     var sprite: SKSpriteNode
                     

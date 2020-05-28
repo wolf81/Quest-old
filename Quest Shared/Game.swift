@@ -84,7 +84,7 @@ class Game {
         ]
         
         for coord in coords {
-            if self.state.getMapNode(at: coord) == .open && self.state.monsters.filter({ $0.coord == coord }).count == 0 {
+            if self.state.getMapNodeType(at: coord) == .open && self.state.monsters.filter({ $0.coord == coord }).count == 0 {
                 self.selectionModeTiles.append(OverlayTile(color: SKColor.green.withAlphaComponent(0.5), coord: coord, isBlocked: false))
             }
         }
