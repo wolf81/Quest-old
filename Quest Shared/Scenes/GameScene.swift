@@ -271,8 +271,9 @@ extension GameScene: GameDelegate {
         sprite.run(attack)
         
         if success {
+            projectile.playSound(.hit, on: self.world)
             targetActor.showBlood(duration: 8.0)
-            actor.playSound(.hit)
+            targetActor.playSound(.hit)
         }
     }
     
@@ -291,8 +292,9 @@ extension GameScene: GameDelegate {
         actor.sprite.run(attack)
         
         if success {
+            actor.equippedWeapon.playSound(.hit, on: self.world)
             targetActor.showBlood(duration: 8.0)
-            actor.playSound(.hit)
+            targetActor.playSound(.hit)
         }
     }
     

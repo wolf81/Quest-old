@@ -5,5 +5,16 @@
 
     "AT": 0,
     "damage": "1d6",
-    "type": "shortsword"
+    "type": "shortsword",
+    
+    "sounds": {
+        "hit": [
+            "Ancient_Game_Weapon_Swing_Blood_Hit_1",
+            "Ancient_Game_Weapon_Swing_Blood_Hit_2",
+            "Ancient_Game_Weapon_Swing_Blood_Hit_3",
+            "Ancient_Game_Weapon_Swing_Blood_Hit_4",
+            "Ancient_Game_Weapon_Swing_Blood_Hit_5",
+            "Ancient_Game_Weapon_Swing_Blood_Hit_6",
+        ],
+    },
 }

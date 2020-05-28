@@ -59,7 +59,7 @@ class Actor: Entity {
     
     var isAwaitingInput: Bool { self.action == nil }
     
-    lazy var soundInfo: [SoundType: [String]] = {
+    private lazy var soundInfo: [SoundType: [String]] = {
         guard let soundInfo = self.json["sounds"] as? [String: [String]] else { return [:] }
             
         var result: [SoundType: [String]] = [:]

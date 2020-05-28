@@ -55,6 +55,18 @@ class Weapon: Entity & Equippable, CustomStringConvertible {
         return Entity.loadSprite(type: self, spriteName: spriteName)
     }()
 
+    private lazy var soundInfo: [SoundType: [String]] = {
+        guard let soundInfo = self.json["sounds"] as? [String: [String]] else { return [:] }
+            
+        var result: [SoundType: [String]] = [:]
+        for (typeName, soundNames) in soundInfo {
+            let soundType = SoundType(rawValue: typeName)!
+            result[soundType] = soundNames
+        }
+
+        return result
+    }()
+
     let attack: Int
     let damage: HitDie
     let range: Int
@@ -86,6 +98,16 @@ class Weapon: Entity & Equippable, CustomStringConvertible {
         super.init(json: json, entityFactory: entityFactory)
     }
         
+    func playSound(_ type: SoundType, on node: SKNode) {
+        guard let sounds = self.soundInfo[type] else { return }
+        
+        let index = arc4random_uniform(UInt32(sounds.count))
+        let sound = sounds[Int(index)]
+                
+        let play = SKAction.playSoundFileNamed(sound, waitForCompletion: false)
+        node.run(play)
+    }
+
     var description: String {
         return "{ attack: \(attack), damage: \(damage) }"
     }

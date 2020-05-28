@@ -279,6 +279,216 @@
 		79D0B75F24804483001029BE /* Ancient_Game_Creature_Breath_and_Growl_5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B71324804481001029BE /* Ancient_Game_Creature_Breath_and_Growl_5.caf */; };
 		79D0B76024804483001029BE /* Ancient_Game_Creature_Breath_and_Growl_5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B71324804481001029BE /* Ancient_Game_Creature_Breath_and_Growl_5.caf */; };
 		79D0B76124804483001029BE /* Ancient_Game_Creature_Breath_and_Growl_5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B71324804481001029BE /* Ancient_Game_Creature_Breath_and_Growl_5.caf */; };
+		79D0B7AA2480491E001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B764248048F1001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_4.caf */; };
+		79D0B7AB2480491F001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B764248048F1001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_4.caf */; };
+		79D0B7AC2480491F001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B764248048F1001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_4.caf */; };
+		79D0B7AD2480491F001029BE /* Ancient_Game_Sword_Shing_Hifi_2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B765248048F1001029BE /* Ancient_Game_Sword_Shing_Hifi_2.caf */; };
+		79D0B7AE2480491F001029BE /* Ancient_Game_Sword_Shing_Hifi_2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B765248048F1001029BE /* Ancient_Game_Sword_Shing_Hifi_2.caf */; };
+		79D0B7AF2480491F001029BE /* Ancient_Game_Sword_Shing_Hifi_2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B765248048F1001029BE /* Ancient_Game_Sword_Shing_Hifi_2.caf */; };
+		79D0B7B02480491F001029BE /* Ancient_Game_Bright_Gore_Explosion.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B766248048F2001029BE /* Ancient_Game_Bright_Gore_Explosion.caf */; };
+		79D0B7B12480491F001029BE /* Ancient_Game_Bright_Gore_Explosion.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B766248048F2001029BE /* Ancient_Game_Bright_Gore_Explosion.caf */; };
+		79D0B7B22480491F001029BE /* Ancient_Game_Bright_Gore_Explosion.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B766248048F2001029BE /* Ancient_Game_Bright_Gore_Explosion.caf */; };
+		79D0B7B32480491F001029BE /* Ancient_Game_Designed_Cannon_Shot_5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B767248048F2001029BE /* Ancient_Game_Designed_Cannon_Shot_5.caf */; };
+		79D0B7B42480491F001029BE /* Ancient_Game_Designed_Cannon_Shot_5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B767248048F2001029BE /* Ancient_Game_Designed_Cannon_Shot_5.caf */; };
+		79D0B7B52480491F001029BE /* Ancient_Game_Designed_Cannon_Shot_5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B767248048F2001029BE /* Ancient_Game_Designed_Cannon_Shot_5.caf */; };
+		79D0B7B62480491F001029BE /* Ancient_Game_Blood_Bubble_2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B768248048F3001029BE /* Ancient_Game_Blood_Bubble_2.caf */; };
+		79D0B7B72480491F001029BE /* Ancient_Game_Blood_Bubble_2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B768248048F3001029BE /* Ancient_Game_Blood_Bubble_2.caf */; };
+		79D0B7B82480491F001029BE /* Ancient_Game_Blood_Bubble_2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B768248048F3001029BE /* Ancient_Game_Blood_Bubble_2.caf */; };
+		79D0B7B92480491F001029BE /* Ancient_Game_Blood_Gore_Impact_Bubble_Pop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B769248048F3001029BE /* Ancient_Game_Blood_Gore_Impact_Bubble_Pop.caf */; };
+		79D0B7BA2480491F001029BE /* Ancient_Game_Blood_Gore_Impact_Bubble_Pop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B769248048F3001029BE /* Ancient_Game_Blood_Gore_Impact_Bubble_Pop.caf */; };
+		79D0B7BB2480491F001029BE /* Ancient_Game_Blood_Gore_Impact_Bubble_Pop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B769248048F3001029BE /* Ancient_Game_Blood_Gore_Impact_Bubble_Pop.caf */; };
+		79D0B7BC2480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_6.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B76A248048F4001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_6.caf */; };
+		79D0B7BD2480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_6.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B76A248048F4001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_6.caf */; };
+		79D0B7BE2480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_6.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B76A248048F4001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_6.caf */; };
+		79D0B7BF2480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_9.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B76B248048F5001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_9.caf */; };
+		79D0B7C02480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_9.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B76B248048F5001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_9.caf */; };
+		79D0B7C12480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_9.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B76B248048F5001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_9.caf */; };
+		79D0B7C22480491F001029BE /* Ancient_Game_Blood_Gore_Impact_Bubble_Pop_2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B76C248048F5001029BE /* Ancient_Game_Blood_Gore_Impact_Bubble_Pop_2.caf */; };
+		79D0B7C32480491F001029BE /* Ancient_Game_Blood_Gore_Impact_Bubble_Pop_2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B76C248048F5001029BE /* Ancient_Game_Blood_Gore_Impact_Bubble_Pop_2.caf */; };
+		79D0B7C42480491F001029BE /* Ancient_Game_Blood_Gore_Impact_Bubble_Pop_2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B76C248048F5001029BE /* Ancient_Game_Blood_Gore_Impact_Bubble_Pop_2.caf */; };
+		79D0B7C52480491F001029BE /* Ancient_Game_Clean_Saber_Sword_Knife_Kill_with_Blood.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B76D248048F6001029BE /* Ancient_Game_Clean_Saber_Sword_Knife_Kill_with_Blood.caf */; };
+		79D0B7C62480491F001029BE /* Ancient_Game_Clean_Saber_Sword_Knife_Kill_with_Blood.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B76D248048F6001029BE /* Ancient_Game_Clean_Saber_Sword_Knife_Kill_with_Blood.caf */; };
+		79D0B7C72480491F001029BE /* Ancient_Game_Clean_Saber_Sword_Knife_Kill_with_Blood.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B76D248048F6001029BE /* Ancient_Game_Clean_Saber_Sword_Knife_Kill_with_Blood.caf */; };
+		79D0B7C82480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_8.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B76E248048F6001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_8.caf */; };
+		79D0B7C92480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_8.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B76E248048F6001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_8.caf */; };
+		79D0B7CA2480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_8.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B76E248048F6001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_8.caf */; };
+		79D0B7CB2480491F001029BE /* Ancient_Game_Designed_Cannon_Shot_6.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B76F248048F7001029BE /* Ancient_Game_Designed_Cannon_Shot_6.caf */; };
+		79D0B7CC2480491F001029BE /* Ancient_Game_Designed_Cannon_Shot_6.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B76F248048F7001029BE /* Ancient_Game_Designed_Cannon_Shot_6.caf */; };
+		79D0B7CD2480491F001029BE /* Ancient_Game_Designed_Cannon_Shot_6.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B76F248048F7001029BE /* Ancient_Game_Designed_Cannon_Shot_6.caf */; };
+		79D0B7CE2480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_7.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B770248048F8001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_7.caf */; };
+		79D0B7CF2480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_7.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B770248048F8001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_7.caf */; };
+		79D0B7D02480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_7.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B770248048F8001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_7.caf */; };
+		79D0B7D12480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_11.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B771248048F8001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_11.caf */; };
+		79D0B7D22480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_11.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B771248048F8001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_11.caf */; };
+		79D0B7D32480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_11.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B771248048F8001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_11.caf */; };
+		79D0B7D42480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B772248048F9001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_3.caf */; };
+		79D0B7D52480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B772248048F9001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_3.caf */; };
+		79D0B7D62480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B772248048F9001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_3.caf */; };
+		79D0B7D724804920001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B773248048F9001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring.caf */; };
+		79D0B7D824804920001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B773248048F9001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring.caf */; };
+		79D0B7D924804920001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B773248048F9001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring.caf */; };
+		79D0B7DA24804920001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B774248048FA001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_4.caf */; };
+		79D0B7DB24804920001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B774248048FA001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_4.caf */; };
+		79D0B7DC24804920001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B774248048FA001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_4.caf */; };
+		79D0B7DD24804920001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B775248048FA001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_5.caf */; };
+		79D0B7DE24804920001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B775248048FA001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_5.caf */; };
+		79D0B7DF24804920001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B775248048FA001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_5.caf */; };
+		79D0B7E024804920001029BE /* Ancient_Game_Harvest_Blood_Plant_2_Aquatic.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B776248048FB001029BE /* Ancient_Game_Harvest_Blood_Plant_2_Aquatic.caf */; };
+		79D0B7E124804920001029BE /* Ancient_Game_Harvest_Blood_Plant_2_Aquatic.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B776248048FB001029BE /* Ancient_Game_Harvest_Blood_Plant_2_Aquatic.caf */; };
+		79D0B7E224804920001029BE /* Ancient_Game_Harvest_Blood_Plant_2_Aquatic.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B776248048FB001029BE /* Ancient_Game_Harvest_Blood_Plant_2_Aquatic.caf */; };
+		79D0B7E324804920001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B777248048FC001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_3.caf */; };
+		79D0B7E424804920001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B777248048FC001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_3.caf */; };
+		79D0B7E524804920001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B777248048FC001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_3.caf */; };
+		79D0B7E624804920001029BE /* Ancient_Game_Metal_Blood_Spill_Hit.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B778248048FC001029BE /* Ancient_Game_Metal_Blood_Spill_Hit.caf */; };
+		79D0B7E724804920001029BE /* Ancient_Game_Metal_Blood_Spill_Hit.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B778248048FC001029BE /* Ancient_Game_Metal_Blood_Spill_Hit.caf */; };
+		79D0B7E824804920001029BE /* Ancient_Game_Metal_Blood_Spill_Hit.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B778248048FC001029BE /* Ancient_Game_Metal_Blood_Spill_Hit.caf */; };
+		79D0B7E924804920001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_14.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B779248048FD001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_14.caf */; };
+		79D0B7EA24804920001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_14.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B779248048FD001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_14.caf */; };
+		79D0B7EB24804920001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_14.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B779248048FD001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_14.caf */; };
+		79D0B7EC24804920001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_3_Dry.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B77A248048FD001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_3_Dry.caf */; };
+		79D0B7ED24804920001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_3_Dry.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B77A248048FD001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_3_Dry.caf */; };
+		79D0B7EE24804920001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_3_Dry.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B77A248048FD001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_3_Dry.caf */; };
+		79D0B7EF24804920001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B77B248048FE001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_3.caf */; };
+		79D0B7F024804920001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B77B248048FE001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_3.caf */; };
+		79D0B7F124804920001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B77B248048FE001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_3.caf */; };
+		79D0B7F224804920001029BE /* Ancient_Game_Designed_Cannon_Shot_2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B77C248048FE001029BE /* Ancient_Game_Designed_Cannon_Shot_2.caf */; };
+		79D0B7F324804920001029BE /* Ancient_Game_Designed_Cannon_Shot_2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B77C248048FE001029BE /* Ancient_Game_Designed_Cannon_Shot_2.caf */; };
+		79D0B7F424804920001029BE /* Ancient_Game_Designed_Cannon_Shot_2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B77C248048FE001029BE /* Ancient_Game_Designed_Cannon_Shot_2.caf */; };
+		79D0B7F524804920001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_2_Dry.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B77D248048FF001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_2_Dry.caf */; };
+		79D0B7F624804920001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_2_Dry.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B77D248048FF001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_2_Dry.caf */; };
+		79D0B7F724804920001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_2_Dry.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B77D248048FF001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_2_Dry.caf */; };
+		79D0B7F824804920001029BE /* Ancient_Game_Sword_Shing_Hifi.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B77E24804900001029BE /* Ancient_Game_Sword_Shing_Hifi.caf */; };
+		79D0B7F924804920001029BE /* Ancient_Game_Sword_Shing_Hifi.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B77E24804900001029BE /* Ancient_Game_Sword_Shing_Hifi.caf */; };
+		79D0B7FA24804920001029BE /* Ancient_Game_Sword_Shing_Hifi.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B77E24804900001029BE /* Ancient_Game_Sword_Shing_Hifi.caf */; };
+		79D0B7FB24804920001029BE /* Ancient_Game_Sword_Unsheathe.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B77F24804901001029BE /* Ancient_Game_Sword_Unsheathe.caf */; };
+		79D0B7FC24804920001029BE /* Ancient_Game_Sword_Unsheathe.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B77F24804901001029BE /* Ancient_Game_Sword_Unsheathe.caf */; };
+		79D0B7FD24804920001029BE /* Ancient_Game_Sword_Unsheathe.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B77F24804901001029BE /* Ancient_Game_Sword_Unsheathe.caf */; };
+		79D0B7FE24804920001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78024804901001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_3.caf */; };
+		79D0B7FF24804921001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78024804901001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_3.caf */; };
+		79D0B80024804921001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78024804901001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_3.caf */; };
+		79D0B80124804921001029BE /* Ancient_Game_Smash_Spider.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78124804902001029BE /* Ancient_Game_Smash_Spider.caf */; };
+		79D0B80224804921001029BE /* Ancient_Game_Smash_Spider.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78124804902001029BE /* Ancient_Game_Smash_Spider.caf */; };
+		79D0B80324804921001029BE /* Ancient_Game_Smash_Spider.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78124804902001029BE /* Ancient_Game_Smash_Spider.caf */; };
+		79D0B80424804921001029BE /* Ancient_Game_Weapon_Parry_Block_Metal.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78224804903001029BE /* Ancient_Game_Weapon_Parry_Block_Metal.caf */; };
+		79D0B80524804921001029BE /* Ancient_Game_Weapon_Parry_Block_Metal.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78224804903001029BE /* Ancient_Game_Weapon_Parry_Block_Metal.caf */; };
+		79D0B80624804921001029BE /* Ancient_Game_Weapon_Parry_Block_Metal.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78224804903001029BE /* Ancient_Game_Weapon_Parry_Block_Metal.caf */; };
+		79D0B80724804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_16.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78324804904001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_16.caf */; };
+		79D0B80824804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_16.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78324804904001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_16.caf */; };
+		79D0B80924804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_16.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78324804904001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_16.caf */; };
+		79D0B80A24804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_19.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78424804904001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_19.caf */; };
+		79D0B80B24804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_19.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78424804904001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_19.caf */; };
+		79D0B80C24804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_19.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78424804904001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_19.caf */; };
+		79D0B80D24804921001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78524804906001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_2.caf */; };
+		79D0B80E24804921001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78524804906001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_2.caf */; };
+		79D0B80F24804921001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78524804906001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_2.caf */; };
+		79D0B81024804921001029BE /* Ancient_Game_Blood_Hatchling_Stomp.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78624804907001029BE /* Ancient_Game_Blood_Hatchling_Stomp.caf */; };
+		79D0B81124804921001029BE /* Ancient_Game_Blood_Hatchling_Stomp.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78624804907001029BE /* Ancient_Game_Blood_Hatchling_Stomp.caf */; };
+		79D0B81224804921001029BE /* Ancient_Game_Blood_Hatchling_Stomp.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78624804907001029BE /* Ancient_Game_Blood_Hatchling_Stomp.caf */; };
+		79D0B81324804921001029BE /* Ancient_Game_Blood_GoreBubble_Pop_3_Juicy.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78724804908001029BE /* Ancient_Game_Blood_GoreBubble_Pop_3_Juicy.caf */; };
+		79D0B81424804921001029BE /* Ancient_Game_Blood_GoreBubble_Pop_3_Juicy.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78724804908001029BE /* Ancient_Game_Blood_GoreBubble_Pop_3_Juicy.caf */; };
+		79D0B81524804921001029BE /* Ancient_Game_Blood_GoreBubble_Pop_3_Juicy.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78724804908001029BE /* Ancient_Game_Blood_GoreBubble_Pop_3_Juicy.caf */; };
+		79D0B81624804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78824804909001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_1.caf */; };
+		79D0B81724804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78824804909001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_1.caf */; };
+		79D0B81824804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78824804909001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_1.caf */; };
+		79D0B81924804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_12.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7892480490A001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_12.caf */; };
+		79D0B81A24804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_12.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7892480490A001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_12.caf */; };
+		79D0B81B24804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_12.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7892480490A001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_12.caf */; };
+		79D0B81C24804921001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78A2480490B001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_1.caf */; };
+		79D0B81D24804921001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78A2480490B001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_1.caf */; };
+		79D0B81E24804921001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78A2480490B001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_1.caf */; };
+		79D0B81F24804921001029BE /* Ancient_Game_Blood_Impact.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78B2480490B001029BE /* Ancient_Game_Blood_Impact.caf */; };
+		79D0B82024804921001029BE /* Ancient_Game_Blood_Impact.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78B2480490B001029BE /* Ancient_Game_Blood_Impact.caf */; };
+		79D0B82124804921001029BE /* Ancient_Game_Blood_Impact.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78B2480490B001029BE /* Ancient_Game_Blood_Impact.caf */; };
+		79D0B82224804921001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_7_Shealth.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78C2480490C001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_7_Shealth.caf */; };
+		79D0B82324804921001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_7_Shealth.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78C2480490C001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_7_Shealth.caf */; };
+		79D0B82424804921001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_7_Shealth.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78C2480490C001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_7_Shealth.caf */; };
+		79D0B82524804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_15v2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78D2480490D001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_15v2.caf */; };
+		79D0B82624804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_15v2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78D2480490D001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_15v2.caf */; };
+		79D0B82724804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_15v2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78D2480490D001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_15v2.caf */; };
+		79D0B82824804921001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78E2480490D001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_2.caf */; };
+		79D0B82924804921001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78E2480490D001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_2.caf */; };
+		79D0B82A24804921001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78E2480490D001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_2.caf */; };
+		79D0B82B24804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_15.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78F2480490E001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_15.caf */; };
+		79D0B82C24804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_15.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78F2480490E001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_15.caf */; };
+		79D0B82D24804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_15.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B78F2480490E001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_15.caf */; };
+		79D0B82E24804921001029BE /* Ancient_Game_Sword_Attack_1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7902480490F001029BE /* Ancient_Game_Sword_Attack_1.caf */; };
+		79D0B82F24804921001029BE /* Ancient_Game_Sword_Attack_1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7902480490F001029BE /* Ancient_Game_Sword_Attack_1.caf */; };
+		79D0B83024804921001029BE /* Ancient_Game_Sword_Attack_1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7902480490F001029BE /* Ancient_Game_Sword_Attack_1.caf */; };
+		79D0B83124804921001029BE /* Ancient_Game_Designed_Cannon_Shot_1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79124804910001029BE /* Ancient_Game_Designed_Cannon_Shot_1.caf */; };
+		79D0B83224804921001029BE /* Ancient_Game_Designed_Cannon_Shot_1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79124804910001029BE /* Ancient_Game_Designed_Cannon_Shot_1.caf */; };
+		79D0B83324804921001029BE /* Ancient_Game_Designed_Cannon_Shot_1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79124804910001029BE /* Ancient_Game_Designed_Cannon_Shot_1.caf */; };
+		79D0B83424804921001029BE /* Ancient_Game_Weapon_Blunt_Hit.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79224804911001029BE /* Ancient_Game_Weapon_Blunt_Hit.caf */; };
+		79D0B83524804922001029BE /* Ancient_Game_Weapon_Blunt_Hit.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79224804911001029BE /* Ancient_Game_Weapon_Blunt_Hit.caf */; };
+		79D0B83624804922001029BE /* Ancient_Game_Weapon_Blunt_Hit.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79224804911001029BE /* Ancient_Game_Weapon_Blunt_Hit.caf */; };
+		79D0B83724804922001029BE /* Ancient_Game_Designed_Cannon_Shot_3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79324804912001029BE /* Ancient_Game_Designed_Cannon_Shot_3.caf */; };
+		79D0B83824804922001029BE /* Ancient_Game_Designed_Cannon_Shot_3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79324804912001029BE /* Ancient_Game_Designed_Cannon_Shot_3.caf */; };
+		79D0B83924804922001029BE /* Ancient_Game_Designed_Cannon_Shot_3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79324804912001029BE /* Ancient_Game_Designed_Cannon_Shot_3.caf */; };
+		79D0B83A24804922001029BE /* Ancient_Game_Bloody_Hit.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79424804912001029BE /* Ancient_Game_Bloody_Hit.caf */; };
+		79D0B83B24804922001029BE /* Ancient_Game_Bloody_Hit.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79424804912001029BE /* Ancient_Game_Bloody_Hit.caf */; };
+		79D0B83C24804922001029BE /* Ancient_Game_Bloody_Hit.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79424804912001029BE /* Ancient_Game_Bloody_Hit.caf */; };
+		79D0B83D24804922001029BE /* Ancient_Game_Sword_Swing_Dry.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79524804913001029BE /* Ancient_Game_Sword_Swing_Dry.caf */; };
+		79D0B83E24804922001029BE /* Ancient_Game_Sword_Swing_Dry.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79524804913001029BE /* Ancient_Game_Sword_Swing_Dry.caf */; };
+		79D0B83F24804922001029BE /* Ancient_Game_Sword_Swing_Dry.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79524804913001029BE /* Ancient_Game_Sword_Swing_Dry.caf */; };
+		79D0B84024804922001029BE /* Ancient_Game_Weapon_Stab.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79624804913001029BE /* Ancient_Game_Weapon_Stab.caf */; };
+		79D0B84124804922001029BE /* Ancient_Game_Weapon_Stab.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79624804913001029BE /* Ancient_Game_Weapon_Stab.caf */; };
+		79D0B84224804922001029BE /* Ancient_Game_Weapon_Stab.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79624804913001029BE /* Ancient_Game_Weapon_Stab.caf */; };
+		79D0B84324804922001029BE /* Ancient_Game_Weapon_Stab_2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79724804914001029BE /* Ancient_Game_Weapon_Stab_2.caf */; };
+		79D0B84424804922001029BE /* Ancient_Game_Weapon_Stab_2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79724804914001029BE /* Ancient_Game_Weapon_Stab_2.caf */; };
+		79D0B84524804922001029BE /* Ancient_Game_Weapon_Stab_2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79724804914001029BE /* Ancient_Game_Weapon_Stab_2.caf */; };
+		79D0B84624804922001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79824804915001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_4.caf */; };
+		79D0B84724804922001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79824804915001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_4.caf */; };
+		79D0B84824804922001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79824804915001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_4.caf */; };
+		79D0B84924804922001029BE /* Ancient_Game_Blood_Explosion.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79924804916001029BE /* Ancient_Game_Blood_Explosion.caf */; };
+		79D0B84A24804922001029BE /* Ancient_Game_Blood_Explosion.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79924804916001029BE /* Ancient_Game_Blood_Explosion.caf */; };
+		79D0B84B24804922001029BE /* Ancient_Game_Blood_Explosion.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79924804916001029BE /* Ancient_Game_Blood_Explosion.caf */; };
+		79D0B84C24804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_10.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79A24804916001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_10.caf */; };
+		79D0B84D24804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_10.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79A24804916001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_10.caf */; };
+		79D0B84E24804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_10.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79A24804916001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_10.caf */; };
+		79D0B84F24804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_18.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79B24804917001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_18.caf */; };
+		79D0B85024804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_18.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79B24804917001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_18.caf */; };
+		79D0B85124804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_18.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79B24804917001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_18.caf */; };
+		79D0B85224804922001029BE /* Ancient_Game_Blood_Bubble_3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79C24804917001029BE /* Ancient_Game_Blood_Bubble_3.caf */; };
+		79D0B85324804922001029BE /* Ancient_Game_Blood_Bubble_3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79C24804917001029BE /* Ancient_Game_Blood_Bubble_3.caf */; };
+		79D0B85424804922001029BE /* Ancient_Game_Blood_Bubble_3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79C24804917001029BE /* Ancient_Game_Blood_Bubble_3.caf */; };
+		79D0B85524804922001029BE /* Ancient_Game_Blood_Bubble.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79D24804918001029BE /* Ancient_Game_Blood_Bubble.caf */; };
+		79D0B85624804922001029BE /* Ancient_Game_Blood_Bubble.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79D24804918001029BE /* Ancient_Game_Blood_Bubble.caf */; };
+		79D0B85724804922001029BE /* Ancient_Game_Blood_Bubble.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79D24804918001029BE /* Ancient_Game_Blood_Bubble.caf */; };
+		79D0B85824804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_13.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79E24804918001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_13.caf */; };
+		79D0B85924804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_13.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79E24804918001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_13.caf */; };
+		79D0B85A24804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_13.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79E24804918001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_13.caf */; };
+		79D0B85B24804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_20.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79F24804919001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_20.caf */; };
+		79D0B85C24804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_20.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79F24804919001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_20.caf */; };
+		79D0B85D24804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_20.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B79F24804919001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_20.caf */; };
+		79D0B85E24804922001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A02480491A001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_2.caf */; };
+		79D0B85F24804922001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A02480491A001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_2.caf */; };
+		79D0B86024804922001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A02480491A001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_2.caf */; };
+		79D0B86124804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_17.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A12480491A001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_17.caf */; };
+		79D0B86224804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_17.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A12480491A001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_17.caf */; };
+		79D0B86324804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_17.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A12480491A001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_17.caf */; };
+		79D0B86424804922001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A22480491B001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_4.caf */; };
+		79D0B86524804922001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A22480491B001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_4.caf */; };
+		79D0B86624804922001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A22480491B001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_4.caf */; };
+		79D0B86724804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A32480491B001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_4.caf */; };
+		79D0B86824804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A32480491B001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_4.caf */; };
+		79D0B86924804923001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A32480491B001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_4.caf */; };
+		79D0B86A24804923001029BE /* Ancient_Game_Designed_Cannon_Shot_4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A42480491C001029BE /* Ancient_Game_Designed_Cannon_Shot_4.caf */; };
+		79D0B86B24804923001029BE /* Ancient_Game_Designed_Cannon_Shot_4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A42480491C001029BE /* Ancient_Game_Designed_Cannon_Shot_4.caf */; };
+		79D0B86C24804923001029BE /* Ancient_Game_Designed_Cannon_Shot_4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A42480491C001029BE /* Ancient_Game_Designed_Cannon_Shot_4.caf */; };
+		79D0B86D24804923001029BE /* Ancient_Game_Sword_Swing_with_Blood.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A52480491C001029BE /* Ancient_Game_Sword_Swing_with_Blood.caf */; };
+		79D0B86E24804923001029BE /* Ancient_Game_Sword_Swing_with_Blood.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A52480491C001029BE /* Ancient_Game_Sword_Swing_with_Blood.caf */; };
+		79D0B86F24804923001029BE /* Ancient_Game_Sword_Swing_with_Blood.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A52480491C001029BE /* Ancient_Game_Sword_Swing_with_Blood.caf */; };
+		79D0B87024804923001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A62480491D001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_2.caf */; };
+		79D0B87124804923001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A62480491D001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_2.caf */; };
+		79D0B87224804923001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A62480491D001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_2.caf */; };
+		79D0B87324804923001029BE /* Ancient_Game_Muffled_Gore_Explosion.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A72480491D001029BE /* Ancient_Game_Muffled_Gore_Explosion.caf */; };
+		79D0B87424804923001029BE /* Ancient_Game_Muffled_Gore_Explosion.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A72480491D001029BE /* Ancient_Game_Muffled_Gore_Explosion.caf */; };
+		79D0B87524804923001029BE /* Ancient_Game_Muffled_Gore_Explosion.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A72480491D001029BE /* Ancient_Game_Muffled_Gore_Explosion.caf */; };
+		79D0B87624804923001029BE /* Ancient_Game_Weapon_Blood_Hit_1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A82480491E001029BE /* Ancient_Game_Weapon_Blood_Hit_1.caf */; };
+		79D0B87724804923001029BE /* Ancient_Game_Weapon_Blood_Hit_1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A82480491E001029BE /* Ancient_Game_Weapon_Blood_Hit_1.caf */; };
+		79D0B87824804923001029BE /* Ancient_Game_Weapon_Blood_Hit_1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A82480491E001029BE /* Ancient_Game_Weapon_Blood_Hit_1.caf */; };
+		79D0B87924804923001029BE /* Ancient_Game_Harvest_Blood_Plant_3_Aquatic.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A92480491E001029BE /* Ancient_Game_Harvest_Blood_Plant_3_Aquatic.caf */; };
+		79D0B87A24804923001029BE /* Ancient_Game_Harvest_Blood_Plant_3_Aquatic.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A92480491E001029BE /* Ancient_Game_Harvest_Blood_Plant_3_Aquatic.caf */; };
+		79D0B87B24804923001029BE /* Ancient_Game_Harvest_Blood_Plant_3_Aquatic.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A92480491E001029BE /* Ancient_Game_Harvest_Blood_Plant_3_Aquatic.caf */; };
 		79D58E11247D93C200E1EE79 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D58E10247D93C200E1EE79 /* Map.swift */; };
 		79D58E12247D93C200E1EE79 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D58E10247D93C200E1EE79 /* Map.swift */; };
 		79D58E13247D93C200E1EE79 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D58E10247D93C200E1EE79 /* Map.swift */; };
@@ -450,6 +660,76 @@
 		79D0B71124804481001029BE /* Ancient_Game_Creature_Groan_4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Creature_Groan_4.caf; sourceTree = "<group>"; };
 		79D0B71224804481001029BE /* Ancient_Game_Creature_Orc_Grunt_6.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Creature_Orc_Grunt_6.caf; sourceTree = "<group>"; };
 		79D0B71324804481001029BE /* Ancient_Game_Creature_Breath_and_Growl_5.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Creature_Breath_and_Growl_5.caf; sourceTree = "<group>"; };
+		79D0B764248048F1001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Metal_Shing_Game_Sword_Slide_4.caf; sourceTree = "<group>"; };
+		79D0B765248048F1001029BE /* Ancient_Game_Sword_Shing_Hifi_2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Sword_Shing_Hifi_2.caf; sourceTree = "<group>"; };
+		79D0B766248048F2001029BE /* Ancient_Game_Bright_Gore_Explosion.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Bright_Gore_Explosion.caf; sourceTree = "<group>"; };
+		79D0B767248048F2001029BE /* Ancient_Game_Designed_Cannon_Shot_5.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Designed_Cannon_Shot_5.caf; sourceTree = "<group>"; };
+		79D0B768248048F3001029BE /* Ancient_Game_Blood_Bubble_2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Blood_Bubble_2.caf; sourceTree = "<group>"; };
+		79D0B769248048F3001029BE /* Ancient_Game_Blood_Gore_Impact_Bubble_Pop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Blood_Gore_Impact_Bubble_Pop.caf; sourceTree = "<group>"; };
+		79D0B76A248048F4001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_6.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Swing_Blood_Hit_6.caf; sourceTree = "<group>"; };
+		79D0B76B248048F5001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_9.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Swing_Blood_Hit_9.caf; sourceTree = "<group>"; };
+		79D0B76C248048F5001029BE /* Ancient_Game_Blood_Gore_Impact_Bubble_Pop_2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Blood_Gore_Impact_Bubble_Pop_2.caf; sourceTree = "<group>"; };
+		79D0B76D248048F6001029BE /* Ancient_Game_Clean_Saber_Sword_Knife_Kill_with_Blood.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Clean_Saber_Sword_Knife_Kill_with_Blood.caf; sourceTree = "<group>"; };
+		79D0B76E248048F6001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_8.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Swing_Blood_Hit_8.caf; sourceTree = "<group>"; };
+		79D0B76F248048F7001029BE /* Ancient_Game_Designed_Cannon_Shot_6.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Designed_Cannon_Shot_6.caf; sourceTree = "<group>"; };
+		79D0B770248048F8001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_7.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Swing_Blood_Hit_7.caf; sourceTree = "<group>"; };
+		79D0B771248048F8001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_11.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Swing_Blood_Hit_11.caf; sourceTree = "<group>"; };
+		79D0B772248048F9001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Swing_Blood_Hit_3.caf; sourceTree = "<group>"; };
+		79D0B773248048F9001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Sword_Weapon_Swing_Ring.caf; sourceTree = "<group>"; };
+		79D0B774248048FA001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Parry_Block_Metal_4.caf; sourceTree = "<group>"; };
+		79D0B775248048FA001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_5.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Swing_Blood_Hit_5.caf; sourceTree = "<group>"; };
+		79D0B776248048FB001029BE /* Ancient_Game_Harvest_Blood_Plant_2_Aquatic.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Harvest_Blood_Plant_2_Aquatic.caf; sourceTree = "<group>"; };
+		79D0B777248048FC001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Parry_Block_Metal_3.caf; sourceTree = "<group>"; };
+		79D0B778248048FC001029BE /* Ancient_Game_Metal_Blood_Spill_Hit.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Metal_Blood_Spill_Hit.caf; sourceTree = "<group>"; };
+		79D0B779248048FD001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_14.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Swing_Blood_Hit_14.caf; sourceTree = "<group>"; };
+		79D0B77A248048FD001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_3_Dry.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Metal_Shing_Game_Sword_Slide_3_Dry.caf; sourceTree = "<group>"; };
+		79D0B77B248048FE001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Flint_Lock_Rifle_Gun_Shot_3.caf; sourceTree = "<group>"; };
+		79D0B77C248048FE001029BE /* Ancient_Game_Designed_Cannon_Shot_2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Designed_Cannon_Shot_2.caf; sourceTree = "<group>"; };
+		79D0B77D248048FF001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_2_Dry.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Metal_Shing_Game_Sword_Slide_2_Dry.caf; sourceTree = "<group>"; };
+		79D0B77E24804900001029BE /* Ancient_Game_Sword_Shing_Hifi.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Sword_Shing_Hifi.caf; sourceTree = "<group>"; };
+		79D0B77F24804901001029BE /* Ancient_Game_Sword_Unsheathe.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Sword_Unsheathe.caf; sourceTree = "<group>"; };
+		79D0B78024804901001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Sword_Weapon_Swing_Ring_3.caf; sourceTree = "<group>"; };
+		79D0B78124804902001029BE /* Ancient_Game_Smash_Spider.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Smash_Spider.caf; sourceTree = "<group>"; };
+		79D0B78224804903001029BE /* Ancient_Game_Weapon_Parry_Block_Metal.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Parry_Block_Metal.caf; sourceTree = "<group>"; };
+		79D0B78324804904001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_16.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Swing_Blood_Hit_16.caf; sourceTree = "<group>"; };
+		79D0B78424804904001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_19.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Swing_Blood_Hit_19.caf; sourceTree = "<group>"; };
+		79D0B78524804906001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Flint_Lock_Rifle_Gun_Shot_2.caf; sourceTree = "<group>"; };
+		79D0B78624804907001029BE /* Ancient_Game_Blood_Hatchling_Stomp.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Blood_Hatchling_Stomp.caf; sourceTree = "<group>"; };
+		79D0B78724804908001029BE /* Ancient_Game_Blood_GoreBubble_Pop_3_Juicy.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Blood_GoreBubble_Pop_3_Juicy.caf; sourceTree = "<group>"; };
+		79D0B78824804909001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Swing_Blood_Hit_1.caf; sourceTree = "<group>"; };
+		79D0B7892480490A001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_12.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Swing_Blood_Hit_12.caf; sourceTree = "<group>"; };
+		79D0B78A2480490B001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Flint_Lock_Rifle_Gun_Shot_1.caf; sourceTree = "<group>"; };
+		79D0B78B2480490B001029BE /* Ancient_Game_Blood_Impact.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Blood_Impact.caf; sourceTree = "<group>"; };
+		79D0B78C2480490C001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_7_Shealth.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Metal_Shing_Game_Sword_Slide_7_Shealth.caf; sourceTree = "<group>"; };
+		79D0B78D2480490D001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_15v2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Swing_Blood_Hit_15v2.caf; sourceTree = "<group>"; };
+		79D0B78E2480490D001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Sword_Weapon_Swing_Ring_2.caf; sourceTree = "<group>"; };
+		79D0B78F2480490E001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_15.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Swing_Blood_Hit_15.caf; sourceTree = "<group>"; };
+		79D0B7902480490F001029BE /* Ancient_Game_Sword_Attack_1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Sword_Attack_1.caf; sourceTree = "<group>"; };
+		79D0B79124804910001029BE /* Ancient_Game_Designed_Cannon_Shot_1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Designed_Cannon_Shot_1.caf; sourceTree = "<group>"; };
+		79D0B79224804911001029BE /* Ancient_Game_Weapon_Blunt_Hit.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Blunt_Hit.caf; sourceTree = "<group>"; };
+		79D0B79324804912001029BE /* Ancient_Game_Designed_Cannon_Shot_3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Designed_Cannon_Shot_3.caf; sourceTree = "<group>"; };
+		79D0B79424804912001029BE /* Ancient_Game_Bloody_Hit.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Bloody_Hit.caf; sourceTree = "<group>"; };
+		79D0B79524804913001029BE /* Ancient_Game_Sword_Swing_Dry.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Sword_Swing_Dry.caf; sourceTree = "<group>"; };
+		79D0B79624804913001029BE /* Ancient_Game_Weapon_Stab.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Stab.caf; sourceTree = "<group>"; };
+		79D0B79724804914001029BE /* Ancient_Game_Weapon_Stab_2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Stab_2.caf; sourceTree = "<group>"; };
+		79D0B79824804915001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Sword_Weapon_Swing_Ring_4.caf; sourceTree = "<group>"; };
+		79D0B79924804916001029BE /* Ancient_Game_Blood_Explosion.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Blood_Explosion.caf; sourceTree = "<group>"; };
+		79D0B79A24804916001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_10.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Swing_Blood_Hit_10.caf; sourceTree = "<group>"; };
+		79D0B79B24804917001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_18.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Swing_Blood_Hit_18.caf; sourceTree = "<group>"; };
+		79D0B79C24804917001029BE /* Ancient_Game_Blood_Bubble_3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Blood_Bubble_3.caf; sourceTree = "<group>"; };
+		79D0B79D24804918001029BE /* Ancient_Game_Blood_Bubble.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Blood_Bubble.caf; sourceTree = "<group>"; };
+		79D0B79E24804918001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_13.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Swing_Blood_Hit_13.caf; sourceTree = "<group>"; };
+		79D0B79F24804919001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_20.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Swing_Blood_Hit_20.caf; sourceTree = "<group>"; };
+		79D0B7A02480491A001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Parry_Block_Metal_2.caf; sourceTree = "<group>"; };
+		79D0B7A12480491A001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_17.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Swing_Blood_Hit_17.caf; sourceTree = "<group>"; };
+		79D0B7A22480491B001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Flint_Lock_Rifle_Gun_Shot_4.caf; sourceTree = "<group>"; };
+		79D0B7A32480491B001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Swing_Blood_Hit_4.caf; sourceTree = "<group>"; };
+		79D0B7A42480491C001029BE /* Ancient_Game_Designed_Cannon_Shot_4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Designed_Cannon_Shot_4.caf; sourceTree = "<group>"; };
+		79D0B7A52480491C001029BE /* Ancient_Game_Sword_Swing_with_Blood.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Sword_Swing_with_Blood.caf; sourceTree = "<group>"; };
+		79D0B7A62480491D001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Swing_Blood_Hit_2.caf; sourceTree = "<group>"; };
+		79D0B7A72480491D001029BE /* Ancient_Game_Muffled_Gore_Explosion.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Muffled_Gore_Explosion.caf; sourceTree = "<group>"; };
+		79D0B7A82480491E001029BE /* Ancient_Game_Weapon_Blood_Hit_1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Blood_Hit_1.caf; sourceTree = "<group>"; };
+		79D0B7A92480491E001029BE /* Ancient_Game_Harvest_Blood_Plant_3_Aquatic.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Harvest_Blood_Plant_3_Aquatic.caf; sourceTree = "<group>"; };
 		79D58E10247D93C200E1EE79 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		79D58E14247D957600E1EE79 /* NodeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeType.swift; sourceTree = "<group>"; };
 		79D6E6DB247A59FE00D7333A /* Door.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Door.swift; sourceTree = "<group>"; };
@@ -721,6 +1001,15 @@
 		79D0B629248042F7001029BE /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				79D0B763248047C4001029BE /* Combat */,
+				79D0B76224804794001029BE /* Creatures */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		79D0B76224804794001029BE /* Creatures */ = {
+			isa = PBXGroup;
+			children = (
 				79D0B7002480447A001029BE /* Ancient_Game_Creature_Breath_and_Growl_2.caf */,
 				79D0B7022480447B001029BE /* Ancient_Game_Creature_Breath_and_Growl_3.caf */,
 				79D0B70E2480447F001029BE /* Ancient_Game_Creature_Breath_and_Growl_4.caf */,
@@ -748,7 +1037,84 @@
 				79D0B6FE24804479001029BE /* Ancient_Game_Creature_Orc_Grunt_7_Stretched.caf */,
 				79D0B6FB24804478001029BE /* Ancient_Game_Creature_Orc_Grunt_8.caf */,
 			);
-			path = Audio;
+			path = Creatures;
+			sourceTree = "<group>";
+		};
+		79D0B763248047C4001029BE /* Combat */ = {
+			isa = PBXGroup;
+			children = (
+				79D0B768248048F3001029BE /* Ancient_Game_Blood_Bubble_2.caf */,
+				79D0B79C24804917001029BE /* Ancient_Game_Blood_Bubble_3.caf */,
+				79D0B79D24804918001029BE /* Ancient_Game_Blood_Bubble.caf */,
+				79D0B79924804916001029BE /* Ancient_Game_Blood_Explosion.caf */,
+				79D0B76C248048F5001029BE /* Ancient_Game_Blood_Gore_Impact_Bubble_Pop_2.caf */,
+				79D0B769248048F3001029BE /* Ancient_Game_Blood_Gore_Impact_Bubble_Pop.caf */,
+				79D0B78724804908001029BE /* Ancient_Game_Blood_GoreBubble_Pop_3_Juicy.caf */,
+				79D0B78624804907001029BE /* Ancient_Game_Blood_Hatchling_Stomp.caf */,
+				79D0B78B2480490B001029BE /* Ancient_Game_Blood_Impact.caf */,
+				79D0B79424804912001029BE /* Ancient_Game_Bloody_Hit.caf */,
+				79D0B766248048F2001029BE /* Ancient_Game_Bright_Gore_Explosion.caf */,
+				79D0B76D248048F6001029BE /* Ancient_Game_Clean_Saber_Sword_Knife_Kill_with_Blood.caf */,
+				79D0B79124804910001029BE /* Ancient_Game_Designed_Cannon_Shot_1.caf */,
+				79D0B77C248048FE001029BE /* Ancient_Game_Designed_Cannon_Shot_2.caf */,
+				79D0B79324804912001029BE /* Ancient_Game_Designed_Cannon_Shot_3.caf */,
+				79D0B7A42480491C001029BE /* Ancient_Game_Designed_Cannon_Shot_4.caf */,
+				79D0B767248048F2001029BE /* Ancient_Game_Designed_Cannon_Shot_5.caf */,
+				79D0B76F248048F7001029BE /* Ancient_Game_Designed_Cannon_Shot_6.caf */,
+				79D0B78A2480490B001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_1.caf */,
+				79D0B78524804906001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_2.caf */,
+				79D0B77B248048FE001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_3.caf */,
+				79D0B7A22480491B001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_4.caf */,
+				79D0B776248048FB001029BE /* Ancient_Game_Harvest_Blood_Plant_2_Aquatic.caf */,
+				79D0B7A92480491E001029BE /* Ancient_Game_Harvest_Blood_Plant_3_Aquatic.caf */,
+				79D0B778248048FC001029BE /* Ancient_Game_Metal_Blood_Spill_Hit.caf */,
+				79D0B77D248048FF001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_2_Dry.caf */,
+				79D0B77A248048FD001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_3_Dry.caf */,
+				79D0B764248048F1001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_4.caf */,
+				79D0B78C2480490C001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_7_Shealth.caf */,
+				79D0B7A72480491D001029BE /* Ancient_Game_Muffled_Gore_Explosion.caf */,
+				79D0B78124804902001029BE /* Ancient_Game_Smash_Spider.caf */,
+				79D0B7902480490F001029BE /* Ancient_Game_Sword_Attack_1.caf */,
+				79D0B765248048F1001029BE /* Ancient_Game_Sword_Shing_Hifi_2.caf */,
+				79D0B77E24804900001029BE /* Ancient_Game_Sword_Shing_Hifi.caf */,
+				79D0B79524804913001029BE /* Ancient_Game_Sword_Swing_Dry.caf */,
+				79D0B7A52480491C001029BE /* Ancient_Game_Sword_Swing_with_Blood.caf */,
+				79D0B77F24804901001029BE /* Ancient_Game_Sword_Unsheathe.caf */,
+				79D0B78E2480490D001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_2.caf */,
+				79D0B78024804901001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_3.caf */,
+				79D0B79824804915001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_4.caf */,
+				79D0B773248048F9001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring.caf */,
+				79D0B7A82480491E001029BE /* Ancient_Game_Weapon_Blood_Hit_1.caf */,
+				79D0B79224804911001029BE /* Ancient_Game_Weapon_Blunt_Hit.caf */,
+				79D0B7A02480491A001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_2.caf */,
+				79D0B777248048FC001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_3.caf */,
+				79D0B774248048FA001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_4.caf */,
+				79D0B78224804903001029BE /* Ancient_Game_Weapon_Parry_Block_Metal.caf */,
+				79D0B79724804914001029BE /* Ancient_Game_Weapon_Stab_2.caf */,
+				79D0B79624804913001029BE /* Ancient_Game_Weapon_Stab.caf */,
+				79D0B78824804909001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_1.caf */,
+				79D0B7A62480491D001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_2.caf */,
+				79D0B772248048F9001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_3.caf */,
+				79D0B7A32480491B001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_4.caf */,
+				79D0B775248048FA001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_5.caf */,
+				79D0B76A248048F4001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_6.caf */,
+				79D0B770248048F8001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_7.caf */,
+				79D0B76E248048F6001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_8.caf */,
+				79D0B76B248048F5001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_9.caf */,
+				79D0B79A24804916001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_10.caf */,
+				79D0B771248048F8001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_11.caf */,
+				79D0B7892480490A001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_12.caf */,
+				79D0B79E24804918001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_13.caf */,
+				79D0B779248048FD001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_14.caf */,
+				79D0B78F2480490E001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_15.caf */,
+				79D0B78D2480490D001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_15v2.caf */,
+				79D0B78324804904001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_16.caf */,
+				79D0B7A12480491A001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_17.caf */,
+				79D0B79B24804917001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_18.caf */,
+				79D0B78424804904001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_19.caf */,
+				79D0B79F24804919001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_20.caf */,
+			);
+			path = Combat;
 			sourceTree = "<group>";
 		};
 		79FC68EB244C49ED00E6D63C /* Scenes */ = {
@@ -868,41 +1234,111 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79D0B81F24804921001029BE /* Ancient_Game_Blood_Impact.caf in Resources */,
 				79D0B72924804482001029BE /* Ancient_Game_Creature_Orc_Grunt_3.caf in Resources */,
+				79D0B81024804921001029BE /* Ancient_Game_Blood_Hatchling_Stomp.caf in Resources */,
+				79D0B81324804921001029BE /* Ancient_Game_Blood_GoreBubble_Pop_3_Juicy.caf in Resources */,
+				79D0B84F24804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_18.caf in Resources */,
 				79C61A7E22A7C415008D3609 /* Main.storyboard in Resources */,
+				79D0B7AD2480491F001029BE /* Ancient_Game_Sword_Shing_Hifi_2.caf in Resources */,
 				79A0955B247FDB60009B285C /* Decorations.xcassets in Resources */,
 				79D0B72324804482001029BE /* Ancient_Game_Creature_Groan_3.caf in Resources */,
+				79D0B87924804923001029BE /* Ancient_Game_Harvest_Blood_Plant_3_Aquatic.caf in Resources */,
+				79D0B84C24804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_10.caf in Resources */,
+				79D0B84924804922001029BE /* Ancient_Game_Blood_Explosion.caf in Resources */,
+				79D0B7F824804920001029BE /* Ancient_Game_Sword_Shing_Hifi.caf in Resources */,
+				79D0B7FE24804920001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_3.caf in Resources */,
 				79D0B72C24804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_3.caf in Resources */,
+				79D0B83124804921001029BE /* Ancient_Game_Designed_Cannon_Shot_1.caf in Resources */,
+				79D0B7B62480491F001029BE /* Ancient_Game_Blood_Bubble_2.caf in Resources */,
+				79D0B7DD24804920001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_5.caf in Resources */,
+				79D0B7BC2480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_6.caf in Resources */,
+				79D0B7FB24804920001029BE /* Ancient_Game_Sword_Unsheathe.caf in Resources */,
+				79D0B7B02480491F001029BE /* Ancient_Game_Bright_Gore_Explosion.caf in Resources */,
+				79D0B85E24804922001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_2.caf in Resources */,
+				79D0B86D24804923001029BE /* Ancient_Game_Sword_Swing_with_Blood.caf in Resources */,
+				79D0B7DA24804920001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_4.caf in Resources */,
+				79D0B80424804921001029BE /* Ancient_Game_Weapon_Parry_Block_Metal.caf in Resources */,
 				79D0B73E24804482001029BE /* Ancient_Game_Creature_Orc_Death_1.caf in Resources */,
+				79D0B82824804921001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_2.caf in Resources */,
+				79D0B7CB2480491F001029BE /* Ancient_Game_Designed_Cannon_Shot_6.caf in Resources */,
+				79D0B82B24804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_15.caf in Resources */,
+				79D0B7D12480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_11.caf in Resources */,
 				79D0B72624804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_2.caf in Resources */,
+				79D0B7B32480491F001029BE /* Ancient_Game_Designed_Cannon_Shot_5.caf in Resources */,
+				79D0B7C52480491F001029BE /* Ancient_Game_Clean_Saber_Sword_Knife_Kill_with_Blood.caf in Resources */,
 				79D0B75924804483001029BE /* Ancient_Game_Creature_Groan_4.caf in Resources */,
+				79D0B87624804923001029BE /* Ancient_Game_Weapon_Blood_Hit_1.caf in Resources */,
+				79D0B80724804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_16.caf in Resources */,
 				79C61A8122A7C415008D3609 /* LaunchScreen.storyboard in Resources */,
 				79D0B71724804481001029BE /* Ancient_Game_Creature_Orc_Grunt_8.caf in Resources */,
 				79ACC7DE22AA5BE900AC3BF0 /* Data in Resources */,
+				79D0B82524804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_15v2.caf in Resources */,
+				79D0B7EC24804920001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_3_Dry.caf in Resources */,
 				79D0B73524804482001029BE /* Ancient_Game_Creature_Orc_Death_2.caf in Resources */,
 				79D0B75C24804483001029BE /* Ancient_Game_Creature_Orc_Grunt_6.caf in Resources */,
+				79D0B84324804922001029BE /* Ancient_Game_Weapon_Stab_2.caf in Resources */,
 				797DBF7B22A91FA300D0F8E7 /* Sprites.xcassets in Resources */,
+				79D0B86724804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_4.caf in Resources */,
 				79D0B75324804482001029BE /* Ancient_Game_Creature_Orc_Death_3.caf in Resources */,
 				79D0B71D24804482001029BE /* Ancient_Game_Creature_Breath_and_Growl.caf in Resources */,
 				79D0B74A24804482001029BE /* Ancient_Game_Creature_Grunt_1.caf in Resources */,
 				79D0B74124804482001029BE /* Ancient_Game_Creature_Groan_2.caf in Resources */,
 				79D0B74D24804482001029BE /* Ancient_Game_Creature_Orc_Grunt_2.caf in Resources */,
+				79D0B85224804922001029BE /* Ancient_Game_Blood_Bubble_3.caf in Resources */,
+				79D0B83A24804922001029BE /* Ancient_Game_Bloody_Hit.caf in Resources */,
+				79D0B7E024804920001029BE /* Ancient_Game_Harvest_Blood_Plant_2_Aquatic.caf in Resources */,
+				79D0B7AA2480491E001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_4.caf in Resources */,
 				79D0B75024804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_4.caf in Resources */,
+				79D0B85824804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_13.caf in Resources */,
+				79D0B82E24804921001029BE /* Ancient_Game_Sword_Attack_1.caf in Resources */,
+				79D0B87324804923001029BE /* Ancient_Game_Muffled_Gore_Explosion.caf in Resources */,
+				79D0B81C24804921001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_1.caf in Resources */,
 				79D0B73B24804482001029BE /* Ancient_Game_Creature_Orc_Grunt_1.caf in Resources */,
+				79D0B7C82480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_8.caf in Resources */,
+				79D0B86124804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_17.caf in Resources */,
 				79D6E709247E40B100D7333A /* Creatures.xcassets in Resources */,
+				79D0B7F524804920001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_2_Dry.caf in Resources */,
 				79D0B72F24804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_7.caf in Resources */,
+				79D0B80A24804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_19.caf in Resources */,
 				79D6E701247CB3C100D7333A /* Floors.xcassets in Resources */,
+				79D0B7D42480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_3.caf in Resources */,
+				79D0B83724804922001029BE /* Ancient_Game_Designed_Cannon_Shot_3.caf in Resources */,
+				79D0B84024804922001029BE /* Ancient_Game_Weapon_Stab.caf in Resources */,
+				79D0B81624804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_1.caf in Resources */,
+				79D0B85B24804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_20.caf in Resources */,
 				79D0B73824804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_6.caf in Resources */,
+				79D0B87024804923001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_2.caf in Resources */,
+				79D0B7EF24804920001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_3.caf in Resources */,
 				79D6E705247CB3D200D7333A /* Walls.xcassets in Resources */,
 				79D0B60F248014DA001029BE /* Blood.xcassets in Resources */,
+				79D0B85524804922001029BE /* Ancient_Game_Blood_Bubble.caf in Resources */,
 				79D0B71A24804481001029BE /* Ancient_Game_Creature_Orc_Grunt_5.caf in Resources */,
+				79D0B7E324804920001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_3.caf in Resources */,
+				79D0B83D24804922001029BE /* Ancient_Game_Sword_Swing_Dry.caf in Resources */,
+				79D0B84624804922001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_4.caf in Resources */,
 				79C61AA822A7C415008D3609 /* Assets.xcassets in Resources */,
+				79D0B7D724804920001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring.caf in Resources */,
+				79D0B82224804921001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_7_Shealth.caf in Resources */,
+				79D0B7BF2480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_9.caf in Resources */,
+				79D0B80D24804921001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_2.caf in Resources */,
 				79D0B73224804482001029BE /* Ancient_Game_Creature_Orc_Death_9.caf in Resources */,
+				79D0B7F224804920001029BE /* Ancient_Game_Designed_Cannon_Shot_2.caf in Resources */,
+				79D0B83424804921001029BE /* Ancient_Game_Weapon_Blunt_Hit.caf in Resources */,
+				79D0B7B92480491F001029BE /* Ancient_Game_Blood_Gore_Impact_Bubble_Pop.caf in Resources */,
 				79D0B74424804482001029BE /* Ancient_Game_Creature_Grunt_2.caf in Resources */,
 				79D0B72024804482001029BE /* Ancient_Game_Creature_Orc_Grunt_7_Stretched.caf in Resources */,
+				79D0B86A24804923001029BE /* Ancient_Game_Designed_Cannon_Shot_4.caf in Resources */,
+				79D0B86424804922001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_4.caf in Resources */,
+				79D0B80124804921001029BE /* Ancient_Game_Smash_Spider.caf in Resources */,
+				79D0B7E624804920001029BE /* Ancient_Game_Metal_Blood_Spill_Hit.caf in Resources */,
 				79D0B71424804481001029BE /* Ancient_Game_Creature_Breath_and_Growl_8.caf in Resources */,
 				79D0B75624804483001029BE /* Ancient_Game_Creature_Groan_1.caf in Resources */,
+				79D0B81924804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_12.caf in Resources */,
 				79D0B75F24804483001029BE /* Ancient_Game_Creature_Breath_and_Growl_5.caf in Resources */,
+				79D0B7E924804920001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_14.caf in Resources */,
+				79D0B7CE2480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_7.caf in Resources */,
+				79D0B7C22480491F001029BE /* Ancient_Game_Blood_Gore_Impact_Bubble_Pop_2.caf in Resources */,
 				79D0B74724804482001029BE /* Ancient_Game_Creature_Orc_Grunt_4.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -916,35 +1352,105 @@
 				79D0B610248014DA001029BE /* Blood.xcassets in Resources */,
 				79D0B75D24804483001029BE /* Ancient_Game_Creature_Orc_Grunt_6.caf in Resources */,
 				79D0B74E24804482001029BE /* Ancient_Game_Creature_Orc_Grunt_2.caf in Resources */,
+				79D0B86524804922001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_4.caf in Resources */,
+				79D0B83524804922001029BE /* Ancient_Game_Weapon_Blunt_Hit.caf in Resources */,
+				79D0B86824804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_4.caf in Resources */,
+				79D0B7F624804920001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_2_Dry.caf in Resources */,
+				79D0B80224804921001029BE /* Ancient_Game_Smash_Spider.caf in Resources */,
+				79D0B81724804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_1.caf in Resources */,
+				79D0B7F024804920001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_3.caf in Resources */,
+				79D0B7D824804920001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring.caf in Resources */,
+				79D0B7E424804920001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_3.caf in Resources */,
+				79D0B81424804921001029BE /* Ancient_Game_Blood_GoreBubble_Pop_3_Juicy.caf in Resources */,
+				79D0B7DE24804920001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_5.caf in Resources */,
+				79D0B82324804921001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_7_Shealth.caf in Resources */,
+				79D0B84124804922001029BE /* Ancient_Game_Weapon_Stab.caf in Resources */,
+				79D0B7AE2480491F001029BE /* Ancient_Game_Sword_Shing_Hifi_2.caf in Resources */,
 				79D0B74B24804482001029BE /* Ancient_Game_Creature_Grunt_1.caf in Resources */,
+				79D0B80E24804921001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_2.caf in Resources */,
+				79D0B7B42480491F001029BE /* Ancient_Game_Designed_Cannon_Shot_5.caf in Resources */,
+				79D0B7F924804920001029BE /* Ancient_Game_Sword_Shing_Hifi.caf in Resources */,
 				79D0B71E24804482001029BE /* Ancient_Game_Creature_Breath_and_Growl.caf in Resources */,
+				79D0B85324804922001029BE /* Ancient_Game_Blood_Bubble_3.caf in Resources */,
 				79D0B76024804483001029BE /* Ancient_Game_Creature_Breath_and_Growl_5.caf in Resources */,
 				79D0B73024804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_7.caf in Resources */,
+				79D0B7BA2480491F001029BE /* Ancient_Game_Blood_Gore_Impact_Bubble_Pop.caf in Resources */,
+				79D0B7C92480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_8.caf in Resources */,
 				79D0B75424804482001029BE /* Ancient_Game_Creature_Orc_Death_3.caf in Resources */,
+				79D0B82924804921001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_2.caf in Resources */,
 				79D0B75124804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_4.caf in Resources */,
+				79D0B7B72480491F001029BE /* Ancient_Game_Blood_Bubble_2.caf in Resources */,
+				79D0B81D24804921001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_1.caf in Resources */,
 				79D6E70A247E40B100D7333A /* Creatures.xcassets in Resources */,
+				79D0B85F24804922001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_2.caf in Resources */,
+				79D0B80524804921001029BE /* Ancient_Game_Weapon_Parry_Block_Metal.caf in Resources */,
 				797DBF7C22A91FA300D0F8E7 /* Sprites.xcassets in Resources */,
+				79D0B7F324804920001029BE /* Ancient_Game_Designed_Cannon_Shot_2.caf in Resources */,
+				79D0B7DB24804920001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_4.caf in Resources */,
 				79C61A8F22A7C415008D3609 /* Main.storyboard in Resources */,
+				79D0B7AB2480491F001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_4.caf in Resources */,
+				79D0B87724804923001029BE /* Ancient_Game_Weapon_Blood_Hit_1.caf in Resources */,
+				79D0B86224804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_17.caf in Resources */,
 				79A0955C247FDB60009B285C /* Decorations.xcassets in Resources */,
+				79D0B7E724804920001029BE /* Ancient_Game_Metal_Blood_Spill_Hit.caf in Resources */,
+				79D0B7E124804920001029BE /* Ancient_Game_Harvest_Blood_Plant_2_Aquatic.caf in Resources */,
+				79D0B82F24804921001029BE /* Ancient_Game_Sword_Attack_1.caf in Resources */,
+				79D0B7C32480491F001029BE /* Ancient_Game_Blood_Gore_Impact_Bubble_Pop_2.caf in Resources */,
 				79D0B73924804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_6.caf in Resources */,
+				79D0B85924804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_13.caf in Resources */,
+				79D0B7ED24804920001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_3_Dry.caf in Resources */,
 				79D0B71824804481001029BE /* Ancient_Game_Creature_Orc_Grunt_8.caf in Resources */,
+				79D0B84D24804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_10.caf in Resources */,
 				79D6E702247CB3C100D7333A /* Floors.xcassets in Resources */,
 				79D6E706247CB3D200D7333A /* Walls.xcassets in Resources */,
+				79D0B7C62480491F001029BE /* Ancient_Game_Clean_Saber_Sword_Knife_Kill_with_Blood.caf in Resources */,
+				79D0B85624804922001029BE /* Ancient_Game_Blood_Bubble.caf in Resources */,
+				79D0B82C24804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_15.caf in Resources */,
+				79D0B82024804921001029BE /* Ancient_Game_Blood_Impact.caf in Resources */,
+				79D0B84424804922001029BE /* Ancient_Game_Weapon_Stab_2.caf in Resources */,
+				79D0B7FC24804920001029BE /* Ancient_Game_Sword_Unsheathe.caf in Resources */,
+				79D0B80B24804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_19.caf in Resources */,
 				79D0B71524804481001029BE /* Ancient_Game_Creature_Breath_and_Growl_8.caf in Resources */,
+				79D0B7D22480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_11.caf in Resources */,
+				79D0B7D52480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_3.caf in Resources */,
+				79D0B7B12480491F001029BE /* Ancient_Game_Bright_Gore_Explosion.caf in Resources */,
 				79D0B74524804482001029BE /* Ancient_Game_Creature_Grunt_2.caf in Resources */,
 				79D0B72724804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_2.caf in Resources */,
+				79D0B83824804922001029BE /* Ancient_Game_Designed_Cannon_Shot_3.caf in Resources */,
+				79D0B7BD2480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_6.caf in Resources */,
+				79D0B85C24804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_20.caf in Resources */,
+				79D0B83224804921001029BE /* Ancient_Game_Designed_Cannon_Shot_1.caf in Resources */,
 				79D0B73324804482001029BE /* Ancient_Game_Creature_Orc_Death_9.caf in Resources */,
 				79D0B72124804482001029BE /* Ancient_Game_Creature_Orc_Grunt_7_Stretched.caf in Resources */,
+				79D0B7CC2480491F001029BE /* Ancient_Game_Designed_Cannon_Shot_6.caf in Resources */,
+				79D0B86E24804923001029BE /* Ancient_Game_Sword_Swing_with_Blood.caf in Resources */,
+				79D0B84A24804922001029BE /* Ancient_Game_Blood_Explosion.caf in Resources */,
+				79D0B82624804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_15v2.caf in Resources */,
 				79ACC7DF22AA5BE900AC3BF0 /* Data in Resources */,
 				79D0B73F24804482001029BE /* Ancient_Game_Creature_Orc_Death_1.caf in Resources */,
+				79D0B84724804922001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_4.caf in Resources */,
+				79D0B86B24804923001029BE /* Ancient_Game_Designed_Cannon_Shot_4.caf in Resources */,
+				79D0B7EA24804920001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_14.caf in Resources */,
+				79D0B80824804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_16.caf in Resources */,
+				79D0B7CF2480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_7.caf in Resources */,
 				79D0B72424804482001029BE /* Ancient_Game_Creature_Groan_3.caf in Resources */,
+				79D0B81A24804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_12.caf in Resources */,
+				79D0B85024804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_18.caf in Resources */,
+				79D0B87124804923001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_2.caf in Resources */,
 				79D0B75A24804483001029BE /* Ancient_Game_Creature_Groan_4.caf in Resources */,
 				79D0B74224804482001029BE /* Ancient_Game_Creature_Groan_2.caf in Resources */,
+				79D0B81124804921001029BE /* Ancient_Game_Blood_Hatchling_Stomp.caf in Resources */,
 				79D0B73624804482001029BE /* Ancient_Game_Creature_Orc_Death_2.caf in Resources */,
+				79D0B87A24804923001029BE /* Ancient_Game_Harvest_Blood_Plant_3_Aquatic.caf in Resources */,
 				79D0B73C24804482001029BE /* Ancient_Game_Creature_Orc_Grunt_1.caf in Resources */,
+				79D0B87424804923001029BE /* Ancient_Game_Muffled_Gore_Explosion.caf in Resources */,
 				79D0B75724804483001029BE /* Ancient_Game_Creature_Groan_1.caf in Resources */,
+				79D0B83B24804922001029BE /* Ancient_Game_Bloody_Hit.caf in Resources */,
 				79D0B74824804482001029BE /* Ancient_Game_Creature_Orc_Grunt_4.caf in Resources */,
+				79D0B83E24804922001029BE /* Ancient_Game_Sword_Swing_Dry.caf in Resources */,
+				79D0B7FF24804921001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_3.caf in Resources */,
 				79D0B72D24804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_3.caf in Resources */,
+				79D0B7C02480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_9.caf in Resources */,
 				79C61AA922A7C415008D3609 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -958,35 +1464,105 @@
 				79D0B611248014DA001029BE /* Blood.xcassets in Resources */,
 				79D0B75E24804483001029BE /* Ancient_Game_Creature_Orc_Grunt_6.caf in Resources */,
 				79D0B74F24804482001029BE /* Ancient_Game_Creature_Orc_Grunt_2.caf in Resources */,
+				79D0B86624804922001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_4.caf in Resources */,
+				79D0B83624804922001029BE /* Ancient_Game_Weapon_Blunt_Hit.caf in Resources */,
+				79D0B86924804923001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_4.caf in Resources */,
+				79D0B7F724804920001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_2_Dry.caf in Resources */,
+				79D0B80324804921001029BE /* Ancient_Game_Smash_Spider.caf in Resources */,
+				79D0B81824804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_1.caf in Resources */,
+				79D0B7F124804920001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_3.caf in Resources */,
+				79D0B7D924804920001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring.caf in Resources */,
+				79D0B7E524804920001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_3.caf in Resources */,
+				79D0B81524804921001029BE /* Ancient_Game_Blood_GoreBubble_Pop_3_Juicy.caf in Resources */,
+				79D0B7DF24804920001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_5.caf in Resources */,
+				79D0B82424804921001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_7_Shealth.caf in Resources */,
+				79D0B84224804922001029BE /* Ancient_Game_Weapon_Stab.caf in Resources */,
+				79D0B7AF2480491F001029BE /* Ancient_Game_Sword_Shing_Hifi_2.caf in Resources */,
 				79D0B74C24804482001029BE /* Ancient_Game_Creature_Grunt_1.caf in Resources */,
+				79D0B80F24804921001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_2.caf in Resources */,
+				79D0B7B52480491F001029BE /* Ancient_Game_Designed_Cannon_Shot_5.caf in Resources */,
+				79D0B7FA24804920001029BE /* Ancient_Game_Sword_Shing_Hifi.caf in Resources */,
 				79D0B71F24804482001029BE /* Ancient_Game_Creature_Breath_and_Growl.caf in Resources */,
+				79D0B85424804922001029BE /* Ancient_Game_Blood_Bubble_3.caf in Resources */,
 				79D0B76124804483001029BE /* Ancient_Game_Creature_Breath_and_Growl_5.caf in Resources */,
 				79D0B73124804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_7.caf in Resources */,
+				79D0B7BB2480491F001029BE /* Ancient_Game_Blood_Gore_Impact_Bubble_Pop.caf in Resources */,
+				79D0B7CA2480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_8.caf in Resources */,
 				79D0B75524804482001029BE /* Ancient_Game_Creature_Orc_Death_3.caf in Resources */,
+				79D0B82A24804921001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_2.caf in Resources */,
 				79D0B75224804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_4.caf in Resources */,
+				79D0B7B82480491F001029BE /* Ancient_Game_Blood_Bubble_2.caf in Resources */,
+				79D0B81E24804921001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_1.caf in Resources */,
 				79D6E70B247E40B100D7333A /* Creatures.xcassets in Resources */,
+				79D0B86024804922001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_2.caf in Resources */,
+				79D0B80624804921001029BE /* Ancient_Game_Weapon_Parry_Block_Metal.caf in Resources */,
 				797DBF7D22A91FA300D0F8E7 /* Sprites.xcassets in Resources */,
+				79D0B7F424804920001029BE /* Ancient_Game_Designed_Cannon_Shot_2.caf in Resources */,
+				79D0B7DC24804920001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_4.caf in Resources */,
 				79C61A9D22A7C415008D3609 /* Main.storyboard in Resources */,
+				79D0B7AC2480491F001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_4.caf in Resources */,
+				79D0B87824804923001029BE /* Ancient_Game_Weapon_Blood_Hit_1.caf in Resources */,
+				79D0B86324804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_17.caf in Resources */,
 				79A0955D247FDB60009B285C /* Decorations.xcassets in Resources */,
+				79D0B7E824804920001029BE /* Ancient_Game_Metal_Blood_Spill_Hit.caf in Resources */,
+				79D0B7E224804920001029BE /* Ancient_Game_Harvest_Blood_Plant_2_Aquatic.caf in Resources */,
+				79D0B83024804921001029BE /* Ancient_Game_Sword_Attack_1.caf in Resources */,
+				79D0B7C42480491F001029BE /* Ancient_Game_Blood_Gore_Impact_Bubble_Pop_2.caf in Resources */,
 				79D0B73A24804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_6.caf in Resources */,
+				79D0B85A24804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_13.caf in Resources */,
+				79D0B7EE24804920001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_3_Dry.caf in Resources */,
 				79D0B71924804481001029BE /* Ancient_Game_Creature_Orc_Grunt_8.caf in Resources */,
+				79D0B84E24804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_10.caf in Resources */,
 				79D6E703247CB3C100D7333A /* Floors.xcassets in Resources */,
 				79D6E707247CB3D200D7333A /* Walls.xcassets in Resources */,
+				79D0B7C72480491F001029BE /* Ancient_Game_Clean_Saber_Sword_Knife_Kill_with_Blood.caf in Resources */,
+				79D0B85724804922001029BE /* Ancient_Game_Blood_Bubble.caf in Resources */,
+				79D0B82D24804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_15.caf in Resources */,
+				79D0B82124804921001029BE /* Ancient_Game_Blood_Impact.caf in Resources */,
+				79D0B84524804922001029BE /* Ancient_Game_Weapon_Stab_2.caf in Resources */,
+				79D0B7FD24804920001029BE /* Ancient_Game_Sword_Unsheathe.caf in Resources */,
+				79D0B80C24804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_19.caf in Resources */,
 				79D0B71624804481001029BE /* Ancient_Game_Creature_Breath_and_Growl_8.caf in Resources */,
+				79D0B7D32480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_11.caf in Resources */,
+				79D0B7D62480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_3.caf in Resources */,
+				79D0B7B22480491F001029BE /* Ancient_Game_Bright_Gore_Explosion.caf in Resources */,
 				79D0B74624804482001029BE /* Ancient_Game_Creature_Grunt_2.caf in Resources */,
 				79D0B72824804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_2.caf in Resources */,
+				79D0B83924804922001029BE /* Ancient_Game_Designed_Cannon_Shot_3.caf in Resources */,
+				79D0B7BE2480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_6.caf in Resources */,
+				79D0B85D24804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_20.caf in Resources */,
+				79D0B83324804921001029BE /* Ancient_Game_Designed_Cannon_Shot_1.caf in Resources */,
 				79D0B73424804482001029BE /* Ancient_Game_Creature_Orc_Death_9.caf in Resources */,
 				79D0B72224804482001029BE /* Ancient_Game_Creature_Orc_Grunt_7_Stretched.caf in Resources */,
+				79D0B7CD2480491F001029BE /* Ancient_Game_Designed_Cannon_Shot_6.caf in Resources */,
+				79D0B86F24804923001029BE /* Ancient_Game_Sword_Swing_with_Blood.caf in Resources */,
+				79D0B84B24804922001029BE /* Ancient_Game_Blood_Explosion.caf in Resources */,
+				79D0B82724804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_15v2.caf in Resources */,
 				79ACC7E022AA5BE900AC3BF0 /* Data in Resources */,
 				79D0B74024804482001029BE /* Ancient_Game_Creature_Orc_Death_1.caf in Resources */,
+				79D0B84824804922001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_4.caf in Resources */,
+				79D0B86C24804923001029BE /* Ancient_Game_Designed_Cannon_Shot_4.caf in Resources */,
+				79D0B7EB24804920001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_14.caf in Resources */,
+				79D0B80924804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_16.caf in Resources */,
+				79D0B7D02480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_7.caf in Resources */,
 				79D0B72524804482001029BE /* Ancient_Game_Creature_Groan_3.caf in Resources */,
+				79D0B81B24804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_12.caf in Resources */,
+				79D0B85124804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_18.caf in Resources */,
+				79D0B87224804923001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_2.caf in Resources */,
 				79D0B75B24804483001029BE /* Ancient_Game_Creature_Groan_4.caf in Resources */,
 				79D0B74324804482001029BE /* Ancient_Game_Creature_Groan_2.caf in Resources */,
+				79D0B81224804921001029BE /* Ancient_Game_Blood_Hatchling_Stomp.caf in Resources */,
 				79D0B73724804482001029BE /* Ancient_Game_Creature_Orc_Death_2.caf in Resources */,
+				79D0B87B24804923001029BE /* Ancient_Game_Harvest_Blood_Plant_3_Aquatic.caf in Resources */,
 				79D0B73D24804482001029BE /* Ancient_Game_Creature_Orc_Grunt_1.caf in Resources */,
+				79D0B87524804923001029BE /* Ancient_Game_Muffled_Gore_Explosion.caf in Resources */,
 				79D0B75824804483001029BE /* Ancient_Game_Creature_Groan_1.caf in Resources */,
+				79D0B83C24804922001029BE /* Ancient_Game_Bloody_Hit.caf in Resources */,
 				79D0B74924804482001029BE /* Ancient_Game_Creature_Orc_Grunt_4.caf in Resources */,
+				79D0B83F24804922001029BE /* Ancient_Game_Sword_Swing_Dry.caf in Resources */,
+				79D0B80024804921001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_3.caf in Resources */,
 				79D0B72E24804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_3.caf in Resources */,
+				79D0B7C12480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_9.caf in Resources */,
 				79C61AAA22A7C415008D3609 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
