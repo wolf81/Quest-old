@@ -229,8 +229,10 @@ class GameState {
     private func addMonsters(to dungeon: Dungeon, entityFactory: EntityFactory) {
         var monsterCount = 0
         for (_, room) in dungeon.roomInfo {
+            let roomCoord = getRandomCoord(in: room)
+            
             // TODO: fix room coord calc in DungeonBuilder, so we don't have to do the following to get good coords ...
-            let roomCoord = vector_int2(Int32(room.coord.y + room.height / 2), Int32(room.coord.x + room.width / 2))
+//            let roomCoord = vector_int2(Int32(room.coord.y + room.height / 2), Int32(room.coord.x + room.width / 2))
             
             let monsterNames = entityFactory.entityNames(of: Monster.self)        
             let remainder = monsterCount.remainderReportingOverflow(dividingBy: monsterNames.count).partialValue
@@ -239,6 +241,23 @@ class GameState {
             
             monsterCount += 1
         }
+    }
+    
+    private func getRandomCoord(in room: Room) -> vector_int2 {
+        var roomCoords: [vector_int2] = []
+        
+        for y in Int32(room.coord.y) ..< Int32(room.coord.y + room.height) {
+            for x in Int32(room.coord.x) ..< Int32(room.coord.x + room.width) {
+                let coord = vector_int2(y, x)
+                
+                if getDecoration(at: coord) == nil {
+                    roomCoords.append(coord)
+                }
+            }
+        }
+        
+        let randomIdx = arc4random_uniform(UInt32(roomCoords.count))
+        return roomCoords[Int(randomIdx)]
     }
     
     private func generateMovementGraph() {
