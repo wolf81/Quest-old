@@ -296,7 +296,7 @@ extension GameScene: GameDelegate {
     
     func gameDidDestroy(entity: EntityProtocol) {
         var fade: [SKAction] = [
-            SKAction.fadeOut(withDuration: entity is Actor ? 2.0 : 0.5),
+            SKAction.fadeOut(withDuration: entity is Actor ? 6.0 : 1.0),
             SKAction.run {
                 entity.sprite.removeFromParent()
             }
@@ -307,6 +307,10 @@ extension GameScene: GameDelegate {
                 let sceneManager = try! ServiceLocator.shared.get(service: SceneManager.self)
                 sceneManager.crossFade(to: GameOverScene.self)
             })
+        }
+        
+        if let actor = entity as? Actor {
+            actor.showBlood(duration: 6.0)
         }
 
         entity.sprite.run(SKAction.sequence(fade))
