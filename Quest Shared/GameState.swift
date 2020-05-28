@@ -31,8 +31,6 @@ class GameState {
 
     var monsters: [Monster] { self.entities.filter({ $0 is Monster }) as! [Monster] }
     
-    var decorations: [Decoration] { self.entities.filter({ $0 is Decoration }) as! [Decoration] }
-
     let mainTilesetName: String
     
     let altTilesetNames: [String]
@@ -141,11 +139,7 @@ class GameState {
     func getActor(at coord: vector_int2) -> Actor? {
         self.actors.filter({ $0.coord == coord }).first
     }
-    
-    func getDecoration(at coord: vector_int2) -> Decoration? {
-        self.decorations.filter({ $0.coord == coord }).first
-    }
-    
+        
     func getMapNodeType(at coord: vector_int2) -> NodeType {
         return self.map[coord]
     }
@@ -218,7 +212,7 @@ class GameState {
             if lootRoomIds.contains(roomId) { continue }
             
             let room = dungeon.roomInfo[roomId]!
-            let coord = vector_int2(Int32(room.coord.y + room.height - 2), Int32(room.coord.x + room.width - 2))
+            let coord = getRandomCoord(in: room)
             let potion = try! entityFactory.newEntity(type: Potion.self, name: "Health Potion", coord: coord)
             self.entities.append(potion)
             
@@ -230,6 +224,8 @@ class GameState {
         var monsterCount = 0
         for (_, room) in dungeon.roomInfo {
             let roomCoord = getRandomCoord(in: room)
+            
+            // TODO: make sure to not place monsters on top of other entities including the player
             
             // TODO: fix room coord calc in DungeonBuilder, so we don't have to do the following to get good coords ...
 //            let roomCoord = vector_int2(Int32(room.coord.y + room.height / 2), Int32(room.coord.x + room.width / 2))
@@ -243,14 +239,14 @@ class GameState {
         }
     }
     
-    private func getRandomCoord(in room: Room) -> vector_int2 {
+    private func getRandomCoord(in room: Room, insetBy inset: Int = 0) -> vector_int2 {
         var roomCoords: [vector_int2] = []
         
-        for y in Int32(room.coord.y) ..< Int32(room.coord.y + room.height) {
-            for x in Int32(room.coord.x) ..< Int32(room.coord.x + room.width) {
+        for y in Int32(room.coord.y + inset) ..< Int32(room.coord.y + room.height - inset) {
+            for x in Int32(room.coord.x + inset) ..< Int32(room.coord.x + room.width - inset) {
                 let coord = vector_int2(y, x)
                 
-                if getDecoration(at: coord) == nil {
+                if self.getMapNodeType(at: coord) == .open {
                     roomCoords.append(coord)
                 }
             }
@@ -265,7 +261,7 @@ class GameState {
         for x in (0 ..< self.mapWidth) {
             for y in (0 ..< self.mapHeight) {
                 let coord = vector_int2(x, y)
-                if map[coord] == .blocked || getDecoration(at: coord) != nil {
+                if map[coord] == .blocked {
                     if let node = self.movementGraph.node(atGridPosition: coord) {
                         self.movementGraph.remove([node])
                     }
@@ -338,14 +334,15 @@ class GameState {
                     
                     let newTile = Tile(sprite: sprite, coord: tile.coord)
                     self.tiles[x][y] = newTile
-                    
-                    if x == room.coord.x + 3 && y == room.coord.y + 3 {
-                        if let decoration = tileset.getDecoration(coord: tile.coord, entityFactory: entityFactory) {
-                            self.entities.append(decoration)
-                            self.map.setType(.blocked, for: coord)
-                        }
-                    }
                 }
+            }
+            
+            let decorationCoord = getRandomCoord(in: room, insetBy: 1)
+            if let decoration = tileset.getDecoration(coord: decorationCoord, entityFactory: entityFactory) {
+                let tile = self.tiles[Int(decorationCoord.y)][Int(decorationCoord.x)]
+                decoration.configure(withTile: tile)
+                self.tiles[Int(decorationCoord.y)][Int(decorationCoord.x)] = decoration
+                self.map.setType(.blocked, for: decorationCoord)
             }
         }
     }
@@ -370,11 +367,6 @@ extension GameState: CustomStringConvertible {
                     continue
                 }
                 
-                if let _ = getDecoration(at: coord) {
-                    description += "D "
-                    continue
-                }
-
                 let value = self.map[x][y]
                 switch value {
                 case .open: description += "` "

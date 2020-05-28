@@ -333,15 +333,7 @@ extension GameScene: GameDelegate {
                     entity.sprite.removeFromParent()
                 }
             }
-            
-            for decoration in self.game.state.decorations {
-                if hero.visibleCoords.contains(decoration.coord) {
-                    guard decoration.sprite.parent == nil else { continue }
-
-                    self.world.addChild(decoration.sprite)
-                }
-            }
-                        
+                                    
             // add sprites for all newly added tiles ... these are tiles that used to be out of view bounds
             let addedCoords = viewVisibleCoords.subtracting(self.game.viewVisibleCoords)
             for coord in addedCoords {

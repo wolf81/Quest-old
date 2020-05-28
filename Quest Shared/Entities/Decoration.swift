@@ -7,18 +7,41 @@
 //
 
 import Foundation
-import simd
+import SpriteKit
 
-class Decoration: Entity, TileProtocol {
-    var didExplore: Bool = false
+class Decoration: TileProtocol {
+    private let json: [String: Any]
+    
+    lazy var name: String = { self.json["name"] as! String }()
 
-    required init(json: [String : Any], entityFactory: EntityFactory, coord: vector_int2) {
-        super.init(json: json, entityFactory: entityFactory)
+    var sprite: SKSpriteNode = SKSpriteNode(color: .clear, size: Constants.tileSize)
         
+    var coord: vector_int2 = vector_int2.zero
+            
+    var didExplore: Bool = false
+            
+    required init(json: [String : Any], entityFactory: EntityFactory, coord: vector_int2) {
+        self.json = json
         self.coord = coord
-    }
+    }        
     
     required init(json: [String : Any], entityFactory: EntityFactory) {
-        super.init(json: json, entityFactory: entityFactory)
+        self.json = json
+    }
+    
+    func copy(coord: vector_int2, entityFactory: EntityFactory) -> Self {
+        return copyInternal(coord: coord, entityFactory: entityFactory)
+    }
+
+    private func copyInternal<T: Decoration>(coord: vector_int2, entityFactory: EntityFactory) -> T {
+        return T(json: self.json, entityFactory: entityFactory, coord: coord)
+    }
+    
+    func configure(withTile tile: TileProtocol) {
+        let spriteName = self.json["sprite"] as! String
+        let decorationSprite = Entity.loadSprite(type: self, spriteName: spriteName)
+        let sprite = tile.sprite.copy() as! SKSpriteNode
+        sprite.addChild(decorationSprite)
+        self.sprite = sprite
     }
 }
