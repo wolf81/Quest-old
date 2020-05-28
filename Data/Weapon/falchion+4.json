@@ -1,0 +1,10 @@
+{
+    "name": "Falchion +4",
+    "sprite": "falchion_2_new",
+    "equipSprite": "falchion_2",
+
+    "AT": 4,
+    "damage": "2d4+4",
+    "type": "greatsword"
+}
+

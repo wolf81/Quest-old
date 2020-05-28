@@ -25,13 +25,14 @@ class Weapon: Entity & Equippable, CustomStringConvertible {
         case shortbow
         case shortsword
         case longsword
+        case greatsword
         case greataxe
         case staff
         case mace
                 
         fileprivate var category: WeaponCategory {
             switch self {
-            case .greataxe, .staff: return .heavy
+            case .greataxe, .greatsword, .staff: return .heavy
             case .shortsword, .unarmed: return .light
             case .longsword, .mace, .shortbow: return .medium
             }

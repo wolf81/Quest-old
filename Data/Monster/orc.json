@@ -1,0 +1,15 @@
+{
+    "name": "Orc",
+    "sprite": "orc_new",
+
+    "HD": "1d8+1",
+    "AC": 13,
+    "EQ": {
+        "weapon": "Falchion +4",
+    },
+    
+    "energyCost": {
+        "move": 50,
+        "attackMelee": 40
+    }
+}
