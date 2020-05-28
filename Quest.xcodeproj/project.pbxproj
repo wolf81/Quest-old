@@ -155,6 +155,9 @@
 		7990950C244C9E410091791F /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990950B244C9E410091791F /* StatusBar.swift */; };
 		7990950D244C9E410091791F /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990950B244C9E410091791F /* StatusBar.swift */; };
 		7990950E244C9E410091791F /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990950B244C9E410091791F /* StatusBar.swift */; };
+		79A0955B247FDB60009B285C /* Decorations.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79A0955A247FDB60009B285C /* Decorations.xcassets */; };
+		79A0955C247FDB60009B285C /* Decorations.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79A0955A247FDB60009B285C /* Decorations.xcassets */; };
+		79A0955D247FDB60009B285C /* Decorations.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79A0955A247FDB60009B285C /* Decorations.xcassets */; };
 		79ACC7DE22AA5BE900AC3BF0 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 79ACC7DD22AA5BE900AC3BF0 /* Data */; };
 		79ACC7DF22AA5BE900AC3BF0 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 79ACC7DD22AA5BE900AC3BF0 /* Data */; };
 		79ACC7E022AA5BE900AC3BF0 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 79ACC7DD22AA5BE900AC3BF0 /* Data */; };
@@ -306,6 +309,7 @@
 		798C997523A2060000C6EC1C /* MeleeAttackAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeleeAttackAction.swift; sourceTree = "<group>"; };
 		798C997923A2061700C6EC1C /* IdleAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdleAction.swift; sourceTree = "<group>"; };
 		7990950B244C9E410091791F /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
+		79A0955A247FDB60009B285C /* Decorations.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Decorations.xcassets; sourceTree = "<group>"; };
 		79ACC7DD22AA5BE900AC3BF0 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
 		79ACC7EC22AA5D8700AC3BF0 /* EntityLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityLoader.swift; sourceTree = "<group>"; };
 		79ACC7F022AA60E300AC3BF0 /* EntityFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityFactory.swift; sourceTree = "<group>"; };
@@ -530,6 +534,7 @@
 				79D6E700247CB3C100D7333A /* Floors.xcassets */,
 				79D6E704247CB3D200D7333A /* Walls.xcassets */,
 				79D6E708247E40B100D7333A /* Creatures.xcassets */,
+				79A0955A247FDB60009B285C /* Decorations.xcassets */,
 			);
 			path = "Quest Shared";
 			sourceTree = "<group>";
@@ -703,6 +708,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				79C61A7E22A7C415008D3609 /* Main.storyboard in Resources */,
+				79A0955B247FDB60009B285C /* Decorations.xcassets in Resources */,
 				79C61A8122A7C415008D3609 /* LaunchScreen.storyboard in Resources */,
 				79ACC7DE22AA5BE900AC3BF0 /* Data in Resources */,
 				797DBF7B22A91FA300D0F8E7 /* Sprites.xcassets in Resources */,
@@ -720,6 +726,7 @@
 				79D6E70A247E40B100D7333A /* Creatures.xcassets in Resources */,
 				797DBF7C22A91FA300D0F8E7 /* Sprites.xcassets in Resources */,
 				79C61A8F22A7C415008D3609 /* Main.storyboard in Resources */,
+				79A0955C247FDB60009B285C /* Decorations.xcassets in Resources */,
 				79D6E702247CB3C100D7333A /* Floors.xcassets in Resources */,
 				79D6E706247CB3D200D7333A /* Walls.xcassets in Resources */,
 				79ACC7DF22AA5BE900AC3BF0 /* Data in Resources */,
@@ -734,6 +741,7 @@
 				79D6E70B247E40B100D7333A /* Creatures.xcassets in Resources */,
 				797DBF7D22A91FA300D0F8E7 /* Sprites.xcassets in Resources */,
 				79C61A9D22A7C415008D3609 /* Main.storyboard in Resources */,
+				79A0955D247FDB60009B285C /* Decorations.xcassets in Resources */,
 				79D6E703247CB3C100D7333A /* Floors.xcassets in Resources */,
 				79D6E707247CB3D200D7333A /* Walls.xcassets in Resources */,
 				79ACC7E022AA5BE900AC3BF0 /* Data in Resources */,
