@@ -10,6 +10,7 @@ import Foundation
 import DungeonBuilder
 import GameplayKit
 import simd
+import Fenris
 
 class GameState {
     private var map: Map = Map()
@@ -20,8 +21,6 @@ class GameState {
 
     var hero: Hero
     
-    var actorVisibleCoords = Set<vector_int2>()
-
     var entities: [Entity] = []
 
     var activeActors: [Actor] = []
@@ -41,6 +40,8 @@ class GameState {
     private var activeActorIndex: Int = 0
 
     private(set) var tiles: [[TileProtocol]] = []
+    
+    private var movementGraph: GKGridGraph<GKGridGraphNode>!
                     
     init(level: Int, hero: Hero, entityFactory: EntityFactory) throws {
         self.hero = hero
@@ -85,6 +86,37 @@ class GameState {
         addMonsters(to: dungeon, entityFactory: entityFactory)
         addLoot(to: dungeon, entityFactory: entityFactory)
         addHero(to: dungeon, roomId: 1)
+        
+        self.movementGraph = GKGridGraph(fromGridStartingAt: vector2(0, 0), width: self.mapWidth, height: self.mapHeight, diagonalsAllowed: false)
+        for x in (0 ..< self.mapWidth) {
+            for y in (0 ..< self.mapHeight) {
+                let coord = vector_int2(x, y)
+                if map[coord] == .blocked {
+                    if let node = self.movementGraph.node(atGridPosition: coord) {
+                        self.movementGraph.remove([node])
+
+                    }
+                }
+            }
+        }
+        
+        for actor in self.actors {
+            actor.visibility = RaycastVisibility(mapSize: mapSize, blocksLight: {
+                if let door = self.getDoor(at: $0) {
+                    return door.isOpen == false
+                }
+                
+                return self.getMapNode(at: $0) == .blocked
+            }, setVisible: {
+                actor.visibleCoords.insert($0)
+            }, getDistance: {
+                let x = pow(Float($1.x - $0.x), 2)
+                let y = pow(Float($1.y - $0.y), 2)
+                return Int(sqrt(x + y))
+            })
+            
+            actor.updateVisibility()
+        }
     }
     
     func getLoot(at coord: vector_int2) -> Lootable? {
@@ -95,18 +127,20 @@ class GameState {
         self.activeActorIndex = (self.activeActorIndex + 1) % self.activeActors.count
     }
     
-    func updateActiveActors() {
+    func updateActiveActors(for coords: Set<vector_int2>) {        
         self.activeActors.removeAll()
-        
-        let xRange = max(self.hero.coord.x - 10, 0) ... min(self.hero.coord.x + 10, self.mapWidth)
-        let yRange = max(self.hero.coord.y - 10, 0) ... min(self.hero.coord.y + 10, self.mapHeight)
-        
+                
         for actor in self.actors {
-            if xRange.contains(actor.coord.x) && yRange.contains(actor.coord.y) {
+            if coords.contains(actor.coord) {
+                // TODO: filter on sight range of actor ... calc distance between coords + 1
                 self.activeActors.append(actor)
             }
         }
         
+        if self.activeActors.isEmpty {
+            self.activeActors.append(self.hero)
+        }
+                                
         self.activeActorIndex = 0
     }
     
@@ -120,41 +154,8 @@ class GameState {
     }
 
     func getMovementGraph(for actor: Actor, range: Int32, excludedCoords: [vector_int2]) -> GKGridGraph<GKGridGraphNode> {
-        let xRange = Functions.getRange(origin: actor.coord.x, radius: range, constrainedTo: 0 ..< self.mapWidth)
-        let width = xRange.upperBound - xRange.lowerBound
-        let yRange = Functions.getRange(origin: actor.coord.y, radius: range, constrainedTo: 0 ..< self.mapHeight)
-        let height = yRange.upperBound - yRange.lowerBound
-        
-        // Create a graph for the visible area
-        let movementGraph = GKGridGraph(fromGridStartingAt: vector_int2(xRange.lowerBound, yRange.lowerBound), width: width, height: height, diagonalsAllowed: false)
-        for x in movementGraph.gridOrigin.x ..< (movementGraph.gridOrigin.x + Int32(movementGraph.gridWidth)) {
-            for y in movementGraph.gridOrigin.y ..< (movementGraph.gridOrigin.y + Int32(movementGraph.gridHeight)) {
-                let coord = vector_int2(x, y)
-                                                
-                if self.actorVisibleCoords.contains(coord) == false || self.getMapNode(at: coord) == .blocked {
-                    if let node = movementGraph.node(atGridPosition: coord) {
-                        movementGraph.remove([node])
-                    }
-                }
-                
-                if excludedCoords.contains(coord) {
-                    if let movementGraphNode = movementGraph.node(atGridPosition: coord) {
-                        movementGraph.remove([movementGraphNode])
-                    }
-                }
-            }
-        }
-        
-        if let actorNode = movementGraph.node(atGridPosition: actor.coord) {
-            for node in movementGraph.nodes ?? [] {
-                let pathNodes = actorNode.findPath(to: node)
-                if pathNodes.count == 0 {
-                    movementGraph.remove([node])
-                }
-            }
-        }
-
-        return movementGraph
+        // TODO: take into account doors, coords of other creatures
+        return self.movementGraph
     }
     
     func getMapNode(at coord: vector_int2) -> NodeType {
@@ -163,6 +164,16 @@ class GameState {
         
     func remove(entity: Entity) {
         self.entities.removeAll(where: { $0 == entity })
+    }
+    
+    func findPath(from coord: vector_int2, to toCoord: vector_int2) -> [vector_int2] {
+        guard
+            let startNode = self.movementGraph.node(atGridPosition: coord),
+            let endNode = self.movementGraph.node(atGridPosition: toCoord) else { return [] }
+        
+        let path = self.movementGraph.findPath(from: startNode, to: endNode) as! [GKGridGraphNode]
+        
+        return path.compactMap({ $0.gridPosition })
     }
     
     func canMove(entity: Entity, to coord: vector_int2) -> Bool {

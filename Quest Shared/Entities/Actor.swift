@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import Fenris
 
 enum DieRoll {
     case random
@@ -42,7 +43,17 @@ class Actor: Entity {
                 
     private let inventory: Inventory = Inventory()
     
-    private var action: Action?
+    private var action: Action?        
+        
+    override var coord: vector_int2 {
+        didSet {
+            updateVisibility()
+        }
+    }
+    
+    var visibleCoords = Set<vector_int2>()
+
+    var visibility: RaycastVisibility?
         
     var canTakeTurn: Bool { self.energy.amount > 0 }
     
@@ -152,6 +163,13 @@ class Actor: Entity {
         }
         
         self.hitPoints.remove(max(hitPointsToTake, 0))
+    }
+    
+    func updateVisibility() {
+        print("update visibility for \(self.name) @ \(self.coord.x).\(self.coord.y)")
+        // TODO: only call update when coords changed since last call
+        self.visibleCoords.removeAll()
+        self.visibility?.compute(origin: self.coord, rangeLimit: self.sight)
     }
     
     // MARK: - Private

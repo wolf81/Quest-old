@@ -45,6 +45,8 @@ enum SelectionMode {
 class Game {
     public let state: GameState
     
+    private var lastUpdateTime: TimeInterval = 0
+
     public weak var delegate: GameDelegate?
                         
     private var selectionMode: SelectionMode = .none {
@@ -143,26 +145,17 @@ class Game {
     }
             
     func start(levelIdx: Int = 0, tileSize: CGSize) {        
-        let mapSize = CGSize(width: Int(self.state.mapWidth), height: Int(self.state.mapHeight))
-        self.visibility = RaycastVisibility(mapSize: mapSize, blocksLight: {
-            if let door = self.state.getDoor(at: $0) {
-                return door.isOpen == false
-            }
-            
-            return self.state.getMapNode(at: $0) == .blocked
-        }, setVisible: {
-            self.state.actorVisibleCoords.insert($0)
-        }, getDistance: {
-            let x = pow(Float($1.x - $0.x), 2)
-            let y = pow(Float($1.y - $0.y), 2)
-            return Int(sqrt(x + y))
-        })
-                                
-        self.state.updateActiveActors()
-        updateVisibility(for: self.state.hero)
+        self.state.updateActiveActors(for: self.viewVisibleCoords)
+        self.state.hero.updateVisibility()
     }
     
-    func update(_ deltaTime: TimeInterval) {
+    func update(_ currentTime: TimeInterval) {
+        var deltaTime = currentTime - self.lastUpdateTime
+        
+        defer {            
+            self.lastUpdateTime = CACurrentMediaTime();
+        }
+        
         // process the list if pending actions
         while let action = self.actions.first {
             action.perform(state: self.state)
@@ -170,14 +163,13 @@ class Game {
             switch action {
             case let interact as InteractAction:
 //                print("\(interact.actor.name) @ \(interact.actor.coord.x).\(interact.actor.coord.y) is interacting with \(interact.entity.name)")
-                updateVisibility(for: interact.actor)
+                interact.actor.updateVisibility()
                 self.delegate?.gameDidInteract(by: interact.actor, with: interact.entity)
             case let move as MoveAction:
 //                print("\(move.actor.name) @ \(move.actor.coord.x).\(move.actor.coord.y) is performing move")
                 // after the hero moved to a new location, update the visible tiles for the hero
                 if let hero = action.actor as? Hero {
-                    self.state.updateActiveActors()
-                    updateVisibility(for: hero)
+                    self.state.updateActiveActors(for: self.viewVisibleCoords)
                     if let loot = self.state.getLoot(at: hero.coord) {
                         self.state.remove(entity: loot)
                         hero.addToBackpack(loot)
@@ -192,7 +184,7 @@ class Game {
                     self.delegate?.gameDidDestroy(entity: attack.targetActor)
                     // on deleting an entity, update a list of active actors to exclude the deleted entity
                     remove(entity: attack.targetActor)
-                    self.state.updateActiveActors()
+                    self.state.updateActiveActors(for: self.viewVisibleCoords)
                 }
             case let attack as RangedAttackAction:
 //                print("\(attack.actor.name) @ \(attack.actor.coord.x).\(attack.actor.coord.y) is performing ranged attack")
@@ -204,33 +196,29 @@ class Game {
                     self.delegate?.gameDidDestroy(entity: attack.targetActor)
                     // on deleting an entity, update a list of active actors to exclude the deleted entity
                     remove(entity: attack.targetActor)
-                    self.state.updateActiveActors()
+                    self.state.updateActiveActors(for: self.viewVisibleCoords)
                 }
                 break
             default: break
             }
-            
-//            print("energy: \(action.actor.energy.amount)")
-                        
+                                    
             self.actions.removeFirst()
         }
-                
+        
         // if no actions are pending, process each actor until an action is added
         while self.actions.isEmpty {
             let actor = self.state.currentActor
             
             if actor.canTakeTurn && actor.isAwaitingInput {                
                 // in case of the hero, we might need to wait for input before we can get a new action
-                updateVisibility(for: actor)
                 return actor.update(state: self.state)
             }
 
             if actor.canTakeTurn {
-                updateVisibility(for: actor)
-                
-                guard self.state.actorVisibleCoords.contains(self.state.hero.coord) else { return self.state.nextActor() }
+                // TODO: only update visible actors in fov                
+                guard actor.visibleCoords.contains(self.state.hero.coord) else { return self.state.nextActor() }
                                 
-                actor.energy.increment(10)
+                actor.energy.increment(Constants.energyPerTick)
                 actor.update(state: self.state)
 
                 // if the actor has a pending action, add the action to the pending action list
@@ -239,13 +227,13 @@ class Game {
                 self.actions.append(action)
             } else {
                 // otherwise increment the time units until we have enough to allow for an action
-                actor.energy.increment(10)                
+                actor.energy.increment(Constants.energyPerTick)
                 self.state.nextActor()
             }
         }
     }
                     
-    func movePlayer(direction: Direction) {        
+    func movePlayer(direction: Direction) {
         self.selectionMode = .none
         self.state.hero.move(direction: direction)
     }
@@ -314,10 +302,5 @@ class Game {
 
      */
         self.selectionMode = .none
-    }
-    
-    private func updateVisibility(for actor: Actor) {
-        self.state.actorVisibleCoords.removeAll()
-        self.visibility.compute(origin: actor.coord, rangeLimit: actor.sight)
     }
 }

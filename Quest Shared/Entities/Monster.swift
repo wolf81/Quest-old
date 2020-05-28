@@ -60,7 +60,7 @@ class Monster: Actor, CustomStringConvertible {
     // MARK: - Private
     
     private func attack(rangedTarget: Actor, state: GameState) -> Bool {
-        guard state.actorVisibleCoords.contains(rangedTarget.coord) else { return false }
+        guard self.visibleCoords.contains(rangedTarget.coord) else { return false }
 
         let coords = Functions.coordsBetween(self.coord, rangedTarget.coord)
         let nodes = coords.compactMap({ state.getMapNode(at: $0) })
@@ -100,23 +100,17 @@ class Monster: Actor, CustomStringConvertible {
     }
     
     private func move(to actor: Actor, state: GameState) -> Bool {
-        guard state.actorVisibleCoords.contains(actor.coord) else { return false }
+        guard self.visibleCoords.contains(actor.coord) else { return false }
+        
+        let path = state.findPath(from: self.coord, to: actor.coord)
+        
+        guard path.count > 0 else { return false }
 
-        let actorCoords = state.activeActors.filter({ $0.coord != self.coord && $0.coord != actor.coord }).compactMap({ $0.coord })
-        let movementGraph = state.getMovementGraph(for: self, range: self.sight, excludedCoords: actorCoords)
+        let toCoord = path[1]
         
-        guard let actorNode = movementGraph.node(atGridPosition: self.coord), let targetNode = movementGraph.node(atGridPosition: actor.coord) else { return false }
+        guard state.canMove(entity: self, to: toCoord) else { return false }
         
-        var pathNodes = movementGraph.findPath(from: actorNode, to: targetNode) as! [GKGridGraphNode]
-        pathNodes.removeLast() // we don't want to move on top of the hero
-
-        guard pathNodes.count > 0 else { return false }
-        
-        let removeNodeCount = max(pathNodes.count - 2, 0)
-        pathNodes.removeLast(removeNodeCount)
-                            
-        let path = pathNodes.compactMap({ $0.gridPosition })
-        let move = MoveAction(actor: self, coords: path)
+        let move = MoveAction(actor: self, coords: [toCoord])
         setAction(move)
         
         return true

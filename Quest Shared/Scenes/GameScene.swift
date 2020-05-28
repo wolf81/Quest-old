@@ -48,7 +48,6 @@ class GameScene: SKScene, SceneManagerConstructable {
     }
     
     override func update(_ currentTime: TimeInterval) {
-                
         // Called before each frame is rendered
         let deltaTime = currentTime - self.lastUpdateTime
         
@@ -305,29 +304,29 @@ extension GameScene: GameDelegate {
         entity.sprite.run(SKAction.sequence(fade))
     }
     
-    func gameDidMove(entity: Entity, path: [vector_int2]) {
-        if let hero = entity as? Hero {
+    func gameDidMove(entity: Entity, path: [vector_int2]) {        
+        switch entity {
+        case let hero as Hero:
             let (minCoord, maxCoord) = getMinMaxVisibleCoordsInView()
                                                         
             let viewVisibleCoords = getCoordsInRange(minCoord: minCoord, maxCoord: maxCoord)
-            
-            for entity in self.game.state.activeActors {
-                if self.game.state.actorVisibleCoords.contains(entity.coord) {
-                    if entity.sprite.parent == nil {
-                        self.world.addChild(entity.sprite)
+
+            for activeActor in self.game.state.activeActors {
+                if hero.visibleCoords.contains(activeActor.coord) {
+                    if activeActor.sprite.parent == nil {
+                        self.world.addChild(activeActor.sprite)
                     }
                     else {
                         let position = GameScene.pointForCoord(path.last!)
                         hero.sprite.run(SKAction.move(to: position, duration: 2.0))
                     }
-                }
-                else {
-                    entity.sprite.removeFromParent()
+                } else {
+                    activeActor.sprite.removeFromParent()
                 }
             }
-
+            
             for entity in self.game.state.loot {
-                if self.game.state.actorVisibleCoords.contains(entity.coord) {
+                if hero.visibleCoords.contains(entity.coord) {
                     
                     if entity.sprite.parent == nil {
                         self.world.addChild(entity.sprite)
@@ -346,7 +345,7 @@ extension GameScene: GameDelegate {
             for coord in addedCoords {
                 let tile = self.game.state.tiles[Int(coord.y)][Int(coord.x)]
 
-                if self.game.state.actorVisibleCoords.contains(coord) {
+                if hero.visibleCoords.contains(coord) {
                     tile.didExplore = true
                 }
 
@@ -354,7 +353,7 @@ extension GameScene: GameDelegate {
                 tile.sprite.alpha = 0.0
                 self.world.addChild(tile.sprite)
                 
-                let alpha: CGFloat = self.game.state.actorVisibleCoords.contains(coord) ? 1.0 : tile.didExplore ? 0.5 : 0.0
+                let alpha: CGFloat = hero.visibleCoords.contains(coord) ? 1.0 : tile.didExplore ? 0.5 : 0.0
                 tile.sprite.run(SKAction.fadeAlpha(to: alpha, duration: 3.0))
             }
 
@@ -370,22 +369,22 @@ extension GameScene: GameDelegate {
             for coord in remainingCoords {
                 let tile = self.game.state.tiles[Int(coord.y)][Int(coord.x)]
 
-                if self.game.state.actorVisibleCoords.contains(coord) {
+                if hero.visibleCoords.contains(coord) {
                     tile.didExplore = true
                 }
 
-                let alpha: CGFloat = self.game.state.actorVisibleCoords.contains(coord) ? 1.0 : tile.didExplore ? 0.5 : 0.0
+                let alpha: CGFloat = hero.visibleCoords.contains(coord) ? 1.0 : tile.didExplore ? 0.5 : 0.0
                 tile.sprite.run(SKAction.fadeAlpha(to: alpha, duration: 1.5))
             }
             
             self.game.viewVisibleCoords = viewVisibleCoords
             
             moveCamera(path: path, duration: 2.0)
-        } else {
+        case _ where entity is Monster:
             let firstCoord = path.first!
             let lastCoord = path.last!
             
-            let willShow = self.game.state.actorVisibleCoords.contains(lastCoord) && self.game.state.actorVisibleCoords.contains(firstCoord) == false
+            let willShow = self.game.state.hero.visibleCoords.contains(lastCoord) && self.game.state.hero.visibleCoords.contains(firstCoord) == false
             
             var move: [SKAction] = []
 
@@ -402,7 +401,8 @@ extension GameScene: GameDelegate {
             }
             
             entity.sprite.run(SKAction.sequence(move))
-        }        
+        default: break
+        }
     }
         
     func gameDidUpdateStatus(message: String) {
@@ -489,7 +489,7 @@ extension GameScene {
         }
     }
         
-    override func keyDown(with event: NSEvent) {        
+    override func keyDown(with event: NSEvent) {
         switch event.keyCode {
         case /* q */ 12: self.game.movePlayer(direction: .northWest)
         case /* e */ 14: self.game.movePlayer(direction: .northEast)
@@ -501,7 +501,7 @@ extension GameScene {
         case /* w */ 13: self.game.movePlayer(direction: .north)
         default: print("\(event.keyCode)")
         }
-    }
+    }        
     
     override func keyUp(with event: NSEvent) {
 //        debugPrint(event.keyCode)

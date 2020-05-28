@@ -17,9 +17,6 @@ class MoveAction: Action, StatusUpdatable {
     }
     
     private(set) var message: String?
-//    override var message: String {
-//        return "[\(self.actor.name)] → \(self.toCoord.x).\(self.toCoord.y)"
-//    }    
     
     init(actor: Actor, toCoord: vector_int2) {
         self.path = [toCoord]

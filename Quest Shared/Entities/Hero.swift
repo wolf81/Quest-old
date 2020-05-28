@@ -92,6 +92,15 @@ class Hero: Actor, CustomStringConvertible {
         case .move(let direction):
             let toCoord = self.coord &+ direction.coord
             
+            if state.canMove(entity: self, to: toCoord) {
+                let move = MoveAction(actor: self, toCoord: toCoord)
+                setAction(move)
+            } else {
+                // blocked by creature or door?
+                // if door: try to open
+                // if creature: try to fight
+            }
+            
             if let targetActor = state.activeActors.filter({ $0.coord == toCoord }).first {
                 let attack = MeleeAttackAction(actor: self, targetActor: targetActor)
                 setAction(attack)
@@ -114,7 +123,7 @@ class Hero: Actor, CustomStringConvertible {
         self.heroAction = nil
     }
     
-    func move(direction: Direction) {
+    func move(direction: Direction) {        
         self.heroAction = HeroAction.move(direction)
     }
     
