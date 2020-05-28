@@ -8,6 +8,23 @@
         "weapon": "Battleaxe +3",
     },
     
+    "sounds": {
+        "hit": [
+            "Ancient_Game_Creature_Breath_and_Growl",
+            "Ancient_Game_Creature_Breath_and_Growl_2",
+            "Ancient_Game_Creature_Breath_and_Growl_3",
+            "Ancient_Game_Creature_Breath_and_Growl_4",
+            "Ancient_Game_Creature_Breath_and_Growl_5",
+            "Ancient_Game_Creature_Breath_and_Growl_6",
+        ],
+        "destroy": [
+            "Ancient_Game_Creature_Groan_1",
+            "Ancient_Game_Creature_Groan_2",
+            "Ancient_Game_Creature_Groan_3",
+            "Ancient_Game_Creature_Groan_4",
+        ],
+    },
+    
     "energyCost": {
         "move": 60,
         "attackMelee": 50

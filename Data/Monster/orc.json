@@ -8,6 +8,23 @@
         "weapon": "Falchion +4",
     },
     
+    "sounds": {
+        "hit": [
+            "Ancient_Game_Creature_Orc_Grunt_1",
+            "Ancient_Game_Creature_Orc_Grunt_2",
+            "Ancient_Game_Creature_Orc_Grunt_3",
+            "Ancient_Game_Creature_Orc_Grunt_4",
+            "Ancient_Game_Creature_Orc_Grunt_5",
+            "Ancient_Game_Creature_Orc_Grunt_6",
+        ],
+        "destroy": [
+            "Ancient_Game_Creature_Orc_Death_1",
+            "Ancient_Game_Creature_Orc_Death_2",
+            "Ancient_Game_Creature_Orc_Death_3",
+            "Ancient_Game_Creature_Orc_Death_9",
+        ],
+    },
+
     "energyCost": {
         "move": 50,
         "attackMelee": 40

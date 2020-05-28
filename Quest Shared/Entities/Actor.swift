@@ -58,6 +58,18 @@ class Actor: Entity {
     var canTakeTurn: Bool { self.energy.amount > 0 }
     
     var isAwaitingInput: Bool { self.action == nil }
+    
+    lazy var soundInfo: [SoundType: [String]] = {
+        guard let soundInfo = self.json["sounds"] as? [String: [String]] else { return [:] }
+            
+        var result: [SoundType: [String]] = [:]
+        for (typeName, soundNames) in soundInfo {
+            let soundType = SoundType(rawValue: typeName)!
+            result[soundType] = soundNames
+        }
+
+        return result
+    }()
         
     final func setAction(_ action: Action) {
         self.action = action
@@ -165,6 +177,16 @@ class Actor: Entity {
         self.hitPoints.remove(max(hitPointsToTake, 0))
     }
     
+    func playSound(_ type: SoundType) {
+        guard let sounds = self.soundInfo[type] else { return }
+        
+        let index = arc4random_uniform(UInt32(sounds.count))
+        let sound = sounds[Int(index)]
+                
+        let play = SKAction.playSoundFileNamed(sound, waitForCompletion: false)
+        self.sprite.run(play)
+    }
+    
     func updateVisibility() {
         // TODO: only call update when coords changed since last call
         self.visibleCoords.removeAll()
@@ -172,8 +194,6 @@ class Actor: Entity {
     }
     
     func showBlood(duration: TimeInterval) {
-        print("show blood")
-
         // TODO: need a cleaner way to handle blood, perhaps make it an effect?
         let imageNames = [
             "blood_red_0",

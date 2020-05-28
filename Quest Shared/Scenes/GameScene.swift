@@ -272,6 +272,7 @@ extension GameScene: GameDelegate {
         
         if success {
             targetActor.showBlood(duration: 8.0)
+            actor.playSound(.hit)
         }
     }
     
@@ -291,6 +292,7 @@ extension GameScene: GameDelegate {
         
         if success {
             targetActor.showBlood(duration: 8.0)
+            actor.playSound(.hit)
         }
     }
     
@@ -311,6 +313,7 @@ extension GameScene: GameDelegate {
         
         if let actor = entity as? Actor {
             actor.showBlood(duration: 6.0)
+            actor.playSound(.destroy)
         }
 
         entity.sprite.run(SKAction.sequence(fade))
