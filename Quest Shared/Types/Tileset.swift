@@ -13,6 +13,8 @@ class Tileset: JSONConstructable {
     let floorTiles: [SKSpriteNode]
     let wallTiles: [SKSpriteNode]
     
+    private let decorationNames: [String]
+    
     func getFloorTile() -> SKSpriteNode {
         let tileIdx = getRandomIndexEmphasizeZero(self.floorTiles.count)
         return self.floorTiles[tileIdx].copy() as! SKSpriteNode
@@ -27,6 +29,15 @@ class Tileset: JSONConstructable {
         self.name = json["name"] as! String
         self.floorTiles = Tileset.getSprites(for: json["floorTiles"] as? [String] ?? [])
         self.wallTiles = Tileset.getSprites(for: json["wallTiles"] as? [String] ?? [])
+        
+        self.decorationNames = json["decorations"] as? [String] ?? []
+    }
+    
+    func getDecoration(coord: vector_int2, entityFactory: EntityFactory) -> Decoration? {
+        guard let decorationName = decorationNames.first else { return nil }
+                        
+        let decoration = try! entityFactory.newEntity(type: Decoration.self, name: decorationName, coord: coord)
+        return decoration
     }
     
     // MARK: - Private

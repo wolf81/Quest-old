@@ -318,7 +318,7 @@ extension GameScene: GameDelegate {
                     self.world.addChild(activeActor.sprite)
                 }
             }
-            
+                        
             for entity in self.game.state.loot {
                 if hero.visibleCoords.contains(entity.coord) {
                     
@@ -331,6 +331,14 @@ extension GameScene: GameDelegate {
                     }
                 } else {
                     entity.sprite.removeFromParent()
+                }
+            }
+            
+            for decoration in self.game.state.decorations {
+                if hero.visibleCoords.contains(decoration.coord) {
+                    guard decoration.sprite.parent == nil else { continue }
+
+                    self.world.addChild(decoration.sprite)
                 }
             }
                         

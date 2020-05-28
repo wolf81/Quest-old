@@ -30,6 +30,8 @@ class GameState {
     var loot: [Lootable] { self.entities.filter({ $0 is Lootable }) as! [Lootable] }
 
     var monsters: [Monster] { self.entities.filter({ $0 is Monster }) as! [Monster] }
+    
+    var decorations: [Decoration] { self.entities.filter({ $0 is Decoration }) as! [Decoration] }
 
     let mainTilesetName: String
     
@@ -82,7 +84,7 @@ class GameState {
         self.map = map
         
         addTiles(to: dungeon, entityFactory: entityFactory)
-        addTilesets(to: dungeon)
+        addTilesets(to: dungeon, entityFactory: entityFactory)
         addMonsters(to: dungeon, entityFactory: entityFactory)
         addLoot(to: dungeon, entityFactory: entityFactory)
         addHero(to: dungeon, roomId: 1)
@@ -94,7 +96,7 @@ class GameState {
                 if let door = self.getDoor(at: $0) {
                     return door.isOpen == false
                 }
-                
+                                
                 return self.getMapNodeType(at: $0) == .blocked
             }, setVisible: {
                 actor.visibleCoords.insert($0)
@@ -138,6 +140,10 @@ class GameState {
     
     func getActor(at coord: vector_int2) -> Actor? {
         self.actors.filter({ $0.coord == coord }).first
+    }
+    
+    func getDecoration(at coord: vector_int2) -> Decoration? {
+        self.decorations.filter({ $0.coord == coord }).first
     }
     
     func getMapNodeType(at coord: vector_int2) -> NodeType {
@@ -240,7 +246,7 @@ class GameState {
         for x in (0 ..< self.mapWidth) {
             for y in (0 ..< self.mapHeight) {
                 let coord = vector_int2(x, y)
-                if map[coord] == .blocked {
+                if map[coord] == .blocked || getDecoration(at: coord) != nil {
                     if let node = self.movementGraph.node(atGridPosition: coord) {
                         self.movementGraph.remove([node])
                     }
@@ -255,7 +261,7 @@ class GameState {
         self.entities.append(self.hero)
     }
     
-    private func addTilesets(to dungeon: Dungeon) {
+    private func addTilesets(to dungeon: Dungeon, entityFactory: EntityFactory) {
         var tilesets: [Tileset] = []
         for tilesetFile in self.altTilesetNames {
             let tileset = try! DataLoader.load(type: Tileset.self, fromFileNamed: tilesetFile, inDirectory: "Data/Tileset")
@@ -263,7 +269,7 @@ class GameState {
         }
                         
         var roomTilesetInfo: [UInt: Bool] = [:]
-                
+                        
         for (roomId, room) in dungeon.roomInfo {
             if arc4random_uniform(6) != 0 || roomTilesetInfo.index(forKey: roomId) != nil { continue }
                         
@@ -313,6 +319,13 @@ class GameState {
                     
                     let newTile = Tile(sprite: sprite, coord: tile.coord)
                     self.tiles[x][y] = newTile
+                    
+                    if x == room.coord.x + 3 && y == room.coord.y + 3 {
+                        if let decoration = tileset.getDecoration(coord: tile.coord, entityFactory: entityFactory) {
+                            self.entities.append(decoration)
+                            self.map.setType(.blocked, for: coord)
+                        }
+                    }
                 }
             }
         }
@@ -335,6 +348,11 @@ extension GameState: CustomStringConvertible {
                 
                 if let _ = getLoot(at: coord) {
                     description += "L "
+                    continue
+                }
+                
+                if let _ = getDecoration(at: coord) {
+                    description += "D "
                     continue
                 }
 

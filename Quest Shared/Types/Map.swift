@@ -14,4 +14,8 @@ extension Map {
     subscript(coord: vector_int2) -> NodeType {
         return self[Int(coord.y)][Int(coord.x)]
     }
+    
+    mutating func setType(_ type: NodeType, for coord: vector_int2) {
+        self[Int(coord.y)][Int(coord.x)] = type
+    }
 }

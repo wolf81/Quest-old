@@ -23,5 +23,8 @@
         "orc_wall_9",
         "orc_wall_10",
         "orc_wall_11",
+    ],
+    "decorations": [
+        "Orcish Idol"
     ]
 }

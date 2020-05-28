@@ -192,6 +192,9 @@
 		79C61AA822A7C415008D3609 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C61A7022A7C415008D3609 /* Assets.xcassets */; };
 		79C61AA922A7C415008D3609 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C61A7022A7C415008D3609 /* Assets.xcassets */; };
 		79C61AAA22A7C415008D3609 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C61A7022A7C415008D3609 /* Assets.xcassets */; };
+		79D0B60B247FEDF8001029BE /* Decoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D0B60A247FEDF8001029BE /* Decoration.swift */; };
+		79D0B60C247FEDF8001029BE /* Decoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D0B60A247FEDF8001029BE /* Decoration.swift */; };
+		79D0B60D247FEDF8001029BE /* Decoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D0B60A247FEDF8001029BE /* Decoration.swift */; };
 		79D58E11247D93C200E1EE79 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D58E10247D93C200E1EE79 /* Map.swift */; };
 		79D58E12247D93C200E1EE79 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D58E10247D93C200E1EE79 /* Map.swift */; };
 		79D58E13247D93C200E1EE79 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D58E10247D93C200E1EE79 /* Map.swift */; };
@@ -334,6 +337,7 @@
 		79C61A9922A7C415008D3609 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		79C61A9C22A7C415008D3609 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		79C61A9E22A7C415008D3609 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79D0B60A247FEDF8001029BE /* Decoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoration.swift; sourceTree = "<group>"; };
 		79D58E10247D93C200E1EE79 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		79D58E14247D957600E1EE79 /* NodeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeType.swift; sourceTree = "<group>"; };
 		79D6E6DB247A59FE00D7333A /* Door.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Door.swift; sourceTree = "<group>"; };
@@ -433,6 +437,7 @@
 				79D6E6DB247A59FE00D7333A /* Door.swift */,
 				79D6E6E3247A98DF00D7333A /* Accessory.swift */,
 				79D6E6E7247A9D1700D7333A /* Effect.swift */,
+				79D0B60A247FEDF8001029BE /* Decoration.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -870,6 +875,7 @@
 				79C61A7922A7C415008D3609 /* AppDelegate.swift in Sources */,
 				798C997223A205EF00C6EC1C /* MoveAction.swift in Sources */,
 				798C997A23A2061700C6EC1C /* IdleAction.swift in Sources */,
+				79D0B60B247FEDF8001029BE /* Decoration.swift in Sources */,
 				7960DECA23A6082B00B4CDF8 /* Actor.swift in Sources */,
 				7963DE57239E456900183DF2 /* ActionBarButton.swift in Sources */,
 				792467E7246D37D5000568A6 /* GameOverScene.swift in Sources */,
@@ -948,6 +954,7 @@
 				79C61A8A22A7C415008D3609 /* AppDelegate.swift in Sources */,
 				798C997323A205EF00C6EC1C /* MoveAction.swift in Sources */,
 				798C997B23A2061700C6EC1C /* IdleAction.swift in Sources */,
+				79D0B60C247FEDF8001029BE /* Decoration.swift in Sources */,
 				7960DECB23A6082B00B4CDF8 /* Actor.swift in Sources */,
 				7963DE58239E456900183DF2 /* ActionBarButton.swift in Sources */,
 				792467E8246D37D5000568A6 /* GameOverScene.swift in Sources */,
@@ -997,6 +1004,7 @@
 				792467F1246E4360000568A6 /* Potion.swift in Sources */,
 				79ACC82022AB473200AC3BF0 /* Action.swift in Sources */,
 				798C997C23A2061700C6EC1C /* IdleAction.swift in Sources */,
+				79D0B60D247FEDF8001029BE /* Decoration.swift in Sources */,
 				79ACC7F322AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
 				79D6E6E2247A6DD200D7333A /* UseAction.swift in Sources */,
 				7960DEC023A6082B00B4CDF8 /* Weapon.swift in Sources */,
