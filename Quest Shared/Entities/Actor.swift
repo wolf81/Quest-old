@@ -166,7 +166,6 @@ class Actor: Entity {
     }
     
     func updateVisibility() {
-        print("update visibility for \(self.name) @ \(self.coord.x).\(self.coord.y)")
         // TODO: only call update when coords changed since last call
         self.visibleCoords.removeAll()
         self.visibility?.compute(origin: self.coord, rangeLimit: self.sight)

@@ -17,6 +17,11 @@ enum Direction {
     case northEast
     case southWest
     case southEast
+    
+    var isCardinal: Bool {
+        let cardinalDirections: [Direction] = [.north, .west, .south, .east]
+        return cardinalDirections.contains(self)
+    }
 
     /// A direction is based on an x-value and y-value, e.g. up has an x-value of 0 and y-value of 1, down has an x-value of 0 and y-value of -1, etc...
     var coord: vector_int2 {

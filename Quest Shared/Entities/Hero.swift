@@ -80,7 +80,7 @@ class Hero: Actor, CustomStringConvertible {
         
         guard let heroAction = self.heroAction else { return }
         
-        guard self.sprite.hasActions() == false else { return }
+//        guard self.sprite.hasActions() == false else { return }
         
         switch heroAction {
         case .interact(let direction):
@@ -92,7 +92,7 @@ class Hero: Actor, CustomStringConvertible {
         case .move(let direction):
             let toCoord = self.coord &+ direction.coord
             
-            if state.canMove(entity: self, to: toCoord) {
+            if direction.isCardinal && state.canMove(entity: self, to: toCoord) {
                 let move = MoveAction(actor: self, toCoord: toCoord)
                 setAction(move)
             } else {

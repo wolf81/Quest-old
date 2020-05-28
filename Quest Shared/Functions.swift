@@ -39,6 +39,12 @@ struct Functions {
         return T(minValue) ..< T(maxValue)
     }
     
+    static func distanceBetween(_ coord1: vector_int2, _ coord2: vector_int2) -> Int {
+        let x = pow(Float(coord1.x - coord2.x), 2)
+        let y = pow(Float(coord1.y - coord2.y), 2)
+        return Int(sqrt(x + y))
+    }
+    
     // MARK: - Private
     
     private static func internalCoordsBetween(_ start: vector_int2, _ end: vector_int2, isSteep: Bool) -> [vector_int2] {

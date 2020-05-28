@@ -87,21 +87,10 @@ class GameState {
         addLoot(to: dungeon, entityFactory: entityFactory)
         addHero(to: dungeon, roomId: 1)
         
-        self.movementGraph = GKGridGraph(fromGridStartingAt: vector2(0, 0), width: self.mapWidth, height: self.mapHeight, diagonalsAllowed: false)
-        for x in (0 ..< self.mapWidth) {
-            for y in (0 ..< self.mapHeight) {
-                let coord = vector_int2(x, y)
-                if map[coord] == .blocked {
-                    if let node = self.movementGraph.node(atGridPosition: coord) {
-                        self.movementGraph.remove([node])
-
-                    }
-                }
-            }
-        }
+        generateMovementGraph()
         
         for actor in self.actors {
-            actor.visibility = RaycastVisibility(mapSize: mapSize, blocksLight: {
+            actor.visibility = RaycastVisibility(mapSize: self.mapSize, blocksLight: {
                 if let door = self.getDoor(at: $0) {
                     return door.isOpen == false
                 }
@@ -110,9 +99,7 @@ class GameState {
             }, setVisible: {
                 actor.visibleCoords.insert($0)
             }, getDistance: {
-                let x = pow(Float($1.x - $0.x), 2)
-                let y = pow(Float($1.y - $0.y), 2)
-                return Int(sqrt(x + y))
+                return Functions.distanceBetween($0, $1)
             })
             
             actor.updateVisibility()
@@ -131,10 +118,10 @@ class GameState {
         self.activeActors.removeAll()
                 
         for actor in self.actors {
-            if coords.contains(actor.coord) {
-                // TODO: filter on sight range of actor ... calc distance between coords + 1
+            if Functions.distanceBetween(actor.coord, self.hero.coord) <= actor.sight {
                 self.activeActors.append(actor)
             }
+                // TODO: filter on sight range of actor ... calc distance between coords + 1
         }
         
         if self.activeActors.isEmpty {
@@ -196,10 +183,10 @@ class GameState {
                        
         let tileset = try! DataLoader.load(type: Tileset.self, fromFileNamed: self.mainTilesetName, inDirectory: "Data/Tileset")
 
-        for y in (0 ..< Int32(self.mapHeight)) {
+        for y in (0 ..< self.mapHeight) {
            var tileRow: [TileProtocol] = []
            
-           for x in (0 ..< Int32(self.mapWidth)) {
+           for x in (0 ..< self.mapWidth) {
                let coord = vector_int2(x, y)
                let node = self.map[coord]
                var entity: TileProtocol
@@ -253,6 +240,21 @@ class GameState {
         }
     }
     
+    private func generateMovementGraph() {
+        self.movementGraph = GKGridGraph(fromGridStartingAt: vector2(0, 0), width: self.mapWidth, height: self.mapHeight, diagonalsAllowed: false)
+        for x in (0 ..< self.mapWidth) {
+            for y in (0 ..< self.mapHeight) {
+                let coord = vector_int2(x, y)
+                if map[coord] == .blocked {
+                    if let node = self.movementGraph.node(atGridPosition: coord) {
+                        self.movementGraph.remove([node])
+
+                    }
+                }
+            }
+        }
+    }
+    
     private func addHero(to dungeon: Dungeon, roomId: UInt) {
         let room = dungeon.roomInfo[roomId]!
         self.hero.coord = vector_int2(Int32(room.coord.y), Int32(room.coord.x))
@@ -274,10 +276,10 @@ class GameState {
             let midX: Int32 = Int32(room.coord.x + room.width / 2)
             let midY: Int32 = Int32(room.coord.y + room.height / 2)
 
-            let minY = Int32(max(room.coord.x - 2, 0))
-            let maxY = Int32(min(room.coord.x + room.width + 2, Int(self.mapWidth - 1)))
-            let minX = Int32(max(room.coord.y - 2, 0))
-            let maxX = Int32(min(room.coord.y + room.height + 2, Int(self.mapHeight - 1)))
+            let minX = Int32(max(room.coord.x - 2, 0))
+            let maxX = Int32(min(room.coord.x + room.width + 2, Int(self.mapWidth - 1)))
+            let minY = Int32(max(room.coord.y - 2, 0))
+            let maxY = Int32(min(room.coord.y + room.height + 2, Int(self.mapHeight - 1)))
             let p1 = vector_int2(minX, midY)
             let p2 = vector_int2(maxX, midY)
             let p3 = vector_int2(midX, minY)
@@ -288,7 +290,7 @@ class GameState {
             let p8 = vector_int2(maxX, maxY)
 
             for point in [p1, p2, p3, p4, p5, p6, p7, p8] {
-                let coord = Coordinate(Int(point.y), Int(point.x))
+                let coord = Coordinate(Int(point.x), Int(point.y))
                 let node = dungeon[coord]
                 if node.contains(.room) {
                     roomTilesetInfo[node.roomId] = false
