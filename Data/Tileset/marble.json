@@ -21,5 +21,8 @@
         "marble_wall_10",
         "marble_wall_11",
         "marble_wall_12",
+    ],
+    "decorations": [
+        "Angel Statue"
     ]
 }
