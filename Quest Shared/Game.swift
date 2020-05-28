@@ -219,7 +219,7 @@ class Game {
 
             if actor.canTakeTurn {
                 // TODO: only update visible actors in fov                
-                guard actor.visibleCoords.contains(self.state.hero.coord) else { return self.state.nextActor() }
+                guard self.state.hero.visibleCoords.contains(actor.coord) else { return self.state.nextActor() }
                                 
                 actor.energy.increment(Constants.energyPerTick)
                 actor.update(state: self.state)

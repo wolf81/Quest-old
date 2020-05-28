@@ -312,16 +312,10 @@ extension GameScene: GameDelegate {
             let viewVisibleCoords = getCoordsInRange(minCoord: minCoord, maxCoord: maxCoord)
 
             for activeActor in self.game.state.activeActors {
-                if hero.visibleCoords.contains(activeActor.coord) {
-                    if activeActor.sprite.parent == nil {
-                        self.world.addChild(activeActor.sprite)
-                    }
-                    else {
-                        let position = GameScene.pointForCoord(path.last!)
-                        hero.sprite.run(SKAction.move(to: position, duration: 2.0))
-                    }
-                } else {
+                if hero.visibleCoords.contains(activeActor.coord) == false {
                     activeActor.sprite.removeFromParent()
+                } else if activeActor.sprite.parent == nil {
+                    self.world.addChild(activeActor.sprite)
                 }
             }
             
@@ -378,18 +372,21 @@ extension GameScene: GameDelegate {
             }
             
             self.game.viewVisibleCoords = viewVisibleCoords
-            
-            moveCamera(path: path, duration: 2.0)
+
+            let position = GameScene.pointForCoord(path.last!)
+            hero.sprite.run(SKAction.move(to: position, duration: Constants.AnimationDuration.default))
+
+            moveCamera(path: path, duration: Constants.AnimationDuration.default)
         case _ where actor is Monster:
             let firstCoord = path.first!
             let lastCoord = path.last!
             
             let willShow = self.game.state.hero.visibleCoords.contains(lastCoord) && self.game.state.hero.visibleCoords.contains(firstCoord) == false
-            
+
             var move: [SKAction] = []
 
             let stepCount = path.count + (willShow ? 1 : 0)
-            let stepDuration = 2.0 / Double(stepCount)
+            let stepDuration = Constants.AnimationDuration.default / Double(stepCount)
 
             if willShow {
                 move.append(SKAction.fadeIn(withDuration: stepDuration))
