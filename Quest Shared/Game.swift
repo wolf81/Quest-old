@@ -12,16 +12,19 @@ import GameplayKit
 import Fenris
 
 protocol GameDelegate: class {
-    func gameDidMove(entity: Entity, path: [vector_int2])
     func gameDidDestroy(entity: EntityProtocol)
 
-    func gameDidUpdateStatus(message: String)
-    func gameDidAttack(actor: Actor, targetActor: Actor)
-    func gameDidRangedAttack(actor: Actor, targetActor: Actor, projectile: Projectile, isHit: Bool)
-    
-    func gameDidInteract(by actor: Actor, with entity: EntityProtocol)
-        
     func gameDidChangeSelectionMode(_ selectionMode: SelectionMode)
+
+    func gameDidUpdateStatus(message: String)
+    
+    func gameActorDidMove(actor: Actor, path: [vector_int2])
+    
+    func gameActorDidPerformMeleeAttack(actor: Actor, targetActor: Actor)
+
+    func gameActorDidPerformRangedAttack(actor: Actor, withProjectile projectile: Projectile, targetActor: Actor, success: Bool)
+
+    func gameActorDidPerformInteraction(actor: Actor, targetEntity: EntityProtocol)
 }
 
 enum SelectionMode {
@@ -164,7 +167,7 @@ class Game {
             case let interact as InteractAction:
 //                print("\(interact.actor.name) @ \(interact.actor.coord.x).\(interact.actor.coord.y) is interacting with \(interact.entity.name)")
                 interact.actor.updateVisibility()
-                self.delegate?.gameDidInteract(by: interact.actor, with: interact.entity)
+                self.delegate?.gameActorDidPerformInteraction(actor: interact.actor, targetEntity: interact.entity)
             case let move as MoveAction:
 //                print("\(move.actor.name) @ \(move.actor.coord.x).\(move.actor.coord.y) is performing move")
                 // after the hero moved to a new location, update the visible tiles for the hero
@@ -176,10 +179,10 @@ class Game {
                         self.delegate?.gameDidDestroy(entity: loot)
                     }
                 }
-                self.delegate?.gameDidMove(entity: move.actor, path: move.path)
+                self.delegate?.gameActorDidMove(actor: move.actor, path: move.path)
             case let attack as MeleeAttackAction:
 //                print("\(attack.actor.name) @ \(attack.actor.coord.x).\(attack.actor.coord.y) is performing melee attack")
-                self.delegate?.gameDidAttack(actor: attack.actor, targetActor: attack.targetActor)
+                self.delegate?.gameActorDidPerformMeleeAttack(actor: attack.actor, targetActor: attack.targetActor)
                 if attack.targetActor.isAlive == false {
                     self.delegate?.gameDidDestroy(entity: attack.targetActor)
                     // on deleting an entity, update a list of active actors to exclude the deleted entity
@@ -190,7 +193,7 @@ class Game {
 //                print("\(attack.actor.name) @ \(attack.actor.coord.x).\(attack.actor.coord.y) is performing ranged attack")
                 let projectile = action.actor.equippedWeapon.projectile!
                 projectile.configureSprite(origin: attack.actor.coord, target: attack.targetActor.coord)
-                self.delegate?.gameDidRangedAttack(actor: attack.actor, targetActor: attack.targetActor, projectile: projectile, isHit: attack.isHit)
+                self.delegate?.gameActorDidPerformRangedAttack(actor: attack.actor, withProjectile: projectile, targetActor: attack.targetActor, success: attack.isHit)
                 
                 if attack.targetActor.isAlive == false {
                     self.delegate?.gameDidDestroy(entity: attack.targetActor)

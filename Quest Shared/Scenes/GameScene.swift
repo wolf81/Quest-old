@@ -110,7 +110,7 @@ class GameScene: SKScene, SceneManagerConstructable {
             entity.sprite.position = GameScene.pointForCoord(entity.coord)
         }
         
-        gameDidMove(entity: self.game.state.hero, path: [self.game.state.hero.coord])
+        gameActorDidMove(actor: self.game.state.hero, path: [self.game.state.hero.coord])
     }
 
     private func movePlayer(direction: Direction) {
@@ -212,8 +212,8 @@ func isInRange(origin: vector_int2, radius: Int32, coord: vector_int2) -> Bool {
 // MARK: - GameDelegate
 
 extension GameScene: GameDelegate {
-    func gameDidInteract(by actor: Actor, with entity: EntityProtocol) {
-        if let door = entity as? Door {
+    func gameActorDidPerformInteraction(actor: Actor, targetEntity: EntityProtocol) {
+        if let door = targetEntity as? Door {
             let oldSprite = door.sprite
             
             oldSprite.run(SKAction.sequence([
@@ -232,7 +232,7 @@ extension GameScene: GameDelegate {
             ]))
             
             // update visible nodes
-            gameDidMove(entity: actor, path: [actor.coord])
+            gameActorDidMove(actor: actor, path: [actor.coord])
         }
     }
     
@@ -246,8 +246,8 @@ extension GameScene: GameDelegate {
             }
         }
     }
-        
-    func gameDidRangedAttack(actor: Actor, targetActor: Actor, projectile: Projectile, isHit: Bool) {
+    
+    func gameActorDidPerformRangedAttack(actor: Actor, withProjectile projectile: Projectile, targetActor: Actor, success: Bool) {
         // Make a copy of the sprite, to prevent the sprite to become unmanaged once the projectile is destroyed
         let sprite = projectile.sprite.copy() as! SKSpriteNode
         sprite.position = actor.sprite.position
@@ -255,7 +255,7 @@ extension GameScene: GameDelegate {
 
         // for missing attacks, show arrow hitting coordinate next to the hero
         var toCoord = targetActor.coord
-        if !isHit {
+        if !success {
             let adjacentDirections = Direction.relative(from: actor.coord, to: targetActor.coord).adjacentDirections
             let direction = arc4random() % 2 == 0 ? adjacentDirections[0] : adjacentDirections[1]
             toCoord = toCoord &+ direction.coord
@@ -271,7 +271,7 @@ extension GameScene: GameDelegate {
         sprite.run(attack)
     }
     
-    func gameDidAttack(actor: Actor, targetActor: Actor) {
+    func gameActorDidPerformMeleeAttack(actor: Actor, targetActor: Actor) {
         let actorPosition = GameScene.pointForCoord(actor.coord)
         let targetActorPosition = GameScene.pointForCoord(targetActor.coord)
         let midX = actorPosition.x + (targetActorPosition.x - actorPosition.x) / 2
@@ -304,8 +304,8 @@ extension GameScene: GameDelegate {
         entity.sprite.run(SKAction.sequence(fade))
     }
     
-    func gameDidMove(entity: Entity, path: [vector_int2]) {        
-        switch entity {
+    func gameActorDidMove(actor: Actor, path: [vector_int2]) {
+        switch actor {
         case let hero as Hero:
             let (minCoord, maxCoord) = getMinMaxVisibleCoordsInView()
                                                         
@@ -380,7 +380,7 @@ extension GameScene: GameDelegate {
             self.game.viewVisibleCoords = viewVisibleCoords
             
             moveCamera(path: path, duration: 2.0)
-        case _ where entity is Monster:
+        case _ where actor is Monster:
             let firstCoord = path.first!
             let lastCoord = path.last!
             
@@ -400,7 +400,7 @@ extension GameScene: GameDelegate {
                 move.append(SKAction.move(to: position, duration: stepDuration))
             }
             
-            entity.sprite.run(SKAction.sequence(move))
+            actor.sprite.run(SKAction.sequence(move))
         default: break
         }
     }
