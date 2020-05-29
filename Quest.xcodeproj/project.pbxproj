@@ -636,6 +636,9 @@
 		79DF73B82463E16A0030E7A8 /* BackpackNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF73B72463E16A0030E7A8 /* BackpackNode.swift */; };
 		79DF73B92463E16A0030E7A8 /* BackpackNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF73B72463E16A0030E7A8 /* BackpackNode.swift */; };
 		79DF73BA2463E16A0030E7A8 /* BackpackNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF73B72463E16A0030E7A8 /* BackpackNode.swift */; };
+		79F0572C248120EB00353E0A /* NotificationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F0572B248120EB00353E0A /* NotificationExtensions.swift */; };
+		79F0572D248120EB00353E0A /* NotificationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F0572B248120EB00353E0A /* NotificationExtensions.swift */; };
+		79F0572E248120EB00353E0A /* NotificationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F0572B248120EB00353E0A /* NotificationExtensions.swift */; };
 		79FC68ED244C4A0300E6D63C /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC68EC244C4A0300E6D63C /* MainMenuScene.swift */; };
 		79FC68EF244C4A8C00E6D63C /* CreateCharacterScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC68EE244C4A8C00E6D63C /* CreateCharacterScene.swift */; };
 		79FC68F0244C4A8C00E6D63C /* CreateCharacterScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC68EE244C4A8C00E6D63C /* CreateCharacterScene.swift */; };
@@ -881,6 +884,7 @@
 		79DF73AF246320D00030E7A8 /* HealthBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthBar.swift; sourceTree = "<group>"; };
 		79DF73B32463DD310030E7A8 /* InventoryNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryNode.swift; sourceTree = "<group>"; };
 		79DF73B72463E16A0030E7A8 /* BackpackNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackpackNode.swift; sourceTree = "<group>"; };
+		79F0572B248120EB00353E0A /* NotificationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtensions.swift; sourceTree = "<group>"; };
 		79FC68EC244C4A0300E6D63C /* MainMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 		79FC68EE244C4A8C00E6D63C /* CreateCharacterScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCharacterScene.swift; sourceTree = "<group>"; };
 		79FC68F4244C4C4700E6D63C /* SettingsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScene.swift; sourceTree = "<group>"; };
@@ -923,6 +927,7 @@
 			isa = PBXGroup;
 			children = (
 				79042E7C247CD61A00730646 /* DungeonConfigurationExtensions.swift */,
+				79F0572B248120EB00353E0A /* NotificationExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2005,6 +2010,7 @@
 				79D6E6E0247A6DD200D7333A /* UseAction.swift in Sources */,
 				79492BE923A61299005B9508 /* TileProtocol.swift in Sources */,
 				7963DE42239CEC6A00183DF2 /* Skill.swift in Sources */,
+				79F0572C248120EB00353E0A /* NotificationExtensions.swift in Sources */,
 				79042E70247AC0B400730646 /* Image.swift in Sources */,
 				79D6E6DC247A59FE00D7333A /* Door.swift in Sources */,
 				7963DE32239CDE2600183DF2 /* Attribute.swift in Sources */,
@@ -2085,6 +2091,7 @@
 				79D6E6E1247A6DD200D7333A /* UseAction.swift in Sources */,
 				79492BEA23A61299005B9508 /* TileProtocol.swift in Sources */,
 				7963DE43239CEC6A00183DF2 /* Skill.swift in Sources */,
+				79F0572D248120EB00353E0A /* NotificationExtensions.swift in Sources */,
 				79042E71247AC0B400730646 /* Image.swift in Sources */,
 				79D6E6DD247A59FE00D7333A /* Door.swift in Sources */,
 				7963DE33239CDE2600183DF2 /* Attribute.swift in Sources */,
@@ -2133,6 +2140,7 @@
 				79042E662478192600730646 /* Energy.swift in Sources */,
 				79042E76247BF86700730646 /* Tileset.swift in Sources */,
 				7960DECF23A6082B00B4CDF8 /* Tile.swift in Sources */,
+				79F0572E248120EB00353E0A /* NotificationExtensions.swift in Sources */,
 				798537C823A2924E00721CE7 /* RangedAttackAction.swift in Sources */,
 				79DF73AE2462D3570030E7A8 /* StatusUpdatable.swift in Sources */,
 				793A575A24459A070089E693 /* Constants.swift in Sources */,

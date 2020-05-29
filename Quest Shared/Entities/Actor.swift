@@ -104,7 +104,7 @@ class Actor: Entity {
         
         self.healthBar = Actor.addHealthBar(sprite: self.sprite)
         
-        equipment.forEach({ self.inventory.equip($0 )})
+        equipment.forEach({ self.inventory.equip($0) })
         updateSpriteForEquipment()
     }
     
@@ -158,10 +158,11 @@ class Actor: Entity {
             child.removeFromParent()
         }
         
-        for (_, equipment) in self.inventory.equippedItems {
-            if equipment.equipmentSlot != .ring {
-                self.sprite.addChild(equipment.equipSprite)
-            }
+        let excludedSlots: [EquipmentSlot] = [.ring, .mainhand2, .offhand2]
+        for (slot, equipment) in self.inventory.equippedItems {
+            guard excludedSlots.contains(slot) == false else { continue }
+            
+            self.sprite.addChild(equipment.equipSprite)
         }
     }
     
@@ -175,6 +176,13 @@ class Actor: Entity {
         }
         
         self.hitPoints.remove(max(hitPointsToTake, 0))
+    }
+    
+    func toggleWeapons() {
+        self.inventory.toggleEquippedWeapons()
+        updateSpriteForEquipment()
+        
+        NotificationCenter.default.post(name: Notification.Name.actorDidChangeWeapons, object: nil)
     }
     
     func playSound(_ type: SoundType) {

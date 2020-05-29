@@ -33,7 +33,7 @@ class Inventory {
 //        print("equip: \(equipment)")
         
         unequip(equipment.equipmentSlot)
-        
+                
         self.equippedItems[equipment.equipmentSlot] = equipment
     }
         
@@ -92,6 +92,18 @@ class Inventory {
             remove(at: index)
         default: fatalError()
         }
+    }
+    
+    func toggleEquippedWeapons() {
+        let mainhand = self.equippedItems[.mainhand]
+        let mainhand2 = self.equippedItems[.mainhand2]
+        self.equippedItems[.mainhand] = mainhand2
+        self.equippedItems[.mainhand2] = mainhand
+
+        let offhand = self.equippedItems[.offhand]
+        let offhand2 = self.equippedItems[.offhand2]
+        self.equippedItems[.offhand] = offhand2
+        self.equippedItems[.offhand2] = offhand
     }
 }
 

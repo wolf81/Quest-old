@@ -82,6 +82,12 @@ class PaperDollNode: SKShapeNode {
         self.feet.zPosition = 1
         self.head.position = CGPoint(x: 0, y: size.height / 2.5)
         self.head.zPosition = 1
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reload), name: Notification.Name.actorDidChangeWeapons, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.actorDidChangeWeapons, object: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -104,13 +110,15 @@ class PaperDollNode: SKShapeNode {
         }
     }
     
-    func reload() {        
+    @objc func reload() {
         self.chest.equipment = self.delegate?.paperDoll(self, equipmentIn: .chest)
         self.mainhand.equipment = self.delegate?.paperDoll(self, equipmentIn: .mainhand)
         self.offhand.equipment = self.delegate?.paperDoll(self, equipmentIn: .offhand)
         self.ring.equipment = self.delegate?.paperDoll(self, equipmentIn: .ring)
         self.feet.equipment = self.delegate?.paperDoll(self, equipmentIn: .feet)
         self.head.equipment = self.delegate?.paperDoll(self, equipmentIn: .head)
+        self.mainhand2.equipment = self.delegate?.paperDoll(self, equipmentIn: .mainhand2)
+        self.offhand2.equipment = self.delegate?.paperDoll(self, equipmentIn: .offhand2)
     }
     
     // MARK: - Private

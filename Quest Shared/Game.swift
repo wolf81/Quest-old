@@ -262,6 +262,10 @@ class Game {
             }
         }
     }
+    
+    func toggleWeapons() {
+        self.state.hero.toggleWeapons()        
+    }
         
     func remove(entity: Entity) {
         self.state.entities.removeAll(where: { $0 == entity })
