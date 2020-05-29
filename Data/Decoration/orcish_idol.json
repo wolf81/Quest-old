@@ -1,4 +1,7 @@
 {
     "name": "Orcish Idol",
-    "sprite": "orcish_idol_new"
+    "sprite": [
+        "orcish_idol_new",
+        "orcish_idol_old"
+    ]
 }
