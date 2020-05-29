@@ -38,7 +38,16 @@ class Decoration: TileProtocol {
     }
     
     func configure(withTile tile: TileProtocol) {
-        let spriteName = self.json["sprite"] as! String
+        let spriteJson = self.json["sprite"]
+        var spriteName: String
+        
+        if let spriteNames = spriteJson as? [String] {
+            let spriteIdx = Int(arc4random_uniform(UInt32(spriteNames.count)))
+            spriteName = spriteNames[spriteIdx]
+        } else {
+            spriteName = spriteJson as! String
+        }
+                
         let decorationSprite = Entity.loadSprite(type: self, spriteName: spriteName)
         let sprite = tile.sprite.copy() as! SKSpriteNode
         sprite.addChild(decorationSprite)

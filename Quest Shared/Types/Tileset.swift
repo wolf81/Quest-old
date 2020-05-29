@@ -34,7 +34,10 @@ class Tileset: JSONConstructable {
     }
     
     func getDecoration(coord: vector_int2, entityFactory: EntityFactory) -> Decoration? {
-        guard let decorationName = decorationNames.first else { return nil }
+        guard self.decorationNames.count > 0 else { return nil }
+        
+        let decorationIdx = arc4random_uniform(UInt32(self.decorationNames.count))        
+        let decorationName = decorationNames[Int(decorationIdx)]
                         
         let decoration = try! entityFactory.newEntity(type: Decoration.self, name: decorationName, coord: coord)
         return decoration

@@ -337,12 +337,16 @@ class GameState {
                 }
             }
             
-            let decorationCoord = getRandomCoord(in: room, insetBy: 1)
-            if let decoration = tileset.getDecoration(coord: decorationCoord, entityFactory: entityFactory) {
-                let tile = self.tiles[Int(decorationCoord.y)][Int(decorationCoord.x)]
-                decoration.configure(withTile: tile)
-                self.tiles[Int(decorationCoord.y)][Int(decorationCoord.x)] = decoration
-                self.map.setType(.blocked, for: decorationCoord)
+            let maxDecorationCount = UInt32(floor(cbrt(Float(room.area))))
+            let decorationCount = arc4random_uniform(maxDecorationCount + 1)
+            for _ in (0 ..< Int(decorationCount)) {
+                let decorationCoord = getRandomCoord(in: room, insetBy: 1)
+                if let decoration = tileset.getDecoration(coord: decorationCoord, entityFactory: entityFactory) {
+                    let tile = self.tiles[Int(decorationCoord.y)][Int(decorationCoord.x)]
+                    decoration.configure(withTile: tile)
+                    self.tiles[Int(decorationCoord.y)][Int(decorationCoord.x)] = decoration
+                    self.map.setType(.blocked, for: decorationCoord)
+                }
             }
         }
     }
