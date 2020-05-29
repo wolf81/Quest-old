@@ -12,4 +12,6 @@ enum SoundType: String {
     case hit
     case miss
     case destroy
+    case activate // also use for open, enable, etc...
+    case deactivate // also use for close, disable, etc...
 }

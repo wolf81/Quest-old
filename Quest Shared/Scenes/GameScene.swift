@@ -233,6 +233,8 @@ extension GameScene: GameDelegate {
             
             // update visible nodes
             gameActorDidMove(actor: actor, path: [actor.coord])
+            
+            door.playSound(door.isOpen ? .activate : .deactivate, on: self.world)
         }
     }
     

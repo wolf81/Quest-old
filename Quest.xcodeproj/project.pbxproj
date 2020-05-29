@@ -158,6 +158,108 @@
 		79A0955B247FDB60009B285C /* Decorations.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79A0955A247FDB60009B285C /* Decorations.xcassets */; };
 		79A0955C247FDB60009B285C /* Decorations.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79A0955A247FDB60009B285C /* Decorations.xcassets */; };
 		79A0955D247FDB60009B285C /* Decorations.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79A0955A247FDB60009B285C /* Decorations.xcassets */; };
+		79A0956F2480C6A8009B285C /* crawler_23.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A0955F2480C6A5009B285C /* crawler_23.caf */; };
+		79A095702480C6A8009B285C /* crawler_23.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A0955F2480C6A5009B285C /* crawler_23.caf */; };
+		79A095712480C6A8009B285C /* crawler_23.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A0955F2480C6A5009B285C /* crawler_23.caf */; };
+		79A095722480C6A8009B285C /* crawler_25.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095602480C6A5009B285C /* crawler_25.caf */; };
+		79A095732480C6A8009B285C /* crawler_25.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095602480C6A5009B285C /* crawler_25.caf */; };
+		79A095742480C6A8009B285C /* crawler_25.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095602480C6A5009B285C /* crawler_25.caf */; };
+		79A095752480C6A8009B285C /* crawler_23 (seamless).caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095612480C6A6009B285C /* crawler_23 (seamless).caf */; };
+		79A095762480C6A8009B285C /* crawler_23 (seamless).caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095612480C6A6009B285C /* crawler_23 (seamless).caf */; };
+		79A095772480C6A8009B285C /* crawler_23 (seamless).caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095612480C6A6009B285C /* crawler_23 (seamless).caf */; };
+		79A095782480C6A8009B285C /* crawler_26.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095622480C6A6009B285C /* crawler_26.caf */; };
+		79A095792480C6A8009B285C /* crawler_26.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095622480C6A6009B285C /* crawler_26.caf */; };
+		79A0957A2480C6A8009B285C /* crawler_26.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095622480C6A6009B285C /* crawler_26.caf */; };
+		79A0957B2480C6A8009B285C /* crawler_26 (seamless).caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095632480C6A6009B285C /* crawler_26 (seamless).caf */; };
+		79A0957C2480C6A8009B285C /* crawler_26 (seamless).caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095632480C6A6009B285C /* crawler_26 (seamless).caf */; };
+		79A0957D2480C6A8009B285C /* crawler_26 (seamless).caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095632480C6A6009B285C /* crawler_26 (seamless).caf */; };
+		79A0957E2480C6A8009B285C /* crawler_22.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095642480C6A6009B285C /* crawler_22.caf */; };
+		79A0957F2480C6A8009B285C /* crawler_22.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095642480C6A6009B285C /* crawler_22.caf */; };
+		79A095802480C6A8009B285C /* crawler_22.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095642480C6A6009B285C /* crawler_22.caf */; };
+		79A095812480C6A8009B285C /* crawler_29.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095652480C6A6009B285C /* crawler_29.caf */; };
+		79A095822480C6A8009B285C /* crawler_29.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095652480C6A6009B285C /* crawler_29.caf */; };
+		79A095832480C6A8009B285C /* crawler_29.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095652480C6A6009B285C /* crawler_29.caf */; };
+		79A095842480C6A8009B285C /* crawler_30.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095662480C6A7009B285C /* crawler_30.caf */; };
+		79A095852480C6A8009B285C /* crawler_30.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095662480C6A7009B285C /* crawler_30.caf */; };
+		79A095862480C6A8009B285C /* crawler_30.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095662480C6A7009B285C /* crawler_30.caf */; };
+		79A095872480C6A8009B285C /* crawler_25 (seamless).caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095672480C6A7009B285C /* crawler_25 (seamless).caf */; };
+		79A095882480C6A8009B285C /* crawler_25 (seamless).caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095672480C6A7009B285C /* crawler_25 (seamless).caf */; };
+		79A095892480C6A8009B285C /* crawler_25 (seamless).caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095672480C6A7009B285C /* crawler_25 (seamless).caf */; };
+		79A0958A2480C6A8009B285C /* crawler_24 (seamless).caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095682480C6A7009B285C /* crawler_24 (seamless).caf */; };
+		79A0958B2480C6A8009B285C /* crawler_24 (seamless).caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095682480C6A7009B285C /* crawler_24 (seamless).caf */; };
+		79A0958C2480C6A8009B285C /* crawler_24 (seamless).caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095682480C6A7009B285C /* crawler_24 (seamless).caf */; };
+		79A0958D2480C6A8009B285C /* crawler_28.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095692480C6A7009B285C /* crawler_28.caf */; };
+		79A0958E2480C6A8009B285C /* crawler_28.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095692480C6A7009B285C /* crawler_28.caf */; };
+		79A0958F2480C6A8009B285C /* crawler_28.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095692480C6A7009B285C /* crawler_28.caf */; };
+		79A095902480C6A8009B285C /* crawler_21.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A0956A2480C6A7009B285C /* crawler_21.caf */; };
+		79A095912480C6A8009B285C /* crawler_21.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A0956A2480C6A7009B285C /* crawler_21.caf */; };
+		79A095922480C6A8009B285C /* crawler_21.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A0956A2480C6A7009B285C /* crawler_21.caf */; };
+		79A095932480C6A8009B285C /* crawler_20.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A0956B2480C6A7009B285C /* crawler_20.caf */; };
+		79A095942480C6A8009B285C /* crawler_20.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A0956B2480C6A7009B285C /* crawler_20.caf */; };
+		79A095952480C6A8009B285C /* crawler_20.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A0956B2480C6A7009B285C /* crawler_20.caf */; };
+		79A095962480C6A8009B285C /* crawler_27 (seamless).caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A0956C2480C6A7009B285C /* crawler_27 (seamless).caf */; };
+		79A095972480C6A8009B285C /* crawler_27 (seamless).caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A0956C2480C6A7009B285C /* crawler_27 (seamless).caf */; };
+		79A095982480C6A8009B285C /* crawler_27 (seamless).caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A0956C2480C6A7009B285C /* crawler_27 (seamless).caf */; };
+		79A095992480C6A8009B285C /* crawler_24.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A0956D2480C6A7009B285C /* crawler_24.caf */; };
+		79A0959A2480C6A8009B285C /* crawler_24.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A0956D2480C6A7009B285C /* crawler_24.caf */; };
+		79A0959B2480C6A8009B285C /* crawler_24.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A0956D2480C6A7009B285C /* crawler_24.caf */; };
+		79A0959C2480C6A8009B285C /* crawler_27.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A0956E2480C6A8009B285C /* crawler_27.caf */; };
+		79A0959D2480C6A8009B285C /* crawler_27.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A0956E2480C6A8009B285C /* crawler_27.caf */; };
+		79A0959E2480C6A8009B285C /* crawler_27.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A0956E2480C6A8009B285C /* crawler_27.caf */; };
+		79A095D92480EF8F009B285C /* BugNoise-15.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095C92480EF8D009B285C /* BugNoise-15.caf */; };
+		79A095DA2480EF8F009B285C /* BugNoise-15.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095C92480EF8D009B285C /* BugNoise-15.caf */; };
+		79A095DB2480EF8F009B285C /* BugNoise-15.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095C92480EF8D009B285C /* BugNoise-15.caf */; };
+		79A095DC2480EF8F009B285C /* BugNoise-09.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095CA2480EF8D009B285C /* BugNoise-09.caf */; };
+		79A095DD2480EF8F009B285C /* BugNoise-09.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095CA2480EF8D009B285C /* BugNoise-09.caf */; };
+		79A095DE2480EF8F009B285C /* BugNoise-09.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095CA2480EF8D009B285C /* BugNoise-09.caf */; };
+		79A095DF2480EF8F009B285C /* BugNoise-12.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095CB2480EF8D009B285C /* BugNoise-12.caf */; };
+		79A095E02480EF8F009B285C /* BugNoise-12.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095CB2480EF8D009B285C /* BugNoise-12.caf */; };
+		79A095E12480EF8F009B285C /* BugNoise-12.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095CB2480EF8D009B285C /* BugNoise-12.caf */; };
+		79A095E22480EF8F009B285C /* BugNoise-04.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095CC2480EF8E009B285C /* BugNoise-04.caf */; };
+		79A095E32480EF8F009B285C /* BugNoise-04.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095CC2480EF8E009B285C /* BugNoise-04.caf */; };
+		79A095E42480EF8F009B285C /* BugNoise-04.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095CC2480EF8E009B285C /* BugNoise-04.caf */; };
+		79A095E52480EF8F009B285C /* BugNoise-10.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095CD2480EF8E009B285C /* BugNoise-10.caf */; };
+		79A095E62480EF8F009B285C /* BugNoise-10.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095CD2480EF8E009B285C /* BugNoise-10.caf */; };
+		79A095E72480EF8F009B285C /* BugNoise-10.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095CD2480EF8E009B285C /* BugNoise-10.caf */; };
+		79A095E82480EF8F009B285C /* BugNoise-02.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095CE2480EF8E009B285C /* BugNoise-02.caf */; };
+		79A095E92480EF8F009B285C /* BugNoise-02.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095CE2480EF8E009B285C /* BugNoise-02.caf */; };
+		79A095EA2480EF8F009B285C /* BugNoise-02.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095CE2480EF8E009B285C /* BugNoise-02.caf */; };
+		79A095EB2480EF8F009B285C /* BugNoise-01.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095CF2480EF8E009B285C /* BugNoise-01.caf */; };
+		79A095EC2480EF8F009B285C /* BugNoise-01.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095CF2480EF8E009B285C /* BugNoise-01.caf */; };
+		79A095ED2480EF8F009B285C /* BugNoise-01.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095CF2480EF8E009B285C /* BugNoise-01.caf */; };
+		79A095EE2480EF8F009B285C /* BugNoise-16.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095D02480EF8E009B285C /* BugNoise-16.caf */; };
+		79A095EF2480EF8F009B285C /* BugNoise-16.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095D02480EF8E009B285C /* BugNoise-16.caf */; };
+		79A095F02480EF8F009B285C /* BugNoise-16.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095D02480EF8E009B285C /* BugNoise-16.caf */; };
+		79A095F12480EF8F009B285C /* BugNoise-08.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095D12480EF8E009B285C /* BugNoise-08.caf */; };
+		79A095F22480EF8F009B285C /* BugNoise-08.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095D12480EF8E009B285C /* BugNoise-08.caf */; };
+		79A095F32480EF8F009B285C /* BugNoise-08.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095D12480EF8E009B285C /* BugNoise-08.caf */; };
+		79A095F42480EF8F009B285C /* BugNoise-06.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095D22480EF8E009B285C /* BugNoise-06.caf */; };
+		79A095F52480EF8F009B285C /* BugNoise-06.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095D22480EF8E009B285C /* BugNoise-06.caf */; };
+		79A095F62480EF8F009B285C /* BugNoise-06.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095D22480EF8E009B285C /* BugNoise-06.caf */; };
+		79A095F72480EF8F009B285C /* BugNoise-05.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095D32480EF8E009B285C /* BugNoise-05.caf */; };
+		79A095F82480EF8F009B285C /* BugNoise-05.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095D32480EF8E009B285C /* BugNoise-05.caf */; };
+		79A095F92480EF8F009B285C /* BugNoise-05.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095D32480EF8E009B285C /* BugNoise-05.caf */; };
+		79A095FA2480EF8F009B285C /* BugNoise-07.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095D42480EF8F009B285C /* BugNoise-07.caf */; };
+		79A095FB2480EF8F009B285C /* BugNoise-07.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095D42480EF8F009B285C /* BugNoise-07.caf */; };
+		79A095FC2480EF8F009B285C /* BugNoise-07.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095D42480EF8F009B285C /* BugNoise-07.caf */; };
+		79A095FD2480EF8F009B285C /* BugNoise-11.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095D52480EF8F009B285C /* BugNoise-11.caf */; };
+		79A095FE2480EF8F009B285C /* BugNoise-11.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095D52480EF8F009B285C /* BugNoise-11.caf */; };
+		79A095FF2480EF8F009B285C /* BugNoise-11.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095D52480EF8F009B285C /* BugNoise-11.caf */; };
+		79A096002480EF8F009B285C /* BugNoise-03.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095D62480EF8F009B285C /* BugNoise-03.caf */; };
+		79A096012480EF8F009B285C /* BugNoise-03.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095D62480EF8F009B285C /* BugNoise-03.caf */; };
+		79A096022480EF8F009B285C /* BugNoise-03.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095D62480EF8F009B285C /* BugNoise-03.caf */; };
+		79A096032480EF8F009B285C /* BugNoise-14.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095D72480EF8F009B285C /* BugNoise-14.caf */; };
+		79A096042480EF8F009B285C /* BugNoise-14.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095D72480EF8F009B285C /* BugNoise-14.caf */; };
+		79A096052480EF8F009B285C /* BugNoise-14.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095D72480EF8F009B285C /* BugNoise-14.caf */; };
+		79A096062480EF8F009B285C /* BugNoise-13.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095D82480EF8F009B285C /* BugNoise-13.caf */; };
+		79A096072480EF8F009B285C /* BugNoise-13.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095D82480EF8F009B285C /* BugNoise-13.caf */; };
+		79A096082480EF8F009B285C /* BugNoise-13.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A095D82480EF8F009B285C /* BugNoise-13.caf */; };
+		79A096212480F65B009B285C /* DoorClosed.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A0961F2480F65A009B285C /* DoorClosed.caf */; };
+		79A096222480F65B009B285C /* DoorClosed.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A0961F2480F65A009B285C /* DoorClosed.caf */; };
+		79A096232480F65B009B285C /* DoorClosed.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A0961F2480F65A009B285C /* DoorClosed.caf */; };
+		79A096242480F65B009B285C /* DoorOpen.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A096202480F65B009B285C /* DoorOpen.caf */; };
+		79A096252480F65B009B285C /* DoorOpen.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A096202480F65B009B285C /* DoorOpen.caf */; };
+		79A096262480F65B009B285C /* DoorOpen.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79A096202480F65B009B285C /* DoorOpen.caf */; };
 		79ACC7DE22AA5BE900AC3BF0 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 79ACC7DD22AA5BE900AC3BF0 /* Data */; };
 		79ACC7DF22AA5BE900AC3BF0 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 79ACC7DD22AA5BE900AC3BF0 /* Data */; };
 		79ACC7E022AA5BE900AC3BF0 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 79ACC7DD22AA5BE900AC3BF0 /* Data */; };
@@ -607,6 +709,40 @@
 		798C997923A2061700C6EC1C /* IdleAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdleAction.swift; sourceTree = "<group>"; };
 		7990950B244C9E410091791F /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
 		79A0955A247FDB60009B285C /* Decorations.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Decorations.xcassets; sourceTree = "<group>"; };
+		79A0955F2480C6A5009B285C /* crawler_23.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = crawler_23.caf; sourceTree = "<group>"; };
+		79A095602480C6A5009B285C /* crawler_25.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = crawler_25.caf; sourceTree = "<group>"; };
+		79A095612480C6A6009B285C /* crawler_23 (seamless).caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "crawler_23 (seamless).caf"; sourceTree = "<group>"; };
+		79A095622480C6A6009B285C /* crawler_26.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = crawler_26.caf; sourceTree = "<group>"; };
+		79A095632480C6A6009B285C /* crawler_26 (seamless).caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "crawler_26 (seamless).caf"; sourceTree = "<group>"; };
+		79A095642480C6A6009B285C /* crawler_22.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = crawler_22.caf; sourceTree = "<group>"; };
+		79A095652480C6A6009B285C /* crawler_29.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = crawler_29.caf; sourceTree = "<group>"; };
+		79A095662480C6A7009B285C /* crawler_30.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = crawler_30.caf; sourceTree = "<group>"; };
+		79A095672480C6A7009B285C /* crawler_25 (seamless).caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "crawler_25 (seamless).caf"; sourceTree = "<group>"; };
+		79A095682480C6A7009B285C /* crawler_24 (seamless).caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "crawler_24 (seamless).caf"; sourceTree = "<group>"; };
+		79A095692480C6A7009B285C /* crawler_28.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = crawler_28.caf; sourceTree = "<group>"; };
+		79A0956A2480C6A7009B285C /* crawler_21.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = crawler_21.caf; sourceTree = "<group>"; };
+		79A0956B2480C6A7009B285C /* crawler_20.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = crawler_20.caf; sourceTree = "<group>"; };
+		79A0956C2480C6A7009B285C /* crawler_27 (seamless).caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "crawler_27 (seamless).caf"; sourceTree = "<group>"; };
+		79A0956D2480C6A7009B285C /* crawler_24.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = crawler_24.caf; sourceTree = "<group>"; };
+		79A0956E2480C6A8009B285C /* crawler_27.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = crawler_27.caf; sourceTree = "<group>"; };
+		79A095C92480EF8D009B285C /* BugNoise-15.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BugNoise-15.caf"; sourceTree = "<group>"; };
+		79A095CA2480EF8D009B285C /* BugNoise-09.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BugNoise-09.caf"; sourceTree = "<group>"; };
+		79A095CB2480EF8D009B285C /* BugNoise-12.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BugNoise-12.caf"; sourceTree = "<group>"; };
+		79A095CC2480EF8E009B285C /* BugNoise-04.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BugNoise-04.caf"; sourceTree = "<group>"; };
+		79A095CD2480EF8E009B285C /* BugNoise-10.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BugNoise-10.caf"; sourceTree = "<group>"; };
+		79A095CE2480EF8E009B285C /* BugNoise-02.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BugNoise-02.caf"; sourceTree = "<group>"; };
+		79A095CF2480EF8E009B285C /* BugNoise-01.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BugNoise-01.caf"; sourceTree = "<group>"; };
+		79A095D02480EF8E009B285C /* BugNoise-16.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BugNoise-16.caf"; sourceTree = "<group>"; };
+		79A095D12480EF8E009B285C /* BugNoise-08.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BugNoise-08.caf"; sourceTree = "<group>"; };
+		79A095D22480EF8E009B285C /* BugNoise-06.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BugNoise-06.caf"; sourceTree = "<group>"; };
+		79A095D32480EF8E009B285C /* BugNoise-05.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BugNoise-05.caf"; sourceTree = "<group>"; };
+		79A095D42480EF8F009B285C /* BugNoise-07.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BugNoise-07.caf"; sourceTree = "<group>"; };
+		79A095D52480EF8F009B285C /* BugNoise-11.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BugNoise-11.caf"; sourceTree = "<group>"; };
+		79A095D62480EF8F009B285C /* BugNoise-03.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BugNoise-03.caf"; sourceTree = "<group>"; };
+		79A095D72480EF8F009B285C /* BugNoise-14.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BugNoise-14.caf"; sourceTree = "<group>"; };
+		79A095D82480EF8F009B285C /* BugNoise-13.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BugNoise-13.caf"; sourceTree = "<group>"; };
+		79A0961F2480F65A009B285C /* DoorClosed.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DoorClosed.caf; sourceTree = "<group>"; };
+		79A096202480F65B009B285C /* DoorOpen.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DoorOpen.caf; sourceTree = "<group>"; };
 		79ACC7DD22AA5BE900AC3BF0 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
 		79ACC7EC22AA5D8700AC3BF0 /* EntityLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityLoader.swift; sourceTree = "<group>"; };
 		79ACC7F022AA60E300AC3BF0 /* EntityFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityFactory.swift; sourceTree = "<group>"; };
@@ -898,6 +1034,68 @@
 			path = Nodes;
 			sourceTree = "<group>";
 		};
+		79A0955E2480C67F009B285C /* Spider */ = {
+			isa = PBXGroup;
+			children = (
+				79A0956B2480C6A7009B285C /* crawler_20.caf */,
+				79A0956A2480C6A7009B285C /* crawler_21.caf */,
+				79A095642480C6A6009B285C /* crawler_22.caf */,
+				79A095612480C6A6009B285C /* crawler_23 (seamless).caf */,
+				79A0955F2480C6A5009B285C /* crawler_23.caf */,
+				79A095682480C6A7009B285C /* crawler_24 (seamless).caf */,
+				79A0956D2480C6A7009B285C /* crawler_24.caf */,
+				79A095672480C6A7009B285C /* crawler_25 (seamless).caf */,
+				79A095602480C6A5009B285C /* crawler_25.caf */,
+				79A095632480C6A6009B285C /* crawler_26 (seamless).caf */,
+				79A095622480C6A6009B285C /* crawler_26.caf */,
+				79A0956C2480C6A7009B285C /* crawler_27 (seamless).caf */,
+				79A0956E2480C6A8009B285C /* crawler_27.caf */,
+				79A095692480C6A7009B285C /* crawler_28.caf */,
+				79A095652480C6A6009B285C /* crawler_29.caf */,
+				79A095662480C6A7009B285C /* crawler_30.caf */,
+			);
+			path = Spider;
+			sourceTree = "<group>";
+		};
+		79A095C82480EF82009B285C /* Rat */ = {
+			isa = PBXGroup;
+			children = (
+				79A095CF2480EF8E009B285C /* BugNoise-01.caf */,
+				79A095CE2480EF8E009B285C /* BugNoise-02.caf */,
+				79A095D62480EF8F009B285C /* BugNoise-03.caf */,
+				79A095CC2480EF8E009B285C /* BugNoise-04.caf */,
+				79A095D32480EF8E009B285C /* BugNoise-05.caf */,
+				79A095D22480EF8E009B285C /* BugNoise-06.caf */,
+				79A095D42480EF8F009B285C /* BugNoise-07.caf */,
+				79A095D12480EF8E009B285C /* BugNoise-08.caf */,
+				79A095CA2480EF8D009B285C /* BugNoise-09.caf */,
+				79A095CD2480EF8E009B285C /* BugNoise-10.caf */,
+				79A095D52480EF8F009B285C /* BugNoise-11.caf */,
+				79A095CB2480EF8D009B285C /* BugNoise-12.caf */,
+				79A095D82480EF8F009B285C /* BugNoise-13.caf */,
+				79A095D72480EF8F009B285C /* BugNoise-14.caf */,
+				79A095C92480EF8D009B285C /* BugNoise-15.caf */,
+				79A095D02480EF8E009B285C /* BugNoise-16.caf */,
+			);
+			path = Rat;
+			sourceTree = "<group>";
+		};
+		79A096092480F13F009B285C /* Axe */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Axe;
+			sourceTree = "<group>";
+		};
+		79A0960A2480F236009B285C /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				79A0961F2480F65A009B285C /* DoorClosed.caf */,
+				79A096202480F65B009B285C /* DoorOpen.caf */,
+			);
+			path = Actions;
+			sourceTree = "<group>";
+		};
 		79C61A6722A7C413008D3609 = {
 			isa = PBXGroup;
 			children = (
@@ -1001,6 +1199,7 @@
 		79D0B629248042F7001029BE /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				79A0960A2480F236009B285C /* Actions */,
 				79D0B763248047C4001029BE /* Combat */,
 				79D0B76224804794001029BE /* Creatures */,
 			);
@@ -1010,6 +1209,8 @@
 		79D0B76224804794001029BE /* Creatures */ = {
 			isa = PBXGroup;
 			children = (
+				79A095C82480EF82009B285C /* Rat */,
+				79A0955E2480C67F009B285C /* Spider */,
 				79D0B7002480447A001029BE /* Ancient_Game_Creature_Breath_and_Growl_2.caf */,
 				79D0B7022480447B001029BE /* Ancient_Game_Creature_Breath_and_Growl_3.caf */,
 				79D0B70E2480447F001029BE /* Ancient_Game_Creature_Breath_and_Growl_4.caf */,
@@ -1043,6 +1244,7 @@
 		79D0B763248047C4001029BE /* Combat */ = {
 			isa = PBXGroup;
 			children = (
+				79A096092480F13F009B285C /* Axe */,
 				79D0B768248048F3001029BE /* Ancient_Game_Blood_Bubble_2.caf */,
 				79D0B79C24804917001029BE /* Ancient_Game_Blood_Bubble_3.caf */,
 				79D0B79D24804918001029BE /* Ancient_Game_Blood_Bubble.caf */,
@@ -1235,7 +1437,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				79D0B81F24804921001029BE /* Ancient_Game_Blood_Impact.caf in Resources */,
+				79A096212480F65B009B285C /* DoorClosed.caf in Resources */,
 				79D0B72924804482001029BE /* Ancient_Game_Creature_Orc_Grunt_3.caf in Resources */,
+				79A095842480C6A8009B285C /* crawler_30.caf in Resources */,
 				79D0B81024804921001029BE /* Ancient_Game_Blood_Hatchling_Stomp.caf in Resources */,
 				79D0B81324804921001029BE /* Ancient_Game_Blood_GoreBubble_Pop_3_Juicy.caf in Resources */,
 				79D0B84F24804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_18.caf in Resources */,
@@ -1244,11 +1448,15 @@
 				79A0955B247FDB60009B285C /* Decorations.xcassets in Resources */,
 				79D0B72324804482001029BE /* Ancient_Game_Creature_Groan_3.caf in Resources */,
 				79D0B87924804923001029BE /* Ancient_Game_Harvest_Blood_Plant_3_Aquatic.caf in Resources */,
+				79A095872480C6A8009B285C /* crawler_25 (seamless).caf in Resources */,
 				79D0B84C24804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_10.caf in Resources */,
 				79D0B84924804922001029BE /* Ancient_Game_Blood_Explosion.caf in Resources */,
 				79D0B7F824804920001029BE /* Ancient_Game_Sword_Shing_Hifi.caf in Resources */,
+				79A095EE2480EF8F009B285C /* BugNoise-16.caf in Resources */,
+				79A095992480C6A8009B285C /* crawler_24.caf in Resources */,
 				79D0B7FE24804920001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_3.caf in Resources */,
 				79D0B72C24804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_3.caf in Resources */,
+				79A095E82480EF8F009B285C /* BugNoise-02.caf in Resources */,
 				79D0B83124804921001029BE /* Ancient_Game_Designed_Cannon_Shot_1.caf in Resources */,
 				79D0B7B62480491F001029BE /* Ancient_Game_Blood_Bubble_2.caf in Resources */,
 				79D0B7DD24804920001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_5.caf in Resources */,
@@ -1259,10 +1467,14 @@
 				79D0B86D24804923001029BE /* Ancient_Game_Sword_Swing_with_Blood.caf in Resources */,
 				79D0B7DA24804920001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_4.caf in Resources */,
 				79D0B80424804921001029BE /* Ancient_Game_Weapon_Parry_Block_Metal.caf in Resources */,
+				79A095E22480EF8F009B285C /* BugNoise-04.caf in Resources */,
+				79A095E52480EF8F009B285C /* BugNoise-10.caf in Resources */,
 				79D0B73E24804482001029BE /* Ancient_Game_Creature_Orc_Death_1.caf in Resources */,
 				79D0B82824804921001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_2.caf in Resources */,
 				79D0B7CB2480491F001029BE /* Ancient_Game_Designed_Cannon_Shot_6.caf in Resources */,
+				79A095812480C6A8009B285C /* crawler_29.caf in Resources */,
 				79D0B82B24804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_15.caf in Resources */,
+				79A095782480C6A8009B285C /* crawler_26.caf in Resources */,
 				79D0B7D12480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_11.caf in Resources */,
 				79D0B72624804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_2.caf in Resources */,
 				79D0B7B32480491F001029BE /* Ancient_Game_Designed_Cannon_Shot_5.caf in Resources */,
@@ -1275,12 +1487,18 @@
 				79ACC7DE22AA5BE900AC3BF0 /* Data in Resources */,
 				79D0B82524804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_15v2.caf in Resources */,
 				79D0B7EC24804920001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_3_Dry.caf in Resources */,
+				79A0957B2480C6A8009B285C /* crawler_26 (seamless).caf in Resources */,
 				79D0B73524804482001029BE /* Ancient_Game_Creature_Orc_Death_2.caf in Resources */,
+				79A095752480C6A8009B285C /* crawler_23 (seamless).caf in Resources */,
+				79A095DC2480EF8F009B285C /* BugNoise-09.caf in Resources */,
 				79D0B75C24804483001029BE /* Ancient_Game_Creature_Orc_Grunt_6.caf in Resources */,
+				79A095FD2480EF8F009B285C /* BugNoise-11.caf in Resources */,
 				79D0B84324804922001029BE /* Ancient_Game_Weapon_Stab_2.caf in Resources */,
+				79A096032480EF8F009B285C /* BugNoise-14.caf in Resources */,
 				797DBF7B22A91FA300D0F8E7 /* Sprites.xcassets in Resources */,
 				79D0B86724804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_4.caf in Resources */,
 				79D0B75324804482001029BE /* Ancient_Game_Creature_Orc_Death_3.caf in Resources */,
+				79A0958D2480C6A8009B285C /* crawler_28.caf in Resources */,
 				79D0B71D24804482001029BE /* Ancient_Game_Creature_Breath_and_Growl.caf in Resources */,
 				79D0B74A24804482001029BE /* Ancient_Game_Creature_Grunt_1.caf in Resources */,
 				79D0B74124804482001029BE /* Ancient_Game_Creature_Groan_2.caf in Resources */,
@@ -1289,8 +1507,10 @@
 				79D0B83A24804922001029BE /* Ancient_Game_Bloody_Hit.caf in Resources */,
 				79D0B7E024804920001029BE /* Ancient_Game_Harvest_Blood_Plant_2_Aquatic.caf in Resources */,
 				79D0B7AA2480491E001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_4.caf in Resources */,
+				79A095902480C6A8009B285C /* crawler_21.caf in Resources */,
 				79D0B75024804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_4.caf in Resources */,
 				79D0B85824804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_13.caf in Resources */,
+				79A095FA2480EF8F009B285C /* BugNoise-07.caf in Resources */,
 				79D0B82E24804921001029BE /* Ancient_Game_Sword_Attack_1.caf in Resources */,
 				79D0B87324804923001029BE /* Ancient_Game_Muffled_Gore_Explosion.caf in Resources */,
 				79D0B81C24804921001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_1.caf in Resources */,
@@ -1299,13 +1519,16 @@
 				79D0B86124804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_17.caf in Resources */,
 				79D6E709247E40B100D7333A /* Creatures.xcassets in Resources */,
 				79D0B7F524804920001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_2_Dry.caf in Resources */,
+				79A0959C2480C6A8009B285C /* crawler_27.caf in Resources */,
 				79D0B72F24804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_7.caf in Resources */,
 				79D0B80A24804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_19.caf in Resources */,
 				79D6E701247CB3C100D7333A /* Floors.xcassets in Resources */,
 				79D0B7D42480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_3.caf in Resources */,
 				79D0B83724804922001029BE /* Ancient_Game_Designed_Cannon_Shot_3.caf in Resources */,
+				79A0957E2480C6A8009B285C /* crawler_22.caf in Resources */,
 				79D0B84024804922001029BE /* Ancient_Game_Weapon_Stab.caf in Resources */,
 				79D0B81624804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_1.caf in Resources */,
+				79A095932480C6A8009B285C /* crawler_20.caf in Resources */,
 				79D0B85B24804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_20.caf in Resources */,
 				79D0B73824804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_6.caf in Resources */,
 				79D0B87024804923001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_2.caf in Resources */,
@@ -1317,28 +1540,41 @@
 				79D0B7E324804920001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_3.caf in Resources */,
 				79D0B83D24804922001029BE /* Ancient_Game_Sword_Swing_Dry.caf in Resources */,
 				79D0B84624804922001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_4.caf in Resources */,
+				79A095F12480EF8F009B285C /* BugNoise-08.caf in Resources */,
 				79C61AA822A7C415008D3609 /* Assets.xcassets in Resources */,
+				79A096242480F65B009B285C /* DoorOpen.caf in Resources */,
+				79A095F72480EF8F009B285C /* BugNoise-05.caf in Resources */,
 				79D0B7D724804920001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring.caf in Resources */,
 				79D0B82224804921001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_7_Shealth.caf in Resources */,
+				79A096002480EF8F009B285C /* BugNoise-03.caf in Resources */,
 				79D0B7BF2480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_9.caf in Resources */,
 				79D0B80D24804921001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_2.caf in Resources */,
 				79D0B73224804482001029BE /* Ancient_Game_Creature_Orc_Death_9.caf in Resources */,
 				79D0B7F224804920001029BE /* Ancient_Game_Designed_Cannon_Shot_2.caf in Resources */,
 				79D0B83424804921001029BE /* Ancient_Game_Weapon_Blunt_Hit.caf in Resources */,
 				79D0B7B92480491F001029BE /* Ancient_Game_Blood_Gore_Impact_Bubble_Pop.caf in Resources */,
+				79A095722480C6A8009B285C /* crawler_25.caf in Resources */,
+				79A0958A2480C6A8009B285C /* crawler_24 (seamless).caf in Resources */,
+				79A095D92480EF8F009B285C /* BugNoise-15.caf in Resources */,
 				79D0B74424804482001029BE /* Ancient_Game_Creature_Grunt_2.caf in Resources */,
 				79D0B72024804482001029BE /* Ancient_Game_Creature_Orc_Grunt_7_Stretched.caf in Resources */,
 				79D0B86A24804923001029BE /* Ancient_Game_Designed_Cannon_Shot_4.caf in Resources */,
 				79D0B86424804922001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_4.caf in Resources */,
 				79D0B80124804921001029BE /* Ancient_Game_Smash_Spider.caf in Resources */,
+				79A095F42480EF8F009B285C /* BugNoise-06.caf in Resources */,
 				79D0B7E624804920001029BE /* Ancient_Game_Metal_Blood_Spill_Hit.caf in Resources */,
+				79A095DF2480EF8F009B285C /* BugNoise-12.caf in Resources */,
+				79A095EB2480EF8F009B285C /* BugNoise-01.caf in Resources */,
 				79D0B71424804481001029BE /* Ancient_Game_Creature_Breath_and_Growl_8.caf in Resources */,
+				79A095962480C6A8009B285C /* crawler_27 (seamless).caf in Resources */,
+				79A0956F2480C6A8009B285C /* crawler_23.caf in Resources */,
 				79D0B75624804483001029BE /* Ancient_Game_Creature_Groan_1.caf in Resources */,
 				79D0B81924804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_12.caf in Resources */,
 				79D0B75F24804483001029BE /* Ancient_Game_Creature_Breath_and_Growl_5.caf in Resources */,
 				79D0B7E924804920001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_14.caf in Resources */,
 				79D0B7CE2480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_7.caf in Resources */,
 				79D0B7C22480491F001029BE /* Ancient_Game_Blood_Gore_Impact_Bubble_Pop_2.caf in Resources */,
+				79A096062480EF8F009B285C /* BugNoise-13.caf in Resources */,
 				79D0B74724804482001029BE /* Ancient_Game_Creature_Orc_Grunt_4.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1348,6 +1584,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				79D0B72A24804482001029BE /* Ancient_Game_Creature_Orc_Grunt_3.caf in Resources */,
+				79A095EF2480EF8F009B285C /* BugNoise-16.caf in Resources */,
 				79D0B71B24804482001029BE /* Ancient_Game_Creature_Orc_Grunt_5.caf in Resources */,
 				79D0B610248014DA001029BE /* Blood.xcassets in Resources */,
 				79D0B75D24804483001029BE /* Ancient_Game_Creature_Orc_Grunt_6.caf in Resources */,
@@ -1358,11 +1595,17 @@
 				79D0B7F624804920001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_2_Dry.caf in Resources */,
 				79D0B80224804921001029BE /* Ancient_Game_Smash_Spider.caf in Resources */,
 				79D0B81724804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_1.caf in Resources */,
+				79A095972480C6A8009B285C /* crawler_27 (seamless).caf in Resources */,
+				79A0957F2480C6A8009B285C /* crawler_22.caf in Resources */,
 				79D0B7F024804920001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_3.caf in Resources */,
 				79D0B7D824804920001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring.caf in Resources */,
 				79D0B7E424804920001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_3.caf in Resources */,
+				79A095702480C6A8009B285C /* crawler_23.caf in Resources */,
+				79A095EC2480EF8F009B285C /* BugNoise-01.caf in Resources */,
 				79D0B81424804921001029BE /* Ancient_Game_Blood_GoreBubble_Pop_3_Juicy.caf in Resources */,
+				79A095F22480EF8F009B285C /* BugNoise-08.caf in Resources */,
 				79D0B7DE24804920001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_5.caf in Resources */,
+				79A095E32480EF8F009B285C /* BugNoise-04.caf in Resources */,
 				79D0B82324804921001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_7_Shealth.caf in Resources */,
 				79D0B84124804922001029BE /* Ancient_Game_Weapon_Stab.caf in Resources */,
 				79D0B7AE2480491F001029BE /* Ancient_Game_Sword_Shing_Hifi_2.caf in Resources */,
@@ -1373,7 +1616,9 @@
 				79D0B71E24804482001029BE /* Ancient_Game_Creature_Breath_and_Growl.caf in Resources */,
 				79D0B85324804922001029BE /* Ancient_Game_Blood_Bubble_3.caf in Resources */,
 				79D0B76024804483001029BE /* Ancient_Game_Creature_Breath_and_Growl_5.caf in Resources */,
+				79A095852480C6A8009B285C /* crawler_30.caf in Resources */,
 				79D0B73024804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_7.caf in Resources */,
+				79A095DD2480EF8F009B285C /* BugNoise-09.caf in Resources */,
 				79D0B7BA2480491F001029BE /* Ancient_Game_Blood_Gore_Impact_Bubble_Pop.caf in Resources */,
 				79D0B7C92480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_8.caf in Resources */,
 				79D0B75424804482001029BE /* Ancient_Game_Creature_Orc_Death_3.caf in Resources */,
@@ -1381,27 +1626,41 @@
 				79D0B75124804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_4.caf in Resources */,
 				79D0B7B72480491F001029BE /* Ancient_Game_Blood_Bubble_2.caf in Resources */,
 				79D0B81D24804921001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_1.caf in Resources */,
+				79A095E92480EF8F009B285C /* BugNoise-02.caf in Resources */,
 				79D6E70A247E40B100D7333A /* Creatures.xcassets in Resources */,
 				79D0B85F24804922001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_2.caf in Resources */,
+				79A095912480C6A8009B285C /* crawler_21.caf in Resources */,
 				79D0B80524804921001029BE /* Ancient_Game_Weapon_Parry_Block_Metal.caf in Resources */,
 				797DBF7C22A91FA300D0F8E7 /* Sprites.xcassets in Resources */,
+				79A095792480C6A8009B285C /* crawler_26.caf in Resources */,
+				79A095762480C6A8009B285C /* crawler_23 (seamless).caf in Resources */,
 				79D0B7F324804920001029BE /* Ancient_Game_Designed_Cannon_Shot_2.caf in Resources */,
+				79A095FE2480EF8F009B285C /* BugNoise-11.caf in Resources */,
 				79D0B7DB24804920001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_4.caf in Resources */,
+				79A0959D2480C6A8009B285C /* crawler_27.caf in Resources */,
+				79A096012480EF8F009B285C /* BugNoise-03.caf in Resources */,
 				79C61A8F22A7C415008D3609 /* Main.storyboard in Resources */,
 				79D0B7AB2480491F001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_4.caf in Resources */,
 				79D0B87724804923001029BE /* Ancient_Game_Weapon_Blood_Hit_1.caf in Resources */,
 				79D0B86224804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_17.caf in Resources */,
 				79A0955C247FDB60009B285C /* Decorations.xcassets in Resources */,
 				79D0B7E724804920001029BE /* Ancient_Game_Metal_Blood_Spill_Hit.caf in Resources */,
+				79A095882480C6A8009B285C /* crawler_25 (seamless).caf in Resources */,
+				79A095F52480EF8F009B285C /* BugNoise-06.caf in Resources */,
+				79A095732480C6A8009B285C /* crawler_25.caf in Resources */,
 				79D0B7E124804920001029BE /* Ancient_Game_Harvest_Blood_Plant_2_Aquatic.caf in Resources */,
 				79D0B82F24804921001029BE /* Ancient_Game_Sword_Attack_1.caf in Resources */,
 				79D0B7C32480491F001029BE /* Ancient_Game_Blood_Gore_Impact_Bubble_Pop_2.caf in Resources */,
 				79D0B73924804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_6.caf in Resources */,
 				79D0B85924804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_13.caf in Resources */,
+				79A095FB2480EF8F009B285C /* BugNoise-07.caf in Resources */,
 				79D0B7ED24804920001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_3_Dry.caf in Resources */,
+				79A0957C2480C6A8009B285C /* crawler_26 (seamless).caf in Resources */,
 				79D0B71824804481001029BE /* Ancient_Game_Creature_Orc_Grunt_8.caf in Resources */,
 				79D0B84D24804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_10.caf in Resources */,
 				79D6E702247CB3C100D7333A /* Floors.xcassets in Resources */,
+				79A095E02480EF8F009B285C /* BugNoise-12.caf in Resources */,
+				79A096042480EF8F009B285C /* BugNoise-14.caf in Resources */,
 				79D6E706247CB3D200D7333A /* Walls.xcassets in Resources */,
 				79D0B7C62480491F001029BE /* Ancient_Game_Clean_Saber_Sword_Knife_Kill_with_Blood.caf in Resources */,
 				79D0B85624804922001029BE /* Ancient_Game_Blood_Bubble.caf in Resources */,
@@ -1413,6 +1672,7 @@
 				79D0B71524804481001029BE /* Ancient_Game_Creature_Breath_and_Growl_8.caf in Resources */,
 				79D0B7D22480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_11.caf in Resources */,
 				79D0B7D52480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_3.caf in Resources */,
+				79A095F82480EF8F009B285C /* BugNoise-05.caf in Resources */,
 				79D0B7B12480491F001029BE /* Ancient_Game_Bright_Gore_Explosion.caf in Resources */,
 				79D0B74524804482001029BE /* Ancient_Game_Creature_Grunt_2.caf in Resources */,
 				79D0B72724804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_2.caf in Resources */,
@@ -1421,22 +1681,31 @@
 				79D0B85C24804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_20.caf in Resources */,
 				79D0B83224804921001029BE /* Ancient_Game_Designed_Cannon_Shot_1.caf in Resources */,
 				79D0B73324804482001029BE /* Ancient_Game_Creature_Orc_Death_9.caf in Resources */,
+				79A096072480EF8F009B285C /* BugNoise-13.caf in Resources */,
+				79A095822480C6A8009B285C /* crawler_29.caf in Resources */,
 				79D0B72124804482001029BE /* Ancient_Game_Creature_Orc_Grunt_7_Stretched.caf in Resources */,
 				79D0B7CC2480491F001029BE /* Ancient_Game_Designed_Cannon_Shot_6.caf in Resources */,
 				79D0B86E24804923001029BE /* Ancient_Game_Sword_Swing_with_Blood.caf in Resources */,
+				79A0958B2480C6A8009B285C /* crawler_24 (seamless).caf in Resources */,
 				79D0B84A24804922001029BE /* Ancient_Game_Blood_Explosion.caf in Resources */,
 				79D0B82624804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_15v2.caf in Resources */,
 				79ACC7DF22AA5BE900AC3BF0 /* Data in Resources */,
 				79D0B73F24804482001029BE /* Ancient_Game_Creature_Orc_Death_1.caf in Resources */,
+				79A0958E2480C6A8009B285C /* crawler_28.caf in Resources */,
 				79D0B84724804922001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_4.caf in Resources */,
+				79A095DA2480EF8F009B285C /* BugNoise-15.caf in Resources */,
 				79D0B86B24804923001029BE /* Ancient_Game_Designed_Cannon_Shot_4.caf in Resources */,
 				79D0B7EA24804920001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_14.caf in Resources */,
 				79D0B80824804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_16.caf in Resources */,
+				79A096222480F65B009B285C /* DoorClosed.caf in Resources */,
 				79D0B7CF2480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_7.caf in Resources */,
+				79A0959A2480C6A8009B285C /* crawler_24.caf in Resources */,
 				79D0B72424804482001029BE /* Ancient_Game_Creature_Groan_3.caf in Resources */,
 				79D0B81A24804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_12.caf in Resources */,
+				79A096252480F65B009B285C /* DoorOpen.caf in Resources */,
 				79D0B85024804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_18.caf in Resources */,
 				79D0B87124804923001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_2.caf in Resources */,
+				79A095E62480EF8F009B285C /* BugNoise-10.caf in Resources */,
 				79D0B75A24804483001029BE /* Ancient_Game_Creature_Groan_4.caf in Resources */,
 				79D0B74224804482001029BE /* Ancient_Game_Creature_Groan_2.caf in Resources */,
 				79D0B81124804921001029BE /* Ancient_Game_Blood_Hatchling_Stomp.caf in Resources */,
@@ -1450,6 +1719,7 @@
 				79D0B83E24804922001029BE /* Ancient_Game_Sword_Swing_Dry.caf in Resources */,
 				79D0B7FF24804921001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_3.caf in Resources */,
 				79D0B72D24804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_3.caf in Resources */,
+				79A095942480C6A8009B285C /* crawler_20.caf in Resources */,
 				79D0B7C02480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_9.caf in Resources */,
 				79C61AA922A7C415008D3609 /* Assets.xcassets in Resources */,
 			);
@@ -1460,6 +1730,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				79D0B72B24804482001029BE /* Ancient_Game_Creature_Orc_Grunt_3.caf in Resources */,
+				79A095F02480EF8F009B285C /* BugNoise-16.caf in Resources */,
 				79D0B71C24804482001029BE /* Ancient_Game_Creature_Orc_Grunt_5.caf in Resources */,
 				79D0B611248014DA001029BE /* Blood.xcassets in Resources */,
 				79D0B75E24804483001029BE /* Ancient_Game_Creature_Orc_Grunt_6.caf in Resources */,
@@ -1470,11 +1741,17 @@
 				79D0B7F724804920001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_2_Dry.caf in Resources */,
 				79D0B80324804921001029BE /* Ancient_Game_Smash_Spider.caf in Resources */,
 				79D0B81824804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_1.caf in Resources */,
+				79A095982480C6A8009B285C /* crawler_27 (seamless).caf in Resources */,
+				79A095802480C6A8009B285C /* crawler_22.caf in Resources */,
 				79D0B7F124804920001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_3.caf in Resources */,
 				79D0B7D924804920001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring.caf in Resources */,
 				79D0B7E524804920001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_3.caf in Resources */,
+				79A095712480C6A8009B285C /* crawler_23.caf in Resources */,
+				79A095ED2480EF8F009B285C /* BugNoise-01.caf in Resources */,
 				79D0B81524804921001029BE /* Ancient_Game_Blood_GoreBubble_Pop_3_Juicy.caf in Resources */,
+				79A095F32480EF8F009B285C /* BugNoise-08.caf in Resources */,
 				79D0B7DF24804920001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_5.caf in Resources */,
+				79A095E42480EF8F009B285C /* BugNoise-04.caf in Resources */,
 				79D0B82424804921001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_7_Shealth.caf in Resources */,
 				79D0B84224804922001029BE /* Ancient_Game_Weapon_Stab.caf in Resources */,
 				79D0B7AF2480491F001029BE /* Ancient_Game_Sword_Shing_Hifi_2.caf in Resources */,
@@ -1485,7 +1762,9 @@
 				79D0B71F24804482001029BE /* Ancient_Game_Creature_Breath_and_Growl.caf in Resources */,
 				79D0B85424804922001029BE /* Ancient_Game_Blood_Bubble_3.caf in Resources */,
 				79D0B76124804483001029BE /* Ancient_Game_Creature_Breath_and_Growl_5.caf in Resources */,
+				79A095862480C6A8009B285C /* crawler_30.caf in Resources */,
 				79D0B73124804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_7.caf in Resources */,
+				79A095DE2480EF8F009B285C /* BugNoise-09.caf in Resources */,
 				79D0B7BB2480491F001029BE /* Ancient_Game_Blood_Gore_Impact_Bubble_Pop.caf in Resources */,
 				79D0B7CA2480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_8.caf in Resources */,
 				79D0B75524804482001029BE /* Ancient_Game_Creature_Orc_Death_3.caf in Resources */,
@@ -1493,27 +1772,41 @@
 				79D0B75224804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_4.caf in Resources */,
 				79D0B7B82480491F001029BE /* Ancient_Game_Blood_Bubble_2.caf in Resources */,
 				79D0B81E24804921001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_1.caf in Resources */,
+				79A095EA2480EF8F009B285C /* BugNoise-02.caf in Resources */,
 				79D6E70B247E40B100D7333A /* Creatures.xcassets in Resources */,
 				79D0B86024804922001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_2.caf in Resources */,
+				79A095922480C6A8009B285C /* crawler_21.caf in Resources */,
 				79D0B80624804921001029BE /* Ancient_Game_Weapon_Parry_Block_Metal.caf in Resources */,
 				797DBF7D22A91FA300D0F8E7 /* Sprites.xcassets in Resources */,
+				79A0957A2480C6A8009B285C /* crawler_26.caf in Resources */,
+				79A095772480C6A8009B285C /* crawler_23 (seamless).caf in Resources */,
 				79D0B7F424804920001029BE /* Ancient_Game_Designed_Cannon_Shot_2.caf in Resources */,
+				79A095FF2480EF8F009B285C /* BugNoise-11.caf in Resources */,
 				79D0B7DC24804920001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_4.caf in Resources */,
+				79A0959E2480C6A8009B285C /* crawler_27.caf in Resources */,
+				79A096022480EF8F009B285C /* BugNoise-03.caf in Resources */,
 				79C61A9D22A7C415008D3609 /* Main.storyboard in Resources */,
 				79D0B7AC2480491F001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_4.caf in Resources */,
 				79D0B87824804923001029BE /* Ancient_Game_Weapon_Blood_Hit_1.caf in Resources */,
 				79D0B86324804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_17.caf in Resources */,
 				79A0955D247FDB60009B285C /* Decorations.xcassets in Resources */,
 				79D0B7E824804920001029BE /* Ancient_Game_Metal_Blood_Spill_Hit.caf in Resources */,
+				79A095892480C6A8009B285C /* crawler_25 (seamless).caf in Resources */,
+				79A095F62480EF8F009B285C /* BugNoise-06.caf in Resources */,
+				79A095742480C6A8009B285C /* crawler_25.caf in Resources */,
 				79D0B7E224804920001029BE /* Ancient_Game_Harvest_Blood_Plant_2_Aquatic.caf in Resources */,
 				79D0B83024804921001029BE /* Ancient_Game_Sword_Attack_1.caf in Resources */,
 				79D0B7C42480491F001029BE /* Ancient_Game_Blood_Gore_Impact_Bubble_Pop_2.caf in Resources */,
 				79D0B73A24804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_6.caf in Resources */,
 				79D0B85A24804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_13.caf in Resources */,
+				79A095FC2480EF8F009B285C /* BugNoise-07.caf in Resources */,
 				79D0B7EE24804920001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_3_Dry.caf in Resources */,
+				79A0957D2480C6A8009B285C /* crawler_26 (seamless).caf in Resources */,
 				79D0B71924804481001029BE /* Ancient_Game_Creature_Orc_Grunt_8.caf in Resources */,
 				79D0B84E24804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_10.caf in Resources */,
 				79D6E703247CB3C100D7333A /* Floors.xcassets in Resources */,
+				79A095E12480EF8F009B285C /* BugNoise-12.caf in Resources */,
+				79A096052480EF8F009B285C /* BugNoise-14.caf in Resources */,
 				79D6E707247CB3D200D7333A /* Walls.xcassets in Resources */,
 				79D0B7C72480491F001029BE /* Ancient_Game_Clean_Saber_Sword_Knife_Kill_with_Blood.caf in Resources */,
 				79D0B85724804922001029BE /* Ancient_Game_Blood_Bubble.caf in Resources */,
@@ -1525,6 +1818,7 @@
 				79D0B71624804481001029BE /* Ancient_Game_Creature_Breath_and_Growl_8.caf in Resources */,
 				79D0B7D32480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_11.caf in Resources */,
 				79D0B7D62480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_3.caf in Resources */,
+				79A095F92480EF8F009B285C /* BugNoise-05.caf in Resources */,
 				79D0B7B22480491F001029BE /* Ancient_Game_Bright_Gore_Explosion.caf in Resources */,
 				79D0B74624804482001029BE /* Ancient_Game_Creature_Grunt_2.caf in Resources */,
 				79D0B72824804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_2.caf in Resources */,
@@ -1533,22 +1827,31 @@
 				79D0B85D24804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_20.caf in Resources */,
 				79D0B83324804921001029BE /* Ancient_Game_Designed_Cannon_Shot_1.caf in Resources */,
 				79D0B73424804482001029BE /* Ancient_Game_Creature_Orc_Death_9.caf in Resources */,
+				79A096082480EF8F009B285C /* BugNoise-13.caf in Resources */,
+				79A095832480C6A8009B285C /* crawler_29.caf in Resources */,
 				79D0B72224804482001029BE /* Ancient_Game_Creature_Orc_Grunt_7_Stretched.caf in Resources */,
 				79D0B7CD2480491F001029BE /* Ancient_Game_Designed_Cannon_Shot_6.caf in Resources */,
 				79D0B86F24804923001029BE /* Ancient_Game_Sword_Swing_with_Blood.caf in Resources */,
+				79A0958C2480C6A8009B285C /* crawler_24 (seamless).caf in Resources */,
 				79D0B84B24804922001029BE /* Ancient_Game_Blood_Explosion.caf in Resources */,
 				79D0B82724804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_15v2.caf in Resources */,
 				79ACC7E022AA5BE900AC3BF0 /* Data in Resources */,
 				79D0B74024804482001029BE /* Ancient_Game_Creature_Orc_Death_1.caf in Resources */,
+				79A0958F2480C6A8009B285C /* crawler_28.caf in Resources */,
 				79D0B84824804922001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_4.caf in Resources */,
+				79A095DB2480EF8F009B285C /* BugNoise-15.caf in Resources */,
 				79D0B86C24804923001029BE /* Ancient_Game_Designed_Cannon_Shot_4.caf in Resources */,
 				79D0B7EB24804920001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_14.caf in Resources */,
 				79D0B80924804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_16.caf in Resources */,
+				79A096232480F65B009B285C /* DoorClosed.caf in Resources */,
 				79D0B7D02480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_7.caf in Resources */,
+				79A0959B2480C6A8009B285C /* crawler_24.caf in Resources */,
 				79D0B72524804482001029BE /* Ancient_Game_Creature_Groan_3.caf in Resources */,
 				79D0B81B24804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_12.caf in Resources */,
+				79A096262480F65B009B285C /* DoorOpen.caf in Resources */,
 				79D0B85124804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_18.caf in Resources */,
 				79D0B87224804923001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_2.caf in Resources */,
+				79A095E72480EF8F009B285C /* BugNoise-10.caf in Resources */,
 				79D0B75B24804483001029BE /* Ancient_Game_Creature_Groan_4.caf in Resources */,
 				79D0B74324804482001029BE /* Ancient_Game_Creature_Groan_2.caf in Resources */,
 				79D0B81224804921001029BE /* Ancient_Game_Blood_Hatchling_Stomp.caf in Resources */,
@@ -1562,6 +1865,7 @@
 				79D0B83F24804922001029BE /* Ancient_Game_Sword_Swing_Dry.caf in Resources */,
 				79D0B80024804921001029BE /* Ancient_Game_Sword_Weapon_Swing_Ring_3.caf in Resources */,
 				79D0B72E24804482001029BE /* Ancient_Game_Creature_Breath_and_Growl_3.caf in Resources */,
+				79A095952480C6A8009B285C /* crawler_20.caf in Resources */,
 				79D0B7C12480491F001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_9.caf in Resources */,
 				79C61AAA22A7C415008D3609 /* Assets.xcassets in Resources */,
 			);

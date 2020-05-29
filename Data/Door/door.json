@@ -3,5 +3,14 @@
     "sprite": {
         "open": "open_door",
         "closed": "closed_door"
-    }
+    },
+    
+    "sounds": {
+        "activate": [
+            "DoorOpen"
+        ],
+        "deactivate": [
+            "DoorClosed"
+        ]
+    },
 }

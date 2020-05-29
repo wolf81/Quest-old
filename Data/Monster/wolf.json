@@ -8,6 +8,21 @@
         "weapon": "Bite +3",
     },
     
+    "sounds": {
+        "hit": [
+            "Ancient_Game_Creature_Breath_and_Growl_2",
+            "Ancient_Game_Creature_Breath_and_Growl_3",
+            "Ancient_Game_Creature_Breath_and_Growl_4",
+            "Ancient_Game_Creature_Breath_and_Growl_5",
+        ],
+        "destroy": [
+            "Ancient_Game_Creature_Breath_and_Growl_2",
+            "Ancient_Game_Creature_Breath_and_Growl_3",
+            "Ancient_Game_Creature_Breath_and_Growl_4",
+            "Ancient_Game_Creature_Breath_and_Growl_5",
+        ],
+    },
+
     "energyCost": {
         "move": 35,
         "attackMelee": 50

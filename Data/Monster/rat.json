@@ -8,6 +8,29 @@
         "weapon": "Bite +4"
     },
     
+    "sounds": {
+        "hit": [
+            "BugNoise-01",
+            "BugNoise-02",
+            "BugNoise-03",
+            "BugNoise-04",
+            "BugNoise-05",
+            "BugNoise-06",
+            "BugNoise-07",
+            "BugNoise-08",
+            "BugNoise-09",
+            "BugNoise-10",
+            "BugNoise-11",
+            "BugNoise-12",
+            "BugNoise-13",
+            "BugNoise-14",
+        ],
+        "destroy": [
+            "BugNoise-15",
+            "BugNoise-16",
+        ],
+    },
+
     "energyCost": {
         "move": 50,
         "attackMelee": 40

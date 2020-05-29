@@ -24,6 +24,18 @@ class Door: GKGridGraphNode & TileProtocol {
 
     var isOpen: Bool = false
             
+    private lazy var soundInfo: [SoundType: [String]] = {
+        guard let soundInfo = self.json["sounds"] as? [String: [String]] else { return [:] }
+            
+        var result: [SoundType: [String]] = [:]
+        for (typeName, soundNames) in soundInfo {
+            let soundType = SoundType(rawValue: typeName)!
+            result[soundType] = soundNames
+        }
+
+        return result
+    }()
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -52,6 +64,16 @@ class Door: GKGridGraphNode & TileProtocol {
         
     func copy(coord: vector_int2, entityFactory: EntityFactory) -> Self {
         copyInternal(coord: coord, entityFactory: entityFactory)
+    }
+
+    func playSound(_ type: SoundType, on node: SKNode) {
+        guard let sounds = self.soundInfo[type] else { return }
+        
+        let index = arc4random_uniform(UInt32(sounds.count))
+        let sound = sounds[Int(index)]
+                
+        let play = SKAction.playSoundFileNamed(sound, waitForCompletion: false)
+        node.run(play)                
     }
 
     private func copyInternal<T: Door>(coord: vector_int2, entityFactory: EntityFactory) -> T {
