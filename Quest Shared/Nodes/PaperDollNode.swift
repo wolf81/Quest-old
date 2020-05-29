@@ -19,7 +19,9 @@ class PaperDollNode: SKShapeNode {
     
     private let chest: EquippedItemNode
     private let mainhand: EquippedItemNode
+    private let mainhand2: EquippedItemNode
     private let offhand: EquippedItemNode
+    private let offhand2: EquippedItemNode
     private let ring: EquippedItemNode
     private let feet: EquippedItemNode
     private let head: EquippedItemNode
@@ -34,7 +36,9 @@ class PaperDollNode: SKShapeNode {
         let itemSize = CGSize(width: 50, height: 50)
         self.chest = EquippedItemNode(size: itemSize, equipmentSlot: .chest)
         self.mainhand = EquippedItemNode(size: itemSize, equipmentSlot: .mainhand)
+        self.mainhand2 = EquippedItemNode(size: itemSize, equipmentSlot: .mainhand2)
         self.offhand = EquippedItemNode(size: itemSize, equipmentSlot: .offhand)
+        self.offhand2 = EquippedItemNode(size: itemSize, equipmentSlot: .offhand2)
         self.ring = EquippedItemNode(size: itemSize, equipmentSlot: .ring)
         self.feet = EquippedItemNode(size: itemSize, equipmentSlot: .feet)
         self.head = EquippedItemNode(size: itemSize, equipmentSlot: .head)
@@ -55,17 +59,23 @@ class PaperDollNode: SKShapeNode {
         addChild(self.silhouette)
         addChild(self.chest)
         addChild(self.mainhand)
+        addChild(self.mainhand2)
         addChild(self.offhand)
+        addChild(self.offhand2)
         addChild(self.ring)
         addChild(self.feet)
         addChild(self.head)
         
         self.silhouette.zPosition = 0
         self.chest.zPosition = 1
-        self.mainhand.position = CGPoint(x: -(size.width / 3), y: 0)
+        self.mainhand.position = CGPoint(x: -(size.width / 3), y: itemSize.height / 2)
         self.mainhand.zPosition = 1
-        self.offhand.position = CGPoint(x: size.width / 3, y: 0)
+        self.mainhand2.position = CGPoint(x: -(size.width / 3), y: -(itemSize.height / 2))
+        self.mainhand2.zPosition = 1
+        self.offhand.position = CGPoint(x: size.width / 3, y: itemSize.height / 2)
         self.offhand.zPosition = 1
+        self.offhand2.position = CGPoint(x: size.width / 3, y: -(itemSize.height / 2))
+        self.offhand2.zPosition = 1
         self.ring.position = CGPoint(x: -size.width / 3, y: size.height / 2.5)
         self.ring.zPosition = 1
         self.feet.position = CGPoint(x: 0, y: -size.height / 2.5)

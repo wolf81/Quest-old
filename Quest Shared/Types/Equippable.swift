@@ -12,7 +12,9 @@ enum EquipmentSlot {
     case head
     case chest
     case mainhand
+    case mainhand2
     case offhand
+    case offhand2
     case legs
     case ring
     case feet
