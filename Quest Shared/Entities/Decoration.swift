@@ -52,5 +52,6 @@ class Decoration: TileProtocol {
         let sprite = tile.sprite.copy() as! SKSpriteNode
         sprite.addChild(decorationSprite)
         self.sprite = sprite
+        self.coord = tile.coord
     }
 }

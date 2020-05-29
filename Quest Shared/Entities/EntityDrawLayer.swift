@@ -34,6 +34,7 @@ struct DrawLayerHelper {
         case is Tile: return EntityDrawLayer.tile.rawValue
         case is Decoration: return EntityDrawLayer.tile.rawValue + 1
         case is Door: return EntityDrawLayer.tile.rawValue + 1
+        case is Trap: return EntityDrawLayer.tile.rawValue
         default: fatalError()
         }
     }

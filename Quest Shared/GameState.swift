@@ -30,7 +30,7 @@ class GameState {
     var loot: [Lootable] { self.entities.filter({ $0 is Lootable }) as! [Lootable] }
 
     var monsters: [Monster] { self.entities.filter({ $0 is Monster }) as! [Monster] }
-    
+        
     let mainTilesetName: String
     
     let altTilesetNames: [String]
@@ -87,6 +87,8 @@ class GameState {
         addLoot(to: dungeon, entityFactory: entityFactory)
         addHero(to: dungeon, roomId: 1)
         
+        addTraps(to: dungeon, entityFactory: entityFactory)
+        
         generateMovementGraph()
         
         for actor in self.actors {
@@ -104,6 +106,13 @@ class GameState {
             
             actor.updateVisibility()
         }
+    }
+    
+    func getTrap(at coord: vector_int2) -> Trap? {
+        guard let trap = self.tiles[Int(coord.y)][Int(coord.x)] as? Trap, trap.isActive else {
+            return nil
+        }
+        return trap
     }
     
     func getLoot(at coord: vector_int2) -> Lootable? {
@@ -217,6 +226,27 @@ class GameState {
             self.entities.append(potion)
             
             lootRoomIds.append(roomId)
+        }
+    }
+    
+    private func addTraps(to dungeon: Dungeon, entityFactory: EntityFactory) {
+        for (roomId, room) in dungeon.roomInfo {
+            let maxTrapCount = UInt32(floor(cbrt(Float(room.area))))
+            let trapCount = arc4random_uniform(maxTrapCount)
+            
+            var i = 0
+            
+            while i < trapCount {
+                let coord = getRandomCoord(in: room)
+                guard getTrap(at: coord) == nil else { continue }
+
+                let tile = self.tiles[Int(coord.y)][Int(coord.x)]
+                let trap = try! entityFactory.newEntity(type: Trap.self, name: "Arrow Trap", coord: tile.coord)
+                trap.configure(withTile: tile)
+                self.tiles[Int(coord.y)][Int(coord.x)] = trap
+                
+                i += 1
+            }
         }
     }
     

@@ -252,6 +252,13 @@ func isInRange(origin: vector_int2, radius: Int32, coord: vector_int2) -> Bool {
 // MARK: - GameDelegate
 
 extension GameScene: GameDelegate {
+    func gameActorDidTriggerTrap(actor: Actor, trap: Trap, isHit: Bool) {
+        trap.playSound(.hit, on: self.world)
+        if isHit {
+            actor.showBlood(duration: 8.0)
+        }
+    }
+    
     func gameActorDidPerformInteraction(actor: Actor, targetEntity: EntityProtocol) {
         if let door = targetEntity as? Door {
             let oldSprite = door.sprite
@@ -289,7 +296,7 @@ extension GameScene: GameDelegate {
         }
     }
     
-    func gameActorDidPerformRangedAttack(actor: Actor, withProjectile projectile: Projectile, targetActor: Actor, success: Bool) {
+    func gameActorDidPerformRangedAttack(actor: Actor, withProjectile projectile: Projectile, targetActor: Actor, isHit: Bool) {
         // Make a copy of the sprite, to prevent the sprite to become unmanaged once the projectile is destroyed
         let sprite = projectile.sprite.copy() as! SKSpriteNode
         sprite.position = actor.sprite.position
@@ -297,7 +304,7 @@ extension GameScene: GameDelegate {
 
         // for missing attacks, show arrow hitting coordinate next to the hero
         var toCoord = targetActor.coord
-        if !success {
+        if !isHit {
             let adjacentDirections = Direction.relative(from: actor.coord, to: targetActor.coord).adjacentDirections
             let direction = arc4random() % 2 == 0 ? adjacentDirections[0] : adjacentDirections[1]
             toCoord = toCoord &+ direction.coord
@@ -312,14 +319,14 @@ extension GameScene: GameDelegate {
         
         sprite.run(attack)
         
-        if success {
+        if isHit {
             projectile.playSound(.hit, on: self.world)
             targetActor.showBlood(duration: 8.0)
             targetActor.playSound(.hit)
         }
     }
     
-    func gameActorDidPerformMeleeAttack(actor: Actor, targetActor: Actor, success: Bool) {
+    func gameActorDidPerformMeleeAttack(actor: Actor, targetActor: Actor, isHit: Bool) {
         let actorPosition = GameScene.pointForCoord(actor.coord)
         let targetActorPosition = GameScene.pointForCoord(targetActor.coord)
         let midX = actorPosition.x + (targetActorPosition.x - actorPosition.x) / 2
@@ -333,7 +340,7 @@ extension GameScene: GameDelegate {
         
         actor.sprite.run(attack)
         
-        if success {
+        if isHit {
             actor.equippedWeapon.playSound(.hit, on: self.world)
             targetActor.showBlood(duration: 8.0)
             targetActor.playSound(.hit)
@@ -439,7 +446,7 @@ extension GameScene: GameDelegate {
 
             let position = GameScene.pointForCoord(path.last!)
             hero.sprite.run(SKAction.move(to: position, duration: Constants.AnimationDuration.default))
-
+            
             moveCamera(path: path, duration: Constants.AnimationDuration.default)
         case _ where actor is Monster:
             let firstCoord = path.first!

@@ -20,9 +20,11 @@ protocol GameDelegate: class {
     
     func gameActorDidMove(actor: Actor, path: [vector_int2])
     
-    func gameActorDidPerformMeleeAttack(actor: Actor, targetActor: Actor, success: Bool)
+    func gameActorDidPerformMeleeAttack(actor: Actor, targetActor: Actor, isHit: Bool)
 
-    func gameActorDidPerformRangedAttack(actor: Actor, withProjectile projectile: Projectile, targetActor: Actor, success: Bool)
+    func gameActorDidTriggerTrap(actor: Actor, trap: Trap, isHit: Bool)
+    
+    func gameActorDidPerformRangedAttack(actor: Actor, withProjectile projectile: Projectile, targetActor: Actor, isHit: Bool)
 
     func gameActorDidPerformInteraction(actor: Actor, targetEntity: EntityProtocol)
 }
@@ -178,11 +180,20 @@ class Game {
                         hero.addToBackpack(loot)
                         self.delegate?.gameDidDestroy(entity: loot)
                     }
+                    
+                    if let trap = self.state.getTrap(at: hero.coord) {
+                        let isHit = trap.trigger(actor: hero)
+                        self.delegate?.gameActorDidTriggerTrap(actor: hero, trap: trap, isHit: isHit)
+                        
+                        if !hero.isAlive {
+                            self.delegate?.gameDidDestroy(entity: hero)
+                        }
+                    }
                 }
                 self.delegate?.gameActorDidMove(actor: move.actor, path: move.path)
             case let attack as MeleeAttackAction:
 //                print("\(attack.actor.name) @ \(attack.actor.coord.x).\(attack.actor.coord.y) is performing melee attack")
-                self.delegate?.gameActorDidPerformMeleeAttack(actor: attack.actor, targetActor: attack.targetActor, success: attack.isHit)
+                self.delegate?.gameActorDidPerformMeleeAttack(actor: attack.actor, targetActor: attack.targetActor, isHit: attack.isHit)
                 if attack.targetActor.isAlive == false {
                     self.delegate?.gameDidDestroy(entity: attack.targetActor)
                     // on deleting an entity, update a list of active actors to exclude the deleted entity
@@ -193,7 +204,7 @@ class Game {
 //                print("\(attack.actor.name) @ \(attack.actor.coord.x).\(attack.actor.coord.y) is performing ranged attack")
                 let projectile = action.actor.equippedWeapon.projectile!
                 projectile.configureSprite(origin: attack.actor.coord, target: attack.targetActor.coord)
-                self.delegate?.gameActorDidPerformRangedAttack(actor: attack.actor, withProjectile: projectile, targetActor: attack.targetActor, success: attack.isHit)
+                self.delegate?.gameActorDidPerformRangedAttack(actor: attack.actor, withProjectile: projectile, targetActor: attack.targetActor, isHit: attack.isHit)
                 
                 if attack.targetActor.isAlive == false {
                     self.delegate?.gameDidDestroy(entity: attack.targetActor)

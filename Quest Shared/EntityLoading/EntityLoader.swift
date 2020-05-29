@@ -24,7 +24,7 @@ class EntityLoader {
     }()
     
     static func loadEntities(for entityFactory: EntityFactory) throws {
-        // TODO: Should be able to create a simple loop for this, but can't figure it out right now        
+        // TODO: Should be able to create a simple loop for this, but can't figure it out right now
         
         let effects = try loadEntities(type: Effect.self, in: "Data/Effect", entityFactory: entityFactory)
         effects.forEach{ entityFactory.register(entity: $0) }
@@ -49,6 +49,9 @@ class EntityLoader {
         
         let tiles = try loadEntities(type: Tile.self, in: "Data/Tile", entityFactory: entityFactory)
         tiles.forEach{ entityFactory.register(entity: $0) }
+        
+        let traps = try loadEntities(type: Trap.self, in: "Data/Trap", entityFactory: entityFactory)
+        traps.forEach{ entityFactory.register(entity: $0) }
 
         let doors = try loadEntities(type: Door.self, in: "Data/Door", entityFactory: entityFactory)
         doors.forEach{ entityFactory.register(entity: $0) }

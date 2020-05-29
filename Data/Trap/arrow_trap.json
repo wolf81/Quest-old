@@ -1,0 +1,19 @@
+{
+    "name": "Arrow Trap",
+    "sprite": "trap_arrow",
+    
+    "AT": 10,
+    "damage": "1d6",
+    
+    "dc": {
+        "search": 20,
+        "disable": 20,
+    },
+    
+    "sounds": {
+        "hit": [
+            "Ancient_Game_Clean_Saber_Sword_Knife_Kill_with_Blood",
+            "Ancient_Game_Blood_Impact",
+        ],
+    },
+}

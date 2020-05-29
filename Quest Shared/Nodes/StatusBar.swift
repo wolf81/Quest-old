@@ -54,8 +54,6 @@ class StatusBar: SKShapeNode {
     }
     
     private func dismiss() {
-        print("dismiss")
-        
         run(SKAction.fadeOut(withDuration: 0.5))
     }
 }

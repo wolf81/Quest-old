@@ -591,6 +591,12 @@
 		79D0B87924804923001029BE /* Ancient_Game_Harvest_Blood_Plant_3_Aquatic.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A92480491E001029BE /* Ancient_Game_Harvest_Blood_Plant_3_Aquatic.caf */; };
 		79D0B87A24804923001029BE /* Ancient_Game_Harvest_Blood_Plant_3_Aquatic.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A92480491E001029BE /* Ancient_Game_Harvest_Blood_Plant_3_Aquatic.caf */; };
 		79D0B87B24804923001029BE /* Ancient_Game_Harvest_Blood_Plant_3_Aquatic.caf in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B7A92480491E001029BE /* Ancient_Game_Harvest_Blood_Plant_3_Aquatic.caf */; };
+		79D0B87D24814D4A001029BE /* Trap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D0B87C24814D4A001029BE /* Trap.swift */; };
+		79D0B87E24814D4A001029BE /* Trap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D0B87C24814D4A001029BE /* Trap.swift */; };
+		79D0B87F24814D4A001029BE /* Trap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D0B87C24814D4A001029BE /* Trap.swift */; };
+		79D0B88124815875001029BE /* Traps.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B88024815875001029BE /* Traps.xcassets */; };
+		79D0B88224815875001029BE /* Traps.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B88024815875001029BE /* Traps.xcassets */; };
+		79D0B88324815875001029BE /* Traps.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79D0B88024815875001029BE /* Traps.xcassets */; };
 		79D58E11247D93C200E1EE79 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D58E10247D93C200E1EE79 /* Map.swift */; };
 		79D58E12247D93C200E1EE79 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D58E10247D93C200E1EE79 /* Map.swift */; };
 		79D58E13247D93C200E1EE79 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D58E10247D93C200E1EE79 /* Map.swift */; };
@@ -875,6 +881,8 @@
 		79D0B7A72480491D001029BE /* Ancient_Game_Muffled_Gore_Explosion.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Muffled_Gore_Explosion.caf; sourceTree = "<group>"; };
 		79D0B7A82480491E001029BE /* Ancient_Game_Weapon_Blood_Hit_1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Weapon_Blood_Hit_1.caf; sourceTree = "<group>"; };
 		79D0B7A92480491E001029BE /* Ancient_Game_Harvest_Blood_Plant_3_Aquatic.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ancient_Game_Harvest_Blood_Plant_3_Aquatic.caf; sourceTree = "<group>"; };
+		79D0B87C24814D4A001029BE /* Trap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trap.swift; sourceTree = "<group>"; };
+		79D0B88024815875001029BE /* Traps.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Traps.xcassets; sourceTree = "<group>"; };
 		79D58E10247D93C200E1EE79 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		79D58E14247D957600E1EE79 /* NodeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeType.swift; sourceTree = "<group>"; };
 		79D6E6DB247A59FE00D7333A /* Door.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Door.swift; sourceTree = "<group>"; };
@@ -979,6 +987,7 @@
 				79D6E6E3247A98DF00D7333A /* Accessory.swift */,
 				79D6E6E7247A9D1700D7333A /* Effect.swift */,
 				79D0B60A247FEDF8001029BE /* Decoration.swift */,
+				79D0B87C24814D4A001029BE /* Trap.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1148,6 +1157,7 @@
 				79A0955A247FDB60009B285C /* Decorations.xcassets */,
 				79D0B60E248014DA001029BE /* Blood.xcassets */,
 				79F0572F248125E600353E0A /* Miscellaneous.xcassets */,
+				79D0B88024815875001029BE /* Traps.xcassets */,
 			);
 			path = "Quest Shared";
 			sourceTree = "<group>";
@@ -1505,6 +1515,7 @@
 				79A0957B2480C6A8009B285C /* crawler_26 (seamless).caf in Resources */,
 				79D0B73524804482001029BE /* Ancient_Game_Creature_Orc_Death_2.caf in Resources */,
 				79A095752480C6A8009B285C /* crawler_23 (seamless).caf in Resources */,
+				79D0B88124815875001029BE /* Traps.xcassets in Resources */,
 				79A095DC2480EF8F009B285C /* BugNoise-09.caf in Resources */,
 				79D0B75C24804483001029BE /* Ancient_Game_Creature_Orc_Grunt_6.caf in Resources */,
 				79A095FD2480EF8F009B285C /* BugNoise-11.caf in Resources */,
@@ -1724,6 +1735,7 @@
 				79D0B87124804923001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_2.caf in Resources */,
 				79A095E62480EF8F009B285C /* BugNoise-10.caf in Resources */,
 				79D0B75A24804483001029BE /* Ancient_Game_Creature_Groan_4.caf in Resources */,
+				79D0B88224815875001029BE /* Traps.xcassets in Resources */,
 				79D0B74224804482001029BE /* Ancient_Game_Creature_Groan_2.caf in Resources */,
 				79D0B81124804921001029BE /* Ancient_Game_Blood_Hatchling_Stomp.caf in Resources */,
 				79D0B73624804482001029BE /* Ancient_Game_Creature_Orc_Death_2.caf in Resources */,
@@ -1871,6 +1883,7 @@
 				79D0B87224804923001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_2.caf in Resources */,
 				79A095E72480EF8F009B285C /* BugNoise-10.caf in Resources */,
 				79D0B75B24804483001029BE /* Ancient_Game_Creature_Groan_4.caf in Resources */,
+				79D0B88324815875001029BE /* Traps.xcassets in Resources */,
 				79D0B74324804482001029BE /* Ancient_Game_Creature_Groan_2.caf in Resources */,
 				79D0B81224804921001029BE /* Ancient_Game_Blood_Hatchling_Stomp.caf in Resources */,
 				79D0B73724804482001029BE /* Ancient_Game_Creature_Orc_Death_2.caf in Resources */,
@@ -2007,6 +2020,7 @@
 				79FC68ED244C4A0300E6D63C /* MainMenuScene.swift in Sources */,
 				79423B7A239E99CC0042B9BD /* HeroBuilder.swift in Sources */,
 				792467E3246AFC03000568A6 /* Inventory.swift in Sources */,
+				79D0B87D24814D4A001029BE /* Trap.swift in Sources */,
 				79C61A7922A7C415008D3609 /* AppDelegate.swift in Sources */,
 				79F057342481261600353E0A /* TargetNode.swift in Sources */,
 				79D0B61B24803C54001029BE /* SoundType.swift in Sources */,
@@ -2089,6 +2103,7 @@
 				7963DE3F239CE15700183DF2 /* Role.swift in Sources */,
 				79423B7B239E99CC0042B9BD /* HeroBuilder.swift in Sources */,
 				792467E4246AFC03000568A6 /* Inventory.swift in Sources */,
+				79D0B87E24814D4A001029BE /* Trap.swift in Sources */,
 				79C61A8A22A7C415008D3609 /* AppDelegate.swift in Sources */,
 				79F057352481261600353E0A /* TargetNode.swift in Sources */,
 				79D0B61C24803C54001029BE /* SoundType.swift in Sources */,
@@ -2157,6 +2172,7 @@
 				7960DECF23A6082B00B4CDF8 /* Tile.swift in Sources */,
 				79F0572E248120EB00353E0A /* NotificationExtensions.swift in Sources */,
 				798537C823A2924E00721CE7 /* RangedAttackAction.swift in Sources */,
+				79D0B87F24814D4A001029BE /* Trap.swift in Sources */,
 				79DF73AE2462D3570030E7A8 /* StatusUpdatable.swift in Sources */,
 				793A575A24459A070089E693 /* Constants.swift in Sources */,
 				79D6E6E6247A98DF00D7333A /* Accessory.swift in Sources */,
