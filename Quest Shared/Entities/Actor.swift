@@ -182,7 +182,7 @@ class Actor: Entity {
         self.inventory.toggleEquippedWeapons()
         updateSpriteForEquipment()
         
-        NotificationCenter.default.post(name: Notification.Name.actorDidChangeWeapons, object: nil)
+        NotificationCenter.default.post(name: Notification.Name.actorDidChangeEquipment, object: nil)
     }
     
     func playSound(_ type: SoundType) {
@@ -274,7 +274,7 @@ extension Actor {
             self.inventory.unequip(.mainhand)
         }
 
-        self.inventory.use(at: index, with: self)
+        self.inventory.use(at: index, with: self)        
     }
 }
 

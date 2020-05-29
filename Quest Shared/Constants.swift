@@ -11,6 +11,8 @@ import Foundation
 
 struct Constants {
     static let energyPerTick: Int = 10
+
+    static let rangedWeaponMeleePenalty = -2
     
     static let tileSize: CGSize = CGSize(width: 48, height: 48)
     

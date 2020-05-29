@@ -30,19 +30,29 @@ class GameScene: SKScene, SceneManagerConstructable {
     private var inventory: InventoryNode?
     
     private var characterInfo: CharacterInfoNode?
+    
+    private let targetNode = TargetNode()
                     
+    private var targetActor: Actor?
+    
     required init(size: CGSize, userInfo: [String : Any]) {
         self.game = (userInfo[UserInfoKey.game] as! Game)
         
         super.init(size: size)
 
         self.game.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(toggleTargetNodeVisibility), name: Notification.Name.actorDidChangeEquipment, object: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError()
     }
-            
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.actorDidChangeEquipment, object: nil)
+    }
+
     override func didMove(to view: SKView) {
         self.setUpScene()
     }
@@ -112,7 +122,7 @@ class GameScene: SKScene, SceneManagerConstructable {
         
         gameActorDidMove(actor: self.game.state.hero, path: [self.game.state.hero.coord])
     }
-
+    
     private func movePlayer(direction: Direction) {
         self.game.movePlayer(direction: direction)
     }
@@ -202,6 +212,36 @@ class GameScene: SKScene, SceneManagerConstructable {
             }
         }
         return coords
+    }
+    
+    func showTargetNodeIfNeeded() {
+        if self.targetNode.parent == nil {
+            toggleTargetNodeVisibility()
+        }
+    }
+    
+    @objc private func toggleTargetNodeVisibility() {
+        guard self.game.state.hero.equippedWeapon.range > 1 else {
+            self.targetActor = nil
+            return self.targetNode.removeFromParent()
+        }
+        
+        if self.targetNode.parent != nil {
+            self.targetActor = nil
+            self.targetNode.removeFromParent()
+        }
+
+        var targets: [Actor] = []
+        for visibleCoord in self.game.state.hero.visibleCoords {
+            if let target = self.game.state.getActor(at: visibleCoord) as? Monster {
+                targets.append(target)
+            }
+        }
+        
+        if let target = targets.first {
+            self.targetActor = target
+            target.sprite.addChild(self.targetNode)
+        }
     }
 }
 
@@ -301,6 +341,11 @@ extension GameScene: GameDelegate {
     }
     
     func gameDidDestroy(entity: EntityProtocol) {
+        if self.targetNode.parent == entity.sprite {
+            self.targetNode.removeFromParent()
+            self.targetActor = nil
+        }
+
         var fade: [SKAction] = [
             SKAction.fadeOut(withDuration: entity is Actor ? 6.0 : 1.0),
             SKAction.run {
@@ -419,6 +464,8 @@ extension GameScene: GameDelegate {
             actor.sprite.run(SKAction.sequence(move))
         default: break
         }
+                
+        showTargetNodeIfNeeded()
     }
         
     func gameDidUpdateStatus(message: String) {
@@ -529,6 +576,8 @@ extension GameScene {
         case /* i   */ 34: toggleInventory()
         case /* c   */ 35: toggleCharacterInfo()
         case /* u   */ 32: self.game.tryPlayerInteraction()
+        case /* tab */ 48: break // change target
+        case /* space */ 49: if let actor = self.targetActor { self.game.attackTarget(actor: actor) }
         default: print("\(event.keyCode)")
         }
     }

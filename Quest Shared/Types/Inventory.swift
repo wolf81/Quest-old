@@ -14,7 +14,7 @@ class Inventory {
     private(set) var equippedItems: [EquipmentSlot: Equippable] = [:]    
         
     @discardableResult
-    func equip(at index: Int) -> Bool {
+    private func equip(at index: Int) -> Bool {
         if let equipment = self.backpack[index] as? Equippable {
             unequip(equipment.equipmentSlot)
 
@@ -23,6 +23,8 @@ class Inventory {
             self.equippedItems[equipment.equipmentSlot] = equipment
 //            print("equip: \(equipment.name)")
             
+            NotificationCenter.default.post(name: Notification.Name.actorDidChangeEquipment, object: nil)
+
             return true
         }
         
@@ -35,6 +37,8 @@ class Inventory {
         unequip(equipment.equipmentSlot)
                 
         self.equippedItems[equipment.equipmentSlot] = equipment
+        
+        NotificationCenter.default.post(name: Notification.Name.actorDidChangeEquipment, object: nil)
     }
         
     @discardableResult
@@ -43,6 +47,8 @@ class Inventory {
 //            print("unequip: \(equipment.name)")
 
             append(equipment)
+
+            NotificationCenter.default.post(name: Notification.Name.actorDidChangeEquipment, object: nil)
 
             return true
         }
@@ -104,6 +110,8 @@ class Inventory {
         let offhand2 = self.equippedItems[.offhand2]
         self.equippedItems[.offhand] = offhand2
         self.equippedItems[.offhand2] = offhand
+        
+        NotificationCenter.default.post(name: Notification.Name.actorDidChangeEquipment, object: nil)
     }
 }
 

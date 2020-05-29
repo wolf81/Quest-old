@@ -37,7 +37,9 @@ class MeleeAttackAction: Action, StatusUpdatable {
             self.targetActor.reduceHealth(with: damage)
             self.isHit = true
         default:
-            let attackRoll = baseAttackRoll + self.actor.meleeAttackBonus
+            let rangedPenalty = self.actor.equippedWeapon.range > 1 ? Constants.rangedWeaponMeleePenalty : 0
+            let attackRoll = baseAttackRoll + self.actor.meleeAttackBonus + rangedPenalty
+            
             status = "AT \(attackRoll) vs AC \(armorClass): "
             if attackRoll > armorClass {
                 let damage = self.actor.getMeleeAttackDamage(.random)

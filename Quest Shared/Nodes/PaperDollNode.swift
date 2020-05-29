@@ -83,11 +83,11 @@ class PaperDollNode: SKShapeNode {
         self.head.position = CGPoint(x: 0, y: size.height / 2.5)
         self.head.zPosition = 1
         
-        NotificationCenter.default.addObserver(self, selector: #selector(reload), name: Notification.Name.actorDidChangeWeapons, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reload), name: Notification.Name.actorDidChangeEquipment, object: nil)
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: Notification.Name.actorDidChangeWeapons, object: nil)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.actorDidChangeEquipment, object: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {

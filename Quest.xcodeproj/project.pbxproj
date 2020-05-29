@@ -639,6 +639,12 @@
 		79F0572C248120EB00353E0A /* NotificationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F0572B248120EB00353E0A /* NotificationExtensions.swift */; };
 		79F0572D248120EB00353E0A /* NotificationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F0572B248120EB00353E0A /* NotificationExtensions.swift */; };
 		79F0572E248120EB00353E0A /* NotificationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F0572B248120EB00353E0A /* NotificationExtensions.swift */; };
+		79F05730248125E600353E0A /* Miscellaneous.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79F0572F248125E600353E0A /* Miscellaneous.xcassets */; };
+		79F05731248125E600353E0A /* Miscellaneous.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79F0572F248125E600353E0A /* Miscellaneous.xcassets */; };
+		79F05732248125E600353E0A /* Miscellaneous.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79F0572F248125E600353E0A /* Miscellaneous.xcassets */; };
+		79F057342481261600353E0A /* TargetNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F057332481261600353E0A /* TargetNode.swift */; };
+		79F057352481261600353E0A /* TargetNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F057332481261600353E0A /* TargetNode.swift */; };
+		79F057362481261600353E0A /* TargetNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F057332481261600353E0A /* TargetNode.swift */; };
 		79FC68ED244C4A0300E6D63C /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC68EC244C4A0300E6D63C /* MainMenuScene.swift */; };
 		79FC68EF244C4A8C00E6D63C /* CreateCharacterScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC68EE244C4A8C00E6D63C /* CreateCharacterScene.swift */; };
 		79FC68F0244C4A8C00E6D63C /* CreateCharacterScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC68EE244C4A8C00E6D63C /* CreateCharacterScene.swift */; };
@@ -885,6 +891,8 @@
 		79DF73B32463DD310030E7A8 /* InventoryNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryNode.swift; sourceTree = "<group>"; };
 		79DF73B72463E16A0030E7A8 /* BackpackNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackpackNode.swift; sourceTree = "<group>"; };
 		79F0572B248120EB00353E0A /* NotificationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtensions.swift; sourceTree = "<group>"; };
+		79F0572F248125E600353E0A /* Miscellaneous.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Miscellaneous.xcassets; sourceTree = "<group>"; };
+		79F057332481261600353E0A /* TargetNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetNode.swift; sourceTree = "<group>"; };
 		79FC68EC244C4A0300E6D63C /* MainMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 		79FC68EE244C4A8C00E6D63C /* CreateCharacterScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCharacterScene.swift; sourceTree = "<group>"; };
 		79FC68F4244C4C4700E6D63C /* SettingsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScene.swift; sourceTree = "<group>"; };
@@ -1035,6 +1043,7 @@
 				79D8156F246572450099567B /* ButtonNode.swift */,
 				79D815732465AEAF0099567B /* PaperDollNode.swift */,
 				792E454B247048060088FBD7 /* CharacterInfoNode.swift */,
+				79F057332481261600353E0A /* TargetNode.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -1138,6 +1147,7 @@
 				79D6E708247E40B100D7333A /* Creatures.xcassets */,
 				79A0955A247FDB60009B285C /* Decorations.xcassets */,
 				79D0B60E248014DA001029BE /* Blood.xcassets */,
+				79F0572F248125E600353E0A /* Miscellaneous.xcassets */,
 			);
 			path = "Quest Shared";
 			sourceTree = "<group>";
@@ -1559,6 +1569,7 @@
 				79D0B83424804921001029BE /* Ancient_Game_Weapon_Blunt_Hit.caf in Resources */,
 				79D0B7B92480491F001029BE /* Ancient_Game_Blood_Gore_Impact_Bubble_Pop.caf in Resources */,
 				79A095722480C6A8009B285C /* crawler_25.caf in Resources */,
+				79F05730248125E600353E0A /* Miscellaneous.xcassets in Resources */,
 				79A0958A2480C6A8009B285C /* crawler_24 (seamless).caf in Resources */,
 				79A095D92480EF8F009B285C /* BugNoise-15.caf in Resources */,
 				79D0B74424804482001029BE /* Ancient_Game_Creature_Grunt_2.caf in Resources */,
@@ -1598,6 +1609,7 @@
 				79D0B83524804922001029BE /* Ancient_Game_Weapon_Blunt_Hit.caf in Resources */,
 				79D0B86824804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_4.caf in Resources */,
 				79D0B7F624804920001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_2_Dry.caf in Resources */,
+				79F05731248125E600353E0A /* Miscellaneous.xcassets in Resources */,
 				79D0B80224804921001029BE /* Ancient_Game_Smash_Spider.caf in Resources */,
 				79D0B81724804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_1.caf in Resources */,
 				79A095972480C6A8009B285C /* crawler_27 (seamless).caf in Resources */,
@@ -1744,6 +1756,7 @@
 				79D0B83624804922001029BE /* Ancient_Game_Weapon_Blunt_Hit.caf in Resources */,
 				79D0B86924804923001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_4.caf in Resources */,
 				79D0B7F724804920001029BE /* Ancient_Game_Metal_Shing_Game_Sword_Slide_2_Dry.caf in Resources */,
+				79F05732248125E600353E0A /* Miscellaneous.xcassets in Resources */,
 				79D0B80324804921001029BE /* Ancient_Game_Smash_Spider.caf in Resources */,
 				79D0B81824804921001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_1.caf in Resources */,
 				79A095982480C6A8009B285C /* crawler_27 (seamless).caf in Resources */,
@@ -1995,6 +2008,7 @@
 				79423B7A239E99CC0042B9BD /* HeroBuilder.swift in Sources */,
 				792467E3246AFC03000568A6 /* Inventory.swift in Sources */,
 				79C61A7922A7C415008D3609 /* AppDelegate.swift in Sources */,
+				79F057342481261600353E0A /* TargetNode.swift in Sources */,
 				79D0B61B24803C54001029BE /* SoundType.swift in Sources */,
 				798C997223A205EF00C6EC1C /* MoveAction.swift in Sources */,
 				798C997A23A2061700C6EC1C /* IdleAction.swift in Sources */,
@@ -2076,6 +2090,7 @@
 				79423B7B239E99CC0042B9BD /* HeroBuilder.swift in Sources */,
 				792467E4246AFC03000568A6 /* Inventory.swift in Sources */,
 				79C61A8A22A7C415008D3609 /* AppDelegate.swift in Sources */,
+				79F057352481261600353E0A /* TargetNode.swift in Sources */,
 				79D0B61C24803C54001029BE /* SoundType.swift in Sources */,
 				798C997323A205EF00C6EC1C /* MoveAction.swift in Sources */,
 				798C997B23A2061700C6EC1C /* IdleAction.swift in Sources */,
@@ -2156,6 +2171,7 @@
 				79D81572246572450099567B /* ButtonNode.swift in Sources */,
 				79042E84247CD8A900730646 /* DataLoader.swift in Sources */,
 				794864D122A7E48400F84A72 /* GameView.swift in Sources */,
+				79F057362481261600353E0A /* TargetNode.swift in Sources */,
 				7963DE59239E456900183DF2 /* ActionBarButton.swift in Sources */,
 				7960DECC23A6082B00B4CDF8 /* Actor.swift in Sources */,
 				79042E72247AC0B400730646 /* Image.swift in Sources */,

@@ -16,6 +16,7 @@ struct DrawLayerHelper {
         case hero = 50_000
         case accessory = 100_000
         case equipment = 500_000
+        case target = 750_000
         case overlay = 1_000_000
         case hud = 5_000_000
     }
@@ -39,6 +40,7 @@ struct DrawLayerHelper {
     
     public static func zPosition(for node: SKNode) -> CGFloat {
         switch node {
+        case is TargetNode: return EntityDrawLayer.target.rawValue
         case is ActionBar: fallthrough
         case is InventoryNode: fallthrough
         case is CharacterInfoNode: fallthrough

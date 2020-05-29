@@ -246,6 +246,11 @@ class Game {
         self.state.hero.stop()
     }
     
+    func attackTarget(actor: Actor) {
+        print("attack: \(actor.name)")
+        self.state.hero.attack(actor: actor)
+    }
+    
     func tryPlayerInteraction() {
         let coords: [vector_int2] = [
             vector_int2(self.state.hero.coord.x - 1, self.state.hero.coord.y),

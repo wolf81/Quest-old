@@ -41,7 +41,9 @@ class RangedAttackAction: Action, StatusUpdatable {
             status = "critical hit for \(damage) damage"
             self.targetActor.reduceHealth(with: damage)
         default:
-            let attackRoll = baseAttackRoll + self.actor.rangedAttackBonus
+            let distance = self.actor.coord &- self.targetActor.coord
+            let meleePenalty = (distance.x < 2 && distance.y < 2) ? Constants.rangedWeaponMeleePenalty : 0
+            let attackRoll = baseAttackRoll + self.actor.rangedAttackBonus + meleePenalty
             status = "\tAT \(attackRoll) vs AC \(armorClass): "
             if attackRoll > armorClass {
                 self.isHit = true

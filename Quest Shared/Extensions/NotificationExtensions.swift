@@ -9,5 +9,5 @@
 import Foundation
 
 extension Notification.Name {
-    static let actorDidChangeWeapons = Notification.Name("actorDidChangeEquipment")
+    static let actorDidChangeEquipment = Notification.Name("actorDidChangeEquipment")
 }

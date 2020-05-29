@@ -11,6 +11,7 @@ import SpriteKit
 enum HeroAction {
     case move(Direction)
     case interact(Direction)
+    case attack(Actor)
 }
 
 class Hero: Actor, CustomStringConvertible {
@@ -83,6 +84,9 @@ class Hero: Actor, CustomStringConvertible {
         guard self.sprite.hasActions() == false else { return }
         
         switch heroAction {
+        case .attack(let targetActor):
+            let attackRanged = RangedAttackAction(actor: self, targetActor: targetActor)
+            setAction(attackRanged)
         case .interact(let direction):
             let toCoord = self.coord &+ direction.coord
             if let door = state.getDoor(at: toCoord) {
@@ -129,6 +133,10 @@ class Hero: Actor, CustomStringConvertible {
     
     func interact(direction: Direction) {
         self.heroAction = HeroAction.interact(direction)
+    }
+    
+    func attack(actor: Actor) {
+        self.heroAction = HeroAction.attack(actor)
     }
     
     func stop() {
