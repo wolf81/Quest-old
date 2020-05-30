@@ -651,6 +651,9 @@
 		79F057342481261600353E0A /* TargetNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F057332481261600353E0A /* TargetNode.swift */; };
 		79F057352481261600353E0A /* TargetNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F057332481261600353E0A /* TargetNode.swift */; };
 		79F057362481261600353E0A /* TargetNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F057332481261600353E0A /* TargetNode.swift */; };
+		79F057382482115D00353E0A /* AttackAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F057372482115D00353E0A /* AttackAction.swift */; };
+		79F057392482115D00353E0A /* AttackAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F057372482115D00353E0A /* AttackAction.swift */; };
+		79F0573A2482115D00353E0A /* AttackAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F057372482115D00353E0A /* AttackAction.swift */; };
 		79FC68ED244C4A0300E6D63C /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC68EC244C4A0300E6D63C /* MainMenuScene.swift */; };
 		79FC68EF244C4A8C00E6D63C /* CreateCharacterScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC68EE244C4A8C00E6D63C /* CreateCharacterScene.swift */; };
 		79FC68F0244C4A8C00E6D63C /* CreateCharacterScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC68EE244C4A8C00E6D63C /* CreateCharacterScene.swift */; };
@@ -901,6 +904,7 @@
 		79F0572B248120EB00353E0A /* NotificationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtensions.swift; sourceTree = "<group>"; };
 		79F0572F248125E600353E0A /* Miscellaneous.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Miscellaneous.xcassets; sourceTree = "<group>"; };
 		79F057332481261600353E0A /* TargetNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetNode.swift; sourceTree = "<group>"; };
+		79F057372482115D00353E0A /* AttackAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttackAction.swift; sourceTree = "<group>"; };
 		79FC68EC244C4A0300E6D63C /* MainMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 		79FC68EE244C4A8C00E6D63C /* CreateCharacterScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCharacterScene.swift; sourceTree = "<group>"; };
 		79FC68F4244C4C4700E6D63C /* SettingsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScene.swift; sourceTree = "<group>"; };
@@ -1038,6 +1042,7 @@
 				792C698F23A5495500A729C3 /* CastSpellAction.swift */,
 				79DF73AB2462D3570030E7A8 /* StatusUpdatable.swift */,
 				79D6E6DF247A6DD200D7333A /* UseAction.swift */,
+				79F057372482115D00353E0A /* AttackAction.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -2031,6 +2036,7 @@
 				7963DE57239E456900183DF2 /* ActionBarButton.swift in Sources */,
 				792467E7246D37D5000568A6 /* GameOverScene.swift in Sources */,
 				7963DE2E239CC35F00183DF2 /* DefaultMenuConfiguration.swift in Sources */,
+				79F057382482115D00353E0A /* AttackAction.swift in Sources */,
 				798537C623A2924E00721CE7 /* RangedAttackAction.swift in Sources */,
 				79ACC7ED22AA5D8700AC3BF0 /* EntityLoader.swift in Sources */,
 				79042E5C2469473800730646 /* Equippable.swift in Sources */,
@@ -2114,6 +2120,7 @@
 				7963DE58239E456900183DF2 /* ActionBarButton.swift in Sources */,
 				792467E8246D37D5000568A6 /* GameOverScene.swift in Sources */,
 				7963DE2F239CC35F00183DF2 /* DefaultMenuConfiguration.swift in Sources */,
+				79F057392482115D00353E0A /* AttackAction.swift in Sources */,
 				798537C723A2924E00721CE7 /* RangedAttackAction.swift in Sources */,
 				79ACC7EE22AA5D8700AC3BF0 /* EntityLoader.swift in Sources */,
 				79042E5D2469473800730646 /* Equippable.swift in Sources */,
@@ -2203,6 +2210,7 @@
 				79D58E17247D957600E1EE79 /* NodeType.swift in Sources */,
 				79DF73BA2463E16A0030E7A8 /* BackpackNode.swift in Sources */,
 				792C699223A5495500A729C3 /* CastSpellAction.swift in Sources */,
+				79F0573A2482115D00353E0A /* AttackAction.swift in Sources */,
 				792467E1246A59A0000568A6 /* Lootable.swift in Sources */,
 				7960DED523A6082B00B4CDF8 /* OverlayTile.swift in Sources */,
 				7960DEC623A6082B00B4CDF8 /* Entity.swift in Sources */,

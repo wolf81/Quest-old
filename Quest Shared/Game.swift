@@ -191,20 +191,16 @@ class Game {
                     }
                 }
                 self.delegate?.gameActorDidMove(actor: move.actor, path: move.path)
-            case let attack as MeleeAttackAction:
-//                print("\(attack.actor.name) @ \(attack.actor.coord.x).\(attack.actor.coord.y) is performing melee attack")
-                self.delegate?.gameActorDidPerformMeleeAttack(actor: attack.actor, targetActor: attack.targetActor, isHit: attack.isHit)
-                if attack.targetActor.isAlive == false {
-                    self.delegate?.gameDidDestroy(entity: attack.targetActor)
-                    // on deleting an entity, update a list of active actors to exclude the deleted entity
-                    remove(entity: attack.targetActor)
-                    self.state.updateActiveActors(for: self.viewVisibleCoords)
+            case let attack as AttackAction:
+                if attack.isRanged {
+                    //                print("\(attack.actor.name) @ \(attack.actor.coord.x).\(attack.actor.coord.y) is performing ranged attack")
+                    let projectile = action.actor.equippedWeapon.projectile!
+                    projectile.configureSprite(origin: attack.actor.coord, target: attack.targetActor.coord)
+                    self.delegate?.gameActorDidPerformRangedAttack(actor: attack.actor, withProjectile: projectile, targetActor: attack.targetActor, isHit: attack.isHit)
+                } else {
+                    //                print("\(attack.actor.name) @ \(attack.actor.coord.x).\(attack.actor.coord.y) is performing melee attack")
+                    self.delegate?.gameActorDidPerformMeleeAttack(actor: attack.actor, targetActor: attack.targetActor, isHit: attack.isHit)
                 }
-            case let attack as RangedAttackAction:
-//                print("\(attack.actor.name) @ \(attack.actor.coord.x).\(attack.actor.coord.y) is performing ranged attack")
-                let projectile = action.actor.equippedWeapon.projectile!
-                projectile.configureSprite(origin: attack.actor.coord, target: attack.targetActor.coord)
-                self.delegate?.gameActorDidPerformRangedAttack(actor: attack.actor, withProjectile: projectile, targetActor: attack.targetActor, isHit: attack.isHit)
                 
                 if attack.targetActor.isAlive == false {
                     self.delegate?.gameDidDestroy(entity: attack.targetActor)
@@ -212,7 +208,6 @@ class Game {
                     remove(entity: attack.targetActor)
                     self.state.updateActiveActors(for: self.viewVisibleCoords)
                 }
-                break
             default: break
             }
                                     
@@ -258,7 +253,6 @@ class Game {
     }
     
     func attackTarget(actor: Actor) {
-        print("attack: \(actor.name)")
         self.state.hero.attack(actor: actor)
     }
     

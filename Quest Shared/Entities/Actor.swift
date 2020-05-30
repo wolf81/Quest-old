@@ -51,6 +51,8 @@ class Actor: Entity {
         }
     }
     
+    var isRangedWeaponEquipped: Bool { self.equippedWeapon.range > 1 }
+    
     var visibleCoords = Set<vector_int2>()
 
     var visibility: RaycastVisibility?

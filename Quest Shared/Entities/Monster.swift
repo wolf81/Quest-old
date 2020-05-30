@@ -65,10 +65,9 @@ class Monster: Actor, CustomStringConvertible {
         let coords = Functions.coordsBetween(self.coord, rangedTarget.coord)
         let nodes = coords.compactMap({ state.getMapNodeType(at: $0) })
         let isBlocked = nodes.contains(.blocked)
-        let isRangedWeaponEquipped = self.equippedWeapon.range > 1
         // if the hero is not blocked by walls and we carry a ranged weapon, shoot on the hero
         
-        guard isBlocked == false && isRangedWeaponEquipped else { return false }
+        guard isBlocked == false && self.isRangedWeaponEquipped else { return false }
         
         let x = pow(Float(rangedTarget.coord.x - self.coord.x), 2)
         let y = pow(Float(rangedTarget.coord.x - self.coord.x), 2)
@@ -76,7 +75,7 @@ class Monster: Actor, CustomStringConvertible {
 
         guard distance <= self.equippedWeapon.range else { return false }
 
-        let attack = RangedAttackAction(actor: self, targetActor: rangedTarget)
+        let attack = AttackAction(actor: self, targetActor: rangedTarget)
         setAction(attack)
 
         return true
@@ -90,7 +89,7 @@ class Monster: Actor, CustomStringConvertible {
         
         guard targetInMeleeRange else { return false }
 
-        let attack = MeleeAttackAction(actor: self, targetActor: meleeTarget)
+        let attack = AttackAction(actor: self, targetActor: meleeTarget)
         setAction(attack)
         return true
     }

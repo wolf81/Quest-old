@@ -8,6 +8,7 @@
 
 import SpriteKit
 
+/*
 class RangedAttackAction: Action, StatusUpdatable {
     public let targetActor: Actor
 
@@ -58,3 +59,4 @@ class RangedAttackAction: Action, StatusUpdatable {
         self.message = status        
     }
 }
+ */

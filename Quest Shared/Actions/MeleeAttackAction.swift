@@ -8,6 +8,7 @@
 
 import SpriteKit
 
+/*
 class MeleeAttackAction: Action, StatusUpdatable {
     public let targetActor: Actor
     
@@ -37,7 +38,7 @@ class MeleeAttackAction: Action, StatusUpdatable {
             self.targetActor.reduceHealth(with: damage)
             self.isHit = true
         default:
-            let rangedPenalty = self.actor.equippedWeapon.range > 1 ? Constants.rangedWeaponMeleePenalty : 0
+            let rangedPenalty = self.actor.isRangedWeaponEquipped ? Constants.rangedWeaponMeleePenalty : 0
             let attackRoll = baseAttackRoll + self.actor.meleeAttackBonus + rangedPenalty
             
             status = "AT \(attackRoll) vs AC \(armorClass): "
@@ -58,4 +59,4 @@ class MeleeAttackAction: Action, StatusUpdatable {
         self.message = "\(self.actor.name) attacks \(self.targetActor.name): \(status)"
     }
 }
-
+ */

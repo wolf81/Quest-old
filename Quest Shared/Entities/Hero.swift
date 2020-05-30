@@ -85,7 +85,7 @@ class Hero: Actor, CustomStringConvertible {
         
         switch heroAction {
         case .attack(let targetActor):
-            let attackRanged = RangedAttackAction(actor: self, targetActor: targetActor)
+            let attackRanged = AttackAction(actor: self, targetActor: targetActor)
             setAction(attackRanged)
         case .interact(let direction):
             let toCoord = self.coord &+ direction.coord
@@ -106,8 +106,13 @@ class Hero: Actor, CustomStringConvertible {
             }
             
             if let targetActor = state.activeActors.filter({ $0.coord == toCoord }).first {
-                let attack = MeleeAttackAction(actor: self, targetActor: targetActor)
-                setAction(attack)
+                if self.isRangedWeaponEquipped {
+                    let attack = AttackAction(actor: self, targetActor: targetActor)
+                    setAction(attack)
+                } else {
+                    let attack = AttackAction(actor: self, targetActor: targetActor)
+                    setAction(attack)
+                }
             } else {
                 let attackDirections: [Direction] = [.northWest, .northEast, .southWest, .southEast]
                 guard attackDirections.contains(direction) == false else { return }

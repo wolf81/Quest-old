@@ -220,15 +220,18 @@ class GameScene: SKScene, SceneManagerConstructable {
         }
     }
     
+    private func hideTargetNode() {
+        self.targetActor = nil
+        self.targetNode.removeFromParent()
+    }
+    
     @objc private func toggleTargetNodeVisibility() {
-        guard self.game.state.hero.equippedWeapon.range > 1 else {
-            self.targetActor = nil
-            return self.targetNode.removeFromParent()
+        guard self.game.state.hero.isRangedWeaponEquipped else {
+            return hideTargetNode()
         }
         
         if self.targetNode.parent != nil {
-            self.targetActor = nil
-            self.targetNode.removeFromParent()
+            hideTargetNode()
         }
 
         var targets: [Actor] = []
@@ -349,8 +352,7 @@ extension GameScene: GameDelegate {
     
     func gameDidDestroy(entity: EntityProtocol) {
         if self.targetNode.parent == entity.sprite {
-            self.targetNode.removeFromParent()
-            self.targetActor = nil
+            hideTargetNode()
         }
 
         var fade: [SKAction] = [
@@ -428,7 +430,7 @@ extension GameScene: GameDelegate {
                 let tile = self.game.state.tiles[Int(coord.y)][Int(coord.x)]
                 tile.sprite.removeFromParent()
             }
-                        
+                                    
             // update the remaining tiles
             let remainingCoords = self.game.viewVisibleCoords.subtracting(addedCoords).subtracting(removedCoords)
             for coord in remainingCoords {
@@ -446,6 +448,10 @@ extension GameScene: GameDelegate {
 
             let position = GameScene.pointForCoord(path.last!)
             hero.sprite.run(SKAction.move(to: position, duration: Constants.AnimationDuration.default))
+            
+            if let targetActor = self.targetActor, hero.visibleCoords.contains(targetActor.coord) == false {
+                hideTargetNode()
+            }
             
             moveCamera(path: path, duration: Constants.AnimationDuration.default)
         case _ where actor is Monster:
