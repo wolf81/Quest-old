@@ -42,7 +42,7 @@ class GameScene: SKScene, SceneManagerConstructable {
 
         self.game.delegate = self
         
-        NotificationCenter.default.addObserver(self, selector: #selector(toggleTargetNodeVisibility), name: Notification.Name.actorDidChangeEquipment, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(GameScene.selectTarget), name: Notification.Name.actorDidChangeEquipment, object: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -213,38 +213,10 @@ class GameScene: SKScene, SceneManagerConstructable {
         }
         return coords
     }
-    
-    func showTargetNodeIfNeeded() {
-        if self.targetNode.parent == nil {
-            toggleTargetNodeVisibility()
-        }
-    }
-    
+        
     private func hideTargetNode() {
         self.targetActor = nil
         self.targetNode.removeFromParent()
-    }
-    
-    @objc private func toggleTargetNodeVisibility() {
-        guard self.game.state.hero.isRangedWeaponEquipped else {
-            return hideTargetNode()
-        }
-        
-        if self.targetNode.parent != nil {
-            hideTargetNode()
-        }
-
-        var targets: [Actor] = []
-        for visibleCoord in self.game.state.hero.visibleCoords {
-            if let target = self.game.state.getActor(at: visibleCoord) as? Monster {
-                targets.append(target)
-            }
-        }
-        
-        if let target = targets.first {
-            self.targetActor = target
-            target.sprite.addChild(self.targetNode)
-        }
     }
 }
 
@@ -459,6 +431,7 @@ extension GameScene: GameDelegate {
             let lastCoord = path.last!
             
             let willShow = self.game.state.hero.visibleCoords.contains(lastCoord) && self.game.state.hero.visibleCoords.contains(firstCoord) == false
+            let willHide = self.game.state.hero.visibleCoords.contains(lastCoord) == false && self.game.state.hero.visibleCoords.contains(firstCoord) == true
 
             var move: [SKAction] = []
 
@@ -467,6 +440,8 @@ extension GameScene: GameDelegate {
 
             if willShow {
                 move.append(SKAction.fadeIn(withDuration: stepDuration))
+            } else if willHide {
+                move.append(SKAction.fadeOut(withDuration: stepDuration))
             }
             
             for coord in path {
@@ -478,11 +453,56 @@ extension GameScene: GameDelegate {
         default: break
         }
                 
-        showTargetNodeIfNeeded()
+        selectTarget()
     }
         
     func gameDidUpdateStatus(message: String) {
         self.statusBar.update(text: message)
+    }
+    
+    @objc func selectTarget() {
+        selectTargetProceedNext(false)
+    }
+    
+    func selectTargetProceedNext(_ proceedNext: Bool) {
+        guard self.game.state.hero.isRangedWeaponEquipped else {
+            return hideTargetNode()
+        }
+
+        var targets: [Actor] = []
+        
+        for coord in self.game.state.hero.visibleCoords {
+            if let actor = self.game.state.getActor(at: coord) {
+                if actor == game.state.hero { continue }
+                if actor.coord == coord {
+                    targets.append(actor)
+                }
+            }
+        }
+                
+        if targets.count > 0 {
+            var actorIdx = 0
+
+            if let targetActor = self.targetActor, let targetActorIdx = targets.firstIndex(of: targetActor) {
+                actorIdx = targetActorIdx
+            }
+            
+            if proceedNext {
+                actorIdx = (actorIdx + 1) % targets.count
+            }
+            
+            self.targetActor = targets[actorIdx]
+        } else {
+            self.targetActor = nil
+        }
+
+        if self.targetNode.parent != nil {
+            self.targetNode.removeFromParent()
+        }
+
+        if let targetActor = self.targetActor {
+            targetActor.sprite.addChild(self.targetNode)
+        }
     }
 }
 
@@ -589,7 +609,7 @@ extension GameScene {
         case /* i   */ 34: toggleInventory()
         case /* c   */ 35: toggleCharacterInfo()
         case /* u   */ 32: self.game.tryPlayerInteraction()
-        case /* tab */ 48: break // change target
+        case /* tab */ 48: selectTargetProceedNext(true)
         case /* space */ 49: if let actor = self.targetActor { self.game.attackTarget(actor: actor) }
         default: print("\(event.keyCode)")
         }
