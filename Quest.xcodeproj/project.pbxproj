@@ -260,6 +260,9 @@
 		79A8BECF2482259700346F44 /* HitState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A8BECE2482259700346F44 /* HitState.swift */; };
 		79A8BED02482259700346F44 /* HitState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A8BECE2482259700346F44 /* HitState.swift */; };
 		79A8BED12482259700346F44 /* HitState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A8BECE2482259700346F44 /* HitState.swift */; };
+		79A8BF0B24827FA500346F44 /* RestAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A8BF0A24827FA500346F44 /* RestAction.swift */; };
+		79A8BF0C24827FA500346F44 /* RestAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A8BF0A24827FA500346F44 /* RestAction.swift */; };
+		79A8BF0D24827FA500346F44 /* RestAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A8BF0A24827FA500346F44 /* RestAction.swift */; };
 		79ACC7DE22AA5BE900AC3BF0 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 79ACC7DD22AA5BE900AC3BF0 /* Data */; };
 		79ACC7DF22AA5BE900AC3BF0 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 79ACC7DD22AA5BE900AC3BF0 /* Data */; };
 		79ACC7E022AA5BE900AC3BF0 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 79ACC7DD22AA5BE900AC3BF0 /* Data */; };
@@ -761,6 +764,7 @@
 		79A096202480F65B009B285C /* DoorOpen.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DoorOpen.caf; sourceTree = "<group>"; };
 		79A8BECA248224C100346F44 /* SKActionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKActionExtensions.swift; sourceTree = "<group>"; };
 		79A8BECE2482259700346F44 /* HitState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitState.swift; sourceTree = "<group>"; };
+		79A8BF0A24827FA500346F44 /* RestAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestAction.swift; sourceTree = "<group>"; };
 		79ACC7DD22AA5BE900AC3BF0 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
 		79ACC7EC22AA5D8700AC3BF0 /* EntityLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityLoader.swift; sourceTree = "<group>"; };
 		79ACC7F022AA60E300AC3BF0 /* EntityFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityFactory.swift; sourceTree = "<group>"; };
@@ -1043,6 +1047,7 @@
 				79DF73AB2462D3570030E7A8 /* StatusUpdatable.swift */,
 				79D6E6DF247A6DD200D7333A /* UseAction.swift */,
 				79F057372482115D00353E0A /* AttackAction.swift */,
+				79A8BF0A24827FA500346F44 /* RestAction.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -1996,6 +2001,7 @@
 				79042E74247BF86700730646 /* Tileset.swift in Sources */,
 				794864D322A7E60300F84A72 /* Game.swift in Sources */,
 				79742A6A239E60A7008504E8 /* Gender.swift in Sources */,
+				79A8BF0B24827FA500346F44 /* RestAction.swift in Sources */,
 				792C699023A5495500A729C3 /* CastSpellAction.swift in Sources */,
 				79C61A7B22A7C415008D3609 /* GameViewController.swift in Sources */,
 				792C698C23A40D4700A729C3 /* Spell.swift in Sources */,
@@ -2080,6 +2086,7 @@
 				79042E75247BF86700730646 /* Tileset.swift in Sources */,
 				793A575924459A070089E693 /* Constants.swift in Sources */,
 				794864D422A7E60300F84A72 /* Game.swift in Sources */,
+				79A8BF0C24827FA500346F44 /* RestAction.swift in Sources */,
 				79742A6B239E60A7008504E8 /* Gender.swift in Sources */,
 				792C699123A5495500A729C3 /* CastSpellAction.swift in Sources */,
 				79C61A8C22A7C415008D3609 /* GameViewController.swift in Sources */,
@@ -2159,6 +2166,7 @@
 				79C61A9A22A7C415008D3609 /* GameViewController.swift in Sources */,
 				79D58E13247D93C200E1EE79 /* Map.swift in Sources */,
 				79ACC82C22AB81F000AC3BF0 /* JSONConstructable.swift in Sources */,
+				79A8BF0D24827FA500346F44 /* RestAction.swift in Sources */,
 				79492BEB23A61299005B9508 /* TileProtocol.swift in Sources */,
 				79A8BED12482259700346F44 /* HitState.swift in Sources */,
 				7960DEBD23A6082B00B4CDF8 /* Monster.swift in Sources */,

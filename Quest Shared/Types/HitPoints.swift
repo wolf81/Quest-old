@@ -14,7 +14,7 @@ protocol HitPointsDelegate: class {
 
 struct HitPoints: CustomStringConvertible {
     private(set) var base: Int
-    private var lost: Int
+    private(set) var lost: Int
     
     var current: Int { return self.base - self.lost }
         

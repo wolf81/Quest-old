@@ -44,7 +44,7 @@ class Monster: Actor, CustomStringConvertible {
         return "\(self.name) [ HD: \(self.hitDie) / HP: \(self.hitPoints.current) / AC: \(self.armorClass) ]"
     }
         
-    override func update(state: GameState) {
+    override func update(state: GameState, deltaTime: TimeInterval) {
         guard self.isAlive && state.hero.isAlive else { return idle() }
 
         let didMeleeAttack = attack(meleeTarget: state.hero, state: state)

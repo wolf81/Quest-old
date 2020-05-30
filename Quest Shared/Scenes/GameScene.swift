@@ -233,6 +233,14 @@ func isInRange(origin: vector_int2, radius: Int32, coord: vector_int2) -> Bool {
 // MARK: - GameDelegate
 
 extension GameScene: GameDelegate {
+    func gameActorDidStartRest(actor: Actor) {
+        print("actor did start resting")
+    }
+    
+    func gameActorDidFinishRest(actor: Actor) {
+        print("actor did finish resting")
+    }
+    
     func gameActorDidTriggerTrap(actor: Actor, trap: Trap, isHit: Bool) {
         trap.playSound(.hit, on: self.world)
         if isHit {
@@ -621,6 +629,7 @@ extension GameScene {
         case /* i   */ 34: toggleInventory()
         case /* c   */ 35: toggleCharacterInfo()
         case /* u   */ 32: self.game.tryPlayerInteraction()
+        case /* r   */ 15: self.game.restPlayer()
         case /* tab */ 48: selectTargetProceedNext(true)
         case /* space */ 49: if let actor = self.targetActor { self.game.attackTarget(actor: actor) }
         default: print("\(event.keyCode)")

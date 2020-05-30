@@ -27,6 +27,10 @@ protocol GameDelegate: class {
     func gameActorDidPerformRangedAttack(actor: Actor, withProjectile projectile: Projectile, targetActor: Actor, state: HitState)
 
     func gameActorDidPerformInteraction(actor: Actor, targetEntity: EntityProtocol)
+    
+    func gameActorDidStartRest(actor: Actor)
+    
+    func gameActorDidFinishRest(actor: Actor)
 }
 
 enum SelectionMode {
@@ -154,18 +158,14 @@ class Game {
         self.state.hero.updateVisibility()
     }
     
-    func update(_ currentTime: TimeInterval) {
-        var deltaTime = currentTime - self.lastUpdateTime
-        
-        defer {            
-            self.lastUpdateTime = CACurrentMediaTime();
-        }
-        
+    func update(_ deltaTime: TimeInterval) {
         // process the list if pending actions
         while let action = self.actions.first {
             action.perform(state: self.state)
             
             switch action {
+            case let rest as RestAction:
+                print("resting")
             case let interact as InteractAction:
 //                print("\(interact.actor.name) @ \(interact.actor.coord.x).\(interact.actor.coord.y) is interacting with \(interact.entity.name)")
                 interact.actor.updateVisibility()
@@ -220,7 +220,7 @@ class Game {
             
             if actor.canTakeTurn && actor.isAwaitingInput {                
                 // in case of the hero, we might need to wait for input before we can get a new action
-                return actor.update(state: self.state)
+                return actor.update(state: self.state, deltaTime: deltaTime)
             }
 
             if actor.canTakeTurn {
@@ -228,7 +228,7 @@ class Game {
                 guard self.state.hero.visibleCoords.contains(actor.coord) else { return self.state.nextActor() }
                                 
                 actor.energy.increment(Constants.energyPerTick)
-                actor.update(state: self.state)
+                actor.update(state: self.state, deltaTime: deltaTime)
 
                 // if the actor has a pending action, add the action to the pending action list
                 guard let action = actor.getAction() else { return self.state.nextActor() }
@@ -250,6 +250,19 @@ class Game {
     func stopPlayer() {
         self.selectionMode = .none
         self.state.hero.stop()
+    }
+    
+    func restPlayer() {
+        guard self.state.hero.isResting == false else { return }
+        
+        for coord in self.state.hero.visibleCoords {
+            if let actor = self.state.getActor(at: coord), actor != self.state.hero {
+                self.delegate?.gameDidUpdateStatus(message: "Can't rest when enemies are nearby")
+                return
+            }
+        }
+        
+        self.state.hero.rest()
     }
     
     func attackTarget(actor: Actor) {

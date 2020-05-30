@@ -12,6 +12,7 @@ enum EffectType: String {
     case reduceDamage
     case restoreHealth
     case reduceMovementEnergyCost
+    case limitSight
 }
 
 class Effect: EntityProtocol {

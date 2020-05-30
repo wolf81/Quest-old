@@ -19,6 +19,8 @@ class Actor: Entity {
 
     var isAlive: Bool { return self.hitPoints.current > 0 }
 
+    var isResting: Bool = false
+
     private(set) var skills: Skills
         
     private(set) var attributes: Attributes = Attributes(strength: 12, dexterity: 12, mind: 12)
@@ -40,7 +42,7 @@ class Actor: Entity {
     private(set) var unarmed: Weapon
     
     private(set) var energyCost: EnergyCost
-                
+                    
     private let inventory: Inventory = Inventory()
     
     private var action: Action?        
@@ -85,7 +87,7 @@ class Actor: Entity {
         return self.action
     }
     
-    func update(state: GameState) { fatalError() }
+    func update(state: GameState, deltaTime: TimeInterval) { fatalError() }
     
     var effects: [Effect] {
         let equippedItems: [Equippable] = [self.equippedArmor, self.equippedShield, self.equippedRing, self.equippedWeapon, self.equippedBoots, self.equippedHeadpiece]

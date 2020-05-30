@@ -23,7 +23,9 @@ class Hero: Actor, CustomStringConvertible {
     var experience: Int = 0
     
     private var heroAction: HeroAction?
-                    
+    
+    var lastRestTime: TimeInterval = 0
+                        
     override var meleeAttackBonus: Int {
         var attackBonus = self.attributes.strength.bonus + self.equippedWeapon.attack
         if self.role == .fighter {
@@ -76,13 +78,23 @@ class Hero: Actor, CustomStringConvertible {
         super.init(json: json, entityFactory: entityFactory)
     }
     
-    override func update(state: GameState) {
+    override func update(state: GameState, deltaTime: TimeInterval) {
         guard self.isAlive else { return }
         
-        guard let heroAction = self.heroAction else { return }
-        
         guard self.sprite.hasActions() == false else { return }
-        
+
+        if self.isResting {
+            self.lastRestTime += deltaTime
+            if self.lastRestTime > 1.0 {
+                let rest = RestAction(actor: self)
+                self.setAction(rest)
+                self.lastRestTime = 0
+            }
+            return
+        }
+
+        guard let heroAction = self.heroAction else { return }
+                                
         switch heroAction {
         case .attack(let targetActor):
             let attackRanged = AttackAction(actor: self, targetActor: targetActor)
@@ -133,15 +145,28 @@ class Hero: Actor, CustomStringConvertible {
     }
     
     func move(direction: Direction) {        
+        guard self.isResting == false else { return }
+
         self.heroAction = HeroAction.move(direction)
     }
     
     func interact(direction: Direction) {
+        guard self.isResting == false else { return }
+
         self.heroAction = HeroAction.interact(direction)
     }
     
     func attack(actor: Actor) {
+        guard self.isResting == false else { return }
+        
         self.heroAction = HeroAction.attack(actor)
+    }
+    
+    func rest() {
+        guard self.isResting == false else { return }
+
+        self.isResting = true
+        self.lastRestTime = 0
     }
     
     func stop() {

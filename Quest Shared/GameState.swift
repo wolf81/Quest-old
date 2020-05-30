@@ -20,6 +20,8 @@ class GameState {
     lazy var mapHeight: Int32 = { Int32(self.map.count) }()
 
     var hero: Hero
+
+    let entityFactory: EntityFactory
     
     var entities: [Entity] = []
 
@@ -44,6 +46,7 @@ class GameState {
     private var movementGraph: GKGridGraph<GKGridGraphNode>!
                     
     init(level: Int, hero: Hero, entityFactory: EntityFactory) throws {
+        self.entityFactory = entityFactory
         self.hero = hero
         
         let json = try DataLoader.loadLevel(index: level)
@@ -58,10 +61,10 @@ class GameState {
         self.mainTilesetName = tilesetInfo["main"] as! String
         self.altTilesetNames = tilesetInfo["alt"] as! [String]
                                 
-        configure(for: dungeon, entityFactory: entityFactory)
+        configure(for: dungeon)
     }
     
-    private func configure(for dungeon: Dungeon, entityFactory: EntityFactory) {
+    private func configure(for dungeon: Dungeon) {
         var map = Map()
         
         for x in 0 ..< dungeon.width {
@@ -81,13 +84,12 @@ class GameState {
         
         self.map = map
         
-        addTiles(to: dungeon, entityFactory: entityFactory)
-        addTilesets(to: dungeon, entityFactory: entityFactory)
-        addMonsters(to: dungeon, entityFactory: entityFactory)
-        addLoot(to: dungeon, entityFactory: entityFactory)
+        addTiles(to: dungeon)
+        addTilesets(to: dungeon)
+        addMonsters(to: dungeon)
+        addLoot(to: dungeon)
         addHero(to: dungeon, roomId: 1)
-        
-        addTraps(to: dungeon, entityFactory: entityFactory)
+        addTraps(to: dungeon)
         
         generateMovementGraph()
         
@@ -182,7 +184,7 @@ class GameState {
     
     // MARK: - Private
     
-    private func addTiles(to dungeon: Dungeon, entityFactory: EntityFactory) {
+    private func addTiles(to dungeon: Dungeon) {
         var tiles: [[TileProtocol]] = []
                        
         let tileset = try! DataLoader.load(type: Tileset.self, fromFileNamed: self.mainTilesetName, inDirectory: "Data/Tileset")
@@ -198,7 +200,7 @@ class GameState {
                switch nodeType {
                case .open: entity = Tile(sprite: tileset.getFloorTile(), coord: coord)
                case .blocked: entity = Tile(sprite: tileset.getWallTile(), coord: coord)
-               case .door: entity = try! entityFactory.newEntity(type: Door.self, name: "Door", coord: coord)
+               case .door: entity = try! self.entityFactory.newEntity(type: Door.self, name: "Door", coord: coord)
                }
 
                tileRow.append(entity)
@@ -209,7 +211,7 @@ class GameState {
         self.tiles = tiles
     }
     
-    private func addLoot(to dungeon: Dungeon, entityFactory: EntityFactory) {
+    private func addLoot(to dungeon: Dungeon) {
         let roomCount = dungeon.roomInfo.count
         
         var lootRoomIds: [UInt] = []
@@ -222,35 +224,33 @@ class GameState {
             
             let room = dungeon.roomInfo[roomId]!
             let coord = getRandomCoord(in: room)
-            let potion = try! entityFactory.newEntity(type: Potion.self, name: "Health Potion", coord: coord)
+            let potion = try! self.entityFactory.newEntity(type: Potion.self, name: "Health Potion", coord: coord)
             self.entities.append(potion)
             
             lootRoomIds.append(roomId)
         }
     }
     
-    private func addTraps(to dungeon: Dungeon, entityFactory: EntityFactory) {
+    private func addTraps(to dungeon: Dungeon) {
         for (_, room) in dungeon.roomInfo {
             let maxTrapCount = UInt32(floor(cbrt(Float(room.area))))
-            let trapCount = arc4random_uniform(maxTrapCount)
+            var trapCount = arc4random_uniform(maxTrapCount)
             
-            var i = 0
-            
-            while i < trapCount {
+            while trapCount > 0 {
                 let coord = getRandomCoord(in: room)
                 guard getTrap(at: coord) == nil else { continue }
 
                 let tile = self.tiles[Int(coord.y)][Int(coord.x)]
-                let trap = try! entityFactory.newEntity(type: Trap.self, name: "Arrow Trap", coord: tile.coord)
+                let trap = try! self.entityFactory.newEntity(type: Trap.self, name: "Arrow Trap", coord: tile.coord)
                 trap.configure(withTile: tile)
                 self.tiles[Int(coord.y)][Int(coord.x)] = trap
                 
-                i += 1
+                trapCount -= 1
             }
         }
     }
     
-    private func addMonsters(to dungeon: Dungeon, entityFactory: EntityFactory) {
+    private func addMonsters(to dungeon: Dungeon) {
         var monsterCount = 0
         for (_, room) in dungeon.roomInfo {
             let roomCoord = getRandomCoord(in: room)
@@ -260,9 +260,9 @@ class GameState {
             // TODO: fix room coord calc in DungeonBuilder, so we don't have to do the following to get good coords ...
 //            let roomCoord = vector_int2(Int32(room.coord.y + room.height / 2), Int32(room.coord.x + room.width / 2))
             
-            let monsterNames = entityFactory.entityNames(of: Monster.self)        
+            let monsterNames = self.entityFactory.entityNames(of: Monster.self)
             let remainder = monsterCount.remainderReportingOverflow(dividingBy: monsterNames.count).partialValue
-            let monster = try! entityFactory.newEntity(type: Monster.self, name: monsterNames[remainder], coord: roomCoord)
+            let monster = try! self.entityFactory.newEntity(type: Monster.self, name: monsterNames[remainder], coord: roomCoord)
             self.entities.append(monster)
             
             monsterCount += 1
@@ -270,18 +270,18 @@ class GameState {
     }
     
     private func getRandomCoord(in room: Room, insetBy inset: Int = 0) -> vector_int2 {
-        var roomCoords: [vector_int2] = []
-        
-        for y in Int32(room.coord.y + inset) ..< Int32(room.coord.y + room.height - inset) {
-            for x in Int32(room.coord.x + inset) ..< Int32(room.coord.x + room.width - inset) {
-                let coord = vector_int2(y, x)
-                
-                if self.getMapNodeType(at: coord) == .open {
-                    roomCoords.append(coord)
-                }
-            }
-        }
-        
+         var roomCoords: [vector_int2] = []
+         
+         for y in Int32(room.coord.y + inset) ..< Int32(room.coord.y + room.height - inset) {
+             for x in Int32(room.coord.x + inset) ..< Int32(room.coord.x + room.width - inset) {
+                 let coord = vector_int2(y, x)
+                 
+                 if self.getMapNodeType(at: coord) == .open {
+                     roomCoords.append(coord)
+                 }
+             }
+         }
+
         let randomIdx = arc4random_uniform(UInt32(roomCoords.count))
         return roomCoords[Int(randomIdx)]
     }
@@ -302,11 +302,18 @@ class GameState {
     
     private func addHero(to dungeon: Dungeon, roomId: UInt) {
         let room = dungeon.roomInfo[roomId]!
+       
+//        for coord in getCoords(in: room) {
+//            if let actor = getActor(at: coord) {
+//                self.entities.removeAll(where: { $0 === actor })
+//            }
+//        }
+        
         self.hero.coord = vector_int2(Int32(room.coord.y), Int32(room.coord.x))
         self.entities.append(self.hero)
     }
     
-    private func addTilesets(to dungeon: Dungeon, entityFactory: EntityFactory) {
+    private func addTilesets(to dungeon: Dungeon) {
         var tilesets: [Tileset] = []
         for tilesetFile in self.altTilesetNames {
             let tileset = try! DataLoader.load(type: Tileset.self, fromFileNamed: tilesetFile, inDirectory: "Data/Tileset")
@@ -371,7 +378,7 @@ class GameState {
             let decorationCount = arc4random_uniform(maxDecorationCount + 1)
             for _ in (0 ..< Int(decorationCount)) {
                 let decorationCoord = getRandomCoord(in: room, insetBy: 1)
-                if let decoration = tileset.getDecoration(coord: decorationCoord, entityFactory: entityFactory) {
+                if let decoration = tileset.getDecoration(coord: decorationCoord, entityFactory: self.entityFactory) {
                     let tile = self.tiles[Int(decorationCoord.y)][Int(decorationCoord.x)]
                     decoration.configure(withTile: tile)
                     self.tiles[Int(decorationCoord.y)][Int(decorationCoord.x)] = decoration
