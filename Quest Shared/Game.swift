@@ -20,11 +20,11 @@ protocol GameDelegate: class {
     
     func gameActorDidMove(actor: Actor, path: [vector_int2])
     
-    func gameActorDidPerformMeleeAttack(actor: Actor, targetActor: Actor, isHit: Bool)
-
     func gameActorDidTriggerTrap(actor: Actor, trap: Trap, isHit: Bool)
     
-    func gameActorDidPerformRangedAttack(actor: Actor, withProjectile projectile: Projectile, targetActor: Actor, isHit: Bool)
+    func gameActorDidPerformMeleeAttack(actor: Actor, targetActor: Actor, state: HitState)
+
+    func gameActorDidPerformRangedAttack(actor: Actor, withProjectile projectile: Projectile, targetActor: Actor, state: HitState)
 
     func gameActorDidPerformInteraction(actor: Actor, targetEntity: EntityProtocol)
 }
@@ -196,10 +196,10 @@ class Game {
                     //                print("\(attack.actor.name) @ \(attack.actor.coord.x).\(attack.actor.coord.y) is performing ranged attack")
                     let projectile = action.actor.equippedWeapon.projectile!
                     projectile.configureSprite(origin: attack.actor.coord, target: attack.targetActor.coord)
-                    self.delegate?.gameActorDidPerformRangedAttack(actor: attack.actor, withProjectile: projectile, targetActor: attack.targetActor, isHit: attack.isHit)
+                    self.delegate?.gameActorDidPerformRangedAttack(actor: attack.actor, withProjectile: projectile, targetActor: attack.targetActor, state: attack.hitState)
                 } else {
                     //                print("\(attack.actor.name) @ \(attack.actor.coord.x).\(attack.actor.coord.y) is performing melee attack")
-                    self.delegate?.gameActorDidPerformMeleeAttack(actor: attack.actor, targetActor: attack.targetActor, isHit: attack.isHit)
+                    self.delegate?.gameActorDidPerformMeleeAttack(actor: attack.actor, targetActor: attack.targetActor, state: attack.hitState)
                 }
                 
                 if attack.targetActor.isAlive == false {

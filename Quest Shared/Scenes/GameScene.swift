@@ -10,6 +10,12 @@ import Fenris
 import SpriteKit
 import GameplayKit
 
+fileprivate enum VisibilityChange {
+    case willShow
+    case willHide
+    case node
+}
+
 class GameScene: SKScene, SceneManagerConstructable {
     public struct UserInfoKey {
         public static let game = "game"
@@ -271,7 +277,7 @@ extension GameScene: GameDelegate {
         }
     }
     
-    func gameActorDidPerformRangedAttack(actor: Actor, withProjectile projectile: Projectile, targetActor: Actor, isHit: Bool) {
+    func gameActorDidPerformRangedAttack(actor: Actor, withProjectile projectile: Projectile, targetActor: Actor, state: HitState) {
         // Make a copy of the sprite, to prevent the sprite to become unmanaged once the projectile is destroyed
         let sprite = projectile.sprite.copy() as! SKSpriteNode
         sprite.position = actor.sprite.position
@@ -279,7 +285,7 @@ extension GameScene: GameDelegate {
 
         // for missing attacks, show arrow hitting coordinate next to the hero
         var toCoord = targetActor.coord
-        if !isHit {
+        if !state.isHit {
             let adjacentDirections = Direction.relative(from: actor.coord, to: targetActor.coord).adjacentDirections
             let direction = arc4random() % 2 == 0 ? adjacentDirections[0] : adjacentDirections[1]
             toCoord = toCoord &+ direction.coord
@@ -291,17 +297,20 @@ extension GameScene: GameDelegate {
                 sprite.removeFromParent()
             }
         ])
-        
         sprite.run(attack)
-        
-        if isHit {
+
+        if state.isHit {
             projectile.playSound(.hit, on: self.world)
             targetActor.showBlood(duration: 8.0)
             targetActor.playSound(.hit)
         }
+
+        if state == .criticalHit && actor == self.game.state.hero {
+            self.camera?.run(SKAction.shake(duration: 6.0, amplitudeX: 10, amplitudeY: 10))
+        }
     }
     
-    func gameActorDidPerformMeleeAttack(actor: Actor, targetActor: Actor, isHit: Bool) {
+    func gameActorDidPerformMeleeAttack(actor: Actor, targetActor: Actor, state: HitState) {
         let actorPosition = GameScene.pointForCoord(actor.coord)
         let targetActorPosition = GameScene.pointForCoord(targetActor.coord)
         let midX = actorPosition.x + (targetActorPosition.x - actorPosition.x) / 2
@@ -312,13 +321,16 @@ extension GameScene: GameDelegate {
             SKAction.move(to: CGPoint(x: midX, y: midY), duration: stepDuration),
             SKAction.move(to: actorPosition, duration: stepDuration)
         ])
-        
         actor.sprite.run(attack)
         
-        if isHit {
+        if state.isHit {
             actor.equippedWeapon.playSound(.hit, on: self.world)
             targetActor.showBlood(duration: 8.0)
             targetActor.playSound(.hit)
+        }
+        
+        if state == .criticalHit && actor == self.game.state.hero {
+            self.camera?.run(SKAction.shake(duration: 6.0, amplitudeX: 10, amplitudeY: 10))
         }
     }
     

@@ -230,7 +230,7 @@ class GameState {
     }
     
     private func addTraps(to dungeon: Dungeon, entityFactory: EntityFactory) {
-        for (roomId, room) in dungeon.roomInfo {
+        for (_, room) in dungeon.roomInfo {
             let maxTrapCount = UInt32(floor(cbrt(Float(room.area))))
             let trapCount = arc4random_uniform(maxTrapCount)
             
