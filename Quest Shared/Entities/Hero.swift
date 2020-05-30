@@ -165,8 +165,10 @@ class Hero: Actor, CustomStringConvertible {
     func rest() {
         guard self.isResting == false else { return }
 
-        self.isResting = true
         self.lastRestTime = 0
+        
+        let rest = RestAction(actor: self)
+        self.setAction(rest)
     }
     
     func stop() {

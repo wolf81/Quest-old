@@ -48,7 +48,7 @@ class GameScene: SKScene, SceneManagerConstructable {
 
         self.game.delegate = self
         
-        NotificationCenter.default.addObserver(self, selector: #selector(GameScene.selectTarget), name: Notification.Name.actorDidChangeEquipment, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(GameScene.selectTarget), name: Notification.Name.actorDidChangeEquipment, object: nil)        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -191,6 +191,7 @@ class GameScene: SKScene, SceneManagerConstructable {
         }
     }
     
+    
     private func getMinMaxVisibleCoordsInView() -> (vector_int2, vector_int2) {
         let halfWidth = self.size.width / 2
         let minX = self.camera!.position.x - halfWidth
@@ -234,11 +235,11 @@ func isInRange(origin: vector_int2, radius: Int32, coord: vector_int2) -> Bool {
 
 extension GameScene: GameDelegate {
     func gameActorDidStartRest(actor: Actor) {
-        print("actor did start resting")
+        self.gameActorDidMove(actor: self.game.state.hero, path: [self.game.state.hero.coord])
     }
     
     func gameActorDidFinishRest(actor: Actor) {
-        print("actor did finish resting")
+        self.gameActorDidMove(actor: self.game.state.hero, path: [self.game.state.hero.coord])
     }
     
     func gameActorDidTriggerTrap(actor: Actor, trap: Trap, isHit: Bool) {
@@ -380,6 +381,7 @@ extension GameScene: GameDelegate {
                 if hero.visibleCoords.contains(activeActor.coord) == false {
                     activeActor.sprite.removeFromParent()
                 } else if activeActor.sprite.parent == nil {
+                    activeActor.sprite.position = GameScene.pointForCoord(activeActor.coord)
                     self.world.addChild(activeActor.sprite)
                 }
             }

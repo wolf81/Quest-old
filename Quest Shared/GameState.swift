@@ -94,18 +94,7 @@ class GameState {
         generateMovementGraph()
         
         for actor in self.actors {
-            actor.visibility = RaycastVisibility(mapSize: self.mapSize, blocksLight: {
-                if let door = self.getDoor(at: $0) {
-                    return door.isOpen == false
-                }
-                                
-                return self.getMapNodeType(at: $0) == .blocked
-            }, setVisible: {
-                actor.visibleCoords.insert($0)
-            }, getDistance: {
-                return Functions.distanceBetween($0, $1)
-            })
-            
+            setRaycastVisibility(for: actor)
             actor.updateVisibility()
         }
     }
@@ -159,6 +148,22 @@ class GameState {
         self.entities.removeAll(where: { $0 == entity })
     }
     
+    func spawnMonster(at coord: vector_int2) -> Monster {
+        let monsters = self.entityFactory.entityNames(of: Monster.self)
+        let monsterName = monsters.randomElement()!
+        let monster = try! self.entityFactory.newEntity(type: Monster.self, name: monsterName, coord: coord)
+        setRaycastVisibility(for: monster)
+        self.entities.append(monster)
+        
+        if self.hero.visibleCoords.contains(monster.coord) {
+            self.activeActors.append(monster)
+            let actorIdx = self.activeActors.firstIndex(of: monster)!
+            self.activeActorIndex = actorIdx
+        }
+        
+        return monster
+    }
+    
     func findPath(from coord: vector_int2, to toCoord: vector_int2) -> [vector_int2] {
         guard
             let startNode = self.movementGraph.node(atGridPosition: coord),
@@ -183,6 +188,20 @@ class GameState {
     }
     
     // MARK: - Private
+    
+    private func setRaycastVisibility(for actor: Actor) {
+        actor.visibility = RaycastVisibility(mapSize: self.mapSize, blocksLight: {
+            if let door = self.getDoor(at: $0) {
+                return door.isOpen == false
+            }
+                            
+            return self.getMapNodeType(at: $0) == .blocked
+        }, setVisible: {
+            actor.visibleCoords.insert($0)
+        }, getDistance: {
+            return Functions.distanceBetween($0, $1)
+        })
+    }
     
     private func addTiles(to dungeon: Dungeon) {
         var tiles: [[TileProtocol]] = []

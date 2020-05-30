@@ -53,7 +53,7 @@ class Potion: Entity & Usable & Lootable {
     
     func use(actor: Actor) {
         for effect in self.effects {
-            effect.apply(sourceActor: actor, targetActor: actor, userInfo: [:])
+            effect.apply(actor: actor, userInfo: [:])
         }
     }
 }

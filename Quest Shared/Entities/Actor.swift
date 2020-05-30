@@ -19,7 +19,7 @@ class Actor: Entity {
 
     var isAlive: Bool { return self.hitPoints.current > 0 }
 
-    var isResting: Bool = false
+    var isResting: Bool { self.effects.contains(where: { $0.name == "Sleep" })}
 
     private(set) var skills: Skills
         
@@ -31,7 +31,11 @@ class Actor: Entity {
 
     private(set) var armorClass: Int = 0
         
-    private(set) var sight: Int32 = 4
+    private(set) var sight: Int32 = 5 {
+        didSet {
+            updateVisibility()
+        }
+    }
     
     private(set) var level: Int = 1
     
@@ -89,7 +93,11 @@ class Actor: Entity {
     
     func update(state: GameState, deltaTime: TimeInterval) { fatalError() }
     
-    var effects: [Effect] {
+    var effects: [Effect] { self.equipmentEffects + self.otherEffects }
+    
+    private var otherEffects: [Effect] = []
+    
+    private var equipmentEffects: [Effect] {
         let equippedItems: [Equippable] = [self.equippedArmor, self.equippedShield, self.equippedRing, self.equippedWeapon, self.equippedBoots, self.equippedHeadpiece]
         return equippedItems.compactMap({ $0.effects }).flatMap({ $0 })
     }
@@ -100,7 +108,7 @@ class Actor: Entity {
         self.skills = skills
         self.unarmed = try! entityFactory.newEntity(type: Weapon.self, name: "Unarmed")
         self.energyCost = EnergyCost(json: json["energyCost"] as? [String: Int] ?? [:])
-        self.sight = json["sight"] as? Int32 ?? 6
+        self.sight = json["sight"] as? Int32 ?? 5
         
         super.init(json: json, entityFactory: entityFactory)
                                 
@@ -232,6 +240,22 @@ class Actor: Entity {
             SKAction.fadeOut(withDuration: duration / 6 * 3),
             SKAction.run({ blood.removeFromParent() })
         ]))
+    }
+    
+    public func applyEffect(effect: Effect) {
+        self.otherEffects.append(effect)
+        
+        if effect.type == .limitSight {
+            self.sight = Int32(effect.value)
+        }
+    }
+    
+    public func removeEffect(named name: String) {
+        if self.otherEffects.contains(where: { $0.type == .limitSight }) {
+            self.sight = self.json["sight"] as? Int32 ?? 5
+        }
+        
+        self.otherEffects.removeAll(where: { $0.name == name })
     }
     
     // MARK: - Private

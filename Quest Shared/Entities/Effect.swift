@@ -46,10 +46,15 @@ class Effect: EntityProtocol {
         fatalError()
     }
 
-    func apply(sourceActor: Actor, targetActor: Actor, userInfo: [String: Any]) {
-        sourceActor.hitPoints.restore(hitPoints: self.value)
+    func apply(actor: Actor, userInfo: [String: Any]) {
+        switch self.type {
+        case .restoreHealth:
+            actor.hitPoints.restore(hitPoints: self.value)
+        default:
+            fatalError()
+        }
     }
-
+    
     // MARK: - Private
     
     private func copyInternal<T: Effect>(coord: vector_int2, entityFactory: EntityFactory) -> T {

@@ -13,24 +13,24 @@ import Fenris
 
 protocol GameDelegate: class {
     func gameDidDestroy(entity: EntityProtocol)
-
+    
     func gameDidChangeSelectionMode(_ selectionMode: SelectionMode)
 
     func gameDidUpdateStatus(message: String)
     
     func gameActorDidMove(actor: Actor, path: [vector_int2])
     
+    func gameActorDidStartRest(actor: Actor)
+    
+    func gameActorDidFinishRest(actor: Actor)
+
     func gameActorDidTriggerTrap(actor: Actor, trap: Trap, isHit: Bool)
     
     func gameActorDidPerformMeleeAttack(actor: Actor, targetActor: Actor, state: HitState)
 
     func gameActorDidPerformRangedAttack(actor: Actor, withProjectile projectile: Projectile, targetActor: Actor, state: HitState)
 
-    func gameActorDidPerformInteraction(actor: Actor, targetEntity: EntityProtocol)
-    
-    func gameActorDidStartRest(actor: Actor)
-    
-    func gameActorDidFinishRest(actor: Actor)
+    func gameActorDidPerformInteraction(actor: Actor, targetEntity: EntityProtocol)    
 }
 
 enum SelectionMode {
@@ -165,7 +165,13 @@ class Game {
             
             switch action {
             case let rest as RestAction:
-                print("resting")
+                switch rest.state {
+                case .started:
+                    self.delegate?.gameActorDidStartRest(actor: rest.actor)
+                case .completed:
+                    self.delegate?.gameActorDidFinishRest(actor: rest.actor)
+                default: break
+                }
             case let interact as InteractAction:
 //                print("\(interact.actor.name) @ \(interact.actor.coord.x).\(interact.actor.coord.y) is interacting with \(interact.entity.name)")
                 interact.actor.updateVisibility()
@@ -263,6 +269,7 @@ class Game {
         }
         
         self.state.hero.rest()
+        self.delegate?.gameActorDidStartRest(actor: self.state.hero)
     }
     
     func attackTarget(actor: Actor) {

@@ -7,17 +7,50 @@
 //
 
 import Foundation
+import simd
+
+enum RestState {
+    case started
+    case progress
+    case completed
+}
 
 class RestAction: Action {
-    var finished: Bool { self.actor.hitPoints.lost == 0 }
+    var state: RestState = .progress
     
     override func perform(state: GameState) {
         self.actor.energy.drain(50)
+        
+        if self.actor.isResting == false {
+            self.state = .started
+        }
+        
+        let sleep = try! state.entityFactory.newEntity(type: Effect.self, name: "Sleep")
+        self.actor.applyEffect(effect: sleep)
+        self.actor.updateVisibility()
 
         self.actor.hitPoints.restore(hitPoints: 1)
-        
-        if self.actor.hitPoints.current == self.actor.hitPoints.base {
-            self.actor.isResting = false
-        }        
+
+        let didEncounterMonster = arc4random_uniform(5) == 0
+        let didRestoreFullHealth = self.actor.hitPoints.current == self.actor.hitPoints.base
+        if didEncounterMonster || didRestoreFullHealth {
+            self.actor.removeEffect(named: "Sleep")
+            self.actor.updateVisibility()
+            self.state = .completed
+        }
+
+        if didEncounterMonster {
+            while true {
+                let coord = self.actor.visibleCoords.randomElement()!
+                let node = state.getMapNodeType(at: coord)
+                if node == .open && coord != state.hero.coord {
+                    let monster = state.spawnMonster(at: coord)
+                    monster.energy.drain(30) // monster starts at -30
+                    monster.updateVisibility()
+                    monster.update(state: state, deltaTime: 0)
+                    break
+                }
+            }
+        }
     }
 }
