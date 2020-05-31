@@ -374,33 +374,9 @@ extension GameScene: GameDelegate {
         switch actor {
         case let hero as Hero:
             let (minCoord, maxCoord) = getMinMaxVisibleCoordsInView()
-                                                        
             let viewVisibleCoords = getCoordsInRange(minCoord: minCoord, maxCoord: maxCoord)
+            updateVisibleActorsAndLootForHero(viewVisibleCoords: viewVisibleCoords)
 
-            for activeActor in self.game.state.activeActors {
-                if hero.visibleCoords.contains(activeActor.coord) == false {
-                    activeActor.sprite.removeFromParent()
-                } else if activeActor.sprite.parent == nil {
-                    activeActor.sprite.position = GameScene.pointForCoord(activeActor.coord)
-                    self.world.addChild(activeActor.sprite)
-                }
-            }
-                        
-            for entity in self.game.state.loot {
-                if hero.visibleCoords.contains(entity.coord) {
-                    
-                    if entity.sprite.parent == nil {
-                        self.world.addChild(entity.sprite)
-                    }
-                    else {
-                        let position = GameScene.pointForCoord(path.last!)
-                        hero.sprite.run(SKAction.move(to: position, duration: 2.0))
-                    }
-                } else {
-                    entity.sprite.removeFromParent()
-                }
-            }
-                                    
             // add sprites for all newly added tiles ... these are tiles that used to be out of view bounds
             let addedCoords = viewVisibleCoords.subtracting(self.game.viewVisibleCoords)
             for coord in addedCoords {
@@ -524,6 +500,32 @@ extension GameScene: GameDelegate {
 
         if let targetActor = self.targetActor {
             targetActor.sprite.addChild(self.targetNode)
+        }
+    }
+    
+    private func updateVisibleActorsAndLootForHero(viewVisibleCoords: Set<vector_int2>) {
+        let hiddenCoords = viewVisibleCoords.subtracting(self.game.state.hero.visibleCoords)
+        
+        for coord in hiddenCoords {
+            if let actor = self.game.state.getActor(at: coord), actor.sprite.parent != nil {
+                actor.sprite.removeFromParent()
+            }
+            
+            if let loot = self.game.state.getLoot(at: coord), loot.sprite.parent != nil {
+                loot.sprite.parent?.removeFromParent()
+            }
+        }
+        
+        for coord in self.game.state.hero.visibleCoords {
+            if let actor = self.game.state.getActor(at: coord), actor.sprite.parent == nil {
+                actor.sprite.position = GameScene.pointForCoord(actor.coord)
+                self.world.addChild(actor.sprite)
+            }
+            
+            if let loot = self.game.state.getLoot(at: coord), loot.sprite.parent == nil {
+                loot.sprite.position = GameScene.pointForCoord(loot.coord)
+                self.world.addChild(loot.sprite)
+            }
         }
     }
 }
