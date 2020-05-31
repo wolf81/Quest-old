@@ -311,7 +311,7 @@ extension GameScene: GameDelegate {
         if state.isHit {
             projectile.playSound(.hit, on: self.world)
             targetActor.showBlood(duration: 8.0)
-            targetActor.playSound(.hit)
+            targetActor.playSound(.hit, on: self.world)
         }
 
         if state == .criticalHit && actor == self.game.state.hero {
@@ -335,7 +335,7 @@ extension GameScene: GameDelegate {
         if state.isHit {
             actor.equippedWeapon.playSound(.hit, on: self.world)
             targetActor.showBlood(duration: 8.0)
-            targetActor.playSound(.hit)
+            targetActor.playSound(.hit, on: self.world)
         }
         
         if state == .criticalHit && actor == self.game.state.hero {
@@ -364,7 +364,7 @@ extension GameScene: GameDelegate {
         
         if let actor = entity as? Actor {
             actor.showBlood(duration: 6.0)
-            actor.playSound(.destroy)
+            actor.playSound(.destroy, on: self.world)
         }
 
         entity.sprite.run(SKAction.sequence(fade))

@@ -197,14 +197,14 @@ class Actor: Entity {
         NotificationCenter.default.post(name: Notification.Name.actorDidChangeEquipment, object: nil)
     }
     
-    func playSound(_ type: SoundType) {
+    func playSound(_ type: SoundType, on node: SKNode) {
         guard let sounds = self.soundInfo[type] else { return }
         
         let index = arc4random_uniform(UInt32(sounds.count))
         let sound = sounds[Int(index)]
                 
         let play = SKAction.playSoundFileNamed(sound, waitForCompletion: false)
-        self.sprite.run(play)
+        node.run(play)
     }
     
     func updateVisibility() {

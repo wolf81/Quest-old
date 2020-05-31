@@ -15,7 +15,9 @@ enum RestState {
     case completed
 }
 
-class RestAction: Action {
+class RestAction: Action, StatusUpdatable {
+    var message: String?
+    
     var state: RestState = .progress
     
     override func perform(state: GameState) {
@@ -23,12 +25,12 @@ class RestAction: Action {
         
         if self.actor.isResting == false {
             self.state = .started
+            let sleep = try! state.entityFactory.newEntity(type: Effect.self, name: "Sleep")
+            self.actor.applyEffect(effect: sleep)
+            self.actor.updateVisibility()
+            return
         }
         
-        let sleep = try! state.entityFactory.newEntity(type: Effect.self, name: "Sleep")
-        self.actor.applyEffect(effect: sleep)
-        self.actor.updateVisibility()
-
         self.actor.hitPoints.restore(hitPoints: 1)
 
         let didEncounterMonster = arc4random_uniform(5) == 0
@@ -48,6 +50,7 @@ class RestAction: Action {
                     monster.energy.drain(30) // monster starts at -30
                     monster.updateVisibility()
                     monster.update(state: state, deltaTime: 0)
+                    self.message = "Your rest was interrupted by an angry \(monster.name)"
                     break
                 }
             }

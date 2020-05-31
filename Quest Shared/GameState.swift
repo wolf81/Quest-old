@@ -23,6 +23,8 @@ class GameState {
 
     let entityFactory: EntityFactory
     
+    var round: Int = 1
+    
     var entities: [Entity] = []
 
     var activeActors: [Actor] = []
@@ -187,6 +189,27 @@ class GameState {
         }
     }
     
+    func isEnemyNearHero() -> Bool {
+        let maxRange: Int32 = 7
+        let xRange = max((self.hero.coord.x - maxRange), 0) ... min((self.hero.coord.x + maxRange), self.mapWidth)
+        let yRange = max((self.hero.coord.y - maxRange), 0) ... min((self.hero.coord.y + maxRange), self.mapHeight)
+        
+        for x in xRange {
+            for y in yRange {
+                let coord = vector_int2(x, y)
+                
+                let distance = Functions.distanceBetween(self.hero.coord, coord)
+                guard distance <= maxRange else { continue }
+                
+                if let _ = getActor(at: coord) as? Monster {
+                    return true
+                }
+            }
+        }
+        
+        return false
+    }
+
     // MARK: - Private
     
     private func setRaycastVisibility(for actor: Actor) {
@@ -304,7 +327,7 @@ class GameState {
         let randomIdx = arc4random_uniform(UInt32(roomCoords.count))
         return roomCoords[Int(randomIdx)]
     }
-    
+        
     private func generateMovementGraph() {
         self.movementGraph = GKGridGraph(fromGridStartingAt: vector2(0, 0), width: self.mapWidth, height: self.mapHeight, diagonalsAllowed: false)
         for x in (0 ..< self.mapWidth) {

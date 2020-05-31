@@ -163,6 +163,10 @@ class Game {
         while let action = self.actions.first {
             action.perform(state: self.state)
             
+            if action.actor is Hero, let statusUpdatable = action as? StatusUpdatable, let message = statusUpdatable.message {
+                self.delegate?.gameDidUpdateStatus(message: message)
+            }
+            
             switch action {
             case let rest as RestAction:
                 switch rest.state {
@@ -260,14 +264,17 @@ class Game {
     
     func restPlayer() {
         guard self.state.hero.isResting == false else { return }
-        
-        for coord in self.state.hero.visibleCoords {
-            if let actor = self.state.getActor(at: coord), actor != self.state.hero {
-                self.delegate?.gameDidUpdateStatus(message: "Can't rest when enemies are nearby")
-                return
-            }
+
+        guard self.state.hero.hitPoints.lost > 0 else {
+            self.delegate?.gameDidUpdateStatus(message: "Already at full health")
+            return
         }
-        
+
+        guard self.state.isEnemyNearHero() == false else {
+            self.delegate?.gameDidUpdateStatus(message: "Can't rest when enemies are nearby")
+            return
+        }
+                        
         self.state.hero.rest()
         self.delegate?.gameActorDidStartRest(actor: self.state.hero)
     }
