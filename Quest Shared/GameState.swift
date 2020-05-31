@@ -281,7 +281,8 @@ class GameState {
             while trapCount > 0 {
                 let coord = getRandomCoord(in: room)
                 guard getTrap(at: coord) == nil else { continue }
-
+                guard getActor(at: coord) != self.hero else { continue }
+                
                 let tile = self.tiles[Int(coord.y)][Int(coord.x)]
                 let trap = try! self.entityFactory.newEntity(type: Trap.self, name: "Arrow Trap", coord: tile.coord)
                 trap.configure(withTile: tile)
