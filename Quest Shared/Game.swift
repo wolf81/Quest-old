@@ -163,8 +163,12 @@ class Game {
         while let action = self.actions.first {
             action.perform(state: self.state)
             
-            if action.actor is Hero, let statusUpdatable = action as? StatusUpdatable, let message = statusUpdatable.message {
-                self.delegate?.gameDidUpdateStatus(message: message)
+            if let statusUpdatable = action as? StatusUpdatable, let message = statusUpdatable.message {
+                if action.actor is Hero {
+                    self.delegate?.gameDidUpdateStatus(message: message)
+                }
+                
+                print(message)
             }
             
             switch action {
