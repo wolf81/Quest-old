@@ -16,9 +16,9 @@ enum RestState {
 }
 
 class RestAction: Action, StatusUpdatable {
-    var message: String?
+    private(set) var message: String?
     
-    var state: RestState = .progress
+    private(set) var state: RestState = .progress
     
     override func perform(state: GameState) {
         self.actor.energy.drain(50)

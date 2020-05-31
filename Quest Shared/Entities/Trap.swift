@@ -49,14 +49,14 @@ class Trap: TileProtocol {
         
     let attack: Int
     
-    let damage: HitDie
+    let damageDie: HitDie
 
     required init(json: [String : Any], entityFactory: EntityFactory) {
         self.json = json
                 
         self.attack = json["AT"] as? Int ?? 0
         let damage = json["damage"] as! String
-        self.damage = HitDie(rawValue: damage)!
+        self.damageDie = HitDie(rawValue: damage)!
     }
     
     required init(json: [String : Any], entityFactory: EntityFactory, coord: vector_int2) {
@@ -65,7 +65,7 @@ class Trap: TileProtocol {
         
         self.attack = json["AT"] as? Int ?? 0
         let damage = json["damage"] as! String
-        self.damage = HitDie(rawValue: damage)!
+        self.damageDie = HitDie(rawValue: damage)!
     }
 
     func copy(coord: vector_int2, entityFactory: EntityFactory) -> Self {
@@ -77,16 +77,17 @@ class Trap: TileProtocol {
         return entity
     }
     
-    func trigger(actor: Actor) -> Bool {
+    func trigger(actor: Actor) -> Int {
         self.state = .triggered
-
+        
         let attackDie = HitDie.d20(1, 0)
 
-        guard attackDie.randomValue >= self.attack else { return false }
+        guard attackDie.randomValue >= self.attack else { return 0 }
         
-        actor.reduceHealth(with: self.damage.randomValue)
+        let damage = self.damageDie.randomValue
+        actor.reduceHealth(with: damage)
         
-        return true
+        return damage
     }
     
     func disable() -> Bool {

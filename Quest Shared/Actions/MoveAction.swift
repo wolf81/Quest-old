@@ -17,6 +17,8 @@ class MoveAction: Action, StatusUpdatable {
     }
     
     private(set) var message: String?
+        
+    private(set) var triggeredTrap: (Trap, Int)? = nil
     
     init(actor: Actor, toCoord: vector_int2) {
         self.path = [toCoord]
@@ -41,6 +43,12 @@ class MoveAction: Action, StatusUpdatable {
 
         self.actor.coord = self.toCoord
 
-        self.message = "\(self.actor.name) moved to \(self.toCoord.x).\(self.toCoord.y)"
+        if let trap = state.getTrap(at: self.toCoord), trap.isActive, let hero = self.actor as? Hero {
+            let damage = trap.trigger(actor: hero)
+            self.triggeredTrap = (trap, damage)
+            self.message = "\(self.actor.name) did triggered trap at \(toCoord.x).\(toCoord.y) for \(damage) damage"
+        } else {
+            self.message = "\(self.actor.name) moved to \(self.toCoord.x).\(self.toCoord.y)"
+        }        
     }
 }

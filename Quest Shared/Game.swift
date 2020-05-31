@@ -195,10 +195,9 @@ class Game {
                         self.delegate?.gameDidDestroy(entity: loot)
                     }
                     
-                    if let trap = self.state.getTrap(at: hero.coord) {
-                        let isHit = trap.trigger(actor: hero)
-                        self.delegate?.gameActorDidTriggerTrap(actor: hero, trap: trap, isHit: isHit)
-                        
+                    if let (trap, damage) = move.triggeredTrap {
+                        self.delegate?.gameActorDidTriggerTrap(actor: hero, trap: trap, isHit: damage > 0)
+
                         if !hero.isAlive {
                             self.delegate?.gameDidDestroy(entity: hero)
                         }

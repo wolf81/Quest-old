@@ -48,7 +48,7 @@ class GameScene: SKScene, SceneManagerConstructable {
 
         self.game.delegate = self
         
-        NotificationCenter.default.addObserver(self, selector: #selector(GameScene.selectTarget), name: Notification.Name.actorDidChangeEquipment, object: nil)        
+        NotificationCenter.default.addObserver(self, selector: #selector(GameScene.selectTarget), name: Notification.Name.actorDidChangeEquipment, object: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -485,7 +485,7 @@ extension GameScene: GameDelegate {
     @objc func selectTarget() {
         selectTargetProceedNext(false)
     }
-    
+        
     func selectTargetProceedNext(_ proceedNext: Bool) {
         guard self.game.state.hero.isRangedWeaponEquipped else {
             return hideTargetNode()
