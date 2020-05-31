@@ -312,20 +312,36 @@ class GameState {
     }
     
     private func getRandomCoord(in room: Room, insetBy inset: Int = 0) -> vector_int2 {
-         var roomCoords: [vector_int2] = []
-         
-         for y in Int32(room.coord.y + inset) ..< Int32(room.coord.y + room.height - inset) {
-             for x in Int32(room.coord.x + inset) ..< Int32(room.coord.x + room.width - inset) {
-                 let coord = vector_int2(y, x)
-                 
-                 if self.getMapNodeType(at: coord) == .open {
-                     roomCoords.append(coord)
-                 }
-             }
-         }
+         let roomCoords = getCoords(in: room, insetBy: inset)
+        
+//         for y in Int32(room.coord.y + inset) ..< Int32(room.coord.y + room.height - inset) {
+//             for x in Int32(room.coord.x + inset) ..< Int32(room.coord.x + room.width - inset) {
+//                 let coord = vector_int2(y, x)
+//
+//                 if self.getMapNodeType(at: coord) == .open {
+//                     roomCoords.append(coord)
+//                 }
+//             }
+//         }
 
         let randomIdx = arc4random_uniform(UInt32(roomCoords.count))
         return roomCoords[Int(randomIdx)]
+    }
+    
+    private func getCoords(in room: Room, insetBy inset: Int) -> [vector_int2] {
+        var roomCoords: [vector_int2] = []
+        
+        for y in Int32(room.coord.y + inset) ..< Int32(room.coord.y + room.height - inset) {
+            for x in Int32(room.coord.x + inset) ..< Int32(room.coord.x + room.width - inset) {
+                let coord = vector_int2(y, x)
+                
+                if self.getMapNodeType(at: coord) == .open {
+                    roomCoords.append(coord)
+                }
+            }
+        }
+
+        return roomCoords
     }
         
     private func generateMovementGraph() {
@@ -344,13 +360,14 @@ class GameState {
     
     private func addHero(to dungeon: Dungeon, roomId: UInt) {
         let room = dungeon.roomInfo[roomId]!
-       
-//        for coord in getCoords(in: room) {
-//            if let actor = getActor(at: coord) {
-//                self.entities.removeAll(where: { $0 === actor })
-//            }
-//        }
-        
+               
+        let roomCoords = getCoords(in: room, insetBy: 0)
+        for coord in roomCoords {
+            if let actor = getActor(at: coord) {
+                self.entities.removeAll(where: { $0 === actor })
+            }
+        }
+
         self.hero.coord = vector_int2(Int32(room.coord.y), Int32(room.coord.x))
         self.entities.append(self.hero)
     }
