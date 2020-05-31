@@ -46,9 +46,9 @@ class MoveAction: Action, StatusUpdatable {
         if let trap = state.getTrap(at: self.toCoord), trap.isActive, let hero = self.actor as? Hero {
             let damage = trap.trigger(actor: hero)
             self.triggeredTrap = (trap, damage)
-            self.message = "\(self.actor.name) did triggered trap at \(toCoord.x).\(toCoord.y) for \(damage) damage"
+            self.message = "\(self.actor.name) triggered trap at \(toCoord.x).\(toCoord.y): \((damage == 0) ? "trap missed" : "trap dealt \(damage) damage")" 
         } else {
             self.message = "\(self.actor.name) moved to \(self.toCoord.x).\(self.toCoord.y)"
-        }        
+        }
     }
 }
