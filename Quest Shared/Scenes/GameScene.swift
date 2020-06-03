@@ -504,7 +504,8 @@ extension GameScene: GameDelegate {
     }
     
     private func updateVisibleActorsAndLootForHero(viewVisibleCoords: Set<vector_int2>) {
-        let hiddenCoords = viewVisibleCoords.subtracting(self.game.state.hero.visibleCoords)
+        var hiddenCoords = viewVisibleCoords.subtracting(self.game.state.hero.visibleCoords)
+        hiddenCoords.remove(self.game.state.hero.coord)
         
         for coord in hiddenCoords {
             if let actor = self.game.state.getActor(at: coord), actor.sprite.parent != nil {

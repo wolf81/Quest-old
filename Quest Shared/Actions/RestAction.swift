@@ -33,7 +33,7 @@ class RestAction: Action, StatusUpdatable {
         
         let hitpointGain = 1
         self.actor.hitPoints.restore(hitPoints: hitpointGain)
-        self.message = "\(self.actor.name) recovered \(hitpointGain) hitpoint(s)"
+        self.message = "\(self.actor.name) recovering hitpoints ..."
 
         let didEncounterMonster = arc4random_uniform(5) == 0
         let didRestoreFullHealth = self.actor.hitPoints.current == self.actor.hitPoints.base
