@@ -242,7 +242,7 @@ class Game {
                                 
                 actor.energy.increment(Constants.energyPerTick)
                 actor.update(state: self.state, deltaTime: deltaTime)
-
+                
                 // if the actor has a pending action, add the action to the pending action list
                 guard let action = actor.getAction() else { return self.state.nextActor() }
 
@@ -250,6 +250,7 @@ class Game {
             } else {
                 // otherwise increment the time units until we have enough to allow for an action
                 actor.energy.increment(Constants.energyPerTick)
+                
                 self.state.nextActor()
             }
         }

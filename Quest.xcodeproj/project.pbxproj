@@ -297,6 +297,9 @@
 		79C61AA822A7C415008D3609 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C61A7022A7C415008D3609 /* Assets.xcassets */; };
 		79C61AA922A7C415008D3609 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C61A7022A7C415008D3609 /* Assets.xcassets */; };
 		79C61AAA22A7C415008D3609 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C61A7022A7C415008D3609 /* Assets.xcassets */; };
+		79C7707124879BDE000C14AF /* Harptos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79C7707024879BDE000C14AF /* Harptos.framework */; };
+		79C7707324879BEC000C14AF /* Harptos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79C7707224879BEC000C14AF /* Harptos.framework */; };
+		79C7707524879BF8000C14AF /* Harptos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79C7707424879BF8000C14AF /* Harptos.framework */; };
 		79D0B60B247FEDF8001029BE /* Decoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D0B60A247FEDF8001029BE /* Decoration.swift */; };
 		79D0B60C247FEDF8001029BE /* Decoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D0B60A247FEDF8001029BE /* Decoration.swift */; };
 		79D0B60D247FEDF8001029BE /* Decoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D0B60A247FEDF8001029BE /* Decoration.swift */; };
@@ -789,6 +792,9 @@
 		79C61A9922A7C415008D3609 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		79C61A9C22A7C415008D3609 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		79C61A9E22A7C415008D3609 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79C7707024879BDE000C14AF /* Harptos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Harptos.framework; path = Carthage/Build/tvOS/Harptos.framework; sourceTree = SOURCE_ROOT; };
+		79C7707224879BEC000C14AF /* Harptos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Harptos.framework; path = Carthage/Build/iOS/Harptos.framework; sourceTree = SOURCE_ROOT; };
+		79C7707424879BF8000C14AF /* Harptos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Harptos.framework; path = Carthage/Build/Mac/Harptos.framework; sourceTree = SOURCE_ROOT; };
 		79D0B60A247FEDF8001029BE /* Decoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoration.swift; sourceTree = "<group>"; };
 		79D0B60E248014DA001029BE /* Blood.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Blood.xcassets; sourceTree = "<group>"; };
 		79D0B61A24803C54001029BE /* SoundType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundType.swift; sourceTree = "<group>"; };
@@ -923,6 +929,7 @@
 			files = (
 				7929FBFA22AFBADE003C1964 /* DungeonBuilder.framework in Frameworks */,
 				7929FC0822B0003E003C1964 /* Fenris.framework in Frameworks */,
+				79C7707324879BEC000C14AF /* Harptos.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -932,6 +939,7 @@
 			files = (
 				7929FBFE22AFBAED003C1964 /* DungeonBuilder.framework in Frameworks */,
 				7929FC0622B00036003C1964 /* Fenris.framework in Frameworks */,
+				79C7707124879BDE000C14AF /* Harptos.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -939,8 +947,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7929FC0422B0002E003C1964 /* Fenris.framework in Frameworks */,
 				795EA80F24388B79008914E4 /* DungeonBuilder.framework in Frameworks */,
+				7929FC0422B0002E003C1964 /* Fenris.framework in Frameworks */,
+				79C7707524879BF8000C14AF /* Harptos.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1187,6 +1196,7 @@
 			children = (
 				7929FC0722B0003D003C1964 /* Fenris.framework */,
 				7929FBF922AFBADE003C1964 /* DungeonBuilder.framework */,
+				79C7707224879BEC000C14AF /* Harptos.framework */,
 				79C61A7822A7C415008D3609 /* AppDelegate.swift */,
 				79C61A7A22A7C415008D3609 /* GameViewController.swift */,
 				79C61A7C22A7C415008D3609 /* Main.storyboard */,
@@ -1201,6 +1211,7 @@
 			children = (
 				7929FC0522B00036003C1964 /* Fenris.framework */,
 				7929FBFD22AFBAED003C1964 /* DungeonBuilder.framework */,
+				79C7707024879BDE000C14AF /* Harptos.framework */,
 				79C61A8922A7C415008D3609 /* AppDelegate.swift */,
 				79C61A8B22A7C415008D3609 /* GameViewController.swift */,
 				79C61A8D22A7C415008D3609 /* Main.storyboard */,
@@ -1214,6 +1225,7 @@
 			children = (
 				7929FC0322B0002D003C1964 /* Fenris.framework */,
 				7929FBFB22AFBAE7003C1964 /* DungeonBuilder.framework */,
+				79C7707424879BF8000C14AF /* Harptos.framework */,
 				79C61A9722A7C415008D3609 /* AppDelegate.swift */,
 				79C61A9922A7C415008D3609 /* GameViewController.swift */,
 				79C61A9B22A7C415008D3609 /* Main.storyboard */,
@@ -1925,6 +1937,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/DungeonBuilder.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Fenris.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Harptos.framework",
 			);
 			outputFileListPaths = (
 			);
@@ -1945,6 +1958,8 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/tvOS/DungeonBuilder.framework",
+				"$(SRCROOT)/Carthage/Build/tvOS/Fenris.framework",
+				"$(SRCROOT)/Carthage/Build/tvOS/Harptos.framework",
 			);
 			outputFileListPaths = (
 			);
@@ -1964,6 +1979,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/Mac/DungeonBuilder.framework",
 				"$(SRCROOT)/Carthage/Build/Mac/Fenris.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/Harptos.framework",
 			);
 			outputFileListPaths = (
 			);

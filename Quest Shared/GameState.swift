@@ -11,6 +11,7 @@ import DungeonBuilder
 import GameplayKit
 import simd
 import Fenris
+import Harptos
 
 class GameState {
     private var map: Map = Map()
@@ -46,11 +47,11 @@ class GameState {
     private(set) var tiles: [[TileProtocol]] = []
     
     private var movementGraph: GKGridGraph<GKGridGraphNode>!
-                    
+                        
     init(level: Int, hero: Hero, entityFactory: EntityFactory) throws {
         self.entityFactory = entityFactory
         self.hero = hero
-        
+       
         let json = try DataLoader.loadLevel(index: level)
 
         let name = json["name"] as! String
@@ -209,7 +210,7 @@ class GameState {
         
         return false
     }
-
+    
     // MARK: - Private
     
     private func setRaycastVisibility(for actor: Actor) {
