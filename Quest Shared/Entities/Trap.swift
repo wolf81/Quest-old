@@ -39,6 +39,10 @@ class Trap: TileProtocol {
         }
     }
         
+    var searchDifficultyClass: Int
+    
+    var disableDifficultyClass: Int
+    
     var isActive: Bool { self.state.isActive }
     
     lazy var name: String = { self.json["name"] as! String }()
@@ -57,6 +61,10 @@ class Trap: TileProtocol {
         self.attack = json["AT"] as? Int ?? 0
         let damage = json["damage"] as! String
         self.damageDie = HitDie(rawValue: damage)!
+        
+        let dc = json["dc"] as! [String: Int]
+        self.searchDifficultyClass = dc["search"] ?? 20
+        self.disableDifficultyClass = dc["disable"] ?? 20
     }
     
     required init(json: [String : Any], entityFactory: EntityFactory, coord: vector_int2) {
@@ -66,6 +74,10 @@ class Trap: TileProtocol {
         self.attack = json["AT"] as? Int ?? 0
         let damage = json["damage"] as! String
         self.damageDie = HitDie(rawValue: damage)!
+        
+        let dc = json["dc"] as! [String: Int]
+        self.searchDifficultyClass = dc["search"] ?? 20
+        self.disableDifficultyClass = dc["disable"] ?? 20
     }
 
     func copy(coord: vector_int2, entityFactory: EntityFactory) -> Self {
@@ -75,6 +87,25 @@ class Trap: TileProtocol {
     private func copyInternal<T: Trap>(coord: vector_int2, entityFactory: EntityFactory) -> T {
         let entity = T(json: self.json, entityFactory: entityFactory, coord: coord)
         return entity
+    }
+    
+    func search(hero: Hero) -> Bool {
+        let bonus = hero.attributes.mind + hero.skills.subterfuge + hero.level / 2
+        let roll = HitDie.d20(1, bonus).randomValue
+
+        print("search trap: \(roll) vs \(self.searchDifficultyClass)")
+
+        let trapFound = roll >= self.searchDifficultyClass
+        if trapFound {
+            self.state = .discovered
+            self.updateForTrapState()
+        }
+        
+        return trapFound
+    }
+    
+    func disable(hero: Hero) -> Bool {
+        return false
     }
     
     func trigger(actor: Actor) -> Int {
@@ -119,7 +150,10 @@ class Trap: TileProtocol {
     private func updateForTrapState() {
         switch self.state {
         case .hidden: self.sprite.removeAllChildren()
-        case .discovered: fatalError()
+        case .discovered:
+            self.sprite.removeAllChildren()
+            let trapSprite = Entity.loadSprite(type: self, spriteName: "pressure_plate")
+            self.sprite.addChild(trapSprite)
         case .triggered:
             self.sprite.removeAllChildren()
             let spriteName = self.json["sprite"] as! String

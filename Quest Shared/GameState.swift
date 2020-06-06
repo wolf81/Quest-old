@@ -242,14 +242,15 @@ class GameState {
         }
     }
     
-    func setHeroSearchEnabled(_ isEnabled: Bool) {
-        guard self.hero.role == .rogue else { return }
-        
+    func setHeroSearchEnabled(_ isEnabled: Bool) {        
         if isEnabled {
             let search = try! self.entityFactory.newEntity(type: Effect.self, name: "Search")
+            let slow = try! self.entityFactory.newEntity(type: Effect.self,  name: "Decrease Movespeed")
             self.hero.applyEffect(effect: search)
+            self.hero.applyEffect(effect: slow)
         } else {
             self.hero.removeEffect(named: "Search")
+            self.hero.removeEffect(named: "Decrease Movespeed")
         }
     }
     

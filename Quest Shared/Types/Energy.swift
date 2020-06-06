@@ -20,6 +20,6 @@ class Energy {
     }
     
     func drain(_ amount: Int) {
-        self.amount -= amount
+        self.amount -= max(amount, Constants.minimumEnergyCost)
     }
 }

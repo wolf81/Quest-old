@@ -11,7 +11,8 @@ import SpriteKit
 enum EffectType: String {
     case reduceDamage
     case restoreHealth
-    case reduceMovementEnergyCost
+    case lowerMovementEnergyCost
+    case raiseMovementEnergyCost
     case limitSight
     case search
 }

@@ -34,14 +34,31 @@ class MoveAction: Action, StatusUpdatable {
         var energyCost = self.actor.energyCost.move
         
         for effect in self.actor.effects {
-            if effect.type == .reduceMovementEnergyCost {
+            if effect.type == .lowerMovementEnergyCost {
                 energyCost -= effect.value
+            }            
+            if effect.type == .raiseMovementEnergyCost {
+                energyCost += effect.value
             }
         }
         
-        self.actor.energy.drain(max(energyCost, 0))
+        self.actor.energy.drain(energyCost)
 
         self.actor.coord = self.toCoord
+        
+        if let hero = self.actor as? Hero, hero.isSearching {
+            for coord in hero.visibleCoords {
+                guard Functions.distanceBetween(hero.coord, coord) <= 2, coord != hero.coord else { continue }
+
+                if let trap = state.getTrap(at: coord), trap.isActive {
+                    if trap.search(hero: hero) {
+                        print("trap discovered @ \(coord.x).\(coord.y)")
+                    } else {
+                        print("trap stays hidden")
+                    }
+                }
+            }
+        }
 
         if let trap = state.getTrap(at: self.toCoord), trap.isActive, let hero = self.actor as? Hero {
             let damage = trap.trigger(actor: hero)

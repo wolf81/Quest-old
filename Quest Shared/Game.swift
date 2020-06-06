@@ -312,6 +312,8 @@ class Game {
     }
     
     func toggleSearch() {
+        guard self.state.hero.role == .rogue else { return print("only rogues can search for traps") }
+        
         self.state.setHeroSearchEnabled(self.state.hero.isSearching == false)
         let message = "Search traps \(self.state.hero.isSearching ? "enabled": "disabled")"
         self.delegate?.gameDidUpdateStatus(message: message)

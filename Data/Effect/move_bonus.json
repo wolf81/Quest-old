@@ -1,5 +1,5 @@
 {
     "name": "Increase Movespeed",
-    "type": "reduceMovementEnergyCost",
+    "type": "lowerMovementEnergyCost",
     "value": 25
 }
