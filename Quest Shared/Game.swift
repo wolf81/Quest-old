@@ -311,6 +311,12 @@ class Game {
         }
     }
     
+    func toggleSearch() {
+        self.state.setHeroSearchEnabled(self.state.hero.isSearching == false)
+        let message = "Search traps \(self.state.hero.isSearching ? "enabled": "disabled")"
+        self.delegate?.gameDidUpdateStatus(message: message)
+    }
+    
     func toggleWeapons() {
         self.state.hero.toggleWeapons()        
     }

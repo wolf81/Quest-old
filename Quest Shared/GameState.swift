@@ -236,6 +236,23 @@ class GameState {
         return false
     }
     
+    func enterCombat(actor: Actor) {
+        if actor is Hero {
+            setHeroSearchEnabled(false)
+        }
+    }
+    
+    func setHeroSearchEnabled(_ isEnabled: Bool) {
+        guard self.hero.role == .rogue else { return }
+        
+        if isEnabled {
+            let search = try! self.entityFactory.newEntity(type: Effect.self, name: "Search")
+            self.hero.applyEffect(effect: search)
+        } else {
+            self.hero.removeEffect(named: "Search")
+        }
+    }
+    
     // MARK: - Private
     
     private func setRaycastVisibility(for actor: Actor) {

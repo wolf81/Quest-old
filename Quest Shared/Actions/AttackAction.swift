@@ -25,7 +25,7 @@ class AttackAction: Action, StatusUpdatable {
     override func perform(state: GameState) {
         let energyCost = getEnergyCost()
         self.actor.energy.drain(energyCost)
-
+        
         let attackDie = HitDie.d20(1, 0)
         let baseAttackRoll = attackDie.randomValue
         let armorClass = targetActor.armorClass
@@ -59,7 +59,10 @@ class AttackAction: Action, StatusUpdatable {
                 self.hitState = .miss
             }
         }
-
+        
+        state.enterCombat(actor: self.actor)
+        if self.hitState.isHit { state.enterCombat(actor: self.targetActor) }
+        
         self.message = "\(self.actor.name) attacks \(self.targetActor.name): \(status)"
     }
     

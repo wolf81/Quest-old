@@ -18,6 +18,8 @@ class Hero: Actor, CustomStringConvertible {
     let race: Race
     let role: Role
     
+    var isSearching: Bool { self.effects.contains(where: { $0.name == "Search" })}
+
     override var level: Int { return 1 }
         
     var experience: Int = 0

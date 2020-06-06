@@ -20,7 +20,7 @@ class Actor: Entity {
     var isAlive: Bool { return self.hitPoints.current > 0 }
 
     var isResting: Bool { self.effects.contains(where: { $0.name == "Sleep" })}
-
+    
     private(set) var skills: Skills
         
     private(set) var attributes: Attributes = Attributes(strength: 12, dexterity: 12, mind: 12)

@@ -642,6 +642,7 @@ extension GameScene {
         switch event.keyCode {
         case /* esc */ 53: dismissCharacterInfoAndInventory()
         case /* q e z c a d s w */ 12, 14, 6, 8, 0, 1, 2, 13: self.game.stopPlayer()
+        case /* f   */  3: self.game.toggleSearch()
         case /* t   */ 17: self.game.toggleWeapons()
         case /* i   */ 34: toggleInventory()
         case /* c   */ 35: toggleCharacterInfo()
