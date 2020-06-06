@@ -13,6 +13,11 @@ import simd
 import Fenris
 import Harptos
 
+enum TimeResult {
+    case none
+    case progressed
+}
+
 class GameState {
     private var map: Map = Map()
 
@@ -40,6 +45,8 @@ class GameState {
     
     let altTilesetNames: [String]
     
+    private(set) var time: HarptosTime
+    
     private var actors: [Actor] { self.entities.filter({ $0 is Actor }) as! [Actor] }
         
     private var activeActorIndex: Int = 0
@@ -48,7 +55,8 @@ class GameState {
     
     private var movementGraph: GKGridGraph<GKGridGraphNode>!
                         
-    init(level: Int, hero: Hero, entityFactory: EntityFactory) throws {
+    init(level: Int, hero: Hero, time: HarptosTime, entityFactory: EntityFactory) throws {
+        self.time = time
         self.entityFactory = entityFactory
         self.hero = hero
        
@@ -165,6 +173,23 @@ class GameState {
         }
         
         return monster
+    }
+    
+    func incrementEnergyForCurrentActor() -> TimeResult {
+        self.currentActor.energy.increment(Constants.energyPerTick)
+
+        if let hero = self.currentActor as? Hero {
+            // progress time
+            if hero.isResting {
+                self.time = self.time.timeByAdding(minutes: 15)
+            } else {
+                self.time = self.time.timeByAdding(seconds: 1)
+            }
+            
+            return .progressed
+        }
+        
+        return .none
     }
     
     func findPath(from coord: vector_int2, to toCoord: vector_int2) -> [vector_int2] {

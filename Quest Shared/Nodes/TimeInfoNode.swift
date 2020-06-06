@@ -31,7 +31,6 @@ class TimeInfoNode: SKShapeNode {
         self.label.fontSize = font.pointSize
         self.label.fontColor = SKColor.white
         self.label.position = CGPoint(x: size.width / 2, y: (size.height - font.capHeight) / 2)
-        self.update(time: HarptosCalendar.getTimeFor(year: 985, month: 3, day: 5, hour: 12, minute: 15, second: 0))
         self.zPosition = DrawLayerHelper.zPosition(for: self)
         
         addChild(self.label)

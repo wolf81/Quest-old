@@ -10,6 +10,7 @@ import SpriteKit
 import DungeonBuilder
 import GameplayKit
 import Fenris
+import Harptos
 
 protocol GameDelegate: class {
     func gameDidDestroy(entity: EntityProtocol)
@@ -18,12 +19,14 @@ protocol GameDelegate: class {
 
     func gameDidUpdateStatus(message: String)
     
+    func gameDidProgressTime(time: HarptosTime)
+
     func gameActorDidMove(actor: Actor, path: [vector_int2])
     
     func gameActorDidStartRest(actor: Actor)
     
     func gameActorDidFinishRest(actor: Actor)
-
+    
     func gameActorDidTriggerTrap(actor: Actor, trap: Trap, isHit: Bool)
     
     func gameActorDidPerformMeleeAttack(actor: Actor, targetActor: Actor, state: HitState)
@@ -239,8 +242,10 @@ class Game {
             if actor.canTakeTurn {
                 // TODO: only update visible actors in fov                
                 guard self.state.hero.visibleCoords.contains(actor.coord) else { return self.state.nextActor() }
-                                
-                actor.energy.increment(Constants.energyPerTick)
+
+                if state.incrementEnergyForCurrentActor() == .progressed {
+                    self.delegate?.gameDidProgressTime(time: state.time)
+                }
                 actor.update(state: self.state, deltaTime: deltaTime)
                 
                 // if the actor has a pending action, add the action to the pending action list
@@ -249,7 +254,9 @@ class Game {
                 self.actions.append(action)
             } else {
                 // otherwise increment the time units until we have enough to allow for an action
-                actor.energy.increment(Constants.energyPerTick)
+                if state.incrementEnergyForCurrentActor() == .progressed {
+                    self.delegate?.gameDidProgressTime(time: state.time)
+                }
                 
                 self.state.nextActor()
             }

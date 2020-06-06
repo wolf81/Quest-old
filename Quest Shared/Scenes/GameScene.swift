@@ -9,6 +9,7 @@
 import Fenris
 import SpriteKit
 import GameplayKit
+import Harptos
 
 fileprivate enum VisibilityChange {
     case willShow
@@ -247,6 +248,10 @@ extension GameScene: GameDelegate {
     
     func gameActorDidFinishRest(actor: Actor) {
         self.gameActorDidMove(actor: self.game.state.hero, path: [self.game.state.hero.coord])
+    }
+    
+    func gameDidProgressTime(time: HarptosTime) {
+        self.timeInfoNode.update(time: time)
     }
     
     func gameActorDidTriggerTrap(actor: Actor, trap: Trap, isHit: Bool) {

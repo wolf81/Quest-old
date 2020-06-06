@@ -8,6 +8,7 @@
 
 import Fenris
 import SpriteKit
+import Harptos
 
 class LoadingScene: MenuSceneBase {
     struct UserInfoKey {
@@ -50,8 +51,9 @@ class LoadingScene: MenuSceneBase {
         let hero = try! self.heroBuilder
             .with(name: "Kendrick")
             .build(entityFactory: entityFactory)
-        
-        let state = try! GameState(level: 0, hero: hero, entityFactory: entityFactory)
+
+        let time = HarptosCalendar.getTimeFor(year: 985, month: 3, day: 5, hour: 12, minute: 15, second: 0)
+        let state = try! GameState(level: 0, hero: hero, time: time, entityFactory: entityFactory)
         let game = Game(state: state)
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
