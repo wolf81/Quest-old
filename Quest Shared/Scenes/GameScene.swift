@@ -29,6 +29,8 @@ class GameScene: SKScene, SceneManagerConstructable {
     
     private var statusBar: StatusBar!
     
+    private var timeInfoNode: TimeInfoNode!
+
     private var world: SKNode = SKNode()
     
     private var playerCamera: SKCameraNode!
@@ -38,7 +40,7 @@ class GameScene: SKScene, SceneManagerConstructable {
     private var characterInfo: CharacterInfoNode?
     
     private let targetNode = TargetNode()
-                    
+                        
     private var targetActor: Actor?
     
     required init(size: CGSize, userInfo: [String : Any]) {
@@ -119,6 +121,11 @@ class GameScene: SKScene, SceneManagerConstructable {
         let statusBarY = self.actionBar.frame.maxY + 20
         self.statusBar.position = CGPoint(x: -self.size.width / 2 + 20, y: statusBarY)
         self.playerCamera.addChild(self.statusBar)
+        
+        let timeInfoNodeSize = CGSize(width: 120, height: 40)
+        self.timeInfoNode = TimeInfoNode(size: timeInfoNodeSize, font: DefaultMenuConfiguration.shared.labelFont)
+        self.timeInfoNode.position = CGPoint(x: -self.size.width / 2 + 20, y: self.size.height / 2 - timeInfoNodeSize.height - 20)
+        self.playerCamera.addChild(self.timeInfoNode)
         
         self.statusBar.update(text: "Welcome to Quest")
         

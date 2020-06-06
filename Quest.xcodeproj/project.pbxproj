@@ -131,6 +131,9 @@
 		7963DE57239E456900183DF2 /* ActionBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE56239E456900183DF2 /* ActionBarButton.swift */; };
 		7963DE58239E456900183DF2 /* ActionBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE56239E456900183DF2 /* ActionBarButton.swift */; };
 		7963DE59239E456900183DF2 /* ActionBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963DE56239E456900183DF2 /* ActionBarButton.swift */; };
+		79646C81248B874300BA9BAC /* TimeInfoNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79646C80248B874300BA9BAC /* TimeInfoNode.swift */; };
+		79646C82248B874300BA9BAC /* TimeInfoNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79646C80248B874300BA9BAC /* TimeInfoNode.swift */; };
+		79646C83248B874300BA9BAC /* TimeInfoNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79646C80248B874300BA9BAC /* TimeInfoNode.swift */; };
 		79742A6A239E60A7008504E8 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79742A69239E60A7008504E8 /* Gender.swift */; };
 		79742A6B239E60A7008504E8 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79742A69239E60A7008504E8 /* Gender.swift */; };
 		79742A6C239E60A7008504E8 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79742A69239E60A7008504E8 /* Gender.swift */; };
@@ -724,6 +727,7 @@
 		7963DE4D239DD2D600183DF2 /* HitPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitPoints.swift; sourceTree = "<group>"; };
 		7963DE51239E3D2A00183DF2 /* ActionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionBar.swift; sourceTree = "<group>"; };
 		7963DE56239E456900183DF2 /* ActionBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionBarButton.swift; sourceTree = "<group>"; };
+		79646C80248B874300BA9BAC /* TimeInfoNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInfoNode.swift; sourceTree = "<group>"; };
 		79742A69239E60A7008504E8 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		797DBF7A22A91FA300D0F8E7 /* Sprites.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Sprites.xcassets; sourceTree = "<group>"; };
 		798325982478D2B700397C12 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
@@ -1072,6 +1076,7 @@
 				79D815732465AEAF0099567B /* PaperDollNode.swift */,
 				792E454B247048060088FBD7 /* CharacterInfoNode.swift */,
 				79F057332481261600353E0A /* TargetNode.swift */,
+				79646C80248B874300BA9BAC /* TimeInfoNode.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -2060,6 +2065,7 @@
 				792467E7246D37D5000568A6 /* GameOverScene.swift in Sources */,
 				7963DE2E239CC35F00183DF2 /* DefaultMenuConfiguration.swift in Sources */,
 				79F057382482115D00353E0A /* AttackAction.swift in Sources */,
+				79646C81248B874300BA9BAC /* TimeInfoNode.swift in Sources */,
 				79ACC7ED22AA5D8700AC3BF0 /* EntityLoader.swift in Sources */,
 				79042E5C2469473800730646 /* Equippable.swift in Sources */,
 				79D6E6E8247A9D1700D7333A /* Effect.swift in Sources */,
@@ -2145,6 +2151,7 @@
 				792467E8246D37D5000568A6 /* GameOverScene.swift in Sources */,
 				7963DE2F239CC35F00183DF2 /* DefaultMenuConfiguration.swift in Sources */,
 				79F057392482115D00353E0A /* AttackAction.swift in Sources */,
+				79646C82248B874300BA9BAC /* TimeInfoNode.swift in Sources */,
 				79ACC7EE22AA5D8700AC3BF0 /* EntityLoader.swift in Sources */,
 				79042E5D2469473800730646 /* Equippable.swift in Sources */,
 				79D6E6E9247A9D1700D7333A /* Effect.swift in Sources */,
@@ -2198,6 +2205,7 @@
 				79D6E6E2247A6DD200D7333A /* UseAction.swift in Sources */,
 				7960DEC023A6082B00B4CDF8 /* Weapon.swift in Sources */,
 				792E454E247048060088FBD7 /* CharacterInfoNode.swift in Sources */,
+				79646C83248B874300BA9BAC /* TimeInfoNode.swift in Sources */,
 				7963DE30239CC35F00183DF2 /* DefaultMenuConfiguration.swift in Sources */,
 				79FC68FB244C4C9E00E6D63C /* ChooseAttributesScene.swift in Sources */,
 				79042E662478192600730646 /* Energy.swift in Sources */,

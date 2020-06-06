@@ -42,6 +42,7 @@ struct DrawLayerHelper {
     public static func zPosition(for node: SKNode) -> CGFloat {
         switch node {
         case is TargetNode: return EntityDrawLayer.target.rawValue
+        case is TimeInfoNode: fallthrough
         case is ActionBar: fallthrough
         case is InventoryNode: fallthrough
         case is CharacterInfoNode: fallthrough
