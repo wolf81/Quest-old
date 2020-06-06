@@ -46,8 +46,8 @@ class ActionBarButton: SKShapeNode {
     private func updateForEnabledState() {
         if self.isEnabled {
             let pulse = SKAction.repeatForever(SKAction.sequence([
-                SKAction.colorize(withColorBlendFactor: 1.0, duration: 6.0),
-                SKAction.colorize(withColorBlendFactor: 0.5, duration: 6.0),
+                SKAction.colorize(with: .yellow, colorBlendFactor: 0.8, duration: 8.0),
+                SKAction.colorize(with: .orange, colorBlendFactor: 0.8, duration: 8.0),
             ]))
             self.sprite.run(pulse)
         } else {
