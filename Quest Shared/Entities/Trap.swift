@@ -12,6 +12,7 @@ enum TrapState {
     case hidden // show default tile texture
     case discovered // show the trap plate texture
     case triggered // show the trap
+    case disabled // hide the trap
     
     var isActive: Bool { [.hidden, .discovered].contains(self) }
 }
@@ -33,7 +34,7 @@ class Trap: TileProtocol {
 
     var didExplore: Bool = false
     
-    private var state: TrapState = .hidden {
+    private(set) var state: TrapState = .hidden {
         didSet {
             updateForTrapState()
         }
@@ -90,7 +91,7 @@ class Trap: TileProtocol {
     }
     
     func search(hero: Hero) -> Bool {
-        let bonus = hero.attributes.mind + hero.skills.subterfuge + hero.level / 2
+        let bonus = hero.attributes.mind.bonus + hero.skills.subterfuge + hero.level / 2
         let roll = HitDie.d20(1, bonus).randomValue
 
         print("search trap: \(roll) vs \(self.searchDifficultyClass)")
@@ -98,16 +99,29 @@ class Trap: TileProtocol {
         let trapFound = roll >= self.searchDifficultyClass
         if trapFound {
             self.state = .discovered
-            self.updateForTrapState()
         }
         
         return trapFound
     }
     
+    @discardableResult
     func disable(hero: Hero) -> Bool {
-        return false
+        let bonus = hero.attributes.dexterity.bonus + hero.skills.subterfuge
+        let roll = HitDie.d20(1, bonus).randomValue
+        
+        print("disable trap: \(roll) vs \(self.disableDifficultyClass)")
+
+        let disabled = roll >= self.disableDifficultyClass
+        if disabled {
+            self.state = .disabled
+        } else {
+            self.trigger(actor: hero)
+        }
+        
+        return disabled
     }
     
+    @discardableResult
     func trigger(actor: Actor) -> Int {
         self.state = .triggered
         
@@ -117,14 +131,16 @@ class Trap: TileProtocol {
         
         let damage = self.damageDie.randomValue
         actor.reduceHealth(with: damage)
+                
+        // TODO: this is unsafe, we add and remove search otherwise using the game state. Not sure
+        // what is the best approach and this needs some consideration to do properly
+        if let hero = actor as? Hero, damage > 0, hero.isSearching {
+            hero.removeEffect(named: "Search")
+        }
         
         return damage
     }
-    
-    func disable() -> Bool {
-        return false
-    }
-    
+        
     func configure(withTile tile: TileProtocol) {
         self.sprite = tile.sprite.copy() as! SKSpriteNode
         self.state = .hidden
@@ -149,6 +165,7 @@ class Trap: TileProtocol {
     
     private func updateForTrapState() {
         switch self.state {
+        case .disabled: self.sprite.removeAllChildren()
         case .hidden: self.sprite.removeAllChildren()
         case .discovered:
             self.sprite.removeAllChildren()

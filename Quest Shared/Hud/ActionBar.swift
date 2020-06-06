@@ -14,6 +14,7 @@ protocol ActionBarDelegate: class {
     func actionBarDidSelectMeleeAttack()
     func actionBarDidSelectRangeAttack()
     func actionBarDidSelectCastSpell()
+    func actionBarDidSelectSearch()
 }
 
 class ActionBar: SKShapeNode {
@@ -23,6 +24,7 @@ class ActionBar: SKShapeNode {
     private var meleeAttackButton: ActionBarButton!
     private var rangeAttackButton: ActionBarButton!
     private var castSpellButton: ActionBarButton!
+    private var searchButton: ActionBarButton!
     
     weak var delegate: ActionBarDelegate?
     
@@ -46,13 +48,13 @@ class ActionBar: SKShapeNode {
     
     private func addButtons() {
         let buttonSize = CGSize(width: size.height, height: size.height)
-        self.moveButton = ActionBarButton(size: buttonSize, color: SKColor.green)
-        self.meleeAttackButton = ActionBarButton(size: buttonSize, color: SKColor.red)
-        self.rangeAttackButton = ActionBarButton(size: buttonSize, color: SKColor.orange)
-        self.castSpellButton = ActionBarButton(size: buttonSize, color: SKColor.blue)
-        let defendButton = ActionBarButton(size: buttonSize, color: SKColor.darkGray)
+        self.moveButton = ActionBarButton(size: buttonSize, color: SKColor.green, textureNamed: "backpack")
+        self.meleeAttackButton = ActionBarButton(size: buttonSize, color: SKColor.red, textureNamed: "crossed-swords")
+        self.rangeAttackButton = ActionBarButton(size: buttonSize, color: SKColor.orange, textureNamed: "high-shot")
+        self.castSpellButton = ActionBarButton(size: buttonSize, color: SKColor.blue, textureNamed: "hand")
+        self.searchButton = ActionBarButton(size: buttonSize, color: SKColor.yellow, textureNamed: "magnifying-glass")
 
-        let buttons: [ActionBarButton] = [self.moveButton, self.meleeAttackButton, self.rangeAttackButton, self.castSpellButton, defendButton]
+        let buttons: [ActionBarButton] = [self.moveButton, self.meleeAttackButton, self.rangeAttackButton, self.castSpellButton, self.searchButton]
         var buttonX = -(CGFloat(buttons.count - 1) * buttonSize.width / 2)
         for button in buttons {
             button.position = CGPoint(x: buttonX, y: 0)
@@ -78,6 +80,9 @@ extension ActionBar {
             self.delegate?.actionBarDidSelectRangeAttack()
         case _ where self.castSpellButton.contains(location):
             self.delegate?.actionBarDidSelectCastSpell()
+        case _ where self.searchButton.contains(location):
+            self.delegate?.actionBarDidSelectSearch()
+            self.searchButton.isEnabled = !self.searchButton.isEnabled
         default: break
         }
     }

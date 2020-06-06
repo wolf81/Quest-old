@@ -303,6 +303,9 @@
 		79C7707124879BDE000C14AF /* Harptos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79C7707024879BDE000C14AF /* Harptos.framework */; };
 		79C7707324879BEC000C14AF /* Harptos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79C7707224879BEC000C14AF /* Harptos.framework */; };
 		79C7707524879BF8000C14AF /* Harptos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79C7707424879BF8000C14AF /* Harptos.framework */; };
+		79CAA633248BE63800BAAA2A /* SkillsAbilities.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79CAA632248BE63800BAAA2A /* SkillsAbilities.xcassets */; };
+		79CAA634248BE63800BAAA2A /* SkillsAbilities.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79CAA632248BE63800BAAA2A /* SkillsAbilities.xcassets */; };
+		79CAA635248BE63800BAAA2A /* SkillsAbilities.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79CAA632248BE63800BAAA2A /* SkillsAbilities.xcassets */; };
 		79D0B60B247FEDF8001029BE /* Decoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D0B60A247FEDF8001029BE /* Decoration.swift */; };
 		79D0B60C247FEDF8001029BE /* Decoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D0B60A247FEDF8001029BE /* Decoration.swift */; };
 		79D0B60D247FEDF8001029BE /* Decoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D0B60A247FEDF8001029BE /* Decoration.swift */; };
@@ -799,6 +802,7 @@
 		79C7707024879BDE000C14AF /* Harptos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Harptos.framework; path = Carthage/Build/tvOS/Harptos.framework; sourceTree = SOURCE_ROOT; };
 		79C7707224879BEC000C14AF /* Harptos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Harptos.framework; path = Carthage/Build/iOS/Harptos.framework; sourceTree = SOURCE_ROOT; };
 		79C7707424879BF8000C14AF /* Harptos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Harptos.framework; path = Carthage/Build/Mac/Harptos.framework; sourceTree = SOURCE_ROOT; };
+		79CAA632248BE63800BAAA2A /* SkillsAbilities.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SkillsAbilities.xcassets; sourceTree = "<group>"; };
 		79D0B60A247FEDF8001029BE /* Decoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoration.swift; sourceTree = "<group>"; };
 		79D0B60E248014DA001029BE /* Blood.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Blood.xcassets; sourceTree = "<group>"; };
 		79D0B61A24803C54001029BE /* SoundType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundType.swift; sourceTree = "<group>"; };
@@ -1182,6 +1186,7 @@
 				79D0B60E248014DA001029BE /* Blood.xcassets */,
 				79F0572F248125E600353E0A /* Miscellaneous.xcassets */,
 				79D0B88024815875001029BE /* Traps.xcassets */,
+				79CAA632248BE63800BAAA2A /* SkillsAbilities.xcassets */,
 			);
 			path = "Quest Shared";
 			sourceTree = "<group>";
@@ -1589,6 +1594,7 @@
 				79D6E705247CB3D200D7333A /* Walls.xcassets in Resources */,
 				79D0B60F248014DA001029BE /* Blood.xcassets in Resources */,
 				79D0B85524804922001029BE /* Ancient_Game_Blood_Bubble.caf in Resources */,
+				79CAA633248BE63800BAAA2A /* SkillsAbilities.xcassets in Resources */,
 				79D0B71A24804481001029BE /* Ancient_Game_Creature_Orc_Grunt_5.caf in Resources */,
 				79D0B7E324804920001029BE /* Ancient_Game_Weapon_Parry_Block_Metal_3.caf in Resources */,
 				79D0B83D24804922001029BE /* Ancient_Game_Sword_Swing_Dry.caf in Resources */,
@@ -1643,6 +1649,7 @@
 				79D0B610248014DA001029BE /* Blood.xcassets in Resources */,
 				79D0B75D24804483001029BE /* Ancient_Game_Creature_Orc_Grunt_6.caf in Resources */,
 				79D0B74E24804482001029BE /* Ancient_Game_Creature_Orc_Grunt_2.caf in Resources */,
+				79CAA634248BE63800BAAA2A /* SkillsAbilities.xcassets in Resources */,
 				79D0B86524804922001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_4.caf in Resources */,
 				79D0B83524804922001029BE /* Ancient_Game_Weapon_Blunt_Hit.caf in Resources */,
 				79D0B86824804922001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_4.caf in Resources */,
@@ -1791,6 +1798,7 @@
 				79D0B611248014DA001029BE /* Blood.xcassets in Resources */,
 				79D0B75E24804483001029BE /* Ancient_Game_Creature_Orc_Grunt_6.caf in Resources */,
 				79D0B74F24804482001029BE /* Ancient_Game_Creature_Orc_Grunt_2.caf in Resources */,
+				79CAA635248BE63800BAAA2A /* SkillsAbilities.xcassets in Resources */,
 				79D0B86624804922001029BE /* Ancient_Game_Flint_Lock_Rifle_Gun_Shot_4.caf in Resources */,
 				79D0B83624804922001029BE /* Ancient_Game_Weapon_Blunt_Hit.caf in Resources */,
 				79D0B86924804923001029BE /* Ancient_Game_Weapon_Swing_Blood_Hit_4.caf in Resources */,

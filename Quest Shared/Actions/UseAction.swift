@@ -22,6 +22,8 @@ class InteractAction: Action {
 
         switch self.entity {
         case let door as Door: door.isOpen = !door.isOpen
+        case let trap as Trap where trap.state == .discovered:
+            if let hero = self.actor as? Hero{ trap.disable(hero: hero) }
         default: fatalError()
         }
     }

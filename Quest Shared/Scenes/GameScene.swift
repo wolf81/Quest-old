@@ -569,6 +569,10 @@ extension GameScene: ActionBarDelegate {
         clearSelectionModeTiles()
         self.game.showTargetTilesForSpellType(spellType: MagicMissile.self)
     }
+    
+    func actionBarDidSelectSearch() {
+        self.game.toggleSearch()
+    }
 }
 
 #if os(iOS) || os(tvOS)

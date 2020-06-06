@@ -9,17 +9,50 @@
 import SpriteKit
 
 class ActionBarButton: SKShapeNode {
-    init(size: CGSize, color: SKColor) {
-        super.init()
+    let sprite: SKSpriteNode
+    
+    var isEnabled: Bool = false {
+        didSet {
+            updateForEnabledState()
+        }
+    }
+    
+    init(size: CGSize, color: SKColor, textureNamed textureName: String) {
+        let spriteSize = CGSize(width: size.width - 4, height: size.height - 4)
+        let texture = SKTexture(imageNamed: textureName)
+        self.sprite = SKSpriteNode(texture: texture, color: color, size: spriteSize)
+//        self.sprite.colorBlendFactor = 0.7
+        self.sprite.color = color
         
+        super.init()
+                
         self.path = CGPath(rect: CGRect(origin: CGPoint(x: -size.width / 2, y: size.height / 2), size: size), transform: nil)
         self.strokeColor = SKColor.white
-        self.fillColor = color
+//        self.fillColor = color
         
+        addChild(self.sprite)
+        self.sprite.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        self.sprite.position = CGPoint(x: 0, y: size.height)
+                
         self.lineWidth = 2
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError()
+    }
+    
+    // MARK: - Private
+    
+    private func updateForEnabledState() {
+        if self.isEnabled {
+            let pulse = SKAction.repeatForever(SKAction.sequence([
+                SKAction.colorize(withColorBlendFactor: 1.0, duration: 6.0),
+                SKAction.colorize(withColorBlendFactor: 0.5, duration: 6.0),
+            ]))
+            self.sprite.run(pulse)
+        } else {
+            self.sprite.removeAllActions()
+            self.sprite.colorBlendFactor = 0
+        }
     }
 }

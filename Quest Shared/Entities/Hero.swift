@@ -106,6 +106,9 @@ class Hero: Actor, CustomStringConvertible {
             if let door = state.getDoor(at: toCoord) {
                 let interact = InteractAction(actor: self, entity: door)
                 setAction(interact)
+            } else if let trap = state.getTrap(at: toCoord) {
+                let interact = InteractAction(actor: self, entity: trap)
+                setAction(interact)
             }
         case .move(let direction):
             let toCoord = self.coord &+ direction.coord

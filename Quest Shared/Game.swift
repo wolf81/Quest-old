@@ -303,7 +303,9 @@ class Game {
         ]
 
         for coord in coords {
-            if self.state.getDoor(at: coord) != nil {
+            if self.state.getDoor(at: coord) != nil || self.state.getTrap(at: coord) != nil {
+                self.state.setHeroSearchEnabled(false)
+                
                 let direction = Direction.relative(from: self.state.hero.coord, to: coord)
                 self.selectionMode = .none
                 self.state.hero.interact(direction: direction)
