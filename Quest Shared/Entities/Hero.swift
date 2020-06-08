@@ -10,7 +10,7 @@ import SpriteKit
 
 enum HeroAction {
     case move(Direction)
-    case interact(Direction)
+    case interact(Interactable)
     case attack(Actor)
 }
 
@@ -101,15 +101,17 @@ class Hero: Actor, CustomStringConvertible {
         case .attack(let targetActor):
             let attackRanged = AttackAction(actor: self, targetActor: targetActor)
             setAction(attackRanged)
-        case .interact(let direction):
-            let toCoord = self.coord &+ direction.coord
-            if let door = state.getDoor(at: toCoord) {
-                let interact = InteractAction(actor: self, entity: door)
-                setAction(interact)
-            } else if let trap = state.getTrap(at: toCoord) {
-                let interact = InteractAction(actor: self, entity: trap)
-                setAction(interact)
-            }
+        case .interact(let interactable):
+            let action = InteractAction(actor: self, interactable: interactable)
+            setAction(action)
+//            let toCoord = self.coord &+ direction.coord
+//            if let door = state.getDoor(at: toCoord) {
+//                let interact = InteractAction(actor: self, entity: door)
+//                setAction(interact)
+//            } else if let trap = state.getTrap(at: toCoord) {
+//                let interact = InteractAction(actor: self, entity: trap)
+//                setAction(interact)
+//            }
         case .move(let direction):
             let toCoord = self.coord &+ direction.coord
             
@@ -138,8 +140,8 @@ class Hero: Actor, CustomStringConvertible {
                     let move = MoveAction(actor: self, toCoord: toCoord)
                     setAction(move)
                 } else {
-                    if let door = state.getDoor(at: toCoord) {
-                        let interact = InteractAction(actor: self, entity: door)
+                    if let interactable = state.getInteractableAt(coord: toCoord) {
+                        let interact = InteractAction(actor: self, interactable: interactable)
                         setAction(interact)
                     }
                 }
@@ -155,10 +157,10 @@ class Hero: Actor, CustomStringConvertible {
         self.heroAction = HeroAction.move(direction)
     }
     
-    func interact(direction: Direction) {
+    func interact(interactable: Interactable) {
         guard self.isResting == false else { return }
 
-        self.heroAction = HeroAction.interact(direction)
+        self.heroAction = HeroAction.interact(interactable)
     }
     
     func attack(actor: Actor) {

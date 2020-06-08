@@ -306,6 +306,12 @@
 		79CAA633248BE63800BAAA2A /* SkillsAbilities.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79CAA632248BE63800BAAA2A /* SkillsAbilities.xcassets */; };
 		79CAA634248BE63800BAAA2A /* SkillsAbilities.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79CAA632248BE63800BAAA2A /* SkillsAbilities.xcassets */; };
 		79CAA635248BE63800BAAA2A /* SkillsAbilities.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79CAA632248BE63800BAAA2A /* SkillsAbilities.xcassets */; };
+		79CAA637248DD7F300BAAA2A /* Targetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CAA636248DD7F300BAAA2A /* Targetable.swift */; };
+		79CAA638248DD7F300BAAA2A /* Targetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CAA636248DD7F300BAAA2A /* Targetable.swift */; };
+		79CAA639248DD7F300BAAA2A /* Targetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CAA636248DD7F300BAAA2A /* Targetable.swift */; };
+		79CAA63B248DD91800BAAA2A /* Interactable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CAA63A248DD91800BAAA2A /* Interactable.swift */; };
+		79CAA63C248DD91800BAAA2A /* Interactable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CAA63A248DD91800BAAA2A /* Interactable.swift */; };
+		79CAA63D248DD91800BAAA2A /* Interactable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CAA63A248DD91800BAAA2A /* Interactable.swift */; };
 		79D0B60B247FEDF8001029BE /* Decoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D0B60A247FEDF8001029BE /* Decoration.swift */; };
 		79D0B60C247FEDF8001029BE /* Decoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D0B60A247FEDF8001029BE /* Decoration.swift */; };
 		79D0B60D247FEDF8001029BE /* Decoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D0B60A247FEDF8001029BE /* Decoration.swift */; };
@@ -803,6 +809,8 @@
 		79C7707224879BEC000C14AF /* Harptos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Harptos.framework; path = Carthage/Build/iOS/Harptos.framework; sourceTree = SOURCE_ROOT; };
 		79C7707424879BF8000C14AF /* Harptos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Harptos.framework; path = Carthage/Build/Mac/Harptos.framework; sourceTree = SOURCE_ROOT; };
 		79CAA632248BE63800BAAA2A /* SkillsAbilities.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SkillsAbilities.xcassets; sourceTree = "<group>"; };
+		79CAA636248DD7F300BAAA2A /* Targetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Targetable.swift; sourceTree = "<group>"; };
+		79CAA63A248DD91800BAAA2A /* Interactable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactable.swift; sourceTree = "<group>"; };
 		79D0B60A247FEDF8001029BE /* Decoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoration.swift; sourceTree = "<group>"; };
 		79D0B60E248014DA001029BE /* Blood.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Blood.xcassets; sourceTree = "<group>"; };
 		79D0B61A24803C54001029BE /* SoundType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundType.swift; sourceTree = "<group>"; };
@@ -1050,6 +1058,8 @@
 				79D58E14247D957600E1EE79 /* NodeType.swift */,
 				79D0B61A24803C54001029BE /* SoundType.swift */,
 				79A8BECE2482259700346F44 /* HitState.swift */,
+				79CAA636248DD7F300BAAA2A /* Targetable.swift */,
+				79CAA63A248DD91800BAAA2A /* Interactable.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -2011,6 +2021,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79CAA63B248DD91800BAAA2A /* Interactable.swift in Sources */,
 				79ACC82A22AB81F000AC3BF0 /* JSONConstructable.swift in Sources */,
 				79DF73B0246320D00030E7A8 /* HealthBar.swift in Sources */,
 				79042E6C2478405100730646 /* Projectile.swift in Sources */,
@@ -2033,6 +2044,7 @@
 				79A8BF0B24827FA500346F44 /* RestAction.swift in Sources */,
 				792C699023A5495500A729C3 /* CastSpellAction.swift in Sources */,
 				79C61A7B22A7C415008D3609 /* GameViewController.swift in Sources */,
+				79CAA637248DD7F300BAAA2A /* Targetable.swift in Sources */,
 				792C698C23A40D4700A729C3 /* Spell.swift in Sources */,
 				79D815742465AEAF0099567B /* PaperDollNode.swift in Sources */,
 				79ACC81E22AB473200AC3BF0 /* Action.swift in Sources */,
@@ -2097,6 +2109,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79CAA63C248DD91800BAAA2A /* Interactable.swift in Sources */,
 				79ACC82B22AB81F000AC3BF0 /* JSONConstructable.swift in Sources */,
 				79DF73B1246320D00030E7A8 /* HealthBar.swift in Sources */,
 				79042E6D2478405100730646 /* Projectile.swift in Sources */,
@@ -2119,6 +2132,7 @@
 				79A8BF0C24827FA500346F44 /* RestAction.swift in Sources */,
 				79742A6B239E60A7008504E8 /* Gender.swift in Sources */,
 				792C699123A5495500A729C3 /* CastSpellAction.swift in Sources */,
+				79CAA638248DD7F300BAAA2A /* Targetable.swift in Sources */,
 				79C61A8C22A7C415008D3609 /* GameViewController.swift in Sources */,
 				79D815752465AEAF0099567B /* PaperDollNode.swift in Sources */,
 				792C698D23A40D4700A729C3 /* Spell.swift in Sources */,
@@ -2212,9 +2226,11 @@
 				79ACC7F322AA60E300AC3BF0 /* EntityFactory.swift in Sources */,
 				79D6E6E2247A6DD200D7333A /* UseAction.swift in Sources */,
 				7960DEC023A6082B00B4CDF8 /* Weapon.swift in Sources */,
+				79CAA639248DD7F300BAAA2A /* Targetable.swift in Sources */,
 				792E454E247048060088FBD7 /* CharacterInfoNode.swift in Sources */,
 				79646C83248B874300BA9BAC /* TimeInfoNode.swift in Sources */,
 				7963DE30239CC35F00183DF2 /* DefaultMenuConfiguration.swift in Sources */,
+				79CAA63D248DD91800BAAA2A /* Interactable.swift in Sources */,
 				79FC68FB244C4C9E00E6D63C /* ChooseAttributesScene.swift in Sources */,
 				79042E662478192600730646 /* Energy.swift in Sources */,
 				79042E76247BF86700730646 /* Tileset.swift in Sources */,

@@ -186,7 +186,7 @@ class Game {
             case let interact as InteractAction:
 //                print("\(interact.actor.name) @ \(interact.actor.coord.x).\(interact.actor.coord.y) is interacting with \(interact.entity.name)")
                 interact.actor.updateVisibility()
-                self.delegate?.gameActorDidPerformInteraction(actor: interact.actor, targetEntity: interact.entity)
+                self.delegate?.gameActorDidPerformInteraction(actor: interact.actor, targetEntity: interact.interactable)
             case let move as MoveAction:
 //                print("\(move.actor.name) @ \(move.actor.coord.x).\(move.actor.coord.y) is performing move")
                 // after the hero moved to a new location, update the visible tiles for the hero
@@ -303,12 +303,11 @@ class Game {
         ]
 
         for coord in coords {
-            if self.state.getDoor(at: coord) != nil || self.state.getTrap(at: coord) != nil {
+            if let interactable = self.state.getInteractableAt(coord: coord) {
                 self.state.setHeroSearchEnabled(false)
-                
-                let direction = Direction.relative(from: self.state.hero.coord, to: coord)
+
                 self.selectionMode = .none
-                self.state.hero.interact(direction: direction)
+                self.state.hero.interact(interactable: interactable)
             }
         }
     }

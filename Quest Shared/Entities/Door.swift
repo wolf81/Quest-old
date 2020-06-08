@@ -9,6 +9,11 @@
 import SpriteKit
 import GameplayKit
 
+enum DoorState {
+    case opened
+    case closed
+}
+
 class Door: GKGridGraphNode & TileProtocol {
     var didExplore: Bool = false
 
@@ -16,13 +21,15 @@ class Door: GKGridGraphNode & TileProtocol {
         
     lazy var name: String = { self.json["name"] as! String }()
     
-    lazy var sprite: SKSpriteNode = {
-        fatalError()
-    }()
-    
+    var sprite: SKSpriteNode = SKSpriteNode(color: .clear, size: Constants.tileSize)
+
     var coord: vector_int2 { return self.gridPosition }
 
-    var isOpen: Bool = false
+    var state: DoorState = .closed {
+        didSet {
+            updateForDoorState()
+        }
+    }
             
     private lazy var soundInfo: [SoundType: [String]] = {
         guard let soundInfo = self.json["sounds"] as? [String: [String]] else { return [:] }
@@ -44,22 +51,35 @@ class Door: GKGridGraphNode & TileProtocol {
         self.json = json
         
         super.init(gridPosition: coord)
-        
-        self.sprite = getSprite(isOpen: self.isOpen)
     }
     
     required init(json: [String : Any], entityFactory: EntityFactory) {
         self.json = json
 
         super.init(gridPosition: vector2(0, 0))
-
-        self.sprite = getSprite(isOpen: self.isOpen)
     }
-            
-    func getSprite(isOpen: Bool) -> SKSpriteNode {
+         
+    func configure(withTile tile: TileProtocol) {
+        self.sprite = tile.sprite.copy() as! SKSpriteNode        
+        updateForDoorState()
+    }
+        
+    func updateForDoorState() {
         let spriteInfo = self.json["sprite"] as! [String: String]
-        let spriteName = spriteInfo[isOpen ? "open" : "closed"]!        
-        return Entity.loadSprite(type: self, spriteName: spriteName)
+        var sprite: SKSpriteNode
+        
+        switch self.state {
+        case .opened: sprite = Entity.loadSprite(type: self, spriteName: spriteInfo["open"]!)
+        case .closed: sprite = Entity.loadSprite(type: self, spriteName: spriteInfo["closed"]!)
+        }
+                
+//        self.sprite.run(SKAction.sequence([
+//            SKAction.fadeIn(withDuration: 1.0),
+//            SKAction.run({ door.sprite = newSprite })
+//        ]))
+
+        self.sprite.removeAllChildren()
+        self.sprite.addChild(sprite)
     }
         
     func copy(coord: vector_int2, entityFactory: EntityFactory) -> Self {
@@ -78,5 +98,19 @@ class Door: GKGridGraphNode & TileProtocol {
 
     private func copyInternal<T: Door>(coord: vector_int2, entityFactory: EntityFactory) -> T {
         return T(json: self.json, entityFactory: entityFactory, coord: coord)
+    }
+}
+
+extension Door: Targetable {
+    var isTargetable: Bool { true }
+}
+
+extension Door: Interactable {
+    var canInteract: Bool { true }
+
+    func interact(state: GameState) {
+        self.state = ((self.state == .opened) ? .closed : .opened)
+        
+        state.currentActor.updateVisibility()
     }
 }

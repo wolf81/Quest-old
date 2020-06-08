@@ -263,27 +263,23 @@ extension GameScene: GameDelegate {
     
     func gameActorDidPerformInteraction(actor: Actor, targetEntity: EntityProtocol) {
         if let door = targetEntity as? Door {
-            let oldSprite = door.sprite
-            
-            oldSprite.run(SKAction.sequence([
-                SKAction.fadeOut(withDuration: 1.0),
-                SKAction.run({ oldSprite.removeFromParent() })
-            ]))
+            gameActorDidMove(actor: actor, path: [actor.coord])
+//            let oldSprite = door.sprite
+//            
+//            oldSprite.run(SKAction.sequence([
+//                SKAction.fadeOut(withDuration: 1.0),
+//                SKAction.run({ oldSprite.removeFromParent() })
+//            ]))
 
-            let newSprite = door.getSprite(isOpen: door.isOpen)
-            newSprite.position = oldSprite.position
-            newSprite.alpha = 0.0
-            self.world.addChild(newSprite)
-
-            newSprite.run(SKAction.sequence([
-                SKAction.fadeIn(withDuration: 1.0),
-                SKAction.run({ door.sprite = newSprite })
-            ]))
+//            let newSprite = door.getSprite(isOpen: door.isOpen)
+//            newSprite.position = oldSprite.position
+//            newSprite.alpha = 0.0
+//            self.world.addChild(newSprite)
             
             // update visible nodes
             gameActorDidMove(actor: actor, path: [actor.coord])
             
-            door.playSound(door.isOpen ? .activate : .deactivate, on: self.world)
+            door.playSound(door.state == .opened ? .activate : .deactivate, on: self.world)
         }
     }
     
@@ -381,7 +377,7 @@ extension GameScene: GameDelegate {
 
         entity.sprite.run(SKAction.sequence(fade))
     }
-    
+        
     func gameActorDidMove(actor: Actor, path: [vector_int2]) {
         switch actor {
         case let hero as Hero:

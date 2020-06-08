@@ -9,10 +9,10 @@
 import Foundation
 
 class InteractAction: Action {    
-    unowned let entity: EntityProtocol
+    unowned let interactable: Interactable
     
-    init(actor: Actor, entity: EntityProtocol) {
-        self.entity = entity
+    init(actor: Actor, interactable: Interactable) {
+        self.interactable = interactable
         
         super.init(actor: actor)
     }
@@ -20,11 +20,12 @@ class InteractAction: Action {
     override func perform(state: GameState) {
         self.actor.energy.drain(50)
 
-        switch self.entity {
-        case let door as Door: door.isOpen = !door.isOpen
-        case let trap as Trap where trap.state == .discovered:
-            if let hero = self.actor as? Hero{ trap.disable(hero: hero) }
-        default: fatalError()
-        }
+        self.interactable.interact(state: state)
+//        switch self.entity {
+//        case let door as Door: door.interact(state: state)
+//        case let trap as Trap where trap.state == .discovered:
+//            if let hero = self.actor as? Hero{ trap.disable(hero: hero) }
+//        default: fatalError()
+//        }
     }
 }

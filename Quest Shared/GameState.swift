@@ -147,6 +147,15 @@ class GameState {
         return tile as? Door
     }
     
+    func getInteractableAt(coord: vector_int2) -> Interactable? {
+        let tile = self.tiles[Int(coord.y)][Int(coord.x)]
+        return tile as? Interactable
+    }
+    
+    func getInteractableAt<T: Interactable>(coord: vector_int2) -> T? {
+        return getInteractableAt(coord: coord) as? T        
+    }
+    
     func getActor(at coord: vector_int2) -> Actor? {
         self.actors.filter({ $0.coord == coord }).first
     }
@@ -210,7 +219,7 @@ class GameState {
         let nodeType = self.map[coord]
         
         switch nodeType {
-        case .door: return getDoor(at: coord)!.isOpen
+        case .door: return getDoor(at: coord)!.state == .opened
         default: return nodeType == .open
         }
     }
@@ -259,7 +268,7 @@ class GameState {
     private func setRaycastVisibility(for actor: Actor) {
         actor.visibility = RaycastVisibility(mapSize: self.mapSize, blocksLight: {
             if let door = self.getDoor(at: $0) {
-                return door.isOpen == false
+                return door.state == .closed
             }
                             
             return self.getMapNodeType(at: $0) == .blocked
@@ -286,7 +295,10 @@ class GameState {
                switch nodeType {
                case .open: entity = Tile(sprite: tileset.getFloorTile(), coord: coord)
                case .blocked: entity = Tile(sprite: tileset.getWallTile(), coord: coord)
-               case .door: entity = try! self.entityFactory.newEntity(type: Door.self, name: "Door", coord: coord)
+               case .door:
+                let tile = Tile(sprite: tileset.getFloorTile(), coord: coord)
+                entity = try! self.entityFactory.newEntity(type: Door.self, name: "Door", coord: coord)
+                (entity as! Door).configure(withTile: tile)
                }
 
                tileRow.append(entity)

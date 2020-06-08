@@ -326,3 +326,7 @@ extension Actor {
     @discardableResult
     func unequip(_ equipmentSlot: EquipmentSlot) -> Bool { self.inventory.unequip(equipmentSlot) }
 }
+
+extension Actor: Targetable {
+    var isTargetable: Bool { true }
+}
