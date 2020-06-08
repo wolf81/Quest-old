@@ -165,7 +165,7 @@ class GameState {
     }
         
     func remove(entity: Entity) {
-        self.entities.removeAll(where: { $0 == entity })
+        self.entities.removeAll(where: { $0 === entity })
     }
     
     func spawnMonster(at coord: vector_int2) -> Monster {

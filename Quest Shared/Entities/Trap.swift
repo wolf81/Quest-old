@@ -105,8 +105,8 @@ class Trap: TileProtocol {
     }
     
     @discardableResult
-    func disable(hero: Hero) -> Bool {
-        let bonus = hero.attributes.dexterity.bonus + hero.skills.subterfuge
+    func disable(actor: Actor) -> Bool {
+        let bonus = actor.attributes.dexterity.bonus + actor.skills.subterfuge
         let roll = HitDie.d20(1, bonus).randomValue
         
         print("disable trap: \(roll) vs \(self.disableDifficultyClass)")
@@ -115,7 +115,7 @@ class Trap: TileProtocol {
         if disabled {
             self.state = .disabled
         } else {
-            self.trigger(actor: hero)
+            self.trigger(actor: actor)
         }
         
         return disabled
@@ -182,9 +182,6 @@ extension Trap: Interactable {
     var canInteract: Bool { self.state == .discovered }
 
     func interact(state: GameState) {
-        if let hero = state.currentActor as? Hero {
-            
-        }
-        
+        disable(actor: state.currentActor)
     }
 }

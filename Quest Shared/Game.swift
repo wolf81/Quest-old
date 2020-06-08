@@ -325,7 +325,7 @@ class Game {
     }
         
     func remove(entity: Entity) {
-        self.state.entities.removeAll(where: { $0 == entity })
+        self.state.entities.removeAll(where: { $0 === entity })
         self.delegate?.gameDidDestroy(entity: entity)
     }
 

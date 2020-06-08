@@ -197,8 +197,7 @@ class GameScene: SKScene, SceneManagerConstructable {
         for tile in self.game.selectionModeTiles {
             tile.sprite.removeFromParent()
         }
-    }
-    
+    }    
     
     private func getMinMaxVisibleCoordsInView() -> (vector_int2, vector_int2) {
         let halfWidth = self.size.width / 2
