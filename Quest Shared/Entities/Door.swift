@@ -72,14 +72,18 @@ class Door: Entity & TileProtocol {
         case .opened: sprite = Entity.loadSprite(type: self, spriteName: spriteInfo["open"]!)
         case .closed: sprite = Entity.loadSprite(type: self, spriteName: spriteInfo["closed"]!)
         }
-                
-//        self.sprite.run(SKAction.sequence([
-//            SKAction.fadeIn(withDuration: 1.0),
-//            SKAction.run({ door.sprite = newSprite })
-//        ]))
 
-        self.sprite.removeAllChildren()
-        self.sprite.addChild(sprite)
+        if let oldSprite = self.sprite.children.first {
+            sprite.alpha = 0.0
+            self.sprite.addChild(sprite)
+            sprite.run(SKAction.fadeIn(withDuration: 1.0))
+            oldSprite.run(SKAction.sequence([
+                SKAction.fadeOut(withDuration: 1.0),
+                SKAction.run({ oldSprite.removeFromParent() })
+            ]))
+        } else { // add for the first time
+            self.sprite.addChild(sprite)
+        }
     }
         
 //    func copy(coord: vector_int2, entityFactory: EntityFactory) -> Self {
