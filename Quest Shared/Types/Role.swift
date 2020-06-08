@@ -29,7 +29,7 @@ enum Role: String, Codable {
             if self == .mage && weapon.type == .staff { return true }
             
             let weaponRestrictionInfo: [Weapon.WeaponCategory: [Role]] = [
-                .light: [.fighter, .cleric, .mage],
+                .light: [.rogue, .fighter, .cleric, .mage],
                 .medium: [.fighter, .cleric],
                 .heavy: [.fighter]
             ]
