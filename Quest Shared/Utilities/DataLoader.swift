@@ -8,6 +8,7 @@
 
 import Foundation
 import DungeonBuilder
+import simd
 
 class DataLoader {
     private init() {}
@@ -20,7 +21,7 @@ class DataLoader {
     
     static func loadEntity<T: EntityProtocol>(type: T.Type, fromPath path: String, entityFactory: EntityFactory) throws -> T {
         let json = try loadJson(path: path)
-        return T(json: json, entityFactory: entityFactory)
+        return T(json: json, entityFactory: entityFactory, coord: vector_int2(0, 0))
     }
     
     static func loadLevel(index: Int) throws -> [String: Any] {

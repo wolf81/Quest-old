@@ -8,8 +8,6 @@
 
 import SpriteKit
 
-protocol TileProtocol: EntityProtocol {
-    init(json: [String: Any], entityFactory: EntityFactory, coord: vector_int2)
-    
+protocol TileProtocol: EntityProtocol {    
     var didExplore: Bool { get set }
 }

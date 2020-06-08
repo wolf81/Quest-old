@@ -14,16 +14,16 @@ enum DoorState {
     case closed
 }
 
-class Door: GKGridGraphNode & TileProtocol {
+class Door: Entity & TileProtocol {
     var didExplore: Bool = false
 
-    private(set) var json: [String: Any] = [:]
-        
-    lazy var name: String = { self.json["name"] as! String }()
+//    private(set) var json: [String: Any] = [:]
+//
+//    lazy var name: String = { self.json["name"] as! String }()
     
-    var sprite: SKSpriteNode = SKSpriteNode(color: .clear, size: Constants.tileSize)
-
-    var coord: vector_int2 { return self.gridPosition }
+//    var sprite: SKSpriteNode = SKSpriteNode(color: .clear, size: Constants.tileSize)
+//
+//    var coord: vector_int2 { return self.gridPosition }
 
     var state: DoorState = .closed {
         didSet {
@@ -43,21 +43,21 @@ class Door: GKGridGraphNode & TileProtocol {
         return result
     }()
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
     
-    required init(json: [String : Any], entityFactory: EntityFactory, coord: vector_int2) {
-        self.json = json
-        
-        super.init(gridPosition: coord)
-    }
-    
-    required init(json: [String : Any], entityFactory: EntityFactory) {
-        self.json = json
-
-        super.init(gridPosition: vector2(0, 0))
-    }
+//    required init(json: [String : Any], entityFactory: EntityFactory, coord: vector_int2) {
+//        self.json = json
+//
+//        super.init(gridPosition: coord)
+//    }
+//
+//    required init(json: [String : Any], entityFactory: EntityFactory) {
+//        self.json = json
+//
+//        super.init(gridPosition: vector2(0, 0))
+//    }
          
     func configure(withTile tile: TileProtocol) {
         self.sprite = tile.sprite.copy() as! SKSpriteNode        
@@ -82,9 +82,9 @@ class Door: GKGridGraphNode & TileProtocol {
         self.sprite.addChild(sprite)
     }
         
-    func copy(coord: vector_int2, entityFactory: EntityFactory) -> Self {
-        copyInternal(coord: coord, entityFactory: entityFactory)
-    }
+//    func copy(coord: vector_int2, entityFactory: EntityFactory) -> Self {
+//        copyInternal(coord: coord, entityFactory: entityFactory)
+//    }
 
     func playSound(_ type: SoundType, on node: SKNode) {
         guard let sounds = self.soundInfo[type] else { return }

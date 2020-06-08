@@ -34,7 +34,7 @@ class Accessory: Entity & Equippable {
         return Entity.loadSprite(type: self, spriteName: spriteName)
     }()
 
-    required init(json: [String : Any], entityFactory: EntityFactory) {
+    required init(json: [String : Any], entityFactory: EntityFactory, coord: vector_int2) {
         var effects: [Effect] = []
         if let effectNames = json["effects"] as? [String] {
             for effectName in effectNames {
@@ -47,10 +47,10 @@ class Accessory: Entity & Equippable {
         let accessoryType = json["type"] as! String
         self.type = AccessoryType(rawValue: accessoryType)!
         
-        super.init(json: json, entityFactory: entityFactory)
+        super.init(json: json, entityFactory: entityFactory, coord: coord)
     }
     
     static func none(type: AccessoryType) -> Accessory {
-        return self.init(json: ["type": type.rawValue], entityFactory: EntityFactory())
+        return self.init(json: ["name": "none", "type": type.rawValue], entityFactory: EntityFactory(), coord: vector_int2(0, 0))
     }
 }

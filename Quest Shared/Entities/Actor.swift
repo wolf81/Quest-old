@@ -47,7 +47,7 @@ class Actor: Entity {
     
     private(set) var energyCost: EnergyCost
                     
-    private let inventory: Inventory = Inventory()
+    private let inventory: Inventory
     
     private var action: Action?        
         
@@ -102,15 +102,16 @@ class Actor: Entity {
         return equippedItems.compactMap({ $0.effects }).flatMap({ $0 })
     }
 
-    init(json: [String : Any], hitPoints: Int, armorClass: Int, skills: Skills, equipment: [Equippable], entityFactory: EntityFactory) {
+    init(json: [String : Any], hitPoints: Int, armorClass: Int, skills: Skills, equipment: [Equippable], coord: vector_int2, entityFactory: EntityFactory) {
         self.hitPoints = HitPoints(base: hitPoints)
         self.armorClass = armorClass
         self.skills = skills
         self.unarmed = try! entityFactory.newEntity(type: Weapon.self, name: "Unarmed")
         self.energyCost = EnergyCost(json: json["energyCost"] as? [String: Int] ?? [:])
         self.sight = json["sight"] as? Int32 ?? 5
+        self.inventory = Inventory(entityFactory: entityFactory)
         
-        super.init(json: json, entityFactory: entityFactory)
+        super.init(json: json, entityFactory: entityFactory, coord: coord)
                                 
         self.hitPoints.delegate = self
         
@@ -126,8 +127,9 @@ class Actor: Entity {
         self.attributes = attributes
         self.unarmed = try! entityFactory.newEntity(type: Weapon.self, name: "Unarmed")
         self.energyCost = EnergyCost()
+        self.inventory = Inventory(entityFactory: entityFactory)
 
-        super.init(json: ["name": name, "sprite": "\(race)_\(gender)"], entityFactory: entityFactory)
+        super.init(json: ["name": name, "sprite": "\(race)_\(gender)"], entityFactory: entityFactory, coord: vector_int2(0, 0))
         
         self.hitPoints.delegate = self
         
@@ -139,14 +141,15 @@ class Actor: Entity {
         updateSpriteForEquipment()
     }
     
-    required init(json: [String : Any], entityFactory: EntityFactory) {
+    required init(json: [String : Any], entityFactory: EntityFactory, coord: vector_int2) {
         self.hitPoints = HitPoints(base: 1)
         self.skills = Skills(physical: 0, subterfuge: 0, knowledge: 0, communication: 0)
         self.unarmed = try! entityFactory.newEntity(type: Weapon.self, name: "Unarmed")
         self.energyCost = EnergyCost(json: json["energyCost"] as? [String: Int] ?? [:])
+        self.inventory = Inventory(entityFactory: entityFactory)
 
-        super.init(json: json, entityFactory: entityFactory)
-
+        super.init(json: json, entityFactory: entityFactory, coord: coord)
+        
         self.hitPoints.delegate = self
         
         self.healthBar = Actor.addHealthBar(sprite: self.sprite)

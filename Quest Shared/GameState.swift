@@ -9,7 +9,7 @@
 import Foundation
 import DungeonBuilder
 import GameplayKit
-import simd
+import SpriteKit
 import Fenris
 import Harptos
 
@@ -103,7 +103,9 @@ class GameState {
         addTraps(to: dungeon)
         
         generateMovementGraph()
-        
+    }
+    
+    func startRaycastingForActors() {
         for actor in self.actors {
             setRaycastVisibility(for: actor)
             actor.updateVisibility()
@@ -267,6 +269,7 @@ class GameState {
     
     private func setRaycastVisibility(for actor: Actor) {
         actor.visibility = RaycastVisibility(mapSize: self.mapSize, blocksLight: {
+            print("test: \($0.x).\($0.y)")
             if let door = self.getDoor(at: $0) {
                 return door.state == .closed
             }
@@ -293,10 +296,10 @@ class GameState {
                var entity: TileProtocol
 
                switch nodeType {
-               case .open: entity = Tile(sprite: tileset.getFloorTile(), coord: coord)
-               case .blocked: entity = Tile(sprite: tileset.getWallTile(), coord: coord)
+               case .open: entity = Tile(sprite: tileset.getFloorTile(), entityFactory: self.entityFactory, coord: coord)
+               case .blocked: entity = Tile(sprite: tileset.getWallTile(), entityFactory: self.entityFactory, coord: coord)
                case .door:
-                let tile = Tile(sprite: tileset.getFloorTile(), coord: coord)
+                let tile = Tile(sprite: tileset.getFloorTile(), entityFactory: self.entityFactory, coord: coord)
                 entity = try! self.entityFactory.newEntity(type: Door.self, name: "Door", coord: coord)
                 (entity as! Door).configure(withTile: tile)
                }
@@ -361,7 +364,7 @@ class GameState {
             
             let monsterNames = self.entityFactory.entityNames(of: Monster.self)
             let remainder = monsterCount.remainderReportingOverflow(dividingBy: monsterNames.count).partialValue
-            let monster = try! self.entityFactory.newEntity(type: Monster.self, name: monsterNames[remainder], coord: roomCoord)
+            let monster = try! self.entityFactory.newEntity(type: Monster.self, name: monsterNames[remainder], coord: roomCoord)            
             self.entities.append(monster)
             
             monsterCount += 1
@@ -485,7 +488,7 @@ class GameState {
                     default: continue // ignore doors for now?
                     }
                     
-                    let newTile = Tile(sprite: sprite, coord: tile.coord)
+                    let newTile = Tile(sprite: sprite, entityFactory: self.entityFactory, coord: tile.coord)
                     self.tiles[x][y] = newTile
                 }
             }

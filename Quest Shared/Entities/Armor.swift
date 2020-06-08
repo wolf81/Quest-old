@@ -38,21 +38,21 @@ class Armor: Entity & Equippable {
         }
     }()
     
-    required init(json: [String : Any], entityFactory: EntityFactory) {
+    required init(json: [String : Any], entityFactory: EntityFactory, coord: vector_int2) {
         let armorClass = json["AC"] as! Int
         self.armorClass = armorClass
         
         let armorType = json["type"] as? String ?? "none"
         self.type = ArmorType(rawValue: armorType)!
         
-        super.init(json: json, entityFactory: entityFactory)
+        super.init(json: json, entityFactory: entityFactory, coord: coord)
         
         configureSprite()
     }
     
     static var none: Armor {
         get {
-            return self.init(json: ["AC": 0], entityFactory: EntityFactory())
+            return self.init(json: ["name": "none", "AC": 0], entityFactory: EntityFactory(), coord: vector_int2(0,0))
         }
     }
     

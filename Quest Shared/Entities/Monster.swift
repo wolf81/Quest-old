@@ -20,7 +20,7 @@ class Monster: Actor, CustomStringConvertible {
         dieRoll == .maximum ? self.equippedWeapon.damage.maxValue : self.equippedWeapon.damage.randomValue
     }
 
-    required init(json: [String : Any], entityFactory: EntityFactory) {
+    required init(json: [String : Any], entityFactory: EntityFactory, coord: vector_int2) {
         let hitDieString = json["HD"] as! String
         let hitDie = HitDie(rawValue: hitDieString)!
         self.hitDie = hitDie
@@ -37,7 +37,7 @@ class Monster: Actor, CustomStringConvertible {
             equipment.append(try! entityFactory.newEntity(typeName: type.capitalized, name: name) as! Equippable)
         }
                 
-        super.init(json: json, hitPoints: hitPoints, armorClass: armorClass, skills: skills, equipment: equipment, entityFactory: entityFactory)
+        super.init(json: json, hitPoints: hitPoints, armorClass: armorClass, skills: skills, equipment: equipment, coord: coord, entityFactory: entityFactory)
     }
         
     var description: String {

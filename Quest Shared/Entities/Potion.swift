@@ -38,7 +38,7 @@ protocol Usable {
 class Potion: Entity & Usable & Lootable {
     let effects: [Effect]
     
-    required init(json: [String : Any], entityFactory: EntityFactory) {
+    required init(json: [String : Any], entityFactory: EntityFactory, coord: vector_int2) {
         var effects: [Effect] = []
         if let effectNames = json["effects"] as? [String] {
             for effectName in effectNames {
@@ -48,7 +48,7 @@ class Potion: Entity & Usable & Lootable {
         }
         self.effects = effects
                 
-        super.init(json: json, entityFactory: entityFactory)        
+        super.init(json: json, entityFactory: entityFactory, coord: coord)        
     }
     
     func use(actor: Actor) {

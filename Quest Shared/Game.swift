@@ -77,88 +77,16 @@ class Game {
         self.state = state
         print(self.state)
     }
-
-//    private(set) var selectionModeCoords = Set<vector_int2>()
-    private(set) var selectionModeTiles: [OverlayTile] = []
                 
     var actions: [Action] = []
         
     // MARK: - Public
-    
-    func showMovementTilesForHero() {
-        self.selectionModeTiles.removeAll()
-        
-        let coords: [vector_int2] = [
-            vector_int2(self.state.hero.coord.x - 1, self.state.hero.coord.y),
-            vector_int2(self.state.hero.coord.x + 1, self.state.hero.coord.y),
-            vector_int2(self.state.hero.coord.x, self.state.hero.coord.y - 1),
-            vector_int2(self.state.hero.coord.x, self.state.hero.coord.y + 1),
-        ]
-        
-        for coord in coords {
-            if self.state.getMapNodeType(at: coord) == .open && self.state.monsters.filter({ $0.coord == coord }).count == 0 {
-                self.selectionModeTiles.append(OverlayTile(color: SKColor.green.withAlphaComponent(0.5), coord: coord, isBlocked: false))
-            }
-        }
-                                    
-        self.selectionMode = .selectDestinationTile
-    }
-    
-    func showTargetTilesForSpellType<T: Spell>(spellType: T.Type) {
-        if spellType is SingleTargetDamageSpell.Type {
-            showRangedAttackTilesForHero()
-            
-            self.selectionMode = .selectSpellTarget(spellType)
-        }
-    }
-    
-    func showRangedAttackTilesForHero() {
-        return
-        
-//        guard self.actors[self.activeActorIdx] == self.hero && self.isBusy == false else { return }
-//
-//        if selectionMode.isSelection { hideSelectionTiles() }
-//
-//        let attackRange = Int32(self.hero.equipment.rangedWeapon.range)
-//        let xRange = self.hero.coord.x - attackRange ... self.hero.coord.x + attackRange
-//        let yRange = self.hero.coord.y - attackRange ... self.hero.coord.y + attackRange
-//        
-//        let actorCoords = self.actors.filter({ $0 != self.hero }).compactMap({ $0.coord })
-//        for actorCoord in actorCoords {
-//            if xRange.contains(actorCoord.x) && yRange.contains(actorCoord.y) {
-//                let movementTile = OverlayTile(color: SKColor.orange.withAlphaComponent(0.4), coord: actorCoord, isBlocked: true)
-//                self.tiles.append(movementTile)
-//                self.delegate?.gameDidAdd(entity: movementTile)
-//            }
-//        }
-//        
-//        self.selectionMode = .selectRangedTarget
-    }
-    
-    func showMeleeAttackTilesForHero() {
-        self.selectionModeTiles.removeAll()
-        
-        let xRange = self.state.hero.coord.x - 1 ... self.state.hero.coord.x + 1
-        let yRange = self.state.hero.coord.y - 1 ... self.state.hero.coord.y + 1
-        
-        for x in xRange {
-            for y in yRange {
-                let coord = vector_int2(x, y)
-                
-                if coord == self.state.hero.coord { continue }
-        
-                if let _ = self.state.monsters.filter({ $0.coord == coord }).first {
-                    self.selectionModeTiles.append(OverlayTile(color: SKColor.red.withAlphaComponent(0.5), coord: coord, isBlocked: false))
-                }
-            }
-        }
-        
-        self.selectionMode = .selectMeleeTarget
-    }
             
     func start(levelIdx: Int = 0, tileSize: CGSize) {        
         self.state.updateActiveActors(for: self.viewVisibleCoords)
-        self.state.hero.updateVisibility()
+//        self.state.hero.updateVisibility()
+        
+        self.state.startRaycastingForActors()
     }
     
     func update(_ deltaTime: TimeInterval) {

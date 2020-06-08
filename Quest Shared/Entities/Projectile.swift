@@ -20,10 +20,6 @@ class Projectile: Entity {
 
         return result
     }()
-
-    required init(json: [String : Any], entityFactory: EntityFactory) {
-        super.init(json: json, entityFactory: entityFactory)
-    }
     
     func configureSprite(origin: vector_int2, target: vector_int2) {
         let direction = Direction.relative(from: origin, to: target)                

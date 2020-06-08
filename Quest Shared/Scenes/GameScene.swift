@@ -192,13 +192,7 @@ class GameScene: SKScene, SceneManagerConstructable {
         if self.characterInfo != nil { toggleCharacterInfo() }
         if self.inventory != nil { toggleInventory() }
     }
-    
-    fileprivate func clearSelectionModeTiles() {
-        for tile in self.game.selectionModeTiles {
-            tile.sprite.removeFromParent()
-        }
-    }    
-    
+        
     private func getMinMaxVisibleCoordsInView() -> (vector_int2, vector_int2) {
         let halfWidth = self.size.width / 2
         let minX = self.camera!.position.x - halfWidth
@@ -263,34 +257,13 @@ extension GameScene: GameDelegate {
     func gameActorDidPerformInteraction(actor: Actor, targetEntity: EntityProtocol) {
         if let door = targetEntity as? Door {
             gameActorDidMove(actor: actor, path: [actor.coord])
-//            let oldSprite = door.sprite
-//            
-//            oldSprite.run(SKAction.sequence([
-//                SKAction.fadeOut(withDuration: 1.0),
-//                SKAction.run({ oldSprite.removeFromParent() })
-//            ]))
-
-//            let newSprite = door.getSprite(isOpen: door.isOpen)
-//            newSprite.position = oldSprite.position
-//            newSprite.alpha = 0.0
-//            self.world.addChild(newSprite)
-            
-            // update visible nodes
-            gameActorDidMove(actor: actor, path: [actor.coord])
-            
+                        
             door.playSound(door.state == .opened ? .activate : .deactivate, on: self.world)
         }
     }
     
-    func gameDidChangeSelectionMode(_ selectionMode: SelectionMode) {        
-        clearSelectionModeTiles()
-                
-        if selectionMode.isSelection {
-            for tile in self.game.selectionModeTiles {
-                tile.sprite.position = GameScene.pointForCoord(tile.coord)
-                self.world.addChild(tile.sprite)
-            }
-        }
+    func gameDidChangeSelectionMode(_ selectionMode: SelectionMode) {
+        print("selection mode: \(selectionMode)")
     }
     
     func gameActorDidPerformRangedAttack(actor: Actor, withProjectile projectile: Projectile, targetActor: Actor, state: HitState) {
@@ -541,29 +514,15 @@ extension GameScene: GameDelegate {
 // MARK: - ActionBarDelegate
 
 extension GameScene: ActionBarDelegate {
-    func actionBarDidSelectDefend() {
-        print("defend")
-    }
+    func actionBarDidSelectDefend() {}
     
-    func actionBarDidSelectMove() {
-        clearSelectionModeTiles()
-        self.game.showMovementTilesForHero()
-    }
+    func actionBarDidSelectMove() {}
     
-    func actionBarDidSelectMeleeAttack() {
-        clearSelectionModeTiles()
-        self.game.showMeleeAttackTilesForHero()
-    }
+    func actionBarDidSelectMeleeAttack() {}
 
-    func actionBarDidSelectRangeAttack() {
-        clearSelectionModeTiles()
-        self.game.showRangedAttackTilesForHero()
-    }
+    func actionBarDidSelectRangeAttack() {}
     
-    func actionBarDidSelectCastSpell() {
-        clearSelectionModeTiles()
-        self.game.showTargetTilesForSpellType(spellType: MagicMissile.self)
-    }
+    func actionBarDidSelectCastSpell() {}
     
     func actionBarDidSelectSearch() {
         self.game.toggleSearch()
@@ -631,7 +590,7 @@ extension GameScene {
         case /* d */ 2: self.game.movePlayer(direction: .east)
         case /* s */ 1: self.game.movePlayer(direction: .south)
         case /* w */ 13: self.game.movePlayer(direction: .north)
-        default: print("\(event.keyCode)")
+        default: break
         }
     }        
     

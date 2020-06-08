@@ -30,7 +30,6 @@ struct DrawLayerHelper {
         case is Weapon: fallthrough
         case is Projectile: fallthrough
         case is Armor: return EntityDrawLayer.equipment.rawValue
-        case is OverlayTile: return EntityDrawLayer.overlay.rawValue
         case is Tile: return EntityDrawLayer.tile.rawValue
         case is Decoration: return EntityDrawLayer.tile.rawValue + 1
         case is Door: return EntityDrawLayer.tile.rawValue + 1

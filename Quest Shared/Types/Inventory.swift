@@ -13,6 +13,8 @@ class Inventory {
             
     private(set) var equippedItems: [EquipmentSlot: Equippable] = [:]    
         
+    init(entityFactory: EntityFactory) {}
+    
     @discardableResult
     private func equip(at index: Int) -> Bool {
         if let equipment = self.backpack[index] as? Equippable {

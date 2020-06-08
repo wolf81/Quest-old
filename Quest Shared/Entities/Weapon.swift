@@ -81,7 +81,7 @@ class Weapon: Entity & Equippable, CustomStringConvertible {
     
     var effects: [Effect] = []
     
-    required init(json: [String : Any], entityFactory: EntityFactory) {
+    required init(json: [String : Any], entityFactory: EntityFactory, coord: vector_int2) {
         self.attack = json["AT"] as? Int ?? 0
         self.range = json["range"] as? Int ?? 1
 
@@ -95,7 +95,7 @@ class Weapon: Entity & Equippable, CustomStringConvertible {
             self.projectile = try! entityFactory.newEntity(type: Projectile.self, name: projectile)
         }
         
-        super.init(json: json, entityFactory: entityFactory)
+        super.init(json: json, entityFactory: entityFactory, coord: coord)
     }
         
     func playSound(_ type: SoundType, on node: SKNode) {

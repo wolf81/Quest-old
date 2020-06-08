@@ -55,7 +55,7 @@ class EntityFactory {
         guard let entity = entities[name] else {
             throw EntityFactoryError.notRegistered(name)
         }
-        
+
         return entity.copy(coord: coord, entityFactory: self) as! T
     }
     

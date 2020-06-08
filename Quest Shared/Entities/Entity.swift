@@ -9,11 +9,14 @@
 import SpriteKit
 
 class Entity: EntityProtocol & Hashable {
+    let id: UInt
+    
     static func == (lhs: Entity, rhs: Entity) -> Bool {
-        return lhs.name == rhs.name && lhs.coord == rhs.coord
+        return lhs.id == rhs.id
     }
     
     func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
         hasher.combine(self.name)
         hasher.combine(self.coord)        
     }
@@ -27,13 +30,16 @@ class Entity: EntityProtocol & Hashable {
     }()
         
     lazy var sprite: SKSpriteNode = {
-        guard let spriteName = self.json["sprite"] as? String else { fatalError() }        
+        let spriteName = self.json["sprite"] as! String
         return Entity.loadSprite(type: self, spriteName: spriteName)
     }()
     
-    required init(json: [String : Any], entityFactory: EntityFactory) {
+    required init(json: [String : Any], entityFactory: EntityFactory, coord: vector_int2) {
         self.json = json
-        self.coord = SIMD2<Int32>(0, 0)
+        self.coord = coord
+        self.id = IdentifierGenerator.generateNext()
+        
+        print("\(self.name) @ \(self.coord.x).\(self.coord.y)")
     }
         
     func copy(coord: vector_int2, entityFactory: EntityFactory) -> Self {
@@ -41,8 +47,7 @@ class Entity: EntityProtocol & Hashable {
     }
     
     private func copyInternal<T: Entity>(coord: vector_int2, entityFactory: EntityFactory) -> T {
-        let entity = T(json: self.json, entityFactory: entityFactory)
-        entity.coord = coord
+        let entity = T(json: self.json, entityFactory: entityFactory, coord: coord)
         return entity
     }
 }

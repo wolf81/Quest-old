@@ -17,31 +17,17 @@ enum EffectType: String {
     case search
 }
 
-class Effect: EntityProtocol {
-    private let json: [String: Any]
-    
-    lazy var name: String = {
-        return self.json["name"] as! String;
-    }()
-
-    lazy var sprite: SKSpriteNode = { return nil! }()
-    
-    lazy var coord: vector_int2 = { return nil! }()        
-            
+class Effect: Entity {
     var type: EffectType
     
     var value: Int
-    
-    func copy(coord: vector_int2, entityFactory: EntityFactory) -> Self {
-        return copyInternal(coord: coord, entityFactory: entityFactory)
-    }
-    
-    required init(json: [String : Any], entityFactory: EntityFactory) {
+        
+    required init(json: [String : Any], entityFactory: EntityFactory, coord: vector_int2) {
         let typeName = json["type"] as! String
         self.type = EffectType(rawValue: typeName)!
         self.value = json["value"] as! Int
         
-        self.json = json
+        super.init(json: json, entityFactory: entityFactory, coord: coord)
     }
     
     required init(json: [String : Any]) {
@@ -55,13 +41,5 @@ class Effect: EntityProtocol {
         default:
             fatalError()
         }
-    }
-    
-    // MARK: - Private
-    
-    private func copyInternal<T: Effect>(coord: vector_int2, entityFactory: EntityFactory) -> T {
-        let entity = T(json: self.json, entityFactory: entityFactory)
-        entity.coord = coord
-        return entity
-    }
+    }    
 }

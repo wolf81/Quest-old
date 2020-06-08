@@ -73,11 +73,11 @@ class Hero: Actor, CustomStringConvertible {
         super.init(name: name, hitPoints: hitPoints, race: race, gender: gender, attributes: attributes, skills: skills, equipment: equipment, backpack: backpack, entityFactory: entityFactory)
     }
 
-    required init(json: [String : Any], entityFactory: EntityFactory) {
+    required init(json: [String : Any], entityFactory: EntityFactory, coord: vector_int2) {
         self.race = .human
         self.role = .fighter
 
-        super.init(json: json, entityFactory: entityFactory)
+        super.init(json: json, entityFactory: entityFactory, coord: coord)
     }
     
     override func update(state: GameState, deltaTime: TimeInterval) {
