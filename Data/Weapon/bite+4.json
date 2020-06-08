@@ -1,5 +1,6 @@
 {
     "name": "Bite +4",
+    "sprite": "none",
 
     "AT": 4,
     "damage": "1d3",

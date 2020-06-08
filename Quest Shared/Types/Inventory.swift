@@ -6,14 +6,36 @@
 //  Copyright © 2020 Wolftrail. All rights reserved.
 //
 
-import Foundation
+import SpriteKit
 
 class Inventory {
     private(set) var backpack: [Lootable] = []
             
-    private(set) var equippedItems: [EquipmentSlot: Equippable] = [:]    
+    private var equippedItems: [EquipmentSlot: Equippable] = [:]
+    
+    private let noneRing: Accessory
+    
+    private let noneHeadpiece: Accessory
+    
+    private let noneBoots: Accessory
+
+    private let noneArmor: Armor
+
+    private let unarmed: Weapon
+    
+    var equipmentSprites: [SKSpriteNode] {
+        let excludedSlots: [EquipmentSlot] = [.ring, .mainhand2, .offhand2]
+        let equipment = Array(self.equippedItems.values)
+        return equipment.filter({ excludedSlots.contains($0.equipmentSlot) == false }).compactMap({ $0.equipSprite })
+    }
         
-    init(entityFactory: EntityFactory) {}
+    init(entityFactory: EntityFactory) {
+        self.noneRing = try! entityFactory.newEntity(type: Accessory.self, name: "None Ring")
+        self.noneHeadpiece = try! entityFactory.newEntity(type: Accessory.self, name: "None Headpiece")
+        self.noneBoots = try! entityFactory.newEntity(type: Accessory.self, name: "None Boots")
+        self.noneArmor = try! entityFactory.newEntity(type: Armor.self, name: "None Armor")
+        self.unarmed = try! entityFactory.newEntity(type: Weapon.self, name: "Unarmed")
+    }
     
     @discardableResult
     private func equip(at index: Int) -> Bool {
@@ -84,7 +106,19 @@ class Inventory {
     }
     
     func equippedItem(in equipmentSlot: EquipmentSlot) -> Equippable? {
-        return self.equippedItems[equipmentSlot]
+        guard let item = self.equippedItems[equipmentSlot] else {
+            switch equipmentSlot {
+            case .head: return self.noneHeadpiece
+            case .ring: return self.noneRing
+            case .feet: return self.noneBoots
+            case .mainhand, .mainhand2: return self.unarmed
+            case .offhand, .offhand2: return self.noneArmor
+            case .chest: return self.noneArmor
+            default: fatalError()
+            }
+        }
+        
+        return item
     }
     
     subscript(index: Int) -> Lootable {

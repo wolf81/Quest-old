@@ -1,6 +1,7 @@
 {
     "name": "Bite +3",
-
+    "sprite": "none",
+    
     "AT": 3,
     "damage": "1d6+1",
     "type": "unarmed"

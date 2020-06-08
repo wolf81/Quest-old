@@ -49,7 +49,7 @@ class Accessory: Entity & Equippable {
         
         super.init(json: json, entityFactory: entityFactory, coord: coord)
     }
-    
+        
     static func none(type: AccessoryType) -> Accessory {
         return self.init(json: ["name": "none", "type": type.rawValue], entityFactory: EntityFactory(), coord: vector_int2(0, 0))
     }

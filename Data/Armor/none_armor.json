@@ -1,0 +1,9 @@
+{
+    "name": "None Armor",
+    "sprite": "none",
+    "equipSprite": ["none", "none"],
+    
+    "AC": 0,
+    "type": "none"
+}
+

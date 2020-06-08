@@ -42,9 +42,7 @@ class Actor: Entity {
     private(set) var energy = Energy()
             
     private(set) var healthBar: HealthBar!
-    
-    private(set) var unarmed: Weapon
-    
+        
     private(set) var energyCost: EnergyCost
                     
     private let inventory: Inventory
@@ -106,7 +104,6 @@ class Actor: Entity {
         self.hitPoints = HitPoints(base: hitPoints)
         self.armorClass = armorClass
         self.skills = skills
-        self.unarmed = try! entityFactory.newEntity(type: Weapon.self, name: "Unarmed")
         self.energyCost = EnergyCost(json: json["energyCost"] as? [String: Int] ?? [:])
         self.sight = json["sight"] as? Int32 ?? 5
         self.inventory = Inventory(entityFactory: entityFactory)
@@ -125,7 +122,6 @@ class Actor: Entity {
         self.hitPoints = HitPoints(base: hitPoints)
         self.skills = skills
         self.attributes = attributes
-        self.unarmed = try! entityFactory.newEntity(type: Weapon.self, name: "Unarmed")
         self.energyCost = EnergyCost()
         self.inventory = Inventory(entityFactory: entityFactory)
 
@@ -144,7 +140,6 @@ class Actor: Entity {
     required init(json: [String : Any], entityFactory: EntityFactory, coord: vector_int2) {
         self.hitPoints = HitPoints(base: 1)
         self.skills = Skills(physical: 0, subterfuge: 0, knowledge: 0, communication: 0)
-        self.unarmed = try! entityFactory.newEntity(type: Weapon.self, name: "Unarmed")
         self.energyCost = EnergyCost(json: json["energyCost"] as? [String: Int] ?? [:])
         self.inventory = Inventory(entityFactory: entityFactory)
 
@@ -172,12 +167,9 @@ class Actor: Entity {
         for child in children {
             child.removeFromParent()
         }
-        
-        let excludedSlots: [EquipmentSlot] = [.ring, .mainhand2, .offhand2]
-        for (slot, equipment) in self.inventory.equippedItems {
-            guard excludedSlots.contains(slot) == false else { continue }
-            
-            self.sprite.addChild(equipment.equipSprite)
+
+        for sprite in self.inventory.equipmentSprites {
+            self.sprite.addChild(sprite)
         }
     }
     
@@ -311,18 +303,18 @@ extension Actor {
 
 // MARK: - Equipment handling
 
-extension Actor {
-    var equippedWeapon: Weapon { self.inventory.equippedItems[.mainhand] as? Weapon ?? self.unarmed }
+extension Actor {    
+    var equippedWeapon: Weapon { self.inventory.equippedItem(in: .mainhand) as! Weapon }
     
-    var equippedArmor: Armor { self.inventory.equippedItems[.chest] as? Armor ?? Armor.none }
+    var equippedArmor: Armor { self.inventory.equippedItem(in: .chest) as! Armor }
     
-    var equippedShield: Armor { self.inventory.equippedItems[.offhand] as? Armor ?? Armor.none }
+    var equippedShield: Armor { self.inventory.equippedItem(in: .offhand) as! Armor }
         
-    var equippedRing: Accessory { self.inventory.equippedItem(in: .ring) as? Accessory ?? Accessory.none(type: .ring) }
+    var equippedRing: Accessory { self.inventory.equippedItem(in: .ring) as! Accessory }
     
-    var equippedBoots: Accessory { self.inventory.equippedItem(in: .feet) as? Accessory ?? Accessory.none(type: .boots) }
+    var equippedBoots: Accessory { self.inventory.equippedItem(in: .feet) as! Accessory }
     
-    var equippedHeadpiece: Accessory { self.inventory.equippedItem(in: .head) as? Accessory ?? Accessory.none(type: .headpiece) }
+    var equippedHeadpiece: Accessory { self.inventory.equippedItem(in: .head) as! Accessory }
 
     func equippedItem(in equipmentSlot: EquipmentSlot) -> Equippable? { self.inventory.equippedItem(in: equipmentSlot) }
     

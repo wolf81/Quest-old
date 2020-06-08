@@ -1,7 +1,7 @@
 {
-    "name": "Ring None",
+    "name": "None Boots",
     "sprite": "none",
     
-    "type": "ring",
+    "type": "boots",
     "effects": [],
 }
