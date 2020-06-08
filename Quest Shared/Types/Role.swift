@@ -26,11 +26,12 @@ enum Role: String, Codable {
                 return validRoles.contains(self)
             }
         } else if let weapon = equippable as? Weapon {
-            if self == .mage && weapon.type == .staff { return true }
+            if self == .mage && weapon.type == .staff { return true }            
+            if self == .rogue && weapon.range > 1 { return true }
             
             let weaponRestrictionInfo: [Weapon.WeaponCategory: [Role]] = [
                 .light: [.rogue, .fighter, .cleric, .mage],
-                .medium: [.fighter, .cleric],
+                .medium: [.rogue, .fighter, .cleric],
                 .heavy: [.fighter]
             ]
 

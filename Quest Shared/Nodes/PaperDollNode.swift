@@ -97,7 +97,7 @@ class PaperDollNode: SKShapeNode {
     override func mouseUp(with event: NSEvent) {
         let location = event.location(in: self)
 
-        let nodes = [self.mainhand, self.offhand, self.chest, self.ring, self.feet, self.head]
+        let nodes = [self.mainhand, self.offhand, self.mainhand2, self.offhand2, self.chest, self.ring, self.feet, self.head]
 
         if let selectedNode = nodes.filter({ $0.contains(location) }).first {
             print("selected: \(selectedNode)")

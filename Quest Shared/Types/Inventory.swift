@@ -25,8 +25,8 @@ class Inventory {
     
     var equipmentSprites: [SKSpriteNode] {
         let excludedSlots: [EquipmentSlot] = [.ring, .mainhand2, .offhand2]
-        let equipment = Array(self.equippedItems.values)
-        return equipment.filter({ excludedSlots.contains($0.equipmentSlot) == false }).compactMap({ $0.equipSprite })
+        let equipment = self.equippedItems.filter({ excludedSlots.contains($0.key) == false })
+        return Array(equipment.mapValues({ $0.equipSprite }).values)
     }
         
     init(entityFactory: EntityFactory) {
