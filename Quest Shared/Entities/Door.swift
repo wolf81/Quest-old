@@ -81,6 +81,8 @@ class Door: Entity & TileProtocol {
                 SKAction.fadeOut(withDuration: 1.0),
                 SKAction.run({ oldSprite.removeFromParent() })
             ]))
+
+            self.playSound(self.state == .opened ? .activate : .deactivate, on: self.sprite)
         } else { // add for the first time
             self.sprite.addChild(sprite)
         }

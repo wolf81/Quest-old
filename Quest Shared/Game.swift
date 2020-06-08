@@ -231,7 +231,7 @@ class Game {
         ]
 
         for coord in coords {
-            if let interactable = self.state.getInteractableAt(coord: coord) {
+            if let interactable = self.state.getInteractableAt(coord: coord), interactable.canInteract {
                 self.state.setHeroSearchEnabled(false)
 
                 self.selectionMode = .none

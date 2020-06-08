@@ -256,9 +256,7 @@ extension GameScene: GameDelegate {
     
     func gameActorDidPerformInteraction(actor: Actor, targetEntity: EntityProtocol) {
         if let door = targetEntity as? Door {
-            gameActorDidMove(actor: actor, path: [actor.coord])
-                        
-            door.playSound(door.state == .opened ? .activate : .deactivate, on: self.world)
+            gameActorDidMove(actor: actor, path: [actor.coord])                        
         }
     }
     

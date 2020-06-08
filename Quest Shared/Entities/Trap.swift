@@ -182,6 +182,8 @@ extension Trap: Interactable {
     var canInteract: Bool { self.state == .discovered }
 
     func interact(state: GameState) {
+        guard canInteract else { return }
+        
         disable(actor: state.currentActor)
     }
 }
