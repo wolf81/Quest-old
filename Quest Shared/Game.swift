@@ -221,8 +221,8 @@ class Game {
     func toggleStealth() {
         guard self.state.hero.role == .rogue else { return }
         
-        self.state.setHeroSearchEnabled(self.state.hero.isHidden == false)
-        let message = "Stealth \(self.state.hero.isHidden ? "enabled": "disabled")"
+        self.state.setHeroStealthEnabled(self.state.hero.isHiding == false)
+        let message = "Stealth \(self.state.hero.isHiding ? "enabled": "disabled")"
         self.delegate?.gameDidUpdateStatus(message: message)
     }
     

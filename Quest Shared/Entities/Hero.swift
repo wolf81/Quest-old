@@ -20,7 +20,7 @@ class Hero: Actor, CustomStringConvertible {
     
     var isSearching: Bool { self.effects.contains(where: { $0.name == "Search" })}
     
-    var isHidden: Bool { self.effects.contains(where: { $0.name == "Stealth" })}
+    var isHiding: Bool { self.effects.contains(where: { $0.name == "Stealth" })}
 
     override var level: Int { return 1 }
         

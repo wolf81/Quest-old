@@ -76,7 +76,11 @@ class ActionBar: SKShapeNode {
     }
     
     func setSearchEnabled(isEnabled: Bool) {
-        self.buttons.filter({ $0.action == .search }).first?.isEnabled = isEnabled
+        self.buttons.first(where: { $0.action == .search })?.isEnabled = isEnabled
+    }
+    
+    func setStealthEnabled(isEnabled: Bool) {
+        self.buttons.first(where: { $0.action == .stealth })?.isEnabled = isEnabled
     }
     
     // MARK: - Private

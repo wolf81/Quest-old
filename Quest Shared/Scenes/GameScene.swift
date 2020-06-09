@@ -54,6 +54,8 @@ class GameScene: SKScene, SceneManagerConstructable {
         NotificationCenter.default.addObserver(self, selector: #selector(GameScene.selectTarget), name: Notification.Name.actorDidChangeEquipment, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(GameScene.updateActionBarButtonState), name: Notification.Name.actorDidStartSearching, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(GameScene.updateActionBarButtonState), name: Notification.Name.actorDidStopSearching, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(GameScene.updateActionBarButtonState), name: Notification.Name.actorDidStartHiding, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(GameScene.updateActionBarButtonState), name: Notification.Name.actorDidStopHiding, object: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -439,6 +441,7 @@ extension GameScene: GameDelegate {
     
     @objc func updateActionBarButtonState() {
         self.actionBar.setSearchEnabled(isEnabled: self.game.state.hero.isSearching)
+        self.actionBar.setStealthEnabled(isEnabled: self.game.state.hero.isHiding)
     }
         
     func selectTargetProceedNext(_ proceedNext: Bool) {

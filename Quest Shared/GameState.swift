@@ -268,12 +268,12 @@ class GameState {
     
     func setHeroSearchEnabled(_ isEnabled: Bool) {        
         if isEnabled {
-            let stealth = try! self.entityFactory.newEntity(type: Effect.self, name: "Stealth")
+            let search = try! self.entityFactory.newEntity(type: Effect.self, name: "Search")
             let slow = try! self.entityFactory.newEntity(type: Effect.self,  name: "Decrease Movespeed")
-            self.hero.applyEffect(effect: stealth)
+            self.hero.applyEffect(effect: search)
             self.hero.applyEffect(effect: slow)
         } else {
-            self.hero.removeEffect(named: "Stealth")
+            self.hero.removeEffect(named: "Search")
             self.hero.removeEffect(named: "Decrease Movespeed")
         }
     }

@@ -242,35 +242,35 @@ class Actor: Entity {
         
         switch effect.type {
         case .search:
-            NotificationCenter.default.post(name: Notification.Name.actorDidStartSearching, object: ["id": self.id])
+            NotificationCenter.default.post(name: Notification.Name.actorDidStartSearching, object: nil, userInfo: ["id": self.id])
         case .limitSight:
             self.sight = Int32(effect.value)
         case .stealth:
             self.sprite.alpha = 0.5
+            NotificationCenter.default.post(name: Notification.Name.actorDidStartHiding, object: nil, userInfo: ["id": self.id])
         default: break
         }
     }
     
     public func removeEffect(named name: String) {
-        if self.otherEffects.contains(where: { $0.type == .limitSight }) {
-            self.sight = self.json["sight"] as? Int32 ?? 5
-        }
-        
         if let effectIndex = self.otherEffects.firstIndex(where: { $0.name == name }) {
             let effect = self.otherEffects.remove(at: effectIndex)
             
             switch effect.type {
             case .search:
-                NotificationCenter.default.post(name: Notification.Name.actorDidStopSearching, object: ["id": self.id])
+                NotificationCenter.default.post(name: Notification.Name.actorDidStopSearching, object: nil, userInfo: ["id": self.id])
             case .stealth:
                 self.sprite.alpha = 1.0
+                NotificationCenter.default.post(name: Notification.Name.actorDidStopHiding, object: nil, userInfo: ["id": self.id])
+            case .limitSight:
+                self.sight = self.json["sight"] as? Int32 ?? 5
             default: break
             }
         }
     }
     
     func canSpot(actor: Actor) -> Bool {
-        if let hero = actor as? Hero, hero.isHidden {
+        if let hero = actor as? Hero, hero.isHiding {
             let hideBonus = hero.attributes.dexterity.bonus + hero.skills.subterfuge
             let hideRoll = HitDie.d20(1, hideBonus).randomValue
             
