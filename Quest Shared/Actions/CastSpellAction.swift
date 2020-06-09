@@ -19,9 +19,11 @@ class CastSpellAction: Action {
         super.init(actor: actor)
     }
     
-    override func perform(state: GameState) {
+    override func perform(state: GameState) -> Bool {
         self.actor.energy.drain()
 
+        guard self.actor.canSpot(actor: state.hero) else { return false }
+        
         switch self.spell {
         case let singleTargetDamageSpell as SingleTargetDamageSpell:            
             let damage = singleTargetDamageSpell.getDamage()
@@ -31,5 +33,7 @@ class CastSpellAction: Action {
         default:
             break
         }
+        
+        return true
     }
 }

@@ -19,7 +19,7 @@ class Monster: Actor, CustomStringConvertible {
     override func getMeleeAttackDamage(_ dieRoll: DieRoll) -> Int {
         dieRoll == .maximum ? self.equippedWeapon.damage.maxValue : self.equippedWeapon.damage.randomValue
     }
-
+    
     required init(json: [String : Any], entityFactory: EntityFactory, coord: vector_int2) {
         let hitDieString = json["HD"] as! String
         let hitDie = HitDie(rawValue: hitDieString)!

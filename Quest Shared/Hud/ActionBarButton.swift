@@ -11,6 +11,8 @@ import SpriteKit
 class ActionBarButton: SKShapeNode {
     let sprite: SKSpriteNode
     
+    let action: ActionBar.ButtonAction
+    
     private struct AnimationKey {
         static let pulse = "pulse"
     }
@@ -21,18 +23,17 @@ class ActionBarButton: SKShapeNode {
         }
     }
     
-    init(size: CGSize, color: SKColor, textureNamed textureName: String) {
+    init(size: CGSize, action: ActionBar.ButtonAction) {
+        self.action = action
+        
         let spriteSize = CGSize(width: size.width - 4, height: size.height - 4)
-        let texture = SKTexture(imageNamed: textureName)
-        self.sprite = SKSpriteNode(texture: texture, color: color, size: spriteSize)
-//        self.sprite.colorBlendFactor = 0.7
-        self.sprite.color = color
+        let texture = SKTexture(imageNamed: action.textureName)
+        self.sprite = SKSpriteNode(texture: texture, color: .white, size: spriteSize)
         
         super.init()
                 
         self.path = CGPath(rect: CGRect(origin: CGPoint(x: -size.width / 2, y: size.height / 2), size: size), transform: nil)
         self.strokeColor = SKColor.white
-//        self.fillColor = color
         
         addChild(self.sprite)
         self.sprite.anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -40,7 +41,7 @@ class ActionBarButton: SKShapeNode {
                 
         self.lineWidth = 2
     }
-    
+        
     required init?(coder aDecoder: NSCoder) {
         fatalError()
     }

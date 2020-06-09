@@ -13,7 +13,9 @@ class IdleAction: Action {
 //        return "[\(self.actor.name)] ⦰ \(self.actor.coord.x).\(self.actor.coord.y)"
 //    }
     
-    override func perform(state: GameState) {
+    override func perform(state: GameState) -> Bool {
         self.actor.energy.drain()
+        
+        return true
     }
 }

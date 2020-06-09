@@ -30,7 +30,7 @@ class MoveAction: Action, StatusUpdatable {
         super.init(actor: actor)
     }
     
-    override func perform(state: GameState) {
+    override func perform(state: GameState) -> Bool {
         var energyCost = self.actor.energyCost.move
         
         for effect in self.actor.effects {
@@ -43,7 +43,11 @@ class MoveAction: Action, StatusUpdatable {
         }
         
         self.actor.energy.drain(energyCost)
-
+             
+        if self.actor is Monster {
+            guard self.actor.canSpot(actor: state.hero) else { return false }
+        }
+        
         self.actor.coord = self.toCoord
         
         if let hero = self.actor as? Hero, hero.isSearching {
@@ -63,9 +67,11 @@ class MoveAction: Action, StatusUpdatable {
         if let trap = state.getTrap(at: self.toCoord), trap.isActive, let hero = self.actor as? Hero {
             let damage = trap.trigger(actor: hero)
             self.triggeredTrap = (trap, damage)
-            self.message = "\(self.actor.name) triggered trap at \(toCoord.x).\(toCoord.y): \((damage == 0) ? "trap missed" : "trap dealt \(damage) damage")" 
+            self.message = "\(self.actor.name) triggered trap at \(self.toCoord.x).\(self.toCoord.y): \((damage == 0) ? "trap missed" : "trap dealt \(damage) damage")"
         } else {
             self.message = "\(self.actor.name) moved to \(self.toCoord.x).\(self.toCoord.y)"
         }
+        
+        return true
     }
 }

@@ -9,35 +9,66 @@
 import SpriteKit
 
 protocol ActionBarDelegate: class {
-    func actionBarDidSelectMove()
-    func actionBarDidSelectDefend()
-    func actionBarDidSelectMeleeAttack()
-    func actionBarDidSelectRangeAttack()
-    func actionBarDidSelectCastSpell()
-    func actionBarDidSelectSearch()
+    func actionBarDidSelectButton(action: ActionBar.ButtonAction)
 }
 
 class ActionBar: SKShapeNode {
+    enum ButtonAction {
+        case converse
+        case attack
+        case backpack
+        case interact
+        case search
+        case stealth
+        case castDivineSpell
+        case castArcaneSpell
+        
+        var textureName: String {
+            switch self {
+            case .castDivineSpell: return "scroll-unfurled"
+            case .castArcaneSpell: return "spell-book"
+            case .converse: return "conversation"
+            case .attack: return "crossed-swords"
+            case .backpack: return "backpack"
+            case .interact: return "hand"
+            case .search: return "magnifying-glass"
+            case .stealth: return "cultist"
+            }
+        }
+    }
+
     var size: CGSize { return self.path!.boundingBox.size }
-    
-    private var moveButton: ActionBarButton!
-    private var meleeAttackButton: ActionBarButton!
-    private var rangeAttackButton: ActionBarButton!
-    private var castSpellButton: ActionBarButton!
-    private var searchButton: ActionBarButton!
+        
+    private let buttons: [ActionBarButton]!
     
     weak var delegate: ActionBarDelegate?
     
-    init(size: CGSize, delegate: ActionBarDelegate) {
-        super.init()
+    init(size: CGSize, role: Role, delegate: ActionBarDelegate) {
+        var actions: [ButtonAction]
+        
+        switch role {
+        case .fighter: actions = [.converse, .attack, .interact, .backpack]
+        case .cleric: actions = [.converse, .attack, .interact, .castDivineSpell, .backpack]
+        case .mage: actions = [.converse, .attack, .interact, .castArcaneSpell, .backpack]
+        case .rogue: actions = [.converse, .attack, .interact, .search, .stealth, .backpack]
+        }
 
+        self.buttons = ActionBar.createButtons(actions: actions, buttonSize: CGSize(width: size.height, height: size.height))
+        
+        super.init()
+                        
         self.delegate = delegate
 
         self.path = CGPath(rect: CGRect(origin: CGPoint(x: -size.width / 2, y: size.height / 2), size: size), transform: nil)
         self.lineWidth = 0
         self.zPosition = DrawLayerHelper.zPosition(for: self)
-
-        addButtons()
+        
+        var buttonX = -(CGFloat(self.buttons.count - 1) * self.buttons.first!.frame.size.width / 2)
+        for button in self.buttons {
+            button.position = CGPoint(x: buttonX, y: 0)
+            buttonX += button.frame.size.width
+            addChild(button)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -45,28 +76,24 @@ class ActionBar: SKShapeNode {
     }
     
     func setSearchEnabled(isEnabled: Bool) {
-        self.searchButton.isEnabled = isEnabled
+        self.buttons.filter({ $0.action == .search }).first?.isEnabled = isEnabled
     }
     
     // MARK: - Private
     
-    private func addButtons() {
+    private static func createButtons(actions: [ButtonAction], buttonSize size: CGSize) -> [ActionBarButton] {
+        var buttons: [ActionBarButton] = []
+        
         let buttonSize = CGSize(width: size.height, height: size.height)
-        self.moveButton = ActionBarButton(size: buttonSize, color: SKColor.green, textureNamed: "backpack")
-        self.meleeAttackButton = ActionBarButton(size: buttonSize, color: SKColor.red, textureNamed: "crossed-swords")
-        self.rangeAttackButton = ActionBarButton(size: buttonSize, color: SKColor.orange, textureNamed: "high-shot")
-        self.castSpellButton = ActionBarButton(size: buttonSize, color: SKColor.blue, textureNamed: "hand")
-        self.searchButton = ActionBarButton(size: buttonSize, color: SKColor.yellow, textureNamed: "magnifying-glass")
-
-        let buttons: [ActionBarButton] = [self.moveButton, self.meleeAttackButton, self.rangeAttackButton, self.castSpellButton, self.searchButton]
-        var buttonX = -(CGFloat(buttons.count - 1) * buttonSize.width / 2)
-        for button in buttons {
-            button.position = CGPoint(x: buttonX, y: 0)
-            buttonX += buttonSize.width
-            addChild(button)
+        for action in actions {
+            let button = ActionBarButton(size: buttonSize, action: action)
+            buttons.append(button)
         }
+        
+        return buttons
     }
 }
+
 
 // MARK: - macOS
 
@@ -75,20 +102,10 @@ class ActionBar: SKShapeNode {
 extension ActionBar {
     override func mouseUp(with event: NSEvent) {        
         let location = event.location(in: self)
-        switch location {
-        case _ where self.moveButton.contains(location):
-            self.delegate?.actionBarDidSelectMove()
-        case _ where self.meleeAttackButton.contains(location):
-            self.delegate?.actionBarDidSelectMeleeAttack()
-        case _ where self.rangeAttackButton.contains(location):
-            self.delegate?.actionBarDidSelectRangeAttack()
-        case _ where self.castSpellButton.contains(location):
-            self.delegate?.actionBarDidSelectCastSpell()
-        case _ where self.searchButton.contains(location):
-            self.delegate?.actionBarDidSelectSearch()
-//            self.searchButton.isEnabled = !self.searchButton.isEnabled
-        default: break
-        }
+        
+        guard let action = self.buttons.filter({ $0.contains(location) }).first?.action else { return }
+
+        self.delegate?.actionBarDidSelectButton(action: action)
     }
 }
 

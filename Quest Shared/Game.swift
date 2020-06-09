@@ -15,8 +15,6 @@ import Harptos
 protocol GameDelegate: class {
     func gameDidDestroy(entity: EntityProtocol)
     
-    func gameDidChangeSelectionMode(_ selectionMode: SelectionMode)
-
     func gameDidUpdateStatus(message: String)
     
     func gameDidProgressTime(time: HarptosTime)
@@ -36,24 +34,6 @@ protocol GameDelegate: class {
     func gameActorDidPerformInteraction(actor: Actor, targetEntity: EntityProtocol)    
 }
 
-enum SelectionMode {
-    case none
-    case selectDestinationTile
-    case selectMeleeTarget
-    case selectSpellTarget(Spell.Type)
-    case selectRangedTarget
-    
-    var isSelection: Bool {
-        switch self {
-        case .selectDestinationTile: fallthrough
-        case .selectMeleeTarget: fallthrough
-        case .selectRangedTarget: fallthrough
-        case .selectSpellTarget(_): return true
-        case .none: return false
-        }
-    }
-}
-
 class Game {
     public let state: GameState
     
@@ -61,12 +41,6 @@ class Game {
 
     public weak var delegate: GameDelegate?
                         
-    private var selectionMode: SelectionMode = .none {
-        didSet {
-            self.delegate?.gameDidChangeSelectionMode(self.selectionMode)
-        }
-    }
-
     var viewVisibleCoords = Set<vector_int2>()
 
     public var turnDuration: TimeInterval = 6
@@ -92,7 +66,7 @@ class Game {
     func update(_ deltaTime: TimeInterval) {
         // process the list if pending actions
         while let action = self.actions.first {
-            action.perform(state: self.state)
+            guard action.perform(state: self.state) else { self.actions.removeFirst(); continue }
             
             if let statusUpdatable = action as? StatusUpdatable, let message = statusUpdatable.message {
                 if action.actor is Hero {
@@ -170,7 +144,7 @@ class Game {
             if actor.canTakeTurn {
                 // TODO: only update visible actors in fov                
                 guard self.state.hero.visibleCoords.contains(actor.coord) else { return self.state.nextActor() }
-
+                
                 if state.incrementEnergyForCurrentActor() == .progressed {
                     self.delegate?.gameDidProgressTime(time: state.time)
                 }
@@ -192,12 +166,10 @@ class Game {
     }
                     
     func movePlayer(direction: Direction) {
-        self.selectionMode = .none
         self.state.hero.move(direction: direction)
     }
     
     func stopPlayer() {
-        self.selectionMode = .none
         self.state.hero.stop()
     }
     
@@ -233,18 +205,24 @@ class Game {
         for coord in coords {
             if let interactable = self.state.getInteractableAt(coord: coord), interactable.canInteract {
                 self.state.setHeroSearchEnabled(false)
-
-                self.selectionMode = .none
                 self.state.hero.interact(interactable: interactable)
             }
         }
     }
     
     func toggleSearch() {
-        guard self.state.hero.role == .rogue else { return print("only rogues can search for traps") }
+        guard self.state.hero.role == .rogue else { return }
         
         self.state.setHeroSearchEnabled(self.state.hero.isSearching == false)
         let message = "Search traps \(self.state.hero.isSearching ? "enabled": "disabled")"
+        self.delegate?.gameDidUpdateStatus(message: message)
+    }
+    
+    func toggleStealth() {
+        guard self.state.hero.role == .rogue else { return }
+        
+        self.state.setHeroSearchEnabled(self.state.hero.isHidden == false)
+        let message = "Stealth \(self.state.hero.isHidden ? "enabled": "disabled")"
         self.delegate?.gameDidUpdateStatus(message: message)
     }
     
@@ -293,6 +271,5 @@ class Game {
         }
 
      */
-        self.selectionMode = .none
     }
 }

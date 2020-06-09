@@ -20,7 +20,7 @@ class RestAction: Action, StatusUpdatable {
     
     private(set) var state: RestState = .progress
     
-    override func perform(state: GameState) {
+    override func perform(state: GameState) -> Bool {
         self.actor.energy.drain(50)
         
         if self.actor.isResting == false {
@@ -28,7 +28,7 @@ class RestAction: Action, StatusUpdatable {
             let sleep = try! state.entityFactory.newEntity(type: Effect.self, name: "Sleep")
             self.actor.applyEffect(effect: sleep)
             self.actor.updateVisibility()
-            return
+            return true
         }
         
         let hitpointGain = 1
@@ -57,5 +57,7 @@ class RestAction: Action, StatusUpdatable {
                 }
             }
         }
+        
+        return true
     }
 }

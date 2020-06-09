@@ -15,6 +15,7 @@ enum EffectType: String {
     case raiseMovementEnergyCost
     case limitSight
     case search
+    case stealth
 }
 
 class Effect: Entity {

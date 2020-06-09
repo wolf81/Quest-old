@@ -101,7 +101,8 @@ class GameScene: SKScene, SceneManagerConstructable {
         
         self.backgroundColor = SKColor.black
         
-        self.actionBar = ActionBar(size: CGSize(width: self.size.width, height: 50), delegate: self)
+        let actionBarSize = CGSize(width: self.size.width, height: 50)
+        self.actionBar = ActionBar(size: actionBarSize, role: self.game.state.hero.role, delegate: self)
         self.actionBar.position = CGPoint(x: 0, y: -(size.height / 2))
         self.actionBar.zPosition = 1_000_000_000
 
@@ -259,11 +260,7 @@ extension GameScene: GameDelegate {
     func gameActorDidPerformInteraction(actor: Actor, targetEntity: EntityProtocol) {
         gameActorDidMove(actor: actor, path: [actor.coord])
     }
-    
-    func gameDidChangeSelectionMode(_ selectionMode: SelectionMode) {
-        print("selection mode: \(selectionMode)")
-    }
-    
+        
     func gameActorDidPerformRangedAttack(actor: Actor, withProjectile projectile: Projectile, targetActor: Actor, state: HitState) {
         // Make a copy of the sprite, to prevent the sprite to become unmanaged once the projectile is destroyed
         let sprite = projectile.sprite.copy() as! SKSpriteNode
@@ -516,18 +513,12 @@ extension GameScene: GameDelegate {
 // MARK: - ActionBarDelegate
 
 extension GameScene: ActionBarDelegate {
-    func actionBarDidSelectDefend() {}
-    
-    func actionBarDidSelectMove() {}
-    
-    func actionBarDidSelectMeleeAttack() {}
-
-    func actionBarDidSelectRangeAttack() {}
-    
-    func actionBarDidSelectCastSpell() {}
-    
-    func actionBarDidSelectSearch() {
-        self.game.toggleSearch()
+    func actionBarDidSelectButton(action: ActionBar.ButtonAction) {
+        switch action {
+        case .search: self.game.toggleSearch()
+        case .stealth: self.game.toggleStealth()
+        default: break
+        }
     }
 }
 

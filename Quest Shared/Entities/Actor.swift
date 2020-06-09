@@ -170,8 +170,8 @@ class Actor: Entity {
 
         for sprite in self.inventory.equipmentSprites {
             self.sprite.addChild(sprite)
-        }
-    }
+        }                
+    }        
     
     func reduceHealth(with hitPoints: Int) {
         var hitPointsToTake = hitPoints
@@ -240,12 +240,14 @@ class Actor: Entity {
     public func applyEffect(effect: Effect) {
         self.otherEffects.append(effect)
         
-        if effect.type == .search {
+        switch effect.type {
+        case .search:
             NotificationCenter.default.post(name: Notification.Name.actorDidStartSearching, object: ["id": self.id])
-        }
-        
-        if effect.type == .limitSight {
+        case .limitSight:
             self.sight = Int32(effect.value)
+        case .stealth:
+            self.sprite.alpha = 0.5
+        default: break
         }
     }
     
@@ -255,11 +257,36 @@ class Actor: Entity {
         }
         
         if let effectIndex = self.otherEffects.firstIndex(where: { $0.name == name }) {
-            let effect = self.otherEffects.remove(at: effectIndex)            
-            if effect.type == .search {
+            let effect = self.otherEffects.remove(at: effectIndex)
+            
+            switch effect.type {
+            case .search:
                 NotificationCenter.default.post(name: Notification.Name.actorDidStopSearching, object: ["id": self.id])
+            case .stealth:
+                self.sprite.alpha = 1.0
+            default: break
             }
         }
+    }
+    
+    func canSpot(actor: Actor) -> Bool {
+        if let hero = actor as? Hero, hero.isHidden {
+            let hideBonus = hero.attributes.dexterity.bonus + hero.skills.subterfuge
+            let hideRoll = HitDie.d20(1, hideBonus).randomValue
+            
+            let spotBonus = self.attributes.mind.bonus + self.skills.subterfuge
+            let spotRoll = HitDie.d20(1, spotBonus).randomValue
+            
+            let isSpotted = spotRoll >= hideRoll
+            print("\(hideRoll) vs \(spotRoll)")
+            if isSpotted {
+                print("\(self.name) spotted: \(actor.name)")
+            }
+            
+            return isSpotted
+        }
+
+        return true
     }
     
     // MARK: - Private

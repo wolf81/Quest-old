@@ -250,17 +250,30 @@ class GameState {
     func enterCombat(actor: Actor) {
         if actor is Hero {
             setHeroSearchEnabled(false)
+            setHeroStealthEnabled(false)
+        }
+    }
+    
+    func setHeroStealthEnabled(_ isEnabled: Bool) {
+        if isEnabled {
+            let stealth = try! self.entityFactory.newEntity(type: Effect.self, name: "Stealth")
+            let slow = try! self.entityFactory.newEntity(type: Effect.self,  name: "Decrease Movespeed")
+            self.hero.applyEffect(effect: stealth)
+            self.hero.applyEffect(effect: slow)
+        } else {
+            self.hero.removeEffect(named: "Stealth")
+            self.hero.removeEffect(named: "Decrease Movespeed")
         }
     }
     
     func setHeroSearchEnabled(_ isEnabled: Bool) {        
         if isEnabled {
-            let search = try! self.entityFactory.newEntity(type: Effect.self, name: "Search")
+            let stealth = try! self.entityFactory.newEntity(type: Effect.self, name: "Stealth")
             let slow = try! self.entityFactory.newEntity(type: Effect.self,  name: "Decrease Movespeed")
-            self.hero.applyEffect(effect: search)
+            self.hero.applyEffect(effect: stealth)
             self.hero.applyEffect(effect: slow)
         } else {
-            self.hero.removeEffect(named: "Search")
+            self.hero.removeEffect(named: "Stealth")
             self.hero.removeEffect(named: "Decrease Movespeed")
         }
     }
@@ -269,7 +282,6 @@ class GameState {
     
     private func setRaycastVisibility(for actor: Actor) {
         actor.visibility = RaycastVisibility(mapSize: self.mapSize, blocksLight: {
-            print("test: \($0.x).\($0.y)")
             if let door = self.getDoor(at: $0) {
                 return door.state == .closed
             }

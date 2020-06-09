@@ -17,15 +17,11 @@ class InteractAction: Action {
         super.init(actor: actor)
     }
     
-    override func perform(state: GameState) {
+    override func perform(state: GameState) -> Bool {
         self.actor.energy.drain(50)
 
         self.interactable.interact(state: state)
-//        switch self.entity {
-//        case let door as Door: door.interact(state: state)
-//        case let trap as Trap where trap.state == .discovered:
-//            if let hero = self.actor as? Hero{ trap.disable(hero: hero) }
-//        default: fatalError()
-//        }
+
+        return true
     }
 }

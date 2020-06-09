@@ -22,10 +22,12 @@ class AttackAction: Action, StatusUpdatable {
         super.init(actor: actor)
     }
     
-    override func perform(state: GameState) {
+    override func perform(state: GameState) -> Bool {
         let energyCost = getEnergyCost()
         self.actor.energy.drain(energyCost)
-        
+
+        guard self.actor.canSpot(actor: self.targetActor) else { return false }
+
         let attackDie = HitDie.d20(1, 0)
         let baseAttackRoll = attackDie.randomValue
         let armorClass = targetActor.armorClass
@@ -64,6 +66,8 @@ class AttackAction: Action, StatusUpdatable {
         if self.hitState.isHit { state.enterCombat(actor: self.targetActor) }
         
         self.message = "\(self.actor.name) attacks \(self.targetActor.name): \(status)"
+        
+        return true
     }
     
     private func getEnergyCost() -> Int {
