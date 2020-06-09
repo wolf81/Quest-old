@@ -240,6 +240,10 @@ class Actor: Entity {
     public func applyEffect(effect: Effect) {
         self.otherEffects.append(effect)
         
+        if effect.type == .search {
+            NotificationCenter.default.post(name: Notification.Name.actorDidStartSearching, object: ["id": self.id])
+        }
+        
         if effect.type == .limitSight {
             self.sight = Int32(effect.value)
         }
@@ -250,7 +254,12 @@ class Actor: Entity {
             self.sight = self.json["sight"] as? Int32 ?? 5
         }
         
-        self.otherEffects.removeAll(where: { $0.name == name })
+        if let effectIndex = self.otherEffects.firstIndex(where: { $0.name == name }) {
+            let effect = self.otherEffects.remove(at: effectIndex)            
+            if effect.type == .search {
+                NotificationCenter.default.post(name: Notification.Name.actorDidStopSearching, object: ["id": self.id])
+            }
+        }
     }
     
     // MARK: - Private

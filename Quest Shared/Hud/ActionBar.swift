@@ -44,6 +44,10 @@ class ActionBar: SKShapeNode {
         fatalError()
     }
     
+    func setSearchEnabled(isEnabled: Bool) {
+        self.searchButton.isEnabled = isEnabled
+    }
+    
     // MARK: - Private
     
     private func addButtons() {
@@ -82,7 +86,7 @@ extension ActionBar {
             self.delegate?.actionBarDidSelectCastSpell()
         case _ where self.searchButton.contains(location):
             self.delegate?.actionBarDidSelectSearch()
-            self.searchButton.isEnabled = !self.searchButton.isEnabled
+//            self.searchButton.isEnabled = !self.searchButton.isEnabled
         default: break
         }
     }

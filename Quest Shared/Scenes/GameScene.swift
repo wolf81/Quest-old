@@ -52,6 +52,8 @@ class GameScene: SKScene, SceneManagerConstructable {
         self.game.delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(GameScene.selectTarget), name: Notification.Name.actorDidChangeEquipment, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(GameScene.updateActionBarButtonState), name: Notification.Name.actorDidStartSearching, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(GameScene.updateActionBarButtonState), name: Notification.Name.actorDidStopSearching, object: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -59,7 +61,7 @@ class GameScene: SKScene, SceneManagerConstructable {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: Notification.Name.actorDidChangeEquipment, object: nil)
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func didMove(to view: SKView) {
@@ -255,9 +257,7 @@ extension GameScene: GameDelegate {
     }
     
     func gameActorDidPerformInteraction(actor: Actor, targetEntity: EntityProtocol) {
-        if let door = targetEntity as? Door {
-            gameActorDidMove(actor: actor, path: [actor.coord])                        
-        }
+        gameActorDidMove(actor: actor, path: [actor.coord])
     }
     
     func gameDidChangeSelectionMode(_ selectionMode: SelectionMode) {
@@ -438,6 +438,10 @@ extension GameScene: GameDelegate {
     
     @objc func selectTarget() {
         selectTargetProceedNext(false)
+    }
+    
+    @objc func updateActionBarButtonState() {
+        self.actionBar.setSearchEnabled(isEnabled: self.game.state.hero.isSearching)
     }
         
     func selectTargetProceedNext(_ proceedNext: Bool) {

@@ -11,6 +11,10 @@ import SpriteKit
 class ActionBarButton: SKShapeNode {
     let sprite: SKSpriteNode
     
+    private struct AnimationKey {
+        static let pulse = "pulse"
+    }
+    
     var isEnabled: Bool = false {
         didSet {
             updateForEnabledState()
@@ -45,11 +49,15 @@ class ActionBarButton: SKShapeNode {
     
     private func updateForEnabledState() {
         if self.isEnabled {
+            guard self.sprite.action(forKey: AnimationKey.pulse) == nil else { return }
+            
             let pulse = SKAction.repeatForever(SKAction.sequence([
                 SKAction.colorize(with: .yellow, colorBlendFactor: 0.8, duration: 8.0),
-                SKAction.colorize(with: .orange, colorBlendFactor: 0.8, duration: 8.0),
+                SKAction.colorize(with: .orange, colorBlendFactor: 0.8, duration: 4.0),
+                SKAction.colorize(with: .red, colorBlendFactor: 0.8, duration: 8.0),
+                SKAction.colorize(with: .orange, colorBlendFactor: 0.8, duration: 4.0),
             ]))
-            self.sprite.run(pulse)
+            self.sprite.run(pulse, withKey: AnimationKey.pulse)
         } else {
             self.sprite.removeAllActions()
             self.sprite.colorBlendFactor = 0

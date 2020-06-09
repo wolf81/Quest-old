@@ -10,4 +10,6 @@ import Foundation
 
 extension Notification.Name {
     static let actorDidChangeEquipment = Notification.Name("actorDidChangeEquipment")
+    static let actorDidStopSearching = Notification.Name("actorDidStopSearching")
+    static let actorDidStartSearching = Notification.Name("actorDidStartSearching")
 }
