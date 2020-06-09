@@ -22,6 +22,7 @@ class ActionBar: SKShapeNode {
         case stealth
         case castDivineSpell
         case castArcaneSpell
+        case turnUndead
         
         var textureName: String {
             switch self {
@@ -33,6 +34,7 @@ class ActionBar: SKShapeNode {
             case .interact: return "hand"
             case .search: return "magnifying-glass"
             case .stealth: return "cultist"
+            case .turnUndead: return "death-skull"
             }
         }
     }
@@ -48,7 +50,7 @@ class ActionBar: SKShapeNode {
         
         switch role {
         case .fighter: actions = [.converse, .attack, .interact, .backpack]
-        case .cleric: actions = [.converse, .attack, .interact, .castDivineSpell, .backpack]
+        case .cleric: actions = [.converse, .attack, .interact, .castDivineSpell, .turnUndead, .backpack]
         case .mage: actions = [.converse, .attack, .interact, .castArcaneSpell, .backpack]
         case .rogue: actions = [.converse, .attack, .interact, .search, .stealth, .backpack]
         }
