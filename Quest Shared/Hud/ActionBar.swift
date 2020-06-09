@@ -23,6 +23,7 @@ class ActionBar: SKShapeNode {
         case castDivineSpell
         case castArcaneSpell
         case turnUndead
+        case rest
         
         var textureName: String {
             switch self {
@@ -35,6 +36,7 @@ class ActionBar: SKShapeNode {
             case .search: return "magnifying-glass"
             case .stealth: return "cultist"
             case .turnUndead: return "death-skull"
+            case .rest: return "night-sleep"
             }
         }
     }
@@ -49,10 +51,10 @@ class ActionBar: SKShapeNode {
         var actions: [ButtonAction]
         
         switch role {
-        case .fighter: actions = [.converse, .attack, .interact, .backpack]
-        case .cleric: actions = [.converse, .attack, .interact, .castDivineSpell, .turnUndead, .backpack]
-        case .mage: actions = [.converse, .attack, .interact, .castArcaneSpell, .backpack]
-        case .rogue: actions = [.converse, .attack, .interact, .search, .stealth, .backpack]
+        case .fighter: actions = [.converse, .attack, .interact, .backpack, .rest]
+        case .cleric: actions = [.converse, .attack, .interact, .castDivineSpell, .turnUndead, .backpack, .rest]
+        case .mage: actions = [.converse, .attack, .interact, .castArcaneSpell, .backpack, .rest]
+        case .rogue: actions = [.converse, .attack, .interact, .search, .stealth, .backpack, .rest]
         }
 
         self.buttons = ActionBar.createButtons(actions: actions, buttonSize: CGSize(width: size.height, height: size.height))
