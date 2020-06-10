@@ -13,7 +13,9 @@ class ActionBarButton: SKShapeNode {
     
     let action: ActionBar.ButtonAction
         
-    var isEnabled: Bool = false 
+    var isEnabled: Bool = false
+    
+    var isActive: Bool = false
     
     init(action: ActionBar.ButtonAction) {
         self.action = action

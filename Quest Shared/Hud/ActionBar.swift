@@ -28,6 +28,7 @@ class ActionBar: SKShapeNode {
         case turnUndead
         case rest
         case switchWeapon
+        case playerInfo
         case empty
         
         var textureName: String {
@@ -42,17 +43,18 @@ class ActionBar: SKShapeNode {
             case .stealth: return "cultist"
             case .turnUndead: return "death-skull"
             case .rest: return "night-sleep"
-            case .useWand: return "orb-wand"
+            case .useWand: return "fairy-wand"
             case .useScroll: return "scroll-unfurled"
             case .usePotion: return "magic-potion"
             case .switchWeapon: return "switch-weapon"
+            case .playerInfo: return "skills"
             case .empty: return "none"
             }
         }
         
         var size: CGSize {
             switch self {
-            case .empty: return CGSize(width: 14, height: ActionBar.buttonHeight)
+            case .empty: return CGSize(width: 12, height: ActionBar.buttonHeight)
             default: return CGSize(width: ActionBar.buttonHeight, height: ActionBar.buttonHeight)
             }
         }
@@ -146,7 +148,7 @@ class ActionBar: SKShapeNode {
         // actions on other entities
         let interactActions: [ButtonAction] = [.converse, .interact, .empty, .switchWeapon, .attack]
         // actions on the hero
-        let personalActions: [ButtonAction] = [.empty, .usePotion, .useWand, .useScroll, .empty, .backpack, .rest]
+        let personalActions: [ButtonAction] = [.empty, .backpack, .usePotion, .useWand, .useScroll, .empty, .playerInfo, .empty, .rest]
         // actions restricted to the current role
         let roleActions: [ButtonAction] = {
             switch role {
