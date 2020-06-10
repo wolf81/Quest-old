@@ -92,13 +92,14 @@ class ActionBar: SKShapeNode {
     func update(_ deltaTime: TimeInterval) {
         self.currentTime += deltaTime
         
-        let colorBlendFactor = sin(self.currentTime)
-        let color: SKColor = colorBlendFactor > 0 ? .yellow : .orange
+        let minColorBlendFactor: Double = 0.5
+        let colorBlendFactor = sin(self.currentTime) * minColorBlendFactor
+        let color: SKColor = colorBlendFactor > 0 ? .green : .cyan
         
         for button in self.buttons {
             if button.isEnabled {
                 button.sprite.color = color
-                button.sprite.colorBlendFactor = CGFloat(abs(colorBlendFactor))
+                button.sprite.colorBlendFactor = CGFloat(abs(colorBlendFactor) + minColorBlendFactor)
             } else {
                 button.sprite.colorBlendFactor = 0
             }
