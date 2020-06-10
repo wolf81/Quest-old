@@ -22,12 +22,17 @@ class ActionBar: SKShapeNode {
         case stealth
         case castDivineSpell
         case castArcaneSpell
+        case useWand
+        case useScroll
+        case usePotion
         case turnUndead
         case rest
+        case switchWeapon
+        case empty
         
         var textureName: String {
             switch self {
-            case .castDivineSpell: return "scroll-unfurled"
+            case .castDivineSpell: return "holy-symbol"
             case .castArcaneSpell: return "spell-book"
             case .converse: return "conversation"
             case .attack: return "crossed-swords"
@@ -37,6 +42,25 @@ class ActionBar: SKShapeNode {
             case .stealth: return "cultist"
             case .turnUndead: return "death-skull"
             case .rest: return "night-sleep"
+            case .useWand: return "orb-wand"
+            case .useScroll: return "scroll-unfurled"
+            case .usePotion: return "magic-potion"
+            case .switchWeapon: return "switch-weapon"
+            case .empty: return "none"
+            }
+        }
+        
+        var size: CGSize {
+            switch self {
+            case .empty: return CGSize(width: 25, height: 50)
+            default: return CGSize(width: 50, height: 50)
+            }
+        }
+        
+        var lineWidth: CGFloat {
+            switch self {
+            case .empty: return 0
+            default: return 2
             }
         }
     }
@@ -49,27 +73,31 @@ class ActionBar: SKShapeNode {
     
     private var currentTime: TimeInterval = 0
     
-    init(size: CGSize, role: Role, delegate: ActionBarDelegate) {
-        var actions: [ButtonAction]
+    init(width: CGFloat, role: Role, delegate: ActionBarDelegate) {
+        var actions: [ButtonAction] = [.converse, .interact, .empty, .switchWeapon, .attack]
         
         switch role {
-        case .fighter: actions = [.converse, .attack, .interact, .backpack, .rest]
-        case .cleric: actions = [.converse, .attack, .interact, .castDivineSpell, .turnUndead, .backpack, .rest]
-        case .mage: actions = [.converse, .attack, .interact, .castArcaneSpell, .backpack, .rest]
-        case .rogue: actions = [.converse, .attack, .interact, .search, .stealth, .backpack, .rest]
+        case .fighter: break
+        case .cleric: actions.append(contentsOf: [.empty, .castDivineSpell, .turnUndead])
+        case .mage: actions.append(contentsOf: [.empty, .castArcaneSpell])
+        case .rogue: actions.append(contentsOf: [.empty, .search, .stealth])
         }
+        
+        actions.append(contentsOf: [.empty, .usePotion, .useWand, .useScroll, .empty, .backpack, .rest])
 
-        self.buttons = ActionBar.createButtons(actions: actions, buttonSize: CGSize(width: size.height, height: size.height))
+        let buttonSize = CGSize(width: 50, height: 50)
+        self.buttons = ActionBar.createButtons(actions: actions, buttonSize: buttonSize)
         
         super.init()
                         
         self.delegate = delegate
 
-        self.path = CGPath(rect: CGRect(origin: CGPoint(x: -size.width / 2, y: size.height / 2), size: size), transform: nil)
+        self.path = CGPath(rect: CGRect(origin: CGPoint(x: -width / 2, y: 50 / 2), size: CGSize(width: width, height: 50)), transform: nil)
         self.lineWidth = 0
         self.zPosition = DrawLayerHelper.zPosition(for: self)
         
-        var buttonX = -(CGFloat(self.buttons.count - 1) * self.buttons.first!.frame.size.width / 2)
+        let totalWidth = self.buttons.compactMap({ $0.frame.size.width }).reduce(0, +)
+        var buttonX = -(totalWidth / 2) + self.buttons.first!.frame.width / 2
         for button in self.buttons {
             button.position = CGPoint(x: buttonX, y: 0)
             buttonX += button.frame.size.width
@@ -91,7 +119,7 @@ class ActionBar: SKShapeNode {
     
     func setRestEnabled(isEnabled: Bool) {
         self.buttons.first(where: { $0.action == .rest })?.isEnabled = isEnabled
-    }
+    }    
     
     func update(_ deltaTime: TimeInterval) {
         self.currentTime += deltaTime
@@ -117,7 +145,8 @@ class ActionBar: SKShapeNode {
         
         let buttonSize = CGSize(width: size.height, height: size.height)
         for action in actions {
-            let button = ActionBarButton(size: buttonSize, action: action)
+            let size = action == .empty ? CGSize(width: size.width / 2, height: size.height) : buttonSize
+            let button = ActionBarButton(size: size, action: action)
             buttons.append(button)
         }
         

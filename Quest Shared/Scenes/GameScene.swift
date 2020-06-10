@@ -106,8 +106,7 @@ class GameScene: SKScene, SceneManagerConstructable {
         
         self.backgroundColor = SKColor.black
         
-        let actionBarSize = CGSize(width: self.size.width, height: 50)
-        self.actionBar = ActionBar(size: actionBarSize, role: self.game.state.hero.role, delegate: self)
+        self.actionBar = ActionBar(width: self.size.width, role: self.game.state.hero.role, delegate: self)
         self.actionBar.position = CGPoint(x: 0, y: -(size.height / 2))
         self.actionBar.zPosition = 1_000_000_000
 
@@ -439,6 +438,7 @@ extension GameScene: GameDelegate {
     }
     
     @objc func selectTarget() {
+        updateActionBarButtonState()
         selectTargetProceedNext(false)
     }
     
@@ -525,6 +525,8 @@ extension GameScene: ActionBarDelegate {
         case .search: self.game.toggleSearch()
         case .stealth: self.game.toggleStealth()
         case .rest: self.game.restPlayer()
+        case .interact: self.game.tryPlayerInteraction()
+        case .switchWeapon: self.game.toggleWeapons()
         default: break
         }
     }
