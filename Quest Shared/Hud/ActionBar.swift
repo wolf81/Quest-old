@@ -89,6 +89,10 @@ class ActionBar: SKShapeNode {
         self.buttons.first(where: { $0.action == .stealth })?.isEnabled = isEnabled
     }
     
+    func setRestEnabled(isEnabled: Bool) {
+        self.buttons.first(where: { $0.action == .rest })?.isEnabled = isEnabled
+    }
+    
     func update(_ deltaTime: TimeInterval) {
         self.currentTime += deltaTime
         

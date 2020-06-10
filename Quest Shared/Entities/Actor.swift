@@ -245,6 +245,7 @@ class Actor: Entity {
             NotificationCenter.default.post(name: Notification.Name.actorDidStartSearching, object: nil, userInfo: ["id": self.id])
         case .limitSight:
             self.sight = Int32(effect.value)
+            NotificationCenter.default.post(name: Notification.Name.actorDidStartResting, object: nil, userInfo: ["id": self.id])
         case .stealth:
             self.sprite.alpha = 0.5
             NotificationCenter.default.post(name: Notification.Name.actorDidStartHiding, object: nil, userInfo: ["id": self.id])
@@ -264,6 +265,7 @@ class Actor: Entity {
                 NotificationCenter.default.post(name: Notification.Name.actorDidStopHiding, object: nil, userInfo: ["id": self.id])
             case .limitSight:
                 self.sight = self.json["sight"] as? Int32 ?? 5
+                NotificationCenter.default.post(name: Notification.Name.actorDidStopResting, object: nil, userInfo: ["id": self.id])
             default: break
             }
         }

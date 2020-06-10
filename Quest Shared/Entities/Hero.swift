@@ -171,7 +171,7 @@ class Hero: Actor, CustomStringConvertible {
         self.heroAction = HeroAction.attack(actor)
     }
     
-    func rest() {
+    func rest() {        
         guard self.isResting == false else { return }
 
         self.lastRestTime = 0

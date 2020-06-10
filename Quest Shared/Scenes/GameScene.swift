@@ -56,6 +56,8 @@ class GameScene: SKScene, SceneManagerConstructable {
         NotificationCenter.default.addObserver(self, selector: #selector(GameScene.updateActionBarButtonState), name: Notification.Name.actorDidStopSearching, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(GameScene.updateActionBarButtonState), name: Notification.Name.actorDidStartHiding, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(GameScene.updateActionBarButtonState), name: Notification.Name.actorDidStopHiding, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(GameScene.updateActionBarButtonState), name: Notification.Name.actorDidStartResting, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(GameScene.updateActionBarButtonState), name: Notification.Name.actorDidStopResting, object: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -76,7 +78,7 @@ class GameScene: SKScene, SceneManagerConstructable {
         
         // Update game state
         if self.lastUpdateTime != 0 {
-            self.game.update(deltaTime)            
+            self.game.update(deltaTime)
             self.actionBar.update(deltaTime)
         }
         
@@ -443,6 +445,7 @@ extension GameScene: GameDelegate {
     @objc func updateActionBarButtonState() {
         self.actionBar.setSearchEnabled(isEnabled: self.game.state.hero.isSearching)
         self.actionBar.setStealthEnabled(isEnabled: self.game.state.hero.isHiding)
+        self.actionBar.setRestEnabled(isEnabled: self.game.state.hero.isResting)
     }
         
     func selectTargetProceedNext(_ proceedNext: Bool) {
@@ -521,6 +524,7 @@ extension GameScene: ActionBarDelegate {
         switch action {
         case .search: self.game.toggleSearch()
         case .stealth: self.game.toggleStealth()
+        case .rest: self.game.restPlayer()
         default: break
         }
     }

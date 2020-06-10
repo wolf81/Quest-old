@@ -16,4 +16,7 @@ extension Notification.Name {
     
     static let actorDidStopHiding = Notification.Name("actorDidStopHiding")
     static let actorDidStartHiding = Notification.Name("actorDidStartHiding")
+    
+    static let actorDidStartResting = Notification.Name("actorDidStopHiding")
+    static let actorDidStopResting = Notification.Name("actorDidStopHiding")
 }

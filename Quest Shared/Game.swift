@@ -185,8 +185,11 @@ class Game {
             self.delegate?.gameDidUpdateStatus(message: "Can't rest when enemies are nearby")
             return
         }
-                        
+
+        self.state.setHeroStealthEnabled(false)
+        self.state.setHeroSearchEnabled(false)
         self.state.hero.rest()
+        
         self.delegate?.gameActorDidStartRest(actor: self.state.hero)
     }
     
