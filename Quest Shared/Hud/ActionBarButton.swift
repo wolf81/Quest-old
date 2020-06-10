@@ -11,7 +11,7 @@ import SpriteKit
 class ActionBarButton: SKShapeNode {
     let sprite: SKSpriteNode
     
-    let action: ActionBar.ButtonAction
+    var action: ActionBar.ButtonAction { didSet { updateSpriteForAction() } }
         
     var isEnabled: Bool = false
     
@@ -28,15 +28,25 @@ class ActionBarButton: SKShapeNode {
                 
         self.path = CGPath(rect: CGRect(origin: CGPoint(x: -action.size.width / 2, y: action.size.height / 2), size: action.size), transform: nil)
         self.strokeColor = SKColor.white
-        
+        self.lineWidth = action.lineWidth
+
         addChild(self.sprite)
+        
         self.sprite.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.sprite.position = CGPoint(x: 0, y: action.size.height)
-                
-        self.lineWidth = action.lineWidth
+    }
+    
+    func update(action: ActionBar.ButtonAction) {
+        self.action = action
     }
         
     required init?(coder aDecoder: NSCoder) {
         fatalError()
+    }
+    
+    // MARK: - Private
+    
+    private func updateSpriteForAction() {
+        self.sprite.texture = SKTexture(imageNamed: action.textureName)
     }
 }

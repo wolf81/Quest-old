@@ -15,7 +15,8 @@ protocol ActionBarDelegate: class {
 class ActionBar: SKShapeNode {
     enum ButtonAction {
         case converse
-        case attack
+        case attackMelee
+        case attackRanged
         case backpack
         case interact
         case search
@@ -36,7 +37,8 @@ class ActionBar: SKShapeNode {
             case .castDivineSpell: return "holy-symbol"
             case .castArcaneSpell: return "spell-book"
             case .converse: return "conversation"
-            case .attack: return "crossed-swords"
+            case .attackMelee: return "crossed-swords"
+            case .attackRanged: return "high-shot"
             case .backpack: return "backpack"
             case .interact: return "hand"
             case .search: return "magnifying-glass"
@@ -144,9 +146,19 @@ class ActionBar: SKShapeNode {
         return buttons
     }
     
+    func setAttackMelee() {
+        let attackButton = self.buttons.first(where: { $0.action == .attackRanged })
+        attackButton?.update(action: .attackMelee)
+    }
+    
+    func setAttackRanged() {
+        let attackButton = self.buttons.first(where: { $0.action == .attackMelee })
+        attackButton?.update(action: .attackRanged)
+    }
+        
     private static func getActionsFor(role: Role) -> [ButtonAction] {
         // actions on other entities
-        let interactActions: [ButtonAction] = [.converse, .interact, .empty, .switchWeapon, .attack]
+        let interactActions: [ButtonAction] = [.converse, .interact, .empty, .switchWeapon, .attackMelee]
         // actions on the hero
         let personalActions: [ButtonAction] = [.empty, .backpack, .usePotion, .useWand, .useScroll, .empty, .playerInfo, .empty, .rest]
         // actions restricted to the current role
@@ -162,7 +174,6 @@ class ActionBar: SKShapeNode {
         return interactActions + roleActions + personalActions
     }
 }
-
 
 // MARK: - macOS
 

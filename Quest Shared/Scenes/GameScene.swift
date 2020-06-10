@@ -443,6 +443,12 @@ extension GameScene: GameDelegate {
     }
     
     @objc func updateActionBarButtonState() {
+        if self.game.state.hero.equippedWeapon.range > 1 {
+            self.actionBar.setAttackRanged()
+        } else {
+            self.actionBar.setAttackMelee()
+        }
+
         self.actionBar.setSearchEnabled(isEnabled: self.game.state.hero.isSearching)
         self.actionBar.setStealthEnabled(isEnabled: self.game.state.hero.isHiding)
         self.actionBar.setRestEnabled(isEnabled: self.game.state.hero.isResting)
