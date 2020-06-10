@@ -259,7 +259,6 @@ extension GameScene: GameDelegate {
     }
     
     func gameActorDidTriggerTrap(actor: Actor, trap: Trap, isHit: Bool) {
-        trap.playSound(.hit, on: self.world)
         if isHit {
             actor.showBlood(duration: 8.0)
         }
@@ -469,7 +468,7 @@ extension GameScene: GameDelegate {
         
         for coord in self.game.state.hero.visibleCoords {
             if let actor = self.game.state.getActor(at: coord) {
-                if actor == game.state.hero { continue }
+                if actor == self.game.state.hero { continue }
                 if actor.coord == coord {
                     targets.append(actor)
                 }

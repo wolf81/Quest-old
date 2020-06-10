@@ -78,7 +78,8 @@ class LoadingScene: MenuSceneBase {
     private func loadData() {
         do {
             let entityFactory = EntityFactory(delegate: self)
-            try EntityLoader.loadEntities(for: entityFactory)
+            try EntityLoader.registerEntities(for: entityFactory)
+            entityFactory.preload()
             loadDataFinished(entityFactory: entityFactory)
         } catch let error {
             loadDataFailed(error: error)

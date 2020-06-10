@@ -18,4 +18,10 @@ protocol EntityProtocol: class {
     func copy(coord: vector_int2, entityFactory: EntityFactory) -> Self
     
     init(json: [String: Any], entityFactory: EntityFactory, coord: vector_int2)
+    
+    func preload()
+}
+
+extension EntityProtocol {
+    func preload() {}
 }

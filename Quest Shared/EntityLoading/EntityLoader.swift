@@ -23,7 +23,7 @@ class EntityLoader {
         return entityCount
     }()
     
-    static func loadEntities(for entityFactory: EntityFactory) throws {
+    static func registerEntities(for entityFactory: EntityFactory) throws {
         // TODO: Should be able to create a simple loop for this, but can't figure it out right now
         
         let effects = try loadEntities(type: Effect.self, in: "Data/Effect", entityFactory: entityFactory)

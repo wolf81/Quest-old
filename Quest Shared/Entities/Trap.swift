@@ -124,7 +124,8 @@ class Trap: TileProtocol {
     @discardableResult
     func trigger(actor: Actor) -> Int {
         self.state = .triggered
-        
+        playSound(.hit, on: self.sprite)
+
         let attackDie = HitDie.d20(1, 0)
 
         guard attackDie.randomValue >= self.attack else { return 0 }
@@ -136,8 +137,8 @@ class Trap: TileProtocol {
         // what is the best approach and this needs some consideration to do properly
         if let hero = actor as? Hero, damage > 0, hero.isSearching {
             hero.removeEffect(named: "Search")
-        }
-        
+        }        
+
         return damage
     }
         
@@ -171,6 +172,14 @@ class Trap: TileProtocol {
                 
         let play = SKAction.playSoundFileNamed(sound, waitForCompletion: false)
         node.run(play)
+    }
+    
+    func preload() {
+        for (_, soundNames) in self.soundInfo {
+            for soundName in soundNames {
+                _ = SKAction.playSoundFileNamed(soundName, waitForCompletion: false)
+            }
+        }
     }
 }
 

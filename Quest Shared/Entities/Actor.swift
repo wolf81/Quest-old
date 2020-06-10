@@ -192,6 +192,14 @@ class Actor: Entity {
         NotificationCenter.default.post(name: Notification.Name.actorDidChangeEquipment, object: nil)
     }
     
+    func preload() {
+        for (_, soundNames) in self.soundInfo {
+            for soundName in soundNames {
+                _ = SKAction.playSoundFileNamed(soundName, waitForCompletion: false)
+            }
+        }
+    }
+    
     func playSound(_ type: SoundType, on node: SKNode) {
         guard let sounds = self.soundInfo[type] else { return }
         

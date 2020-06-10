@@ -76,4 +76,10 @@ class EntityFactory {
         let entityNames: [String: EntityProtocol] = self.registry[typeName] ?? [:]
         return Array(entityNames.keys)
     }
+    
+    func preload() {
+        for (_, entityInfo) in self.registry {            
+            _ = entityInfo.mapValues({ $0.preload() })
+        }
+    }
 }
