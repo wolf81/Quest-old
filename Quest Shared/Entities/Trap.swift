@@ -149,18 +149,17 @@ class Trap: TileProtocol {
     }
     
     private func updateForTrapState() {
+        self.sprite.removeAllChildren()
+        
         switch self.state {
-        case .disabled: self.sprite.removeAllChildren()
-        case .hidden: self.sprite.removeAllChildren()
         case .discovered:
-            self.sprite.removeAllChildren()
             let trapSprite = Entity.loadSprite(type: self, spriteName: "pressure_plate")
             self.sprite.addChild(trapSprite)
         case .triggered:
-            self.sprite.removeAllChildren()
             let spriteName = self.json["sprite"] as! String
             let trapSprite = Entity.loadSprite(type: self, spriteName: spriteName)
             self.sprite.addChild(trapSprite)
+        default: break
         }
     }
     
