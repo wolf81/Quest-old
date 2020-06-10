@@ -47,6 +47,8 @@ class ActionBar: SKShapeNode {
     
     weak var delegate: ActionBarDelegate?
     
+    private var currentTime: TimeInterval = 0
+    
     init(size: CGSize, role: Role, delegate: ActionBarDelegate) {
         var actions: [ButtonAction]
         
@@ -85,6 +87,22 @@ class ActionBar: SKShapeNode {
     
     func setStealthEnabled(isEnabled: Bool) {
         self.buttons.first(where: { $0.action == .stealth })?.isEnabled = isEnabled
+    }
+    
+    func update(_ deltaTime: TimeInterval) {
+        self.currentTime += deltaTime
+        
+        let colorBlendFactor = sin(self.currentTime)
+        let color: SKColor = colorBlendFactor > 0 ? .yellow : .orange
+        
+        for button in self.buttons {
+            if button.isEnabled {
+                button.sprite.color = color
+                button.sprite.colorBlendFactor = CGFloat(abs(colorBlendFactor))
+            } else {
+                button.sprite.colorBlendFactor = 0
+            }
+        }
     }
     
     // MARK: - Private

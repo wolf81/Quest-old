@@ -76,7 +76,8 @@ class GameScene: SKScene, SceneManagerConstructable {
         
         // Update game state
         if self.lastUpdateTime != 0 {
-            self.game.update(deltaTime)
+            self.game.update(deltaTime)            
+            self.actionBar.update(deltaTime)
         }
         
         self.lastUpdateTime = currentTime
