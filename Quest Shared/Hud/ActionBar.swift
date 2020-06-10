@@ -104,15 +104,23 @@ class ActionBar: SKShapeNode {
         fatalError()
     }
     
-    func setSearchEnabled(isEnabled: Bool) {
+    func setBackpackEnabled(_ isEnabled: Bool) {
+        self.buttons.first(where: { $0.action == .backpack })?.isEnabled = isEnabled
+    }
+    
+    func setPlayerInfoEnabled(_ isEnabled: Bool) {
+        self.buttons.first(where: { $0.action == .playerInfo })?.isEnabled = isEnabled
+    }
+    
+    func setSearchEnabled(_ isEnabled: Bool) {
         self.buttons.first(where: { $0.action == .search })?.isEnabled = isEnabled
     }
     
-    func setStealthEnabled(isEnabled: Bool) {
+    func setStealthEnabled(_ isEnabled: Bool) {
         self.buttons.first(where: { $0.action == .stealth })?.isEnabled = isEnabled
     }
     
-    func setRestEnabled(isEnabled: Bool) {
+    func setRestEnabled(_ isEnabled: Bool) {
         self.buttons.first(where: { $0.action == .rest })?.isEnabled = isEnabled
     }    
     

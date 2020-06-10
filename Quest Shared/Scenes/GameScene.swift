@@ -180,6 +180,8 @@ class GameScene: SKScene, SceneManagerConstructable {
             self.playerCamera.addChild(inventory)
             self.inventory = inventory
         }
+        
+        updateActionBarButtonState()
     }
     
     fileprivate func toggleCharacterInfo() {
@@ -193,6 +195,8 @@ class GameScene: SKScene, SceneManagerConstructable {
             self.playerCamera.addChild(characterInfo)
             self.characterInfo = characterInfo
         }
+        
+        updateActionBarButtonState()
     }
     
     fileprivate func dismissCharacterInfoAndInventory() {
@@ -448,10 +452,12 @@ extension GameScene: GameDelegate {
         } else {
             self.actionBar.setAttackMelee()
         }
-
-        self.actionBar.setSearchEnabled(isEnabled: self.game.state.hero.isSearching)
-        self.actionBar.setStealthEnabled(isEnabled: self.game.state.hero.isHiding)
-        self.actionBar.setRestEnabled(isEnabled: self.game.state.hero.isResting)
+        
+        self.actionBar.setBackpackEnabled(self.inventory != nil)
+        self.actionBar.setPlayerInfoEnabled(self.characterInfo != nil)
+        self.actionBar.setSearchEnabled(self.game.state.hero.isSearching)
+        self.actionBar.setStealthEnabled(self.game.state.hero.isHiding)
+        self.actionBar.setRestEnabled(self.game.state.hero.isResting)
     }
         
     func selectTargetProceedNext(_ proceedNext: Bool) {
@@ -533,6 +539,8 @@ extension GameScene: ActionBarDelegate {
         case .rest: self.game.restPlayer()
         case .interact: self.game.tryPlayerInteraction()
         case .switchWeapon: self.game.toggleWeapons()
+        case .backpack: toggleInventory()
+        case .playerInfo: toggleCharacterInfo()
         default: break
         }
     }
