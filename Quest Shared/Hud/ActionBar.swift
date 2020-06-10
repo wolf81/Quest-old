@@ -52,8 +52,8 @@ class ActionBar: SKShapeNode {
         
         var size: CGSize {
             switch self {
-            case .empty: return CGSize(width: 25, height: 50)
-            default: return CGSize(width: 50, height: 50)
+            case .empty: return CGSize(width: 14, height: ActionBar.buttonHeight)
+            default: return CGSize(width: ActionBar.buttonHeight, height: ActionBar.buttonHeight)
             }
         }
         
@@ -73,26 +73,17 @@ class ActionBar: SKShapeNode {
     
     private var currentTime: TimeInterval = 0
     
+    private static let buttonHeight: CGFloat = 50
+    
     init(width: CGFloat, role: Role, delegate: ActionBarDelegate) {
-        var actions: [ButtonAction] = [.converse, .interact, .empty, .switchWeapon, .attack]
-        
-        switch role {
-        case .fighter: break
-        case .cleric: actions.append(contentsOf: [.empty, .castDivineSpell, .turnUndead])
-        case .mage: actions.append(contentsOf: [.empty, .castArcaneSpell])
-        case .rogue: actions.append(contentsOf: [.empty, .search, .stealth])
-        }
-        
-        actions.append(contentsOf: [.empty, .usePotion, .useWand, .useScroll, .empty, .backpack, .rest])
-
-        let buttonSize = CGSize(width: 50, height: 50)
-        self.buttons = ActionBar.createButtons(actions: actions, buttonSize: buttonSize)
+        let actions = ActionBar.getActionsFor(role: role)
+        self.buttons = ActionBar.createButtons(actions: actions)
         
         super.init()
                         
         self.delegate = delegate
 
-        self.path = CGPath(rect: CGRect(origin: CGPoint(x: -width / 2, y: 50 / 2), size: CGSize(width: width, height: 50)), transform: nil)
+        self.path = CGPath(rect: CGRect(origin: CGPoint(x: -width / 2, y: ActionBar.buttonHeight / 2), size: CGSize(width: width, height: ActionBar.buttonHeight)), transform: nil)
         self.lineWidth = 0
         self.zPosition = DrawLayerHelper.zPosition(for: self)
         
@@ -140,17 +131,33 @@ class ActionBar: SKShapeNode {
     
     // MARK: - Private
     
-    private static func createButtons(actions: [ButtonAction], buttonSize size: CGSize) -> [ActionBarButton] {
+    private static func createButtons(actions: [ButtonAction]) -> [ActionBarButton] {
         var buttons: [ActionBarButton] = []
         
-        let buttonSize = CGSize(width: size.height, height: size.height)
         for action in actions {
-            let size = action == .empty ? CGSize(width: size.width / 2, height: size.height) : buttonSize
-            let button = ActionBarButton(size: size, action: action)
+            let button = ActionBarButton(action: action)
             buttons.append(button)
         }
         
         return buttons
+    }
+    
+    private static func getActionsFor(role: Role) -> [ButtonAction] {
+        // actions on other entities
+        let interactActions: [ButtonAction] = [.converse, .interact, .empty, .switchWeapon, .attack]
+        // actions on the hero
+        let personalActions: [ButtonAction] = [.empty, .usePotion, .useWand, .useScroll, .empty, .backpack, .rest]
+        // actions restricted to the current role
+        let roleActions: [ButtonAction] = {
+            switch role {
+            case .fighter: return []
+            case .cleric: return [.empty, .castDivineSpell, .turnUndead]
+            case .mage: return [.empty, .castArcaneSpell]
+            case .rogue: return [.empty, .search, .stealth]
+            }
+        }()
+
+        return interactActions + roleActions + personalActions
     }
 }
 
