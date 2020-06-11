@@ -47,9 +47,12 @@ class LoadingScene: MenuSceneBase {
         }
     }
     
-    private func loadDataFinished(entityFactory: EntityFactory) {        
+    private func loadDataFinished(entityFactory: EntityFactory) {
+        let nameSet = try! DataLoader.load(type: NameInfo.self, fromFileNamed: "human", inDirectory: "Data/Names")
+        let nameGenerator = NameGenerator(nameInfo: nameSet.nameInfo)
+
         let hero = try! self.heroBuilder
-            .with(name: "Kendrick")
+            .with(name: nameGenerator.generateNameFor(category: self.heroBuilder.gender.rawValue))
             .build(entityFactory: entityFactory)
 
         let time = HarptosCalendar.getTimeFor(year: 985, month: 3, day: 5, hour: 12, minute: 15, second: 0)
