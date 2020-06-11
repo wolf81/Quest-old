@@ -49,7 +49,7 @@ enum HitDie : RawRepresentable, CustomStringConvertible {
     var maxValue: Int {
         switch self {
         case .d0: return 0
-        case .d3(let dieCount, let bonus): return 4 * dieCount + bonus
+        case .d3(let dieCount, let bonus): return 3 * dieCount + bonus
         case .d4(let dieCount, let bonus): return 4 * dieCount + bonus
         case .d6(let dieCount, let bonus): return 6 * dieCount + bonus
         case .d8(let dieCount, let bonus): return 8 * dieCount + bonus
@@ -71,7 +71,7 @@ enum HitDie : RawRepresentable, CustomStringConvertible {
         var description = ""
         switch self {
         case .d0: return "d0"
-        case .d3(let dieCount, let bonus): description = "\(dieCount)d4+\(bonus)"
+        case .d3(let dieCount, let bonus): description = "\(dieCount)d3+\(bonus)"
         case .d4(let dieCount, let bonus): description = "\(dieCount)d4+\(bonus)"
         case .d6(let dieCount, let bonus): description = "\(dieCount)d6+\(bonus)"
         case .d8(let dieCount, let bonus): description = "\(dieCount)d8+\(bonus)"
