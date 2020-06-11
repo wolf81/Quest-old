@@ -510,7 +510,7 @@ extension GameScene: GameDelegate {
             }
             
             if let loot = self.game.state.getLoot(at: coord), loot.sprite.parent != nil {
-                loot.sprite.parent?.removeFromParent()
+                loot.sprite.removeFromParent()
             }
         }
         
