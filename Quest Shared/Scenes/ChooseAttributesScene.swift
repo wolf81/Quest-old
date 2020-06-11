@@ -69,13 +69,17 @@ class ChooseAttributesScene: MenuSceneBase {
     override var configuration: MenuConfiguration { DefaultMenuConfiguration.shared }
     
     private func startGame() {
+        let nameSet = try! DataLoader.load(type: NameInfo.self, fromFileNamed: self.race.rawValue, inDirectory: "Data/Names")
+        let nameGenerator = NameGenerator(nameInfo: nameSet.nameInfo)
+
         do {
             let heroBuilder = HeroBuilder()
                 .with(gender: self.gender)
                 .with(race: self.race)
                 .with(role: self.role)
                 .with(attributes: self.attributes)
-            
+                .with(name: nameGenerator.generateNameFor(category: self.gender.rawValue))
+
             try ServiceLocator.shared.get(service: SceneManager.self).fade(to: LoadingScene.self, userInfo: [
                 LoadingScene.UserInfoKey.heroBuilder: heroBuilder
             ])

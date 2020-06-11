@@ -10,9 +10,9 @@ import Fenris
 import SpriteKit
 
 class CreateCharacterScene: MenuSceneBase {
-    private let raceChooser = TextChooserItem(values: ["Human", "Dwarf", "Elf", "Halfling"], selectedValueIdx: 0)
-    private let roleChooser = TextChooserItem(values: ["Fighter", "Rogue", "Cleric", "Mage"], selectedValueIdx: 0)
-    private let genderChooser = TextChooserItem(values: ["Male", "Female"], selectedValueIdx: 0)
+    private let raceChooser = TextChooserItem(values: ["Human", "Dwarf", "Elf", "Halfling"], selectedValueIdx: Int(arc4random_uniform(4)))
+    private let roleChooser = TextChooserItem(values: ["Fighter", "Rogue", "Cleric", "Mage"], selectedValueIdx: Int(arc4random_uniform(4)))
+    private let genderChooser = TextChooserItem(values: ["Male", "Female"], selectedValueIdx: Int(arc4random_uniform(2)))
     
     required init(size: CGSize, userInfo: [String : Any]) {
         super.init(size: size, userInfo: userInfo)
