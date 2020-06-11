@@ -47,7 +47,7 @@ class LoadingScene: MenuSceneBase {
         }
     }
     
-    private func loadDataFinished(entityFactory: EntityFactory) {
+    private func loadDataFinished(entityFactory: EntityFactory) {        
         let hero = try! self.heroBuilder
             .with(name: "Kendrick")
             .build(entityFactory: entityFactory)

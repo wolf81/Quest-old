@@ -21,6 +21,14 @@ class MainMenuScene: MenuSceneBase {
             .withEmptyRow()
             .withRow(item: ButtonItem(title: "Settings", onClick: { try! ServiceLocator.shared.get(service: SceneManager.self).push(to: SettingsScene.self) }))
             .withEmptyRow()
+            .withRow(item: ButtonItem(title: "Hi", onClick: {
+
+                let nameSet = try! DataLoader.load(type: NameInfo.self, fromFileNamed: "human", inDirectory: "Data/Names")
+                let nameGenerator = NameGenerator(nameInfo: nameSet.nameInfo)
+                let names = nameGenerator.generateNamesFor(category: "male", count: 10)
+                print(names)
+                }))
+            .withEmptyRow()
             .withRow(item: ButtonItem(title: "Quit", onClick: {
                 #if os(macOS)
                 NSApp.terminate(self)

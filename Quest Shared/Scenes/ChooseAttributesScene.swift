@@ -75,7 +75,6 @@ class ChooseAttributesScene: MenuSceneBase {
                 .with(race: self.race)
                 .with(role: self.role)
                 .with(attributes: self.attributes)
-                .with(name: "Kendrick")
             
             try ServiceLocator.shared.get(service: SceneManager.self).fade(to: LoadingScene.self, userInfo: [
                 LoadingScene.UserInfoKey.heroBuilder: heroBuilder

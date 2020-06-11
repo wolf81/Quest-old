@@ -69,6 +69,9 @@
 		79423B7A239E99CC0042B9BD /* HeroBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79423B79239E99CC0042B9BD /* HeroBuilder.swift */; };
 		79423B7B239E99CC0042B9BD /* HeroBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79423B79239E99CC0042B9BD /* HeroBuilder.swift */; };
 		79423B7C239E99CC0042B9BD /* HeroBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79423B79239E99CC0042B9BD /* HeroBuilder.swift */; };
+		7946290C2491E7ED00AF34F7 /* NameGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946290B2491E7ED00AF34F7 /* NameGenerator.swift */; };
+		7946290D2491E7ED00AF34F7 /* NameGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946290B2491E7ED00AF34F7 /* NameGenerator.swift */; };
+		7946290E2491E7ED00AF34F7 /* NameGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946290B2491E7ED00AF34F7 /* NameGenerator.swift */; };
 		794864D122A7E48400F84A72 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794864D022A7E48400F84A72 /* GameView.swift */; };
 		794864D322A7E60300F84A72 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794864D222A7E60300F84A72 /* Game.swift */; };
 		794864D422A7E60300F84A72 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794864D222A7E60300F84A72 /* Game.swift */; };
@@ -715,6 +718,9 @@
 		792E454B247048060088FBD7 /* CharacterInfoNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterInfoNode.swift; sourceTree = "<group>"; };
 		793A575724459A070089E693 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		79423B79239E99CC0042B9BD /* HeroBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroBuilder.swift; sourceTree = "<group>"; };
+		7946290B2491E7ED00AF34F7 /* NameGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameGenerator.swift; sourceTree = "<group>"; };
+		7946290F2491E81A00AF34F7 /* NameGenerator.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = NameGenerator.js; sourceTree = "<group>"; };
+		794629102491EA8E00AF34F7 /* NameSet.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = NameSet.js; sourceTree = "<group>"; };
 		794864D022A7E48400F84A72 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		794864D222A7E60300F84A72 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		79492BE823A61299005B9508 /* TileProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileProtocol.swift; sourceTree = "<group>"; };
@@ -989,6 +995,9 @@
 				79423B79239E99CC0042B9BD /* HeroBuilder.swift */,
 				79042E81247CD8A900730646 /* DataLoader.swift */,
 				79646C84248E773C00BA9BAC /* IdentifierGenerator.swift */,
+				7946290B2491E7ED00AF34F7 /* NameGenerator.swift */,
+				7946290F2491E81A00AF34F7 /* NameGenerator.js */,
+				794629102491EA8E00AF34F7 /* NameSet.js */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -2090,6 +2099,7 @@
 				79ACC7ED22AA5D8700AC3BF0 /* EntityLoader.swift in Sources */,
 				79042E5C2469473800730646 /* Equippable.swift in Sources */,
 				79D6E6E8247A9D1700D7333A /* Effect.swift in Sources */,
+				7946290C2491E7ED00AF34F7 /* NameGenerator.swift in Sources */,
 				79D6E6E0247A6DD200D7333A /* UseAction.swift in Sources */,
 				79492BE923A61299005B9508 /* TileProtocol.swift in Sources */,
 				7963DE42239CEC6A00183DF2 /* Skill.swift in Sources */,
@@ -2178,6 +2188,7 @@
 				79ACC7EE22AA5D8700AC3BF0 /* EntityLoader.swift in Sources */,
 				79042E5D2469473800730646 /* Equippable.swift in Sources */,
 				79D6E6E9247A9D1700D7333A /* Effect.swift in Sources */,
+				7946290D2491E7ED00AF34F7 /* NameGenerator.swift in Sources */,
 				79D6E6E1247A6DD200D7333A /* UseAction.swift in Sources */,
 				79492BEA23A61299005B9508 /* TileProtocol.swift in Sources */,
 				7963DE43239CEC6A00183DF2 /* Skill.swift in Sources */,
@@ -2219,6 +2230,7 @@
 				792467E9246D37D5000568A6 /* GameOverScene.swift in Sources */,
 				795746BD22A9029D00E04BEC /* Direction.swift in Sources */,
 				79D6E6EA247A9D1700D7333A /* Effect.swift in Sources */,
+				7946290E2491E7ED00AF34F7 /* NameGenerator.swift in Sources */,
 				792467F1246E4360000568A6 /* Potion.swift in Sources */,
 				79ACC82022AB473200AC3BF0 /* Action.swift in Sources */,
 				79A8BECD248224C100346F44 /* SKActionExtensions.swift in Sources */,
