@@ -7,10 +7,12 @@
 //
 
 import Foundation
+    
+fileprivate class MarkovChain {
+    fileprivate typealias ChainInfo = [String: [String: UInt32]]
 
-fileprivate typealias ChainInfo = [String: [String: UInt32]]
-
-extension ChainInfo {
+    private var chainInfo = ChainInfo()
+    
     private struct Key {
         static let partsCount = "partsCount"
         static let nameLength = "nameLength"
@@ -18,58 +20,56 @@ extension ChainInfo {
         static let tableLength = "tableLength"
     }
     
-    mutating func incrementCountFor(key: String, token: String) {
-        if let _ = self[key] {
-            if let value =  valueFor(key: key, token: token) {
-                setValue(value + 1, forKey: key, token: token)
+    func incrementCountFor(key: String, character: String) {
+        if let _ = self.chainInfo[key] {
+            if let value =  valueFor(key: key, token: character) {
+                setValue(value + 1, forKey: key, token: character)
             } else {
-                setValue(1, forKey: key, token: token)
+                setValue(1, forKey: key, token: character)
             }
         } else {
-            setValue(1, forKey: key, token: token)
+            setValue(1, forKey: key, token: character)
         }
     }
     
-    mutating func incrementPartsCountFor(token: String) {
-        incrementCountFor(key: ChainInfo.Key.partsCount, token: token)
+    func incrementPartsCountFor(character: String) {
+        incrementCountFor(key: Key.partsCount, character: character)
     }
     
-    mutating func incrementNameLengthFor(token: String) {
-        incrementCountFor(key: ChainInfo.Key.nameLength, token: token)
+    func incrementNameLengthFor(character: String) {
+        incrementCountFor(key: Key.nameLength, character: character)
     }
     
-    mutating func incrementInitialCountFor(token: String) {
-        incrementCountFor(key: ChainInfo.Key.initial, token: token)
+    func incrementInitialCountFor(character: String) {
+        incrementCountFor(key: Key.initial, character: character)
     }
 
-    mutating func scaleChain() -> Self {
+    func scale() {
         var lengthInfo: [String: UInt32] = [:]
         
-        for key in self.keys {
+        for key in self.chainInfo.keys {
             lengthInfo[key] = 0
             
-            for token in self[key]!.keys {
+            for token in self.chainInfo[key]!.keys {
                 let count = Double(valueFor(key: key, token: token) ?? 0)
                 let weighted = UInt32(floor(pow(count, 1.3)))
                 setValue(weighted, forKey: key, token: token)
                 lengthInfo[key]! += weighted
             }
         }
-        self[ChainInfo.Key.tableLength] = lengthInfo
-        
-        return self
+        self.chainInfo[Key.tableLength] = lengthInfo
     }
     
     func markovName() -> String {
-        let partsCountString = selectLinkFor(key: ChainInfo.Key.partsCount)
+        let partsCountString = selectLinkFor(key: Key.partsCount)
         var names: [String] = []
 
         let partsCount = Int(partsCountString) ?? 0
         for _ in 0 ..< partsCount {
-            let nameLengthString = selectLinkFor(key: ChainInfo.Key.nameLength)
+            let nameLengthString = selectLinkFor(key: Key.nameLength)
             let nameLength = Int(nameLengthString) ?? 0
             
-            var character = selectLinkFor(key: ChainInfo.Key.initial)
+            var character = selectLinkFor(key: Key.initial)
             var name = character
             var lastCharacter = character
             
@@ -87,7 +87,7 @@ extension ChainInfo {
     // MARK: - Private
         
     private func selectLinkFor(key: String) -> String {
-        let length = self[ChainInfo.Key.tableLength]![key] ?? 0
+        let length = self.chainInfo[Key.tableLength]![key] ?? 0
         let idx = floor(Double(arc4random_uniform(length)))
         
         var value: UInt32 = 0
@@ -100,22 +100,22 @@ extension ChainInfo {
     }
     
     private func valueFor(key: String, token: String) -> UInt32? {
-        if let tokenInfo = self[key] {
+        if let tokenInfo = self.chainInfo[key] {
             return tokenInfo[token]
         }
         return nil
     }
     
-    private mutating func setValue(_ value: UInt32, forKey key: String, token: String) {
-        if self[key] == nil {
-            self[key] = [:]
+    private func setValue(_ value: UInt32, forKey key: String, token: String) {
+        if self.chainInfo[key] == nil {
+            self.chainInfo[key] = [:]
         }
         
-        self[key]![token] = value
+        self.chainInfo[key]![token] = value
     }
     
     private func tokensFor(key: String) -> [String]? {
-        if let tokenInfo = self[key] {
+        if let tokenInfo = self.chainInfo[key] {
             return Array(tokenInfo.keys)
         }
         return nil
@@ -125,7 +125,7 @@ extension ChainInfo {
 public class NameGenerator {
     private let nameInfo: [String: [String]]
     
-    private var chainInfo: [String: ChainInfo] = [:]
+    private var chainInfo: [String: MarkovChain] = [:]
     
     public init(nameInfo: [String: [String]]) {
         self.nameInfo = nameInfo
@@ -133,7 +133,7 @@ public class NameGenerator {
     
     public func generateNameFor(category: String) -> String {
         guard let chain = generateMarkovChainFor(category: category) else { return "" }
-
+        
         return chain.markovName()
     }
     
@@ -149,12 +149,12 @@ public class NameGenerator {
     
     // MARK: - Private
     
-    private func generateMarkovChainFor(category: String) -> ChainInfo? {
+    private func generateMarkovChainFor(category: String) -> MarkovChain? {
         if let chain = self.chainInfo[category] {
             return chain
         } else {
             if let nameList = self.nameInfo[category] {
-                let chain = constructChainFor(nameList: nameList)
+                let chain = constructMarkovChainFor(nameList: nameList)
                 self.chainInfo[category] = chain
                 return chain
             }
@@ -163,33 +163,35 @@ public class NameGenerator {
         return nil
     }
     
-    private func constructChainFor(nameList: [String]) -> ChainInfo {
-        var chain = ChainInfo()
+    private func constructMarkovChainFor(nameList: [String]) -> MarkovChain {
+        let chain = MarkovChain()
         
         for i in 0 ..< nameList.count {
             let names = nameList[i].split(separator: " ")
-            chain.incrementPartsCountFor(token: "\(names.count)")
+            chain.incrementPartsCountFor(character: "\(names.count)")
             
             for j in 0 ..< names.count {
                 let name = String(names[j])
-                chain.incrementNameLengthFor(token: "\(name.count)")
+                chain.incrementNameLengthFor(character: "\(name.count)")
                 
                 let character = String(name.prefix(1))
-                chain.incrementInitialCountFor(token: character)
+                chain.incrementInitialCountFor(character: character)
                 
                 var string = name.suffix(name.count - 1)
                 var lastCharacter = character
                 
                 while string.count > 0 {
                     let character = String(string.prefix(1))
-                    chain.incrementCountFor(key: lastCharacter, token: character)
+                    chain.incrementCountFor(key: lastCharacter, character: character)
                     string = string.suffix(string.count - 1)
                     lastCharacter = character
                 }
             }
         }
         
-        return chain.scaleChain()
+        chain.scale()
+        
+        return chain
     }
 }
 
