@@ -11,6 +11,13 @@ import Foundation
 fileprivate typealias ChainInfo = [String: [String: UInt32]]
 
 public class NameGenerator {
+    private struct ChainInfoKey {
+        static let parts = "parts"
+        static let nameLength = "nameLength"
+        static let initial = "initial"
+        static let tableLength = "tableLength"
+    }
+    
     private let nameInfo: [String: [String]]
     
     private var chainInfo: [String: [String: [String: UInt32]]] = [:]
@@ -56,15 +63,15 @@ public class NameGenerator {
         
         for i in 0 ..< nameList.count {
             let names = nameList[i].split(separator: " ")
-            chain = incrementChain(&chain, key: "parts", token: "\(names.count)")
+            chain = incrementChain(&chain, key: ChainInfoKey.parts, token: "\(names.count)")
             
             for j in 0 ..< names.count {
                 let name = String(names[j])
                 
-                chain = incrementChain(&chain, key: "name_len", token: "\(name.count)")
+                chain = incrementChain(&chain, key: ChainInfoKey.nameLength, token: "\(name.count)")
                 
                 let c = String(name.prefix(1))
-                chain = incrementChain(&chain, key: "initial", token: c)
+                chain = incrementChain(&chain, key: ChainInfoKey.initial, token: c)
                 
                 var string = name.suffix(name.count - 1)
                 var last_c = c
@@ -110,7 +117,7 @@ public class NameGenerator {
                 tableLen[key]! += UInt32(n)
             }
         }
-        chain["table_len"] = tableLen
+        chain[ChainInfoKey.tableLength] = tableLen
         
         return chain
     }
@@ -118,17 +125,17 @@ public class NameGenerator {
     private func markovNameFromChain(_ chain: ChainInfo) -> String {
         let numberFormatter = NumberFormatter()
         
-        let parts = selectLinkFromChain(chain, key: "parts")
+        let parts = selectLinkFromChain(chain, key: ChainInfoKey.parts)
         var names: [String] = []
         
         let x = numberFormatter.number(from: parts)?.intValue ?? 0
         // TODO: double check this code ... in JS seems different
         for _ in 0 ..< x
         {
-            let nameLen = selectLinkFromChain(chain, key: "name_len")
+            let nameLen = selectLinkFromChain(chain, key: ChainInfoKey.nameLength)
             let m = numberFormatter.number(from: nameLen)?.intValue ?? 0
             
-            var c = selectLinkFromChain(chain, key: "initial")
+            var c = selectLinkFromChain(chain, key: ChainInfoKey.initial)
             var name = c
             var last_c = c
             
@@ -144,7 +151,7 @@ public class NameGenerator {
     }
     
     private func selectLinkFromChain(_ chain: ChainInfo, key: String) -> String {
-        let len = chain["table_len"]![key] ?? 0
+        let len = chain[ChainInfoKey.tableLength]![key] ?? 0
         let idx = floor(Double(arc4random_uniform(len)))
         
         var t: UInt32 = 0
