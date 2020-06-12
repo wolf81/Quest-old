@@ -22,10 +22,15 @@ class MainMenuScene: MenuSceneBase {
             .withRow(item: ButtonItem(title: "Settings", onClick: { try! ServiceLocator.shared.get(service: SceneManager.self).push(to: SettingsScene.self) }))
 //            .withEmptyRow()
 //            .withRow(item: ButtonItem(title: "Hi", onClick: {
-//                let nameSet = try! DataLoader.load(type: NameInfo.self, fromFileNamed: "halfling", inDirectory: "Data/Names")
-//                let nameGenerator = NameGenerator(nameInfo: nameSet.nameInfo, invalidPatterns: nameSet.invalidPatterns)
-//                let names = nameGenerator.generateNamesFor(category: "male", count: 100)
-//                print(names)
+//                for race in ["human", "elf", "dwarf", "halfling"] {
+//                    for gender in ["male", "female"] {
+//                        print("\(race) \(gender) names:")
+//                        let nameSet = try! DataLoader.load(type: NameInfo.self, fromFileNamed: "\(race)-\(gender)", inDirectory: "Data/Names")
+//                        let nameGenerator = NameGenerator(nameInfo: nameSet.nameInfo, invalidPatterns: nameSet.filters)
+//                        let names = nameGenerator.generateNamesFor(category: "names", count: 10)
+//                        print(names)
+//                    }
+//                }                
 //                }))
             .withEmptyRow()
             .withRow(item: ButtonItem(title: "Quit", onClick: {

@@ -138,24 +138,23 @@ public class NameGenerator {
         self.nameInfo = nameInfo
     }
     
-    public func generateNameFor(category: String) -> String {
-        guard let chain = generateMarkovChainFor(category: category) else { return "" }
+    public func generateName() -> String {
+        guard let chain = generateMarkovChainFor(category: "names") else { return "" }
         
         let name = chain.markovName()
         
         if isValid(name: name) == false {
-            print("validate: \(name)")
-            return generateNameFor(category: category)
+            return generateName()
         }        
         
         return name
     }
     
-    public func generateNamesFor(category: String, count: UInt32) -> [String] {
+    public func generateNames(count: UInt32) -> [String] {
         var list: [String] = []
         
         for _ in (0 ..< count) {
-            list.append(generateNameFor(category: category))
+            list.append(generateName())
         }
         
         return list
@@ -168,7 +167,7 @@ public class NameGenerator {
             let regex = try! NSRegularExpression(pattern: pattern, options: .caseInsensitive)
             let range = NSRange(location: 0, length: name.count)
             let match = regex.firstMatch(in: name, options: [], range: range)
-            if match != nil { print("invalid: \(name)"); return false }
+            if match != nil { return false }
         }
         
         return true
@@ -223,11 +222,11 @@ public class NameGenerator {
 public class NameInfo: JSONConstructable {
     let nameInfo: [String: [String]]
     
-    let invalidPatterns: [String]
+    let filters: [String]
     
     required init(json: [String : Any]) {
         self.nameInfo = json as! [String: [String]]
         
-        self.invalidPatterns = json["invalidPatterns"] as? [String] ?? []
+        self.filters = json["filters"] as? [String] ?? []
     }
 }
