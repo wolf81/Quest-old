@@ -69,8 +69,8 @@ class ChooseAttributesScene: MenuSceneBase {
     override var configuration: MenuConfiguration { DefaultMenuConfiguration.shared }
     
     private func startGame() {
-        let nameSet = try! DataLoader.load(type: NameInfo.self, fromFileNamed: "\(self.race.rawValue)-\(self.gender.rawValue)" , inDirectory: "Data/Names")
-        let nameGenerator = NameGenerator(nameInfo: nameSet.nameInfo, invalidPatterns: nameSet.filters)
+        let nameInfo = try! DataLoader.load(type: NameInfo.self, fromFileNamed: "\(self.race.rawValue)-\(self.gender.rawValue)" , inDirectory: "Data/Names")
+        let nameGenerator = NameGenerator(nameList: nameInfo.nameList, invalidPatterns: nameInfo.filters)
 
         do {
             let heroBuilder = HeroBuilder()
