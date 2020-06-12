@@ -20,14 +20,14 @@ class MainMenuScene: MenuSceneBase {
             .withRow(item: ButtonItem(title: "Continue Game", onClick: { try! ServiceLocator.shared.get(service: SceneManager.self).push(to: GameScene.self) }))
             .withEmptyRow()
             .withRow(item: ButtonItem(title: "Settings", onClick: { try! ServiceLocator.shared.get(service: SceneManager.self).push(to: SettingsScene.self) }))
-            .withEmptyRow()
+//            .withEmptyRow()
 //            .withRow(item: ButtonItem(title: "Hi", onClick: {
 //                let nameSet = try! DataLoader.load(type: NameInfo.self, fromFileNamed: "halfling", inDirectory: "Data/Names")
 //                let nameGenerator = NameGenerator(nameInfo: nameSet.nameInfo, invalidPatterns: nameSet.invalidPatterns)
 //                let names = nameGenerator.generateNamesFor(category: "male", count: 100)
 //                print(names)
 //                }))
-//            .withEmptyRow()
+            .withEmptyRow()
             .withRow(item: ButtonItem(title: "Quit", onClick: {
                 #if os(macOS)
                 NSApp.terminate(self)

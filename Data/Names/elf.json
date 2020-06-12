@@ -50,8 +50,10 @@
     ],
     "invalidPatterns": [
         "-",
+        "^.{1,6}$",
         "rbr",
-        "lw$",
+        "l[rw]$",
+        "rhd",
         "nr$",
         "(.)\\1\\1",
         "(?i)\b[b-df-hj-np-tv-z]+\\b",
