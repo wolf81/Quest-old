@@ -70,7 +70,7 @@ class ChooseAttributesScene: MenuSceneBase {
     
     private func startGame() {
         let nameSet = try! DataLoader.load(type: NameInfo.self, fromFileNamed: self.race.rawValue, inDirectory: "Data/Names")
-        let nameGenerator = NameGenerator(nameInfo: nameSet.nameInfo)
+        let nameGenerator = NameGenerator(nameInfo: nameSet.nameInfo, invalidPatterns: nameSet.invalidPatterns)
 
         do {
             let heroBuilder = HeroBuilder()

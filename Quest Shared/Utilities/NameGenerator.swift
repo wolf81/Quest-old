@@ -127,14 +127,28 @@ public class NameGenerator {
     
     private var chainInfo: [String: MarkovChain] = [:]
     
-    public init(nameInfo: [String: [String]]) {
+    private let invalidPatterns: [String]
+    
+    convenience init(nameInfo: [String: [String]]) {
+        self.init(nameInfo: nameInfo, invalidPatterns: [])
+    }
+    
+    public init(nameInfo: [String: [String]], invalidPatterns: [String]) {
+        self.invalidPatterns = invalidPatterns
         self.nameInfo = nameInfo
     }
     
     public func generateNameFor(category: String) -> String {
         guard let chain = generateMarkovChainFor(category: category) else { return "" }
         
-        return chain.markovName()
+        let name = chain.markovName()
+        
+        if isValid(name: name) == false {
+            print("validate: \(name)")
+            return generateNameFor(category: category)
+        }        
+        
+        return name
     }
     
     public func generateNamesFor(category: String, count: UInt32) -> [String] {
@@ -148,6 +162,17 @@ public class NameGenerator {
     }
     
     // MARK: - Private
+    
+    private func isValid(name: String) -> Bool {
+        for pattern in self.invalidPatterns {
+            let regex = try! NSRegularExpression(pattern: pattern, options: .caseInsensitive)
+            let range = NSRange(location: 0, length: name.count)
+            let match = regex.firstMatch(in: name, options: [], range: range)
+            if match != nil { print("invalid: \(name)"); return false }
+        }
+        
+        return true
+    }
     
     private func generateMarkovChainFor(category: String) -> MarkovChain? {
         if let chain = self.chainInfo[category] {
@@ -198,7 +223,11 @@ public class NameGenerator {
 public class NameInfo: JSONConstructable {
     let nameInfo: [String: [String]]
     
+    let invalidPatterns: [String]
+    
     required init(json: [String : Any]) {
         self.nameInfo = json as! [String: [String]]
+        
+        self.invalidPatterns = json["invalidPatterns"] as? [String] ?? []
     }
 }
