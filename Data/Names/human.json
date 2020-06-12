@@ -89,6 +89,7 @@
     "invalidPatterns": [
         "-",
         "ubl$",
+        "nw$",
         "(.)\\1\\1",
         "[bf]rd",
         "rn[dw]",
