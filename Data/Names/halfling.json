@@ -55,6 +55,7 @@
     ],
     "invalidPatterns": [
         "-",
+        "yrl",
         "(.)\\1\\1",
         "(?i)\b[b-df-hj-np-tv-z]+\\b",
     ]

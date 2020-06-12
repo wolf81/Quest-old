@@ -73,7 +73,8 @@
         "Teàrlag",
     ],
     "invalidPatterns": [
-        "-",
+        "-",        
+        "rnr",
         "br[mg]",
         "[cd]rd",
         "(.)\\1\\1",
